@@ -57,10 +57,7 @@ public class HomeController {
 	public String service() {
 		return "rentcar/service";
 	}*/
-	@RequestMapping(value="mypage.do",method=RequestMethod.GET)
-	public String mypage() {
-		return "rentcar/mypage";
-	}
+	
 	@RequestMapping(value="input.do",method=RequestMethod.GET)
 	public String input() {
 		return "rentcar/input";

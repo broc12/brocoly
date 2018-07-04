@@ -36,7 +36,7 @@ public class LoginController {
 
 			if (loginDAO.loginCheck(loginInfo)) {
 				session.setAttribute("login", 0); // 로그인 성공시 세션
-				System.out.println("s");
+				System.out.println("a");
 				session.setAttribute("id", loginInfo.getId());
 				System.out.println("ss");
 				String id = session.getAttribute("id").toString();

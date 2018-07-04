@@ -33,7 +33,47 @@ public class HomeController {
 		
 		model.addAttribute("serverTime", formattedDate );
 		
-		return "home";
+		return "rentcar/home";
 	}
-	
+
+	@RequestMapping(value="car.do",method=RequestMethod.GET)
+	public String car() {
+		return "rentcar/car";
+	}
+	@RequestMapping(value="rentcar.do",method=RequestMethod.GET)
+	public String rentcar() {
+		return "rentcar/rentcar";
+	}
+	@RequestMapping(value="member.do",method=RequestMethod.GET)
+	public String member() {
+		return "rentcar/member";
+	}
+	@RequestMapping(value="login.do",method=RequestMethod.GET)
+	public String login() {
+		return "rentcar/login";
+	}
+	@RequestMapping(value="board.do",method=RequestMethod.GET)
+	public String board() {
+		return "rentcar/board";
+	}
+	/*@RequestMapping(value="service.do",method=RequestMethod.GET)
+	public String service() {
+		return "rentcar/service";
+	}*/
+	@RequestMapping(value="mypage.do",method=RequestMethod.GET)
+	public String mypage() {
+		return "rentcar/mypage";
+	}
+	@RequestMapping(value="input.do",method=RequestMethod.GET)
+	public String input() {
+		return "rentcar/input";
+	}
+	@RequestMapping(value="end.do",method=RequestMethod.GET)
+	public String end() {
+		return "rentcar/end";
+	}
+	@RequestMapping(value="check.do",method=RequestMethod.GET)
+	public String check() {
+		return "rentcar/check";
+	}
 }

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="query.CustomerCenter">
+
+	<resultMap id="customerResult" type="CustomerCenter">
+	<result property="announ_no" column="ANNOUN_NO"/> 
+	<result property="announ_title" column="ANNOUN_TITLE"/> 
+	<result property="announ_content" column="ANNOUN_CONTENT"/> 
+	<result property="announ_writer" column="ANNOUN_WRITER"/>
+	<result property="announ_view" column="ANNOUN_VIEW"/>
+	<result property="announ_resist" column="ANNOUN_RESIST"/>
+	</resultMap>
+	
+	<select id="mySelectAll" parameterType="HashMap" resultType="CustomerCenter">
+         select rownum , A.* from Announcement A where rownum between  #{A} and #{B}
+    </select>
+	<select id="myTotalNum" resultType="long">
+	 select max(rownum) from Announcement
+	 </select>
+</mapper>

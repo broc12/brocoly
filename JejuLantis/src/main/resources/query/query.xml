@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace = "query">
+
+<resultMap type="com.khd.model.LoginInfo" id="LoginInfoResult">
+	<result column="ID" property="id"/>
+	<result column="PWD" property="password"/>
+</resultMap>
+
+<!-- 로그인 체키쿼리 -->
+	<select id="loginCheck" resultType="integer" parameterType="com.khd.model.LoginInfo"> 
+		select count(*) from MEMBER
+		<where>
+		ID = #{id}
+			AND
+		PWD = #{password}
+		</where>
+	</select>
+	
+<!-- 	select -->
+	<select id="totalAccount" resultType="integer">
+		SELECT COUNT(*) FROM MEMBER
+	</select>
+</mapper>

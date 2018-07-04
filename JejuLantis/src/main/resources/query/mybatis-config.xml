@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<typeAliases>
+		<typeAlias alias="LoginDAO" type="com.khd.model.LoginInfo"/>
+		<typeAlias alias="CustomerCenter" type="com.khd.model.CustomerCenter"/>
+	</typeAliases>
+	<mappers>
+		<mapper resource="query/query.xml"/>
+		<mapper resource="query/CustomerCenter.xml"/>
+	</mappers>
+	
+	
+
+
+
+</configuration>
+
+

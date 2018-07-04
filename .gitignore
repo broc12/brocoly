@@ -23,12 +23,10 @@
 hs_err_pid*
 servlet-context.xml
 root-context.xml
-web.xml
 log4j.xml
 
 /target/
 /project/
-pom.xml
 .classpath
 .project
 factoryConfiguration.json

@@ -10,6 +10,7 @@
 	<mappers>
 		<mapper resource="query/query.xml"/>
 		<mapper resource="query/CustomerCenter.xml"/>
+		<mapper resource="query/rentcar.xml"/>
 	</mappers>
 	
 	

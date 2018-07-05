@@ -2,7 +2,10 @@ package com.khd.jejulantis;
 
 import java.text.DateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Locale;
+
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -32,15 +35,6 @@ public class HomeController {
 		
 		return "rentcar/home";
 	}
-
-	@RequestMapping(value="car.do",method=RequestMethod.GET)
-	public String car() {
-		return "rentcar/car";
-	}
-	@RequestMapping(value="rentcar.do",method=RequestMethod.GET)
-	public String rentcar() {
-		return "rentcar/rentcar";
-	}
 	@RequestMapping(value="member.do",method=RequestMethod.GET)
 	public String member() {
 		return "rentcar/member";
@@ -53,11 +47,6 @@ public class HomeController {
 	public String board() {
 		return "rentcar/board";
 	}
-	/*@RequestMapping(value="service.do",method=RequestMethod.GET)
-	public String service() {
-		return "rentcar/service";
-	}*/
-	
 	@RequestMapping(value="input.do",method=RequestMethod.GET)
 	public String input() {
 		return "rentcar/input";

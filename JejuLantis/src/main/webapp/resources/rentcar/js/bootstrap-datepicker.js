@@ -702,8 +702,8 @@
 				year = this.viewDate.getUTCFullYear(),
 				month = this.viewDate.getUTCMonth(),
 				today = new Date();
-			if (date.getUTCFullYear() < year || (date.getUTCFullYear() === year && date.getUTCMonth() < month)){
-				cls.push('old');
+			if (date.getUTCFullYear() < year || (date.getUTCFullYear() === year && date.getUTCMonth() < month)||(date.getUTCFullYear() === year && date.getUTCMonth() === month && date.getUTCDate() < today.getDate())){
+				cls.push('disabled');
 			}
 			else if (date.getUTCFullYear() > year || (date.getUTCFullYear() === year && date.getUTCMonth() > month)){
 				cls.push('new');
@@ -1404,7 +1404,7 @@
 		multidateSeparator: ',',
 		orientation: "auto",
 		rtl: false,
-		startDate: -Infinity,
+		startDate: "today",
 		startView: 0,
 		todayBtn: false,
 		todayHighlight: false,

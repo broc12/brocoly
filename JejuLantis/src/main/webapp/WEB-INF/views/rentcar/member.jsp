@@ -89,18 +89,18 @@
 				<div class="row">
 					<div class="col-md-10 col-md-offset-1 animate-box">
 						<h3>회원가입</h3>
-						<form action="#">
+						<form action="member/memberjoin" method="post">
 							<div class="row form-group">
 								<div class="col-md-12">
-									<label for="email">아이디</label>
-									<input type="text" id="email" class="form-control" placeholder="ID">
+									<label for="fname">아이디</label>
+									<input type="text" id="fname" name= "id"class="form-control" placeholder="ID">
 								</div>
 							</div>
 						
 							<div class="row form-group">
 								<div class="col-md-6 padding-bottom">
 									<label for="fname">비밀번호</label>
-									<input type="text" id="fname" class="form-control" placeholder="PASSWORD">
+									<input type="text" id="fname" name= "pwd" class="form-control" placeholder="PASSWORD">
 								</div>
 								<div class="col-md-6">
 									<label for="lname">비밀번호확인</label>
@@ -111,65 +111,65 @@
 							<div class="row form-group">
 								<div class="col-md-6 padding-bottom">
 									<label for="fname">이름</label>
-									<input type="text" id="fname" class="form-control" placeholder="NAME">
+									<input type="text" id="fname" name= "name" class="form-control" placeholder="NAME">
 								</div>
 								<div class="col-md-6">
 									<label for="lname">생년월일</label>
-									<input type="text" id="lname" class="form-control" placeholder="ex)19920704">
+									<input type="text" id="lname" name= "birth"class="form-control" placeholder="ex)19920704">
 								</div>
 							</div>
 							<div class="row form-group">
 								<div class="col-md-12">
 									<label for="subject">거주지</label>
-									<select name="people" id="people" class="form-control">
+									<select name="memeber_local" id="people" class="form-control">
 										<option value="#" style="color:black">거주지 선택(시/도)</option>
-										<option value="#" style="color:black">서울</option>
-				                        <option value="#" style="color:black">부산</option>
-				                        <option value="#" style="color:black">대구</option>
-				                        <option value="#" style="color:black">인천</option>
-				                        <option value="#" style="color:black">광주</option>
-				                        <option value="#" style="color:black">대전</option>
-				                        <option value="#" style="color:black">울산</option>
-				                        <option value="#" style="color:black">세종시</option>
-				                        <option value="#" style="color:black">경기</option>
-				                        <option value="#" style="color:black">강원</option>
-				                        <option value="#" style="color:black">충남</option>
-				                        <option value="#" style="color:black">충북</option>
-				                        <option value="#" style="color:black">전남</option>
-				                        <option value="#" style="color:black">전북</option>
-				                        <option value="#" style="color:black">경남</option>
-				                        <option value="#" style="color:black">경북</option>
-				                        <option value="#" style="color:black">제주</option>
+										<option value="서울" style="color:black">서울</option>
+				                        <option value="부산" style="color:black">부산</option>
+				                        <option value="대구" style="color:black">대구</option>
+				                        <option value="인천" style="color:black">인천</option>
+				                        <option value="광주" style="color:black">광주</option>
+				                        <option value="대전" style="color:black">대전</option>
+				                        <option value="울산" style="color:black">울산</option>
+				                        <option value="세종시" style="color:black">세종시</option>
+				                        <option value="경기" style="color:black">경기</option>
+				                        <option value="강원" style="color:black">강원</option>
+				                        <option value="충남" style="color:black">충남</option>
+				                        <option value="충북" style="color:black">충북</option>
+				                        <option value="전남" style="color:black">전남</option>
+				                        <option value="전북" style="color:black">전북</option>
+				                        <option value="경남" style="color:black">경남</option>
+				                        <option value="경북" style="color:black">경북</option>
+				                        <option value="제주" style="color:black">제주</option>
 									</select>
 								</div>
 							</div>
 							<div class="row form-group">
 								<div class="col-md-12">
 									<label for="subject">이메일</label>
-									<input type="text" id="subject" class="form-control" placeholder="heima@naver.com">
+									<input type="text" id="subject" name= "email"class="form-control" placeholder="heima@naver.com"/>
 								</div>
 							</div>
 							<div class="row form-group">
 								<div class="col-md-12">
 									<label for="subject">전화번호</label>
-									<input type="text" id="subject" class="form-control" placeholder="ex)01086308690">
+									<input type="text" id="subject" name= "tel" class="form-control" placeholder="ex)01086308690"/>
 								</div>
 							</div>
 							
-							<form method="post" class="colorlib-form-2">
+<!-- 							<form method="post" class="colorlib-form-2"> -->
 								<div class="form-check text-center">
-									<input type="checkbox" class="form-check-input" id="exampleCheck1">
+									<input type="checkbox" class="form-check-input" id="exampleCheck1"name="sms_at" value="y" />
 										<label class="form-check-label" for="exampleCheck1">
 											<h4 class="place">SMS수신(이벤트)</h4>
 										</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-									<input type="checkbox" class="form-check-input" id="exampleCheck1">
+									<input type="checkbox" class="form-check-input" id="exampleCheck1"/>
 										<label class="form-check-label" for="exampleCheck1">
 											<h4 class="place">이메일 수신(이벤트)</h4>
 										</label>
 								</div>
-							</form>
+<!-- 							</form> -->
 							<div class="form-group text-center">
-								<input type="submit" value="가입하기" class="btn btn-primary">
+								<input type="submit" value="가입하기" class="btn btn-primary"/>
 							</div>
 
 						</form>		

@@ -31,15 +31,19 @@ public class LoginController {
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter out = response.getWriter();
 		System.out.println(loginInfo.getId());
-		if ((loginInfo.getId() != null && !loginInfo.getId().equals("") && loginInfo.getPassword() != null
-				&& !loginInfo.getPassword().equals(""))) {
-
+		System.out.println(loginInfo.getPwd());
+		System.out.println("s2ss");
+		if ((loginInfo.getId() != null && !loginInfo.getId().equals("") && loginInfo.getPwd() != null
+				&& !loginInfo.getPwd().equals(""))) {
+			System.out.println("sss");
+			LoginInfo Info = null;
 			if (loginDAO.loginCheck(loginInfo)) {
 				session.setAttribute("login", 0); // 로그인 성공시 세션
 				System.out.println("s");
-				session.setAttribute("id", loginInfo.getId());
+				Info = new LoginInfo(loginInfo.getId());
+				session.setAttribute("log", Info);
 				System.out.println("ss");
-				String id = session.getAttribute("id").toString();
+				LoginInfo log = (LoginInfo)session.getAttribute("log");
 
 				out.println("<script>location.href='../'; </script>");
 				out.flush();
@@ -56,12 +60,15 @@ public class LoginController {
 	@RequestMapping(value = "/login/logout")
 	public ModelAndView logOut(ModelAndView mv, HttpSession session) {
 		String page = "redirect:/";
-		session.removeAttribute("id");
+		session.removeAttribute("log");
 		System.out.println("성공5");
+		System.out.println( "page :" + page);
 		mv.setViewName(page);
-		;
+		System.out.println("mv :" + mv);
 		return mv;
-	}
+		}
+
+	
 	@RequestMapping(value="mypage.do",method=RequestMethod.GET)
 	public String mypage() {
 		return "rentcar/mypage";

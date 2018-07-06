@@ -114,7 +114,7 @@
 													</p>
 												</div>
 												<div style="width: 60%">
-													<input type="text" id="fname" name="password"
+													<input type="text" id="fname" name="pwd"
 														class="form-control" placeholder="비밀번호"></br>
 													<p align="right">
 														<a href="">아이디찾기</a> ｜ <a href="">비밀번호찾기</a>

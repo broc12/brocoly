@@ -4,7 +4,7 @@
 
 <resultMap type="com.khd.model.LoginInfo" id="LoginInfoResult">
 	<result column="ID" property="id"/>
-	<result column="PWD" property="password"/>
+	<result column="PWD" property="pwd"/>
 </resultMap>
 
 <!-- 로그인 체키쿼리 -->
@@ -13,7 +13,7 @@
 		<where>
 		ID = #{id}
 			AND
-		PWD = #{password}
+		PWD = #{pwd}
 		</where>
 	</select>
 	

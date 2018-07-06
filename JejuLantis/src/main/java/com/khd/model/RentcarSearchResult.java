@@ -1,6 +1,8 @@
 package com.khd.model;
 
-public class RentcarSearchResult {
+import java.io.Serializable;
+
+public class RentcarSearchResult implements Serializable{
 
 	long minimumPrice;
 	long availableCar;

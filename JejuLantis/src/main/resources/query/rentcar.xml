@@ -43,6 +43,6 @@ from
     BRANCH B
 where
     K.CAR_KIND_NO=I.CAR_KIND_NO AND
-    I.BRANCH_LINE_NO=B.BRANCH_LINE_NO
+    I.BRANCH_NO=B.BRANCH_NO
     </select>
 </mapper>

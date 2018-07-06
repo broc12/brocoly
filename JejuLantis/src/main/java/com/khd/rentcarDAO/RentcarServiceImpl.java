@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.khd.model.RentcarSearchResult;
 import com.khd.rentcarService.RentcarDAO;
 @Service
 public class RentcarServiceImpl implements RentcarService {
@@ -13,7 +14,7 @@ public class RentcarServiceImpl implements RentcarService {
 	RentcarDAO rentcardao;
 	
 	@Override
-	public List searchService() {
+	public List<RentcarSearchResult> searchService() {
 		
 		return rentcardao.search();
 	}

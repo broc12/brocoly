@@ -2,7 +2,9 @@ package com.khd.rentcarService;
 
 import java.util.List;
 
+import com.khd.model.RentcarSearchResult;
+
 public interface RentcarDAO {
 
-	public List search();
+	public List<RentcarSearchResult> search();
 }

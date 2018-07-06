@@ -6,6 +6,7 @@
 	<typeAliases>
 		<typeAlias alias="LoginDAO" type="com.khd.model.LoginInfo"/>
 		<typeAlias alias="CustomerCenter" type="com.khd.model.CustomerCenter"/>
+		<typeAlias alias="RentcarSearchResult" type="com.khd.model.RentcarSearchResult"/>
 	</typeAliases>
 	<mappers>
 		<mapper resource="query/query.xml"/>

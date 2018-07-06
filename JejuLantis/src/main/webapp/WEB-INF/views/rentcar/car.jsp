@@ -1,7 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page session="true" %>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE HTML>
 <html>
 	<head>
@@ -110,18 +109,19 @@
 							</div>
 							</div>
 						<!-- start -->
+						<c:forEach items="${list }" var="dto" varStatus="status">
 						<div class="row">
 							<div class="wrap-division">
 								<div class="row">
 								<div class="col-md-6 col-sm-6 animate-box">
 									<div class="hotel-entry">
-										<h3><a>${car.cartype }</a></h3><span class="place">"${car.menufactur }"</span>
+										<h3><a>${dto.car_kind_name }</a></h3><span class="place">${dto.car_kind_manufactur }</span>
 										<a class="hotel-img" style="background-image: url(resources/rentcar/images/car1.jpg);">
-											<p class="price"><span>"${car.perwage }"</span><small> /24시간</small></p>
+											<p class="price"><span></span><small> /24시간</small></p>
 										</a>
-										<a>실시간 예약 가능 차량 : "${car.passenger }"</a>
+										<a>실시간 예약 가능 차량 : ${dto.car_kind_passenger }</a>
 										<div class="desc">
-											<p align="center">"${car.option1 }""${car.option2 }""${car.option3 }""${car.option4 }"</p>
+											<p align="center">${dto.car_kind_passenger }인승 ${dto.car_kind_type } ${dto.car_kind_fuel } ${dto.car_kind_trans }</p>
 										</div>
 									</div>
 								</div>
@@ -129,9 +129,9 @@
 								<div class="col-md-6 col-sm-6 animate-box">
 									<div class="hotel-entry">
 										<div class="desc">
-											<h3><a href="rentcar.do">"${car.branch }"</a></h3>
+											<h3><a href="rentcar.do">${dto.branch_name }</a></h3>
 											<p class="star"><span><i class="icon-star-full"></i><i class="icon-star-full"></i><i class="icon-star-full"></i><i class="icon-star-full"></i><i class="icon-star-full"></i></span> 545 Reviews</p>
-											<span class="place">금연차량 네비 후방센서  블랙박스 블루투스 후방카메라 썬루프</span>
+											<span class="place">${dto.car_info_blackbox } ${dto.car_info_bluetooth } ${dto.car_info_non_smoking_veh } ${dto.car_info_rear_camera } ${dto.car_info_rear_sensors } ${dto.car_info_navi } ${dto.car_info_sunruff }</span>
 											<!-- <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p> -->
 											<div id="board">
 												<table border="1" width="100%"  cellpadding="0" cellspacing="0">	
@@ -146,11 +146,11 @@
 													</tr>
 													<tr style="font-size:8pt">
 														<td align="center">특별한렌트카</td>
-														<td align="center">"${car.rating }"</td>
-														<td align="center">"${car.xx }"</td>
-														<td align="center">"${car.insurance }"</td>
-														<td align="center">"${car.yy }"</td>
-														<td align="center">"${car.xx}"</td>
+														<td align="center">${dto.car_kind_no }</td>
+														<td align="center">${dto.car_kind_no }</td>
+														<td align="center">${dto.car_kind_no }</td>
+														<td align="center">${dto.car_kind_no }</td>
+														<td align="center">${dto.car_kind_no }</td>
 														<td align="center">													
 											                  	<button type="button"><a href="rentcar.do" style="color:black">실시간예약</a></button>								                
 														</td>
@@ -175,6 +175,7 @@
 						</div>
 						</div>
 						<hr>
+						</c:forEach>
 						<!-- end -->
 						<div class="row">
 							<div class="wrap-division">

@@ -1,20 +1,26 @@
 package com.khd.rentcarController;
 
-import java.util.HashMap;
+import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.khd.rentcarDAO.RentcarService;
+
 @Controller
 public class RentcarController {
 	
+	@Autowired
+	RentcarService rentcarservice;
+	
 	@RequestMapping(value="car.do",method=RequestMethod.GET)
 	public String car(HttpSession session) {
-		HashMap<String,String> map = new HashMap<String,String>();
+/*		HashMap<String,String> map = new HashMap<String,String>();
 		map.put("cartype","스팅어");
 		map.put("menufactur","기아");
 		map.put("perwage","26400");
@@ -32,8 +38,10 @@ public class RentcarController {
 		map.put("xx","13400");
 		map.put("insurance","13000");
 		map.put("yy","2000만원");
-		map.put("cartype","26400");
-		session.setAttribute("car", map);
+		map.put("cartype","26400");*/
+		List list = rentcarservice.searchService();
+		System.out.println(list.size());
+		session.setAttribute("list", list);
 		return "rentcar/car";
 	}
 	

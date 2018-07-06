@@ -2,7 +2,47 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="query.rentcar">
 
-
+	<resultMap id="rentcarSearchResult" type="RentcarSearchResult">
+	<result property="car_kind_no" column="CAR_KIND_NO"/> 
+	<result property="car_kind_name" column="CAR_KIND_NAME"/> 
+	<result property="car_kind_manufactur" column="CAR_KIND_MANUFACTUR"/> 
+	<result property="car_kind_passenger" column="CAR_KIND_PASSENGER"/>
+	<result property="car_kind_type" column="CAR_KIND_TYPE"/>
+	<result property="car_kind_fuel" column="CAR_KIND_FUEL"/>
+	<result property="car_kind_trans" column="CAR_KIND_TRANS"/>
+	<result property="branch_name" column="BRANCH_NAME"/>
+	<result property="car_info_blackbox" column="CAR_INFO_BLACKBOX"/>
+	<result property="car_info_bluetooth" column="CAR_INFO_BLUETOOTH"/>
+	<result property="car_info_non_smoking_veh" column="CAR_INFO_NON_SMOKING_VEH"/>
+	<result property="car_info_rear_camera" column="CAR_INFO_REAR_CAMERA"/>
+	<result property="car_info_rear_sensors" column="CAR_INFO_REAR_SENSORS"/>
+	<result property="car_info_navi" column="CAR_INFO_NAVI"/>
+	<result property="car_info_sunruff" column="CAR_INFO_SUNRUFF"/>
+	</resultMap>
 	
-
+	<select id="rentcarSearch" parameterType="HashMap" resultType="RentcarSearchResult">
+         select
+    K.CAR_KIND_NO,
+    K.CAR_KIND_NAME,
+    K.CAR_KIND_MANUFACTUR,
+    K.CAR_KIND_PASSENGER,
+    K.CAR_KIND_TYPE,
+    K.CAR_KIND_FUEL,
+    K.CAR_KIND_TRANS,
+    B.BRANCH_NAME,
+    I.CAR_INFO_BLACKBOX,
+    I.CAR_INFO_BLUETOOTH,
+    I.CAR_INFO_NON_SMOKING_VEH,
+    I.CAR_INFO_REAR_CAMERA,
+    I.CAR_INFO_REAR_SENSORS,
+    I.CAR_INFO_NAVI,
+    I.CAR_INFO_SUNRUFF
+from
+    CAR_KIND K,
+    CAR_INFO I,
+    BRANCH B
+where
+    K.CAR_KIND_NO=I.CAR_KIND_NO AND
+    I.BRANCH_LINE_NO=B.BRANCH_LINE_NO
+    </select>
 </mapper>

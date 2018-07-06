@@ -10,6 +10,7 @@
 	<result property="announ_view" column="ANNOUN_VIEW"/>
 	<result property="announ_resist" column="ANNOUN_RESIST"/>
 	</resultMap>
+
 	
 	<select id="mySelectAll" parameterType="HashMap" resultType="CustomerCenter">
          select rownum , A.* from Announcement A where rownum between  #{A} and #{B}
@@ -17,4 +18,5 @@
 	<select id="myTotalNum" resultType="long">
 	 select max(rownum) from Announcement
 	 </select>
+
 </mapper>

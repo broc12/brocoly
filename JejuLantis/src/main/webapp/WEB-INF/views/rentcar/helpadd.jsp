@@ -74,7 +74,7 @@
 				   			<div class="col-md-6 col-md-offset-3 col-sm-12 col-xs-12 slider-text">
 				   				<div class="slider-text-inner text-center">
 				   					<h2>by colorlib.com</h2>
-				   					<h1>공지 사항</h1>
+				   					<h1>여행상담</h1>
 				   				</div>
 				   			</div>
 				   		</div>
@@ -83,18 +83,18 @@
 			  	</ul>
 		  	</div>
 		</aside>
-		
 		<div id="board">
 			<table border="0" width="100%"  cellpadding="0" cellspacing="0">	
 				<tr style="color:#8c9094;background-color:#eef2f5;font-size:10pt">			
 					<th  height="60px" class="text-center" width="15%" style="color:black">고객센터</th>
-					<th  class="text-center" width="10%"><a href="service.do" style="color:#ffdd01">공지사항</a></th>
+					<th  class="text-center" width="10%"><a href="service.do" style="color:#8c9094">공지사항</a></th>
 					<th  class="text-center" width="15%"><a href="faq.do" style="color:#8c9094">자주찾는 질문</a></th>
-					<th  class="text-center" width="15%"><a href="help.do" style="color:#8c9094">여행상담</a></th>
+					<th  class="text-center" width="10%"><a href="faq.do" style="color:#ffdd01">여행상담</a></th>
 					<th  class="text-center"></th>
 				</tr>
 			</table>
 		</div>
+		
 		<div class="colorlib-wrap">
 			<div class="container">
 				<div class="row">
@@ -107,28 +107,82 @@
 										<div class="desc">
 											<!-- <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p> -->
 											<div id="board">
-												<h3>공지사항</h3>
-												<table border="0" width="100%"  cellpadding="0" cellspacing="0">	
+												<h3>여행상담</h3>
+												<a style="color:black">제주란티스 상품 및 서비스에 대해 궁금하신 사항을 친절하게 안내해드리겠습니다.</a></br>
+												<a style="color:black">문의 하시기 전 '자주묻는질문' 을 찾아 보시면 신속하게 궁금증을 해소하실 수 있습니다</a></br></br></br>
+												<h3 style="color:#c6c600">작성자 정보</h3>
+												<form action="helpInsert.do" method="POST" >
+								                  <div class="form-group">
+								                    <label for="guests">성명</label>
+								                    <div class="form-field">
+								                      <input type="text" size="40" id="location" name="qna_name" placeholder="이름">
+								                    </div>
+								                    <label for="guests">이메일</label>
+								                    <div class="form-field">
+								                      <input type="text" size="40" id="location" name="qna_email" placeholder="jejulantis@jeju.com">
+								                    </div>
+								                    <label for="guests">연락처</label>
+								                    <div class="form-field">
+								                      <input type="text" size="40" id="location"  name="qna_tel" placeholder="01086308690">
+								                      <a style="color:#ff5b0d">숫자만 입력해주세요</a>
+								                    </div>
+								                  </div>
+								                
+												<table border="0" width="100%"  cellpadding="0" cellspacing="0">
+													<h3 style="color:#c6c600">문의하기</h3>	
 													<tr style="color:#808080;font-size:12pt">			
-														<th  height="50px" width="10%" class="text-center" style="background-color: #fafafa">번호</th>
-														<th  width="60%" class="text-center" style="background-color: #fafafa"></th>
-														<th  width="15%" class="text-center" style="background-color: #fafafa">등록일</th>
-														<th  width="155%" class="text-center" style="background-color: #fafafa">조회수</th>
+														<th  height="60px" width="10%" class="text-center" style="background-color: #fafafa">제목</th>
+														<th  width="35%" class="text-left">
+															<input type="text" size="80" name="qna_title" placeholder="">
+														</th>
 													</tr>
-													 <c:if test="${empty list}">
-													     <tr>
-													     	<td align="center" colspan="5">데이터가 없음</td>
-													     </tr>
-													  </c:if>
-													  <c:forEach items="${list}" var="board">
-														<tr style="font-size:10pt" height="60px">
-															<td align="center">${board.announ_no}</td>
-															<td align="center">${board.announ_title}</td>
-															<td align="center">${board.announ_resist}</td>
-															<td align="center">${board.announ_view}</td>
-														</tr>
-												</c:forEach>
-												</table>
+													<tr style="font-size:10pt" height="60px">
+														<td height="100px" align="center" style="background-color: #fafafa">내용</td>
+														<td align="left">
+															<textarea rows="8" cols="110" name="qna_content"></textarea>
+														</td>
+													</tr>
+													<tr style="font-size:10pt" height="60px">
+														<td height="70px" align="center" style="background-color: #fafafa">비밀번호</td>
+														<td align="left">
+															<input type="password" size="47" name="qna_pwd" placeholder="">
+															<a style="color:#ff5b0d">4~12자 사이이 문자를 입력하세요</a>
+															<a style="color:#808080">게시물 수정/삭제시 필요합니다.</a>
+														</td>
+													</tr>
+													<tr style="font-size:10pt" height="60px">
+														<td align="center" style="background-color: #fafafa">비밀글 여부</td>
+														<td align="left">
+															<input type="checkbox" name="qna_secret">
+															<label class="form-check-label" for="exampleCheck1">
+																<a style="font-size:12pt;color:#808080">비밀글로 등록합니다.</a>
+															</label></br>
+														</td>
+													</tr>
+													<tr style="font-size:10pt" height="60px">
+														<td align="center" style="background-color: #fafafa">스팸글방지</td>
+														<td align="left">
+															<input type="checkbox">
+															<label class="form-check-label" for="exampleCheck1">
+																<a style="font-size:12pt;color:#808080">로봇이 아닙니다.</a>
+															</label></br>
+														</td>
+													</tr>
+												</table></br>
+												<div align="center">
+													<input type="checkbox">
+														<label class="form-check-label" for="esxampleCheck1">
+															<h4 style="font-size:12pt">개인정보 수집·이용 및 제3자 정보 제공에 모두 동의합니다.</h4>
+														</label></br>
+												</div>
+															
+												<div class="col-md-12 text-center">
+													<button type="submit" class="btn btn-primary" style="border-radius:0px">글등록</button>
+													<button type="button" class="btn btn-primary" style="border-radius:0px">
+														<a href="help.do" style="color:white">글목록</a>
+													</button>
+												</div>
+												</form>
 											</div>
 										</div>
 									</div>
@@ -137,19 +191,8 @@
 							
 							</div>
 						</div>
-						<div class="row">
-							<div class="col-md-12 text-center">
-								<ul class="pagination">
-									<li class="disabled"><a href="#">&laquo;</a></li>
-									<li class="active"><a href="#">1</a></li>
-									<li><a href="#">2</a></li>
-									<li><a href="#">3</a></li>
-									<li><a href="#">4</a></li>
-									<li><a href="#">&raquo;</a></li>
-								</ul>
-							</div>
-						</div>
 					</div>
+			
 
 					<!-- SIDEBAR-->
 					<div class="col-md-3">

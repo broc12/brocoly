@@ -74,7 +74,7 @@
 				   			<div class="col-md-6 col-md-offset-3 col-sm-12 col-xs-12 slider-text">
 				   				<div class="slider-text-inner text-center">
 				   					<h2>by colorlib.com</h2>
-				   					<h1>공지 사항</h1>
+				   					<h1>여행상담</h1>
 				   				</div>
 				   			</div>
 				   		</div>
@@ -83,18 +83,18 @@
 			  	</ul>
 		  	</div>
 		</aside>
-		
 		<div id="board">
 			<table border="0" width="100%"  cellpadding="0" cellspacing="0">	
 				<tr style="color:#8c9094;background-color:#eef2f5;font-size:10pt">			
 					<th  height="60px" class="text-center" width="15%" style="color:black">고객센터</th>
-					<th  class="text-center" width="10%"><a href="service.do" style="color:#ffdd01">공지사항</a></th>
+					<th  class="text-center" width="10%"><a href="service.do" style="color:#8c9094">공지사항</a></th>
 					<th  class="text-center" width="15%"><a href="faq.do" style="color:#8c9094">자주찾는 질문</a></th>
-					<th  class="text-center" width="15%"><a href="help.do" style="color:#8c9094">여행상담</a></th>
+					<th  class="text-center" width="10%"><a href="faq.do" style="color:#ffdd01">여행상담</a></th>
 					<th  class="text-center"></th>
 				</tr>
 			</table>
 		</div>
+		
 		<div class="colorlib-wrap">
 			<div class="container">
 				<div class="row">
@@ -107,27 +107,32 @@
 										<div class="desc">
 											<!-- <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p> -->
 											<div id="board">
-												<h3>공지사항</h3>
+												<h3 style="text-decoration: underline;text-decoration-color: #ffdd00;">여행상담</h3></br>
 												<table border="0" width="100%"  cellpadding="0" cellspacing="0">	
-													<tr style="color:#808080;font-size:12pt">			
-														<th  height="50px" width="10%" class="text-center" style="background-color: #fafafa">번호</th>
-														<th  width="60%" class="text-center" style="background-color: #fafafa"></th>
-														<th  width="15%" class="text-center" style="background-color: #fafafa">등록일</th>
-														<th  width="155%" class="text-center" style="background-color: #fafafa">조회수</th>
+													<tr>			
+														<th height="100px" width="10%" style="background-color: #fafafa">
+														<a style="color:black;font-size:14pt">${qna.qna_title}</a></br>
+														<a style="color:#808090;font-size:8pt">${qna.qna_name}</a><a style="color:#808090;font-size:8pt">|</a><a style="color:#808090;font-size:8pt">2018-06-29 09:51:01</a>
+														</th>
 													</tr>
-													 <c:if test="${empty list}">
-													     <tr>
-													     	<td align="center" colspan="5">데이터가 없음</td>
-													     </tr>
-													  </c:if>
-													  <c:forEach items="${list}" var="board">
-														<tr style="font-size:10pt" height="60px">
-															<td align="center">${board.announ_no}</td>
-															<td align="center">${board.announ_title}</td>
-															<td align="center">${board.announ_resist}</td>
-															<td align="center">${board.announ_view}</td>
-														</tr>
-												</c:forEach>
+													<tr style="font-size:10pt" height="150px">
+														<td>${qna.qna_content}</td>
+													</tr>
+													<tr style="font-size:10pt" height="60px">
+														<td>
+															<a style="color:black;font-size:14pt">비밀번호</a>
+															<input type="text">
+															<button type="submit" class="btn btn-primary" style="border-radius: 0px">수정</button>
+															<button type="submit" class="btn btn-primary" style="border-radius: 0px">삭제</button>
+														</td>
+													</tr>
+													<tr style="font-size:10pt" height="60px">
+														<td align="right">
+															<button type="submit" class="btn btn-primary" style="border-radius: 0px">
+																<a href="help.do" style="color:white">목록</a>
+															</button>
+														</td>
+													</tr>
 												</table>
 											</div>
 										</div>
@@ -135,18 +140,6 @@
 								</div>
 							</div>
 							
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-md-12 text-center">
-								<ul class="pagination">
-									<li class="disabled"><a href="#">&laquo;</a></li>
-									<li class="active"><a href="#">1</a></li>
-									<li><a href="#">2</a></li>
-									<li><a href="#">3</a></li>
-									<li><a href="#">4</a></li>
-									<li><a href="#">&raquo;</a></li>
-								</ul>
 							</div>
 						</div>
 					</div>

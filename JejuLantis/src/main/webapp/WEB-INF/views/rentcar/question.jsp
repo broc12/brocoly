@@ -83,18 +83,12 @@
 			  	</ul>
 		  	</div>
 		</aside>
-		
-		<div id="board">
-			<table border="0" width="100%"  cellpadding="0" cellspacing="0">	
-				<tr style="color:#8c9094;background-color:#eef2f5;font-size:10pt">			
-					<th  height="60px" class="text-center" width="15%" style="color:black">고객센터</th>
-					<th  class="text-center" width="10%"><a href="service.do" style="color:#ffdd01">공지사항</a></th>
-					<th  class="text-center" width="15%"><a href="faq.do" style="color:#8c9094">자주찾는 질문</a></th>
-					<th  class="text-center" width="15%"><a href="help.do" style="color:#8c9094">여행상담</a></th>
-					<th  class="text-center"></th>
-				</tr>
-			</table>
-		</div>
+				
+			<!-- 		<div class="col-md-6 col-md-offset-3" style="top:100px;left:400px;">
+						<a href="">·최저가순</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<a href="">·인기순</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<a href="">·평점순</a>
+					</div> -->
 		<div class="colorlib-wrap">
 			<div class="container">
 				<div class="row">
@@ -155,19 +149,16 @@
 					<div class="col-md-3">
 						<div class="sidebar-wrap">
 							<div class="side search-wrap animate-box">
-								<h3 class="sidebar-heading" align="center">고객센터</h3>
+								<h3 class="sidebar-heading">고객센터</h3>
 								<form method="post" class="colorlib-form">
 				              	<div class="row">
-				                 <div class="col-md-18" align="center">
-				                 <img src="resources/rentcar/images/phone1.jpg" width=40% height=40% align="center">
-				                 <h3 class="sidebar-heading" align="center">1544-0704</h3><hr>
-				                 <h3 class="sidebar-heading" align="center">카카오톡 1:1 상담</h3>
-				                 <img src="resources/rentcar/images/kakao.jpg" width=40% height=40% align="center">
-				                 <h3 class="sidebar-heading" align="center">@제주란티스</h3><hr>
-				                 <a class="sidebar-heading" align="left">월-금요일</a>
-				                 <a class="sidebar-heading" align="right">09:00-18:00</a></br>
-				                 <a class="sidebar-heading" align="left">점심시간</a>
-				                 <a class="sidebar-heading" align="right">12:00-13:30</a>
+				                
+				                 <div class="col-md-18">
+				                  <input type="submit" name="submit" id="submit" value="공지사항" class="btn btn-primary btn-block">
+				                </div>
+				                 
+				                <div class="col-md-18">
+				                  <input type="submit" name="submit" id="submit" value="여행상담" class="btn btn-primary btn-block">
 				                </div>
 				              </div>
 				            </form>
@@ -226,7 +217,7 @@
 						</ul>
 					</div>
 
-					<div class="col-md-3 col-md-push-1">
+					<div class="col-md-3 col-md-push-1">		
 						<h4>Contact Information</h4>
 						<ul class="colorlib-footer-links">
 							<li>291 South 21th Street, <br> Suite 721 New York NY 10016</li>

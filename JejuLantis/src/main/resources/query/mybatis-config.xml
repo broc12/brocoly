@@ -7,7 +7,7 @@
 		<typeAlias alias="LoginDAO" type="com.khd.model.LoginInfo"/>
 		<typeAlias alias="CustomerCenter" type="com.khd.model.CustomerCenter"/>
 		<typeAlias alias="Member" type="com.khd.model.Member"/>
-		<typeAlias alias="Member" type="com.khd.model.Qna"/>
+		<typeAlias alias="Qna" type="com.khd.model.Qna"/>
 	</typeAliases>
 	<mappers>
 		<mapper resource="query/query.xml"/>

@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 public class RentcarSearchResult implements Serializable{
 
+	
 	long car_kind_no;
 	String car_kind_name;
 	String car_kind_manufactur;

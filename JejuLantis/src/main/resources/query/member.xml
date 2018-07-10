@@ -21,9 +21,10 @@
 
 <!-- 로그인 체키쿼리 -->
 	
-	<insert id="memberjoin" parameterType="Member">
-  insert into MEMBER (memember_no,id,pwd,name,birth,sex,sclc,memeber_local,tel,email,sms_at,resist_member,memeber_whithdraw_at)
-  values (#{memember_no},#{id},#{pwd},#{name},#{birth},#{sex},#{sclc},#{,memeber_local},#{tel},#{email},#{sms_at},#{resist_member},#{memeber_whithdraw_at})
+<insert id="memberjoin" parameterType="Member">
+insert into MEMBER values (MEMBER_seq.nextval,#{id},#{pwd},#{name},#{birth},'남','양력',#{memeber_local},#{tel},#{email},'jjj',SYSDATE,'n',SYSDATE)
+<!--   insert into MEMBER(member_no,id,pwd,name,birth,sex,sclc,memeber_local,tel,email,sms_at,resist_member,memeber_whithdraw_at) -->
+<!--   values (MEMBER_seq.nextval,#{id},#{pwd},#{name},SYSDATE,#{sex},#{sclc},#{memeber_local},#{tel},#{email},#{sms_at},SYSDATE,#{memeber_whithdraw_at}) -->
 </insert>
 
 </mapper>

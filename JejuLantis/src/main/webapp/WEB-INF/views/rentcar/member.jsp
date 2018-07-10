@@ -1,5 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page session="false" %>
+<%@ page session="true" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE HTML>
@@ -23,8 +23,6 @@
 	<meta name="twitter:image" content="" />
 	<meta name="twitter:url" content="" />
 	<meta name="twitter:card" content="" />
-
-	<link href="https://fonts.googleapis.com/css?family=Quicksand:300,400,500,700" rel="stylesheet">
 	
 	<!-- Animate.css -->
 	<link rel="stylesheet" href="resources/rentcar/css/animate.css">
@@ -89,7 +87,129 @@
 				<div class="row">
 					<div class="col-md-10 col-md-offset-1 animate-box">
 						<h3>회원가입</h3>
-						<form action="member/memberjoin" method="post">
+						<script type="text/javascript">
+									    function sendIt() {
+									        var email2 = document.f.email.value;
+									        var regex = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/;								         
+// 									        var regExp = /^(01[016789]{1}|02|0[3-9]{1}[0-9]{1})-?[0-9]{3,4}-?[0-9]{4}$/; 
+									        var hp1 = document.getElementById('hp1'); 
+											var hp2 = document.getElementById('hp2'); 								
+											var hp3 = document.getElementById('hp3'); 									
+											var tel = hp1.value + "-" + hp2.value + "-" + hp3.value;
+											var msg, ss, cc;
+									        //아이디 입력여부 검사
+									        if (f.id.value == "") {
+									            alert("아이디를 입력하지 않았습니다.")
+									            f.id.focus()
+									            return false;
+									        }
+									        //아이디 유효성 검사 (영문소문자, 숫자만 허용)
+									        for (i = 0; i < document.f.id.value.length; i++) {
+									            ch = document.f.id.value.charAt(i)
+									            if (!(ch >= '0' && ch <= '9') && !(ch >= 'a' && ch <= 'z')&&!(ch >= 'A' && ch <= 'Z')) {
+									                alert("아이디는 대소문자, 숫자만 입력가능합니다.")
+									                document.f.id.focus()
+									                document.f.id.select()
+									                return false;
+									            }
+									        }
+									        //아이디에 공백 사용하지 않기
+									        if (document.f.id.value.indexOf(" ") >= 0) {
+									            alert("아이디에 공백을 사용할 수 없습니다.")
+									            document.f.id.focus()
+									            document.f.id.select()
+									            return false;
+									        }
+									        //아이디 길이 체크 (4~12자)
+									        if (document.f.id.value.length<4 || document.f.id.value.length>12) {
+									            alert("아이디를 4~12자까지 입력해주세요.")
+									            document.f.id.focus()
+									            document.f.id.select()
+									            return false;
+									        }
+									        //비밀번호 입력여부 체크
+									        if (document.f.pwd.value == "") {
+									            alert("비밀번호를 입력하지 않았습니다.")
+									            document.f.pwd.focus()
+									            return false;
+									        }
+									        if (f.pwd.value == f.id.value) {
+									            alert("아이디와 비밀번호가 같습니다.")
+									            document.f.pwd.focus()
+									            return false;
+									        }
+									        //비밀번호 길이 체크(4~8자 까지 허용)
+									        if (document.f.pwd.value.length<4 || document.f.pwd.value.length>12) {
+									            alert("비밀번호를 4~12자까지 입력해주세요.")
+									            document.f.pwd.focus()
+									            document.f.pwd.select()
+									            return false;
+									        }
+									 
+									        //비밀번호와 비밀번호 확인 일치여부 체크
+									        if (document.f.pwd.value != document.f.pwd1.value) {
+									            alert("비밀번호가 일치하지 않습니다")
+									            document.f.pwd.value = ""
+									            document.f.pwd1.focus()
+									            return false;
+									        }
+									 
+									        if (document.f.email.value == "") {
+									            alert("이메일을 입력하지 않았습니다.")
+									            document.f.email.focus()
+									            return false;
+									        }
+									        
+									 
+									        if (regex.test(email2) === false) {
+									            alert("잘못된 이메일 형식입니다.");
+									            document.f.email.value=""
+									            document.f.email.focus()
+									            return false;
+									        }
+									        if (document.f.name.value == "") {
+									            alert("이름을 입력하지 않았습니다.")
+									            document.f.name.focus()
+									            return false;
+									        }
+									        if(document.f.name.value.length<2){
+									            alert("이름을 2자 이상 입력해주십시오.")
+									            document.f.name.focus()
+									            return false;
+									        }
+										    if(hp2.value.length<=2 || hp3.value.length!=4){
+
+											alert("휴대폰번호를 제대로 입력해주세요");
+
+											focus.hp2;
+
+											return false;
+
+										}
+
+								 		/*핸드폰이 숫자만 들어가는지 체크*/
+
+								 		if(isNaN(hp2.value) || isNaN(hp3.value))
+
+										{
+
+											alert("휴대폰번호는 숫자만 들어갈 수 있습니다.");
+
+											return false;
+
+										}
+
+								 		/**/
+
+										if (hp2.value.length > 2 || hp3.value.length==4){
+											document.getElementById("tel").value = tel;
+										}					 
+									        document.f.submit()
+									    }
+									        </script>
+						<form name="f" action="member/memberjoin" method="post" onsubmit="return sendIt();">
+
+
 							<div class="row form-group">
 								<div class="col-md-12">
 									<label for="fname">아이디</label>
@@ -104,7 +224,7 @@
 								</div>
 								<div class="col-md-6">
 									<label for="lname">비밀번호확인</label>
-									<input type="text" id="lname" class="form-control" placeholder="">
+									<input type="text" id="lname" name= "pwd1" class="form-control" placeholder="">
 								</div>
 							</div>
 
@@ -113,9 +233,34 @@
 									<label for="fname">이름</label>
 									<input type="text" id="fname" name= "name" class="form-control" placeholder="NAME">
 								</div>
+								
+								<script language="Javascript">
+								
+
+									var today = new Date();
+									var toyear = parseInt(today.getFullYear());
+									var start = toyear - 5
+									var end = toyear - 70;
+									
+									document.write("<font size=2><select name=birth1>");
+									document.write("<option value='' selected>");
+									for (i=start;i>=end;i--) document.write("<option>"+i);
+									document.write("</select>년  "); 
+									
+									document.write("<select name=birth2>");
+									document.write("<option value='' selected>");
+									for (i=1;i<=12;i++) document.write("<option>"+i);
+									document.write("</select>월  ");
+									
+									document.write("<select name=birth3>");
+									document.write("<option value='' selected>");
+									for (i=1;i<=31;i++) document.write("<option>"+i); 
+									document.write("</select>일   </font>");
+									
+									</script>
 								<div class="col-md-6">
 									<label for="lname">생년월일</label>
-									<input type="text" id="lname" name= "birth"class="form-control" placeholder="ex)19920704">
+<!-- 									<input type="text" id="lname" name= "birth"class="form-control" placeholder="ex)19920704"> -->
 								</div>
 							</div>
 							<div class="row form-group">
@@ -151,8 +296,26 @@
 							</div>
 							<div class="row form-group">
 								<div class="col-md-12">
-									<label for="subject">전화번호</label>
-									<input type="text" id="subject" name= "tel" class="form-control" placeholder="ex)01086308690"/>
+<!-- 									<label for="subject">전화번호</label> -->
+									<tr>
+				<td rowspan="2" height="30" align="center" bgcolor="#FFDEAD">연락처</td>
+				<td bgcolor="#E0FFFF">
+					<select id="hp1" name="hp1" style="width:70;">
+					   <option value="010"  selected> 010 </option>
+					   <option value="011"> 011 </option>
+					   <option value="016"> 016 </option>
+					   <option value="017"> 017 </option>
+					   <option value="018"> 018 </option>
+					   <option value="019"> 019 </option>
+					</select>
+					-
+					<input type="text" id="hp2" name="hp2" size="2" maxlength="4">
+					-
+					<input type="text" id="hp3" name="hp3" size="2" maxlength="4">
+					<input type="hidden" id="tel" name="tel" >
+				</td>
+			</tr>
+<!-- 									<input type="text" id="subject" name= "tel" class="form-control" placeholder="ex)01086308690"/> -->
 								</div>
 							</div>
 							
@@ -169,7 +332,7 @@
 								</div>
 <!-- 							</form> -->
 							<div class="form-group text-center">
-								<input type="submit" value="가입하기" class="btn btn-primary"/>
+								<input type="submit" value="가입하기" onclick="sendit()" class="btn btn-primary"/>
 							</div>
 
 						</form>		
@@ -294,9 +457,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 	<!-- Stellar Parallax -->
 	<script src="resources/rentcar/js/jquery.stellar.min.js"></script>
 	<!-- Google Map -->
-	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCefOgb1ZWqYtj7raVSmN4PL2WkTrc-KyA&sensor=false"></script>
-	<script src="resources/rentcar/js/google_map.js"></script>
-
+	
 	<!-- Main -->
 	<script src="resources/rentcar/js/main.js"></script>
 

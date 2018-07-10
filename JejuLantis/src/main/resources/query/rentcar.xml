@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="query.rentcar">
+<mapper namespace="query.arentcar">
 
-	<resultMap id="rentcarSearchResult" type="RentcarSearchResult">
+	<resultMap id="arentcarSearchResult" type="ARentcarSearchResult">
 	<result property="car_kind_no" column="CAR_KIND_NO"/> 
 	<result property="car_kind_name" column="CAR_KIND_NAME"/> 
 	<result property="car_kind_manufactur" column="CAR_KIND_MANUFACTUR"/> 
@@ -20,7 +20,7 @@
 	<result property="car_info_sunruff" column="CAR_INFO_SUNRUFF"/>
 	</resultMap>
 	
-	<select id="rentcarSearch" parameterType="HashMap" resultType="RentcarSearchResult">
+	<select id="arentcarSearch" parameterType="HashMap" resultType="RentcarSearchResult">
          select
     K.CAR_KIND_NO,
     K.CAR_KIND_NAME,

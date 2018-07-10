@@ -94,7 +94,7 @@ public class CustomerCenterController {
 		System.out.println(Strqna_secret);
 		int qna_secret = 0;
 		if(Strqna_secret.equals("on"))qna_secret = 0;
-		else qna_secret = -1;
+		else qna_secret = 1;
 		Qna qna = new Qna(-1, -1, -1, qna_name, qna_email, qna_tel, qna_title, qna_content, qna_pwd, 0, qna_secret, null);
 		boolean flag = service.insert(qna);
 		String view = "rentcar/helpInsertCheck";

@@ -54,7 +54,8 @@
 	<!-- Modernizr JS -->
 	<script src="resources/rentcar/js/modernizr-2.6.2.min.js"></script>
 	<!-- FOR IE9 below -->
-	<!--[if lt IE 9]>
+	<!--[if lt IE 9]>\\\\\\\\
+	
 	<script src="js/respond.min.js"></script>
 	<![endif]-->
 
@@ -129,10 +130,14 @@
 													     </tr>
 													  </c:if>
 													  <c:forEach items="${list}" var="board">
-														<tr style="font-size:10pt" height="60px">
-															<td align="center">${board.qna_group}</td>
+														<tr style="font-size:10pt;color:black" height="60px">
+															<td align="center" style="color:black">${board.qna_group}</td>
 															<td align="center">
-															<a href="helpContent.do?qna_no=${board.qna_no}">${board.qna_title}</td>
+															<a href="helpContent.do?qna_no=${board.qna_no}" style="color:black">${board.qna_title}</a>
+															<c:if test="${board.qna_secret==0}">
+															<img src="resources/rentcar/images/locker.png" width=6% height=10%>
+															</c:if>
+															</td>
 															<td align="center">${board.qna_name}</td>
 															<td align="center">${board.qna_resist}</td>
 															<td align="center">${board.qna_answer_checkString}</td>
@@ -147,9 +152,11 @@
 							
 							</div>
 						</div>
-						<div class="row">
+							
+						  <div class="row">
 							<div class="col-md-12 text-center">
 								<ul class="pagination">
+									
 									<li class="disabled"><a href="#">&laquo;</a></li>
 									<li class="active"><a href="#">1</a></li>
 									<li><a href="#">2</a></li>
@@ -157,10 +164,16 @@
 									<li><a href="#">4</a></li>
 									<li><a href="#">&raquo;</a></li>
 								</ul>
+								
+					<c:forEach var="i" begin="1" end="${totalPage}">
+							 <a href="help.do?strInput=${i}">i</a>
+									</c:forEach>
 							</div>
 						</div>
 					</div>
-
+					<c:forEach var="i" begin="1" end="${totalPage}">
+							 <a href="help.do?strInput=$'i'">i</a>
+									</c:forEach>
 					<!-- SIDEBAR-->
 					<div class="col-md-3">
 						<div class="sidebar-wrap">

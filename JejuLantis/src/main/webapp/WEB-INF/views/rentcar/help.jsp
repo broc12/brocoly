@@ -74,7 +74,7 @@
 				   			<div class="col-md-6 col-md-offset-3 col-sm-12 col-xs-12 slider-text">
 				   				<div class="slider-text-inner text-center">
 				   					<h2>by colorlib.com</h2>
-				   					<h1>공지 사항</h1>
+				   					<h1>여행상담</h1>
 				   				</div>
 				   			</div>
 				   		</div>
@@ -83,18 +83,18 @@
 			  	</ul>
 		  	</div>
 		</aside>
-		
 		<div id="board">
 			<table border="0" width="100%"  cellpadding="0" cellspacing="0">	
 				<tr style="color:#8c9094;background-color:#eef2f5;font-size:10pt">			
 					<th  height="60px" class="text-center" width="15%" style="color:black">고객센터</th>
-					<th  class="text-center" width="10%"><a href="service.do" style="color:#ffdd01">공지사항</a></th>
+					<th  class="text-center" width="10%"><a href="service.do" style="color:#8c9094">공지사항</a></th>
 					<th  class="text-center" width="15%"><a href="faq.do" style="color:#8c9094">자주찾는 질문</a></th>
-					<th  class="text-center" width="15%"><a href="help.do" style="color:#8c9094">여행상담</a></th>
+					<th  class="text-center" width="10%"><a href="faq.do" style="color:#ffdd01">여행상담</a></th>
 					<th  class="text-center"></th>
 				</tr>
 			</table>
 		</div>
+		
 		<div class="colorlib-wrap">
 			<div class="container">
 				<div class="row">
@@ -107,25 +107,35 @@
 										<div class="desc">
 											<!-- <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p> -->
 											<div id="board">
-												<h3>공지사항</h3>
+												<h3>여행상담</h3>
+												<a style="color:black">제주란티스 상품 및 서비스에 대해 궁금하신 사항을 친절하게 안내해드리겠습니다.</a></br>
+												<a style="color:black">문의 하시기 전 '자주묻는질문' 을 찾아 보시면 신속하게 궁금증을 해소하실 수 있습니다</a></br>
+												<div class="col-md-12 text-right">
+													<ul class="pagination">
+														<li><a href="helpadd.do">글쓰기</a></li>
+													</ul>
+												</div>
 												<table border="0" width="100%"  cellpadding="0" cellspacing="0">	
 													<tr style="color:#808080;font-size:12pt">			
 														<th  height="50px" width="10%" class="text-center" style="background-color: #fafafa">번호</th>
-														<th  width="60%" class="text-center" style="background-color: #fafafa"></th>
+														<th  width="35%" class="text-center" style="background-color: #fafafa">제목</th>
+														<th  width="15%" class="text-center" style="background-color: #fafafa">작성자</th>
 														<th  width="15%" class="text-center" style="background-color: #fafafa">등록일</th>
-														<th  width="155%" class="text-center" style="background-color: #fafafa">조회수</th>
+														<th  width="15%" class="text-center" style="background-color: #fafafa">답변유무</th>
 													</tr>
-													 <c:if test="${empty list}">
+													<c:if test="${empty list}">
 													     <tr>
 													     	<td align="center" colspan="5">데이터가 없음</td>
 													     </tr>
 													  </c:if>
 													  <c:forEach items="${list}" var="board">
 														<tr style="font-size:10pt" height="60px">
-															<td align="center">${board.announ_no}</td>
-															<td align="center">${board.announ_title}</td>
-															<td align="center">${board.announ_resist}</td>
-															<td align="center">${board.announ_view}</td>
+															<td align="center">${board.qna_group}</td>
+															<td align="center">
+															<a href="helpContent.do?qna_no=${board.qna_no}">${board.qna_title}</td>
+															<td align="center">${board.qna_name}</td>
+															<td align="center">${board.qna_resist}</td>
+															<td align="center">${board.qna_answer_checkString}</td>
 														</tr>
 												</c:forEach>
 												</table>

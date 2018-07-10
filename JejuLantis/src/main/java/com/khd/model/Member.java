@@ -14,7 +14,7 @@ public class Member {
 	String tel; 
 	String email; 
 	String sms_at; 
-	String resist_member;
+	Date resist_member;
 	String memeber_whithdraw_at;
 	Date whithdraw_date;
 	
@@ -25,7 +25,7 @@ public class Member {
 	}
 
 	public Member(String member_no, String id, String pwd, String name, Date birth, String sex, String sclc,
-			String memeber_local, String tel, String email, String sms_at, String resist_member,
+			String memeber_local, String tel, String email, String sms_at, Date resist_member,
 			String member_whithdraw_at, Date whithdraw_date) {
 		super();
 		this.member_no = member_no;
@@ -132,11 +132,11 @@ public class Member {
 		this.sms_at = sms_at;
 	}
 
-	public String getResist_member() {
+	public Date getResist_member() {
 		return resist_member;
 	}
 
-	public void setResist_member(String resist_member) {
+	public void setResist_member(Date resist_member) {
 		this.resist_member = resist_member;
 	}
 

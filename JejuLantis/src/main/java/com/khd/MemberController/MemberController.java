@@ -1,6 +1,9 @@
 package com.khd.MemberController;
 
 import java.sql.Date;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.HashMap;
 
 import javax.servlet.http.HttpSession;
@@ -28,11 +31,22 @@ public class MemberController {
 	
 	
 	@RequestMapping(value = "member/memberjoin", method = RequestMethod.POST)
-	public String join(@RequestParam(value="id")String id,@RequestParam(value="pwd")String pwd,@RequestParam(value="name")String name,@RequestParam(value="birth")String birth,@RequestParam(value="memeber_local")String memeber_local,@RequestParam(value="tel")String tel,@RequestParam(value="email")String email,@RequestParam(value="sms_at", required=false)String sms_at, HttpSession session) {
-		System.out.println(id);
-//		System.out.println(pwd);
-//		System.out.println(email);
-		Member member = new Member(null,id,pwd,name,null,null,null,memeber_local,tel,email,sms_at,null,null,null);
+	public String join(@RequestParam(value="id")String id,@RequestParam(value="pwd")String pwd,@RequestParam(value="name")String name,@RequestParam(value="birth1")String birth1,@RequestParam(value="birth2")String birth2,@RequestParam(value="birth3")String birth3,@RequestParam(value="memeber_local")String memeber_local,@RequestParam(value="tel")String tel,@RequestParam(value="email")String email,@RequestParam(value="sms_at", required=false)String sms_at, HttpSession session) {
+		String totalbirth = birth1+"-"+birth2+"-"+birth3;
+		//totalbirth.chars();
+		//DateFormat sdFormat = new SimpleDateFormat("yyyMMdd");
+		java.sql.Date dd=null;
+		java.util.Date d = null;
+		try {
+			System.out.println(totalbirth);
+		d = new SimpleDateFormat("yyyy-MM-dd").parse(totalbirth);
+		}catch(ParseException pe) {}
+        dd = new java.sql.Date(d.getTime());
+
+
+		System.out.println("totalbirth =" +birth1+birth2+birth3);
+		
+		Member member = new Member(null,id,pwd,name,dd,null,null,memeber_local,tel,email,sms_at,null,null,null);
 		boolean flag = memberService.joinService(member);
 		LoginInfo log = null;
 		if(flag) {
@@ -40,27 +54,28 @@ public class MemberController {
 		}
 //		session.setAttribute("log", log);
 		
-		return "rentcar/login";
+		return "redirect:../login.do";
+		
 	}
-
+}
 //	@RequestMapping(value = "member/confirm.do", method = RequestMethod.GET)
 //	public String confirm() {
 //		return null;
 //	}
-	@RequestMapping(value = "member/confirm.do", method = RequestMethod.POST)
-	public String confirm(@RequestParam(value="member")Member member, HttpSession session) {
-	
-		boolean flag = memberService.confirmService(member);
-		//System.out.println(flag);
-		LoginInfo log = null;
-		if(flag) {
-			member = new Member(member.getId());
-			
-		}
-		session.setAttribute("log", log);
-		
-		return "member/confirm";
-	}
-
-	
-}
+//	@RequestMapping(value = "member/confirm.do", method = RequestMethod.POST)
+//	public String confirm(@RequestParam(value="member")Member member, HttpSession session) {
+//	
+//		boolean flag = memberService.confirmService(member);
+//		//System.out.println(flag);
+//		LoginInfo log = null;
+//		if(flag) {
+//			member = new Member(member.getId());
+//			
+//		}
+//		session.setAttribute("log", log);
+//		
+//		return "member/confirm";
+//	}
+//
+//	
+//}

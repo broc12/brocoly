@@ -30,19 +30,19 @@ public class LoginController {
 			HttpServletResponse response) throws IOException {
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter out = response.getWriter();
-		System.out.println(loginInfo.getId());
-		System.out.println(loginInfo.getPwd());
-		System.out.println("s2ss");
+//		System.out.println(loginInfo.getId());
+//		System.out.println(loginInfo.getPwd());
+//		System.out.println("s2ss");
 		if ((loginInfo.getId() != null && !loginInfo.getId().equals("") && loginInfo.getPwd() != null
 				&& !loginInfo.getPwd().equals(""))) {
-			System.out.println("sss");
+//			System.out.println("sss");
 			LoginInfo Info = null;
 			if (loginDAO.loginCheck(loginInfo)) {
 				session.setAttribute("login", 0); // 로그인 성공시 세션
-				System.out.println("s");
+//				System.out.println("s");
 				Info = new LoginInfo(loginInfo.getId());
 				session.setAttribute("log", Info);
-				System.out.println("ss");
+//				System.out.println("ss");
 				LoginInfo log = (LoginInfo)session.getAttribute("log");
 
 				out.println("<script>location.href='../'; </script>");
@@ -61,10 +61,10 @@ public class LoginController {
 	public ModelAndView logOut(ModelAndView mv, HttpSession session) {
 		String page = "redirect:/";
 		session.removeAttribute("log");
-		System.out.println("성공5");
-		System.out.println( "page :" + page);
+//		System.out.println("성공5");
+//		System.out.println( "page :" + page);
 		mv.setViewName(page);
-		System.out.println("mv :" + mv);
+//		System.out.println("mv :" + mv);
 		return mv;
 		}
 

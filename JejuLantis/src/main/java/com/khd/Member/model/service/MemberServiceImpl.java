@@ -15,14 +15,14 @@ public class MemberServiceImpl implements MemberService {
 	public boolean joinService(Member member) {
 		return memberDao.join(member);
 	}
-
-	@Override
-	public boolean findService(Member member) {
-		return memberDao.find(member);
-	}
-
-	@Override
-	public boolean confirmService(Member member) {
-		return memberDao.confirm(member);
-	}
+//
+//	@Override
+//	public boolean findService(Member member) {
+//		return memberDao.find(member);
+//	}
+//
+//	@Override
+//	public boolean confirmService(Member member) {
+//		return memberDao.confirm(member);
+//	}
 }

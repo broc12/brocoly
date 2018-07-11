@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace = "query.rcar">
+
+<resultMap type="Rcar" id="RcarResult">
+	<result column="CAR_KIND_NAME" property="car_kind_name"/>
+	<result column="CAR_KIND_MANUFACTUR" property="car_kind_manufactur"/>
+	<result column="CAR_KIND_TYPE" property="car_kind_type"/>
+	<result column="CAR_KIND_PASSENGER" property="car_kind_passenger"/>
+	<result column="CAR_KIND_FUEL" property="car_kind_fuel"/>
+	<collection property="blist" column="{a=CAR_KIND_NAME,b=CAR_KIND_MANUFACTUR,c=CAR_KIND_TYPE,d=CAR_KIND_PASSENGER,e=CAR_KIND_FUEL}" javaType="ArrayList" select="query.blist.getBlist"/>
+</resultMap>
+<select id="selectRcar" resultMap="RcarResult">
+SELECT
+K.CAR_KIND_NAME,
+K.CAR_KIND_MANUFACTUR,
+K.CAR_KIND_TYPE,
+K.CAR_KIND_PASSENGER,
+K.CAR_KIND_FUEL,
+MIN(K.CAR_KIND_PRICE_WEEK+R.INSURANCE_PRICE) AS TOT
+FROM
+CAR_KIND K,
+INSURANCE R
+WHERE
+R.INSURANCE_NAME='자차'
+AND
+R.CAR_KIND_NO=K.CAR_KIND_NO
+GROUP BY
+K.CAR_KIND_NAME,
+K.CAR_KIND_MANUFACTUR,
+K.CAR_KIND_TYPE,
+K.CAR_KIND_PASSENGER,
+K.CAR_KIND_FUEL
+ORDER BY TOT
+</select>
+
+</mapper>

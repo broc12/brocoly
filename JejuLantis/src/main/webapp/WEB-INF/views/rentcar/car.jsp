@@ -117,11 +117,11 @@
 									<div class="hotel-entry">
 										<h3><a>${dto.car_kind_name }</a></h3><span class="place">${dto.car_kind_manufactur }</span>
 										<a class="hotel-img" style="background-image: url(resources/rentcar/images/car1.jpg);">
-											<p class="price"><span> ${dto.totalprice}</span><small>/24시간</small></p>
+											<p class="price"><span>${dto.blist[0].tot}</span><small>/24시간</small></p>
 										</a>
 										<a>실시간 예약 가능 차량 : ${dto.car_kind_passenger }</a>
 										<div class="desc">
-											<p align="center">${dto.car_kind_passenger }인승 ${dto.car_kind_type } ${dto.car_kind_fuel } ${dto.car_kind_trans }</p>
+											<p align="center"></p>
 										</div>
 									</div>
 								</div>
@@ -129,9 +129,9 @@
 								<div class="col-md-6 col-sm-6 animate-box">
 									<div class="hotel-entry">
 										<div class="desc">
-											<h3><a href="rentcar.do">${dto.branch_name }</a></h3>
+											<h3><a href="rentcar.do">${dto.blist[0].branch_name}</a></h3>
 											<p class="star"><span><i class="icon-star-full"></i><i class="icon-star-full"></i><i class="icon-star-full"></i><i class="icon-star-full"></i><i class="icon-star-full"></i></span> 545 Reviews</p>
-											<span class="place">${dto.car_info_blackbox } ${dto.car_info_bluetooth } ${dto.car_info_non_smoking_veh } ${dto.car_info_rear_camera } ${dto.car_info_rear_sensors } ${dto.car_info_navi } ${dto.car_info_sunruff }</span>
+											<span class="place"></span>
 											<!-- <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p> -->
 											<div id="board">
 												<table border="1" width="100%"  cellpadding="0" cellspacing="0">	
@@ -144,17 +144,19 @@
 														<th  width="12%" class="text-center" style="background-color: #01bbf0">총 금액</th>
 														<th  width="17%" class="text-center" style="background-color: #01bbf0"></th>
 													</tr>
+													<c:forEach items="${dto.blist }" var="bdto" varStatus="status">
 													<tr style="font-size:8pt">
-														<td align="center">특별한렌트카</td>
-														<td align="center">${dto.car_kind_no }</td>
-														<td align="center">${dto.car_kind_no }</td>
-														<td align="center">${dto.car_kind_no }</td>
-														<td align="center">${dto.car_kind_no }</td>
-														<td align="center">${dto.car_kind_no }</td>
+														<td align="center">${bdto.branch_name }</td>
+														<td align="center"></td>
+														<td align="center">${bdto.car_kind_price_week }</td>
+														<td align="center">${bdto.car_kind_price_week }</td>
+														<td align="center">${bdto.insurance_price }</td>
+														<td align="center">${bdto.tot }</td>
 														<td align="center">													
 											                  	<button type="button"><a href="rentcar.do" style="color:black">실시간예약</a></button>								                
 														</td>
 													</tr>
+													</c:forEach>
 													<tr style="font-size:8pt">
 														<td align="center">제주렌트카</td>
 														<td align="center">4.5</td>
@@ -267,7 +269,7 @@
 				                    <label for="date">대여일</label>
 				                    <div class="form-field">
 				                      <i class="icon icon-calendar2"></i>
-				                      <input type="text" id="date" name="Checkindate" class="form-control date" placeholder="Check-in date" value=""/>
+				                      <input type="text" id="date1" name="Checkindate" class="form-control date" placeholder="Check-in date" value=""/>
 				                    </div>        
 				                  </div>
 				                </div>
@@ -312,7 +314,7 @@
 				                    <label for="date">반납일</label>
 				                    <div class="form-field">
 				                      <i class="icon icon-calendar2"></i>
-				                      <input type="text" id="date" name="Checkoutdate" class="form-control date" placeholder="Check-out date" value=""/>
+				                      <input type="text" id="date2" name="Checkoutdate" class="form-control date" placeholder="Check-out date" value=""/>
 				                    </div>
 				                  </div>
 				                </div>
@@ -658,7 +660,13 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 
 	<!-- Main -->
 	<script src="resources/rentcar/js/main.js"></script>
-
+<script>
+$(document).ready(function(){
+    $("#date1").change(function(){
+    	alert("Value: " + $("#date1").val);
+    });
+});
+</script>
 	</body>
 </html>
 

@@ -14,7 +14,7 @@ public class RentcarServiceImpl implements RentcarService {
 	RentcarDAO rentcardao;
 	
 	@Override
-	public List<RentcarSearchResult> searchService() {
+	public List searchService() {
 		
 		return rentcardao.search();
 	}

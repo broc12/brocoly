@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.khd.model.RentcarSearchResult;
+import com.khd.model.Rcar;
 import com.khd.rentcarDAO.RentcarService;
 
 @Controller
@@ -21,10 +21,8 @@ public class RentcarController {
 	
 	@RequestMapping(value="car.do",method=RequestMethod.GET)
 	public String car(HttpSession session) {
-		List<RentcarSearchResult> list = rentcarservice.searchService();
-		System.out.println(list.size());
+		List<Rcar> list = rentcarservice.searchService();
 		session.setAttribute("list", list);
-		System.out.println(list.get(1).getCarlist().size());
 		return "rentcar/car";
 	}
 	

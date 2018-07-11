@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace = "query.blist">
+
+<resultMap type="Blist" id="BlistResult">
+	<result column="BRANCH_NAME" property="branch_name"/>
+	<result column="CAR_KIND_NAME" property="car_kind_name"/>
+	<result column="CAR_KIND_MANUFACTUR" property="car_kind_manufactur"/>
+	<result column="CAR_KIND_TYPE" property="car_kind_type"/>
+	<result column="CAR_KIND_PASSENGER" property="car_kind_passenger"/>
+	<result column="CAR_KIND_FUEL" property="car_kind_fuel"/>
+	<result column="CAR_KIND_PRICE_WEEK" property="car_kind_price_week"/>
+	<result column="INSURANCE_PRICE" property="insurance_price"/>
+	<result column="TOT" property="tot"/>
+</resultMap>
+<select id="getBlist" parameterType="HashMap" resultMap="BlistResult">
+SELECT
+B.BRANCH_NAME,
+K.CAR_KIND_NAME,
+K.CAR_KIND_MANUFACTUR,
+K.CAR_KIND_TYPE,
+K.CAR_KIND_PASSENGER,
+K.CAR_KIND_FUEL,
+K.CAR_KIND_PRICE_WEEK,
+R.INSURANCE_PRICE,
+(K.CAR_KIND_PRICE_WEEK+R.INSURANCE_PRICE) AS TOT
+FROM
+BRANCH B,
+CAR_KIND K,
+INSURANCE R
+WHERE
+B.BRANCH_NO=K.BRANCH_NO
+AND
+R.INSURANCE_NAME='자차' AND
+K.CAR_KIND_NO=R.CAR_KIND_NO AND
+K.CAR_KIND_NAME=#{a} AND
+K.CAR_KIND_MANUFACTUR=#{b} AND
+K.CAR_KIND_TYPE=#{c} AND
+K.CAR_KIND_PASSENGER=#{d} AND
+K.CAR_KIND_FUEL=#{e}
+ORDER BY TOT
+</select>
+</mapper>

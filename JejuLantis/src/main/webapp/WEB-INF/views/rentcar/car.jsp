@@ -117,7 +117,7 @@
 									<div class="hotel-entry">
 										<h3><a>${dto.car_kind_name }</a></h3><span class="place">${dto.car_kind_manufactur }</span>
 										<a class="hotel-img" style="background-image: url(resources/rentcar/images/car1.jpg);">
-											<p class="price"><span></span><small> /24시간</small></p>
+											<p class="price"><span> ${dto.totalprice}</span><small>/24시간</small></p>
 										</a>
 										<a>실시간 예약 가능 차량 : ${dto.car_kind_passenger }</a>
 										<div class="desc">

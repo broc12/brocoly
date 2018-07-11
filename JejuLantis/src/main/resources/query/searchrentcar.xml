@@ -3,6 +3,7 @@
 <mapper namespace="query.rentcar">
 
 <resultMap id="rentcarSearchResult" type="RentcarSearchResult">
+	<result property="totalprice" column="TOTALPRICE"/> 
 	<result property="car_kind_no" column="CAR_KIND_NO"/> 
 	<result property="car_kind_name" column="CAR_KIND_NAME"/> 
 	<result property="car_kind_manufactur" column="CAR_KIND_MANUFACTUR"/> 
@@ -21,9 +22,15 @@
 	<result property="car_kind_rear_sensors" column="CAR_KIND_REAR_SENSORS"/>
 	<result property="car_kind_navi" column="CAR_KIND_NAVI"/>
 	<result property="car_kind_sunruff" column="CAR_KIND_SUNRUFF"/>
+	<collection property="carlist" javaType="java.util.ArrayList" column="CAR_KIND_NAME" ofType="String" select="getgist"/>
 </resultMap>
-	
-	<select id="rentcarSearch" resultType="RentcarSearchResult">
-		SELECT MIN(CAR_KIND_PRICE_WEEK) AS PR, CAR_KIND_NAME, CAR_KIND_FUEL, CAR_KIND_MANUFACTUR,CAR_KIND_TYPE FROM CAR_KIND GROUP BY CAR_KIND_NAME, CAR_KIND_FUEL, CAR_KIND_MANUFACTUR ,CAR_KIND_TYPE ORDER BY PR;
-	</select>
+
+<select id="rentcarSearch" resultType="RentcarSearchResult">
+	SELECT MIN(CAR_KIND_PRICE_WEEK) AS TOTALPRICE, CAR_KIND_NAME, CAR_KIND_FUEL, CAR_KIND_MANUFACTUR, CAR_KIND_TYPE,CAR_KIND_PASSENGER FROM CAR_KIND GROUP BY CAR_KIND_NAME, CAR_KIND_FUEL, CAR_KIND_MANUFACTUR ,CAR_KIND_TYPE,CAR_KIND_PASSENGER ORDER BY TOTALPRICE
+</select>
+
+<select id="getgist" resultType="String">
+	SELECT CAR_KIND_NAME FROM CAR_KIND
+</select>
+
 </mapper>

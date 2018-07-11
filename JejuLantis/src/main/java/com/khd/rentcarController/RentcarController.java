@@ -24,6 +24,7 @@ public class RentcarController {
 		List<RentcarSearchResult> list = rentcarservice.searchService();
 		System.out.println(list.size());
 		session.setAttribute("list", list);
+		System.out.println(list.get(1).getCarlist().size());
 		return "rentcar/car";
 	}
 	

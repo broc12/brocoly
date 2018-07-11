@@ -1,10 +1,12 @@
 package com.khd.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 public class RentcarSearchResult implements Serializable{
 
-	
+	long totalprice;
 	long car_kind_no;
 	String car_kind_name;
 	String car_kind_manufactur;
@@ -23,13 +25,15 @@ public class RentcarSearchResult implements Serializable{
 	String car_info_rear_sensors;
 	String car_info_navi;
 	String car_info_sunruff;
+	ArrayList<String> carlist = new ArrayList<String>();
     
 	public RentcarSearchResult() {}
-	public RentcarSearchResult(long car_kind_no, String car_kind_name, String car_kind_manufactur,
+	public RentcarSearchResult(long totalprice, long car_kind_no, String car_kind_name, String car_kind_manufactur,
 			long car_kind_passenger, String car_kind_type, String car_kind_fuel, String car_kind_trans,
 			String branch_name, long car_kind_price_week, long insurance_price, String insurance_limit,
 			String car_info_blackbox, String car_info_bluetooth, String car_info_non_smoking_veh,
-			String car_info_rear_camera, String car_info_rear_sensors, String car_info_navi, String car_info_sunruff) {
+			String car_info_rear_camera, String car_info_rear_sensors, String car_info_navi, String car_info_sunruff,ArrayList<String> carlist) {
+		this.totalprice = totalprice;
 		this.car_kind_no = car_kind_no;
 		this.car_kind_name = car_kind_name;
 		this.car_kind_manufactur = car_kind_manufactur;
@@ -48,8 +52,15 @@ public class RentcarSearchResult implements Serializable{
 		this.car_info_rear_sensors = car_info_rear_sensors;
 		this.car_info_navi = car_info_navi;
 		this.car_info_sunruff = car_info_sunruff;
+		this.carlist = carlist;
 	}
 	
+	public long getTotalprice() {
+		return totalprice;
+	}
+	public void setTotalprice(long totalprice) {
+		this.totalprice = totalprice;
+	}
 	public long getCar_kind_no() {
 		return car_kind_no;
 	}
@@ -157,6 +168,13 @@ public class RentcarSearchResult implements Serializable{
 	}
 	public void setCar_info_sunruff(String car_info_sunruff) {
 		this.car_info_sunruff = car_info_sunruff;
+	}
+	public ArrayList<String> getCarlist() {
+		return carlist;
+	}
+	public void setCarlist(ArrayList<String> carlist) {
+		System.out.println("x");
+		this.carlist = carlist;
 	}
 	
 	public String getCar_info_blackboxjsp() {

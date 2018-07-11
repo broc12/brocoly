@@ -1,4 +1,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
+
+
+
 <%@ page session="true" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -96,7 +100,15 @@
 											var hp2 = document.getElementById('hp2'); 								
 											var hp3 = document.getElementById('hp3'); 									
 											var tel = hp1.value + "-" + hp2.value + "-" + hp3.value;
-											var msg, ss, cc;
+											if(confirm("회원가입을 하시겠습니까?")){
+										        if(idck==0){
+										            alert('아이디 중복체크를 해주세요');
+										            return false;
+										        }else{
+										        alert("회원가입을 축하합니다");
+										        $("#frm").submit();
+										        }
+										    }
 									        //아이디 입력여부 검사
 									        if (f.id.value == "") {
 									            alert("아이디를 입력하지 않았습니다.")
@@ -144,23 +156,19 @@
 									            document.f.pwd.focus()
 									            document.f.pwd.select()
 									            return false;
-									        }
-									 
+									        }									 
 									        //비밀번호와 비밀번호 확인 일치여부 체크
 									        if (document.f.pwd.value != document.f.pwd1.value) {
 									            alert("비밀번호가 일치하지 않습니다")
 									            document.f.pwd.value = ""
 									            document.f.pwd1.focus()
 									            return false;
-									        }
-									 
+									        }									 
 									        if (document.f.email.value == "") {
 									            alert("이메일을 입력하지 않았습니다.")
 									            document.f.email.focus()
 									            return false;
-									        }
-									        
-									 
+									        }									        								 
 									        if (regex.test(email2) === false) {
 									            alert("잘못된 이메일 형식입니다.");
 									            document.f.email.value=""
@@ -178,53 +186,108 @@
 									            return false;
 									        }
 										    if(hp2.value.length<=2 || hp3.value.length!=4){
-
 											alert("휴대폰번호를 제대로 입력해주세요");
-
 											focus.hp2;
-
 											return false;
-
 										}
-
 								 		/*핸드폰이 숫자만 들어가는지 체크*/
-
 								 		if(isNaN(hp2.value) || isNaN(hp3.value))
-
 										{
-
 											alert("휴대폰번호는 숫자만 들어갈 수 있습니다.");
-
 											return false;
-
 										}
-
 								 		/**/
-
 										if (hp2.value.length > 2 || hp3.value.length==4){
 											document.getElementById("tel").value = tel;
 										}					 
 									        document.f.submit()
 									    }
 									        </script>
-						<form name="f" action="member/memberjoin" method="post" onsubmit="return sendIt();">
-
-
-							<div class="row form-group">
-								<div class="col-md-12">
-									<label for="fname">아이디</label>
-									<input type="text" id="fname" name= "id"class="form-control" placeholder="ID">
-								</div>
-							</div>
-						
+						<form name="f" action="member/memberjoin" method="post" onsubmit="return sendIt();">				
+					<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+					<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.14/jquery-ui.min.js"></script>
+							<script type="text/javascript">
+								//아이디 체크여부 확인 (아이디 중복일 경우 = 0 , 중복이 아닐경우 = 1 )
+								var idck = 0;
+								$(document).ready(function() {
+								    //idck 버튼을 클릭했을 때 
+								    $("#idck").click(function() {
+								    	 if (f.id.value == "") {
+									            alert("아이디를 입력하지 않았습니다.")
+									            f.id.focus()
+									            return false;
+									        }
+									        //아이디 유효성 검사 (영문소문자, 숫자만 허용)
+									        for (i = 0; i < document.f.id.value.length; i++) {
+									            ch = document.f.id.value.charAt(i)
+									            if (!(ch >= '0' && ch <= '9') && !(ch >= 'a' && ch <= 'z')&&!(ch >= 'A' && ch <= 'Z')) {
+									                alert("아이디는 대소문자, 숫자만 입력가능합니다.")
+									                document.f.id.focus()
+									                document.f.id.select()
+									                return false;
+									            }
+									        }
+									        //아이디에 공백 사용하지 않기
+									        if (document.f.id.value.indexOf(" ") >= 0) {
+									            alert("아이디에 공백을 사용할 수 없습니다.")
+									            document.f.id.focus()
+									            document.f.id.select()
+									            return false;
+									        }
+									        //아이디 길이 체크 (4~12자)
+									        if (document.f.id.value.length<4 || document.f.id.value.length>12) {
+									            alert("아이디를 4~12자까지 입력해주세요.")
+									            document.f.id.focus()
+									            document.f.id.select()
+									            return false;
+									        }
+								        //userid 를 param.
+								        var userid =  $("#id").val(); 								        
+								        $.ajax({
+								            async: true,
+								            type : 'POST',
+								            data : userid,
+								            url : "idcheck.do",
+								            dataType : "json",
+								            contentType: "application/json; charset=UTF-8",
+								            success : function(data) {
+								                if (data.cnt > 0) {
+								                    
+								                    alert("아이디가 존재합니다. 다른 아이디를 입력해주세요.");
+								                    //아이디가 존제할 경우 빨깡으로 , 아니면 파랑으로 처리하는 디자인
+								                    $("#divInputId").addClass("has-error")
+								                    $("#divInputId").removeClass("has-success")
+								                    $("#id").focus();				                
+								                } else {
+								                    alert("사용가능한 아이디입니다.");
+								                    //아이디가 존제할 경우 빨깡으로 , 아니면 파랑으로 처리하는 디자인
+								                    $("#divInputId").addClass("has-success")
+								                    $("#divInputId").removeClass("has-error")
+								                    $("#pwd").focus();
+								                    //아이디가 중복하지 않으면  idck = 1 
+								                    idck = 1;								                    
+								                }
+								            },
+								            error : function(error) {								                
+								                alert("error : " + error);
+								            }
+								        });
+								    });
+								});								 							 
+								</script>	
+							<tr>
+								<td>아이디</td>
+								<td><input type="text" id="id"/>
+								<input type="button" value="중복확인" name="confirm_id"  id="idck"   onclick="confirmId(this.form)"></td>
+							</tr>
 							<div class="row form-group">
 								<div class="col-md-6 padding-bottom">
 									<label for="fname">비밀번호</label>
-									<input type="text" id="fname" name= "pwd" class="form-control" placeholder="PASSWORD">
+									<input type="password" id="fname" name= "pwd" class="form-control" placeholder="PASSWORD">
 								</div>
 								<div class="col-md-6">
 									<label for="lname">비밀번호확인</label>
-									<input type="text" id="lname" name= "pwd1" class="form-control" placeholder="">
+									<input type="password" id="lname" name= "pwd1" class="form-control" placeholder="">
 								</div>
 							</div>
 
@@ -232,11 +295,8 @@
 								<div class="col-md-6 padding-bottom">
 									<label for="fname">이름</label>
 									<input type="text" id="fname" name= "name" class="form-control" placeholder="NAME">
-								</div>
-								
-								<script language="Javascript">
-								
-
+								</div>							
+								<script language="Javascript">							
 									var today = new Date();
 									var toyear = parseInt(today.getFullYear());
 									var start = toyear - 5
@@ -296,7 +356,6 @@
 							</div>
 							<div class="row form-group">
 								<div class="col-md-12">
-<!-- 									<label for="subject">전화번호</label> -->
 									<tr>
 				<td rowspan="2" height="30" align="center" bgcolor="#FFDEAD">연락처</td>
 				<td bgcolor="#E0FFFF">
@@ -358,8 +417,6 @@
 			</div>
 		</div>
 
-		
-	
 		<footer id="colorlib-footer" role="contentinfo">
 			<div class="container">
 				<div class="row row-pb-md">

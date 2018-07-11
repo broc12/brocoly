@@ -1,5 +1,7 @@
 package com.khd.Member.model.dao;
 
+import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.session.ResultHandler;
 import org.apache.ibatis.session.SqlSession;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,12 +34,19 @@ public class MemberDaoImpl implements MemberDao {
 		return false;	
 	}
 
+	@Override
+	public int check(String id) {
+		
+		int Select = sql.selectOne(ns+".idcheck", id);
+		return Select;
+	}
+
 //	@Override
 //	public boolean find(Member member) {
-//		// TODO Auto-generated method stub
+////		// TODO Auto-generated method stub
 //		return false;
 //	}
-//
+////
 //	@Override
 //	public boolean confirm(Member member) {
 //		// TODO Auto-generated method stub

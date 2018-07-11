@@ -1,20 +1,19 @@
 package com.khd.MemberController;
 
-import java.sql.Date;
-import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.khd.Member.model.service.MemberService;
 import com.khd.model.LoginInfo;
@@ -57,6 +56,33 @@ public class MemberController {
 		return "redirect:../login.do";
 		
 	}
+	 @RequestMapping(value = "/idcheck.do" , method = RequestMethod.POST)
+	    @ResponseBody
+	    public Map<Object, Object> idcheck(@RequestBody String id) {
+		 System.out.println("id1 =" +id);
+	        int count = 0;
+	        Map<Object, Object> map = new HashMap<Object, Object>();
+	        System.out.println("id2 =" +id);
+	        count = memberService.idcheck(id);
+	        map.put("cnt", count);
+	        System.out.println("id3 =" +id);
+	        return map;
+	    }
+	 
+//@RequestMapping(value = "member/find.do", method = RequestMethod.GET)
+//public @ResponseBody HashMap<String,String> find(@RequestParam("id")String id) {
+//	Member member = new Member(null,id,null,null,null,null,null,null,null,null,null,null,null,null);
+//	boolean flag = memberService.findService(member);
+//	HashMap<String,String> map = new HashMap<String,String>();
+//	if(flag) {
+//		map.put("confirm", "사용할 수 없는 아이디 입니다.");
+//		map.put("flag", "false");
+//	}else {
+//		map.put("confirm", "사용할 수 있는 아이디 입니다.");
+//		map.put("flag", "true");
+//	}
+//	return map;
+//}
 }
 //	@RequestMapping(value = "member/confirm.do", method = RequestMethod.GET)
 //	public String confirm() {

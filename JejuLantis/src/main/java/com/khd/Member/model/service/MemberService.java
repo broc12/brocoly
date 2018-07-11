@@ -7,4 +7,5 @@ public interface MemberService {
 	boolean joinService(Member member);
 //	boolean findService(Member member);
 //	boolean confirmService(Member member);
+	int idcheck(String id);
 }

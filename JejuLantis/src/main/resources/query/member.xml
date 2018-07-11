@@ -27,4 +27,10 @@ insert into MEMBER values (MEMBER_seq.nextval,#{id},#{pwd},#{name},#{birth},'남
 <!--   values (MEMBER_seq.nextval,#{id},#{pwd},#{name},SYSDATE,#{sex},#{sclc},#{memeber_local},#{tel},#{email},#{sms_at},SYSDATE,#{memeber_whithdraw_at}) -->
 </insert>
 
+<select id="idcheck" parameterType="String" resultType="Integer">
+      SELECT COUNT(*) FROM MEMBER
+      WHERE
+          id = #{id}
+</select>
+
 </mapper>

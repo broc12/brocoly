@@ -8,4 +8,6 @@ public interface MemberDao {
 	boolean join(Member member);
 //	boolean find(Member member);
 //	boolean confirm(Member member);
+
+	int check(String id);
 }

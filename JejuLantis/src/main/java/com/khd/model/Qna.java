@@ -15,12 +15,13 @@ public class Qna {
 	private int qna_secret;
 	private int qna_answer_check;
 	private Date qna_resist;
+	private String qna_resist_id;
 
 	public Qna() {}
 
 	public Qna(long qna_no, long qna_group, int qna_lev, String qna_name, String qna_email, String qna_tel,
-			String qna_title, String qna_content, String qna_pwd, int qna_secret, int qna_answer_check,
-			Date qna_resist) {
+			String qna_title, String qna_content, String qna_pwd, int qna_secret, int qna_answer_check, Date qna_resist,
+			String qna_resist_id) {
 		super();
 		this.qna_no = qna_no;
 		this.qna_group = qna_group;
@@ -34,6 +35,7 @@ public class Qna {
 		this.qna_secret = qna_secret;
 		this.qna_answer_check = qna_answer_check;
 		this.qna_resist = qna_resist;
+		this.qna_resist_id = qna_resist_id;
 	}
 
 	public long getQna_no() {
@@ -115,18 +117,15 @@ public class Qna {
 	public void setQna_secret(int qna_secret) {
 		this.qna_secret = qna_secret;
 	}
+
 	public int getQna_answer_check() {
 		return qna_answer_check;
 	}
-	
 	public String getQna_answer_checkString() {
-		if(qna_answer_check==0) {
+		if(qna_answer_check==0)
 			return "답변대기";
-		}else if(qna_answer_check == 1) {
-			return " ";
-		}else {
-		return "답변완료";
-		}
+		else
+			return "답변완료";
 	}
 
 	public void setQna_answer_check(int qna_answer_check) {
@@ -139,6 +138,14 @@ public class Qna {
 
 	public void setQna_resist(Date qna_resist) {
 		this.qna_resist = qna_resist;
+	}
+
+	public String getQna_resist_id() {
+		return qna_resist_id;
+	}
+
+	public void setQna_resist_id(String qna_resist_id) {
+		this.qna_resist_id = qna_resist_id;
 	}
 
 	

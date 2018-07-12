@@ -1,5 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page session="false" %>
+<%@ page session="true" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE HTML>
@@ -58,10 +58,45 @@
 	
 	<script src="js/respond.min.js"></script>
 	<![endif]-->
+	<!-- jQuery -->
+	<script src="resources/rentcar/js/jquery.min.js"></script>
+	<!-- jQuery Easing -->
+	<script src="resources/rentcar/js/jquery.easing.1.3.js"></script>
+	<!-- Bootstrap -->
+	<script src="resources/rentcar/js/bootstrap.min.js"></script>
+	<!-- Waypoints -->
+	<script src="resources/rentcar/js/jquery.waypoints.min.js"></script>
+	<!-- Flexslider -->
+	<script src="resources/rentcar/js/jquery.flexslider-min.js"></script>
+	<!-- Owl carousel -->
+	<script src="resources/rentcar/js/owl.carousel.min.js"></script>
+	<!-- Magnific Popup -->
+	<script src="resources/rentcar/js/jquery.magnific-popup.min.js"></script>
+	<script src="resources/rentcar/js/magnific-popup-options.js"></script>
+	<!-- Date Picker -->
+	<script src="resources/rentcar/js/bootstrap-datepicker.js"></script>
+	<!-- Stellar Parallax -->
+	<script src="resources/rentcar/js/jquery.stellar.min.js"></script>
 
+	<!-- Main -->
+	<script src="resources/rentcar/js/main.js"></script>
 	</head>
 	<body>
 	<%@ include file="./top/top.jspf" %>
+	<script>
+	
+    jQuery(document).ready(function(){
+    	$(".identifyingClass").click(function () {
+             var my_id_value = $(this).data('id');
+             $(".modal-footer #hiddenValue").val(my_id_value);
+         })
+    });
+	
+	function goDelModal(){
+		var anno = jQuery("#hiddenValue").val();
+		location.href="del.do?announ_no=" +anno;
+	}
+	</script>
 	<div class="colorlib-loader"></div>
 
 	<div id="page">
@@ -113,7 +148,11 @@
 												<a style="color:black">문의 하시기 전 '자주묻는질문' 을 찾아 보시면 신속하게 궁금증을 해소하실 수 있습니다</a></br>
 												<div class="col-md-12 text-right">
 													<ul class="pagination">
-														<li><a href="helpadd.do">글쓰기</a></li>
+														<form action="helpadd.do" method="POST" >
+															<input type="hidden" name="id" value="${id}">
+															<button type="submit" class="btn btn-primary" style="border-radius:0px">글쓰기</button>
+															<a data-toggle="modal" data-target="#exampleModal2" class="identifyingClass" data-id="">삭제</a>
+															</form>
 													</ul>
 												</div>
 												<table border="0" width="100%"  cellpadding="0" cellspacing="0">	
@@ -133,7 +172,8 @@
 														<tr style="font-size:10pt;color:black" height="60px">
 															<td align="center" style="color:black">${board.qna_group}</td>
 															<td align="center">
-															<a href="helpContent.do?qna_no=${board.qna_no}" style="color:black">${board.qna_title}</a>
+															<%-- <a href="helpContent.do?qna_no=${board.qna_no}&id=${id}" style="color:black" data-toggle="modal" data-target="#exampleModal2" class="identifyingClass" data-id="${board.qna_no}">${board.qna_title}</a> --%>
+															<a href="" style="color:black" data-toggle="modal" data-target="#exampleModal2" class="identifyingClass" data-id="${board.qna_no}">${board.qna_title}</a>
 															<c:if test="${board.qna_secret==0}">
 															<img src="resources/rentcar/images/locker.png" width=6% height=10%>
 															</c:if>
@@ -199,7 +239,7 @@
 					</div>
 				</div>
 			</div>
-		</div>
+		</div>	
 		<footer id="colorlib-footer" role="contentinfo">
 			<div class="container">
 				<div class="row row-pb-md">
@@ -277,29 +317,24 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 		<a href="#" class="js-gotop"><i class="icon-arrow-up2"></i></a>
 	</div>
 
-	<!-- jQuery -->
-	<script src="resources/rentcar/js/jquery.min.js"></script>
-	<!-- jQuery Easing -->
-	<script src="resources/rentcar/js/jquery.easing.1.3.js"></script>
-	<!-- Bootstrap -->
-	<script src="resources/rentcar/js/bootstrap.min.js"></script>
-	<!-- Waypoints -->
-	<script src="resources/rentcar/js/jquery.waypoints.min.js"></script>
-	<!-- Flexslider -->
-	<script src="resources/rentcar/js/jquery.flexslider-min.js"></script>
-	<!-- Owl carousel -->
-	<script src="resources/rentcar/js/owl.carousel.min.js"></script>
-	<!-- Magnific Popup -->
-	<script src="resources/rentcar/js/jquery.magnific-popup.min.js"></script>
-	<script src="resources/rentcar/js/magnific-popup-options.js"></script>
-	<!-- Date Picker -->
-	<script src="resources/rentcar/js/bootstrap-datepicker.js"></script>
-	<!-- Stellar Parallax -->
-	<script src="resources/rentcar/js/jquery.stellar.min.js"></script>
-
-	<!-- Main -->
-	<script src="resources/rentcar/js/main.js"></script>
-
+<div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel2" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">비밀번호 확인</h5>
+            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+          <div class="modal-body"><input type="text" name="inputPwd"></div>
+          <div class="modal-footer">
+            <button class="btn btn-secondary" type="button" data-dismiss="modal">취소</button>
+            <a class="btn btn-primary" href="javascript:goDelModal();" name="hiddenValue" id="hiddenValue">확인</a>
+            <input type="hidden" value=""/>
+          </div>
+        </div>
+      </div>
+    </div>
 	</body>
 </html>
 

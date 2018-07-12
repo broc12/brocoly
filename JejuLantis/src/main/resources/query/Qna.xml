@@ -15,11 +15,12 @@
 	<result property="qna_secret" column="QNA_SECRET"/>
 	<result property="qna_answer_check" column="QNA_ANSWER_CHECK"/>
 	<result property="qna_resist" column="QNA_RESIST"/>
+	<result property="qna_resist_id" column="QNA_RESIST_ID"/>
 	
 	</resultMap>
 	
 	 <insert id="myInsert" parameterType ="Qna">
-	 insert into QNA VALUES(QNA_seq.NEXTVAL,QNA_seq.CURRVAL,0,#{qna_name},#{qna_email},#{qna_tel},#{qna_title},#{qna_content},#{qna_pwd},#{qna_secret},#{qna_answer_check},sysdate)
+	 insert into QNA VALUES(QNA_seq.NEXTVAL,QNA_seq.CURRVAL,0,#{qna_name},#{qna_email},#{qna_tel},#{qna_title},#{qna_content},#{qna_pwd},#{qna_secret},#{qna_answer_check},sysdate,#{qna_resist_id})
 	 </insert>
 	 <select id="myQnaSelectAll" parameterType="HashMap" resultType="Qna">
          select * from Qna where QNA_GROUP between #{A} and #{B} order by QNA_GROUP desc, QNA_LEV ASC

@@ -2,7 +2,8 @@ package com.khd.customerCenterController;
 
 import java.util.HashMap;
 import java.util.List;
-import java.sql.Date;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,7 +13,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.khd.customerCenterService.CustomerCenterService;
-import com.khd.model.*;
+import com.khd.model.CustomerCenter;
+import com.khd.model.Qna;
+import com.khd.loginDAO.LoginDAO;
+import com.khd.model.LoginInfo;
 
 
 /**
@@ -53,8 +57,10 @@ public class CustomerCenterController {
 		return mv;
 	}
 	@RequestMapping(value="help.do",method=RequestMethod.GET)
-	public ModelAndView help(@RequestParam(value="strInput",required=false) String strInput) {
+	public ModelAndView help(@RequestParam(value="strInput",required=false) String strInput,
+			HttpSession session) {
 		int input;
+		String id = null;
 		if (strInput==null) {
 		input = 1;
 		}else input =Integer.parseInt(strInput);
@@ -78,39 +84,62 @@ public class CustomerCenterController {
 			System.out.println("B "+betweenB);
 			System.out.println(groupNum);
 			System.out.println(list.size());
+			LoginInfo temp = (LoginInfo)session.getAttribute("log");
+			if(temp!=null)
+			id = temp.getId();
 			String view = "rentcar/help";
 			ModelAndView mv = new ModelAndView(view,"list",list);
+			mv.addObject("id", id);
 			mv.addObject("totalPage", totalPage);
 		return mv;
 	}
-	@RequestMapping(value="helpadd.do",method=RequestMethod.GET)
-	public String helpadd() {
-			
-		return "rentcar/helpadd";
+	@RequestMapping(value="helpadd.do",method=RequestMethod.POST)
+	public ModelAndView helpadd(@RequestParam("id") String id) {
+		String view = "rentcar/helpadd";
+		ModelAndView mv = new ModelAndView(view, "id", id);
+		return mv;
 	}
 	@RequestMapping(value="helpInsert.do",method=RequestMethod.POST)
 	public ModelAndView helpInsert(@RequestParam("qna_name") String qna_name, @RequestParam("qna_email") String qna_email, @RequestParam("qna_tel") String qna_tel, @RequestParam("qna_title") String qna_title, @RequestParam("qna_content") String qna_content, @RequestParam("qna_pwd") String qna_pwd, 
-	@RequestParam("qna_secret") String Strqna_secret) {
+	@RequestParam("qna_secret") String Strqna_secret, @RequestParam("id") String id) {
 		System.out.println(Strqna_secret);
 		int qna_secret = 0;
 		if(Strqna_secret.equals("on"))qna_secret = 0;
 		else qna_secret = 1;
-		Qna qna = new Qna(-1, -1, -1, qna_name, qna_email, qna_tel, qna_title, qna_content, qna_pwd, 0, qna_secret, null);
+		Qna qna = new Qna(-1, -1, -1, qna_name, qna_email, qna_tel, qna_title, qna_content, qna_pwd, 0, qna_secret, null, id);
 		boolean flag = service.insert(qna);
 		String view = "rentcar/helpInsertCheck";
 		ModelAndView mv = new ModelAndView(view,"flag",flag);
 		return mv;
 	}	
 	@RequestMapping(value="helpContent.do",method=RequestMethod.GET)
-	public ModelAndView helpContent(@RequestParam("qna_no") String Strqna_no) {
+	public ModelAndView helpContent(@RequestParam("qna_no") String Strqna_no,@RequestParam("id") String id) {
 		long qna_no = 0;
+		String view = null;
 			if(Strqna_no!=null)Strqna_no=Strqna_no.trim();
 			if(Strqna_no.length()!=0) qna_no = Integer.parseInt(Strqna_no);
 			Qna qna = service.qnaContent(qna_no);
-			String view = "rentcar/helpContent";
+				System.out.println(id);
+				if(qna.getQna_resist_id().equals(id)) {
+				view = "rentcar/helpContent";}
+				else view = "rentcar/qnaPwdModal";  //여기에 모달전용 jsp를 넣어야함, 추출한 pwd랑 no을 넘겨줘, 그다음 모달jsp에 입력한 pwd값이 일치하면 no 넘겨줘서 contents.jsp 실행
 			ModelAndView mv = new ModelAndView(view,"qna",qna);
 		return mv;
 	}
+	@RequestMapping(value="pwdModal.do",method=RequestMethod.POST) //비밀번호 입력하고 확인했을때 실행되는 controller
+	public ModelAndView helpInsert(@RequestParam("qna_no") String Strqna_no, @RequestParam("id") String id, @RequestParam("inputPwd") String inputPwd ) {
+		long qna_no = 0;
+		String view = null;
+		ModelAndView mv;
+		if(Strqna_no!=null)Strqna_no=Strqna_no.trim();
+			if(Strqna_no.length()!=0) qna_no = Integer.parseInt(Strqna_no);
+		if(id.equals(inputPwd)) {
+			Qna qna = service.qnaContent(qna_no);
+			view = "rentcar/helpContent";
+			mv = new ModelAndView(view,"qna",qna);
+		}else //비밀번호 불일치 페이지 만들면 됨 
+		return mv;
+	}	
 	
 	@RequestMapping(value="faq.do",method=RequestMethod.GET)
 	public String faq() {

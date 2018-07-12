@@ -112,6 +112,7 @@
 												<a style="color:black">문의 하시기 전 '자주묻는질문' 을 찾아 보시면 신속하게 궁금증을 해소하실 수 있습니다</a></br></br></br>
 												<h3 style="color:#c6c600">작성자 정보</h3>
 												<form action="helpInsert.do" method="POST" >
+												  <input type="hidden" name="id" value="${id}">
 								                  <div class="form-group">
 								                    <label for="guests">성명</label>
 								                    <div class="form-field">

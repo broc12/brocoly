@@ -661,11 +661,6 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 	<!-- Main -->
 	<script src="resources/rentcar/js/main.js"></script>
 <script>
-$(document).ready(function(){
-    $("#date1").change(function(){
-    	alert("Value: " + $("#date1").val);
-    });
-});
 </script>
 	</body>
 </html>

@@ -29,6 +29,12 @@ public class RentcarController {
 	@RequestMapping(value="car.do",method=RequestMethod.POST)
 	public String car(@RequestParam("Checkouttime")String checkouttime,@RequestParam("Checkoutdate")String checkoutdate,@RequestParam("Checkintime")String checkintime,@RequestParam("Checkindate")String checkindate,@RequestParam("car_kind_name")String car_kind_name) {
 
+		System.out.println(checkouttime);
+		System.out.println(checkoutdate);
+		System.out.println(checkintime);
+		System.out.println(checkindate);
+		System.out.println(car_kind_name);
+		
 		return "rentcar/car";
 	}
 	

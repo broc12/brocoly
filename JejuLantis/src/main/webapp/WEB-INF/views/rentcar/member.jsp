@@ -277,7 +277,7 @@
 								</script>	
 							<tr>
 								<td>아이디</td>
-								<td><input type="text" id="id"/>
+								<td><input type="text" name="id" id="id"/>
 								<input type="button" value="중복확인" name="confirm_id"  id="idck"   onclick="confirmId(this.form)"></td>
 							</tr>
 							<div class="row form-group">
@@ -356,6 +356,7 @@
 							</div>
 							<div class="row form-group">
 								<div class="col-md-12">
+
 									<tr>
 				<td rowspan="2" height="30" align="center" bgcolor="#FFDEAD">연락처</td>
 				<td bgcolor="#E0FFFF">

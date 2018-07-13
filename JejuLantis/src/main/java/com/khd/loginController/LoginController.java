@@ -16,6 +16,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.khd.loginDAO.LoginDAO;
 import com.khd.model.LoginInfo;
+import com.khd.model.Member;
+
+import com.khd.Member.model.service.MemberServiceImpl;
 
 /**
  * Handles requests for the application home page.
@@ -24,32 +27,26 @@ import com.khd.model.LoginInfo;
 public class LoginController {
 	@Autowired
 	LoginDAO loginDAO;
+	MemberServiceImpl ms = new MemberServiceImpl();
 
 	@RequestMapping(value = "/login/loginCheck")
-	public void loginCheck(Locale locale, Model model, LoginInfo loginInfo, HttpSession session,
+	public void loginCheck(Locale locale, Model model, Member member, HttpSession session,
 			HttpServletResponse response) throws IOException {
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter out = response.getWriter();
-//		System.out.println(loginInfo.getId());
-//		System.out.println(loginInfo.getPwd());
-//		System.out.println("s2ss");
-		if ((loginInfo.getId() != null && !loginInfo.getId().equals("") && loginInfo.getPwd() != null
-				&& !loginInfo.getPwd().equals(""))) {
-//			System.out.println("sss");
-			LoginInfo Info = null;
-			if (loginDAO.loginCheck(loginInfo)) {
-				session.setAttribute("login", 0); // 로그인 성공시 세션
-//				System.out.println("s");
-				Info = new LoginInfo(loginInfo.getId());
+		if ((member.getId() != null && !member.getId().equals("") && member.getPwd() != null
+				&& !member.getPwd().equals(""))) {
+			Member Info = null;
+			if (loginDAO.loginCheck(member)) {
+				session.setAttribute("login", 0); // 로그인 성공시 세션			
+				Info = new Member(member.getId());
 				session.setAttribute("log", Info);
-//				System.out.println("ss");
-				LoginInfo log = (LoginInfo)session.getAttribute("log");
-
+				Member log = (Member)session.getAttribute("log");
 				out.println("<script>location.href='../'; </script>");
 				out.flush();
 				out.close();
 			}
-			if (loginDAO.loginCheck(loginInfo) == false) {
+			if (loginDAO.loginCheck(member) == false) {
 				out.println("<script>alert('로그인 정보를 확인하세요!'); history.go(-1); </script>");
 				out.flush();
 				out.close();
@@ -68,10 +65,56 @@ public class LoginController {
 		return mv;
 		}
 
-	
-	@RequestMapping(value="mypage.do",method=RequestMethod.GET)
-	public String mypage() {
-		return "rentcar/mypage";
-	}
+//	@RequestMapping("mypage.do")
+//    public String memberView(Member member, Model model){
+//        // 회원 정보를 model에 저장
+//       model.addAttribute("dto", MemberService.viewMember(member));
+//        
+//        return "member/member_view";
+//    }
+//	
+//	@RequestMapping(value="mypage.do",method=RequestMethod.GET)
+//	public String mypage() {	
+//		System.out.println("----- 지나감");
+//		return "rentcar/mypage";
+//	}
+//	@RequestMapping(value = "/membersmodify.do" )		
+//	public ModelAndView members(HttpSession session){
+//		ModelAndView mav = new ModelAndView();
+//		String member_id = (String)session.getAttribute("id");
+//		if ( member_id == null) {		//session check
+//			mav.setViewName("");
+//			return mav;
+//		}
+//		mav.addObject("id",member_id);
+//		mav.addObject("member_info", MemberDAO.getMemberInfo(member_id));
+//		mav.setViewName("/members/members_modify");
+//		return mav;
+//	}
 
+
+
+
+
+//    @RequestMapping(value="/login/mypage", method=RequestMethod.POST)
+//    public String editAccount(Member member, HttpSession session) throws Exception {
+//    	Member loginUser = (Member) session.getAttribute("log");
+//        String id = loginUser.getId(); //세션에 저장된 사용자 정보로부터 id을 알아낸다.
+//       
+//        if (member.getName() == null) {
+//        	member.setName(loginUser.getName());
+//        }
+//        if (member.getTel() == null) {
+//        	member.setTel(loginUser.getTel());
+//        }
+//       
+//        member.setEmail(email);
+//        int check = MemberService.modify(member);
+//        if (check == 1) {
+//            session.setAttribute("log",member);
+//        }
+//       
+//        return "users/changePasswd";
+//       
+//    }
 }

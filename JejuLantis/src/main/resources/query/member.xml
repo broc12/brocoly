@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace = "query.member">
 
-<resultMap type="com.khd.model.Member" id="MemberResult">
+<resultMap type="Member" id="MemberResult">
 	<result column="MEMEMBER_NO" property="memember_no"/>
 	<result column="ID" property="id"/>
 	<result column="PWD" property="pwd"/>
@@ -19,7 +19,7 @@
 	<result column="WITHDRAW_DATE" property="whithdraw_date"/>
 </resultMap>
 
-<!-- 로그인 체키쿼리 -->
+
 	
 <insert id="memberjoin" parameterType="Member">
 insert into MEMBER values (MEMBER_seq.nextval,#{id},#{pwd},#{name},#{birth},'남','양력',#{memeber_local},#{tel},#{email},'jjj',SYSDATE,'n',SYSDATE)
@@ -32,5 +32,30 @@ insert into MEMBER values (MEMBER_seq.nextval,#{id},#{pwd},#{name},#{birth},'남
       WHERE
           id = #{id}
 </select>
+<select id="idview" parameterType="String" resultType="Member">
+      SELECT * FROM MEMBER
+      WHERE
+          id = #{id}
+</select>
 
+<update id="modify" parameterType="Member" >
+	 UPDATE member SET id = #{id} , pwd = #{pwd}, name = #{name}, tel = #{tel} ,birth = #{birth}, memeber_local = #{memeber_local}
+        WHERE id = #{id} 
+<!--         AND pwd = #{pwd}  -->
+</update>
+
+<!-- <select id="modify" parameterType="HashMap" resultType="int"> -->
+<!-- 			select count(ID) from (select * from MEMBER where PWD=#{pwd}) where ID = #{id} -->
+<!-- 		</select> -->
+	
+<!--    <select id="viewMember"  parameterType="String" resultType="Integer"> -->
+<!--         SELECT  -->
+<!--           * -->
+<!--         FROM member -->
+<!--         WHERE id = #{id} -->
+<!--     </select> -->
+<!-- <update id="modify" parameterType="User"> -->
+<!--         UPDATE member SET name = #{name}, tel = #{tel} -->
+<!--         WHERE email = #{email} AND pwd = #{pwd} -->
+<!--     </update> -->
 </mapper>

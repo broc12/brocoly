@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.khd.ReviewController.BranchName;
+import com.khd.ReviewController.ReviewService;
 import com.khd.notice.Notice;
 import com.khd.notice.NoticeService;
 
@@ -26,6 +28,8 @@ public class HomeController {
 	
 	@Autowired
 	private NoticeService service;
+	@Autowired
+	private ReviewService reviewService;
 	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	
@@ -59,9 +63,17 @@ public class HomeController {
 	public String login() {
 		return "rentcar/login";
 	}
-	@RequestMapping(value="board.do",method=RequestMethod.GET)
-	public String board() {
-		return "rentcar/board";
+	@RequestMapping(value="board.do")
+	public ModelAndView list(@RequestParam(value ="searchValue", required= false)String searchValue){
+		List<BranchName> branch = null;
+		if(searchValue == null) {
+			branch = reviewService.listService();
+		}else if(searchValue != null){
+			branch = reviewService.selectService(searchValue);
+		}
+		String view = "rentcar/board";
+		ModelAndView mv = new ModelAndView(view, "branch", branch);
+		return mv;
 	}
 	@RequestMapping(value="service.do",method=RequestMethod.GET)
 	public ModelAndView service() {

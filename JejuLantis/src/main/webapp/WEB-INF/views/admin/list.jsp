@@ -58,37 +58,23 @@
               </thead>
    
               <tbody>
+              <c:forEach items="${list_}" var="review" varStatus="status">
                 <tr>
-                  <td>1</td>
-                  <td>2018-07-05 21:12:45</td>
-                  <td>2018-06-30 09:00</td>
-                  <td>2018-07-30 09:00</td>
-                  <td>윤희원</td>
-                  <td>한성렌트카</td>
-                  <td>스팅어</td>
-                  <td>5.0</td>
-                  <td>위치는 공항과 가깝고, 이천킬로 탄 거의 새차를 받아서 잘 이용했습니다 다만 목베게 나두고 왔는데, 확인하면서 발견못한 제가 발못이지만, 반납할때 챙겨주셨으면 더 좋을뻔했네요위치는 공항과 가깝고, 이천킬로 탄 거의 새차를 받아서 잘 이용했습니다 다만 목베게 나두고 왔는데, 확인하면서 발견못한 제가 발못이지만, 반납할때 챙겨주셨으면 더 좋을뻔했네요</td>
+                  <td>${review.rent_review_no}</td>
+                  <td>${review.rent_review_date}</td>
+                  <td>${review.rent_reserv_start}</td>
+                  <td>${review.rent_reserv_end}</td>
+                  <td>${review.name}</td>
+                  <td>${review.branch_name}</td>
+                  <td>${review.car_kind_name}</td>
+                  <td>${review.rent_review_rating_car}</td>
+                  <td>${review.rent_review_content}</td>
                   <td>
                   	<button type="button" class="btn btn-defalut btn-sm"><a>수정</a></button>
-                  	<button type="button" class="btn btn-defalut btn-sm"><a>삭제</a></button>
+                  	<button type="button" class="btn btn-defalut btn-sm""><a href="rdel.do?rent_review_no=${review.rent_review_no}">삭제</a></button>
                   </td>
                 </tr>
-                <tr>
-                  <td>2</td>
-                  <td>2018-07-05 21:12:45</td>
-                  <td>2018-06-30 09:00</td>
-                  <td>2018-07-30 09:00</td>
-                  <td>윤희원</td>
-                  <td>한성렌트카</td>
-                  <td>스팅어</td>
-                  <td>5.0</td>
-                  <td>위치는 공항과 가깝고, 이천킬로 탄 거의 새차를 받아서 잘 이용했습니다 다만 목베게 나두고 왔는데, 확인하면서 발견못한 제가 발못이지만, 반납할때 챙겨주셨으면 더 좋을뻔했네요위치는 공항과 가깝고, 이천킬로 탄 거의 새차를 받아서 잘 이용했습니다 다만 목베게 나두고 왔는데, 확인하면서 발견못한 제가 발못이지만, 반납할때 챙겨주셨으면 더 좋을뻔했네요</td>
-                  <td>
-                  	<button type="button" class="btn btn-defalut btn-sm"><a>수정</a></button>
-                  	<button type="button" class="btn btn-defalut btn-sm"><a>삭제</a></button>
-                  </td>
-                </tr>
-         
+                </c:forEach>
               </tbody>
             </table>
           </div>

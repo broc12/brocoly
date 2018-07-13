@@ -10,6 +10,9 @@
 		<typeAlias alias="Qna" type="com.khd.model.Qna"/>
 		<typeAlias alias="Notice" type="com.khd.notice.Notice"/>
 		<typeAlias alias="Branch" type="com.khd.branch.Branch"/>
+		<typeAlias alias="ReviewContent" type="com.khd.ReviewController.ReviewContent"/>
+		<typeAlias alias="BranchName" type="com.khd.ReviewController.BranchName"/>
+		<typeAlias alias="BranchNameSelect" type="com.khd.ReviewController.BranchName"/>
 	</typeAliases>
 	<mappers>
 		<mapper resource="query/query.xml"/>
@@ -18,6 +21,8 @@
 		<mapper resource="query/Qna.xml"/>
 		<mapper resource="query/notice.xml"/>
 		<mapper resource="query/branch.xml"/>
+		<mapper resource="review/ReviewContent.xml"/>
+		<mapper resource="review/BranchName.xml"/>
 	</mappers>
 	
 	

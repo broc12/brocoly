@@ -63,7 +63,7 @@
 	<%@ include file="./top/top.jspf" %>
 	<div class="colorlib-loader"></div>
 
-	<div id="page">
+	<div id="page" style="background-color:#eef2f5">
 		<aside id="colorlib-hero">
 			<div class="flexslider">
 				<ul class="slides">
@@ -84,111 +84,59 @@
 		  	</div>
 		</aside>
 				
-					<div class="col-md-6 col-md-offset-3" align="center">
-						</br></br></br><a href="">·평점순</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						<a href="">·최신순</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						<a href="">·후기 많은순</a>
-					</div>
+			<div class="col-md-6 col-md-offset-3" align="center">
+				</br></br></br><a href="board.do?searchValue=SCORE">·평점순</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<a href="board.do?searchValue=NEW">·최신순</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<a href="board.do?searchValue=SALE">·후기 많은순</a>
+			</div>
 				
 		<div class="colorlib-wrap">
 			<div class="container">
 					<div class="col-md-9">
 						<div class="row" style="margin-right: -400px; margin-left: -80px">
-							<div class="wrap-division">			
-								<div class="col-md-6 col-sm-6 animate-box">
-									<div class="hotel-entry">
+							<div class="wrap-division" >
+							
+							<!-- <뿌려주기 start> -->
+								<c:forEach items="${branch}" var="branch" varStatus="status">
+				
+								<div class="col-md-6 col-sm-6 animate-box" >
+								
+									<div class="hotel-entry" >
 										<div class="desc">
-											<table border="1" width="100%">
+											
+											<table border="0" width="100%" style="background-color:white">
+											
 												<tr>
-													<td colspan="2" height="50px">업체명</td>
+													<td colspan="2" height="50px" style="background-color:#eef2f5">${branch.branch_name} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="">더보기</a> </td>
 												</tr>
-												<!-- <뿌려주기 start> -->
-												<tr>
-													<td rowspan="4" width=33%>	
-															<img src="resources/rentcar/images/car1.jpg" width=100%, height=50%>		
-													</td>
-													<td>최*윤</td>
-												</tr>
-												<tr>
-													<td><p class="star"><span><i class="icon-star-full"></i><i class="icon-star-full"></i><i class="icon-star-full"></i><i class="icon-star-full"></i><i class="icon-star-full"></i></span> 545 Reviews</p></td>
-												</tr>
-												<tr>
-													<td>다양한 비교후 선택할수 있었고, 설명 잘해줌, 렌트카는 보험이 제한되기에 운전조심했음, 제주여행중 잘활용함, 전기차는 처음 사용했는데 풀옵션에 충전무료 좋았음다양한 비교후 선택할수 있었고, 설명 잘해줌, 렌트카는 보험이 제한되기에 운전조심했음, 제주여행중 잘활용함, 전기차는 처음 사용했는데 풀옵션에 충전무료 좋았음</td>
-												</tr>
-												<tr>
-													<td><span class="place">아반떼AD(휘) 일반자차  2018.06.25 ~ 2018.06.29</span></td>
-												</tr>
-												<!-- <뿌려주기EnD> -->
-												<!-- <뿌려주기 start> -->
+												
+												<c:forEach items="${branch.reviewList}" var="review" varStatus="status">
+										
 												<tr>
 													<td rowspan="4" width=33%>	
 															<img src="resources/rentcar/images/car1.jpg" width=100%, height=50%>		
 													</td>
-													<td>최*윤</td>
+													<td>${review.name}</td>
 												</tr>
 												<tr>
-													<td><p class="star"><span><i class="icon-star-full"></i><i class="icon-star-full"></i><i class="icon-star-full"></i><i class="icon-star-full"></i><i class="icon-star-full"></i></span> 545 Reviews</p></td>
+													<td><p class="star"><span><i class="icon-star-full"></i></span>${review.rent_review_rating_car}</p></td>
 												</tr>
 												<tr>
-													<td>다양한 비교후 선택할수 있었고, 설명 잘해줌, 렌트카는 보험이 제한되기에 운전조심했음, 제주여행중 잘활용함, 전기차는 처음 사용했는데 풀옵션에 충전무료 좋았음다양한 비교후 선택할수 있었고, 설명 잘해줌, 렌트카는 보험이 제한되기에 운전조심했음, 제주여행중 잘활용함, 전기차는 처음 사용했는데 풀옵션에 충전무료 좋았음</td>
+													<td>${review.rent_review_content}</td>
 												</tr>
 												<tr>
-													<td><span class="place">아반떼AD(휘) 일반자차  2018.06.25 ~ 2018.06.29</span></td>
+													<td><span class="place">${review.car_kind_name} ${review.car_kind_fuel} ${review.car_kind_type}  ${review.rent_reserv_start} ~ ${review.rent_reserv_end}</span></td>
 												</tr>
-												<!-- <뿌려주기EnD> -->
+											</c:forEach>
 											</table>
+											<!-- <뿌려주기EnD> -->
 										</div>
 									</div>
-								</div>	
-								<div class="col-md-6 col-sm-6 animate-box">
-									<div class="hotel-entry">
-										<div class="desc">
-											<table border="1" width="100%">
-												<tr>
-													<td colspan="2" height="50px">업체명</td>
-												</tr>
-												<!-- <뿌려주기 start> -->
-												<tr>
-													<td rowspan="4" width=33%>	
-															<img src="resources/rentcar/images/car1.jpg" width=100%, height=50%>		
-													</td>
-													<td>최*윤</td>
-												</tr>
-												<tr>
-													<td><p class="star"><span><i class="icon-star-full"></i><i class="icon-star-full"></i><i class="icon-star-full"></i><i class="icon-star-full"></i><i class="icon-star-full"></i></span> 545 Reviews</p></td>
-												</tr>
-												<tr>
-													<td>다양한 비교후 선택할수 있었고, 설명 잘해줌, 렌트카는 보험이 제한되기에 운전조심했음, 제주여행중 잘활용함, 전기차는 처음 사용했는데 풀옵션에 충전무료 좋았음다양한 비교후 선택할수 있었고, 설명 잘해줌, 렌트카는 보험이 제한되기에 운전조심했음, 제주여행중 잘활용함, 전기차는 처음 사용했는데 풀옵션에 충전무료 좋았음</td>
-												</tr>
-												<tr>
-													<td><span class="place">아반떼AD(휘) 일반자차  2018.06.25 ~ 2018.06.29</span></td>
-												</tr>
-												<!-- <뿌려주기EnD> -->
-												<!-- <뿌려주기 start> -->
-												<tr>
-													<td rowspan="4" width=33%>	
-															<img src="resources/rentcar/images/car1.jpg" width=100%, height=50%>		
-													</td>
-													<td>최*윤</td>
-												</tr>
-												<tr>
-													<td><p class="star"><span><i class="icon-star-full"></i><i class="icon-star-full"></i><i class="icon-star-full"></i><i class="icon-star-full"></i><i class="icon-star-full"></i></span> 545 Reviews</p></td>
-												</tr>
-												<tr>
-													<td>다양한 비교후 선택할수 있었고, 설명 잘해줌, 렌트카는 보험이 제한되기에 운전조심했음, 제주여행중 잘활용함, 전기차는 처음 사용했는데 풀옵션에 충전무료 좋았음다양한 비교후 선택할수 있었고, 설명 잘해줌, 렌트카는 보험이 제한되기에 운전조심했음, 제주여행중 잘활용함, 전기차는 처음 사용했는데 풀옵션에 충전무료 좋았음</td>
-												</tr>
-												<tr>
-													<td><span class="place">아반떼AD(휘) 일반자차  2018.06.25 ~ 2018.06.29</span></td>
-												</tr>
-												<!-- <뿌려주기EnD> -->
-											</table>
-										</div>
-									</div>
-								</div>											
+								</div>
+								</c:forEach>
+								
 							</div>
 						</div>
-						
-						
 					</div>
 			</div>
 		</div>

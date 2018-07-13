@@ -34,13 +34,13 @@
 
 
 
-					<a>"${log.id}"</a> <a href="service.do">고객센터</a>
+					<a>${log.id}</a> <a href="service.do">고객센터</a>
 				</div>
 			</div>
 			<div class="row">
 				<div class="col-xs-2">
 					<div id="colorlib-logo">
-						<a href="/jeju">JejuLantis</a>
+						<a href="/jejulantis">JejuLantis</a>
 					</div>
 				</div>
 			</div>

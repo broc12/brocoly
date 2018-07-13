@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.khd.ReviewController.ReviewContent;
+import com.khd.ReviewController.ReviewService;
 import com.khd.notice.Notice;
 import com.khd.notice.NoticeService;
 
@@ -17,6 +19,8 @@ public class AdminController {
 	
 	@Autowired
 	private NoticeService service;
+	@Autowired
+	private ReviewService rservice;
 	
 	@RequestMapping(value="admin/index.do",method=RequestMethod.GET)
 	public String index() {
@@ -59,8 +63,12 @@ public class AdminController {
 		return "admin/blank";
 	}
 	@RequestMapping(value="admin/list.do",method=RequestMethod.GET)
-	public String list() {
-		return "admin/list";
+	public ModelAndView list() {
+		List<ReviewContent> list_ = rservice.listServiceAll();
+		String view = "admin/list";
+		System.out.println("list_ : " + list_);
+		ModelAndView mv = new ModelAndView(view, "list_", list_);
+		return mv;
 	}
 	@RequestMapping(value="admin/member.do",method=RequestMethod.GET)
 	public String member() {
@@ -112,5 +120,11 @@ public class AdminController {
 		Notice notice = new Notice(null,announ_title,announ_content,null,1,null,announ_top);
 		service.insertService(notice);
 		return "redirect:service.do";
-		}
+	}
+
+	@RequestMapping(value="admin/rdel.do")
+	public String rDelete(@RequestParam("rent_review_no")String rent_review_no) {
+		rservice.deleteService(rent_review_no);
+		return "redirect:list.do";
+	}
 }

@@ -28,7 +28,7 @@ public class CustomerCenterController {
 	@Autowired 
 	private CustomerCenterService service;
 	
-	@RequestMapping(value="service.do",method=RequestMethod.GET)
+	/*@RequestMapping(value="service.do",method=RequestMethod.GET)
 	public ModelAndView list(@RequestParam(value="strInput",required=false) String strInput) {
 		//System.out.println(input);
 		//if(input == 0) input=1;
@@ -55,7 +55,7 @@ public class CustomerCenterController {
 		ModelAndView mv = new ModelAndView(view,"list",list);
 		mv.addObject("totalPage", totalPage);
 		return mv;
-	}
+	}*/
 	@RequestMapping(value="help.do",method=RequestMethod.GET)
 	public ModelAndView help(@RequestParam(value="strInput",required=false) String strInput,
 			HttpSession session) {
@@ -165,10 +165,10 @@ public class CustomerCenterController {
 		}else //비밀번호 불일치 페이지 만들면 됨 
 		return mv;
 	}*/	
-	
+	/*
 	@RequestMapping(value="faq.do",method=RequestMethod.GET)
 	public String faq() {
 		return "rentcar/faq";
-	}
+	}*/
 	
 }

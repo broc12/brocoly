@@ -2,20 +2,30 @@ package com.khd.jejulantis;
 
 import java.text.DateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.khd.notice.Notice;
+import com.khd.notice.NoticeService;
 
 /**
  * Handles requests for the application home page.
  */
 @Controller
 public class HomeController {
+	
+	@Autowired
+	private NoticeService service;
 	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	
@@ -53,11 +63,19 @@ public class HomeController {
 	public String board() {
 		return "rentcar/board";
 	}
-	/*@RequestMapping(value="service.do",method=RequestMethod.GET)
-	public String service() {
-		return "rentcar/service";
+	@RequestMapping(value="service.do",method=RequestMethod.GET)
+	public ModelAndView service() {
+		List<Notice>list = service.listService();
+		List<Notice>toplist = service.toplistService();
+		String view = "rentcar/service";
+		ModelAndView mv = new ModelAndView(view,"list",list);
+		mv.addObject("toplist", toplist);
+		return mv;
+	}/*
+	@RequestMapping(value="mypage.do",method=RequestMethod.GET)
+	public String mypage() {
+		return "rentcar/mypage";
 	}*/
-	
 	@RequestMapping(value="input.do",method=RequestMethod.GET)
 	public String input() {
 		return "rentcar/input";
@@ -69,5 +87,28 @@ public class HomeController {
 	@RequestMapping(value="check.do",method=RequestMethod.GET)
 	public String check() {
 		return "rentcar/check";
+	}
+	@RequestMapping(value="faq.do",method=RequestMethod.GET)
+	public String faq() {
+		return "rentcar/faq";
+	}/*
+	@RequestMapping(value="help.do",method=RequestMethod.GET)
+	public String help() {
+		return "rentcar/help";
+	}*/
+	@RequestMapping(value="helpadd.do",method=RequestMethod.GET)
+	public String helpadd() {
+		return "rentcar/helpadd";
+	}/*
+	@RequestMapping(value="helpContent.do",method=RequestMethod.GET)
+	public String helpContent() {
+		return "rentcar/helpContent";
+	}*/
+	@RequestMapping(value="serviceContent.do")
+	public ModelAndView serviceContent(@RequestParam("announ_no")String announ_no) {
+		List<Notice>subject = service.subjectService(announ_no);
+		String view = "rentcar/serviceContent";
+		ModelAndView mv = new ModelAndView(view,"subject",subject);
+		return mv;
 	}
 }

@@ -1,13 +1,15 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page session="true" %>
+<%@ page session="false" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@page import="com.khd.notice.Notice"%>
 <!DOCTYPE HTML>
 <html>
 	<head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>Tour Template</title>
+	<script type="text/javascript" language="javascript" src="http://code.jquery.com/jquery-1.3.1.min.js"></script>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="description" content="" />
 	<meta name="keywords" content="" />
@@ -83,7 +85,6 @@
 			  	</ul>
 		  	</div>
 		</aside>
-		
 		<div id="board">
 			<table border="0" width="100%"  cellpadding="0" cellspacing="0">	
 				<tr style="color:#8c9094;background-color:#eef2f5;font-size:10pt">			
@@ -95,6 +96,7 @@
 				</tr>
 			</table>
 		</div>
+		
 		<div class="colorlib-wrap">
 			<div class="container">
 				<div class="row">
@@ -110,24 +112,37 @@
 												<h3>공지사항</h3>
 												<table border="0" width="100%"  cellpadding="0" cellspacing="0">	
 													<tr style="color:#808080;font-size:12pt">			
-														<th  height="50px" width="10%" class="text-center" style="background-color: #fafafa">번호</th>
-														<th  width="60%" class="text-center" style="background-color: #fafafa"></th>
-														<th  width="15%" class="text-center" style="background-color: #fafafa">등록일</th>
-														<th  width="155%" class="text-center" style="background-color: #fafafa">조회수</th>
+														<th  height="50px" width="10%" class="text-center" style="background-color: #dcdcdc">번호</th>
+														<th  width="60%" class="text-center" style="background-color: #dcdcdc">제목</th>
+														<th  width="15%" class="text-center" style="background-color: #dcdcdc">등록일</th>
+														<th  width="155%" class="text-center" style="background-color: #dcdcdc">조회수</th>
 													</tr>
-													 <c:if test="${empty list}">
-													     <tr>
-													     	<td align="center" colspan="5">데이터가 없음</td>
-													     </tr>
-													  </c:if>
-													  <c:forEach items="${list}" var="board">
-														<tr style="font-size:10pt" height="60px">
-															<td align="center">${board.announ_no}</td>
-															<td align="center">${board.announ_title}</td>
-															<td align="center">${board.announ_resist}</td>
-															<td align="center">${board.announ_view}</td>
-														</tr>
-												</c:forEach>
+													<c:if test="${empty toplist}">
+														<tr>
+												           <td align="center" colspan="4">데이터가 없음</td>
+												        </tr>
+													</c:if>
+													<c:forEach items="${toplist}" var="topnotice">
+													<tr style="font-size:10pt;background-color:#fafafa" height="60px">
+														<td align="center" style="color:red">중요</td>
+														<td align="center"><a href="serviceContent.do?announ_no=${topnotice.announ_no}" style="color:black">${topnotice.announ_title}</a></td>
+														<td align="center">${topnotice.announ_resist}</td>
+														<td align="center">${topnotice.announ_count}</td>
+													</tr>
+													</c:forEach>
+													<c:if test="${empty list}">
+														<tr>
+												           <td align="center" colspan="4">데이터가 없음</td>
+												        </tr>
+													</c:if>
+													<c:forEach items="${list}" var="notice">
+													<tr style="font-size:10pt" height="60px">
+														<td align="center">${notice.announ_no}</td>
+														<td align="center"><a href="serviceContent.do?announ_no=${notice.announ_no}" style="color:black">${notice.announ_title}</a></td>
+														<td align="center">${notice.announ_resist}</td>
+														<td align="center">${notice.announ_count}</td>
+													</tr>
+													</c:forEach>
 												</table>
 											</div>
 										</div>

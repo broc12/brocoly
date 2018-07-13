@@ -7,4 +7,5 @@ import com.khd.model.RentcarSearchResult;
 public interface RentcarService {
 
 	public List searchService(); 
+	public List searchcarService(); 
 }

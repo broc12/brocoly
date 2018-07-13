@@ -10,7 +10,26 @@
 	<result column="CAR_KIND_FUEL" property="car_kind_fuel"/>
 	<collection property="blist" column="{a=CAR_KIND_NAME,b=CAR_KIND_MANUFACTUR,c=CAR_KIND_TYPE,d=CAR_KIND_PASSENGER,e=CAR_KIND_FUEL}" javaType="ArrayList" select="query.blist.getBlist"/>
 </resultMap>
-<select id="selectRcar" resultMap="RcarResult">
+<select id="selectRcar" parameterType="HashMap" resultType="RentcarSearchResult">
+SELECT
+K.CAR_KIND_NAME,
+K.CAR_KIND_MANUFACTUR,
+K.CAR_KIND_TYPE,
+K.CAR_KIND_PASSENGER,
+K.CAR_KIND_FUEL
+FROM
+CAR_KIND K
+<if test="type != null">
+WHERE K.CAR_KIND_FUEL = #{type} 
+</if>
+GROUP BY
+K.CAR_KIND_NAME,
+K.CAR_KIND_MANUFACTUR,
+K.CAR_KIND_TYPE,
+K.CAR_KIND_PASSENGER,
+K.CAR_KIND_FUEL
+</select>
+<select id="selectRcarSearch" parameterType="HashMap" resultMap="RcarResult">
 SELECT
 K.CAR_KIND_NAME,
 K.CAR_KIND_MANUFACTUR,

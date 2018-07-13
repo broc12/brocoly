@@ -702,8 +702,8 @@
 				year = this.viewDate.getUTCFullYear(),
 				month = this.viewDate.getUTCMonth(),
 				today = new Date();
-			if (date.getUTCFullYear() < year || (date.getUTCFullYear() === year && date.getUTCMonth() < month)||(date.getUTCFullYear() === year && date.getUTCMonth() === month && date.getUTCDate() < today.getDate())){
-				cls.push('disabled');
+			if (date.getUTCFullYear() < year || (date.getUTCFullYear() === year && date.getUTCMonth() < month)){
+				cls.push('old');
 			}
 			else if (date.getUTCFullYear() > year || (date.getUTCFullYear() === year && date.getUTCMonth() > month)){
 				cls.push('new');
@@ -1396,7 +1396,7 @@
 		daysOfWeekDisabled: [],
 		endDate: Infinity,
 		forceParse: true,
-		format: "yyyy/mm/dd",
+		format: 'yyyy/mm/dd',
 		keyboardNavigation: true,
 		language: 'en',
 		minViewMode: 0,
@@ -1404,7 +1404,7 @@
 		multidateSeparator: ',',
 		orientation: "auto",
 		rtl: false,
-		startDate: "",
+		startDate: "today",
 		startView: 0,
 		todayBtn: false,
 		todayHighlight: false,

@@ -19,13 +19,16 @@ public class RentcarDAOImpl implements RentcarDAO {
 	@Override
 	public List search() {
 		HashMap<String,String> m = new HashMap<String,String>();
-		String car_kind_name = "차종1";
-		m.put("car_kind_name", "차종1");
-		m.put("car_kind_type", "경유1");
-		m.put("car_kind_passenger", "4");
-		m.put("car_kind_fuel", "중형");
-		return sqlsession.selectList(ns+".selectRcar",car_kind_name);
-		
+		String type = "중형";
+		//m.put("car_kind_name", "차종1");
+		//m.put("car_kind_type", "경유1");
+		//m.put("car_kind_passenger", "4");
+		m.put("type", "중형");
+		return sqlsession.selectList(ns+".selectRcar",m);	
+	}
+	@Override
+	public List searchcar() {
+		return sqlsession.selectList(ns+".selectRcarSearch");	
 	}
 
 }

@@ -7,4 +7,5 @@ import com.khd.model.RentcarSearchResult;
 public interface RentcarDAO {
 
 	public List search();
+	public List searchcar();
 }

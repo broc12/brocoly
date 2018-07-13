@@ -1,6 +1,8 @@
 package com.khd.model;
 
-public class Blist {
+import java.io.Serializable;
+
+public class Blist implements Serializable{
 
 	String branch_name;
 	String car_kind_name;

@@ -25,6 +25,29 @@
 
 	<link href="https://fonts.googleapis.com/css?family=Quicksand:300,400,500,700" rel="stylesheet">
 	
+
+	<!-- jQuery -->
+	<script src="resources/rentcar/js/jquery.min.js"></script>
+	<!-- jQuery Easing -->
+	<script src="resources/rentcar/js/jquery.easing.1.3.js"></script>
+	<!-- Bootstrap -->
+	<script src="resources/rentcar/js/bootstrap.min.js"></script>
+	<!-- Waypoints -->
+	<script src="resources/rentcar/js/jquery.waypoints.min.js"></script>
+	<!-- Flexslider -->
+	<script src="resources/rentcar/js/jquery.flexslider-min.js"></script>
+	<!-- Owl carousel -->
+	<script src="resources/rentcar/js/owl.carousel.min.js"></script>
+	<!-- Magnific Popup -->
+	<script src="resources/rentcar/js/jquery.magnific-popup.min.js"></script>
+	<script src="resources/rentcar/js/magnific-popup-options.js"></script>
+	<!-- Date Picker -->
+	<script src="resources/rentcar/js/bootstrap-datepicker.js"></script>
+	<!-- Stellar Parallax -->
+	<script src="resources/rentcar/js/jquery.stellar.min.js"></script>
+
+	<!-- Main -->
+	<script src="resources/rentcar/js/main.js"></script>
 	<!-- Animate.css -->
 	<link rel="stylesheet" href="resources/rentcar/css/animate.css">
 	<!-- Icomoon Icon Fonts-->
@@ -56,6 +79,8 @@
 	<!--[if lt IE 9]>
 	<script src="js/respond.min.js"></script>
 	<![endif]-->
+	<!-- sidebar JS -->
+	<script src="resources/rentcar/js/sidebarsearchcar.js"></script>
 
 	</head>
 	<body>
@@ -375,40 +400,40 @@
 										<h3 class="sidebar-heading">제조사</h3>
 										<form method="post" class="colorlib-form-2">
 										   <div class="form-check">
-												<input type="checkbox" class="form-check-input" id="exampleCheck1">
+												<input type="checkbox" class="form-check-input" id="car_kind_manufactur" value="현대" >
 												<label class="form-check-label" for="exampleCheck1">
 													<h4 class="place">현대</h4>
 												</label>
-												<input type="checkbox" class="form-check-input" id="exampleCheck1">
+												<input type="checkbox" class="form-check-input" id="car_kind_manufactur" value="르노삼성">
 												<label class="form-check-label" for="exampleCheck1">
 													<h4 class="place">르노삼성</h4>
 												</label>
 										   </div>
 										   
 										   <div class="form-check">
-										      <input type="checkbox" class="form-check-input" id="exampleCheck1">
+										      <input type="checkbox" class="form-check-input" id="car_kind_manufactur" value="기아">
 										      <label class="form-check-label" for="exampleCheck1">
 													<h4 class="place">기아</h4>
 												</label>
-												<input type="checkbox" class="form-check-input" id="exampleCheck1">
+												<input type="checkbox" class="form-check-input" id="car_kind_manufactur" value="쉐보레">
 										      <label class="form-check-label" for="exampleCheck1">
 													<h4 class="place">쉐보레</h4>
 												</label>
 										   </div>
 										   
 										   <div class="form-check">
-										      <input type="checkbox" class="form-check-input" id="exampleCheck1">
+										      <input type="checkbox" class="form-check-input" id="car_kind_manufactur" value="쌍용">
 										      <label class="form-check-label" for="exampleCheck1">
 													<h4 class="place">쌍용</h4>
 												</label>
-												<input type="checkbox" class="form-check-input" id="exampleCheck1">
+												<input type="checkbox" class="form-check-input" id="car_kind_manufactur" value="제네시스">
 										      <label class="form-check-label" for="exampleCheck1">
 													<h4 class="place">제네시스</h4>
 												</label>
 										   </div>
 										   
 										   <div class="form-check">
-										      <input type="checkbox" class="form-check-input" id="exampleCheck1">
+										      <input type="checkbox" class="form-check-input" id="car_kind_manufactur" value="수입">
 										      <label class="form-check-label" for="exampleCheck1">
 													<h4 class="place">수입</h4>
 												</label>
@@ -424,29 +449,29 @@
 										<h3 class="sidebar-heading">연료타입</h3>
 										<form method="post" class="colorlib-form-2">
 										   <div class="form-check">
-												<input type="checkbox" class="form-check-input" id="exampleCheck1">
+												<input type="checkbox" class="form-check-input" id="car_kind_fuel" value="휘발유">
 												<label class="form-check-label" for="exampleCheck1">
 													<h4 class="place">휘발유</h4>
 												</label>
-												<input type="checkbox" class="form-check-input" id="exampleCheck1">
+												<input type="checkbox" class="form-check-input" id="car_kind_fuel" value="경유">
 												<label class="form-check-label" for="exampleCheck1">
 													<h4 class="place">경유</h4>
 												</label>
 										   </div>
 										   
 										   <div class="form-check">
-										      <input type="checkbox" class="form-check-input" id="exampleCheck1">
+										      <input type="checkbox" class="form-check-input" id="car_kind_fuel" value="전기차">
 										      <label class="form-check-label" for="exampleCheck1">
 													<h4 class="place">전기차</h4>
 												</label>
-												<input type="checkbox" class="form-check-input" id="exampleCheck1">
+												<input type="checkbox" class="form-check-input" id="car_kind_fuel" value="LPG">
 										      <label class="form-check-label" for="exampleCheck1">
 													<h4 class="place">LPG</h4>
 												</label>
 										   </div>
 										   
 										   <div class="form-check">
-										      <input type="checkbox" class="form-check-input" id="exampleCheck1">
+										      <input type="checkbox" class="form-check-input" id="car_kind_fuel" value="하이브리드">
 										      <label class="form-check-label" for="exampleCheck1">
 													<h4 class="place">하이브리드</h4>
 												</label>
@@ -462,40 +487,40 @@
 										<h3 class="sidebar-heading">차종</h3>
 										<form method="post" class="colorlib-form-2">
 										   <div class="form-check">
-												<input type="checkbox" class="form-check-input" id="exampleCheck1">
+												<input type="checkbox" class="form-check-input" id="car_kind_type">
 												<label class="form-check-label" for="exampleCheck1">
 													<h4 class="place">경차</h4>
 												</label>
-												<input type="checkbox" class="form-check-input" id="exampleCheck1">
+												<input type="checkbox" class="form-check-input" id="car_kind_type">
 												<label class="form-check-label" for="exampleCheck1">
 													<h4 class="place">중소형</h4>
 												</label>
 										   </div>
 										   
 										   <div class="form-check">
-										      <input type="checkbox" class="form-check-input" id="exampleCheck1">
+										      <input type="checkbox" class="form-check-input" id="car_kind_type">
 										      <label class="form-check-label" for="exampleCheck1">
 													<h4 class="place">중형</h4>
 												</label>
-												<input type="checkbox" class="form-check-input" id="exampleCheck1">
+												<input type="checkbox" class="form-check-input" id="car_kind_type">
 										      <label class="form-check-label" for="exampleCheck1">
 													<h4 class="place">고급</h4>
 												</label>
 										   </div>
 										   
 										   <div class="form-check">
-										      <input type="checkbox" class="form-check-input" id="exampleCheck1">
+										      <input type="checkbox" class="form-check-input" id="car_kind_type">
 										      <label class="form-check-label" for="exampleCheck1">
 													<h4 class="place">SUV</h4>
 												</label>
-												<input type="checkbox" class="form-check-input" id="exampleCheck1">
+												<input type="checkbox" class="form-check-input" id="car_kind_type">
 										      <label class="form-check-label" for="exampleCheck1">
 													<h4 class="place">승합</h4>
 												</label>
 										   </div>
 										   
 										   <div class="form-check">
-										      <input type="checkbox" class="form-check-input" id="exampleCheck1">
+										      <input type="checkbox" class="form-check-input" id="car_kind_type">
 										      <label class="form-check-label" for="exampleCheck1">
 													<h4 class="place">수입</h4>
 												</label>		
@@ -512,40 +537,40 @@
 										<h3 class="sidebar-heading">차량옵션</h3>
 										<form method="post" class="colorlib-form-2">
 										   <div class="form-check">
-												<input type="checkbox" class="form-check-input" id="exampleCheck1">
+												<input type="checkbox" class="form-check-input" id="car_kind_option">
 												<label class="form-check-label" for="exampleCheck1">
 													<h4 class="place">금연차량</h4>
 												</label>
-												<input type="checkbox" class="form-check-input" id="exampleCheck1">
+												<input type="checkbox" class="form-check-input" id="car_kind_option">
 												<label class="form-check-label" for="exampleCheck1">
 													<h4 class="place">네비</h4>
 												</label>
 										   </div>
 										   
 										   <div class="form-check">
-										      <input type="checkbox" class="form-check-input" id="exampleCheck1">
+										      <input type="checkbox" class="form-check-input" id="car_kind_option">
 										      <label class="form-check-label" for="exampleCheck1">
 													<h4 class="place">후방센서</h4>
 												</label>
-												<input type="checkbox" class="form-check-input" id="exampleCheck1">
+												<input type="checkbox" class="form-check-input" id="car_kind_option">
 										      <label class="form-check-label" for="exampleCheck1">
 													<h4 class="place">블랙박스</h4>
 												</label>
 										   </div>
 										   
 										   <div class="form-check">
-										      <input type="checkbox" class="form-check-input" id="exampleCheck1">
+										      <input type="checkbox" class="form-check-input" id="car_kind_option">
 										      <label class="form-check-label" for="exampleCheck1">
 													<h4 class="place">블루투스</h4>
 												</label>
-												<input type="checkbox" class="form-check-input" id="exampleCheck1">
+												<input type="checkbox" class="form-check-input" id="car_kind_option">
 										      <label class="form-check-label" for="exampleCheck1">
 													<h4 class="place">후방카메라</h4>
 												</label>
 										   </div>
 										   
 										   <div class="form-check">
-										      <input type="checkbox" class="form-check-input" id="exampleCheck1">
+										      <input type="checkbox" class="form-check-input" id="car_kind_option">
 										      <label class="form-check-label" for="exampleCheck1">
 													<h4 class="place">썬루프</h4>
 												</label>		
@@ -637,31 +662,6 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 	<div class="gototop js-top">
 		<a href="#" class="js-gotop"><i class="icon-arrow-up2"></i></a>
 	</div>
-
-	<!-- jQuery -->
-	<script src="resources/rentcar/js/jquery.min.js"></script>
-	<!-- jQuery Easing -->
-	<script src="resources/rentcar/js/jquery.easing.1.3.js"></script>
-	<!-- Bootstrap -->
-	<script src="resources/rentcar/js/bootstrap.min.js"></script>
-	<!-- Waypoints -->
-	<script src="resources/rentcar/js/jquery.waypoints.min.js"></script>
-	<!-- Flexslider -->
-	<script src="resources/rentcar/js/jquery.flexslider-min.js"></script>
-	<!-- Owl carousel -->
-	<script src="resources/rentcar/js/owl.carousel.min.js"></script>
-	<!-- Magnific Popup -->
-	<script src="resources/rentcar/js/jquery.magnific-popup.min.js"></script>
-	<script src="resources/rentcar/js/magnific-popup-options.js"></script>
-	<!-- Date Picker -->
-	<script src="resources/rentcar/js/bootstrap-datepicker.js"></script>
-	<!-- Stellar Parallax -->
-	<script src="resources/rentcar/js/jquery.stellar.min.js"></script>
-
-	<!-- Main -->
-	<script src="resources/rentcar/js/main.js"></script>
-<script>
-</script>
 	</body>
 </html>
 

@@ -10,13 +10,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.khd.customerCenterService.CustomerCenterService;
 import com.khd.model.CustomerCenter;
+import com.khd.model.Member;
 import com.khd.model.Qna;
-import com.khd.loginDAO.LoginDAO;
-import com.khd.model.LoginInfo;
 
 
 /**
@@ -80,11 +80,11 @@ public class CustomerCenterController {
 			}
 			
 			List<Qna> list = service.qnaList(map);
-			System.out.println("A "+betweenA);
+			/*System.out.println("A "+betweenA);
 			System.out.println("B "+betweenB);
 			System.out.println(groupNum);
-			System.out.println(list.size());
-			LoginInfo temp = (LoginInfo)session.getAttribute("log");
+			System.out.println(list.size());*/
+			Member temp = (Member)session.getAttribute("log");
 			if(temp!=null)
 			id = temp.getId();
 			String view = "rentcar/help";
@@ -111,7 +111,26 @@ public class CustomerCenterController {
 		String view = "rentcar/helpInsertCheck";
 		ModelAndView mv = new ModelAndView(view,"flag",flag);
 		return mv;
-	}	
+	}
+
+	@RequestMapping(value="checkId.do",method=RequestMethod.GET)
+	@ResponseBody
+	public HashMap checkId( @RequestParam("qna_no") String Strqna_no, @RequestParam("id") String id) {
+		long qna_no = 0;
+		boolean flag = false;
+		String view = null;
+			if(Strqna_no!=null)Strqna_no=Strqna_no.trim();
+			if(Strqna_no.length()!=0) qna_no = Integer.parseInt(Strqna_no);
+		Qna qna = service.qnaContent(qna_no);
+		if(qna.getQna_resist_id().equals(id)) flag=true;
+		else flag=false;
+		System.out.println("id "+id);
+		System.out.println("qna_no "+qna_no);
+		HashMap<String,Boolean>v = new HashMap<String, Boolean>();
+		v.put("flagId", flag);
+		return v;		
+	}
+	//@RequestParam("hiddenValue") String Strqna_no, @RequestParam("inputPwd") String inputPwd 경호형님
 	@RequestMapping(value="helpContent.do",method=RequestMethod.GET)
 	public ModelAndView helpContent(@RequestParam("qna_no") String Strqna_no,@RequestParam("id") String id) {
 		long qna_no = 0;
@@ -119,14 +138,20 @@ public class CustomerCenterController {
 			if(Strqna_no!=null)Strqna_no=Strqna_no.trim();
 			if(Strqna_no.length()!=0) qna_no = Integer.parseInt(Strqna_no);
 			Qna qna = service.qnaContent(qna_no);
-				System.out.println(id);
-				if(qna.getQna_resist_id().equals(id)) {
-				view = "rentcar/helpContent";}
-				else view = "rentcar/qnaPwdModal";  //여기에 모달전용 jsp를 넣어야함, 추출한 pwd랑 no을 넘겨줘, 그다음 모달jsp에 입력한 pwd값이 일치하면 no 넘겨줘서 contents.jsp 실행
+				System.out.println("세션 id  "+ id);
+				System.out.println("글 id  "+qna.getQna_resist_id());
+				if(qna.getQna_resist_id().equals(id))
+				view = "rentcar/helpContent";
+				else {
+					view = "rentcar/qnaPwdModal"; 
+					boolean isModal = true;  //jsp파일에서 boolean값이 true일때만 modal이 실행되게
+											// 그다음 모달에서 확인버튼을 누를때 입력한 pwd값이랑 list에서 추출한 pwd 대조, 일치하면 contents.jsp 실행
+											//그럼 ajax로 해야하는게 글 클릭할때랑 모달창에서 확인 누를때 2가지?
+				}
 			ModelAndView mv = new ModelAndView(view,"qna",qna);
 		return mv;
 	}
-	@RequestMapping(value="pwdModal.do",method=RequestMethod.POST) //비밀번호 입력하고 확인했을때 실행되는 controller
+	/*@RequestMapping(value="pwdModal.do",method=RequestMethod.POST) //비밀번호 입력하고 확인했을때 실행되는 controller
 	public ModelAndView helpInsert(@RequestParam("qna_no") String Strqna_no, @RequestParam("id") String id, @RequestParam("inputPwd") String inputPwd ) {
 		long qna_no = 0;
 		String view = null;
@@ -139,7 +164,7 @@ public class CustomerCenterController {
 			mv = new ModelAndView(view,"qna",qna);
 		}else //비밀번호 불일치 페이지 만들면 됨 
 		return mv;
-	}	
+	}*/	
 	
 	@RequestMapping(value="faq.do",method=RequestMethod.GET)
 	public String faq() {

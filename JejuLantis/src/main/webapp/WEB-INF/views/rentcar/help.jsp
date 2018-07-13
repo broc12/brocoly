@@ -85,17 +85,48 @@
 	<%@ include file="./top/top.jspf" %>
 	<script>
 	
-    jQuery(document).ready(function(){
+    /* jQuery(document).ready(function(){
     	$(".identifyingClass").click(function () {
-             var my_id_value = $(this).data('id');
+             var my_id_value = $(this).data('qna_no');
              $(".modal-footer #hiddenValue").val(my_id_value);
          })
-    });
+    }); */
+    function checkId(s){
+   	 $.ajax({
+            url: 'checkId.do',
+            data:'qna_no=s&id=&{id}',
+            success: function(data){
+        
+				 var flag = jQuery.parseJSON(data);
+				 alert('성공'+flag);
+            },
+            error : function (data) {
+           	    alert('실패');
+           	    return false;
+           	   }  
+        });
+	} 
+    
 	
-	function goDelModal(){
-		var anno = jQuery("#hiddenValue").val();
-		location.href="del.do?announ_no=" +anno;
-	}
+	/* function checkId(s){
+    	 $.ajax({
+             url: 'checkId.do',
+             data:'qna_no=s&id=&{id}',
+             success: function(data){
+            	 alert("성공");
+             },
+             error : function (data) {
+            	    alert('실패');
+            	    return false;
+            	   }  
+         });
+	} */ 
+    
+	
+	/* function hiddensubmit(){
+		document.f.submit();
+	} */
+	
 	</script>
 	<div class="colorlib-loader"></div>
 
@@ -173,7 +204,7 @@
 															<td align="center" style="color:black">${board.qna_group}</td>
 															<td align="center">
 															<%-- <a href="helpContent.do?qna_no=${board.qna_no}&id=${id}" style="color:black" data-toggle="modal" data-target="#exampleModal2" class="identifyingClass" data-id="${board.qna_no}">${board.qna_title}</a> --%>
-															<a href="" style="color:black" data-toggle="modal" data-target="#exampleModal2" class="identifyingClass" data-id="${board.qna_no}">${board.qna_title}</a>
+															<a href="javascript:checkId(${board.qna_no});">${board.qna_title}</a>
 															<c:if test="${board.qna_secret==0}">
 															<img src="resources/rentcar/images/locker.png" width=6% height=10%>
 															</c:if>
@@ -189,7 +220,24 @@
 									</div>
 								</div>
 							</div>
-							
+								
+							   $(document).click(function(){
+							    $.ajax({
+							        type:"POST",
+							        url:"check.do",
+							        data : {sessionId : ${id}, },
+							        success: function(xml){
+							            console.log(xml);
+							        },
+							        error: function(xhr, status, error) {
+							            alert(error);
+							        }  
+							    });
+							});
+
+
+출처: http://annotations.tistory.com/43 [Annotation]							
+
 							</div>
 						</div>
 							
@@ -326,12 +374,15 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
               <span aria-hidden="true">×</span>
             </button>
           </div>
-          <div class="modal-body"><input type="text" name="inputPwd"></div>
+		  <form action="helpContent.do" method="POST" name="f">
+          <div class="modal-body"><input type="text"  id = "inputPwd" name="inputPwd"></div>
+          
           <div class="modal-footer">
             <button class="btn btn-secondary" type="button" data-dismiss="modal">취소</button>
-            <a class="btn btn-primary" href="javascript:goDelModal();" name="hiddenValue" id="hiddenValue">확인</a>
+            <a class="btn btn-primary" href="#" onclick="hiddensubmit()" name="hiddenValue" id="hiddenValue">확인</a>
             <input type="hidden" value=""/>
           </div>
+		  </form>
         </div>
       </div>
     </div>

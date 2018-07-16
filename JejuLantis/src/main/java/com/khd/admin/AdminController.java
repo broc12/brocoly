@@ -81,10 +81,7 @@ public class AdminController {
 		ModelAndView mv = new ModelAndView(view,"totallist",totallist);
 		return mv;	
 	}
-	@RequestMapping(value="admin/answer.do",method=RequestMethod.GET)
-	public String answer() {
-		return "admin/answer";
-	}
+
 	@RequestMapping(value="admin/notice.do",method=RequestMethod.GET)
 	public String notice() {
 		return "admin/notice";

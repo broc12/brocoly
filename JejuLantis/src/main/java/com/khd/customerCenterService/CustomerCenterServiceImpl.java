@@ -23,6 +23,10 @@ public class CustomerCenterServiceImpl implements CustomerCenterService {
 		return customerCenterDao.qnaList(map);
 	}
 	@Override
+	public List<Qna> qnaAdminList() {
+		return customerCenterDao.qnaAdminList();
+	}
+	@Override
 	public Qna qnaContent(long qna_no) {
 		return customerCenterDao.qnaContent(qna_no);
 	}

@@ -6,6 +6,7 @@ import java.util.*;
 public interface CustomerCenterService {
 	List<CustomerCenter> list(HashMap map);
 	List<Qna> qnaList(HashMap map);
+	List<Qna> qnaAdminList();
 	Qna qnaContent(long qna_no);
 	long totalNum();
 	boolean insert(Qna qna);

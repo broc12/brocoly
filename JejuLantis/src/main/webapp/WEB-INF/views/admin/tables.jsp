@@ -53,31 +53,25 @@
                 </tr>
               </thead>
               <tbody>
+                <c:if test="${empty list}">
+  				 <tr>
+   					<td align="center" colspan="5">데이터가 없음</td>
+   				 </tr>
+				</c:if>
+              <c:forEach items="${list}" var="board">
                 <tr>
-                  <td>Tiger Nixon</td>
-                  <td>System Architect</td>
-                  <td>Edinburgh</td>
-                  <td>2011/04/25</td>
+                  <td>${board.qna_group}</td>
+                  <td>${board.qna_title}</td>
+                  <td>${board.qna_name}</td>
+                  <td>${board.qna_resist}</td>
                   <td>
-                  	<a style="color:green">답변완료</a>
+                  	<a style="color:green">${board.qna_answer_checkString}</a>
                   </td>
                   <td>
-                  	<button type="button" class="btn"><a href="answer.do">답변등록</a></button>
+                  	<button type="button" class="btn"><a href="answer.do?qna_no=${board.qna_no}">답변등록</a></button>
                   </td>
                 </tr>
-                <tr>
-                  <td>Garrett Winters</td>
-                  <td>Accountant</td>
-                  <td>Tokyo</td>
-                  <td>2011/04/25</td>
-                  <td>
-                  	<a style="color:red">답변대기중</a>
-                  </td>
-                  <td>
-                  	<button type="button" class="btn"><a href="answer.do">답변등록</a></button>
-                  </td>
-                </tr>
-                
+                </c:forEach>
               </tbody>
             </table>
           </div>

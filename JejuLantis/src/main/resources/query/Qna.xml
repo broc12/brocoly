@@ -25,6 +25,10 @@
 	 <select id="myQnaSelectAll" parameterType="HashMap" resultType="Qna">
          select * from Qna where QNA_GROUP between #{A} and #{B} order by QNA_GROUP desc, QNA_LEV ASC
     </select>
+	 <select id="myAdminSelectAll" resultType="Qna">
+         select * from Qna order by QNA_GROUP desc, QNA_LEV ASC
+    </select>
+    
     <select id="myQnaSelectOne" parameterType="long" resultType="Qna">
          select * from Qna where QNA_no = #{qna_no}
     </select>

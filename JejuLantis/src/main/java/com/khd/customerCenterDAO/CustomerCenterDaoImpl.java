@@ -28,6 +28,12 @@ public class CustomerCenterDaoImpl implements CustomerCenterDao {
 		return qnaList;
 	}
 	@Override
+	public List<Qna> qnaAdminList() {
+		List<Qna> qnaList = sqlSession.selectList(nsQna+".myAdminSelectAll");
+		System.out.println("qna ªÁ¿Ã¡Ó"+ qnaList.size());
+		return qnaList;
+	}
+	@Override
 	public Qna qnaContent(long qna_no) {
 		Qna qna = sqlSession.selectOne(nsQna+".myQnaSelectOne",qna_no);
 		return qna;

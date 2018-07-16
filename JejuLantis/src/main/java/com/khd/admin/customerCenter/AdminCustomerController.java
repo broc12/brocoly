@@ -14,22 +14,23 @@ import com.khd.ReviewController.ReviewService;
 import com.khd.notice.Notice;
 import com.khd.notice.NoticeService;
 import com.khd.customerCenterService.CustomerCenterService;
-import com.khd.model.*;
+import com.khd.model.Qna;
 
 @Controller
 public class AdminCustomerController {
-	
-	@Autowired
-	private NoticeService service;
-	@Autowired
-	private ReviewService rservice;
 	@Autowired
 	private CustomerCenterService customerService;
 	
 	
 	@RequestMapping(value="admin/tables.do",method=RequestMethod.GET)
-	public String tables() {
-		return "admin/tables";
+	public ModelAndView tables() {
+		String view = "admin/tables";
+		List<Qna> list = customerService.qnaAdminList();
+		ModelAndView mv = new ModelAndView(view,"list",list);
+		return mv;
 	}
-	
+	@RequestMapping(value="admin/answer.do",method=RequestMethod.GET)
+	public String answer() {
+		return "admin/answer";
+	}
 }

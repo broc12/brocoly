@@ -91,14 +91,25 @@
              $(".modal-footer #hiddenValue").val(my_id_value);
          })
     }); */
-    function checkId(s){
+    function checkId(s,h){
+    	var ii = "${id}";
    	 $.ajax({
             url: 'checkId.do',
-            data:'qna_no=s&id=&{id}',
+            data:{"qna_no":s,"id":ii},
             success: function(data){
-        
-				 var flag = jQuery.parseJSON(data);
-				 alert('성공'+flag);
+				 var answer = data.flagId;
+				 alert('성공'+answer);
+				 if(answer==true){
+					 location.href = "helpContent.do?qna_no="+s;
+				 }
+			     else if(answer==false){
+			    	 $("#strqna_no").val(s);
+			    	 alert( $("#strqna_no").val());
+			    	 $("#exampleModal2").modal('show');
+			     }
+			     else {alert('들어왔는데 실패');
+				 	return false;
+			     }
             },
             error : function (data) {
            	    alert('실패');
@@ -123,9 +134,9 @@
 	} */ 
     
 	
-	/* function hiddensubmit(){
+	function hiddensubmit(){
 		document.f.submit();
-	} */
+	}
 	
 	</script>
 	<div class="colorlib-loader"></div>
@@ -203,12 +214,12 @@
 														<tr style="font-size:10pt;color:black" height="60px">
 															<td align="center" style="color:black">${board.qna_group}</td>
 															<td align="center">
-															<%-- <a href="helpContent.do?qna_no=${board.qna_no}&id=${id}" style="color:black" data-toggle="modal" data-target="#exampleModal2" class="identifyingClass" data-id="${board.qna_no}">${board.qna_title}</a> --%>
-															<a href="javascript:checkId(${board.qna_no});">${board.qna_title}</a>
+															<a id="checkModal" href="" style="color:black" data-toggle="modal" data-target="#exampleModal2" class="identifyingClass" data-id=""></a>
+															<a href="javascript:checkId(${board.qna_no},${board.qna_pwd});">${board.qna_title}</a>
 															<c:if test="${board.qna_secret==0}">
 															<img src="resources/rentcar/images/locker.png" width=6% height=10%>
 															</c:if>
-															</td>
+															</td>	
 															<td align="center">${board.qna_name}</td>
 															<td align="center">${board.qna_resist}</td>
 															<td align="center">${board.qna_answer_checkString}</td>
@@ -220,24 +231,6 @@
 									</div>
 								</div>
 							</div>
-								
-							   $(document).click(function(){
-							    $.ajax({
-							        type:"POST",
-							        url:"check.do",
-							        data : {sessionId : ${id}, },
-							        success: function(xml){
-							            console.log(xml);
-							        },
-							        error: function(xhr, status, error) {
-							            alert(error);
-							        }  
-							    });
-							});
-
-
-출처: http://annotations.tistory.com/43 [Annotation]							
-
 							</div>
 						</div>
 							
@@ -365,7 +358,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 		<a href="#" class="js-gotop"><i class="icon-arrow-up2"></i></a>
 	</div>
 
-<div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel2" aria-hidden="true">
+<div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel2" aria-hidden="true"><!-- 모달 -->
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
@@ -374,8 +367,11 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
               <span aria-hidden="true">×</span>
             </button>
           </div>
-		  <form action="helpContent.do" method="POST" name="f">
-          <div class="modal-body"><input type="text"  id = "inputPwd" name="inputPwd"></div>
+		  <form action="helpCheckPwd.do" method="POST" name="f">
+          <div class="modal-body">
+          	<input type="text"  id = "inputPwd" name="inputPwd">
+         	<input type="hidden"  id = "strqna_no" name="strqna_no" value="">
+          </div>
           
           <div class="modal-footer">
             <button class="btn btn-secondary" type="button" data-dismiss="modal">취소</button>

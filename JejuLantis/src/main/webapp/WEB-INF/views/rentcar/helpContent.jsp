@@ -119,12 +119,12 @@
 														<td>${qna.qna_content}</td>
 													</tr>
 													<tr style="font-size:10pt" height="60px">
-														<td>
+														<!-- <td>
 															<a style="color:black;font-size:14pt">비밀번호</a>
 															<input type="text">
 															<button type="submit" class="btn btn-primary" style="border-radius: 0px">수정</button>
 															<button type="submit" class="btn btn-primary" style="border-radius: 0px">삭제</button>
-														</td>
+														</td> -->
 													</tr>
 													<tr style="font-size:10pt" height="60px">
 														<td align="right">

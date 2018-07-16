@@ -27,11 +27,6 @@ public class AdminController {
 		return "admin/index";
 	}
 	
-	@RequestMapping(value="admin/tables.do",method=RequestMethod.GET)
-	public String tables() {
-		return "admin/tables";
-	}
-	
 	@RequestMapping(value="admin/register.do",method=RequestMethod.GET)
 	public String register() {
 		return "admin/register";

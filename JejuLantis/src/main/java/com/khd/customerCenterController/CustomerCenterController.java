@@ -102,7 +102,7 @@ public class CustomerCenterController {
 	@RequestMapping(value="helpInsert.do",method=RequestMethod.POST)
 	public ModelAndView helpInsert(@RequestParam("qna_name") String qna_name, @RequestParam("qna_email") String qna_email, @RequestParam("qna_tel") String qna_tel, @RequestParam("qna_title") String qna_title, @RequestParam("qna_content") String qna_content, @RequestParam("qna_pwd") String qna_pwd, 
 	@RequestParam("qna_secret") String Strqna_secret, @RequestParam("id") String id) {
-		System.out.println(Strqna_secret);
+		//System.out.println(Strqna_secret);
 		int qna_secret = 0;
 		if(Strqna_secret.equals("on"))qna_secret = 0;
 		else qna_secret = 1;
@@ -121,54 +121,48 @@ public class CustomerCenterController {
 		String view = null;
 			if(Strqna_no!=null)Strqna_no=Strqna_no.trim();
 			if(Strqna_no.length()!=0) qna_no = Integer.parseInt(Strqna_no);
+			//System.out.println("checkId Strqna_no = "+Strqna_no);
+			//System.out.println("checkId id = "+id);
 		Qna qna = service.qnaContent(qna_no);
-		if(qna.getQna_resist_id().equals(id)) flag=true;
+		System.out.println("qna_no = "+ qna_no);
+		System.out.println("qna.getQna_resist_id() = "+ qna.getQna_answer_checkString());
+		if(qna.getQna_resist_id() == null) flag= false;
+			else if(qna.getQna_resist_id().equals(id)) flag=true;
 		else flag=false;
-		System.out.println("id "+id);
-		System.out.println("qna_no "+qna_no);
+		System.out.println("flag "+flag);
 		HashMap<String,Boolean>v = new HashMap<String, Boolean>();
 		v.put("flagId", flag);
 		return v;		
 	}
 	//@RequestParam("hiddenValue") String Strqna_no, @RequestParam("inputPwd") String inputPwd 경호형님
 	@RequestMapping(value="helpContent.do",method=RequestMethod.GET)
-	public ModelAndView helpContent(@RequestParam("qna_no") String Strqna_no,@RequestParam("id") String id) {
+	public ModelAndView helpContent(@RequestParam("qna_no") String Strqna_no) {
 		long qna_no = 0;
-		String view = null;
+		String view = "rentcar/helpContent";
 			if(Strqna_no!=null)Strqna_no=Strqna_no.trim();
 			if(Strqna_no.length()!=0) qna_no = Integer.parseInt(Strqna_no);
 			Qna qna = service.qnaContent(qna_no);
-				System.out.println("세션 id  "+ id);
+				/*System.out.println("세션 id  "+ id);
 				System.out.println("글 id  "+qna.getQna_resist_id());
-				if(qna.getQna_resist_id().equals(id))
-				view = "rentcar/helpContent";
-				else {
-					view = "rentcar/qnaPwdModal"; 
-					boolean isModal = true;  //jsp파일에서 boolean값이 true일때만 modal이 실행되게
-											// 그다음 모달에서 확인버튼을 누를때 입력한 pwd값이랑 list에서 추출한 pwd 대조, 일치하면 contents.jsp 실행
-											//그럼 ajax로 해야하는게 글 클릭할때랑 모달창에서 확인 누를때 2가지?
-				}
+				if(qna.getQna_resist_id().equals(id))*/
 			ModelAndView mv = new ModelAndView(view,"qna",qna);
 		return mv;
 	}
-	/*@RequestMapping(value="pwdModal.do",method=RequestMethod.POST) //비밀번호 입력하고 확인했을때 실행되는 controller
-	public ModelAndView helpInsert(@RequestParam("qna_no") String Strqna_no, @RequestParam("id") String id, @RequestParam("inputPwd") String inputPwd ) {
-		long qna_no = 0;
+	@RequestMapping(value="helpCheckPwd.do",method=RequestMethod.POST)
+	public ModelAndView helpCheckPwd(@RequestParam("inputPwd") String inputPwd, @RequestParam("strqna_no") String Strqna_no) {
+		System.out.println("inputPwd" + inputPwd );
+		System.out.println("qna_no" + Strqna_no);
+		long qna_no = 0;	
 		String view = null;
-		ModelAndView mv;
 		if(Strqna_no!=null)Strqna_no=Strqna_no.trim();
-			if(Strqna_no.length()!=0) qna_no = Integer.parseInt(Strqna_no);
-		if(id.equals(inputPwd)) {
-			Qna qna = service.qnaContent(qna_no);
-			view = "rentcar/helpContent";
-			mv = new ModelAndView(view,"qna",qna);
-		}else //비밀번호 불일치 페이지 만들면 됨 
+		if(Strqna_no.length()!=0) qna_no = Integer.parseInt(Strqna_no);
+		Qna qna = service.qnaContent(qna_no);
+		if(inputPwd.equals(qna.getQna_pwd())) view = "rentcar/helpContent";
+		else view = "rentcar/failedPwd";
+		ModelAndView mv = new ModelAndView(view,"qna",qna);
+		
 		return mv;
-	}*/	
-	/*
-	@RequestMapping(value="faq.do",method=RequestMethod.GET)
-	public String faq() {
-		return "rentcar/faq";
-	}*/
+	}
+	
 	
 }

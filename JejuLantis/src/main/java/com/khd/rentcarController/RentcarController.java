@@ -1,10 +1,8 @@
 package com.khd.rentcarController;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.List;
 
-import javax.servlet.http.HttpSession;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.khd.model.Rcar;
+import com.khd.model.SearchRequirements;
 import com.khd.rentcarDAO.RentcarService;
 
 @Controller
@@ -23,32 +22,22 @@ public class RentcarController {
 	RentcarService rentcarservice;
 	
 	@RequestMapping(value="car.do",method=RequestMethod.GET)
-	public String car(HttpSession session) {
-		List<Rcar> list = rentcarservice.searchcarService();
-		List lista = rentcarservice.searchService();
-		System.out.println(lista.size());
-		session.setAttribute("list", list);
+	public String car(HttpServletRequest request) {		
+		SearchRequirements requirements = new SearchRequirements(rentcarservice.timeStampService());
+		List<Rcar> list = rentcarservice.rentcarListService(requirements);
+		request.setAttribute("list", list);
+		request.setAttribute("requirements", requirements);
+		System.out.println(requirements.getRent_reserve_startDateTime());
 		return "rentcar/car";
 	}
 	
 	@RequestMapping(value="car.do",method=RequestMethod.POST)
-	public String car(@RequestParam("Checkouttime")String checkouttime,@RequestParam("Checkoutdate")String checkoutdate,@RequestParam("Checkintime")String checkintime,@RequestParam("Checkindate")String checkindate,@RequestParam("car_kind_name")String car_kind_name) {
+	public String car(HttpServletRequest request,@RequestParam("Checkouttime")String checkouttime,@RequestParam("Checkoutdate")String checkoutdate,@RequestParam("Checkintime")String checkintime,@RequestParam("Checkindate")String checkindate,@RequestParam("car_name")String car_name) {
 
-		System.out.println(checkoutdate);
-		System.out.println(checkouttime);
-		System.out.println(checkoutdate+checkouttime);
-		
-		System.out.println(checkindate);
-		System.out.println(checkintime);
-		System.out.println(checkindate+checkintime);
-		
-		System.out.println(car_kind_name);
-		java.sql.Date dd=null;
-		java.util.Date d = null;/*
-		try {
-		d = new SimpleDateFormat("yyyy-MM-dd").parse(totalbirth);
-		}catch(ParseException pe) {}
-        dd = new java.sql.Date(d.getTime());*/
+		SearchRequirements requirements = new SearchRequirements(checkindate,checkintime,checkoutdate,checkouttime,car_name);
+		List<Rcar> list = rentcarservice.rentcarListService(requirements);
+		request.setAttribute("list", list);
+		request.setAttribute("requirements", requirements);
 		return "rentcar/car";
 	}
 	
@@ -57,14 +46,10 @@ public class RentcarController {
 		return "rentcar/rentcar";
 	}
 	@RequestMapping(value="searchcar.do",method=RequestMethod.GET)
-	public @ResponseBody List searchcar(@RequestParam(value="list_manufactur_val[]") List list_manufactur_val) {
-		//List list = rentcarservice.searchService();
-		System.out.println(list_manufactur_val.size());
-		//System.out.println(listid.size());
-		for(int i = 0;i<list_manufactur_val.size();i++) {
-			System.out.println(list_manufactur_val.get(i));
-		}
-		
+	public @ResponseBody List searchcar(@RequestParam(value="checkListmanu[]",required=false) List checkListmanu,@RequestParam(value="checkListfuel[]",required=false) List checkListfuel,@RequestParam(value="checkListtype[]",required=false) List checkListtype,@RequestParam(value="checkListoption[]",required=false) List checkListoption,@RequestParam(value="checkindate",required=false) String checkindate,@RequestParam(value="checkoutdate",required=false) String checkoutdate,@RequestParam(value="car_name",required=false) String car_name) {
+		SearchRequirements requirements = new SearchRequirements(checkindate,checkoutdate,car_name,checkListmanu,checkListfuel,checkListtype,checkListoption);
+		List<Rcar> list = rentcarservice.rentcarListService(requirements);
+		if(list!=null)System.out.println(list.size());
 		return null;
 	}
 }

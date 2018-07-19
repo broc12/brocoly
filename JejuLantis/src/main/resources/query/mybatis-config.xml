@@ -9,6 +9,7 @@
 		<typeAlias alias="RentcarSearchResult" type="com.khd.model.RentcarSearchResult"/>
 		<typeAlias alias="Rcar" type="com.khd.model.Rcar"/>
 		<typeAlias alias="Blist" type="com.khd.model.Blist"/>
+		<typeAlias alias="SearchRequirements" type="com.khd.model.SearchRequirements"/>
 	</typeAliases>
 	<mappers>
 		<mapper resource="query/query.xml"/>

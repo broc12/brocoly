@@ -81,9 +81,33 @@
 	<![endif]-->
 	<!-- sidebar JS -->
 	<script src="resources/rentcar/js/sidebarsearchcar.js"></script>
-
+	<script>
+	function time(){
+		if(${requirements.searchFlag}){
+ 			var sel = document.getElementById("Checkintime");
+			var val;
+			for(i=0; i<sel.options.length; i++) {
+				if(sel.options[i].value == "${requirements.rent_reserve_startTime}") {
+					val = sel.options[i];
+					val.selected="true";
+					break;
+				}
+			}
+			sel = document.getElementById("Checkouttime");
+			for(i=0; i<sel.options.length; i++) {
+				if(sel.options[i].value == "${requirements.rent_reserve_endTime}") {
+					val = sel.options[i];
+					val.selected="true";
+					break;
+				}
+			}
+			sel = document.getElementById("carname");
+			sel.value="${requirements.car_name}";
+		}
+	}
+	</script>
 	</head>
-	<body>
+	<body onload="time()">
 	<%@ include file="./top/top.jspf" %>
 	<div class="colorlib-loader"></div>
 
@@ -140,13 +164,13 @@
 								<div class="row">
 								<div class="col-md-6 col-sm-6 animate-box">
 									<div class="hotel-entry">
-										<h3><a>${dto.car_kind_name }</a></h3><span class="place">${dto.car_kind_manufactur }</span>
+										<h3><a>${dto.car_name }</a></h3><span class="place">${dto.car_manufactur }</span>
 										<a class="hotel-img" style="background-image: url(resources/rentcar/images/car1.jpg);">
-											<p class="price"><span>${dto.blist[0].tot}</span><small>/24시간</small></p>
+											<p class="price"><span>${dto.mtotView}</span><small>/24시간</small></p>
 										</a>
-										<a>실시간 예약 가능 차량 : ${dto.car_kind_passenger }</a>
+										<a>실시간 예약 가능 차량 : ${dto.cn }</a>
 										<div class="desc">
-											<p align="center"></p>
+											<p align="center">${dto.car_passenger }인승 ${dto.car_type } ${dto.car_fuel }</p>
 										</div>
 									</div>
 								</div>
@@ -156,7 +180,7 @@
 										<div class="desc">
 											<h3><a href="rentcar.do">${dto.blist[0].branch_name}</a></h3>
 											<p class="star"><span><i class="icon-star-full"></i><i class="icon-star-full"></i><i class="icon-star-full"></i><i class="icon-star-full"></i><i class="icon-star-full"></i></span> 545 Reviews</p>
-											<span class="place"></span>
+											<span class="place">${dto.blist[0].car_kind_naviView} ${dto.blist[0].car_kind_sensorView} ${dto.blist[0].car_kind_bluetoothView} ${dto.blist[0].car_kind_blackboxView} ${dto.blist[0].car_kind_sunroofView} ${dto.blist[0].car_kind_cameraView} ${dto.blist[0].car_kind_nonsmokeView}</span>
 											<!-- <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p> -->
 											<div id="board">
 												<table border="1" width="100%"  cellpadding="0" cellspacing="0">	
@@ -173,12 +197,12 @@
 													<tr style="font-size:8pt">
 														<td align="center">${bdto.branch_name }</td>
 														<td align="center"></td>
-														<td align="center">${bdto.car_kind_price_week }</td>
-														<td align="center">${bdto.car_kind_price_week }</td>
-														<td align="center">${bdto.insurance_price }</td>
-														<td align="center">${bdto.tot }</td>
+														<td align="center">${bdto.car_kind_price_weekView }원</td>
+														<td align="center">${bdto.insurance_priceView }원</td>
+														<td align="center">만원</td>
+														<td align="center">${bdto.totView }원</td>
 														<td align="center">													
-											                  	<button type="button"><a href="rentcar.do" style="color:black">실시간예약</a></button>								                
+											                  	<button type="button"><a href="rentcar.do?bno=${bdto.branch_no }&cno=${bdto.car_no}&ino=${bdto.insurance_no}&kno=${bdto.car_kind_no}" style="color:black">실시간예약</a></button>								                
 														</td>
 													</tr>
 													</c:forEach>
@@ -294,7 +318,7 @@
 				                    <label for="date">대여일</label>
 				                    <div class="form-field">
 				                      <i class="icon icon-calendar2"></i>
-				                      <input type="text" id="date1" name="Checkindate" class="form-control date" placeholder="Check-in date" value=""/>
+				                      <input type="text" id="date1" name="Checkindate" class="form-control date" placeholder="Check-in date" value="${requirements.rent_reserve_startDate }"/>
 				                    </div>        
 				                  </div>
 				                </div>
@@ -339,7 +363,7 @@
 				                    <label for="date">반납일</label>
 				                    <div class="form-field">
 				                      <i class="icon icon-calendar2"></i>
-				                      <input type="text" id="date2" name="Checkoutdate" class="form-control date" placeholder="Check-out date" value=""/>
+				                      <input type="text" id="date2" name="Checkoutdate" class="form-control date" placeholder="Check-out date" value="${requirements.rent_reserve_endDate }"/>
 				                    </div>
 				                  </div>
 				                </div>
@@ -383,7 +407,7 @@
 				                  <div class="form-group">
 				                    <label for="guests">자동차 모델</label>
 				                    <div class="form-field">
-				                      <input type="text" name="car_kind_name" id="car_kind_name" class="form-control" placeholder="모델명 입력">
+				                      <input type="text" name="car_name" id="car_name" class="form-control" placeholder="모델명 입력" value="">
 				                    </div>
 				                  </div>
 				                </div>
@@ -400,40 +424,40 @@
 										<h3 class="sidebar-heading">제조사</h3>
 										<form method="post" class="colorlib-form-2">
 										   <div class="form-check">
-												<input type="checkbox" class="form-check-input" id="car_kind_manufactur" value="현대" >
+												<input type="checkbox" class="form-check-input" id="car_manufacture" value="현대" >
 												<label class="form-check-label" for="exampleCheck1">
 													<h4 class="place">현대</h4>
 												</label>
-												<input type="checkbox" class="form-check-input" id="car_kind_manufactur" value="르노삼성">
+												<input type="checkbox" class="form-check-input" id="car_manufacture" value="르노삼성">
 												<label class="form-check-label" for="exampleCheck1">
 													<h4 class="place">르노삼성</h4>
 												</label>
 										   </div>
 										   
 										   <div class="form-check">
-										      <input type="checkbox" class="form-check-input" id="car_kind_manufactur" value="기아">
+										      <input type="checkbox" class="form-check-input" id="car_manufacture" value="기아">
 										      <label class="form-check-label" for="exampleCheck1">
 													<h4 class="place">기아</h4>
 												</label>
-												<input type="checkbox" class="form-check-input" id="car_kind_manufactur" value="쉐보레">
+												<input type="checkbox" class="form-check-input" id="car_manufacture" value="쉐보레">
 										      <label class="form-check-label" for="exampleCheck1">
 													<h4 class="place">쉐보레</h4>
 												</label>
 										   </div>
 										   
 										   <div class="form-check">
-										      <input type="checkbox" class="form-check-input" id="car_kind_manufactur" value="쌍용">
+										      <input type="checkbox" class="form-check-input" id="car_manufacture" value="쌍용">
 										      <label class="form-check-label" for="exampleCheck1">
 													<h4 class="place">쌍용</h4>
 												</label>
-												<input type="checkbox" class="form-check-input" id="car_kind_manufactur" value="제네시스">
+												<input type="checkbox" class="form-check-input" id="car_manufacture" value="제네시스">
 										      <label class="form-check-label" for="exampleCheck1">
 													<h4 class="place">제네시스</h4>
 												</label>
 										   </div>
 										   
 										   <div class="form-check">
-										      <input type="checkbox" class="form-check-input" id="car_kind_manufactur" value="수입">
+										      <input type="checkbox" class="form-check-input" id="car_manufacture" value="수입">
 										      <label class="form-check-label" for="exampleCheck1">
 													<h4 class="place">수입</h4>
 												</label>
@@ -449,29 +473,29 @@
 										<h3 class="sidebar-heading">연료타입</h3>
 										<form method="post" class="colorlib-form-2">
 										   <div class="form-check">
-												<input type="checkbox" class="form-check-input" id="car_kind_fuel" value="휘발유">
+												<input type="checkbox" class="form-check-input" id="car_fuel" value="휘발유">
 												<label class="form-check-label" for="exampleCheck1">
 													<h4 class="place">휘발유</h4>
 												</label>
-												<input type="checkbox" class="form-check-input" id="car_kind_fuel" value="경유">
+												<input type="checkbox" class="form-check-input" id="car_fuel" value="경유">
 												<label class="form-check-label" for="exampleCheck1">
 													<h4 class="place">경유</h4>
 												</label>
 										   </div>
 										   
 										   <div class="form-check">
-										      <input type="checkbox" class="form-check-input" id="car_kind_fuel" value="전기차">
+										      <input type="checkbox" class="form-check-input" id="car_fuel" value="전기차">
 										      <label class="form-check-label" for="exampleCheck1">
 													<h4 class="place">전기차</h4>
 												</label>
-												<input type="checkbox" class="form-check-input" id="car_kind_fuel" value="LPG">
+												<input type="checkbox" class="form-check-input" id="car_fuel" value="LPG">
 										      <label class="form-check-label" for="exampleCheck1">
 													<h4 class="place">LPG</h4>
 												</label>
 										   </div>
 										   
 										   <div class="form-check">
-										      <input type="checkbox" class="form-check-input" id="car_kind_fuel" value="하이브리드">
+										      <input type="checkbox" class="form-check-input" id="car_fuel" value="하이브리드">
 										      <label class="form-check-label" for="exampleCheck1">
 													<h4 class="place">하이브리드</h4>
 												</label>
@@ -487,40 +511,40 @@
 										<h3 class="sidebar-heading">차종</h3>
 										<form method="post" class="colorlib-form-2">
 										   <div class="form-check">
-												<input type="checkbox" class="form-check-input" id="car_kind_type">
+												<input type="checkbox" class="form-check-input" id="car_type" value="경차">
 												<label class="form-check-label" for="exampleCheck1">
 													<h4 class="place">경차</h4>
 												</label>
-												<input type="checkbox" class="form-check-input" id="car_kind_type">
+												<input type="checkbox" class="form-check-input" id="car_type" value="중소형">
 												<label class="form-check-label" for="exampleCheck1">
 													<h4 class="place">중소형</h4>
 												</label>
 										   </div>
 										   
 										   <div class="form-check">
-										      <input type="checkbox" class="form-check-input" id="car_kind_type">
+										      <input type="checkbox" class="form-check-input" id="car_type" value="중형">
 										      <label class="form-check-label" for="exampleCheck1">
 													<h4 class="place">중형</h4>
 												</label>
-												<input type="checkbox" class="form-check-input" id="car_kind_type">
+												<input type="checkbox" class="form-check-input" id="car_type" value="고급">
 										      <label class="form-check-label" for="exampleCheck1">
 													<h4 class="place">고급</h4>
 												</label>
 										   </div>
 										   
 										   <div class="form-check">
-										      <input type="checkbox" class="form-check-input" id="car_kind_type">
+										      <input type="checkbox" class="form-check-input" id="car_type" value="SUV">
 										      <label class="form-check-label" for="exampleCheck1">
 													<h4 class="place">SUV</h4>
 												</label>
-												<input type="checkbox" class="form-check-input" id="car_kind_type">
+												<input type="checkbox" class="form-check-input" id="car_type" value="승합">
 										      <label class="form-check-label" for="exampleCheck1">
 													<h4 class="place">승합</h4>
 												</label>
 										   </div>
 										   
 										   <div class="form-check">
-										      <input type="checkbox" class="form-check-input" id="car_kind_type">
+										      <input type="checkbox" class="form-check-input" id="car_type" value="수입">
 										      <label class="form-check-label" for="exampleCheck1">
 													<h4 class="place">수입</h4>
 												</label>		
@@ -537,40 +561,40 @@
 										<h3 class="sidebar-heading">차량옵션</h3>
 										<form method="post" class="colorlib-form-2">
 										   <div class="form-check">
-												<input type="checkbox" class="form-check-input" id="car_kind_option">
+												<input type="checkbox" class="form-check-input" id="car_option" value="car_kind_nonsmoke">
 												<label class="form-check-label" for="exampleCheck1">
 													<h4 class="place">금연차량</h4>
 												</label>
-												<input type="checkbox" class="form-check-input" id="car_kind_option">
+												<input type="checkbox" class="form-check-input" id="car_option" value="car_kind_navi">
 												<label class="form-check-label" for="exampleCheck1">
 													<h4 class="place">네비</h4>
 												</label>
 										   </div>
 										   
 										   <div class="form-check">
-										      <input type="checkbox" class="form-check-input" id="car_kind_option">
+										      <input type="checkbox" class="form-check-input" id="car_option" value="car_kind_sensor">
 										      <label class="form-check-label" for="exampleCheck1">
 													<h4 class="place">후방센서</h4>
 												</label>
-												<input type="checkbox" class="form-check-input" id="car_kind_option">
+												<input type="checkbox" class="form-check-input" id="car_option" value="car_kind_blackbox">
 										      <label class="form-check-label" for="exampleCheck1">
 													<h4 class="place">블랙박스</h4>
 												</label>
 										   </div>
 										   
 										   <div class="form-check">
-										      <input type="checkbox" class="form-check-input" id="car_kind_option">
+										      <input type="checkbox" class="form-check-input" id="car_option" value="car_kind_bluetooth">
 										      <label class="form-check-label" for="exampleCheck1">
 													<h4 class="place">블루투스</h4>
 												</label>
-												<input type="checkbox" class="form-check-input" id="car_kind_option">
+												<input type="checkbox" class="form-check-input" id="car_option" value=car_kind_camera>
 										      <label class="form-check-label" for="exampleCheck1">
 													<h4 class="place">후방카메라</h4>
 												</label>
 										   </div>
 										   
 										   <div class="form-check">
-										      <input type="checkbox" class="form-check-input" id="car_kind_option">
+										      <input type="checkbox" class="form-check-input" id="car_option" value="car_kind_sunroof">
 										      <label class="form-check-label" for="exampleCheck1">
 													<h4 class="place">썬루프</h4>
 												</label>		
@@ -662,6 +686,9 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 	<div class="gototop js-top">
 		<a href="#" class="js-gotop"><i class="icon-arrow-up2"></i></a>
 	</div>
+	<input type="hidden" id="searchstartdate" value="${requirements.rent_reserve_startDateTime }">
+	<input type="hidden" id="searchenddate" value="${requirements.rent_reserve_endDateTime }">
+	<input type="hidden" id="searchcarname" value=${requirements.car_name }/>
 	</body>
 </html>
 

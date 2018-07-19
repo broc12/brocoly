@@ -1,62 +1,83 @@
 package com.khd.model;
 
 import java.io.Serializable;
+import java.text.DecimalFormat;
 import java.util.List;
 
 public class Rcar implements Serializable{
 
-	String car_kind_name;
-	String car_kind_manufactur;
-	String car_kind_type;
-	long car_kind_passenger;
-	String car_kind_fuel;
+	String car_name;
+	String car_manufactur;
+	String car_type;
+	long car_passenger;
+	String car_fuel;
+	long mtot;
+	long cn;
 	List<Blist> blist;
 	public Rcar() {}
-	public Rcar(String car_kind_name, String car_kind_manufactur, String car_kind_type, long car_kind_passenger,
-			String car_kind_fuel, List<Blist> blist) {
-		this.car_kind_name = car_kind_name;
-		this.car_kind_manufactur = car_kind_manufactur;
-		this.car_kind_type = car_kind_type;
-		this.car_kind_passenger = car_kind_passenger;
-		this.car_kind_fuel = car_kind_fuel;
+	public Rcar(String car_name, String car_manufactur, String car_type, long car_passenger,String car_fuel, long mtot,
+			long cn, List<Blist> blist) {
+		super();
+		this.car_name = car_name;
+		this.car_manufactur = car_manufactur;
+		this.car_type = car_type;
+		this.car_passenger = car_passenger;
+		this.car_fuel = car_fuel;
+		this.mtot = mtot;
+		this.cn = cn;
 		this.blist = blist;
 	}
-	public String getCar_kind_name() {
-		return car_kind_name;
+	public String getCar_name() {
+		return car_name;
 	}
-	public String getCar_kind_manufactur() {
-		return car_kind_manufactur;
+	public String getCar_manufactur() {
+		return car_manufactur;
 	}
-	public String getCar_kind_type() {
-		return car_kind_type;
+	public String getCar_type() {
+		return car_type;
 	}
-	public long getCar_kind_passenger() {
-		return car_kind_passenger;
+	public long getCar_passenger() {
+		return car_passenger;
 	}
-	public String getCar_kind_fuel() {
-		return car_kind_fuel;
+	public String getCar_fuel() {
+		return car_fuel;
+	}
+	public long getMtot() {
+		return mtot;
+	}
+	public long getCn() {
+		return cn;
 	}
 	public List<Blist> getBlist() {
 		return blist;
 	}
-	public void setCar_kind_name(String car_kind_name) {
-		this.car_kind_name = car_kind_name;
+	public String getMtotView() {
+		DecimalFormat df = new DecimalFormat("#,##0");
+		return df.format(mtot);
 	}
-	public void setCar_kind_manufactur(String car_kind_manufactur) {
-		this.car_kind_manufactur = car_kind_manufactur;
+	public void setCar_name(String car_name) {
+		this.car_name = car_name;
 	}
-	public void setCar_kind_type(String car_kind_type) {
-		this.car_kind_type = car_kind_type;
+	public void setCar_manufactur(String car_manufactur) {
+		this.car_manufactur = car_manufactur;
 	}
-	public void setCar_kind_passenger(long car_kind_passenger) {
-		this.car_kind_passenger = car_kind_passenger;
+	public void setCar_type(String car_type) {
+		this.car_type = car_type;
 	}
-	public void setCar_kind_fuel(String car_kind_fuel) {
-		this.car_kind_fuel = car_kind_fuel;
+	public void setCar_passenger(long car_passenger) {
+		this.car_passenger = car_passenger;
+	}
+	public void setCar_fuel(String car_fuel) {
+		this.car_fuel = car_fuel;
+	}
+	public void setMtot(long mtot) {
+		this.mtot = mtot;
+	}
+	public void setCn(long cn) {
+		this.cn = cn;
 	}
 	public void setBlist(List<Blist> blist) {
 		this.blist = blist;
 	}
-	
 	
 }

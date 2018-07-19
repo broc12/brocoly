@@ -4,40 +4,19 @@
 
 <resultMap type="Blist" id="BlistResult">
 	<result column="BRANCH_NAME" property="branch_name"/>
-	<result column="CAR_KIND_NAME" property="car_kind_name"/>
-	<result column="CAR_KIND_MANUFACTUR" property="car_kind_manufactur"/>
-	<result column="CAR_KIND_TYPE" property="car_kind_type"/>
-	<result column="CAR_KIND_PASSENGER" property="car_kind_passenger"/>
-	<result column="CAR_KIND_FUEL" property="car_kind_fuel"/>
 	<result column="CAR_KIND_PRICE_WEEK" property="car_kind_price_week"/>
 	<result column="INSURANCE_PRICE" property="insurance_price"/>
 	<result column="TOT" property="tot"/>
+	<result column="BRANCH_NO" property="branch_no"/>
+	<result column="CAR_NO" property="car_no"/>
+	<result column="INSURANCE_NO" property="insurance_no"/>
+	<result column="CAR_KIND_NO" property="car_kind_no"/>
+	<result column="CAR_KIND_NAVI" property="car_kind_navi"/>
+	<result column="CAR_KIND_SENSOR" property="car_kind_sensor"/>
+	<result column="CAR_KIND_BLUETOOTH" property="car_kind_bluetooth"/>
+	<result column="CAR_KIND_BLACKBOX" property="car_kind_blackbox"/>
+	<result column="CAR_KIND_SUNROOF" property="car_kind_sunroof"/>
+	<result column="CAR_KIND_CAMERA" property="car_kind_camera"/>
+	<result column="CAR_KIND_NONSMOKE" property="car_kind_nonsmoke"/>
 </resultMap>
-<select id="getBlist" parameterType="HashMap" resultMap="BlistResult">
-SELECT
-B.BRANCH_NAME,
-K.CAR_KIND_NAME,
-K.CAR_KIND_MANUFACTUR,
-K.CAR_KIND_TYPE,
-K.CAR_KIND_PASSENGER,
-K.CAR_KIND_FUEL,
-K.CAR_KIND_PRICE_WEEK,
-R.INSURANCE_PRICE,
-(K.CAR_KIND_PRICE_WEEK+R.INSURANCE_PRICE) AS TOT
-FROM
-BRANCH B,
-CAR_KIND K,
-INSURANCE R
-WHERE
-B.BRANCH_NO=K.BRANCH_NO
-AND
-R.INSURANCE_NAME='자차' AND
-K.CAR_KIND_NO=R.CAR_KIND_NO AND
-K.CAR_KIND_NAME=#{a} AND
-K.CAR_KIND_MANUFACTUR=#{b} AND
-K.CAR_KIND_TYPE=#{c} AND
-K.CAR_KIND_PASSENGER=#{d} AND
-K.CAR_KIND_FUEL=#{e}
-ORDER BY TOT
-</select>
 </mapper>

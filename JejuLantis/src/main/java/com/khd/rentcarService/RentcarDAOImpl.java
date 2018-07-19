@@ -1,5 +1,6 @@
 package com.khd.rentcarService;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -7,28 +8,27 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.khd.model.RentcarSearchResult;
+import com.khd.model.Rcar;
+import com.khd.model.SearchRequirements;
 
 @Repository
 public class RentcarDAOImpl implements RentcarDAO {
 
-	String ns = "query.rcar";
 	@Autowired
 	SqlSessionTemplate sqlsession;
+	String ns = "query.rcar";
 	
 	@Override
-	public List search() {
-		HashMap<String,String> m = new HashMap<String,String>();
-		String type = "중형";
-		//m.put("car_kind_name", "차종1");
-		//m.put("car_kind_type", "경유1");
-		//m.put("car_kind_passenger", "4");
-		m.put("type", "중형");
-		return sqlsession.selectList(ns+".selectRcar",m);	
+	public List<Rcar> rentcarList(SearchRequirements requirements) {
+		return sqlsession.selectList(ns+".selectCarList",requirements);	
+	}	
+	@Override
+	public List<Rcar> search() {
+		return sqlsession.selectList(ns+".selectRcar");	
 	}
 	@Override
-	public List searchcar() {
-		return sqlsession.selectList(ns+".selectRcarSearch");	
+	public Date timeStamp() {
+		return sqlsession.selectOne(ns+".nexttime");
 	}
 
 }

@@ -3,54 +3,187 @@
 <mapper namespace = "query.rcar">
 
 <resultMap type="Rcar" id="RcarResult">
-	<result column="CAR_KIND_NAME" property="car_kind_name"/>
-	<result column="CAR_KIND_MANUFACTUR" property="car_kind_manufactur"/>
-	<result column="CAR_KIND_TYPE" property="car_kind_type"/>
-	<result column="CAR_KIND_PASSENGER" property="car_kind_passenger"/>
-	<result column="CAR_KIND_FUEL" property="car_kind_fuel"/>
-	<collection property="blist" column="{a=CAR_KIND_NAME,b=CAR_KIND_MANUFACTUR,c=CAR_KIND_TYPE,d=CAR_KIND_PASSENGER,e=CAR_KIND_FUEL}" javaType="ArrayList" select="query.blist.getBlist"/>
+	<result column="CAR_NAME" property="car_name"/>
+	<result column="CAR_MANUFACTUR" property="car_manufactur"/>
+	<result column="CAR_TYPE" property="car_type"/>
+	<result column="CAR_PASSENGER" property="car_passenger"/>
+	<result column="CAR_FUEL" property="car_fuel"/>	
+	<result column="MTOT" property="mtot"/>
+	<result column="CN" property="cn"/>
+	<collection property="blist" javaType="java.util.ArrayList" resultMap="query.blist.BlistResult"/>
 </resultMap>
-<select id="selectRcar" parameterType="HashMap" resultType="RentcarSearchResult">
-SELECT
-K.CAR_KIND_NAME,
-K.CAR_KIND_MANUFACTUR,
-K.CAR_KIND_TYPE,
-K.CAR_KIND_PASSENGER,
-K.CAR_KIND_FUEL
-FROM
-CAR_KIND K
-<if test="type != null">
-WHERE K.CAR_KIND_FUEL = #{type} 
-</if>
-GROUP BY
-K.CAR_KIND_NAME,
-K.CAR_KIND_MANUFACTUR,
-K.CAR_KIND_TYPE,
-K.CAR_KIND_PASSENGER,
-K.CAR_KIND_FUEL
-</select>
-<select id="selectRcarSearch" parameterType="HashMap" resultMap="RcarResult">
-SELECT
-K.CAR_KIND_NAME,
-K.CAR_KIND_MANUFACTUR,
-K.CAR_KIND_TYPE,
-K.CAR_KIND_PASSENGER,
-K.CAR_KIND_FUEL,
-MIN(K.CAR_KIND_PRICE_WEEK+R.INSURANCE_PRICE) AS TOT
-FROM
-CAR_KIND K,
-INSURANCE R
-WHERE
-R.INSURANCE_NAME='자차'
-AND
-R.CAR_KIND_NO=K.CAR_KIND_NO
-GROUP BY
-K.CAR_KIND_NAME,
-K.CAR_KIND_MANUFACTUR,
-K.CAR_KIND_TYPE,
-K.CAR_KIND_PASSENGER,
-K.CAR_KIND_FUEL
-ORDER BY TOT
+
+<select id="currenttime" resultType="java.util.Date">
+SELECT SYSDATE FROM DUAL
 </select>
 
+<select id="nexttime" resultType="java.util.Date">
+SELECT (TRUNC(SYSDATE+1)+(8/24)) FROM DUAL
+</select>
+
+<select id="selectCarList" parameterType="SearchRequirements" resultMap="RcarResult">
+SELECT
+	CAR_NAME,
+	CAR_MANUFACTUR,
+	CAR_TYPE,
+	CAR_PASSENGER,
+	CAR_FUEL,
+	MTOT,
+	CN,
+	BRANCH_NAME,
+	CAR_KIND_PRICE_WEEK,
+	INSURANCE_PRICE,
+	TOT,
+	BRANCH_NO,
+	CAR_NO,
+	INSURANCE_NO,
+	CAR_KIND_NO,
+	CAR_KIND_NAVI,
+	CAR_KIND_SENSOR,
+	CAR_KIND_BLUETOOTH,
+	CAR_KIND_BLACKBOX,
+	CAR_KIND_SUNROOF,
+	CAR_KIND_CAMERA,
+	CAR_KIND_NONSMOKE
+FROM
+	CAR NATURAL JOIN(
+		SELECT
+			BRANCH_NO,
+			CAR_NO,
+			INSURANCE_NO,
+			CAR_KIND_NO,
+			CN,
+			BRANCH_NAME,
+			CAR_KIND_PRICE_WEEK,
+			INSURANCE_PRICE,
+			TOT,
+			MTOT,
+			CAR_KIND_NAVI,
+			CAR_KIND_SENSOR,
+			CAR_KIND_BLUETOOTH,
+			CAR_KIND_BLACKBOX,
+			CAR_KIND_SUNROOF,
+			CAR_KIND_CAMERA,
+			CAR_KIND_NONSMOKE
+		FROM
+			BRANCH NATURAL JOIN(
+				SELECT
+					BRANCH_NO,
+					CAR_NO,
+					INSURANCE_NO,
+					CAR_KIND_NO,
+					CN,
+					CAR_KIND_COUNT,
+					(CAR_KIND_PRICE_WEEK+INSURANCE_PRICE)AS TOT,
+					CAR_KIND_NAVI,
+					CAR_KIND_SENSOR,
+					CAR_KIND_BLUETOOTH,
+					CAR_KIND_BLACKBOX,
+					CAR_KIND_SUNROOF,
+					CAR_KIND_CAMERA,
+					CAR_KIND_NONSMOKE,
+					MIN(CAR_KIND_PRICE_WEEK+INSURANCE_PRICE) OVER(PARTITION BY CAR_NO) AS MTOT,
+					CAR_KIND_PRICE_WEEK,
+					INSURANCE_PRICE
+				FROM
+					INSURANCE NATURAL JOIN(
+						SELECT
+							BRANCH_NO,
+							CAR_NO,
+							INSURANCE_NO,
+							CAR_KIND_NO,
+							CN,
+							CAR_KIND_COUNT,
+							CAR_KIND_PRICE_WEEK,
+							CAR_KIND_NAVI,
+							CAR_KIND_SENSOR,
+							CAR_KIND_BLUETOOTH,
+							CAR_KIND_BLACKBOX,
+							CAR_KIND_SUNROOF,
+							CAR_KIND_CAMERA,
+							CAR_KIND_NONSMOKE
+						FROM
+							CAR_KIND NATURAL JOIN(
+								SELECT
+									BRANCH_NO,
+									CAR_NO,
+									INSURANCE_NO,
+									CAR_KIND_NO,
+									COUNT(CAR_INFO_NO)CN
+				                FROM
+				                    CAR_INFO
+				                WHERE NOT EXISTS(
+				                    SELECT
+				                        *
+									FROM
+										RENT_RESERV
+									WHERE
+										CAR_INFO.BRANCH_NO=RENT_RESERV.BRANCH_NO
+				                    AND
+										CAR_INFO.CAR_NO=RENT_RESERV.CAR_NO
+				                    AND
+										CAR_INFO.INSURANCE_NO=RENT_RESERV.INSURANCE_NO
+									AND
+										CAR_INFO.CAR_KIND_NO=RENT_RESERV.CAR_KIND_NO
+									AND
+										CAR_INFO.CAR_INFO_NO=RENT_RESERV.CAR_INFO_NO
+									AND
+										RENT_RESERV_END 
+										<![CDATA[
+										>
+										]]>
+										TO_DATE(#{rent_reserve_startDateTime},'yyyy-mm-dd hh24:mi')
+									AND
+										RENT_RESERV_START
+										<![CDATA[
+										<
+										]]>
+										TO_DATE(#{rent_reserve_endDateTime},'yyyy-mm-dd hh24:mi'))
+								AND
+									CAR_INFO_RENT_AT='y'
+								GROUP BY
+									BRANCH_NO,CAR_NO,INSURANCE_NO,CAR_KIND_NO
+							)
+					)
+				WHERE
+					INSURANCE_NAME='자차'
+				ORDER BY
+					MTOT,TOT
+			)
+	)
+<where>
+	<if test="car_name != null">
+		CAR_NAME=#{car_name}
+	</if>
+	<if test="car_type != null">
+	AND CAR_TYPE IN
+	<foreach item="item" index="index" collection="car_type" open="(" separator="," close=")">
+		#{item}
+	</foreach>
+	</if>
+	<if test="car_fuel != null">
+	AND CAR_FUEL IN
+	<foreach item="item" index="index" collection="car_fuel" open="(" separator="," close=")">
+		#{item}
+	</foreach>
+	</if>
+	<if test="car_manufacture != null">
+	AND CAR_MANUFACTUR IN
+	<foreach item="item" index="index" collection="car_manufacture" open="(" separator="," close=")">
+		#{item}
+	</foreach>
+	</if>
+	
+	<!-- <if test="car_type != null">
+	CAR_TYPE=#{car_type}
+	</if>
+	<if test="car_fuel != null">
+	CAR_FUEL=#{car_fuel}
+	</if>
+	<if test="car_manufacture != null">
+	CAR_MANUFACTUR=#{car_manufacture}
+	</if> -->
+</where>
+</select>
+	
 </mapper>

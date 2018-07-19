@@ -24,7 +24,6 @@
 	<meta name="twitter:card" content="" />
 
 	<link href="https://fonts.googleapis.com/css?family=Quicksand:300,400,500,700" rel="stylesheet">
-	
 
 	<!-- jQuery -->
 	<script src="resources/rentcar/js/jquery.min.js"></script>
@@ -45,7 +44,6 @@
 	<script src="resources/rentcar/js/bootstrap-datepicker.js"></script>
 	<!-- Stellar Parallax -->
 	<script src="resources/rentcar/js/jquery.stellar.min.js"></script>
-
 	<!-- Main -->
 	<script src="resources/rentcar/js/main.js"></script>
 	<!-- Animate.css -->
@@ -54,31 +52,25 @@
 	<link rel="stylesheet" href="resources/rentcar/css/icomoon.css">
 	<!-- Bootstrap  -->
 	<link rel="stylesheet" href="resources/rentcar/css/bootstrap.css">
-
 	<!-- Magnific Popup -->
 	<link rel="stylesheet" href="resources/rentcar/css/magnific-popup.css">
-
 	<!-- Flexslider  -->
 	<link rel="stylesheet" href="resources/rentcar/css/flexslider.css">
-
 	<!-- Owl Carousel -->
 	<link rel="stylesheet" href="resources/rentcar/css/owl.carousel.min.css">
 	<link rel="stylesheet" href="resources/rentcar/css/owl.theme.default.min.css">
-	
 	<!-- Date Picker -->
 	<link rel="stylesheet" href="resources/rentcar/css/bootstrap-datepicker.css">
 	<!-- Flaticons  -->
 	<link rel="stylesheet" href="resources/rentcar/fonts/flaticon/font/flaticon.css">
-
 	<!-- Theme style  -->
 	<link rel="stylesheet" href="resources/rentcar/css/style.css">
-
 	<!-- Modernizr JS -->
 	<script src="resources/rentcar/js/modernizr-2.6.2.min.js"></script>
 	<!-- FOR IE9 below -->
-	<!--[if lt IE 9]>
-	<script src="js/respond.min.js"></script>
-	<![endif]-->
+	<!--[if lt IE 9] -->
+	<script src="resources/rentcar/js/respond.min.js"></script>
+	<!-- [endif] -->
 	<!-- sidebar JS -->
 	<script src="resources/rentcar/js/sidebarsearchcar.js"></script>
 	<script>
@@ -156,8 +148,10 @@
 									<li><a href="">평점순</a></li>
 								</ul>
 							</div>
-							</div>
+						</div>
 						<!-- start -->
+						<div id="result">
+						<div id="inner">
 						<c:forEach items="${list }" var="dto" varStatus="status">
 						<div class="row">
 							<div class="wrap-division">
@@ -202,7 +196,7 @@
 														<td align="center">만원</td>
 														<td align="center">${bdto.totView }원</td>
 														<td align="center">													
-											                  	<button type="button"><a href="rentcar.do?bno=${bdto.branch_no }&cno=${bdto.car_no}&ino=${bdto.insurance_no}&kno=${bdto.car_kind_no}" style="color:black">실시간예약</a></button>								                
+											            <button type="button"><a href="rentcar.do?kno=${bdto.car_kind_no}" style="color:black">실시간예약</a></button>								                
 														</td>
 													</tr>
 													</c:forEach>
@@ -214,7 +208,7 @@
 														<td align="center">1,000만원</td>
 														<td align="center">26,400원</td>
 														<td align="center">													
-											                  	<button type="button"><a href="rentcar.do" style="color:black">실시간예약</a></button>									                
+											            <button type="button"><a href="rentcar.do" style="color:black">실시간예약</a></button>									                
 														</td>
 													</tr>
 												</table>
@@ -227,6 +221,8 @@
 						</div>
 						<hr>
 						</c:forEach>
+						</div>
+						</div>
 						<!-- end -->
 						<div class="row">
 							<div class="wrap-division">
@@ -688,7 +684,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 	</div>
 	<input type="hidden" id="searchstartdate" value="${requirements.rent_reserve_startDateTime }">
 	<input type="hidden" id="searchenddate" value="${requirements.rent_reserve_endDateTime }">
-	<input type="hidden" id="searchcarname" value=${requirements.car_name }/>
+	<input type="hidden" id="searchcarname" value="${requirements.car_name }" />
 	</body>
 </html>
 

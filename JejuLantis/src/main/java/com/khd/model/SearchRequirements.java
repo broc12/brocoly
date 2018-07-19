@@ -11,9 +11,9 @@ public class SearchRequirements {
 	DateTime rent_reserve_start;
 	DateTime rent_reserve_end;
 	String car_name;
-	List car_manufacture;
-	List car_fuel;
-	List car_type;
+	List<String> car_manufacture;
+	List<String> car_fuel;
+	List<String> car_type;
 	String car_kind_navi;
 	String car_kind_sensor;
 	String car_kind_blackbox;
@@ -37,7 +37,7 @@ public class SearchRequirements {
 		this.car_name = car_name;
 		this.searchFlag=true;
 	}
-	public SearchRequirements(String CheckindateTime,String checkoutdateTime,String car_name,List car_manufacture,List car_fuel,List car_type,List car_option) {
+	public SearchRequirements(String CheckindateTime,String checkoutdateTime,String car_name,List<String> car_manufacture,List<String> car_fuel,List<String> car_type,List<String> car_option) {
 		DateTimeFormatter fmt = DateTimeFormat.forPattern("yyyy-MM-dd HH:mm");
 		this.rent_reserve_start = DateTime.parse(CheckindateTime, fmt);
 		this.rent_reserve_end = DateTime.parse(checkoutdateTime, fmt);
@@ -67,7 +67,7 @@ public class SearchRequirements {
 		return rent_reserve_end.toString("HH:mm");
 	}
 	public SearchRequirements(DateTime rent_reserve_start, DateTime rent_reserve_end, String car_name,
-			List car_manufacture, List car_fuel, List car_type, String car_kind_navi, String car_kind_sensor,
+			List<String> car_manufacture, List<String> car_fuel, List<String> car_type, String car_kind_navi, String car_kind_sensor,
 			String car_kind_blackbox, String car_kind_bluetooth, String car_kind_sunroof, String car_kind_camera,
 			String car_kind_nonsmoke, String car_kind_resist, boolean searchFlag) {
 		super();
@@ -105,22 +105,22 @@ public class SearchRequirements {
 	public void setCar_name(String car_name) {
 		this.car_name = car_name;
 	}
-	public List getCar_manufacture() {
+	public List<String> getCar_manufacture() {
 		return car_manufacture;
 	}
-	public void setCar_manufacture(List car_manufacture) {
+	public void setCar_manufacture(List<String> car_manufacture) {
 		this.car_manufacture = car_manufacture;
 	}
-	public List getCar_fuel() {
+	public List<String> getCar_fuel() {
 		return car_fuel;
 	}
-	public void setCar_fuel(List car_fuel) {
+	public void setCar_fuel(List<String> car_fuel) {
 		this.car_fuel = car_fuel;
 	}
-	public List getCar_type() {
+	public List<String> getCar_type() {
 		return car_type;
 	}
-	public void setCar_type(List car_type) {
+	public void setCar_type(List<String> car_type) {
 		this.car_type = car_type;
 	}
 	public String getCar_kind_navi() {
@@ -177,7 +177,7 @@ public class SearchRequirements {
 	public void setSearchFlag(boolean searchFlag) {
 		this.searchFlag = searchFlag;
 	}
-	void setOptionList(List option) {
+	void setOptionList(List<String> option) {
 		for(int i=0;i<option.size();i++) {
 			String name = (String)option.get(i);
 			if(name.equals("car_kind_blackbox")) {

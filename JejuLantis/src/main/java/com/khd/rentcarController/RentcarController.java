@@ -46,11 +46,12 @@ public class RentcarController {
 		return "rentcar/rentcar";
 	}
 	@RequestMapping(value="searchcar.do",method=RequestMethod.GET)
-	public @ResponseBody List searchcar(@RequestParam(value="checkListmanu[]",required=false) List checkListmanu,@RequestParam(value="checkListfuel[]",required=false) List checkListfuel,@RequestParam(value="checkListtype[]",required=false) List checkListtype,@RequestParam(value="checkListoption[]",required=false) List checkListoption,@RequestParam(value="checkindate",required=false) String checkindate,@RequestParam(value="checkoutdate",required=false) String checkoutdate,@RequestParam(value="car_name",required=false) String car_name) {
+	public @ResponseBody List<Rcar> searchcar(@RequestParam(value="checkListmanu[]",required=false) List<String> checkListmanu,@RequestParam(value="checkListfuel[]",required=false) List<String> checkListfuel,@RequestParam(value="checkListtype[]",required=false) List<String> checkListtype,@RequestParam(value="checkListoption[]",required=false) List<String> checkListoption,@RequestParam(value="checkindate",required=false) String checkindate,@RequestParam(value="checkoutdate",required=false) String checkoutdate,@RequestParam(value="car_name",required=false) String car_name) {
 		SearchRequirements requirements = new SearchRequirements(checkindate,checkoutdate,car_name,checkListmanu,checkListfuel,checkListtype,checkListoption);
-		System.out.println(requirements.getCar_fuel().toString());
+		//System.out.println(requirements.getCar_fuel().toString());
+		//System.out.println(requirements.getCar_name());
 		List<Rcar> list = rentcarservice.rentcarListService(requirements);
 		if(list!=null)System.out.println(list.size());
-		return null;
+		return list;
 	}
 }

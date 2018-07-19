@@ -152,7 +152,7 @@ FROM
 			)
 	)
 <where>
-	<if test="car_name != null">
+	<if test="car_name != '' and car_name != null ">
 		CAR_NAME=#{car_name}
 	</if>
 	<if test="car_type != null">
@@ -161,28 +161,19 @@ FROM
 		#{item}
 	</foreach>
 	</if>
-	<if test="car_fuel != null">
+ 	<if test="car_fuel != null">
 	AND CAR_FUEL IN
 	<foreach item="item" index="index" collection="car_fuel" open="(" separator="," close=")">
 		#{item}
 	</foreach>
 	</if>
-	<if test="car_manufacture != null">
+ 	<if test="car_manufacture != null">
 	AND CAR_MANUFACTUR IN
 	<foreach item="item" index="index" collection="car_manufacture" open="(" separator="," close=")">
-		#{item}
+		#{item.value}
 	</foreach>
 	</if>
-	
-	<!-- <if test="car_type != null">
-	CAR_TYPE=#{car_type}
-	</if>
-	<if test="car_fuel != null">
-	CAR_FUEL=#{car_fuel}
-	</if>
-	<if test="car_manufacture != null">
-	CAR_MANUFACTUR=#{car_manufacture}
-	</if> -->
+
 </where>
 </select>
 	

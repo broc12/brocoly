@@ -114,10 +114,10 @@
 													</p>
 												</div>
 												<div style="width: 60%">
-													<input type="text" id="fname" name="pwd"
+													<input type="password" id="fname" name="pwd"
 														class="form-control" placeholder="비밀번호"></br>
 													<p align="right">
-														<a href="">아이디찾기</a> ｜ <a href="">비밀번호찾기</a>
+														<a href="<%=request.getContextPath()%>/find_id_form.do">아이디찾기</a> ｜ <a href="<%=request.getContextPath()%>/find_pwd_form.do">비밀번호찾기</a>
 													</p>
 													<p align="center">
 														<input type="submit" class="btn btn-primary" value="로그인" />

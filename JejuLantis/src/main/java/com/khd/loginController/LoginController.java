@@ -56,6 +56,7 @@ public class LoginController {
 
 	@RequestMapping(value = "/login/logout")
 	public ModelAndView logOut(ModelAndView mv, HttpSession session) {
+		
 		String page = "redirect:/";
 		session.removeAttribute("log");
 //		System.out.println("¼º°ø5");

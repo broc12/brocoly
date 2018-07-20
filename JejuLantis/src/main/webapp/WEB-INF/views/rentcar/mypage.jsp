@@ -134,7 +134,7 @@
 									<label for="subject">거주지</label>
 		
 									<select name="memeber_local" id="people" class="form-control">
-										<option value="##" style="color:black">${nn.memeber_local}</option>
+										<option value="${nn.memeber_local}" style="color:black">${nn.memeber_local}</option>
 										<option value="거주지 선택(시/도)" style="color:black">거주지 선택(시/도)</option>
 										<option value="서울" style="color:black">서울</option>
 				                        <option value="부산" style="color:black">부산</option>
@@ -163,6 +163,28 @@
 									<input type="text"  value="${nn.email}" name="email" id="subject" class="form-control" placeholder="heima@naver.com">
 								</div>
 							</div>
+							
+<!-- 									<label for="subject">번호</label> -->
+<%-- 									<input type="text" name="tel" value="${nn.tel}" id="tel" placeholder="phone number" maxlength="13"  /> --%>
+							
+								<tr>
+<!-- 				<td rowspan="2" height="30" align="center" bgcolor="#FFDEAD">연락처</td> -->
+<!-- 				<td bgcolor="#E0FFFF"> -->
+<%-- 					<select id="hp1"  value="${nn.tel}" name="hp1" style="width:70;"> --%>
+<!-- 					   <option value="010"  selected> 010 </option> -->
+<!-- 					   <option value="011"> 011 </option> -->
+<!-- 					   <option value="016"> 016 </option> -->
+<!-- 					   <option value="017"> 017 </option> -->
+<!-- 					   <option value="018"> 018 </option> -->
+<!-- 					   <option value="019"> 019 </option> -->
+<!-- 					</select> -->
+<!-- 					- -->
+<%-- 					<input type="text" value="${nn.tel}" id="hp2" name="hp2" size="2" maxlength="4"> --%>
+<!-- 					- -->
+<%-- 					<input type="text" value="${nn.tel}" id="hp3" name="hp3" size="2" maxlength="4"> --%>
+<!-- 					<input type="hidden" id="tel" name="tel" > -->
+<!-- 				</td> -->
+<!-- 			</tr> -->
 							<div class="row form-group">
 								<div class="col-md-12">
 									<label for="subject">전화번호</label>
@@ -183,7 +205,9 @@
 								</div>
 <!-- 							</form> -->
 							<div class="form-group text-right">
-								<input type="submit" value="회원탈퇴" class="btn btn-primary">
+<!-- 								<input type="submit" value="회원탈퇴" class="btn btn-primary"> -->
+								<a href="delete.do">회원탈퇴</a>
+
 							</div>
 							<div class="form-group text-center">
 								<input type="submit" value="수정완료" class="btn btn-primary">

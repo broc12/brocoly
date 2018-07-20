@@ -15,7 +15,7 @@
 	<result column="EMAIL" property="email"/>
 	<result column="SMS_AT" property="sms_at"/>
 	<result column="RESIST_MEMBER" property="resist_member"/>
-	<result column="MEMEBER_WITHDRAW_AT" property="memeber_whithdraw_at"/>
+	<result column="MEMEBER_WITHDRAW_AT" property="memeber_withdraw_at"/>
 	<result column="WITHDRAW_DATE" property="whithdraw_date"/>
 </resultMap>
 
@@ -25,7 +25,9 @@
 		<where>
 		ID = #{id}
 			AND
-		PWD = #{pwd}
+		PWD = #{pwd}	
+			AND 	
+		memeber_withdraw_at ='n'
 		</where>
 	</select>
 	

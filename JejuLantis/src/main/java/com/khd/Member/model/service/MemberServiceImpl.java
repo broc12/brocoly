@@ -1,7 +1,9 @@
 package com.khd.Member.model.service;
 
 
-import java.util.HashMap;
+import java.io.PrintWriter;
+
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -31,7 +33,7 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public Member mypageService(String id) {
 		// TODO Auto-generated method stub
-		return memberDao.mypage(id);
+		return memberDao.mypage(id);	 
 	}
 //	@Override
 //	public boolean modifyService(HashMap<String, String> hm) {
@@ -44,6 +46,36 @@ public class MemberServiceImpl implements MemberService {
 	
 		return memberDao.modify(member);
 	}
+//	@Override
+//	public Member deleteService(Member member) {
+//		return memberDao.delete(member);
+//	}
+	@Override
+	public int deleteService(String id) {
+		// TODO Auto-generated method stub
+		return memberDao.delete(id);
+	}
+	
+	// 아이디 찾기
+	@Override
+	public String find_id(String email) throws Exception {
+		return memberDao.find_id(email);	
+	}
+	// 비밀번호 찾기
+		@Override
+		public String find_pwd(String id) throws Exception {
+			return memberDao.find_pwd(id);	
+		}
+		@Override
+		public int emailcheck(String email) {
+			return memberDao.echeck(email);
+		}
+	
+//	@Override
+//	public int deletemodify(String id) {
+//		// TODO Auto-generated method stub
+//		return memberDao.delete(id);
+//	}
 	
 
 //	@Override

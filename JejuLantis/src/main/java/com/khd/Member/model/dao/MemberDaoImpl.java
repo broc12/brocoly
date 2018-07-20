@@ -2,7 +2,7 @@ package com.khd.Member.model.dao;
 
 import java.util.HashMap;
 import java.util.Map;
-
+import java.lang.String;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.session.ResultHandler;
 import org.apache.ibatis.session.SqlSession;
@@ -60,6 +60,46 @@ public class MemberDaoImpl implements MemberDao {
 			return null;
 		}
 	}
+
+	@Override
+	public int delete(String id) {
+		int delete = sql.update(ns+".delete", id);
+		System.out.println("id6:"+ id);
+		return delete;
+	}
+	
+	// 아이디 찾기
+//	@Override
+//	public String find_id(String email) {
+//			int select = sql.selectOne(ns+".find_id",email);
+//			return select;
+//		}
+
+	public String find_id(String email){
+		String select = sql.selectOne(ns+".find_id",email);
+		return select;
+	}
+	public String find_pwd(String id){
+		String select = sql.selectOne(ns+".find_pwd",id);
+		return select;
+	}
+//	@Override
+//	public int deletemodify(String id) {
+//		int i = sql.update(ns+".deletemodify", id);
+//			return i;
+//		}
+
+	@Override
+	public int echeck(String email) {
+		int Select = sql.selectOne(ns+".emailcheck", email);
+		return Select;
+	}
+
+//	@Override
+//	public Member delete(Member member) {
+//		// TODO Auto-generated method stub
+//		return null;
+//	}
 
 //	public boolean modify(HashMap<String, String> hm) {
 //		int count = sql.selectOne(ns+".modify", hm);

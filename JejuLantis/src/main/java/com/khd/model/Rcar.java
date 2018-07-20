@@ -7,7 +7,7 @@ import java.util.List;
 public class Rcar implements Serializable{
 
 	String car_name;
-	String car_manufactur;
+	String car_manufacturer;
 	String car_type;
 	long car_passenger;
 	String car_fuel;
@@ -15,11 +15,11 @@ public class Rcar implements Serializable{
 	long cn;
 	List<Blist> blist;
 	public Rcar() {}
-	public Rcar(String car_name, String car_manufactur, String car_type, long car_passenger,String car_fuel, long mtot,
+	public Rcar(String car_name, String car_manufacturer, String car_type, long car_passenger,String car_fuel, long mtot,
 			long cn, List<Blist> blist) {
 		super();
 		this.car_name = car_name;
-		this.car_manufactur = car_manufactur;
+		this.car_manufacturer = car_manufacturer;
 		this.car_type = car_type;
 		this.car_passenger = car_passenger;
 		this.car_fuel = car_fuel;
@@ -30,8 +30,8 @@ public class Rcar implements Serializable{
 	public String getCar_name() {
 		return car_name;
 	}
-	public String getCar_manufactur() {
-		return car_manufactur;
+	public String getCar_manufacturer() {
+		return car_manufacturer;
 	}
 	public String getCar_type() {
 		return car_type;
@@ -58,8 +58,8 @@ public class Rcar implements Serializable{
 	public void setCar_name(String car_name) {
 		this.car_name = car_name;
 	}
-	public void setCar_manufactur(String car_manufactur) {
-		this.car_manufactur = car_manufactur;
+	public void setCar_manufacturer(String car_manufacturer) {
+		this.car_manufacturer = car_manufacturer;
 	}
 	public void setCar_type(String car_type) {
 		this.car_type = car_type;

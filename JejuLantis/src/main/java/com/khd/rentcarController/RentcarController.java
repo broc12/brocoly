@@ -27,14 +27,14 @@ public class RentcarController {
 		List<Rcar> list = rentcarservice.rentcarListService(requirements);
 		request.setAttribute("list", list);
 		request.setAttribute("requirements", requirements);
-		System.out.println(requirements.getRent_reserve_startDateTime());
 		return "rentcar/car";
 	}
 	
 	@RequestMapping(value="car.do",method=RequestMethod.POST)
 	public String car(HttpServletRequest request,@RequestParam("Checkouttime")String checkouttime,@RequestParam("Checkoutdate")String checkoutdate,@RequestParam("Checkintime")String checkintime,@RequestParam("Checkindate")String checkindate,@RequestParam("car_name")String car_name) {
-
+		
 		SearchRequirements requirements = new SearchRequirements(checkindate,checkintime,checkoutdate,checkouttime,car_name);
+		
 		List<Rcar> list = rentcarservice.rentcarListService(requirements);
 		request.setAttribute("list", list);
 		request.setAttribute("requirements", requirements);
@@ -52,7 +52,7 @@ public class RentcarController {
 		//System.out.println(requirements.getCar_fuel().toString());
 		
 		List<Rcar> list = rentcarservice.rentcarListService(requirements);
-		if(list!=null)System.out.println(list.size());
+		/*if(list!=null)System.out.println(list.size());*/
 		return list;
 	}
 }

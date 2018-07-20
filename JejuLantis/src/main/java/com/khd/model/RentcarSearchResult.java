@@ -9,7 +9,7 @@ public class RentcarSearchResult implements Serializable{
 	long totalprice;
 	long car_kind_no;
 	String car_kind_name;
-	String car_kind_manufactur;
+	String car_kind_manufacture;
 	long car_kind_passenger;
 	String car_kind_type;
 	String car_kind_fuel;
@@ -28,7 +28,7 @@ public class RentcarSearchResult implements Serializable{
 	ArrayList<String> carlist = new ArrayList<String>();
     
 	public RentcarSearchResult() {}
-	public RentcarSearchResult(long totalprice, long car_kind_no, String car_kind_name, String car_kind_manufactur,
+	public RentcarSearchResult(long totalprice, long car_kind_no, String car_kind_name, String car_kind_manufacture,
 			long car_kind_passenger, String car_kind_type, String car_kind_fuel, String car_kind_trans,
 			String branch_name, long car_kind_price_week, long insurance_price, String insurance_limit,
 			String car_info_blackbox, String car_info_bluetooth, String car_info_non_smoking_veh,
@@ -36,7 +36,7 @@ public class RentcarSearchResult implements Serializable{
 		this.totalprice = totalprice;
 		this.car_kind_no = car_kind_no;
 		this.car_kind_name = car_kind_name;
-		this.car_kind_manufactur = car_kind_manufactur;
+		this.car_kind_manufacture = car_kind_manufacture;
 		this.car_kind_passenger = car_kind_passenger;
 		this.car_kind_type = car_kind_type;
 		this.car_kind_fuel = car_kind_fuel;
@@ -73,11 +73,11 @@ public class RentcarSearchResult implements Serializable{
 	public void setCar_kind_name(String car_kind_name) {
 		this.car_kind_name = car_kind_name;
 	}
-	public String getCar_kind_manufactur() {
-		return car_kind_manufactur;
+	public String getCar_kind_manufacture() {
+		return car_kind_manufacture;
 	}
-	public void setCar_kind_manufactur(String car_kind_manufactur) {
-		this.car_kind_manufactur = car_kind_manufactur;
+	public void setCar_kind_manufactur(String car_kind_manufacture) {
+		this.car_kind_manufacture = car_kind_manufacture;
 	}
 	public long getCar_kind_passenger() {
 		return car_kind_passenger;
@@ -173,7 +173,6 @@ public class RentcarSearchResult implements Serializable{
 		return carlist;
 	}
 	public void setCarlist(ArrayList<String> carlist) {
-		System.out.println("x");
 		this.carlist = carlist;
 	}
 	

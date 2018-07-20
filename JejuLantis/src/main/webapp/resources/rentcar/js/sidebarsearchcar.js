@@ -1,7 +1,7 @@
 $(document).ready(function(){
 	$("input[type='checkbox']").click(function(){
     	var checkListmanu = [];
-    	$("input[id='car_manufacture']").each(function(i){
+    	$("input[id='car_manufacturer']").each(function(i){
     		if($(this).is(":checked")){
     			checkListmanu.push($(this).val());
     		}
@@ -44,7 +44,7 @@ $(document).ready(function(){
     				if(data.length != 0){
 						for (var i=0; i<data.length; i++) {
 							html += "<div class='row'><div class='wrap-division'><div class='row'><div class='col-md-6 col-sm-6 animate-box'><div class='hotel-entry'>";
-							html += "<h3><a>" + data[i].car_name + "</a></h3><span class='place'>" + data[i].car_manufactur + "</span>";
+							html += "<h3><a>" + data[i].car_name + "</a></h3><span class='place'>" + data[i].car_manufacturer + "</span>";
 							html += "<a class='hotel-img' style='background-image: url(resources/rentcar/images/car1.jpg);'>";
 							html += "<p class='price'><span>" + data[i].mtotView + "</span><small>/24시간</small></p>";
 							html += "</a><a>실시간 예약 가능 차량 : " + data[i].cn + "</a>";

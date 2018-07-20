@@ -152,13 +152,16 @@
 						<!-- start -->
 						<div id="result">
 						<div id="inner">
+						<c:if test="${empty list }">
+						<h1>사용 가능한 차량이 없습니다(위치 변경 요망)</h1>
+						</c:if>
 						<c:forEach items="${list }" var="dto" varStatus="status">
 						<div class="row">
 							<div class="wrap-division">
 								<div class="row">
 								<div class="col-md-6 col-sm-6 animate-box">
 									<div class="hotel-entry">
-										<h3><a>${dto.car_name }</a></h3><span class="place">${dto.car_manufactur }</span>
+										<h3><a>${dto.car_name }</a></h3><span class="place">${dto.car_manufacture }</span>
 										<a class="hotel-img" style="background-image: url(resources/rentcar/images/car1.jpg);">
 											<p class="price"><span>${dto.mtotView}</span><small>/24시간</small></p>
 										</a>
@@ -420,40 +423,40 @@
 										<h3 class="sidebar-heading">제조사</h3>
 										<form method="post" class="colorlib-form-2">
 										   <div class="form-check">
-												<input type="checkbox" class="form-check-input" id="car_manufacture" value="현대" >
+												<input type="checkbox" class="form-check-input" id="car_manufacturer" value="현대" >
 												<label class="form-check-label" for="exampleCheck1">
 													<h4 class="place">현대</h4>
 												</label>
-												<input type="checkbox" class="form-check-input" id="car_manufacture" value="르노삼성">
+												<input type="checkbox" class="form-check-input" id="car_manufacturer" value="르노삼성">
 												<label class="form-check-label" for="exampleCheck1">
 													<h4 class="place">르노삼성</h4>
 												</label>
 										   </div>
 										   
 										   <div class="form-check">
-										      <input type="checkbox" class="form-check-input" id="car_manufacture" value="기아">
+										      <input type="checkbox" class="form-check-input" id="car_manufacturer" value="기아">
 										      <label class="form-check-label" for="exampleCheck1">
 													<h4 class="place">기아</h4>
 												</label>
-												<input type="checkbox" class="form-check-input" id="car_manufacture" value="쉐보레">
+												<input type="checkbox" class="form-check-input" id="car_manufacturer" value="쉐보레">
 										      <label class="form-check-label" for="exampleCheck1">
 													<h4 class="place">쉐보레</h4>
 												</label>
 										   </div>
 										   
 										   <div class="form-check">
-										      <input type="checkbox" class="form-check-input" id="car_manufacture" value="쌍용">
+										      <input type="checkbox" class="form-check-input" id="car_manufacturer" value="쌍용">
 										      <label class="form-check-label" for="exampleCheck1">
 													<h4 class="place">쌍용</h4>
 												</label>
-												<input type="checkbox" class="form-check-input" id="car_manufacture" value="제네시스">
+												<input type="checkbox" class="form-check-input" id="car_manufacturer" value="제네시스">
 										      <label class="form-check-label" for="exampleCheck1">
 													<h4 class="place">제네시스</h4>
 												</label>
 										   </div>
 										   
 										   <div class="form-check">
-										      <input type="checkbox" class="form-check-input" id="car_manufacture" value="수입">
+										      <input type="checkbox" class="form-check-input" id="car_manufacturer" value="수입">
 										      <label class="form-check-label" for="exampleCheck1">
 													<h4 class="place">수입</h4>
 												</label>

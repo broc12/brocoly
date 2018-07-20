@@ -11,7 +11,7 @@ public class SearchRequirements {
 	DateTime rent_reserve_start;
 	DateTime rent_reserve_end;
 	String car_name;
-	List<String> car_manufacture;
+	List<String> car_manufacturer;
 	List<String> car_fuel;
 	List<String> car_type;
 	String car_kind_navi;
@@ -37,12 +37,12 @@ public class SearchRequirements {
 		this.car_name = car_name;
 		this.searchFlag=true;
 	}
-	public SearchRequirements(String CheckindateTime,String checkoutdateTime,String car_name,List<String> car_manufacture,List<String> car_fuel,List<String> car_type,List<String> car_option) {
+	public SearchRequirements(String CheckindateTime,String checkoutdateTime,String car_name,List<String> car_manufacturer,List<String> car_fuel,List<String> car_type,List<String> car_option) {
 		DateTimeFormatter fmt = DateTimeFormat.forPattern("yyyy-MM-dd HH:mm");
 		this.rent_reserve_start = DateTime.parse(CheckindateTime, fmt);
 		this.rent_reserve_end = DateTime.parse(checkoutdateTime, fmt);
 		this.car_name = car_name;
-		this.car_manufacture = car_manufacture;
+		this.car_manufacturer = car_manufacturer;
 		this.car_fuel = car_fuel;
 		this.car_type = car_type;
 		if(car_option != null)setOptionList(car_option);
@@ -67,14 +67,14 @@ public class SearchRequirements {
 		return rent_reserve_end.toString("HH:mm");
 	}
 	public SearchRequirements(DateTime rent_reserve_start, DateTime rent_reserve_end, String car_name,
-			List<String> car_manufacture, List<String> car_fuel, List<String> car_type, String car_kind_navi, String car_kind_sensor,
+			List<String> car_manufacturer, List<String> car_fuel, List<String> car_type, String car_kind_navi, String car_kind_sensor,
 			String car_kind_blackbox, String car_kind_bluetooth, String car_kind_sunroof, String car_kind_camera,
 			String car_kind_nonsmoke, String car_kind_resist, boolean searchFlag) {
 		super();
 		this.rent_reserve_start = rent_reserve_start;
 		this.rent_reserve_end = rent_reserve_end;
 		this.car_name = car_name;
-		this.car_manufacture = car_manufacture;
+		this.car_manufacturer = car_manufacturer;
 		this.car_fuel = car_fuel;
 		this.car_type = car_type;
 		this.car_kind_navi = car_kind_navi;
@@ -105,11 +105,11 @@ public class SearchRequirements {
 	public void setCar_name(String car_name) {
 		this.car_name = car_name;
 	}
-	public List<String> getCar_manufacture() {
-		return car_manufacture;
+	public List<String> getCar_manufacturer() {
+		return car_manufacturer;
 	}
-	public void setCar_manufacture(List<String> car_manufacture) {
-		this.car_manufacture = car_manufacture;
+	public void setCar_manufacturer(List<String> car_manufacturer) {
+		this.car_manufacturer = car_manufacturer;
 	}
 	public List<String> getCar_fuel() {
 		return car_fuel;

@@ -38,7 +38,7 @@ public class LoginController {
 				&& !member.getPwd().equals(""))) {
 			Member Info = null;
 			if (loginDAO.loginCheck(member)) {
-				session.setAttribute("login", 0); // ·Î±×ÀÎ ¼º°ø½Ã ¼¼¼Ç			
+				session.setAttribute("login", 0); // ë¡œê·¸ì¸ ì„±ê³µì‹œ ì„¸ì…˜			
 				Info = new Member(member.getId());
 				session.setAttribute("log", Info);
 				Member log = (Member)session.getAttribute("log");
@@ -47,7 +47,7 @@ public class LoginController {
 				out.close();
 			}
 			if (loginDAO.loginCheck(member) == false) {
-				out.println("<script>alert('·Î±×ÀÎ Á¤º¸¸¦ È®ÀÎÇÏ¼¼¿ä!'); history.go(-1); </script>");
+				out.println("<script>alert('ë¡œê·¸ì¸ ì •ë³´ë¥¼ í™•ì¸í•˜ì„¸ìš”!'); history.go(-1); </script>");
 				out.flush();
 				out.close();
 			}
@@ -59,7 +59,7 @@ public class LoginController {
 		
 		String page = "redirect:/";
 		session.removeAttribute("log");
-//		System.out.println("¼º°ø5");
+//		System.out.println("ì„±ê³µ5");
 //		System.out.println( "page :" + page);
 		mv.setViewName(page);
 //		System.out.println("mv :" + mv);
@@ -68,7 +68,7 @@ public class LoginController {
 
 //	@RequestMapping("mypage.do")
 //    public String memberView(Member member, Model model){
-//        // È¸¿ø Á¤º¸¸¦ model¿¡ ÀúÀå
+//        // íšŒì› ì •ë³´ë¥¼ modelì— ì €ì¥
 //       model.addAttribute("dto", MemberService.viewMember(member));
 //        
 //        return "member/member_view";
@@ -76,7 +76,7 @@ public class LoginController {
 //	
 //	@RequestMapping(value="mypage.do",method=RequestMethod.GET)
 //	public String mypage() {	
-//		System.out.println("----- Áö³ª°¨");
+//		System.out.println("----- ì§€ë‚˜ê°");
 //		return "rentcar/mypage";
 //	}
 //	@RequestMapping(value = "/membersmodify.do" )		
@@ -100,7 +100,7 @@ public class LoginController {
 //    @RequestMapping(value="/login/mypage", method=RequestMethod.POST)
 //    public String editAccount(Member member, HttpSession session) throws Exception {
 //    	Member loginUser = (Member) session.getAttribute("log");
-//        String id = loginUser.getId(); //¼¼¼Ç¿¡ ÀúÀåµÈ »ç¿ëÀÚ Á¤º¸·ÎºÎÅÍ idÀ» ¾Ë¾Æ³½´Ù.
+//        String id = loginUser.getId(); //ì„¸ì…˜ì— ì €ì¥ëœ ì‚¬ìš©ì ì •ë³´ë¡œë¶€í„° idì„ ì•Œì•„ë‚¸ë‹¤.
 //       
 //        if (member.getName() == null) {
 //        	member.setName(loginUser.getName());

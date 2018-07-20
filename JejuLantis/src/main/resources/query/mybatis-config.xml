@@ -6,6 +6,10 @@
 	<typeAliases>
 		<typeAlias alias="LoginDAO" type="com.khd.model.LoginInfo"/>
 		<typeAlias alias="CustomerCenter" type="com.khd.model.CustomerCenter"/>
+		<typeAlias alias="RentcarSearchResult" type="com.khd.model.RentcarSearchResult"/>
+		<typeAlias alias="Rcar" type="com.khd.model.Rcar"/>
+		<typeAlias alias="Blist" type="com.khd.model.Blist"/>
+		<typeAlias alias="SearchRequirements" type="com.khd.model.SearchRequirements"/>
 		<typeAlias alias="Member" type="com.khd.model.Member"/>
 		<typeAlias alias="Qna" type="com.khd.model.Qna"/>
 		<typeAlias alias="Notice" type="com.khd.notice.Notice"/>
@@ -18,6 +22,9 @@
 	<mappers>
 		<mapper resource="query/query.xml"/>
 		<mapper resource="query/CustomerCenter.xml"/>
+		<mapper resource="query/searchrentcar.xml"/>
+		<mapper resource="query/rcar.xml"/>
+		<mapper resource="query/blist.xml"/>
 		<mapper resource="query/member.xml"/>
 		<mapper resource="query/Qna.xml"/>
 		<mapper resource="query/notice.xml"/>

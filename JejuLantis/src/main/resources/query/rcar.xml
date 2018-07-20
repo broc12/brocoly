@@ -144,6 +144,29 @@ FROM
 								GROUP BY
 									BRANCH_NO,CAR_NO,INSURANCE_NO,CAR_KIND_NO
 							)
+						<where>
+							<if test="car_kind_navi != '' and car_kind_navi != null ">
+							CAR_KIND_NAVI=#{car_kind_navi}
+							</if>
+							<if test="car_kind_sensor != '' and car_kind_sensor != null ">
+							AND CAR_KIND_SENSOR=#{car_kind_sensor}
+							</if>
+							<if test="car_kind_blackbox != '' and car_kind_blackbox != null ">
+							AND CAR_KIND_BLACKBOX=#{car_kind_blackbox}
+							</if>
+							<if test="car_kind_bluetooth != '' and car_kind_bluetooth != null ">
+							AND CAR_KIND_BLUETOOTH=#{car_kind_bluetooth}
+							</if>
+							<if test="car_kind_sunroof != '' and car_kind_sunroof != null ">
+							AND CAR_KIND_SUNROOF=#{car_kind_sunroof}
+							</if>
+							<if test="car_kind_camera != '' and car_kind_camera != null ">
+							AND CAR_KIND_CAMERA=#{car_kind_camera}
+							</if>
+							<if test="car_kind_nonsmoke != '' and car_kind_nonsmoke != null ">
+							AND CAR_KIND_NONSMOKE=#{car_kind_nonsmoke}
+							</if>
+						</where>	
 					)
 				WHERE
 					INSURANCE_NAME='자차'
@@ -156,22 +179,22 @@ FROM
 		CAR_NAME=#{car_name}
 	</if>
 	<if test="car_type != null">
-	AND CAR_TYPE IN
-	<foreach item="item" index="index" collection="car_type" open="(" separator="," close=")">
-		#{item}
-	</foreach>
+		AND CAR_TYPE IN
+		<foreach item="item" index="index" collection="car_type" open="(" separator="," close=")">
+			#{item}
+		</foreach>
 	</if>
  	<if test="car_fuel != null">
-	AND CAR_FUEL IN
-	<foreach item="item" index="index" collection="car_fuel" open="(" separator="," close=")">
-		#{item}
-	</foreach>
+		AND CAR_FUEL IN
+		<foreach item="item" index="index" collection="car_fuel" open="(" separator="," close=")">
+			#{item}
+		</foreach>
 	</if>
  	<if test="car_manufacture != null">
-	AND CAR_MANUFACTUR IN
-	<foreach item="item" index="index" collection="car_manufacture" open="(" separator="," close=")">
-		#{item.value}
-	</foreach>
+		AND CAR_MANUFACTUR IN
+		<foreach item="item" index="index" collection="car_manufacture" open="(" separator="," close=")">
+			#{item.value}
+		</foreach>
 	</if>
 
 </where>

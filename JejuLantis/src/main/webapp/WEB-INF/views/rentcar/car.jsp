@@ -66,7 +66,7 @@
 	<!-- Theme style  -->
 	<link rel="stylesheet" href="resources/rentcar/css/style.css">
 	<!-- Modernizr JS -->
-	<script src="resources/rentcar/js/modernizr-2.6.2.min.js"></script>
+	<!-- <script src="resources/rentcar/js/modernizr-2.6.2.min.js"></script> -->
 	<!-- FOR IE9 below -->
 	<!--[if lt IE 9] -->
 	<script src="resources/rentcar/js/respond.min.js"></script>

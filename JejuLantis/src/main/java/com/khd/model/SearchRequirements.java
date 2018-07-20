@@ -45,7 +45,7 @@ public class SearchRequirements {
 		this.car_manufacture = car_manufacture;
 		this.car_fuel = car_fuel;
 		this.car_type = car_type;
-		setOptionList(car_option);
+		if(car_option != null)setOptionList(car_option);
 		this.searchFlag = true;
 	}
 	public String getRent_reserve_startDateTime() {
@@ -178,8 +178,9 @@ public class SearchRequirements {
 		this.searchFlag = searchFlag;
 	}
 	void setOptionList(List<String> option) {
+		
 		for(int i=0;i<option.size();i++) {
-			String name = (String)option.get(i);
+			String name = option.get(i);
 			if(name.equals("car_kind_blackbox")) {
 				this.car_kind_blackbox="y";
 			}else if(name.equals("car_kind_bluetooth")) {

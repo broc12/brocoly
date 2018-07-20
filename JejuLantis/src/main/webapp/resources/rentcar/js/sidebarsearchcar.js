@@ -20,7 +20,9 @@ $(document).ready(function(){
     	});
     	var checkListoption = [];
     	$("input[id='car_option']").each(function(i){
-    		checkListoption.push($(this).val()+":"+$(this).is(":checked"));
+    		if($(this).is(":checked")){
+    			checkListoption.push($(this).val());
+    		}
     	});
         $.ajax({
         	url:"searchcar.do",
@@ -70,7 +72,6 @@ $(document).ready(function(){
 								html += "<td align='center'>";												
 								html += "<button type='button'><a href='rentcar.do?kno=" + data[i].blist[j].car_kind_no + "' style='color:black'>실시간예약</a></button></td></tr>";		
 							}
-							alert("a");
 							html += "</table></div></div></div></div></div></div></div><hr>";
 						}
 						

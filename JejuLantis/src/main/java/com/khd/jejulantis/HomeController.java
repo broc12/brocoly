@@ -47,11 +47,11 @@ public class HomeController {
 		model.addAttribute("serverTime", formattedDate );
 		
 		return "rentcar/home";
-	}
+	}/*
 	@RequestMapping(value="car.do",method=RequestMethod.GET)
 	public String car() {
 		return "rentcar/car";
-	}
+	}*/
 	// 아이디 찾기 폼
 	@RequestMapping(value = "find_id_form.do",method=RequestMethod.GET)
 	public String find_id_form() {
@@ -61,11 +61,11 @@ public class HomeController {
 		@RequestMapping(value = "find_pwd_form.do",method=RequestMethod.GET)
 		public String find_pwd_form() {
 			return "rentcar/find_pwd_form";
-		}
+	}/*
 	@RequestMapping(value="rentcar.do",method=RequestMethod.GET)
 	public String rentcar() {
 		return "rentcar/rentcar";
-	}
+	}*/
 	@RequestMapping(value="member.do",method=RequestMethod.GET)
 	public String member() {
 		return "rentcar/member";

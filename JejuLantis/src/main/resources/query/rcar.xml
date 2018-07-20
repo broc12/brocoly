@@ -9,7 +9,7 @@
 	<result column="CAR_PASSENGER" property="car_passenger"/>
 	<result column="CAR_FUEL" property="car_fuel"/>	
 	<result column="MTOT" property="mtot"/>
-	<result column="CN" property="cn"/>
+	<result column="ACTOT" property="actot"/>
 	<collection property="blist" javaType="java.util.ArrayList" resultMap="query.blist.BlistResult"/>
 </resultMap>
 
@@ -29,7 +29,7 @@ SELECT
 	CAR_PASSENGER,
 	CAR_FUEL,
 	MTOT,
-	CN,
+	ACTOT,
 	BRANCH_NAME,
 	CAR_KIND_PRICE_WEEK,
 	INSURANCE_PRICE,
@@ -52,7 +52,7 @@ FROM
 			CAR_NO,
 			INSURANCE_NO,
 			CAR_KIND_NO,
-			CN,
+			ACTOT,
 			BRANCH_NAME,
 			CAR_KIND_PRICE_WEEK,
 			INSURANCE_PRICE,
@@ -72,7 +72,7 @@ FROM
 					CAR_NO,
 					INSURANCE_NO,
 					CAR_KIND_NO,
-					CN,
+					ACTOT,
 					CAR_KIND_COUNT,
 					(CAR_KIND_PRICE_WEEK+INSURANCE_PRICE)AS TOT,
 					CAR_KIND_NAVI,
@@ -92,7 +92,7 @@ FROM
 							CAR_NO,
 							INSURANCE_NO,
 							CAR_KIND_NO,
-							CN,
+							SUM(AC) OVER(PARTITION BY CAR_NO) ACTOT,
 							CAR_KIND_COUNT,
 							CAR_KIND_PRICE_WEEK,
 							CAR_KIND_NAVI,
@@ -109,7 +109,7 @@ FROM
 									CAR_NO,
 									INSURANCE_NO,
 									CAR_KIND_NO,
-									COUNT(CAR_INFO_NO)CN
+									COUNT(CAR_INFO_NO) AC
 				                FROM
 				                    CAR_INFO
 				                WHERE NOT EXISTS(

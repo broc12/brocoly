@@ -162,7 +162,7 @@
 										<a class="hotel-img" style="background-image: url(resources/rentcar/images/car1.jpg);">
 											<p class="price"><span>${dto.mtotView}</span><small>/24시간</small></p>
 										</a>
-										<a>실시간 예약 가능 차량 : ${dto.cn }</a>
+										<a>실시간 예약 가능 차량 : ${dto.actot }</a>
 										<div class="desc">
 											<p align="center">${dto.car_passenger }인승 ${dto.car_type } ${dto.car_fuel }</p>
 										</div>

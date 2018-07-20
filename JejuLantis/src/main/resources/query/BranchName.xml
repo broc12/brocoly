@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="review.BranchName">
+	
+	<resultMap id="reviewResult" type="BranchName">
+		
+		<result property="branch_no" column="BRANCH_NO"/>
+        <result property="branch_name" column="BRANCH_NAME"/>
+        <result property="branch_tel" column="BRANCH_TEL"/>
+        <result property="branch_local" column="BRANCH_LOCAL"/>
+        <result property="branch_resist" column="BRANCH_RESIST"/>
+        <result property="branch_business_no" column="BRANCH_BUSINESS_NO"/>
+        <result property="branch_bankaccount" column="BRANCH_BANKACCOUNT"/>
+        <result property="branch_member_name" column="BRANCH_MEMBER_NAME"/>
+        <result property="branch_member_tel" column="BRANCH_MEMBER_TEL"/>
+        <result property="branch_logo" column="BRANCH_LOGO"/>
+        <result property="branch_comfee" column="BRANCH_COMFEE"/>
+        <result property="branch_withdraw_at" column="BRANCH_WITHDRAW_AT"/>
+        <result property="branch_busspot" column="BRANCH_BUSSPOT"/>
+        <result property="branch_bustime" column="BRANCH_BUSTIME"/>
+        <result property="branch_busgap" column="BRANCH_BUSGAP"/>
+       
+        <result property="sale" column="SALE"/>
+        <result property="score" column="SCORE"/>
+      
+		<collection property="reviewList" column="{a=BRANCH_NO}" javaType="ArrayList" select="review.ReviewContent.reviewContent"/>
+	</resultMap>
+	<select id="branchName" parameterType="HashMap" resultMap="reviewResult">
+        select BRANCH.BRANCH_NAME, REV.* from BRANCH, 
+		(select RENT_REVIEW.BRANCH_NO, 
+		avg(RENT_REVIEW.Rent_Review_Rating_Car) as SCORE, count(*) as SALE, 
+		max(RENT_REVIEW.RENT_REVIEW_DATE) as NEW 
+		from RENT_REVIEW 
+		group by RENT_REVIEW.BRANCH_NO ) REV
+		where REV.BRANCH_NO = BRANCH.BRANCH_NO 
+		order by BRANCH.BRANCH_NO
+    </select> 		
+	<select id="branchNameSelect" parameterType="HashMap" resultMap="reviewResult">
+    	select BRANCH.BRANCH_NAME, REV.* 
+		from BRANCH, 
+		(select RENT_REVIEW.BRANCH_NO, 
+		avg(RENT_REVIEW.Rent_Review_Rating_Car) as SCORE, count(*) as SALE, 
+		max(RENT_REVIEW.RENT_REVIEW_DATE) as NEW 
+		from RENT_REVIEW 
+		group by RENT_REVIEW.BRANCH_NO ) REV
+		where REV.BRANCH_NO = BRANCH.BRANCH_NO
+		<if test="review_sel != null"> ORDER BY 
+	  		<choose>
+	    		<when test="review_sel eq 'SCORE'"> SCORE </when>
+	    		<when test="review_sel eq 'SALE'"> SALE </when>
+	    		<when test="review_sel eq 'NEW'"> NEW </when>
+	  		</choose>
+	  	DESC
+  		</if>
+    </select> 	
+    <select id="branchNameContent" parameterType="String" resultMap="reviewResult">
+        select BRANCH.BRANCH_NO, BRANCH.BRANCH_NAME, REV.SCORE, REV.SALE, 
+        BRANCH.BRANCH_LOCAL, BRANCH.BRANCH_TEL, BRANCH.BRANCH_BUSSPOT, 
+        BRANCH.BRANCH_BUSGAP, BRANCH.BRANCH_BUSTIME from BRANCH, 
+        (select RENT_REVIEW.BRANCH_NO, 
+		avg(RENT_REVIEW.Rent_Review_Rating_Car) as SCORE, count(*) as SALE
+		from RENT_REVIEW 
+		group by RENT_REVIEW.BRANCH_NO ) REV
+		where REV.BRANCH_NO = BRANCH.BRANCH_NO and BRANCH.BRANCH_NO=#{branch_no}
+    </select>	
+    <select id="adminBranchNameContent" resultMap="reviewResult">
+    	select * from BRANCH
+    </select>
+</mapper>

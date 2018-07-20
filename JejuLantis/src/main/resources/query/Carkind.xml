@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="carkind.Carkind">
+	<resultMap id="carkindResult" type="Carkind">
+		<result property="branch_name" column="BRANCH_NAME"/>
+		<result property="car_kind_no" column="CAR_KIND_NO"/>
+		<result property="branch_no" column="BRANCH_NO"/>
+		<result property="insurance_no" column="INSURANCE_NO"/>
+		<result property="car_no" column="CAR_NO"/>
+		<result property="car_kind_fuel" column="CAR_KIND_FUEL"/>
+		<result property="car_kind_name" column="CAR_KIND_NAME"/>
+		<result property="car_kind_type" column="CAR_KIND_TYPE"/>
+		<result property="car_kind_resist" column="CAR_KIND_RESIST"/>
+		<result property="car_kind_passenger" column="CAR_KIND_PASSENGER"/>
+		<result property="car_kind_trans" column="CAR_KIND_TRANS"/>
+		<result property="car_kind_count" column="CAR_KIND_COUNT"/>
+		<result property="car_kind_image" column="CAR_KIND_IMAGE"/>
+		<result property="car_kind_price_week" column="CAR_KIND_PRICE_WEEK"/>
+		<result property="car_kind_price_weekend" column="CAR_KIND_PRICE_WEEKEND"/>
+		<result property="car_kind_price_1" column="CAR_KIND_PRICE_1"/>
+		<result property="car_kind_price_2" column="CAR_KIND_PRICE_2"/>
+		<result property="car_kind_navi" column="CAR_KIND_NAVI"/>
+		<result property="car_kind_sensor" column="CAR_KIND_SENSOR"/>
+		<result property="car_kind_blackbox" column="CAR_KIND_BLACKBOX"/>
+		<result property="car_kind_bluetooth" column="CAR_KIND_BLUETOOTH"/>
+		<result property="car_kind_sunroof" column="CAR_KIND_SUNROOF"/>
+		<result property="car_kind_camera" column="CAR_KIND_CAMERA"/>
+		<result property="car_kind_nonsmoke" column="CAR_KIND_NONSMOKE"/>
+	</resultMap>
+	<select id="carkindListI" resultType="Carkind">
+		select CAR_NO from CAR
+	</select>
+	<select id="carkindList" resultType="Carkind">
+		select * from CAR_KIND
+	</select>
+	<delete id="delete" parameterType="String">
+		delete from CAR_KIND where CAR_KIND_NO=#{car_kind_no}
+	</delete>
+	<insert id="insert" parameterType="CarKind">
+		insert into CAR_KIND values(CAR_KIND_SEQ.NEXTVAL, #{branch_no}, 
+		#{insurance_no}, #{car_no}, 0, #{car_kind_price_week}, 
+		#{car_kind_price_weekend}, #{car_kind_price_1}, #{car_kind_price_2},
+		#{car_kind_navi}, #{car_kind_sensor}, #{car_kind_blackbox}, 
+		#{car_kind_bluetooth}, #{car_kind_sunroof}, #{car_kind_camera}, #{car_kind_nonsmoke},
+		SYSDATE)
+	</insert>
+	<select id="carkindContentList" resultType="Carkind">
+		select * from CAR_KIND
+		where CAR_KIND_NO=#{car_kind_no}
+	</select>
+	<select id="carSelectBox" resultType="Carkind">
+		select CAR_NO 
+		from CAR
+		where CAR_NO
+		!=(select CAR_NO from CAR_KIND where CAR_KIND_NO=#{car_kind_no})
+	</select>
+	<select id="insuranceSelectBox" resultType="Carkind">
+		select INSURANCE_NO, INSURANCE_NAME 
+		from INSURANCE 
+		where BRANCH_NO=1
+	</select>
+	<update id="carkindUpdate" parameterType="Carkind">
+		update CAR_KIND
+		set BRANCH_NO=#{branch_no}, INSURANCE_NO=#{insurance_no}, CAR_NO=#{car_no}, CAR_KIND_COUNT=#{car_kind_count}, 
+		CAR_KIND_PRICE_WEEK=#{car_kind_price_week},
+		CAR_KIND_PRICE_WEEKEND=#{car_kind_price_weekend},
+		CAR_KIND_PRICE_1=#{car_kind_price_1},
+		CAR_KIND_PRICE_2=#{car_kind_price_2},
+		CAR_KIND_NAVI=#{car_kind_navi},
+		CAR_KIND_SENSOR=#{car_kind_sensor},
+		CAR_KIND_BLACKBOX=#{car_kind_blackbox},
+		CAR_KIND_BLUETOOTH=#{car_kind_bluetooth},
+		CAR_KIND_SUNROOF=#{car_kind_sunroof},
+		CAR_KIND_CAMERA=#{car_kind_camera},
+		CAR_KIND_NONSMOKE=#{car_kind_nonsmoke},
+		CAR_KIND_RESIST=SYSDATE
+		where CAR_KIND_NO=#{car_kind_no}
+	</update>
+</mapper>

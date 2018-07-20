@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="review.ReviewContent">
+	
+	<resultMap id="reviewResult" type="ReviewContent">
+		<result property="member_name" column="MEMBER_NAME"/>
+		<result property="branch_name" column="BRANCH_NAME"/>
+        <result property="name" column="NAME"/>
+        <result property="rent_review_rating_car" column="RENT_REVIEW_RATING_CAR"/>
+        <result property="rent_review_content" column="RENT_REVIEW_CONTENT"/>
+        <result property="car_kind_name" column="CAR_KIND_NAME"/>
+        <result property="car_kind_fuel" column="CAR_KIND_FUEL"/>
+        <result property="car_kind_type" column="CAR_KIND_TYPE"/>
+        <result property="rent_reserv_start" column="RENT_RESERV_START"/>
+        <result property="rent_reserv_end" column="RENT_RESERV_END"/>
+        <result property="car_kind_image" column="CAR_KIND_IMAGE"/>
+        
+        <!-- 관리자페이지 이용후기 상세보기 -->
+        <result property="rent_review_no" column="RENT_REVIEW_NO"/>
+        <result property="rent_reserv_no" column="RENT_RESERV_NO"/>
+        <result property="driver_no" column="DRIVER_NO"/>
+        <result property="rent_payment_no" column="RENT_PAYMENT_NO"/>
+        <result property="member_no" column="MEMBER_NO"/>
+        <result property="car_info_no" column="CAR_INFO_NO"/>
+        <result property="car_kind_no" column="CAR_KIND_NO"/>
+        <result property="branch_no" column="BRANCH_NO"/>
+        <result property="insurance_no" column="INSURANCE_NO"/>
+        <result property="rent_review_title" column="RENT_REVIEW_TITLE"/>
+        <result property="rent_review_content" column="RENT_REVIEW_CONTENT"/>
+        <result property="rent_review_rating_car" column="RENT_REVIEW_RATING_CAR"/>
+        <result property="rent_review_date" column="RENT_REVIEW_DATE"/>
+        <!-- 관리자페이지 이용후기 상세보기 -->
+        
+	</resultMap>
+	<select id="reviewContent" parameterType="HashMap" resultMap="reviewResult">
+        select Rent_Review.Rent_Review_No, Rent_Review.Rent_Review_Date, RENT_RESERV.RENT_RESERV_START, 
+		RENT_RESERV.RENT_RESERV_END, MEMBER.MEMBER_NAME, CAR_KIND.CAR_KIND_NAME, RENT_REVIEW.RENT_REVIEW_RATING_CAR, 
+		RENT_REVIEW.RENT_REVIEW_CONTENT, CAR_KIND.CAR_KIND_IMAGE
+		from RENT_REVIEW, RENT_RESERV, MEMBER, CAR_KIND, BRANCH 
+		where RENT_REVIEW.BRANCH_NO = RENT_RESERV.BRANCH_NO 
+		and RENT_REVIEW.MEMBER_NO = MEMBER.MEMBER_NO
+		and RENT_REVIEW.CAR_KIND_NO = CAR_KIND.CAR_KIND_NO
+		and BRANCH.BRANCH_NO = RENT_REVIEW.BRANCH_NO 
+		and RENT_REVIEW.BRANCH_NO = BRANCH.BRANCH_NO and BRANCH.BRANCH_NO = #{a} and ROWNUM <![CDATA[<=]]>3	
+	</select>	
+	<!-- 관리자페이지 이용후기 리스트 -->
+	<select id="reviewContentAll" resultType="ReviewContent">
+		select Rent_Review.Rent_Review_No, Rent_Review.Rent_Review_Date, 
+        RENT_RESERV.RENT_RESERV_START, RENT_RESERV.RENT_RESERV_END, 
+        MEMBER.MEMBER_NAME, BRANCH.BRANCH_NAME,   
+        CAR_KIND.CAR_KIND_NAME ,  RENT_REVIEW.RENT_REVIEW_RATING_CAR, 
+        RENT_REVIEW.RENT_REVIEW_CONTENT, CAR_KIND.CAR_KIND_IMAGE
+		from RENT_REVIEW, RENT_RESERV, MEMBER, CAR_KIND, BRANCH 
+		where RENT_REVIEW.BRANCH_NO = RENT_RESERV.BRANCH_NO 
+		and RENT_REVIEW.MEMBER_NO = MEMBER.MEMBER_NO
+		and RENT_REVIEW.CAR_KIND_NO = CAR_KIND.CAR_KIND_NO
+		and BRANCH.BRANCH_NO = RENT_REVIEW.BRANCH_NO 
+		and RENT_REVIEW.BRANCH_NO = BRANCH.BRANCH_NO order by BRANCH.BRANCH_NO	
+	</select>
+	<!-- 관리자페이지 이용후기 리스트 -->
+	<delete id="delete" parameterType="String">
+	   delete from RENT_REVIEW where RENT_REVIEW_NO=#{rent_review_no}
+	</delete>	
+	<!-- 관리자페이지 이용후기 상세보기 -->
+	<select id="reviewDetailContent" resultType="ReviewContent">
+		select * from RENT_REVIEW where RENT_REVIEW_NO=#{rent_review_no}
+	</select>
+	<!-- 관리자페이지 이용후기 상세보기 -->
+</mapper>

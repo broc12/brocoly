@@ -71,6 +71,12 @@
             <!-- <i class="fa fa-fw fa-table"></i> -->
             <span class="nav-link-text">차종관리</span>
           </a>
+        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Tables">
+          <a class="nav-link" href="carDetail.do">
+            <!-- <i class="fa fa-fw fa-table"></i> -->
+            <span class="nav-link-text">차종상세관리</span>
+          </a>
+        </li>
         </li><li class="nav-item" data-toggle="tooltip" data-placement="right" title="Tables">
           <a class="nav-link" href="carInfo.do">
             <!-- <i class="fa fa-fw fa-table"></i> -->

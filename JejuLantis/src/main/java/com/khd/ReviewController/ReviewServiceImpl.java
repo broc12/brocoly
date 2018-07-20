@@ -28,4 +28,8 @@ public class ReviewServiceImpl implements ReviewService {
 		System.out.println("review_sel : " + review_sel);
 		return reviewDAO.select(review_sel);
 	}
+	@Override
+	public List<ReviewContent> reviewContentService(String rent_review_no) {
+		return reviewDAO.reviewDetailContent(rent_review_no);
+	}
 }

@@ -98,13 +98,11 @@
             data:{"qna_no":s,"id":ii},
             success: function(data){
 				 var answer = data.flagId;
-				 alert('성공'+answer);
 				 if(answer==true){
 					 location.href = "helpContent.do?qna_no="+s;
 				 }
 			     else if(answer==false){
 			    	 $("#strqna_no").val(s);
-			    	 alert( $("#strqna_no").val());
 			    	 $("#exampleModal2").modal('show');
 			     }
 			     else {alert('들어왔는데 실패');
@@ -193,7 +191,7 @@
 														<form action="helpadd.do" method="POST" >
 															<input type="hidden" name="id" value="${id}">
 															<button type="submit" class="btn btn-primary" style="border-radius:0px">글쓰기</button>
-															<a data-toggle="modal" data-target="#exampleModal2" class="identifyingClass" data-id="">삭제</a>
+															<!-- <a data-toggle="modal" data-target="#exampleModal2" class="identifyingClass" data-id="">삭제</a> -->
 															</form>
 													</ul>
 												</div>
@@ -212,10 +210,13 @@
 													  </c:if>
 													  <c:forEach items="${list}" var="board">
 														<tr style="font-size:10pt;color:black" height="60px">
-															<td align="center" style="color:black">${board.qna_group}</td>
+															<td align="center" style="color:black">
+															<c:if test="${board.qna_lev==0}">
+															${board.qna_group}
+															</c:if>
+															</td>
 															<td align="center">
-															<a id="checkModal" href="" style="color:black" data-toggle="modal" data-target="#exampleModal2" class="identifyingClass" data-id=""></a>
-															<a href="javascript:checkId(${board.qna_no},${board.qna_pwd});">${board.qna_title}</a>
+															<a style="color:black" href="javascript:checkId(${board.qna_no},${board.qna_pwd});">${board.qna_title}</a>
 															<c:if test="${board.qna_secret==0}">
 															<img src="resources/rentcar/images/locker.png" width=6% height=10%>
 															</c:if>
@@ -238,17 +239,18 @@
 							<div class="col-md-12 text-center">
 								<ul class="pagination">
 									
-									<li class="disabled"><a href="#">&laquo;</a></li>
-									<li class="active"><a href="#">1</a></li>
+									<li><a href="#">&laquo;</a></li>
+									<c:forEach var="i" begin="1" end="${totalPage}">
+								    <li> <a href="help.do?strInput=${i}">${i}</a> </li>
+									</c:forEach>
+									<!-- <li class="active"><a href="#">1</a></li>
 									<li><a href="#">2</a></li>
 									<li><a href="#">3</a></li>
-									<li><a href="#">4</a></li>
+									<li><a href="#">4</a></li> -->
 									<li><a href="#">&raquo;</a></li>
 								</ul>
 								
-					<c:forEach var="i" begin="1" end="${totalPage}">
-							 <a href="help.do?strInput=${i}">i</a>
-									</c:forEach>
+					
 							</div>
 						</div>
 					</div>

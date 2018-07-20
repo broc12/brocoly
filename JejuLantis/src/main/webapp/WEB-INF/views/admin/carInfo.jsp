@@ -2,6 +2,7 @@
 <%@ page session="false" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@page import="com.khd.branch.Branch"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -11,7 +12,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
-  <title>SB Admin</title>
+  <title>SB Admin - Start Bootstrap Template</title>
   <!-- Bootstrap core CSS-->
   <link href="../resources/admin/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <!-- Custom fonts for this template-->
@@ -22,7 +23,7 @@
   <link href="../resources/admin/css/sb-admin.css" rel="stylesheet">
 </head>
 
-<body class="fixed-nav sticky-footer bg-dark" id="page-top" >
+<body class="fixed-nav sticky-footer bg-dark" id="page-top">
 <%@ include file="./top/top2.jspf" %>
   <!-- Navigation-->
 
@@ -33,45 +34,40 @@
         <li class="breadcrumb-item">
           <a href="#">JEJULANTIS</a>
         </li>
-        <li class="breadcrumb-item active">여행상담관리</li>
+        <li class="breadcrumb-item active">업체관리</li>
       </ol>
       <!-- Example DataTables Card-->
       <div class="card mb-3">
         <div class="card-header">
-          <i class="fa fa-table"></i>여행상담</div>
+          <i class="fa fa-table"></i>업체목록</div>
         <div class="card-body">
+        <button type="button" class="btn btn-primary btn-xs" align="right"><a href="carInfoUpload.do" style="color:white">차량등록</a></button></br></br>
           <div class="table-responsive">
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
               <thead>
                 <tr>
-                  <th>번호</th>
-                  <th>제목</th>
-                  <th>작성자</th>
-                  <th>등록일</th>
-                  <th>답변상태</th>
-                  <th></th>
+                  <th>업체코드</th>
+                  <th>차량코드</th>
+                  <th>차량이름</th>
+                  <th>대여가능여부</th>
+                  <th>차량상태</th>
                 </tr>
+                <c:if test="${empty list}">
+					<tr>
+			           <td align="center" colspan="5">데이터가 없음</td>
+			        </tr>
+				</c:if>
               </thead>
               <tbody>
-                <c:if test="${empty list}">
-  				 <tr>
-   					<td align="center" colspan="5">데이터가 없음</td>
-   				 </tr>
-				</c:if>
-              <c:forEach items="${list}" var="board">
+              <c:forEach items="${list}" var="list">
                 <tr>
-                  <td>${board.qna_group}</td>
-                  <td>${board.qna_title}</td>
-                  <td>${board.qna_name}</td>
-                  <td>${board.qna_resist}</td>
-                  <td>
-                  	<a style="color:green">${board.qna_answer_checkString}</a>
-                  </td>
-                  <td>
-                  	<button type="button" class="btn"><a href="answer.do?qna_no=${board.qna_no}">답변등록</a></button>
-                  </td>
+                  <td>${list.branch_line_no}</td>
+                  <td>${list.branch_name}</td>
+                  <td>${list.branch_member_name}</td>
+                  <td>${list.branch_local}</td>
+                  <td>${list.branch_resist}</td>
                 </tr>
-                </c:forEach>
+            </c:forEach>
               </tbody>
             </table>
           </div>

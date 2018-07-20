@@ -10,5 +10,8 @@ public interface CustomerCenterDao {
 	Qna qnaContent(long qna_no);
 	long totalNum();
 	boolean insert(Qna qna);
+	boolean replyInsert(Qna qna);
+	boolean qnaDel(long qna_no);
 	long groupNum();
+	void replyUpdate(long qna_group);
 }

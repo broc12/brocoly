@@ -24,6 +24,13 @@
 
 <body class="fixed-nav sticky-footer bg-dark" id="page-top">
 <%@ include file="./top/top2.jspf" %>
+<script>
+function replysubmit(){
+	document.h.submit();
+}
+
+</script>
+
   <!-- Navigation-->
 
   <div class="content-wrapper">
@@ -44,22 +51,29 @@
             <table border="0" width="100%"  cellpadding="0" cellspacing="0">	
 				<tr>			
 					<th height="100px" width="10%" style="background-color: #fafafa">
-					<a style="color:black;font-size:14pt">항공권 전화 취소 시 홈페이지 예약 내용변경</a></br>
-					<a style="color:#808090;font-size:8pt">오준영</a><a style="color:#808090;font-size:8pt">|</a><a style="color:#808090;font-size:8pt">2018-06-29 09:51:01</a>
+					<a style="color:black;font-size:14pt">${qna.qna_title}</a></br>
+					<a style="color:#808090;font-size:8pt">${qna.qna_name}</a><a style="color:#808090;font-size:8pt">|</a><a style="color:#808090;font-size:8pt">${qna.qna_resist}</a>
 					</th>
 				</tr>
 				<tr style="font-size:10pt" height="150px">
-					<td>항공권 전화로 취소 했는데 대한항공 나의예약이나 제주닷컴 예약 페이지에 취소됐다고 표시가 되나요?</td>
+					<td>${qna.qna_content}</td>
 				</tr>
-				<tr style="font-size:10pt" height="60px">
-					<td>
-						<hr>
-						<a style="color:#007bff;font-size:14pt">답변달기</a></br>
-						<textarea rows="8" cols="110" name="contents"></textarea></br>
-						<button type="submit" class="btn btn-primary" style="border-radius: 0px">등록</button>
-						<button type="submit" class="btn btn-primary" style="border-radius: 0px">삭제</button>
-					</td>
-				</tr>
+				<form action="qnaReply.do" method="POST" name="h">
+					<tr style="font-size:10pt" height="60px">
+						<td>
+							<hr>
+							<a style="color:#007bff;font-size:14pt">답변달기</a></br>
+								<textarea rows="8" cols="110" id = "contents" name="contents"></textarea></br>
+							<!-- <button type="submit" class="btn btn-primary" style="border-radius: 0px"> -->
+								<input type="hidden" name ="qna_group" value="${qna.qna_group}"/>
+								<input type="hidden" name ="qna_name" value="${qna.qna_name}"/>
+								<input type="hidden" name ="qna_pwd" value="${qna.qna_pwd}"/>
+							<a href="#" onclick="replysubmit()" style="color:white" class="btn btn-primary">등록</a> 
+							<!-- <button class="btn btn-primary" style="border-radius: 0px"> -->
+							<a href="del.do?qna_no=${qna.qna_no}"  class="btn btn-primary" style="color:white">삭제</a>
+						</td>
+					</tr>
+				</form>
 				<tr style="font-size:10pt" height="60px">
 					<td align="right">
 						<button type="submit" class="btn btn-primary" style="border-radius: 0px">
@@ -73,8 +87,6 @@
         <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
       </div>
     </div>
-    <!-- /.container-fluid-->
-    <!-- /.content-wrapper-->
     <footer class="sticky-footer">
       <div class="container">
         <div class="text-center">

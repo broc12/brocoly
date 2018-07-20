@@ -39,8 +39,19 @@ public class CustomerCenterServiceImpl implements CustomerCenterService {
 	public boolean insert(Qna qna) {
 		return customerCenterDao.insert(qna);
 	}
+	public boolean qnaDel(long qna_no) {
+		return customerCenterDao.qnaDel(qna_no);
+	}
 	@Override
 	public long groupNum() {
 		return customerCenterDao.groupNum();
 	}
+	@Override
+	public boolean replyInsert(Qna qna) {
+		return customerCenterDao.replyInsert(qna);
+	}
+	public void replyUpdate(long qna_group) {
+		customerCenterDao.replyUpdate(qna_group);
+	}
+	
 }

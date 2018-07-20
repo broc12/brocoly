@@ -11,4 +11,8 @@ public interface CustomerCenterService {
 	long totalNum();
 	boolean insert(Qna qna);
 	long groupNum();
+	boolean replyInsert(Qna qna);
+	boolean qnaDel(long qna_no);
+	void replyUpdate(long qna_group);
+	
 }

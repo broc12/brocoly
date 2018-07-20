@@ -57,6 +57,27 @@ public class CustomerCenterDaoImpl implements CustomerCenterDao {
 		long groupNum = sqlSession.selectOne(nsQna+".myGroupNum");
 		return groupNum;
 	}
+	@Override
+	public boolean replyInsert(Qna qna) {
+		int i = sqlSession.insert(nsQna+".myReplyInsert", qna);
+		boolean flag;
+		if(i>0) flag = true;
+		else flag = false;
+		return flag;
+	}
+	@Override
+	public boolean qnaDel(long qna_no) {
+		int i = sqlSession.delete(nsQna+".myQnaDel", qna_no);
+		boolean flag;
+		if(i>0) flag = true;
+		else flag = false;
+		return flag;
+	}
+	@Override
+	public void replyUpdate(long qna_group) {
+		sqlSession.update(nsQna+".myReplyUpdate", qna_group);
+	}
+	
 	
 
 }

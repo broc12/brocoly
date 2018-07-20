@@ -22,6 +22,16 @@
 	 <insert id="myInsert" parameterType ="Qna">
 	 insert into QNA VALUES(QNA_seq.NEXTVAL,QNA_seq.CURRVAL,0,#{qna_name},#{qna_email},#{qna_tel},#{qna_title},#{qna_content},#{qna_pwd},#{qna_secret},#{qna_answer_check},sysdate,#{qna_resist_id})
 	 </insert>
+	 <insert id="myReplyInsert" parameterType ="Qna">
+	 insert into QNA VALUES(QNA_seq.NEXTVAL,#{qna_group},1,'admin','jejulantis@jeju.com','02-6655-4885',#{qna_name},#{qna_content},#{qna_pwd},0,2,sysdate,'admin')
+	 </insert>
+	 <update id="myReplyUpdate" parameterType ="long">
+	 	update qna set qna_answer_check = 1 where qna_group = #{qna_group}
+	 </update>
+	 <delete id="myQnaDel" parameterType ="long">
+	 delete from qna where qna_no = #{qna_no}
+	 </delete>
+	 
 	 <select id="myQnaSelectAll" parameterType="HashMap" resultType="Qna">
          select * from Qna where QNA_GROUP between #{A} and #{B} order by QNA_GROUP desc, QNA_LEV ASC
     </select>

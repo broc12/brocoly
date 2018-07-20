@@ -193,7 +193,7 @@ FROM
  	<if test="car_manufacture != null">
 		AND CAR_MANUFACTUR IN
 		<foreach item="item" index="index" collection="car_manufacture" open="(" separator="," close=")">
-			#{item.value}
+			#{item}
 		</foreach>
 	</if>
 

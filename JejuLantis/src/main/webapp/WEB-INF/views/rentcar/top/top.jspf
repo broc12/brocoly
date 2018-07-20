@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
@@ -20,8 +21,8 @@
 				<div class="col-xs-12 text-right menu-1">
 
 					<c:choose>
-						<c:when test="${sessionScope.id ne null}">
-							<span style="color: yellow"> ${sessionScope.id}님 반갑습니다</span>&nbsp;&nbsp;&nbsp;
+						<c:when test="${log.id ne null}">
+							<span style="color: yellow"> ${log.id}님 반갑습니다</span>&nbsp;&nbsp;&nbsp;
 						<a href="login/logout">로그아웃</a>&nbsp;&nbsp;&nbsp;
 						<a href="mypage.do">마이페이지</a>&nbsp;&nbsp;&nbsp;
 						</c:when>
@@ -33,13 +34,13 @@
 
 
 
-					<a>"${sessionScope.id}"</a> <a href="service.do">고객센터</a>
+					<a>${log.id}</a> <a href="service.do">고객센터</a>
 				</div>
 			</div>
 			<div class="row">
 				<div class="col-xs-2">
 					<div id="colorlib-logo">
-						<a href="/jeju">JejuLantis</a>
+						<a href="/jejulantis">JejuLantis</a>
 					</div>
 				</div>
 			</div>

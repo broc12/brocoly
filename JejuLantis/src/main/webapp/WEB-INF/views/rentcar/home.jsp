@@ -62,6 +62,11 @@
 	<%@ include file="./top/top.jspf" %>
 	<div class="colorlib-loader"></div>
 
+	<script>
+	 jQuery(document).ready(function(){
+	    	alert("####");
+	    });
+	</script>
 	<div id="page">
 		<aside id="colorlib-hero">
 			<div class="flexslider">
@@ -79,20 +84,20 @@
 				   		</div>
 			   		</div>
 			   	</li>
-			   	<li style="background-image: url(resources/rentcar/images/img_bg_2.jpg);">
+			   	<li style="background-image: url(resources/rentcar/images/so2.jpg);">
 			   		<div class="overlay"></div>
 			   		<div class="container-fluid">
 			   			<div class="row">
 				   			<div class="col-md-6 col-md-offset-3 col-sm-12 col-xs-12 slider-text">
 				   				<div class="slider-text-inner text-center">
-				   					<h2>10 Days Cruises</h2>
-				   					<h1>From Greece to Spain</h1>
+				   					<h2>이용후기 작성하면</h2>
+				   					<h1>2천원 할인쿠폰 즉시발급</h1>
 				   				</div>
 				   			</div>
 				   		</div>
 			   		</div>
 			   	</li>
-			   	<li style="background-image: url(resources/rentcar/images/img_bg_5.jpg);">
+			   	<li style="background-image: url(resources/rentcar/images/so3.jpg);">
 			   		<div class="overlay"></div>
 			   		<div class="container-fluids">
 			   			<div class="row">
@@ -105,7 +110,7 @@
 				   		</div>
 			   		</div>
 			   	</li>
-			   	<li style="background-image: url(resources/rentcar/images/img_bg_4.jpg);">
+			   	<li style="background-image: url(resources/rentcar/images/so4.jpg);">
 			   		<div class="overlay"></div>
 			   		<div class="container-fluid">
 			   			<div class="row">

@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.khd.model.LoginInfo;
+import com.khd.model.Member;
 
 @Repository
 public class LoginImpl implements LoginDAO {
@@ -13,8 +14,8 @@ public class LoginImpl implements LoginDAO {
 	private SqlSession sql;
 	
 	@Override
-	public boolean loginCheck(LoginInfo loginInfo) {
-		int count = Integer.parseInt(sql.selectOne("loginCheck",loginInfo).toString()),
+	public boolean loginCheck(Member member) {
+		int count = Integer.parseInt(sql.selectOne("loginCheck",member).toString()),
 				totalCount = sql.selectOne("totalAccount");
 		if(totalCount > 0) {
 			if(count > 0) {

@@ -2,18 +2,32 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace = "query.query">
 
-<resultMap type="com.khd.model.LoginInfo" id="LoginInfoResult">
+<resultMap type="com.khd.model.Member" id="MemberResult">
+	<result column="MEMEMBER_NO" property="memember_no"/>
 	<result column="ID" property="id"/>
-	<result column="PWD" property="password"/>
+	<result column="PWD" property="pwd"/>
+	<result column="NAME" property="name"/>
+	<result column="BIRTH" property="birth"/>
+	<result column="SEX" property="sex"/>
+	<result column="SCLC" property="sclc"/>
+	<result column="MEMEBER_LOCAL" property="memeber_local"/>
+	<result column="TEL" property="tel"/>
+	<result column="EMAIL" property="email"/>
+	<result column="SMS_AT" property="sms_at"/>
+	<result column="RESIST_MEMBER" property="resist_member"/>
+	<result column="MEMEBER_WITHDRAW_AT" property="memeber_withdraw_at"/>
+	<result column="WITHDRAW_DATE" property="whithdraw_date"/>
 </resultMap>
 
 <!-- 로그인 체키쿼리 -->
-	<select id="loginCheck" resultType="integer" parameterType="com.khd.model.LoginInfo"> 
+	<select id="loginCheck" resultType="integer" parameterType="Member"> 
 		select count(*) from MEMBER
 		<where>
 		ID = #{id}
 			AND
-		PWD = #{password}
+		PWD = #{pwd}	
+			AND 	
+		memeber_withdraw_at ='n'
 		</where>
 	</select>
 	

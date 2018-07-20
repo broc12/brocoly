@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="query.Qna">
+
+	<resultMap id="QnaResult" type="Qna">
+	<result property="qna_no" column="QNA_NO"/> 
+	<result property="qna_group" column="QNA_GROUP"/> 
+	<result property="qna_lev" column="QNA_LEV"/> 
+	<result property="qna_name" column="QNA_NAME"/>
+	<result property="qna_email" column="QNA_EMAIL"/>
+	<result property="qna_tel" column="QNA_TEL"/>
+	<result property="qna_title" column="QNA_TITLE"/>
+	<result property="qna_content" column="QNA_CONTENT"/>
+	<result property="qna_pwd" column="QNA_PWD"/>
+	<result property="qna_secret" column="QNA_SECRET"/>
+	<result property="qna_answer_check" column="QNA_ANSWER_CHECK"/>
+	<result property="qna_resist" column="QNA_RESIST"/>
+	<result property="qna_resist_id" column="QNA_RESIST_ID"/>
+	
+	</resultMap>
+	
+	 <insert id="myInsert" parameterType ="Qna">
+	 insert into QNA VALUES(QNA_seq.NEXTVAL,QNA_seq.CURRVAL,0,#{qna_name},#{qna_email},#{qna_tel},#{qna_title},#{qna_content},#{qna_pwd},#{qna_secret},#{qna_answer_check},sysdate,#{qna_resist_id})
+	 </insert>
+	 <insert id="myReplyInsert" parameterType ="Qna">
+	 insert into QNA VALUES(QNA_seq.NEXTVAL,#{qna_group},1,'admin','jejulantis@jeju.com','02-6655-4885',#{qna_name},#{qna_content},#{qna_pwd},0,2,sysdate,'admin')
+	 </insert>
+	 <update id="myReplyUpdate" parameterType ="long">
+	 	update qna set qna_answer_check = 1 where qna_group = #{qna_group}
+	 </update>
+	 <delete id="myQnaDel" parameterType ="long">
+	 delete from qna where qna_no = #{qna_no}
+	 </delete>
+	 
+	 <select id="myQnaSelectAll" parameterType="HashMap" resultType="Qna">
+         select * from Qna where QNA_GROUP between #{A} and #{B} order by QNA_GROUP desc, QNA_LEV ASC
+    </select>
+	 <select id="myAdminSelectAll" resultType="Qna">
+         select * from Qna order by QNA_GROUP desc, QNA_LEV ASC
+    </select>
+    
+    <select id="myQnaSelectOne" parameterType="long" resultType="Qna">
+         select * from Qna where QNA_no = #{qna_no}
+    </select>
+    
+	 <select id="mySelectAll" parameterType="HashMap" resultType="Qna">
+         select rownum , A.* from QNA A where rownum between  #{A} and #{B}
+    </select>
+    <select id="myGroupNum" resultType="long">
+         select max(QNA_GROUP) from QNA
+    </select>
+</mapper>

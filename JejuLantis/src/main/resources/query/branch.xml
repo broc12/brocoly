@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace = "query.branch">
+
+<resultMap type="Branch" id="branchResult">
+	<result column="BRANCH_LINE_NO" property="branch_line_no"/>
+	<result column="BRANCH_NAME" property="branch_name"/>
+	<result column="BRANCE_TEL" property="branch_tel"/>
+	<result column="BRANCH_LOCAL" property="branch_local"/>
+	<result column="BRANCH_RESIST" property="branch_resist"/>
+	<result column="BRANCH_BUSINESS_NO" property="branch_business_no"/>
+	<result column="BRANCH_BANKACCOUNT" property="branch_bankaccount"/>
+	<result column="BRANCH_MEMBER_TEL" property="branch_member_tel"/>
+	<result column="BRANCH_LOGO" property="branch_logo"/>
+	<result column="BRANCH_COMFEE" property="branch_comfee"/>
+	<result column="BRANCH_WITHDRAW_AT" property="branch_withdraw_at"/>
+</resultMap>
+
+<!-- 	select -->
+	<select id="myBranch" resultType="Branch">
+		SELECT * from BRANCH order by BRANCH_RESIST desc
+	</select>
+</mapper>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace = "query.notice">
+
+<resultMap type="Notice" id="noticeResult">
+	<result column="ANNOUN_NO" property="announ_no"/>
+	<result column="ANNOUN_TITLE" property="announ_title"/>
+	<result column="ANNOUN_CONTENT" property="announ_content"/>
+	<result column="ANNOUN_RESIST" property="announ_resist"/>
+	<result column="ANNOUN_COUNT" property="announ_count"/>
+	<result column="ANNOUN_WRITER" property="announ_writer"/>
+	<result column="ANNOUN_TOP" property="announ_top"/>
+</resultMap>
+
+<!-- 	select -->
+	<select id="myNotice" resultType="Notice">
+		SELECT * from ANNOUNCEMENT where announ_top='N' order by announ_resist desc
+	</select>
+	<select id="myTopNotice" resultType="Notice">
+		select * from ANNOUNCEMENT where announ_top='Y'
+	</select>
+	<select id="myTotalNotice" resultType="Notice">
+		select * from ANNOUNCEMENT order by announ_resist desc
+	</select>
+	<delete id="myDelete" parameterType="String">
+		delete from ANNOUNCEMENT where announ_no=#{announ_no}
+	</delete>
+	
+	<insert id="myInsert" parameterType="Notice">
+		insert into ANNOUNCEMENT values(ANNOUNCEMENT_seq.NEXTVAL,#{announ_title},#{announ_content},SYSDATE,0,'user',#{announ_top,jdbcType=VARCHAR})
+	</insert>
+	
+	<select id="mySubject" resultType="Notice">
+   		select * from ANNOUNCEMENT where announ_no=#{announ_no}
+   </select>
+   
+   <select id="myUpdate" resultType="Notice">
+   	select * from ANNOUNCEMENT where announ_no=#{announ_no}
+   </select>
+   
+   <update id="myModify" parameterType="Notice">
+   	Update ANNOUNCEMENT set announ_title=#{announ_title}, announ_content=#{announ_content},announ_top=#{announ_top,jdbcType=VARCHAR} where announ_no=#{announ_no}
+   </update>
+   
+   <update id="myCount" parameterType="int">
+   	Update ANNOUNCEMENT set announ_count = announ_count+1 where announ_no=#{announ_no}
+   </update>
+</mapper>

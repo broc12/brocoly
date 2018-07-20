@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace = "query.member">
+
+<resultMap type="Member" id="MemberResult">
+	<result column="MEMEMBER_NO" property="memember_no"/>
+	<result column="ID" property="id"/>
+	<result column="PWD" property="pwd"/>
+	<result column="NAME" property="name"/>
+	<result column="BIRTH" property="birth"/>
+	<result column="SEX" property="sex"/>
+	<result column="SCLC" property="sclc"/>
+	<result column="MEMEBER_LOCAL" property="memeber_local"/>
+	<result column="TEL" property="tel"/>
+	<result column="EMAIL" property="email"/>
+	<result column="SMS_AT" property="sms_at"/>
+	<result column="RESIST_MEMBER" property="resist_member"/>
+	<result column="MEMEBER_WITHDRAW_AT" property="memeber_whithdraw_at"/>
+	<result column="WITHDRAW_DATE" property="whithdraw_date"/>
+</resultMap>
+
+
+	
+<insert id="memberjoin" parameterType="Member">
+insert into MEMBER values (MEMBER_seq.nextval,#{id},#{pwd},#{name},#{birth},'남','양력',#{memeber_local},#{tel},#{email},'jjj',SYSDATE,'n',SYSDATE)
+<!--   insert into MEMBER(member_no,id,pwd,name,birth,sex,sclc,memeber_local,tel,email,sms_at,resist_member,memeber_whithdraw_at) -->
+<!--   values (MEMBER_seq.nextval,#{id},#{pwd},#{name},SYSDATE,#{sex},#{sclc},#{memeber_local},#{tel},#{email},#{sms_at},SYSDATE,#{memeber_whithdraw_at}) -->
+</insert>
+
+<select id="idcheck" parameterType="String" resultType="Integer">
+      SELECT COUNT(*) FROM MEMBER
+      WHERE
+          id = #{id} 
+</select>
+
+<select id="emailcheck" parameterType="String" resultType="Integer">
+      SELECT COUNT(*) FROM MEMBER
+      WHERE
+          email = #{email} 
+</select>
+
+<select id="idview" parameterType="String" resultType="Member">
+      SELECT * FROM MEMBER
+      WHERE
+          id = #{id}
+</select>
+
+<update id="modify" parameterType="Member" >
+	 UPDATE member SET id = #{id} , pwd = #{pwd}, name = #{name}, tel = #{tel} ,birth = #{birth}, memeber_local = #{memeber_local}
+        WHERE id = #{id} 
+<!--         AND pwd = #{pwd}  -->
+</update>
+
+<delete id="delete" parameterType="String" >
+<!--         DELETE FROM member WHERE id=#{id} -->
+UPDATE member SET memeber_withdraw_at  ='y' where id=#{id}
+    </delete>
+    
+   <!-- 아이디 찾기 -->
+	<select id="find_id" parameterType="String" resultType="String">
+		select id from member where email = #{email}
+	</select>
+	
+	 <!-- 아이디 찾기 -->
+	<select id="find_pwd" parameterType="String" resultType="String">
+		select pwd from member where id = #{id}
+	</select>
+	
+<!--  <update id="deletemodify" parameterType="String" > -->
+<!--  	UPDATE member SET memeber_whithdraw_at  ='y' where id=#{id} -->
+<!--  </update> -->
+
+<!-- <select id="modify" parameterType="HashMap" resultType="int"> -->
+<!-- 			select count(ID) from (select * from MEMBER where PWD=#{pwd}) where ID = #{id} -->
+<!-- 		</select> -->
+	
+<!--    <select id="viewMember"  parameterType="String" resultType="Integer"> -->
+<!--         SELECT  -->
+<!--           * -->
+<!--         FROM member -->
+<!--         WHERE id = #{id} -->
+<!--     </select> -->
+<!-- <update id="modify" parameterType="User"> -->
+<!--         UPDATE member SET name = #{name}, tel = #{tel} -->
+<!--         WHERE email = #{email} AND pwd = #{pwd} -->
+<!--     </update> -->
+</mapper>

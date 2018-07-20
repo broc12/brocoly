@@ -2,12 +2,14 @@
 <%@ page session="false" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@page import="com.khd.notice.Notice"%>
 <!DOCTYPE HTML>
 <html>
 	<head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>Tour Template</title>
+	<script type="text/javascript" language="javascript" src="http://code.jquery.com/jquery-1.3.1.min.js"></script>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="description" content="" />
 	<meta name="keywords" content="" />
@@ -83,12 +85,18 @@
 			  	</ul>
 		  	</div>
 		</aside>
-				
-			<!-- 		<div class="col-md-6 col-md-offset-3" style="top:100px;left:400px;">
-						<a href="">·최저가순</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						<a href="">·인기순</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						<a href="">·평점순</a>
-					</div> -->
+		<div id="board">
+			<table border="0" width="100%"  cellpadding="0" cellspacing="0">	
+				<tr style="color:#8c9094;background-color:#eef2f5;font-size:10pt">			
+					<th  height="60px" class="text-center" width="15%" style="color:black">고객센터</th>
+					<th  class="text-center" width="10%"><a href="service.do" style="color:#ffdd01">공지사항</a></th>
+					<th  class="text-center" width="15%"><a href="faq.do" style="color:#8c9094">자주찾는 질문</a></th>
+					<th  class="text-center" width="15%"><a href="help.do" style="color:#8c9094">여행상담</a></th>
+					<th  class="text-center"></th>
+				</tr>
+			</table>
+		</div>
+		
 		<div class="colorlib-wrap">
 			<div class="container">
 				<div class="row">
@@ -104,24 +112,37 @@
 												<h3>공지사항</h3>
 												<table border="0" width="100%"  cellpadding="0" cellspacing="0">	
 													<tr style="color:#808080;font-size:12pt">			
-														<th  height="50px" width="10%" class="text-center" style="background-color: #fafafa">번호</th>
-														<th  width="60%" class="text-center" style="background-color: #fafafa"></th>
-														<th  width="15%" class="text-center" style="background-color: #fafafa">등록일</th>
-														<th  width="155%" class="text-center" style="background-color: #fafafa">조회수</th>
+														<th  height="50px" width="10%" class="text-center" style="background-color: #dcdcdc">번호</th>
+														<th  width="60%" class="text-center" style="background-color: #dcdcdc">제목</th>
+														<th  width="15%" class="text-center" style="background-color: #dcdcdc">등록일</th>
+														<th  width="155%" class="text-center" style="background-color: #dcdcdc">조회수</th>
 													</tr>
-													 <c:if test="${empty list}">
-													     <tr>
-													     	<td align="center" colspan="5">데이터가 없음</td>
-													     </tr>
-													  </c:if>
-													  <c:forEach items="${list}" var="board">
-														<tr style="font-size:10pt" height="60px">
-															<td align="center">${board.announ_no}</td>
-															<td align="center">${board.announ_title}</td>
-															<td align="center">${board.announ_resist}</td>
-															<td align="center">${board.announ_view}</td>
-														</tr>
-												</c:forEach>
+													<c:if test="${empty toplist}">
+														<tr>
+												           <td align="center" colspan="4">데이터가 없음</td>
+												        </tr>
+													</c:if>
+													<c:forEach items="${toplist}" var="topnotice">
+													<tr style="font-size:10pt;background-color:#fafafa" height="60px">
+														<td align="center" style="color:red">중요</td>
+														<td align="center"><a href="serviceContent.do?announ_no=${topnotice.announ_no}" style="color:black">${topnotice.announ_title}</a></td>
+														<td align="center">${topnotice.announ_resist}</td>
+														<td align="center">${topnotice.announ_count}</td>
+													</tr>
+													</c:forEach>
+													<c:if test="${empty list}">
+														<tr>
+												           <td align="center" colspan="4">데이터가 없음</td>
+												        </tr>
+													</c:if>
+													<c:forEach items="${list}" var="notice">
+													<tr style="font-size:10pt" height="60px">
+														<td align="center">${notice.announ_no}</td>
+														<td align="center"><a href="serviceContent.do?announ_no=${notice.announ_no}" style="color:black">${notice.announ_title}</a></td>
+														<td align="center">${notice.announ_resist}</td>
+														<td align="center">${notice.announ_count}</td>
+													</tr>
+													</c:forEach>
 												</table>
 											</div>
 										</div>
@@ -149,16 +170,19 @@
 					<div class="col-md-3">
 						<div class="sidebar-wrap">
 							<div class="side search-wrap animate-box">
-								<h3 class="sidebar-heading">고객센터</h3>
+								<h3 class="sidebar-heading" align="center">고객센터</h3>
 								<form method="post" class="colorlib-form">
 				              	<div class="row">
-				                
-				                 <div class="col-md-18">
-				                  <input type="submit" name="submit" id="submit" value="공지사항" class="btn btn-primary btn-block">
-				                </div>
-				                 
-				                <div class="col-md-18">
-				                  <input type="submit" name="submit" id="submit" value="여행상담" class="btn btn-primary btn-block">
+				                 <div class="col-md-18" align="center">
+				                 <img src="resources/rentcar/images/phone1.jpg" width=40% height=40% align="center">
+				                 <h3 class="sidebar-heading" align="center">1544-0704</h3><hr>
+				                 <h3 class="sidebar-heading" align="center">카카오톡 1:1 상담</h3>
+				                 <img src="resources/rentcar/images/kakao.jpg" width=40% height=40% align="center">
+				                 <h3 class="sidebar-heading" align="center">@제주란티스</h3><hr>
+				                 <a class="sidebar-heading" align="left">월-금요일</a>
+				                 <a class="sidebar-heading" align="right">09:00-18:00</a></br>
+				                 <a class="sidebar-heading" align="left">점심시간</a>
+				                 <a class="sidebar-heading" align="right">12:00-13:30</a>
 				                </div>
 				              </div>
 				            </form>

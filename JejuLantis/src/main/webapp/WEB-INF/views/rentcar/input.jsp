@@ -53,6 +53,32 @@
 
 	<!-- Modernizr JS -->
 	<script src="resources/rentcar/js/modernizr-2.6.2.min.js"></script>
+	<!-- 이니시스 -->
+	<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
+	<script type="text/javascript" src="https://service.iamport.kr/js/iamport.payment-1.1.5.js"></script>
+	
+	<!-- jQuery -->
+	<script src="resources/rentcar/js/jquery.min.js"></script>
+	<!-- jQuery Easing -->
+	<script src="resources/rentcar/js/jquery.easing.1.3.js"></script>
+	<!-- Bootstrap -->
+	<script src="resources/rentcar/js/bootstrap.min.js"></script>
+	<!-- Waypoints -->
+	<script src="resources/rentcar/js/jquery.waypoints.min.js"></script>
+	<!-- Flexslider -->
+	<script src="resources/rentcar/js/jquery.flexslider-min.js"></script>
+	<!-- Owl carousel -->
+	<script src="resources/rentcar/js/owl.carousel.min.js"></script>
+	<!-- Magnific Popup -->
+	<script src="resources/rentcar/js/jquery.magnific-popup.min.js"></script>
+	<script src="resources/rentcar/js/magnific-popup-options.js"></script>
+	<!-- Date Picker -->
+	<script src="resources/rentcar/js/bootstrap-datepicker.js"></script>
+	<!-- Stellar Parallax -->
+	<script src="resources/rentcar/js/jquery.stellar.min.js"></script>
+
+	<!-- Main -->
+	<script src="resources/rentcar/js/main.js"></script>
 	<!-- FOR IE9 below -->
 	<!--[if lt IE 9]>
 	<script src="js/respond.min.js"></script>
@@ -61,6 +87,38 @@
 	</head>
 	<body>
 	<%@ include file="./top/top.jspf" %>
+	
+	<script type="text/javascript">
+	function check(){
+		IMP.init('imp60101607');
+		
+		IMP.request_pay({
+		    pg : 'inicis', // version 1.1.0부터 지원.
+		    pay_method : 'card',
+		    merchant_uid : 'merchant_' + new Date().getTime(),
+		    name : '주문명:결제테스트',
+		    amount : 14000,
+		    buyer_email : 'iamport@siot.do',
+		    buyer_name : '구매자이름',
+		    buyer_tel : '010-1234-5678',
+		    buyer_addr : '서울특별시 강남구 삼성동',
+		    buyer_postcode : '123-456',
+		    m_redirect_url : 'https://www.yourdomain.com/payments/complete'
+		}, function(rsp) {
+		    if ( rsp.success ) {
+		        var msg = '결제가 완료되었습니다.';
+		        msg += '고유ID : ' + rsp.imp_uid;
+		        msg += '상점 거래ID : ' + rsp.merchant_uid;
+		        msg += '결제 금액 : ' + rsp.paid_amount;
+		        msg += '카드 승인번호 : ' + rsp.apply_num;
+		    } else {
+		        var msg = '결제에 실패하였습니다.';
+		        msg += '에러내용 : ' + rsp.error_msg;
+		    }
+		    alert(msg);
+		});
+		}
+	</script>
 	<div class="colorlib-loader"></div>
 
 	<div id="page">
@@ -290,11 +348,11 @@
 												<div style="width:100%;height:50px;background-color:white">
 													&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox">
 													<label class="form-check-label" for="exampleCheck1">
-														<h4 style="font-size:10pt">1종보통</h4>
+														<h4 style="font-size:10pt">정기결제 (신용카드 등록 후 결제)</h4>
 													</label></br>
 													&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox">
 													<label class="form-check-label" for="exampleCheck1">
-														<h4 style="font-size:10pt">2종보통</h4>
+														<h4 style="font-size:10pt">신용카드/체크카드</h4>
 													</label>
 												</div>
 												</div></p>
@@ -420,7 +478,7 @@
 				<h4 style="font-size:14pt">결제진행약관에 모두 동의합니다.　　　　　　　　　　　</h4>
 			</label></br></br>
 		<!-- <input type="button" value="결제하기" class="btn btn-primary"> -->
-		<button type="button" class="btn btn-primary"><a href="end.do" style="color:white">결제하기</a></button>
+		<button type="button" class="btn btn-primary"><a style="color:white" onclick="check()">결제하기</a></button>
 		</div>
 		</div>
 	</div>
@@ -575,28 +633,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 		<a href="#" class="js-gotop"><i class="icon-arrow-up2"></i></a>
 	</div>
 
-	<!-- jQuery -->
-	<script src="resources/rentcar/js/jquery.min.js"></script>
-	<!-- jQuery Easing -->
-	<script src="resources/rentcar/js/jquery.easing.1.3.js"></script>
-	<!-- Bootstrap -->
-	<script src="resources/rentcar/js/bootstrap.min.js"></script>
-	<!-- Waypoints -->
-	<script src="resources/rentcar/js/jquery.waypoints.min.js"></script>
-	<!-- Flexslider -->
-	<script src="resources/rentcar/js/jquery.flexslider-min.js"></script>
-	<!-- Owl carousel -->
-	<script src="resources/rentcar/js/owl.carousel.min.js"></script>
-	<!-- Magnific Popup -->
-	<script src="resources/rentcar/js/jquery.magnific-popup.min.js"></script>
-	<script src="resources/rentcar/js/magnific-popup-options.js"></script>
-	<!-- Date Picker -->
-	<script src="resources/rentcar/js/bootstrap-datepicker.js"></script>
-	<!-- Stellar Parallax -->
-	<script src="resources/rentcar/js/jquery.stellar.min.js"></script>
-
-	<!-- Main -->
-	<script src="resources/rentcar/js/main.js"></script>
+	
 
 	</body>
 </html>

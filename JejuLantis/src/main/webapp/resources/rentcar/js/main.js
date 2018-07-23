@@ -280,9 +280,18 @@
 
 	var datePicker = function() {
 		// jQuery('#time').timepicker();
-		jQuery('.date').datepicker({
+		jQuery('.datein').datepicker({
 		  'format': 'yyyy-mm-dd',
-		  'autoclose': true
+		  'autoclose': true,
+		  'language': 'kr'
+		});
+	};
+	var datePicker = function() {
+		// jQuery('#time').timepicker();
+		jQuery('.dateout').datepicker({
+		  'format': 'yyyy-mm-dd',
+		  'autoclose': true,
+		  'language': 'kr'
 		});
 	};
 

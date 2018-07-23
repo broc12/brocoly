@@ -314,7 +314,7 @@
 				                    <label for="date">대여일</label>
 				                    <div class="form-field">
 				                      <i class="icon icon-calendar2"></i>
-				                      <input type="text" id="date1" name="Checkindate" class="form-control date" placeholder="Check-in date" value="${requirements.rent_reserve_startDate }"/>
+				                      <input type="text" id="date1" name="Checkindate" class="form-control indate" placeholder="Check-in date" value="${requirements.rent_reserve_startDate }"/>
 				                    </div>        
 				                  </div>
 				                </div>
@@ -359,7 +359,7 @@
 				                    <label for="date">반납일</label>
 				                    <div class="form-field">
 				                      <i class="icon icon-calendar2"></i>
-				                      <input type="text" id="date2" name="Checkoutdate" class="form-control date" placeholder="Check-out date" value="${requirements.rent_reserve_endDate }"/>
+				                      <input type="text" id="date2" name="Checkoutdate" class="form-control outdate" placeholder="Check-out date" value="${requirements.rent_reserve_endDate }"/>
 				                    </div>
 				                  </div>
 				                </div>

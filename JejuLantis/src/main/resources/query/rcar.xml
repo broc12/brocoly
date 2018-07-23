@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace = "query.rcar">
+
+<resultMap type="Rcar" id="RcarResult">
+	<result column="CAR_NAME" property="car_name"/>
+	<result column="CAR_MANUFACTURER" property="car_manufacturer"/>
+	<result column="CAR_TYPE" property="car_type"/>
+	<result column="CAR_PASSENGER" property="car_passenger"/>
+	<result column="CAR_FUEL" property="car_fuel"/>	
+	<result column="MTOT" property="mtot"/>
+	<result column="CN" property="cn"/>
+	<collection property="blist" javaType="java.util.ArrayList" resultMap="query.blist.BlistResult"/>
+</resultMap>
+
+<select id="currenttime" resultType="java.util.Date">
+SELECT SYSDATE FROM DUAL
+</select>
+
+<select id="nexttime" resultType="java.util.Date">
+SELECT (TRUNC(SYSDATE+1)+(8/24)) FROM DUAL
+</select>
+
+<select id="selectCarList" parameterType="SearchRequirements" resultMap="RcarResult">
+SELECT
+	CAR_NAME,
+	CAR_MANUFACTURER,
+	CAR_TYPE,
+	CAR_PASSENGER,
+	CAR_FUEL,
+	MTOT,
+	CN,
+	BRANCH_NAME,
+	CAR_KIND_PRICE_WEEK,
+	INSURANCE_PRICE,
+	TOT,
+	BRANCH_NO,
+	CAR_NO,
+	INSURANCE_NO,
+	CAR_KIND_NO,
+	CAR_KIND_NAVI,
+	CAR_KIND_SENSOR,
+	CAR_KIND_BLUETOOTH,
+	CAR_KIND_BLACKBOX,
+	CAR_KIND_SUNROOF,
+	CAR_KIND_CAMERA,
+	CAR_KIND_NONSMOKE
+FROM
+	CAR NATURAL JOIN(
+		SELECT
+			BRANCH_NO,
+			CAR_NO,
+			INSURANCE_NO,
+			CAR_KIND_NO,
+			CN,
+			BRANCH_NAME,
+			CAR_KIND_PRICE_WEEK,
+			INSURANCE_PRICE,
+			TOT,
+			MTOT,
+			CAR_KIND_NAVI,
+			CAR_KIND_SENSOR,
+			CAR_KIND_BLUETOOTH,
+			CAR_KIND_BLACKBOX,
+			CAR_KIND_SUNROOF,
+			CAR_KIND_CAMERA,
+			CAR_KIND_NONSMOKE
+		FROM
+			BRANCH NATURAL JOIN(
+				SELECT
+					BRANCH_NO,
+					CAR_NO,
+					INSURANCE_NO,
+					CAR_KIND_NO,
+					CN,
+					CAR_KIND_COUNT,
+					(CAR_KIND_PRICE_WEEK+INSURANCE_PRICE)AS TOT,
+					CAR_KIND_NAVI,
+					CAR_KIND_SENSOR,
+					CAR_KIND_BLUETOOTH,
+					CAR_KIND_BLACKBOX,
+					CAR_KIND_SUNROOF,
+					CAR_KIND_CAMERA,
+					CAR_KIND_NONSMOKE,
+					MIN(CAR_KIND_PRICE_WEEK+INSURANCE_PRICE) OVER(PARTITION BY CAR_NO) AS MTOT,
+					CAR_KIND_PRICE_WEEK,
+					INSURANCE_PRICE
+				FROM
+					INSURANCE NATURAL JOIN(
+						SELECT
+							BRANCH_NO,
+							CAR_NO,
+							INSURANCE_NO,
+							CAR_KIND_NO,
+							CN,
+							CAR_KIND_COUNT,
+							CAR_KIND_PRICE_WEEK,
+							CAR_KIND_NAVI,
+							CAR_KIND_SENSOR,
+							CAR_KIND_BLUETOOTH,
+							CAR_KIND_BLACKBOX,
+							CAR_KIND_SUNROOF,
+							CAR_KIND_CAMERA,
+							CAR_KIND_NONSMOKE
+						FROM
+							CAR_KIND NATURAL JOIN(
+								SELECT
+									BRANCH_NO,
+									CAR_NO,
+									INSURANCE_NO,
+									CAR_KIND_NO,
+									COUNT(CAR_INFO_NO)CN
+				                FROM
+				                    CAR_INFO
+				                WHERE NOT EXISTS(
+				                    SELECT
+				                        *
+									FROM
+										RENT_RESERV
+									WHERE
+										CAR_INFO.BRANCH_NO=RENT_RESERV.BRANCH_NO
+				                    AND
+										CAR_INFO.CAR_NO=RENT_RESERV.CAR_NO
+				                    AND
+										CAR_INFO.INSURANCE_NO=RENT_RESERV.INSURANCE_NO
+									AND
+										CAR_INFO.CAR_KIND_NO=RENT_RESERV.CAR_KIND_NO
+									AND
+										CAR_INFO.CAR_INFO_NO=RENT_RESERV.CAR_INFO_NO
+									AND
+										RENT_RESERV_END 
+										<![CDATA[
+										>
+										]]>
+										TO_DATE(#{rent_reserve_startDateTime},'yyyy-mm-dd hh24:mi')
+									AND
+										RENT_RESERV_START
+										<![CDATA[
+										<
+										]]>
+										TO_DATE(#{rent_reserve_endDateTime},'yyyy-mm-dd hh24:mi'))
+								AND
+									CAR_INFO_RENT_AT='y'
+								GROUP BY
+									BRANCH_NO,CAR_NO,INSURANCE_NO,CAR_KIND_NO
+							)
+						<where>
+							<if test="car_kind_navi != '' and car_kind_navi != null ">
+							CAR_KIND_NAVI=#{car_kind_navi}
+							</if>
+							<if test="car_kind_sensor != '' and car_kind_sensor != null ">
+							AND CAR_KIND_SENSOR=#{car_kind_sensor}
+							</if>
+							<if test="car_kind_blackbox != '' and car_kind_blackbox != null ">
+							AND CAR_KIND_BLACKBOX=#{car_kind_blackbox}
+							</if>
+							<if test="car_kind_bluetooth != '' and car_kind_bluetooth != null ">
+							AND CAR_KIND_BLUETOOTH=#{car_kind_bluetooth}
+							</if>
+							<if test="car_kind_sunroof != '' and car_kind_sunroof != null ">
+							AND CAR_KIND_SUNROOF=#{car_kind_sunroof}
+							</if>
+							<if test="car_kind_camera != '' and car_kind_camera != null ">
+							AND CAR_KIND_CAMERA=#{car_kind_camera}
+							</if>
+							<if test="car_kind_nonsmoke != '' and car_kind_nonsmoke != null ">
+							AND CAR_KIND_NONSMOKE=#{car_kind_nonsmoke}
+							</if>
+						</where>	
+					)
+				WHERE
+					INSURANCE_NAME='자차'
+				ORDER BY
+					MTOT,TOT
+			)
+	)
+<where>
+	<if test="car_name != '' and car_name != null ">
+		CAR_NAME=#{car_name}
+	</if>
+	<if test="car_type != null">
+		AND CAR_TYPE IN
+		<foreach item="item" index="index" collection="car_type" open="(" separator="," close=")">
+			#{item}
+		</foreach>
+	</if>
+ 	<if test="car_fuel != null">
+		AND CAR_FUEL IN
+		<foreach item="item" index="index" collection="car_fuel" open="(" separator="," close=")">
+			#{item}
+		</foreach>
+	</if>
+ 	<if test="car_manufacturer != null">
+		AND CAR_MANUFACTURER IN
+		<foreach item="item" index="index" collection="car_manufacturer" open="(" separator="," close=")">
+			#{item}
+		</foreach>
+	</if>
+
+</where>
+</select>
+	
+</mapper>

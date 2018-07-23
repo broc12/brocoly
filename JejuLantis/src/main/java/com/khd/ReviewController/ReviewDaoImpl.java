@@ -30,6 +30,10 @@ public class ReviewDaoImpl implements ReviewDao {
 		List<ReviewContent> reviewContent = sqlSession.selectList(ns_reviewContent+".reviewContent"); 
 		return reviewContent;		
 	}
+	public List<ReviewContent> reviewDetailContent(String rent_review_no){
+		List<ReviewContent> reviewDetailContent = sqlSession.selectList(ns_reviewContent+".reviewDetailContent", rent_review_no); 
+		return reviewDetailContent;		
+	}
 	@Override
 	public List<BranchName> select(String review_sel) {
 		System.out.println(review_sel);
@@ -37,6 +41,16 @@ public class ReviewDaoImpl implements ReviewDao {
 		m.put("review_sel", review_sel);
 		List<BranchName> branchName = sqlSession.selectList(ns_branchName+".branchNameSelect",m);
 		return branchName;
+	}
+	public List<BranchName> branchNameContent(String branch_no){
+		System.out.println(branch_no);
+		List<BranchName> branchNameContent = sqlSession.selectList(ns_branchName+".branchNameContent", branch_no);
+		return branchNameContent;
+	}
+	@Override
+	public List<BranchName> listSelect() {
+		List<BranchName> listSelect = sqlSession.selectList(ns_branchName+".adminBranchNameContent");
+		return listSelect;
 	}
 	
 }

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace = "query.blist">
+
+<resultMap type="Blist" id="BlistResult">
+	<result column="BRANCH_NAME" property="branch_name"/>
+	<result column="CAR_KIND_PRICE_WEEK" property="car_kind_price_week"/>
+	<result column="INSURANCE_PRICE" property="insurance_price"/>
+	<result column="TOT" property="tot"/>
+	<result column="BRANCH_NO" property="branch_no"/>
+	<result column="CAR_NO" property="car_no"/>
+	<result column="INSURANCE_NO" property="insurance_no"/>
+	<result column="CAR_KIND_NO" property="car_kind_no"/>
+	<result column="CAR_KIND_NAVI" property="car_kind_navi"/>
+	<result column="CAR_KIND_SENSOR" property="car_kind_sensor"/>
+	<result column="CAR_KIND_BLUETOOTH" property="car_kind_bluetooth"/>
+	<result column="CAR_KIND_BLACKBOX" property="car_kind_blackbox"/>
+	<result column="CAR_KIND_SUNROOF" property="car_kind_sunroof"/>
+	<result column="CAR_KIND_CAMERA" property="car_kind_camera"/>
+	<result column="CAR_KIND_NONSMOKE" property="car_kind_nonsmoke"/>
+</resultMap>
+</mapper>

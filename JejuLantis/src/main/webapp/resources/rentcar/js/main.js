@@ -281,11 +281,11 @@
 	var datePicker = function() {
 		// jQuery('#time').timepicker();
 		jQuery('.date').datepicker({
-		  'format': 'm/d/yyyy',
+		  'format': 'yyyy-mm-dd',
 		  'autoclose': true
 		});
 	};
-
+	
 	
 	$(function(){
 		mobileMenuOutsideClick();

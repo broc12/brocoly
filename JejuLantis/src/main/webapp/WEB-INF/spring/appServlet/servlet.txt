@@ -29,6 +29,8 @@
 	<context:component-scan base-package="com.khd.branch.controller" />
 	<context:component-scan base-package="com.khd.MemberController" />
 	<context:component-scan base-package="com.khd.Mypage.MypageController" />
+	<context:component-scan base-package="com.khd.branch.controller" />
+	<context:component-scan base-package="com.khd.carInfo.file.controller" />
 	
 	
 	

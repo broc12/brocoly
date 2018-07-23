@@ -5,6 +5,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,25 +48,24 @@ public class HomeController {
 		
 		return "rentcar/home";
 	}
-
-	@RequestMapping(value="car.do",method=RequestMethod.GET)
+/*	@RequestMapping(value="car.do",method=RequestMethod.GET)
 	public String car() {
 		return "rentcar/car";
-	}
-	// æ∆¿Ãµ √£±‚ ∆˚
+	}*/
+	// ÏïÑÏù¥Îîî Ï∞æÍ∏∞ Ìèº
 	@RequestMapping(value = "find_id_form.do",method=RequestMethod.GET)
 	public String find_id_form() {
 		return "rentcar/find_id_form";
 	}
-	// ∫Òπ–π¯»£√£±‚ ∆˚
-		@RequestMapping(value = "find_pwd_form.do",method=RequestMethod.GET)
-		public String find_pwd_form() {
-			return "rentcar/find_pwd_form";
-		}
-	@RequestMapping(value="rentcar.do",method=RequestMethod.GET)
+	// ÎπÑÎ∞ÄÎ≤àÌò∏Ï∞æÍ∏∞ Ìèº
+	@RequestMapping(value = "find_pwd_form.do",method=RequestMethod.GET)
+	public String find_pwd_form() {
+		return "rentcar/find_pwd_form";
+	}
+/*	@RequestMapping(value="rentcar.do",method=RequestMethod.GET)
 	public String rentcar() {
 		return "rentcar/rentcar";
-	}
+	}*/
 	@RequestMapping(value="member.do",method=RequestMethod.GET)
 	public String member() {
 		return "rentcar/member";
@@ -98,6 +99,7 @@ public class HomeController {
 	public String mypage() {
 		return "rentcar/mypage";
 	}*/
+
 	@RequestMapping(value="input.do",method=RequestMethod.GET)
 	public String input() {
 		return "rentcar/input";

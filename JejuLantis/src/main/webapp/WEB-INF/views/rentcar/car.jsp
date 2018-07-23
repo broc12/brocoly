@@ -408,7 +408,7 @@
 				                  </div>
 				                </div>
 				                <div class="col-md-12">
-				                  <input type="submit" name="submit" id="submit" value="차량검색" class="btn btn-primary btn-block">
+				                  <input type="button" onclick="search()" name="submit" id="submit" value="차량검색" class="btn btn-primary btn-block">
 				                </div>
 				              </div>
 				            </form>

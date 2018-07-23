@@ -91,14 +91,49 @@ $(document).ready(function(){
 	
 	jQuery('#date1').datepicker({
 		  format: 'yyyy-mm-dd',
-		  autoclose: true
+		  autoclose: true,
+		  startDate:"today"
 		});
-
+	$('#date1').on('changeDate', function() {
+	    $('#date2').val(
+	        $('#date1').datepicker('getFormattedDate')
+	    );
+	    var b = $('#date1').datepicker('getFormattedDate');
+	    var c = new Date(b);
+	    $('#date2').datepicker('setStartDate',c.getFullYear()+"-"+(c.getMonth()+1)+"-"+c.getDate());
+	    c.setDate(c.getDate()+7);
+	    $('#date2').datepicker('setEndDate',c);
+	});
 	jQuery('#date2').datepicker({
 		  format: 'yyyy-mm-dd',
 		  autoclose: true,
-		  startDate: function(){
-			  return "-Infinity";
-		  }
-		});
+		  startDate:"today"
+	});
+	$('#date2').on('changeDate', function() {
+		var a = new Date($('#date2').datepicker('getFormattedDate'));
+	    var b = new Date($('#date1').datepicker('getFormattedDate'));
+	    if(a<b){
+	    	$('#date1').val(
+	    	        $('#date2').datepicker('getFormattedDate')
+	    	    );
+	    }
+	});
 });
+function search(){
+	
+	var startT = new Date(document.getElementById("date1").value+" "+document.getElementById("Checkintime").value);
+	var endT = new Date(document.getElementById("date2").value+" "+document.getElementById("Checkouttime").value);
+	console.log(startT);
+	console.log(endT);
+	if(endT<startT){
+		alert("시간오류");
+		return false;
+	}
+	var g = endT-startT;
+	if((g/3600000)<24){
+		alert("최소시간 오류");
+	}
+	if((g/3600000)>180){
+		alert("최대시간 오류");
+	}
+}

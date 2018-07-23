@@ -18,36 +18,61 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarResponsive">
       <ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
-        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
           <a class="nav-link" href="index.do">
-            <!-- <i class="fa fa-fw fa-dashboard"></i> -->
             <span class="nav-link-text">메인</span>
           </a>
-        </li>
         <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Charts">
           <a class="nav-link" href="charts.do">
             <!-- <i class="fa fa-fw fa-area-chart"></i> -->
             <span class="nav-link-text">그래프</span>
           </a>
         </li>
-        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Tables">
+        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Charts">
+          <a class="nav-link" href="charts.do">
+            <!-- <i class="fa fa-fw fa-area-chart"></i> -->
+            <span class="nav-link-text">예약현황</span>
+          </a>
+        </li>
+        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Charts">
+          <a class="nav-link" href="charts.do">
+            <!-- <i class="fa fa-fw fa-area-chart"></i> -->
+            <span class="nav-link-text">ARS예약현황</span>
+          </a>
+        </li>
+        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Example Pages">
+          <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseExamplePages2" data-parent="#exampleAccordion">
+            <span class="nav-link-text">게시판관리</span>
+          </a>
+          <ul class="sidenav-second-level collapse" id="collapseExamplePages2">
+            <li>
+              <a href="tables.do">여행상담관리</a>
+            </li>
+            <li>
+              <a href="list.do">이용후기관리</a>
+            </li>
+            <li>
+              <a href="service.do">공지관리</a>
+            </li>
+          </ul>
+        </li>
+        <!-- <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Tables">
           <a class="nav-link" href="tables.do">
-            <!-- <i class="fa fa-fw fa-table"></i> -->
+            <i class="fa fa-fw fa-table"></i>
             <span class="nav-link-text">여행상담관리</span>
           </a>
         </li>
         <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Tables">
           <a class="nav-link" href="list.do">
-            <!-- <i class="fa fa-fw fa-table"></i> -->
+            <i class="fa fa-fw fa-table"></i>
             <span class="nav-link-text">이용후기관리</span>
           </a>
-        </li>
-        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Tables">
+        </li> -->
+        <!-- <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Tables">
           <a class="nav-link" href="service.do">
-            <!-- <i class="fa fa-fw fa-table"></i> -->
+            <i class="fa fa-fw fa-table"></i>
             <span class="nav-link-text">공지관리</span>
           </a>
-        </li>
+        </li> -->
         <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Tables">
           <a class="nav-link" href="member.do">
             <!-- <i class="fa fa-fw fa-table"></i> -->
@@ -66,44 +91,87 @@
             <span class="nav-link-text">업체관리</span>
           </a>
         </li>
-        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Tables">
-          <a class="nav-link" href="">
-            <!-- <i class="fa fa-fw fa-table"></i> -->
+        <!-- <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Tables">
+          <a class="nav-link" href="carlist.do">
+            <i class="fa fa-fw fa-table"></i>
             <span class="nav-link-text">차종관리</span>
           </a>
+        </li>
         <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Tables">
-          <a class="nav-link" href="carDetail.do">
-            <!-- <i class="fa fa-fw fa-table"></i> -->
+          <a class="nav-link" href="">
+            <i class="fa fa-fw fa-table"></i>
             <span class="nav-link-text">차종상세관리</span>
           </a>
+        </li> -->
+        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Example Pages">
+          <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseExamplePages" data-parent="#exampleAccordion">
+            <span class="nav-link-text">차종관리</span>
+          </a>
+          <ul class="sidenav-second-level collapse" id="collapseExamplePages">
+            <li>
+              <a href="carlist.do">차종관리</a>
+            </li>
+            <li>
+              <a href="">차종상세관리</a>
+            </li>
+          </ul>
         </li>
-        </li><li class="nav-item" data-toggle="tooltip" data-placement="right" title="Tables">
-          <a class="nav-link" href="carInfo.do">
+        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Tables">
+          <a class="nav-link" href="">
             <!-- <i class="fa fa-fw fa-table"></i> -->
             <span class="nav-link-text">차량관리</span>
           </a>
         </li>
-        
+         </li><li class="nav-item" data-toggle="tooltip" data-placement="right" title="Tables">
+          <a class="nav-link" href="">
+            <!-- <i class="fa fa-fw fa-table"></i> -->
+            <span class="nav-link-text">결제현황</span>
+          </a>
+        </li>
+        </li><li class="nav-item" data-toggle="tooltip" data-placement="right" title="Tables">
+          <a class="nav-link" href="payment.do">
+            <!-- <i class="fa fa-fw fa-table"></i> -->
+            <span class="nav-link-text">매출현황관리</span>
+          </a>
+        </li>
+        </li><li class="nav-item" data-toggle="tooltip" data-placement="right" title="Tables">
+          <a class="nav-link" href="">
+            <!-- <i class="fa fa-fw fa-table"></i> -->
+            <span class="nav-link-text">배너관리</span>
+          </a>
+        </li>
+        </li><li class="nav-item" data-toggle="tooltip" data-placement="right" title="Tables">
+          <a class="nav-link" href="">
+            <!-- <i class="fa fa-fw fa-table"></i> -->
+            <span class="nav-link-text">쿠폰관리</span>
+          </a>
+        </li>
+        </li><li class="nav-item" data-toggle="tooltip" data-placement="right" title="Tables">
+          <a class="nav-link" href="">
+            <!-- <i class="fa fa-fw fa-table"></i> -->
+            <span class="nav-link-text">SMS관리</span>
+          </a>
+        </li></li><li class="nav-item" data-toggle="tooltip" data-placement="right" title="Tables">
+          <a class="nav-link" href="">
+            <!-- <i class="fa fa-fw fa-table"></i> -->
+            <span class="nav-link-text">보험관리</span>
+          </a>
+        </li>
+  <!--       
         <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Example Pages">
           <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseExamplePages" data-parent="#exampleAccordion">
             <i class="fa fa-fw fa-file"></i>
-            <span class="nav-link-text">Example Pages</span>
+            <span class="nav-link-text">차종</span>
           </a>
           <ul class="sidenav-second-level collapse" id="collapseExamplePages">
             <li>
-              <a href="login.do">Login Page</a>
+              <a href="carlist.do">차종관리</a>
             </li>
             <li>
-              <a href="register.do">Registration Page</a>
-            </li>
-            <li>
-              <a href="forgot-password.do">Forgot Password Page</a>
-            </li>
-            <li>
-              <a href="blank.do">Blank Page</a>
+              <a href="">차종상세관리</a>
             </li>
           </ul>
-        </li>
+        </li> -->
         
         
       </ul>

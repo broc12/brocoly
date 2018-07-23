@@ -19,6 +19,7 @@
 		<typeAlias alias="BranchNameSelect" type="com.khd.ReviewController.BranchName"/>
 		<typeAlias alias="Manager" type="com.khd.admin.ManagerModel.Manager"/>
 		<typeAlias alias="Carkind" type="com.khd.CarkindController.Carkind"/>
+		<typeAlias alias="Car" type="com.khd.car.Car"/>
 	</typeAliases>
 	<mappers>
 		<mapper resource="query/query.xml"/>
@@ -36,6 +37,7 @@
 		<mapper resource="query/ReviewContent.xml"/>
 		<mapper resource="query/BranchName.xml"/>
 		<mapper resource="query/Carkind.xml"/>
+		<mapper resource="query/car.xml"/>
 	</mappers>
 	
 	

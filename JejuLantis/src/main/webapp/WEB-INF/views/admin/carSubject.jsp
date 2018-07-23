@@ -32,28 +32,26 @@
     <!-- Custom scripts for this page-->
     <script src="../resources/admin/js/sb-admin-datatables.min.js"></script>
     <script src="../resources/ck/ckeditor/ckeditor.js"></script>
+    <!-- 체크박스-->
+
 </head>
 
 <body class="fixed-nav sticky-footer bg-dark" id="page-top">
 <%@ include file="./top/top2.jspf" %>
   <!-- Navigation-->
-	<script>
-	function check(){
+  <script>
+	function goDel(){
 		
-		var isChecked = "";
-  	  
-    	if($("input:checkbox[id='topYn']").is(":checked")){	// 쳬크 되어있으면
-    		isChecked = "Y"
-    	} else {
-    		isChecked = "N"
-    	}
+		var carNo = jQuery("#car_no").val();
+		var fname = jQuery("#fileName").val();
 		
-    	jQuery("#announce_top").val(isChecked);
-    	
-    	document.f.submit();
-    	
+		if (confirm("정말 삭제하시겠습니까??"+carNo+fname) == true){    //확인
+			location.href="cardel.do?car_no="+carNo+"&car_image="+fname;
+		}else{   //취소
+		    return;
+		}
 	}
-      </script>
+	</script>
   <div class="content-wrapper">
     <div class="container-fluid">
       <!-- Breadcrumbs-->
@@ -61,48 +59,87 @@
         <li class="breadcrumb-item">
           <a href="#">JEJULANTIS</a>
         </li>
-        <li class="breadcrumb-item active">공지사항관리</li>
+        <li class="breadcrumb-item active">차종관리</li>
       </ol>
       <!-- Example DataTables Card-->
       <div class="card mb-3">
         <div class="card-header">
-          <i class="fa fa-table"></i>공지</div>
+          <i class="fa fa-table"></i>차종관리</div>
         <div class="card-body">
           <div class="table-responsive">
-          <form name="f" action="modify.do" method="post">
-          	<input type="hidden" name="announce_top" id="announce_top"/>
-          <c:forEach items="${update}" var="update">
+       	
+          	<c:forEach items="${subject}" var="subject">
             <table border="0" width="100%"  cellpadding="0" cellspacing="0">
-				<h3 style="color:#007bff">공지수정</h3>	
+      		<%-- <input type="hidden" id="${subject.car_no}" name="car_no"> --%>
 				<tr style="color:#808080;font-size:12pt">			
-					<th  height="60px" width="10%" class="text-center" style="background-color: #fafafa">제목</th>
+					<th  height="60px" width="10%" class="text-center" style="background-color: #fafafa">차종코드</th>
 					<th  width="35%" class="text-left">
-						<input name="announce_title"type="text" size="80" value='${update.announce_title}'>
-						<input type="hidden" value='${update.announce_no}' name="announce_no">
+						<a>${subject.car_no}</a>
+					</th>
+					<th  height="60px" width="10%" class="text-center" style="background-color: #fafafa">대여횟수</th>
+					<th  width="35%" class="text-left">
+						<a>${subject.car_count}</a>
 					</th>
 				</tr>
-				<tr style="font-size:10pt" height="60px">
-					<td height="100px" align="center" style="background-color: #fafafa">내용</td>
-					<td align="left">
-						<textarea  class="ckeditor" rows="8" cols="110" name="announce_content" >${update.announce_content}</textarea>
-					</td>
+				<tr style="color:#808080;font-size:12pt">			
+					<th  height="60px" width="10%" class="text-center" style="background-color: #fafafa">차종명</th>
+					<th  width="35%" class="text-left">
+						<a>${subject.car_name}</a>
+					</th>
+					<th  height="60px" width="10%" class="text-center" style="background-color: #fafafa">제조사</th>
+					<th  width="35%" class="text-left">
+						<a>${subject.car_manufacturer}</a>
+					</th>
 				</tr>
-				<tr style="font-size:10pt" height="60px">
-					<td align="center" style="background-color: #fafafa">중요</td>
-					<td align="left">
-						&nbsp;&nbsp;&nbsp;<input type="checkbox" name="topYn" <c:if test="${update.announce_top eq 'Y' }">checked</c:if>>
-					</td>
+				<tr style="color:#808080;font-size:12pt">			
+					<th  height="60px" width="10%" class="text-center" style="background-color: #fafafa">연료타입</th>
+					<th  width="35%" class="text-left">
+						<a>${subject.car_fuel}</a>
+					</th>
+					<th  height="60px" width="10%" class="text-center" style="background-color: #fafafa">승차인원</th>
+					<th  width="35%" class="text-left">
+						<a>${subject.car_passenger}</a>
+					</th>
 				</tr>
+				<tr style="color:#808080;font-size:12pt">			
+					<th  height="60px" width="10%" class="text-center" style="background-color: #fafafa">차종타입</th>
+					<th  width="35%" class="text-left">
+						<a>${subject.car_type}</a>
+					</th>
+					<th  height="60px" width="10%" class="text-center" style="background-color: #fafafa">차종이미지</th>
+					<th  width="35%" class="text-left">
+						<a>${subject.car_image}</a>		
+					</th>
+				</tr>
+				<tr style="color:#808080;font-size:12pt">			
+					<th  height="60px" width="10%" class="text-center" style="background-color: #fafafa">변속기타입</th>
+					<th  width="35%" class="text-left">
+					<a>${subject.car_trans}</a>
+					</th>
+					<th  height="60px" width="10%" class="text-center" style="background-color: #fafafa">등록날짜</th>
+					<th  width="35%" class="text-left">
+						<a>${subject.car_resist}</a>		
+					</th>
+				</tr>
+				
 				<tr style="font-size:10pt" height="60px">
 					<td align="center"></td>
 					<td align="right">
-						<button type="button" class="btn btn-primary"><a href="service.do" style="color:white">목록</a></button>
-						<button type="submit" class="btn btn-primary" onclick="check()">수정완료</button>
+					</td>
+					<td align="center"></td>
+					<td align="right">
+						<button type="button" class="btn btn-primary"><a href="carlist.do" style="color:white">목록</a></button>
+						<button type="button" class="btn btn-primary"><a style="color:white" href="carModify.do?car_no=${subject.car_no}">수정</a></button>
+						<button type="button" class="btn btn-primary">
+						<input type="hidden" id="car_no" name="car_no" value="${subject.car_no}"/>
+						<input type="hidden" id="fileName" name="fileName" value="${subject.car_image}"/>
+						<a style="color:white" href="javascript:goDel();">삭제</avv>
+						</button>
 					</td>
 				</tr>
 			</table>
 			</c:forEach>
-			</form>
+			
           </div>
         </div>
         <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
@@ -140,13 +177,7 @@
       </div>
     </div>
     <!-- Bootstrap core JavaScript-->
-   <script>
-    CKEDITOR.replace('announce_content',{
-            /* toolbar: 'Full',
-            uiColor: '#9AB8F3', */
-        }
-    );
-</script>
+
   </div>
 </body>
 

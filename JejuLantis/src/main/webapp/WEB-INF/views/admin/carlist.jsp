@@ -2,7 +2,7 @@
 <%@ page session="false" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@page import="com.khd.notice.Notice"%>
+<%@page import="com.khd.car.Car"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -42,8 +42,8 @@
 
 	<script>
 	function goDel (v){
-		if (confirm("정말 삭제하시겠습니까??"+v) == true){    //확인
-			location.href="noticedel.do?announce_no="+v;
+		if (confirm("정말 삭제하시겠습니까??") == true){    //확인
+			location.href="del.do?car_no=" +v;
 		}else{   //취소
 		    return;
 		}
@@ -59,7 +59,7 @@
 	
 	function goDelModal(){
 		var anno = jQuery("#hiddenValue").val();
-		location.href="del.do?announce_no=" +anno;
+		location.href="del.do?announ_no=" +anno;
 	} */
 	</script>
   <div class="content-wrapper">
@@ -69,48 +69,47 @@
         <li class="breadcrumb-item">
           <a href="#">JEJULANTIS</a>
         </li>
-        <li class="breadcrumb-item active">공지관리</li>
+        <li class="breadcrumb-item active">차종관리</li>
       </ol>
       <!-- Example DataTables Card-->
       <div class="card mb-3">
         <div class="card-header">
-          <i class="fa fa-table"></i>공지목록</div>
+          <i class="fa fa-table"></i>차종목록</div>
         <div class="card-body">
-        <button type="button" class="btn btn-primary btn-xs" align="right"><a href="notice.do" style="color:white">공지쓰기</a></button></br></br>
+        <button type="button" class="btn btn-primary btn-xs" align="right"><a href="caradd.do" style="color:white">차종등록</a></button></br></br>
           <div class="table-responsive">
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
               <thead>
                 <tr>
-                <th>중요도</th>
-                  <th>번호</th>
-                  <th>제목</th>
-                  <th>등록일</th>
-                  <th>조회수</th>
-                  <th>
-                  </th>
+                <th>차일련번호</th>
+                  <th>차종명</th>
+                  <th>제조사</th>
+                  <th>연료타입</th>
+                  <th>차종타입</th>
+                  <th>승차인원</th>
+                  <th>변속기타입</th>
+                  <th>대여횟수</th>
+                  <th>등록날짜</th>
                 </tr>
-               	<c:if test="${empty totallist}">
+               <c:if test="${empty list}">
 					<tr>
-			           <td align="center" colspan="6">데이터가 없음</td>
+			           <td align="center" colspan="10">데이터가 없음</td>
 			        </tr>
 				</c:if>
               </thead>
 
               <tbody>
-              <c:forEach items="${totallist}" var="notice">
+             <c:forEach items="${list}" var="list">
                 <tr>
-                <td>${notice.announce_top}</td>
-                  <td>${notice.announce_no}</td>
-                  <td>${notice.announce_title}</td>
-                  <td>${notice.announce_resist}</td>
-                  <td>${notice.announce_hits}</td>
-                  <td>
-                  	<button type="button" class="btn btn-defalut btn-sm"><a href="noticeModify.do?announce_no=${notice.announce_no}">수정</a></button>
-                  	<button type="button" class="btn btn-defalut btn-sm">
-                  	<a href="javascript:goDel(${notice.announce_no});">삭제</a>
-                  	<%-- <a data-toggle="modal" data-target="#exampleModal2" class="identifyingClass" data-id="${notice.announce_no}">삭제</a> --%>
-                  	</button>
-                  </td>
+                <td><a href="carSubject.do?car_no=${list.car_no}">${list.car_no}</a></td>
+                  <td>${list.car_name}</td>
+                  <td>${list.car_manufacturer}</td>
+                  <td>${list.car_fuel}</td>
+                  <td>${list.car_type}</td>
+                  <td>${list.car_passenger}</td>
+                  <td>${list.car_trans}</td>
+                  <td>${list.car_count}</td>
+                  <td>${list.car_resist}</td>
                 </tr>
                 </c:forEach>
               </tbody>

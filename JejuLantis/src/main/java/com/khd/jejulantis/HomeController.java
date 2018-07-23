@@ -28,8 +28,7 @@ import com.khd.notice.NoticeService;
 @Controller
 public class HomeController {
 	
-	@Autowired
-	private NoticeService service;
+
 	@Autowired
 	private ReviewService reviewService;
 	
@@ -52,12 +51,12 @@ public class HomeController {
 	public String car() {
 		return "rentcar/car";
 	}*/
-	// 아이디 찾기 폼
+	//
 	@RequestMapping(value = "find_id_form.do",method=RequestMethod.GET)
 	public String find_id_form() {
 		return "rentcar/find_id_form";
 	}
-	// 비밀번호찾기 폼
+	// 
 	@RequestMapping(value = "find_pwd_form.do",method=RequestMethod.GET)
 	public String find_pwd_form() {
 		return "rentcar/find_pwd_form";
@@ -86,15 +85,7 @@ public class HomeController {
 		ModelAndView mv = new ModelAndView(view, "branch", branch);
 		return mv;
 	}
-	@RequestMapping(value="service.do",method=RequestMethod.GET)
-	public ModelAndView service() {
-		List<Notice>list = service.listService();
-		List<Notice>toplist = service.toplistService();
-		String view = "rentcar/service";
-		ModelAndView mv = new ModelAndView(view,"list",list);
-		mv.addObject("toplist", toplist);
-		return mv;
-	}/*
+/*
 	@RequestMapping(value="mypage.do",method=RequestMethod.GET)
 	public String mypage() {
 		return "rentcar/mypage";
@@ -128,11 +119,5 @@ public class HomeController {
 	public String helpContent() {
 		return "rentcar/helpContent";
 	}*/
-	@RequestMapping(value="serviceContent.do")
-	public ModelAndView serviceContent(@RequestParam("announ_no")String announ_no) {
-		List<Notice>subject = service.subjectService(announ_no);
-		String view = "rentcar/serviceContent";
-		ModelAndView mv = new ModelAndView(view,"subject",subject);
-		return mv;
-	}
+
 }

@@ -14,14 +14,11 @@ import com.khd.CarkindController.Carkind;
 import com.khd.CarkindController.CarkindService;
 import com.khd.ReviewController.ReviewContent;
 import com.khd.ReviewController.ReviewService;
-import com.khd.notice.Notice;
-import com.khd.notice.NoticeService;
+
 
 @Controller
 public class AdminController {
 	
-	@Autowired
-	private NoticeService service;
 	@Autowired
 	private ReviewService rservice;
 	@Autowired
@@ -74,51 +71,16 @@ public class AdminController {
 	public String member() {
 		return "admin/member";
 	}
+	@RequestMapping(value="admin/payment.do",method=RequestMethod.GET)
+	public String payment() {
+		return "admin/payment";
+	}
 
 	@RequestMapping(value="admin/admin.do",method=RequestMethod.GET)
 	public String admin() {
 		return "admin/admin";
 	}
-	@RequestMapping(value="admin/service.do",method=RequestMethod.GET)
-	public ModelAndView service() {
-		List<Notice>totallist = service.totallistService();
-		String view = "admin/service";
-		ModelAndView mv = new ModelAndView(view,"totallist",totallist);
-		return mv;	
-	}
-
-	@RequestMapping(value="admin/notice.do",method=RequestMethod.GET)
-	public String notice() {
-		return "admin/notice";
-	}
-	@RequestMapping("admin/noticeModify.do")
-	public ModelAndView noticeModify(@RequestParam("announ_no")String announ_no) {
-		List<Notice>update = service.updateService(announ_no);
-		String view = "admin/noticeModify";
-		ModelAndView mv = new ModelAndView(view,"update",update);
-		return mv;
-	}
 	
-	@RequestMapping(value="admin/modify.do",method=RequestMethod.POST)
-	public String modify(Notice notice) {
-		service.modifyService(notice);
-		return "redirect:service.do";
-	}
-	
-	@RequestMapping("admin/del.do")
-	public String delete(@RequestParam("announ_no")String announ_no) {
-		service.deleteService(announ_no);
-		return "redirect:service.do";
-	}
-	
-	@RequestMapping(value="admin/write.do",method=RequestMethod.POST)
-	public String insert(@RequestParam("announ_title")String announ_title,@RequestParam("announ_content")String announ_content,
-			@RequestParam(value="announ_top",required=false)String announ_top) {
-		Notice notice = new Notice(null,announ_title,announ_content,null,1,null,announ_top);
-		service.insertService(notice);
-		return "redirect:service.do";
-	}
-
 	@RequestMapping(value="admin/rdel.do")
 	public String rDelete(@RequestParam("rent_review_no")String rent_review_no) {
 		rservice.deleteService(rent_review_no);

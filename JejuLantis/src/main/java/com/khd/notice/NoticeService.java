@@ -11,13 +11,13 @@ public interface NoticeService {
 	
 	List<Notice>totallistService();
 	
-	void deleteService(String announ_no);
+	void deleteService(long announce_no);
 	
 	void insertService(Notice notice);
 	
-	List<Notice>subjectService(String announ_no);
+	List<Notice>subjectService(long announce_no);
 	
-	List<Notice>updateService(String announ_no);
+	List<Notice>updateService(long announce_no);
 	
 	void modifyService(Notice notice);
 	

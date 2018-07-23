@@ -125,9 +125,9 @@
 													<c:forEach items="${toplist}" var="topnotice">
 													<tr style="font-size:10pt;background-color:#fafafa" height="60px">
 														<td align="center" style="color:red">중요</td>
-														<td align="center"><a href="serviceContent.do?announ_no=${topnotice.announ_no}" style="color:black">${topnotice.announ_title}</a></td>
-														<td align="center">${topnotice.announ_resist}</td>
-														<td align="center">${topnotice.announ_count}</td>
+														<td align="center"><a href="serviceContent.do?announce_no=${topnotice.announce_no}" style="color:black">${topnotice.announce_title}</a></td>
+														<td align="center">${topnotice.announce_resist}</td>
+														<td align="center">${topnotice.announce_hits}</td>
 													</tr>
 													</c:forEach>
 													<c:if test="${empty list}">
@@ -137,10 +137,10 @@
 													</c:if>
 													<c:forEach items="${list}" var="notice">
 													<tr style="font-size:10pt" height="60px">
-														<td align="center">${notice.announ_no}</td>
-														<td align="center"><a href="serviceContent.do?announ_no=${notice.announ_no}" style="color:black">${notice.announ_title}</a></td>
-														<td align="center">${notice.announ_resist}</td>
-														<td align="center">${notice.announ_count}</td>
+														<td align="center">${notice.announce_no}</td>
+														<td align="center"><a href="serviceContent.do?announce_no=${notice.announce_no}" style="color:black">${notice.announce_title}</a></td>
+														<td align="center">${notice.announce_resist}</td>
+														<td align="center">${notice.announce_hits}</td>
 													</tr>
 													</c:forEach>
 												</table>

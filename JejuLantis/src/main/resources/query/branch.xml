@@ -3,7 +3,7 @@
 <mapper namespace = "query.branch">
 
 <resultMap type="Branch" id="branchResult">
-	<result column="BRANCH_LINE_NO" property="branch_line_no"/>
+	<result column="BRANCH_NO" property="branch_no"/>
 	<result column="BRANCH_NAME" property="branch_name"/>
 	<result column="BRANCE_TEL" property="branch_tel"/>
 	<result column="BRANCH_LOCAL" property="branch_local"/>

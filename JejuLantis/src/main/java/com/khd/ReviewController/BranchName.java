@@ -6,16 +6,16 @@ import java.util.List;
 public class BranchName {
 
 	private String review_sel;
-	private String branch_line_no;
+	private String branch_no;
 	private String branch_name;
 	private List reviewList;
 	private List reviewCount;
 	public BranchName(){}
 	
-	public BranchName(String review_sel, String branch_line_no, String branch_name, List reviewList, List reviewCount) {
+	public BranchName(String review_sel, String branch_no, String branch_name, List reviewList, List reviewCount) {
 		super();
 		this.review_sel = review_sel;
-		this.branch_line_no = branch_line_no;
+		this.branch_no = branch_no;
 		this.branch_name = branch_name;
 		this.reviewList = reviewList;
 		this.reviewCount = reviewCount;
@@ -27,11 +27,11 @@ public class BranchName {
 	public void setReview_sel(String review_sel) {
 		this.review_sel = review_sel;
 	}
-	public String getBranch_line_no() {
-		return branch_line_no;
+	public String getBranch_no() {
+		return branch_no;
 	}
-	public void setBranch_line_no(String branch_line_no) {
-		this.branch_line_no = branch_line_no;
+	public void setBranch_no(String branch_no) {
+		this.branch_no = branch_no;
 	}
 	public String getBranch_name() {
 		return branch_name;

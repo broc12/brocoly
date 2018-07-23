@@ -4,7 +4,7 @@
 
 <resultMap type="Rcar" id="RcarResult">
 	<result column="CAR_NAME" property="car_name"/>
-	<result column="CAR_MANUFACTUR" property="car_manufactur"/>
+	<result column="CAR_MANUFACTURER" property="car_manufacturer"/>
 	<result column="CAR_TYPE" property="car_type"/>
 	<result column="CAR_PASSENGER" property="car_passenger"/>
 	<result column="CAR_FUEL" property="car_fuel"/>	
@@ -24,7 +24,7 @@ SELECT (TRUNC(SYSDATE+1)+(8/24)) FROM DUAL
 <select id="selectCarList" parameterType="SearchRequirements" resultMap="RcarResult">
 SELECT
 	CAR_NAME,
-	CAR_MANUFACTUR,
+	CAR_MANUFACTURER,
 	CAR_TYPE,
 	CAR_PASSENGER,
 	CAR_FUEL,
@@ -190,9 +190,9 @@ FROM
 			#{item}
 		</foreach>
 	</if>
- 	<if test="car_manufacture != null">
+ 	<if test="car_manufacturer != null">
 		AND CAR_MANUFACTUR IN
-		<foreach item="item" index="index" collection="car_manufacture" open="(" separator="," close=")">
+		<foreach item="item" index="index" collection="car_manufacturer" open="(" separator="," close=")">
 			#{item}
 		</foreach>
 	</if>

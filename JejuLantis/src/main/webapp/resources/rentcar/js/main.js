@@ -278,22 +278,22 @@
 		}
 	};
 
-	var datePicker = function() {
+/*	var datePickerin = function() {
 		// jQuery('#time').timepicker();
-		jQuery('.datein').datepicker({
+		jQuery('#date1').datepicker({
 		  'format': 'yyyy-mm-dd',
 		  'autoclose': true,
-		  'language': 'kr'
 		});
 	};
-	var datePicker = function() {
+
+	var datePickerout = function() {
 		// jQuery('#time').timepicker();
-		jQuery('.dateout').datepicker({
+		console.log("ss");
+		jQuery('#date2').datepicker({
 		  'format': 'yyyy-mm-dd',
 		  'autoclose': true,
-		  'language': 'kr'
 		});
-	};
+	};*/
 
 	
 	$(function(){
@@ -307,7 +307,8 @@
 		loaderPage();
 		owlCrouselFeatureSlide();
 		parallax();
-		datePicker();
+		/*datePickerin();
+		datePickerout();*/
 	});
 
 

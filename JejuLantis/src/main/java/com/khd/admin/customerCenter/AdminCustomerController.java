@@ -9,8 +9,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.khd.ReviewController.ReviewContent;
-import com.khd.ReviewController.ReviewService;
 import com.khd.notice.Notice;
 import com.khd.notice.NoticeService;
 import com.khd.customerCenterService.CustomerCenterService;

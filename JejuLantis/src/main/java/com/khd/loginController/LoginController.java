@@ -39,7 +39,7 @@ public class LoginController {
 			Member Info = null;
 			if (loginDAO.loginCheck(member)) {
 				session.setAttribute("login", 0);	
-				Info = new Member(member.getId());
+				Info = new Member(member.getMember_id());
 				session.setAttribute("log", Info);
 				Member log = (Member)session.getAttribute("log");
 				out.println("<script>location.href='../'; </script>");

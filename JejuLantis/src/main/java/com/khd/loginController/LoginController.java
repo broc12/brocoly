@@ -38,7 +38,7 @@ public class LoginController {
 				&& !member.getPwd().equals(""))) {
 			Member Info = null;
 			if (loginDAO.loginCheck(member)) {
-				session.setAttribute("login", 0); // 로그인 성공시 세션			
+				session.setAttribute("login", 0);	
 				Info = new Member(member.getId());
 				session.setAttribute("log", Info);
 				Member log = (Member)session.getAttribute("log");
@@ -47,7 +47,7 @@ public class LoginController {
 				out.close();
 			}
 			if (loginDAO.loginCheck(member) == false) {
-				out.println("<script>alert('로그인 정보를 확인하세요!'); history.go(-1); </script>");
+				out.println("<script>alert(''); history.go(-1); </script>");
 				out.flush();
 				out.close();
 			}
@@ -59,7 +59,7 @@ public class LoginController {
 		
 		String page = "redirect:/";
 		session.removeAttribute("log");
-//		System.out.println("성공5");
+//		System.out.println("");
 //		System.out.println( "page :" + page);
 		mv.setViewName(page);
 //		System.out.println("mv :" + mv);
@@ -68,7 +68,7 @@ public class LoginController {
 
 //	@RequestMapping("mypage.do")
 //    public String memberView(Member member, Model model){
-//        // 회원 정보를 model에 저장
+//        // 
 //       model.addAttribute("dto", MemberService.viewMember(member));
 //        
 //        return "member/member_view";
@@ -76,7 +76,7 @@ public class LoginController {
 //	
 //	@RequestMapping(value="mypage.do",method=RequestMethod.GET)
 //	public String mypage() {	
-//		System.out.println("----- 지나감");
+//		System.out.println("----- ");
 //		return "rentcar/mypage";
 //	}
 //	@RequestMapping(value = "/membersmodify.do" )		
@@ -100,7 +100,7 @@ public class LoginController {
 //    @RequestMapping(value="/login/mypage", method=RequestMethod.POST)
 //    public String editAccount(Member member, HttpSession session) throws Exception {
 //    	Member loginUser = (Member) session.getAttribute("log");
-//        String id = loginUser.getId(); //세션에 저장된 사용자 정보로부터 id을 알아낸다.
+//        String id = loginUser.getId(); //
 //       
 //        if (member.getName() == null) {
 //        	member.setName(loginUser.getName());

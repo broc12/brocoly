@@ -107,14 +107,14 @@
 													<p align="">
 													<div class="row form-group">
 														<div style="width: 60%">
-															<input type="text" id="fname" name="id"
+															<input type="text" id="fname" name="member_id"
 																class="form-control" placeholder="아이디">
 														</div>
 													</div>
 													</p>
 												</div>
 												<div style="width: 60%">
-													<input type="password" id="fname" name="pwd"
+													<input type="password" id="fname" name="member_pwd"
 														class="form-control" placeholder="비밀번호"></br>
 													<p align="right">
 														<a href="<%=request.getContextPath()%>/find_id_form.do">아이디찾기</a> ｜ <a href="<%=request.getContextPath()%>/find_pwd_form.do">비밀번호찾기</a>

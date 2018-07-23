@@ -4,6 +4,7 @@
 
 <resultMap type="Manager" id="ManagerResult">
 	<result column="MANAGER_NO" property="manager_no"/>
+	<result column="BRANCH_NO" property="branch_no"/>
 	<result column="MANAGER_ID" property="manager_id"/>
 	<result column="MANAGER_PWD" property="manager_pwd"/>
 	<result column="MANAGER_NAME" property="manager_name"/>
@@ -13,11 +14,11 @@
 	<result column="MANAGER_TEL2" property="manager_tel2"/>
 	<result column="MANAGER_WITHDRAW_AT" property="manager_withdraw_at"/>
 	<result column="MANAGER_RESIST_MEMBER" property="manager_resist_member"/>
-	<result column="MAIN" property="main"/>
-	<result column="CHART" property="chart"/>
+	<result column="MANAGER_MAIN " property="manager_main"/>
+	<result column="MANAGER_CHART " property="manager_chart"/>
 	<result column="MANAGER_RESERVSTATUS" property="manager_reservstatus"/>
-	<result column="ARS_RESERV" property="ars_reserv"/>
-	<result column="TRAVELMANAGEMENTv" property="travelmanagementv"/>
+	<result column="MANAGER_ARS_RESERV" property="manager_ars_reserv"/>
+	<result column="MANAGER_TRAVELMANAGEMENT" property="manager_travelmanagement"/>
 	<result column="MANAGER_REVIEW" property="manager_review"/>
 	<result column="MANAGER_NOTICE" property="manager_notice"/>
 	<result column="MANAGER_USER" property="manager_user"/>
@@ -28,15 +29,16 @@
 	<result column="MANAGER_CARINFO" property="manager_carinfo"/>
 	<result column="MANAGER_PAYSTATUS" property="manager_paystatus"/>
 	<result column="MANAGER_SALESTATUS" property="manager_salestatus"/>
-	<result column="BANNER" property="banner"/>
-	<result column="COUPON" property="coupon"/>
-	<result column="SMS" property="sms"/>
-	<result column="MANAGER_INSURANCE" property="manager_insurance"/>	
+	<result column="MANAGER_BANNER" property="manager_banner"/>
+	<result column="MANAGER_COUPON" property="manager_coupon"/>
+	<result column="MANAGER_SMS" property="manager_sms"/>
+	<result column="MANAGER_INSURANCE" property="manager_insurance"/>
+	<result column="MANAGER_RESIST_MEMBER" property="manager_resist_member"/>	
 </resultMap>
 <insert id="managerresist" parameterType="Manager">
 	insert into Manager values (Manager_seq.nextval,#{manager_id},#{manager_pwd},#{manager_name},#{manager_email},
 	#{manager_birth},#{manager_tel1},#{manager_tel2},#{manager_withdraw_at},SYSDATE,
-	'n','n','n','n','n','n','n','n','n','n','n','n','n','n','n','n','n','n','n')
+	'n','n','n','n','n','n','n','n','n','n','n','n','n','n','n','n','n','n','n','n')
 </insert>
 
 </mapper>

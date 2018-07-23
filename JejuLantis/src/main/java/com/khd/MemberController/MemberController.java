@@ -35,9 +35,9 @@ public class MemberController {
 	MemberService memberService;
 	
 	@RequestMapping(value = "member/memberjoin", method = RequestMethod.POST)
-	public String join(@RequestParam(value="hp1")String hp1,@RequestParam(value="hp2")String hp2,@RequestParam(value="hp3")String hp3,@RequestParam(value="id")String id,@RequestParam(value="pwd")String pwd,@RequestParam(value="name")String name,@RequestParam(value="birth1")String birth1,@RequestParam(value="birth2")String birth2,@RequestParam(value="birth3")String birth3,@RequestParam(value="memeber_local")String memeber_local,@RequestParam(value="email")String email,@RequestParam(value="sms_at", required=false)String sms_at, HttpSession session) {
+	public String join(@RequestParam(value="member_name")String member_name,@RequestParam(value="member_id")String member_id,@RequestParam(value="member_pwd")String member_pwd,@RequestParam(value="hp1")String hp1,@RequestParam(value="hp2")String hp2,@RequestParam(value="hp3")String hp3,@RequestParam(value="birth1")String birth1,@RequestParam(value="birth2")String birth2,@RequestParam(value="birth3")String birth3,@RequestParam(value="member_local")String member_local,@RequestParam(value="member_email")String member_email,@RequestParam(value="member_sms_at", required=false)String member_sms_at, HttpSession session) {
 		String totalbirth = birth1+"-"+birth2+"-"+birth3;
-		String tel = hp1+"-"+hp2+"-"+hp3;
+		String member_tel = hp1+"-"+hp2+"-"+hp3;
 		//totalbirth.chars();
 		//DateFormat sdFormat = new SimpleDateFormat("yyyMMdd");
 		java.sql.Date dd=null;
@@ -47,14 +47,18 @@ public class MemberController {
 		d = new SimpleDateFormat("yyyy-MM-dd").parse(totalbirth);
 		}catch(ParseException pe) {}
         dd = new java.sql.Date(d.getTime());
-        System.out.println("tel =" +tel);
-		System.out.println("totalbirth =" +birth1+birth2+birth3);		
-		Member member = new Member(null,id,pwd,name,dd,null,null,memeber_local,tel,email,sms_at,null,null,null);
+        System.out.println("tel =" +member_tel);
+		System.out.println("totalbirth =" +birth1+birth2+birth3);	
+		System.out.println("member_local =" +member_local);	
+		System.out.println("member_email =" +member_email);	                  
+		Member member = new Member(null,member_id,member_pwd,member_name,dd,null,member_local,member_tel,member_email,"y",null,"n",null);/*멤버 sms, 멤버 탈퇴여부가 notnull인데 null이 들어가서 오류남 딴거 더 있어요?  아뇽.....딴거는잇었는대 딴거는 헤ㅐ결했어욤 그럼 끝?냉 감사합니다 횽님 ㅠㅠㅠㅠㅠㅠㅠ 낼봐요 좋은꿈 꾸셔욤~~~*/
 		boolean flag = memberService.joinService(member);
-		System.out.println("telaaa =" +tel);
+		System.out.println("telaaa =" +member_tel);
+		System.out.println("member_localasdas =" +member_local);
+		System.out.println("member_emailasds =" +member_email);	
 		LoginInfo log = null;
 		if(flag) {
-			log = new LoginInfo(id);
+			log = new LoginInfo(member_id);
 		}
 //		session.setAttribute("log", log);		
 		return "redirect:../login.do";		
@@ -63,34 +67,34 @@ public class MemberController {
 	public String mypage( HttpSession session,Model model) {
 	
 		Member log = (Member) session.getAttribute("log");
-		String id = log.getId();		
-		System.out.println("idCkkkk :" + id);	
-		Member nn = memberService.mypageService(id);
+		String member_id = log.getMember_id();		
+		System.out.println("idCkkkk :" + member_id);	
+		Member nn = memberService.mypageService(member_id);
 		model.addAttribute("nn", nn);
-		System.out.println("id :" + nn.getId());
+		System.out.println("id :" + nn.getMember_id());
 		return "rentcar/mypage";
 	
 	}
 	 @RequestMapping(value = "/idcheck.do" , method = RequestMethod.POST)
 	    @ResponseBody
-	    public Map<Object, Object> idcheck(@RequestBody String id) {
-//		 System.out.println("id1 =" +id);
+	    public Map<Object, Object> idcheck(@RequestBody String member_id) {
+//		 System.out.println("id1 =" +member_id);
 	        int count = 0;
 	        Map<Object, Object> map = new HashMap<Object, Object>();
-//	        System.out.println("id2 =" +id);
-	        count = memberService.idcheck(id);
+//	        System.out.println("id2 =" +member_id);
+	        count = memberService.idcheck(member_id);
 	        map.put("cnt", count);
-//	        System.out.println("id3 =" +id);
+//	        System.out.println("id3 =" +member_id);
 	        return map;
 	    }
 	 @RequestMapping(value = "/emailcheck.do" , method = RequestMethod.POST)
 	    @ResponseBody
-	    public Map<Object, Object> emailcheck(@RequestBody String email) {
-		 System.out.println("email =" +email);
+	    public Map<Object, Object> emailcheck(@RequestBody String member_email) {
+		 System.out.println("member_email =" +member_email);
 	        int count = 0;
 	        Map<Object, Object> map = new HashMap<Object, Object>();
 //	        System.out.println("id2 =" +id);
-	        count = memberService.emailcheck(email);
+	        count = memberService.emailcheck(member_email);
 	        map.put("cnt", count);
 //	        System.out.println("id3 =" +id);
 	        return map;
@@ -99,9 +103,9 @@ public class MemberController {
 	 public String modify(Member member, HttpSession session)  {	
 			Member md = memberService.modifyService(member);
 			if(md!=null) {
-				md = new Member(member.getId());
+				md = new Member(member.getMember_id());
 				session.setAttribute("log", md);	
-				System.out.println("id1 :" +member.getId());
+				System.out.println("id1 :" +member.getMember_id());
 			}			
 //			System.out.println("id1 :" +member.getId());
 //			System.out.println("id1 :" +member.getEmail());
@@ -119,14 +123,14 @@ public class MemberController {
 		 Member log = (Member) session.getAttribute("log");
 		 System.out.println("id2:"+ session.getId());
 //			System.out.println("i지나감 :----------" );
-			String id1 = log.getId();
-			System.out.println("idwqeqwqwe:"+ id1);
+			String member_id = log.getMember_id();
+			System.out.println("idwqeqwqwe:"+ member_id);
 //		 session.removeAttribute(id1);
-		 System.out.println("id7777:"+ id1);	
-		 int dm = memberService.deleteService(id1);
+		 System.out.println("id7777:"+ member_id);	
+		 int dm = memberService.deleteService(member_id);
 		 session.removeAttribute("log");
 //		 session.removeAttribute(id1);
-		 System.out.println("idwqeqwqwe:"+ id1);
+		 System.out.println("idwqeqwqwe:"+ member_id);
 //		 System.out.println("id3:"+ session.getId());
 //		 session.removeValue(id1);
 //		 session.removeAttribute(id1);
@@ -136,13 +140,13 @@ public class MemberController {
 		}
 	// 아이디 찾기
 		@RequestMapping(value = "/find_id.do", method = RequestMethod.POST)
-		public String find_id(HttpServletResponse response, @RequestParam("email") String email, Model md) throws Exception{
+		public String find_id(HttpServletResponse response, @RequestParam("member_email") String member_email, Model md) throws Exception{
 			
 //			System.out.println("지나감!!!!!");
 //			 System.out.println("email11111:"+ email);
 			 PrintWriter out = response.getWriter();
-			 String id = memberService.find_id(email);
-			 if (id == null) {
+			 String member_id = memberService.find_id(member_email);
+			 if (member_id == null) {
 					out.println("<script>");
 					out.println("alert('가입된 아이디가 없습니다.');");
 					out.println("history.go(-1);");
@@ -150,22 +154,22 @@ public class MemberController {
 					out.close();
 					return null;
 				} else {
-					md.addAttribute("id", memberService.find_id(email));
+					md.addAttribute("member_id", memberService.find_id(member_email));
 				}
 			 return "/rentcar/find_id";
 			
 		}
 		// 비밀번호 찾기
 				@RequestMapping(value = "/find_pwd.do", method = RequestMethod.POST)
-				public String find_pwd(HttpServletRequest request,HttpServletResponse response, @RequestParam("id") String id, Model md) throws Exception{
+				public String find_pwd(HttpServletRequest request,HttpServletResponse response, @RequestParam("member_id") String member_id, Model md) throws Exception{
 					
 					request.setCharacterEncoding("utf-8");
 					System.out.println("지나감!!!!!");
-					 System.out.println("id11111:"+ id);
+					 System.out.println("id11111:"+ member_id);
 					 PrintWriter out = response.getWriter();
-					 String pwd = memberService.find_pwd(id);
-					 System.out.println("pwd222221:"+ pwd);
-					 if (pwd == null) {
+					 String member_pwd = memberService.find_pwd(member_id);
+					 System.out.println("pwd222221:"+ member_pwd);
+					 if (member_pwd == null) {
 							out.println("<script>");
 							out.println("alert('가입된 아이디가 없습니다.');");
 							out.println("history.go(-1);");
@@ -173,7 +177,7 @@ public class MemberController {
 							out.close();
 							return null;
 						} else {
-							md.addAttribute("pwd", memberService.find_pwd(id));
+							md.addAttribute("member_pwd", memberService.find_pwd(member_id));
 						}
 					 return "/rentcar/find_pwd";
 					

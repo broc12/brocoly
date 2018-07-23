@@ -4,6 +4,6 @@ import com.khd.admin.ManagerModel.Manager;
 
 public interface ManagerService {
 
-	boolean joinService(Manager manager);
+	boolean joinService(Manager manager1);
 
 }

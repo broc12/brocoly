@@ -96,14 +96,14 @@
 							<div class="row form-group">
 								<div class="col-md-12">
 									<label for="email">아이디</label>
-									<input type="text" value="${log.id}" name="id" readonly id="email" class="form-control" placeholder="ID">
+									<input type="text" value="${log.member_id}" name="member_id" readonly id="email" class="form-control" placeholder="ID">
 								</div>
 							</div>
 							
 							<div class="row form-group">
 								<div class="col-md-6 padding-bottom">
 									<label for="fname">비밀번호 변경</label>
-									<input type="password"  value="${nn.pwd}" name="pwd" readonly id="fname" class="form-control" >
+									<input type="password"  value="${nn.member_pwd}" name="member_pwd" readonly id="fname" class="form-control" >
 								</div>
 				
 							</div>
@@ -121,11 +121,11 @@
 							<div class="row form-group">
 								<div class="col-md-6 padding-bottom">
 									<label for="fname">이름</label>
-									<input type="text" value="${nn.name}" name="name" id="fname" class="form-control" placeholder="NAME">
+									<input type="text" value="${nn.member_name}" name="member_name" id="fname" class="form-control" placeholder="NAME">
 								</div>
 								<div class="col-md-6">
 									<label for="lname">생년월일</label>
-									<input type="text" value="${nn.birth}" id="lname" name="birth" class="form-control" placeholder="ex)19920704">
+									<input type="text" value="${nn.member_birth}" id="lname" name="member_birth" class="form-control" placeholder="ex)19920704">
 <%-- 									<input type="text" value="${nn.memeber_local}" id="lname" class="form-control" placeholder="ex)19920704"> --%>
 								</div>
 							</div>
@@ -133,8 +133,8 @@
 								<div class="col-md-12">
 									<label for="subject">거주지</label>
 		
-									<select name="memeber_local" id="people" class="form-control">
-										<option value="${nn.memeber_local}" style="color:black">${nn.memeber_local}</option>
+									<select name="member_local" id="people" class="form-control">
+										<option value="${nn.member_local}" style="color:black">${nn.member_local}</option>
 										<option value="거주지 선택(시/도)" style="color:black">거주지 선택(시/도)</option>
 										<option value="서울" style="color:black">서울</option>
 				                        <option value="부산" style="color:black">부산</option>
@@ -160,7 +160,7 @@
 							<div class="row form-group">
 								<div class="col-md-12">
 									<label for="subject">이메일</label>
-									<input type="text"  value="${nn.email}" name="email" id="subject" class="form-control" placeholder="heima@naver.com">
+									<input type="text"  value="${nn.member_email}" name="member_email" id="subject" class="form-control" placeholder="heima@naver.com">
 								</div>
 							</div>
 							
@@ -188,7 +188,7 @@
 							<div class="row form-group">
 								<div class="col-md-12">
 									<label for="subject">전화번호</label>
-									<input type="text" value="${nn.tel}"id="subject" name="tel" class="form-control" placeholder="ex)01086308690">
+									<input type="text" value="${nn.member_tel}"id="subject" name="member_tel" class="form-control" placeholder="ex)01086308690">
 								</div>
 							</div>
 							

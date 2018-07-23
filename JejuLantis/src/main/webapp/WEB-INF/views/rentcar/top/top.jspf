@@ -21,8 +21,8 @@
 				<div class="col-xs-12 text-right menu-1">
 
 					<c:choose>
-						<c:when test="${log.id ne null}">
-							<span style="color: yellow"> ${log.id}님 반갑습니다</span>&nbsp;&nbsp;&nbsp;
+						<c:when test="${log.member_id ne null}">
+							<span style="color: yellow"> ${log.member_id}님 반갑습니다</span>&nbsp;&nbsp;&nbsp;
 						<a href="login/logout">로그아웃</a>&nbsp;&nbsp;&nbsp;
 						<a href="mypage.do">마이페이지</a>&nbsp;&nbsp;&nbsp;
 						</c:when>
@@ -34,7 +34,7 @@
 
 
 
-					<a>${log.id}</a> <a href="service.do">고객센터</a>
+					<a>${log.member_id}</a> <a href="service.do">고객센터</a>
 				</div>
 			</div>
 			<div class="row">

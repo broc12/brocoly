@@ -13,9 +13,9 @@ public class ManagerDaoImpl implements ManagerDao{
 	private String ns = "query.Manager";
 	
 	@Override
-	public boolean join(Manager manager) {
+	public boolean join(Manager manager1) {
 		
-		int insert = sql.insert(ns+".managerresist", manager);
+		int insert = sql.insert(ns+".managerresist", manager1);
 		return false;
 	}
 

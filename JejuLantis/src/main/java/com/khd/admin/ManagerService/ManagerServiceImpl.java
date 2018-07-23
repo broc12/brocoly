@@ -13,7 +13,7 @@ public class ManagerServiceImpl implements ManagerService {
 	ManagerDaoImpl managerDao = new ManagerDaoImpl();
 	
 	@Override
-	public boolean joinService(Manager manager) {		
+	public boolean joinService(Manager manager1) {		
 		return false;
 	}
 	

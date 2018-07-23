@@ -90,12 +90,15 @@ $(document).ready(function(){
     });
 	
 	jQuery('#date1').datepicker({
-		  'format': 'yyyy-mm-dd',
-		  'autoclose': true,
+		  format: 'yyyy-mm-dd',
+		  autoclose: true
 		});
 
 	jQuery('#date2').datepicker({
-		  'format': 'yyyy-mm-dd',
-		  'autoclose': true,
+		  format: 'yyyy-mm-dd',
+		  autoclose: true,
+		  startDate: function(){
+			  return "-Infinity";
+		  }
 		});
 });

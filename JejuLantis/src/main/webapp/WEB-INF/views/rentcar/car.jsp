@@ -94,6 +94,7 @@
 				}
 			}
 			sel = document.getElementById("carname");
+			if("${requirements.car_name}"!="")
 			sel.value="${requirements.car_name}";
 		}
 	}
@@ -307,7 +308,7 @@
 						<div class="sidebar-wrap">
 							<div class="side search-wrap animate-box">
 								<h3 class="sidebar-heading">차량검색</h3>
-								<form action="car.do" method="post" class="colorlib-form">
+								<form action="car.do" method="post" class="colorlib-form" id="searchform" >
 				              	<div class="row">
 				                <div class="col-md-12">
 				                  <div class="form-group">
@@ -403,12 +404,12 @@
 				                  <div class="form-group">
 				                    <label for="guests">자동차 모델</label>
 				                    <div class="form-field">
-				                      <input type="text" name="car_name" id="car_name" class="form-control" placeholder="모델명 입력" value="">
+				                      <input type="text" name="car_name" id="car_name" class="form-control" placeholder="모델명 입력" value=""/>
 				                    </div>
 				                  </div>
 				                </div>
 				                <div class="col-md-12">
-				                  <input type="button" onclick="search()" name="submit" id="submit" value="차량검색" class="btn btn-primary btn-block">
+				                  <input type="button" id="searchbutton" value="차량검색" class="btn btn-primary btn-block"/>
 				                </div>
 				              </div>
 				            </form>

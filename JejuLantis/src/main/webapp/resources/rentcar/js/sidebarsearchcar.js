@@ -1,4 +1,5 @@
-$(document).ready(function(){
+$(document).ready(
+function(){
 	$("input[type='checkbox']").click(function(){
     	var checkListmanu = [];
     	$("input[id='car_manufacture']").each(function(i){
@@ -118,8 +119,8 @@ $(document).ready(function(){
 	    	    );
 	    }
 	});
-});
-function search(){
+$("#searchbutton").click(
+function(){
 	
 	var startT = new Date(document.getElementById("date1").value+" "+document.getElementById("Checkintime").value);
 	var endT = new Date(document.getElementById("date2").value+" "+document.getElementById("Checkouttime").value);
@@ -132,8 +133,12 @@ function search(){
 	var g = endT-startT;
 	if((g/3600000)<24){
 		alert("최소시간 오류");
+		return false;
 	}
 	if((g/3600000)>180){
 		alert("최대시간 오류");
+		return false;
 	}
-}
+	$("#searchform").submit();
+});
+});

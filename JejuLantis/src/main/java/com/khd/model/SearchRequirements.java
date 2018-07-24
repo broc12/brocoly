@@ -8,6 +8,7 @@ import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
 
 public class SearchRequirements {
+	
 	DateTime rent_reserve_start;
 	DateTime rent_reserve_end;
 	String car_name;
@@ -23,6 +24,7 @@ public class SearchRequirements {
 	String car_kind_nonsmoke;
 	String car_kind_resist;
 	boolean searchFlag;
+	String sort;
 	
 	public SearchRequirements() {}
 	public SearchRequirements(Date rent_reserve_start) {

@@ -191,7 +191,7 @@ FROM
 		</foreach>
 	</if>
  	<if test="car_manufacturer != null">
-		AND CAR_MANUFACTUR IN
+		AND CAR_MANUFACTURER IN
 		<foreach item="item" index="index" collection="car_manufacturer" open="(" separator="," close=")">
 			#{item}
 		</foreach>

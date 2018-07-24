@@ -25,11 +25,14 @@ public class SearchRequirements {
 	String car_kind_resist;
 	boolean searchFlag;
 	String sort;
+	boolean errorFlag;
+	String errorMsg;
 	
 	public SearchRequirements() {}
-	public SearchRequirements(Date rent_reserve_start) {
+	public SearchRequirements(Date rent_reserve_start,String sort) {
 		this.rent_reserve_start = new DateTime(rent_reserve_start);
 		this.rent_reserve_end = this.rent_reserve_start.plusDays(1);
+		this.sort = sort;
 		this.searchFlag=false;
 	}
 	public SearchRequirements(String Checkindate,String checkintime,String checkoutdate,String checkouttime,String car_name) {
@@ -53,7 +56,8 @@ public class SearchRequirements {
 	public SearchRequirements(DateTime rent_reserve_start, DateTime rent_reserve_end, String car_name,
 			List<String> car_manufacturer, List<String> car_fuel, List<String> car_type, String car_kind_navi,
 			String car_kind_sensor, String car_kind_blackbox, String car_kind_bluetooth, String car_kind_sunroof,
-			String car_kind_camera, String car_kind_nonsmoke, String car_kind_resist, boolean searchFlag, String sort) {
+			String car_kind_camera, String car_kind_nonsmoke, String car_kind_resist, boolean searchFlag, String sort,
+			boolean errorFlag, String errorMsg) {
 		super();
 		this.rent_reserve_start = rent_reserve_start;
 		this.rent_reserve_end = rent_reserve_end;
@@ -71,6 +75,8 @@ public class SearchRequirements {
 		this.car_kind_resist = car_kind_resist;
 		this.searchFlag = searchFlag;
 		this.sort = sort;
+		this.errorFlag = errorFlag;
+		this.errorMsg = errorMsg;
 	}
 	public DateTime getRent_reserve_start() {
 		return rent_reserve_start;
@@ -168,23 +174,17 @@ public class SearchRequirements {
 	public void setSort(String sort) {
 		this.sort = sort;
 	}
-	public String getRent_reserve_startDateTime() {
-		return rent_reserve_start.toString("yyyy-MM-dd HH:mm");
+	public boolean isErrorFlag() {
+		return errorFlag;
 	}
-	public String getRent_reserve_endDateTime() {
-		return rent_reserve_end.toString("yyyy-MM-dd HH:mm");
+	public void setErrorFlag(boolean errorFlag) {
+		this.errorFlag = errorFlag;
 	}
-	public String getRent_reserve_startDate() {
-		return rent_reserve_start.toString("yyyy-MM-dd");
+	public String getErrorMsg() {
+		return errorMsg;
 	}
-	public String getRent_reserve_endDate() {
-		return rent_reserve_end.toString("yyyy-MM-dd");
-	}
-	public String getRent_reserve_startTime() {
-		return rent_reserve_start.toString("HH:mm");
-	}
-	public String getRent_reserve_endTime() {
-		return rent_reserve_end.toString("HH:mm");
+	public void setErrorMsg(String errorMsg) {
+		this.errorMsg = errorMsg;
 	}
 	void setOptionList(List<String> option) {
 		

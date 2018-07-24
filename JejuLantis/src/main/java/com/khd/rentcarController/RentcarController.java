@@ -1,9 +1,11 @@
 package com.khd.rentcarController;
 
+import java.io.PrintWriter;
 import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.joda.time.DateTime;
 import org.joda.time.Days;
@@ -28,7 +30,7 @@ public class RentcarController {
 	
 	@RequestMapping(value="car.do",method=RequestMethod.GET)
 	public String car(HttpServletRequest request,@RequestParam(value="sort",required=false) String sort) {		
-		SearchRequirements requirements = new SearchRequirements(rentcarservice.timeStampService());
+		SearchRequirements requirements = new SearchRequirements(rentcarservice.timeStampService(),sort);
 		List<Rcar> list = rentcarservice.rentcarListService(requirements);
 		request.setAttribute("list", list);
 		request.setAttribute("requirements", requirements);
@@ -41,13 +43,14 @@ public class RentcarController {
 		String result = checkTime(requirements);
 		System.out.println(result);
 		if(result == null) {
-		List<Rcar> list = rentcarservice.rentcarListService(requirements);
-		request.setAttribute("list", list);
+			List<Rcar> list = rentcarservice.rentcarListService(requirements);
+			request.setAttribute("list", list);
+		}else {
+			requirements.setErrorFlag(true);
+			requirements.setErrorMsg(result);
+		}
 		request.setAttribute("requirements", requirements);
 		return "rentcar/car";
-		}else {
-			return "";
-		}
 	}
 	
 	@RequestMapping(value="rentcar.do",method=RequestMethod.GET)
@@ -71,17 +74,17 @@ public class RentcarController {
 		String result = null;
 		DateTime today = new DateTime(rentcarservice.currenttimeStampService());
 		if(Minutes.minutesBetween(today, requirements.getRent_reserve_start()).getMinutes()<0) {
-			result = "¿¹¾à °¡´É ½Ã°£ Áö³²";
+			result = "í˜„ì¬ ì‹œê° ì´í›„ë¶€í„° ê²€ìƒ‰ ê°€ëŠ¥í•©ë‹ˆë‹¤.";
 		}else if(today.getDayOfMonth()==requirements.getRent_reserve_start().getDayOfMonth()){
 			if(requirements.getRent_reserve_start().getHourOfDay()<14) {
-				result = "´çÀÏ ¿¹¾à ½Ã°£ Áö³²";
+				result = "ë‹¹ì¼ ì˜ˆì•½ì€ 14ì‹œ ì´í›„ë¶€í„° ê°€ëŠ¥í•©ë‹ˆë‹¤.";
 			}
 		}else if(Minutes.minutesBetween(requirements.getRent_reserve_start(), requirements.getRent_reserve_end()).getMinutes()<0) {
-			result = "¿¹¾à ±â°£ ¿À·ù";
+			result = "ì˜ˆì•½ ì¢…ë£Œì‹œê°„ì´ ì‹œì‘ ì‹œê°„ë³´ë‹¤ ë¹ ë¦…ë‹ˆë‹¤.";
 		}else if(Hours.hoursBetween(requirements.getRent_reserve_start(), requirements.getRent_reserve_end()).getHours()<24) {
-			result = "¿¹¾à ÃÖ¼Ò ½Ã°£ ¿À·ù";
+			result = "ìµœì†Œ ì˜ˆì•½ ì‹œê°„ì€ 24ì‹œê°„ì…ë‹ˆë‹¤.";
 		}else if(Hours.hoursBetween(requirements.getRent_reserve_start(), requirements.getRent_reserve_end()).getHours()>180) {
-			result = "¿¹¾à ÃÖ´ë ½Ã°£ ¿À·ù";
+			result = "ìµœëŒ€ ì˜ˆì•½ ì‹œê°„ì€ 180ì‹œê°„ ì…ë‹ˆë‹¤.";
 		}
 		return result;
 	}

@@ -41,4 +41,18 @@
 	'n','n','n','n','n','n','n','n','n','n','n','n','n','n','n','n','n','n','n','n')
 </insert>
 
+<select id="branchcheck" parameterType="String" resultType="Branch">
+	select * from BRANCH WHERE branch_name like '%'||#{branch_name}||'%'	
+</select>
+<select id="idcheck" parameterType="String" resultType="Integer">
+      SELECT COUNT(*) FROM Manager
+      WHERE
+          manager_id = #{manager_id} 
+</select>
+<select id="emailcheck" parameterType="String" resultType="Integer">
+      SELECT COUNT(*) FROM Manager
+      WHERE
+          manager_email = #{manager_email} 
+</select>
+
 </mapper>

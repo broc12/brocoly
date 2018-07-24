@@ -8,6 +8,7 @@ public class Manager {
 		String manager_pwd;
 		String manager_name;
 		String manager_email;
+		String manager_birth;
 		String manager_tel1;
 		String manager_tel2;
 		String manager_withdraw_at;
@@ -37,20 +38,21 @@ public class Manager {
 		public Manager(String manager_id){
 			this.manager_id=manager_id;
 		}
-		
+
 		public Manager(long manager_no, String manager_id, String manager_pwd, String manager_name,
-				String manager_email, String manager_tel1, String manager_tel2, String manager_withdraw_at,
-				Date manager_resist_member, String main, String chart, String manager_reservstatus, String ars_reserv,
-				String travelmanagement, String manager_review, String manager_notice, String manager_user,
-				String manager_manager, String manager_company, String manager_carkind, String manager_d_carkind,
-				String manager_carinfo, String manager_paystatus, String manager_salestatus, String banner,
-				String coupon, String sms, String manager_insurance) {
+				String manager_email, String manager_birth, String manager_tel1, String manager_tel2,
+				String manager_withdraw_at, Date manager_resist_member, String main, String chart,
+				String manager_reservstatus, String ars_reserv, String travelmanagement, String manager_review,
+				String manager_notice, String manager_user, String manager_manager, String manager_company,
+				String manager_carkind, String manager_d_carkind, String manager_carinfo, String manager_paystatus,
+				String manager_salestatus, String banner, String coupon, String sms, String manager_insurance) {
 			super();
 			this.manager_no = manager_no;
 			this.manager_id = manager_id;
 			this.manager_pwd = manager_pwd;
 			this.manager_name = manager_name;
 			this.manager_email = manager_email;
+			this.manager_birth = manager_birth;
 			this.manager_tel1 = manager_tel1;
 			this.manager_tel2 = manager_tel2;
 			this.manager_withdraw_at = manager_withdraw_at;
@@ -114,6 +116,14 @@ public class Manager {
 
 		public void setManager_email(String manager_email) {
 			this.manager_email = manager_email;
+		}
+
+		public String getManager_birth() {
+			return manager_birth;
+		}
+
+		public void setManager_birth(String manager_birth) {
+			this.manager_birth = manager_birth;
 		}
 
 		public String getManager_tel1() {
@@ -299,6 +309,7 @@ public class Manager {
 		public void setManager_insurance(String manager_insurance) {
 			this.manager_insurance = manager_insurance;
 		}
+		
 		
 		
 }

@@ -11,10 +11,7 @@ public class AdminController {
 	public String index() {
 		return "admin/index";
 	}
-	@RequestMapping(value="admin/register.do",method=RequestMethod.GET)
-	public String register() {
-		return "admin/register";
-	}
+	
 	@RequestMapping(value="admin/navbar.do",method=RequestMethod.GET)
 	public String navbar() {
 		return "admin/navbar";

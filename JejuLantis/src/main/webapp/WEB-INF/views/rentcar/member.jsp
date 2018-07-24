@@ -110,17 +110,6 @@ $(document).ready(function() {
 				return false;
 			
 	        }
-// 	        if (document.f.email.value == "") {
-// 				alert("이메일을 입력하지 않았습니다.")
-// 				document.f.email.focus()
-// 				return false;
-// 			}									        								 
-// 			if (regex.test(email2) === false) {
-// 				alert("잘못된 이메일 형식입니다.");
-// 				document.f.email.value=""
-// 				document.f.email.focus()
-// 				return false;
-// 			}
 	        //email에 공백 사용하지 않기
 	        if (document.f.member_email.value.indexOf(" ") >= 0) {
 	            alert("email에 공백을 사용할 수 없습니다.")
@@ -236,11 +225,6 @@ function sendIt() {
 	var regPhone = /(01[0|1|6|9|7])[-](\d{3}|\d{4})[-](\d{4}$)/;
 	var hp = '01012345678';
 	hp = hp.replace(/(^02.{0}|^01.{1}|[0-9]{3})([0-9]+)([0-9]{4})/,"$1-$2-$3");
-//	var hp1 = document.getElementById('hp1'); 
-
-//	var hp2 = document.getElementById('hp2'); 								
-//	var hp3 = document.getElementById('hp3'); 									
-// 	var tel = hp1.value + "-" + hp2.value + "-" + hp3.value;
 	if(confirm("회원가입을 하시겠습니까?")){
 		if(idck==0){
 			alert('아이디 중복체크를 해주세요');
@@ -325,64 +309,10 @@ function sendIt() {
 			alert("휴대폰번호는 숫자만 들어갈 수 있습니다.");
 			return false;
 		}
-
-	    
-// 		if ( !regExp.test( $(#tel).val() ) ) {		
-// 	    	  alert("잘못된 휴대폰 번호입니다. 숫자, - 를 포함한 숫자만 입력하세요.");
-// 		      return false		
-// 		}
-//		if(document.f.tel.value == ""){
-//		alert("휴대폰번호를 제대로 입력해주세요");
-//		focus.tel;
-//	 	return false;
-// 				if(!regPhone.test(phonenum)){
-
-//   alert('잘못된 휴대폰 번호입니다.');
-
-//   $('#phone').focus();
-
-//   return false;    
-
-// if (document.f.my_num.value == "") {
-//             alert("주민번호를 입력하지 않았습니다.")
-//             document.f.my_num.focus()
-//             return false;
-//         }
-//         if (document.f.my_num.value.length<13||document.f.my_num.value.length>13) {
-//             alert("주민번호 길이가 맞지 않습니다.")
-//             document.f.my_num.value = ""
-//             document.f.my_num.focus()
-//             return false;
-//         }
-
-//  }
-							    
-//		/*핸드폰이 숫자만 들어가는지 체크*/
-//		if(isNaN(document.f.tel.value))
-//		{
-//	 	alert("잘못된 휴대폰 번호입니다. 숫자, - 를 포함한 숫자만 입력하세요.");
-//		return false;
-//		}
 	    alert("회원가입을 축하합니다");
 		document.f.submit();
 	}
 }
-//	if(document.f.tel.value == ""){
-//	alert("휴대폰번호를 제대로 입력해주세요");
-//	focus.tel;
-// 	return false;
-										    
-//	/*핸드폰이 숫자만 들어가는지 체크*/
-//	if(isNaN(document.f.tel.value))
-//	{
-// 	alert("잘못된 휴대폰 번호입니다. 숫자, - 를 포함한 숫자만 입력하세요.");
-//	return false;
-//	}
-//	/**/
-								 		
-//	if (document.f.tel.length==11 || document.f.tel.length==10){
-//	document.getElementById("tel").value = tel;
-//	document.f.submit()	 
 </script>
 </head>
 <body>
@@ -422,7 +352,7 @@ function sendIt() {
 
 							<tr>
 								<td>아이디</td>
-								<td><input type="text" name="member_id" id="member_id" /> <input type="button" value="중복확인" name="confirm_id"
+								<td><input type="text" name="manager_id" id="manager_id" /> <input type="button" value="중복확인" name="confirm_id"
 									id="idck" onclick="confirmId(this.form)"></td>
 							</tr>
 							<div class="row form-group">
@@ -494,31 +424,11 @@ function sendIt() {
 									</select>
 								</div>
 							</div>
-<!-- 							<tr> -->
-<!-- 								<td>아이디</td> -->
-<!-- 								<td><input type="text" name="id" id="id" /> <input type="button" value="중복확인" name="confirm_id" -->
-<!-- 									id="idck" onclick="confirmId(this.form)"></td> -->
-<!-- 							</tr> -->
-							
-
-
-
 							<tr>
 								<td>email</td>
 								<td><input type="text" name="member_email" id="member_email" /> <input type="button" value="중복확인2" name="confirm_email"
 									id="emailck"></td>
 							</tr>
-
-
-<!-- onclick="confirmEmail(this.form) -->
-
-
-
-
-<!-- 											<label for="subject">번호</label> <input type="text" name="tel" -->
-<!-- 												id="tel" placeholder="phone number" maxlength="13" /> -->
-
-
 										</div>
 									</div>
 																		<tr>

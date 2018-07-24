@@ -26,7 +26,7 @@
 			AND
 		MEMBER_PWD = #{member_pwd}	
 			AND 	
-		member_withdraw_at ='n'
+		MEMBER_WITHDRAW_AT ='N'
 		</where>
 	</select>
 	

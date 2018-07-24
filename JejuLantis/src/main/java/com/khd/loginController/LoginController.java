@@ -30,7 +30,7 @@ public class LoginController {
 	MemberServiceImpl ms = new MemberServiceImpl();
 
 	@RequestMapping(value = "/login/loginCheck")
-	public void loginCheck(Locale locale, Model model, Member member, HttpSession session,
+	public void loginCheck(Member member, HttpSession session,
 			HttpServletResponse response) throws IOException {
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter out = response.getWriter();

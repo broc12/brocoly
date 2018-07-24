@@ -13,6 +13,7 @@
 	<result column="MEMBER_TEL" property="member_tel"/>
 	<result column="MEMBER_EMAIL" property="member_email"/>
 	<result column="MEMBER_SMS_AT" property="member_sms_at"/>
+	<result column="MEMBER_EMAIL_AT" property="member_email_at"/>
 	<result column="MEMBER_RESIST_MEMBER" property="member_resist_member"/>
 	<result column="MEMBER_WITHDRAW_AT" property="member_withdraw_at"/>
 	<result column="MEMBER_WITHDRAW_DATE" property="member_withdraw_date"/>
@@ -21,7 +22,7 @@
 
 	
 <insert id="memberjoin" parameterType="Member">
-insert into MEMBER values (MEMBER_seq.nextval,#{member_id},#{member_pwd},#{member_name},#{member_birth},'M',#{member_local},#{member_tel},#{member_email},#{member_sms_at},
+insert into MEMBER values (MEMBER_seq.nextval,#{member_id},#{member_pwd},#{member_name},#{member_birth},'M',#{member_local},#{member_tel},#{member_email},#{member_sms_at},#{member_email_at},
 SYSDATE,#{member_withdraw_at},SYSDATE)
 <!--   insert into MEMBER(member_no,id,pwd,name,birth,sex,sclc,memeber_local,tel,email,sms_at,resist_member,memeber_whithdraw_at) -->
 <!--   values (MEMBER_seq.nextval,#{id},#{pwd},#{name},SYSDATE,#{sex},#{sclc},#{memeber_local},#{tel},#{email},#{sms_at},SYSDATE,#{memeber_whithdraw_at}) -->

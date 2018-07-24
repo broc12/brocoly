@@ -467,7 +467,7 @@ function sendIt() {
 									class="form-check-label" for="exampleCheck1">
 									<h4 class="place">SMS수신(이벤트)</h4>
 								</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-								<input type="checkbox" class="form-check-input"
+								<input type="checkbox" class="form-check-input" name="member_email_at"
 									id="exampleCheck2" /> <label class="form-check-label"
 									for="exampleCheck2">
 									<h4 class="place">이메일 수신(이벤트)</h4>

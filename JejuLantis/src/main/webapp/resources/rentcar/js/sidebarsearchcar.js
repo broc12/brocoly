@@ -126,7 +126,46 @@ function(){
 	var endT = new Date(document.getElementById("date2").value+" "+document.getElementById("Checkouttime").value);
 	console.log(startT);
 	console.log(endT);
-	if(endT<startT){
+	$.ajax({
+    	url:"currenttime.do",
+        type:'GET',
+        error:function(error) {
+            alert("서버와 연결에 실패하엿습니다.");
+        },
+        success:function(data){
+        	if(data!=null){
+	        	var d = JSON.parse(data);
+	        	var currnetT = new Date(d);
+	        	console.log(currnetT);
+	        	if(currnetT.getFullYear()==startT.getFullYear()&&
+	        			currnetT.getMonth()==startT.getMonth()&&
+	        			currnetT.getDate()==startT.getDate()&&
+	        			startT.getHours()<14){
+	        		alert("당일14시오류");
+	        		return false;
+	        	}
+	        	if(startT<currnetT){
+	        		alert("당일시간지남오류");
+	        		return false;
+	        	}
+	        	if(endT<startT){
+	        		alert("시간대소비교오류");
+	        		return false;
+	        	}
+	        	var g = endT-startT;
+	        	if((g/3600000)<24){
+	        		alert("최소예약시간 오류");
+	        		return false;
+	        	}
+	        	if((g/3600000)>180){
+	        		alert("최대예약시간 오류");
+	        		return false;
+	        	}
+	        	$("#searchform").submit();
+        	}
+        }
+	});
+/*	if(endT<startT){
 		alert("시간오류");
 		return false;
 	}
@@ -138,7 +177,7 @@ function(){
 	if((g/3600000)>180){
 		alert("최대시간 오류");
 		return false;
-	}
-	$("#searchform").submit();
+	}*/
+	/*$("#searchform").submit();*/
 });
 });

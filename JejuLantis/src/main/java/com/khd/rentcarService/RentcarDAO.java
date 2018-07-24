@@ -10,6 +10,6 @@ import com.khd.model.SearchRequirements;
 public interface RentcarDAO {
 	
 	public List<Rcar> rentcarList(SearchRequirements requirements);
-	public List<Rcar> search();
+	public Date currenttimeStamp();
 	public Date timeStamp();
 }

@@ -186,6 +186,24 @@ public class SearchRequirements {
 	public void setErrorMsg(String errorMsg) {
 		this.errorMsg = errorMsg;
 	}
+	public String getRent_reserve_startDateTime() {
+		return rent_reserve_start.toString("yyyy-MM-dd HH:mm");
+	}
+	public String getRent_reserve_endDateTime() {
+		return rent_reserve_end.toString("yyyy-MM-dd HH:mm");
+	}
+	public String getRent_reserve_startDate() {
+		return rent_reserve_start.toString("yyyy-MM-dd");
+	}
+	public String getRent_reserve_endDate() {
+		return rent_reserve_end.toString("yyyy-MM-dd");
+	}
+	public String getRent_reserve_startTime() {
+		return rent_reserve_start.toString("HH:mm");
+	}
+	public String getRent_reserve_endTime() {
+		return rent_reserve_end.toString("HH:mm");
+	}
 	void setOptionList(List<String> option) {
 		
 		for(int i=0;i<option.size();i++) {

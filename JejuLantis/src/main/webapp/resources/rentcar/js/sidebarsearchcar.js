@@ -141,24 +141,24 @@ function(){
 	        			currnetT.getMonth()==startT.getMonth()&&
 	        			currnetT.getDate()==startT.getDate()&&
 	        			startT.getHours()<14){
-	        		alert("당일14시오류");
+	        		alert("당일 예약은 14시 이후부터 가능합니다.");
 	        		return false;
 	        	}
 	        	if(startT<currnetT){
-	        		alert("당일시간지남오류");
+	        		alert("현재 시각 이후부터 검색 가능합니다.");
 	        		return false;
 	        	}
 	        	if(endT<startT){
-	        		alert("시간대소비교오류");
+	        		alert("예약 종료시간이 시작 시간보다 빠릅니다.");
 	        		return false;
 	        	}
 	        	var g = endT-startT;
 	        	if((g/3600000)<24){
-	        		alert("최소예약시간 오류");
+	        		alert("최소 예약 시간은 24시간입니다.");
 	        		return false;
 	        	}
 	        	if((g/3600000)>180){
-	        		alert("최대예약시간 오류");
+	        		alert("최대 예약 시간은 180시간 입니다.");
 	        		return false;
 	        	}
 	        	$("#searchform").submit();

@@ -107,27 +107,33 @@
 											<table border="0" width="100%" style="background-color:white">
 											
 												<tr>
-													<td colspan="2" height="50px" style="background-color:#eef2f5">${branch.branch_name} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="">더보기</a> </td>
+													<td colspan="2" height="50px" style="background-color:#eef2f5">${branch.branch_name}  (${branch.sale})&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="boardview.do?branch_no=${branch.branch_no}">더보기</a> </td>
 												</tr>
 												
 												<c:forEach items="${branch.reviewList}" var="review" varStatus="status">
 										
 												<tr>
 													<td rowspan="4" width=33%>	
-															<img src="resources/rentcar/images/car1.jpg" width=100%, height=50%>		
+															<img src="${review.car_image}" width=100%, height=50%>		
 													</td>
-													<td>${review.name}</td>
+													<td>${review.member_name}</td>
 												</tr>
 												<tr>
-													<td><p class="star"><span><i class="icon-star-full"></i></span>${review.rent_review_rating_car}</p></td>
+												
+													<td><p class="star"><span>
+													<c:forEach var="score" begin="1" end="${review.rent_review_rating_car}" step="1">
+														<i class="icon-star-full"></i>
+													</c:forEach>
+													</span>
+													${review.rent_review_rating_car}</p></td>
 												</tr>
 												<tr>
 													<td>${review.rent_review_content}</td>
 												</tr>
 												<tr>
-													<td><span class="place">${review.car_kind_name} ${review.car_kind_fuel} ${review.car_kind_type}  ${review.rent_reserv_start} ~ ${review.rent_reserv_end}</span></td>
+													<td><span class="place">${review.car_name} ${review.car_type} (${review.car_fuel}) ${review.insurance_name}  ${review.rent_reserv_start} ~ ${review.rent_reserv_end}</span></td>
 												</tr>
-											</c:forEach>
+												</c:forEach>
 											</table>
 											<!-- <뿌려주기EnD> -->
 										</div>

@@ -11,5 +11,6 @@ public interface ReviewDao {
 	List<ReviewContent> reviewContent();
 	List<ReviewContent> reviewDetailContent(String rent_review_no);
 	List<BranchName> branchNameContent(String branch_no);
+	List<BranchName> reviewContentAll(int branch_no);
 	List<BranchName> listSelect();
 }

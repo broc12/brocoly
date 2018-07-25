@@ -51,5 +51,9 @@ public class ReviewDaoImpl implements ReviewDao {
 		List<BranchName> listSelect = sqlSession.selectList(ns_branchName+".adminBranchNameContent");
 		return listSelect;
 	}
-	
+	@Override
+	public List<BranchName> reviewContentAll(int branch_no) {
+		List<BranchName> reviewContent = sqlSession.selectList(ns_branchName+".branchNameContent", branch_no);
+		return reviewContent;
+	}
 }

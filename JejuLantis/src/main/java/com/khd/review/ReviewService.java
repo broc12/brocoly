@@ -9,4 +9,5 @@ public interface ReviewService {
 	void deleteService(String rent_review_no);
 	List<BranchName> selectService(String review_sel);
 	List<ReviewContent> reviewContentService(String rent_review_no);
+	List<BranchName> listServiceAll(int branch_no);
 }

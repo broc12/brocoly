@@ -20,11 +20,10 @@ public class ReviewController {
 	private ReviewService rservice;
 	
 	@RequestMapping(value="admin/list.do")
-	public ModelAndView admin_list() {
-		List<ReviewContent> list_ = rservice.listServiceAll();
+	public ModelAndView list() {
+		List<ReviewContent> reviewList = rservice.listServiceAll();
 		String view = "admin/list";
-		System.out.println("list_ : " + list_);
-		ModelAndView mv = new ModelAndView(view, "list_", list_);
+		ModelAndView mv = new ModelAndView(view, "reviewList", reviewList);
 		return mv;
 	}
 	@RequestMapping(value="admin/rdel.do")
@@ -33,11 +32,12 @@ public class ReviewController {
 		return "redirect:list.do";
 	}
 	@RequestMapping(value="admin/reviewContent.do")
-	public ModelAndView admin_reviewContent(@RequestParam("rent_review_no")String rent_review_no) {
-		List<ReviewContent> reviewContentList = rservice.reviewContentService(rent_review_no);
-		String view = "admin/reviewContent";
-		ModelAndView mv = new ModelAndView(view, "reviewContentList", reviewContentList);
-		return mv;
+	public String admin_reviewContent(@RequestParam("rent_review_no")String rent_review_no) {
+		//List<ReviewContent> reviewContentList = rservice.reviewContentService(rent_review_no);
+		//String view = "admin/reviewContent";
+		//ModelAndView mv = new ModelAndView(view, "reviewContentList", reviewContentList);
+		//return mv;
+		return "admin/reviewContent";
 	}
 	@RequestMapping(value="board.do")
 	public ModelAndView list(@RequestParam(value ="searchValue", required= false)String searchValue){
@@ -51,11 +51,11 @@ public class ReviewController {
 		ModelAndView mv = new ModelAndView(view, "branch", branch);
 		return mv;
 	}	
-	/*@RequestMapping(value="boardview.do")
-	public ModelAndView reviewContent(@RequestParam(value ="branch_no")String branch_no){
+	@RequestMapping(value="boardview.do")
+	public ModelAndView reviewContent(@RequestParam(value ="branch_no")int branch_no){
 		String view = "rentcar/boardview";
 		List<BranchName> branchContent = rservice.listServiceAll(branch_no);
 		ModelAndView mv = new ModelAndView(view, "branchContent", branchContent);
 		return mv;
-	}*/
+	}
 }

@@ -4,6 +4,9 @@ import java.util.Date;
 import java.util.List;
 
 import org.joda.time.DateTime;
+import org.joda.time.Days;
+import org.joda.time.Hours;
+import org.joda.time.Minutes;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
 
@@ -25,7 +28,7 @@ public class SearchRequirements {
 	String car_kind_resist;
 	boolean searchFlag;
 	String sort;
-	boolean errorFlag;
+//	boolean errorFlag;
 	String errorMsg;
 	
 	public SearchRequirements() {}
@@ -75,7 +78,7 @@ public class SearchRequirements {
 		this.car_kind_resist = car_kind_resist;
 		this.searchFlag = searchFlag;
 		this.sort = sort;
-		this.errorFlag = errorFlag;
+//		this.errorFlag = errorFlag;
 		this.errorMsg = errorMsg;
 	}
 	public DateTime getRent_reserve_start() {
@@ -175,11 +178,16 @@ public class SearchRequirements {
 		this.sort = sort;
 	}
 	public boolean isErrorFlag() {
-		return errorFlag;
+		if(errorMsg!=null) {
+			return true;
+		}else {
+			return false;
+		}
+//		return errorFlag;
 	}
-	public void setErrorFlag(boolean errorFlag) {
-		this.errorFlag = errorFlag;
-	}
+//	public void setErrorFlag(boolean errorFlag) {
+//		this.errorFlag = errorFlag;
+//	}
 	public String getErrorMsg() {
 		return errorMsg;
 	}
@@ -204,25 +212,48 @@ public class SearchRequirements {
 	public String getRent_reserve_endTime() {
 		return rent_reserve_end.toString("HH:mm");
 	}
+	public int getRent_reserve_periodDate() {
+		return Days.daysBetween(this.rent_reserve_start, this.rent_reserve_end).getDays();
+	}
+	public int getRent_reserve_periodHours() {
+		return Hours.hoursBetween(this.rent_reserve_start, this.rent_reserve_end).getHours();
+	}
 	void setOptionList(List<String> option) {
 		
 		for(int i=0;i<option.size();i++) {
 			String name = option.get(i);
 			if(name.equals("car_kind_blackbox")) {
-				this.car_kind_blackbox="y";
+				this.car_kind_blackbox="Y";
 			}else if(name.equals("car_kind_bluetooth")) {
-				this.car_kind_bluetooth="y";
+				this.car_kind_bluetooth="Y";
 			}else if(name.equals("car_kind_camera")) {
-				this.car_kind_camera="y";
+				this.car_kind_camera="Y";
 			}else if(name.equals("car_kind_navi")) {
-				this.car_kind_navi="y";
+				this.car_kind_navi="Y";
 			}else if(name.equals("car_kind_nonsmoke")) {
-				this.car_kind_nonsmoke="y";
+				this.car_kind_nonsmoke="Y";
 			}else if(name.equals("car_kind_sensor")) {
-				this.car_kind_sensor="y";
+				this.car_kind_sensor="Y";
 			}else if(name.equals("car_kind_sunroof")) {
-				this.car_kind_sunroof="y";
+				this.car_kind_sunroof="Y";
 			}
+		}
+	}	
+	public void checkTime(Date date) {
+		DateTime today = new DateTime(date);
+		errorMsg = null;
+		if(Minutes.minutesBetween(today, this.rent_reserve_start).getMinutes()<0) {
+			errorMsg = "현재 시각 이후부터 검색 가능합니다.";
+		}else if(today.getDayOfMonth()==this.rent_reserve_start.getDayOfMonth()){
+			if(this.rent_reserve_start.getHourOfDay()<14) {
+				errorMsg = "당일 예약은 14시 이후부터 가능합니다.";
+			}
+		}else if(Minutes.minutesBetween(this.rent_reserve_start, this.rent_reserve_end).getMinutes()<0) {
+			errorMsg = "예약 종료시간이 시작 시간보다 빠릅니다.";
+		}else if(Hours.hoursBetween(this.rent_reserve_start, this.rent_reserve_end).getHours()<24) {
+			errorMsg = "최소 예약 시간은 24시간입니다.";
+		}else if(Hours.hoursBetween(this.rent_reserve_start, this.rent_reserve_end).getHours()>180) {
+			errorMsg = "최대 예약 시간은 180시간 입니다.";
 		}
 	}
 }

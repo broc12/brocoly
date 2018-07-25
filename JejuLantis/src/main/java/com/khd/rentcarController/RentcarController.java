@@ -1,16 +1,10 @@
 package com.khd.rentcarController;
 
-import java.io.PrintWriter;
 import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
-import org.joda.time.DateTime;
-import org.joda.time.Days;
-import org.joda.time.Hours;
-import org.joda.time.Minutes;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -40,14 +34,10 @@ public class RentcarController {
 	@RequestMapping(value="car.do",method=RequestMethod.POST)
 	public String car(HttpServletRequest request,@RequestParam("Checkouttime")String checkouttime,@RequestParam("Checkoutdate")String checkoutdate,@RequestParam("Checkintime")String checkintime,@RequestParam("Checkindate")String checkindate,@RequestParam("car_name")String car_name) {
 		SearchRequirements requirements = new SearchRequirements(checkindate,checkintime,checkoutdate,checkouttime,car_name);
-		String result = checkTime(requirements);
-		System.out.println(result);
-		if(result == null) {
+		requirements.checkTime(rentcarservice.currenttimeStampService());
+		if(!requirements.isErrorFlag()) {
 			List<Rcar> list = rentcarservice.rentcarListService(requirements);
 			request.setAttribute("list", list);
-		}else {
-			requirements.setErrorFlag(true);
-			requirements.setErrorMsg(result);
 		}
 		request.setAttribute("requirements", requirements);
 		return "rentcar/car";
@@ -68,24 +58,5 @@ public class RentcarController {
 	public @ResponseBody Date currenttime() {
 		Date currentDate = rentcarservice.currenttimeStampService();
 		return currentDate;
-	}
-	
-	String checkTime(SearchRequirements requirements) {
-		String result = null;
-		DateTime today = new DateTime(rentcarservice.currenttimeStampService());
-		if(Minutes.minutesBetween(today, requirements.getRent_reserve_start()).getMinutes()<0) {
-			result = "현재 시각 이후부터 검색 가능합니다.";
-		}else if(today.getDayOfMonth()==requirements.getRent_reserve_start().getDayOfMonth()){
-			if(requirements.getRent_reserve_start().getHourOfDay()<14) {
-				result = "당일 예약은 14시 이후부터 가능합니다.";
-			}
-		}else if(Minutes.minutesBetween(requirements.getRent_reserve_start(), requirements.getRent_reserve_end()).getMinutes()<0) {
-			result = "예약 종료시간이 시작 시간보다 빠릅니다.";
-		}else if(Hours.hoursBetween(requirements.getRent_reserve_start(), requirements.getRent_reserve_end()).getHours()<24) {
-			result = "최소 예약 시간은 24시간입니다.";
-		}else if(Hours.hoursBetween(requirements.getRent_reserve_start(), requirements.getRent_reserve_end()).getHours()>180) {
-			result = "최대 예약 시간은 180시간 입니다.";
-		}
-		return result;
 	}
 }

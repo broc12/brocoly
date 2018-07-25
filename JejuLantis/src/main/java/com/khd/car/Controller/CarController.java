@@ -31,7 +31,7 @@ public class CarController {
 		return mv;
 	}
 	@RequestMapping(value="admin/carModify.do",method=RequestMethod.GET)
-	public ModelAndView modify(@RequestParam("car_no")String car_no) {
+	public ModelAndView modify(@RequestParam("car_no")long car_no) {
 		List<Car>modify = service.modifyService(car_no);
 		String view = "admin/carModify";
 		ModelAndView mv = new ModelAndView(view,"modify",modify);
@@ -58,14 +58,14 @@ public class CarController {
 		return "admin/caradd";
 	}
 	@RequestMapping(value="admin/carSubject.do",method=RequestMethod.GET)
-	public ModelAndView carSubject(@RequestParam("car_no")String car_no) {
+	public ModelAndView carSubject(@RequestParam("car_no")long car_no) {
 		List<Car>subject = service.subjectService(car_no);
 		String view = "admin/carSubject";
 		ModelAndView mv = new ModelAndView(view,"subject",subject);
 		return mv;
 	}
 	@RequestMapping("admin/cardel.do")
-	public String delete(@RequestParam("car_no")String car_no,@RequestParam("car_image")String car_image) {
+	public String delete(@RequestParam("car_no")long car_no,@RequestParam("car_image")String car_image) {
 		File file = new File(Path.FILE_STORE,car_image);
 		if(file.exists()) {
 			file.delete();

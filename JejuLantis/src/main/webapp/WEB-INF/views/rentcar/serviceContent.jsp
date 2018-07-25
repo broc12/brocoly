@@ -112,12 +112,12 @@
 												<c:forEach items="${subject}" var="subject">
 													<tr>
 														<th height="100px" width="10%" style="background-color: #fafafa">
-														<a style="color:black;font-size:14pt">${subject.announ_title}</a></br>
-														<a style="color:#808090;font-size:8pt">${subject.announ_resist}</a>
+														<a style="color:black;font-size:14pt">${subject.announce_title}</a></br>
+														<a style="color:#808090;font-size:8pt">${subject.announce_resist}</a>
 														</th>
 													</tr>
 													<tr style="font-size:10pt" height="150px">
-														<td>${subject.announ_content}</td>
+														<td>${subject.announce_content}</td>
 													</tr>
 												</c:forEach>
 													<tr style="font-size:10pt" height="60px">

@@ -12,15 +12,25 @@
 
 <div>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
-    <a class="navbar-brand" href="">제주란티스관리자</a>
+    <a class="navbar-brand" href="index.do">제주란티스관리자</a>
     <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarResponsive">
       <ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
-          <a class="nav-link" href="index.do">
-            <span class="nav-link-text">메인</span>
+        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Example Pages">
+          <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseExamplePages3" data-parent="#exampleAccordion">
+            <span class="nav-link-text">메인관리</span>
           </a>
+          <ul class="sidenav-second-level collapse" id="collapseExamplePages3">
+            <li>
+              <a href="bestseller.do">베스트셀러관리</a>
+            </li>
+            <li>
+              <a href="">MD추천관리</a>
+            </li>
+          </ul>
+        </li>
         <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Charts">
           <a class="nav-link" href="charts.do">
             <!-- <i class="fa fa-fw fa-area-chart"></i> -->
@@ -112,7 +122,7 @@
               <a href="carlist.do">차종관리</a>
             </li>
             <li>
-              <a href="carDetail.do">차종상세관리</a>
+              <a href="">차종상세관리</a>
             </li>
           </ul>
         </li>
@@ -267,19 +277,8 @@
           </form>
         </li>
         <li class="nav-item">
-<!--           <a class="nav-link" data-toggle="modal" data-target="#exampleModal"> -->
-<!--             <i class="fa fa-fw fa-sign-out"></i>Login</a> -->
-					<c:choose>
-						<c:when test="${managerlog.manager_id ne null}">
-							<span style="color: yellow"> ${managerlog.manager_id}님 반갑습니다</span>&nbsp;&nbsp;&nbsp;
-								<a href="<%=request.getContextPath()%>/managerlogin/managerlogout">로그아웃</a>&nbsp;&nbsp;&nbsp;
-								<a href="managermypage.do">마이페이지</a>&nbsp;&nbsp;&nbsp;
-								</c:when>
-								<c:otherwise>
-							<a href="login.do">로그인</a>&nbsp;&nbsp;&nbsp;
-       				<a href="register.do">회원가입</a>&nbsp;&nbsp;&nbsp;	
-				</c:otherwise>
-			</c:choose>
+          <a class="nav-link" data-toggle="modal" data-target="#exampleModal">
+            <i class="fa fa-fw fa-sign-out"></i>Login</a>
         </li>
       </ul>
     </div>

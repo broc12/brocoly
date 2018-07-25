@@ -23,7 +23,7 @@
 	</select>
 	
 	<insert id="myInsert" parameterType="Car">
-		insert into CAR values(#{car_no},#{car_name},#{car_manufacturer},
+		insert into CAR values(CAR_seq.NEXTVAL,#{car_name},#{car_manufacturer},
 		#{car_fuel},#{car_type},#{car_passenger},#{car_trans,jdbcType=VARCHAR},0,#{car_image},'N',0,SYSDATE)
 	</insert>
 	
@@ -35,7 +35,7 @@
 		SELECT * from CAR where car_no=#{car_no}
 	</select>
 	
-	<update id="myDelete" parameterType="String">
+	<update id="myDelete" parameterType="long">
 		Update CAR set car_withdraw_at='Y' where car_no=#{car_no}
 	</update>
 	

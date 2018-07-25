@@ -103,9 +103,12 @@
 							<div class="row form-group">
 								<div class="col-md-6 padding-bottom">
 									<label for="fname">비밀번호 변경</label>
-									<input type="password"  value="${nn.member_pwd}" name="member_pwd" readonly id="fname" class="form-control" >
+									<input type="password"  value="${nn.member_pwd}" name="member_pwd"  id="fname" class="form-control" >
 								</div>
-				
+								<div class="col-md-6">
+									<label for="lname">비밀번호 변경 확인</label>
+									<input type="text" value="${nn.member_birth}" id="lname" name="member_birth" class="form-control">
+								</div>
 							</div>
 <!-- 							<div class="row form-group"> -->
 <!-- 								<div class="col-md-6 padding-bottom"> -->

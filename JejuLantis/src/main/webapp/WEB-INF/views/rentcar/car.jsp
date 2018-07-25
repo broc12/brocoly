@@ -66,6 +66,7 @@
 	<!-- Theme style  -->
 	<link rel="stylesheet" href="resources/rentcar/css/style.css">
 	<!-- Modernizr JS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
 	<!-- <script src="resources/rentcar/js/modernizr-2.6.2.min.js"></script> -->
 	<!-- FOR IE9 below -->
 	<!--[if lt IE 9] -->
@@ -73,6 +74,8 @@
 	<!-- [endif] -->
 	<!-- sidebar JS -->
 	<script src="resources/rentcar/js/sidebarsearchcar.js"></script>
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+	
 	<script>
 	function time(){
 		if(${requirements.searchFlag}){
@@ -97,7 +100,66 @@
 			sel.value="${requirements.car_name}";
 		}
 	}
-	</script>
+</script>
+<style type="text/css">
+.checkbox label:after, 
+.radio label:after {
+    content: '';
+    display: table;
+    clear: both;
+}
+
+.checkbox .cr,
+.radio .cr {
+    position: relative;
+    display: inline-block;
+    border: 1px solid #a9a9a9;
+    border-radius: .25em;
+    width: 1.3em;
+    height: 1.3em;
+    margin-right: .5em;
+}
+
+.radio .cr {
+    border-radius: 50%;
+}
+
+.checkbox .cr .cr-icon,
+.radio .cr .cr-icon {
+    position: unset;
+    /* font-size: .8em; */
+    line-height: 0;
+    top: 50%;
+    left: 20%;
+}
+
+.radio .cr .cr-icon {
+    margin-left: 0.04em;
+}
+
+.checkbox label input[type="checkbox"],
+.radio label input[type="radio"] {
+    display: none;
+}
+
+.checkbox label input[type="checkbox"] + .cr > .cr-icon,
+.radio label input[type="radio"] + .cr > .cr-icon {
+    transform: scale(3) rotateZ(-20deg);
+    opacity: 0;
+    transition: all .3s ease-in;
+}
+
+.checkbox label input[type="checkbox"]:checked + .cr > .cr-icon,
+.radio label input[type="radio"]:checked + .cr > .cr-icon {
+    transform: scale(1) rotateZ(0deg);
+    opacity: 1;
+}
+
+.checkbox label input[type="checkbox"]:disabled + .cr,
+.radio label input[type="radio"]:disabled + .cr {
+    opacity: .5;
+}
+</style>
 	</head>
 	<body onload="time()">
 	<%@ include file="./top/top.jspf" %>
@@ -126,7 +188,7 @@
 		
 		<div id="board">
 			<table border="0" width="100%"  cellpadding="0" cellspacing="0">	
-				<tr style="color:#8c9094;background-color:#eef2f5;font-size:10pt">			
+				<tr style="color:#8c9094;background-color:white;font-size:10pt">			
 					<th  height="60px" class="text-center" width="15%" style="color:#ffdd01">1. 차량/대여업체 선택</th>
 					<th  class="text-center" width="10%">2. 요금선택</th>
 					<th  class="text-center" width="15%">3. 고객 정보 입력 & 결제</th>
@@ -136,12 +198,12 @@
 			</table>
 		</div>
 
-		<div class="colorlib-wrap">
+		<div class="colorlib-wrap" style="background-color:#eef2f5">
 			<div class="container">
 				<div class="row">
 					<div class="col-md-9">
 						<div class="row">
-							<div class="col-md-12 text-center">
+							<div class="col-md-12 text-left">
 								<ul class="pagination">
 									<li><a href="">최저가순</a></li>
 									<li><a href="">인기순</a></li>
@@ -152,9 +214,9 @@
 						<!-- start -->
 						<div id="result">
 						<div id="inner">
-						<c:if test="${empty list }">
+						<%-- <c:if test="${empty list }">
 						<h1>사용 가능한 차량이 없습니다(위치 변경 요망)</h1>
-						</c:if>
+						</c:if> --%>
 						<c:forEach items="${list }" var="dto" varStatus="status">
 						<div class="row">
 							<div class="wrap-division">
@@ -165,7 +227,7 @@
 										<a class="hotel-img" style="background-image: url(resources/rentcar/images/car1.jpg);">
 											<p class="price"><span>${dto.mtotView}</span><small>/24시간</small></p>
 										</a>
-										<a>실시간 예약 가능 차량 : ${dto.cn }</a>
+										<a>실시간 예약 가능 차량 : ${dto.cn}</a>
 										<div class="desc">
 											<p align="center">${dto.car_passenger }인승 ${dto.car_type } ${dto.car_fuel }</p>
 										</div>
@@ -222,6 +284,7 @@
 							</div>
 						</div>
 						</div>
+						
 						<hr>
 						</c:forEach>
 						</div>
@@ -230,57 +293,66 @@
 						<div class="row">
 							<div class="wrap-division">
 								<div class="row">
-								<div class="col-md-6 col-sm-6 animate-box">
-									<div class="hotel-entry">
-										<h3><a>스팅어</a></h3><span class="place">기아</span>
-										<a class="hotel-img" style="background-image: url(resources/rentcar/images/car1.jpg);">
-											<p class="price"><span>26,400원</span><small> /24시간</small></p>
-										</a>
-										<a>실시간 예약 가능 차량 : 5</a>
+								<div class="col-md-6 col-sm-6 animate-box" style="width:40%;padding:0px">
+									<div class="hotel-entry" style="background-color:#f8fafb;padding:15px;height:410px"></br>
+										<span style="color:black;font-size:18pt">아반떼</span><span style="color:black">(LPG)</span>
+										<img width="100%" weight="200" src="resources/car/2017Avante.png"/>
 										<div class="desc">
-											<p align="center">5인승 경차 휘발유 오토</p>
+											<p align="center" style="color:#0090f0">실시간 예약 가능 차량 : 5</p>
+										</div>
+										</br>
+										<div class="desc">
+											<p align="center">
+												<span class="glyphicon glyphicon-road">중소형</span>
+												<span class="glyphicon glyphicon-user">5인승</span>
+												<span class="glyphicon glyphicon-tint">LPG</span>
+											</p>
 										</div>
 									</div>
 								</div>
 
-								<div class="col-md-6 col-sm-6 animate-box">
-									<div class="hotel-entry">
-										<div class="desc">
-											<h3><a href="rentcar.do">특별한 렌트카</a></h3>
+								<div class="col-md-6 col-sm-6 animate-box" style="padding:0px;width:60%">
+									<div class="hotel-entry" style="background-color:white">
+										<div class="desc" style="padding:15px;height:410px"></br>
+											<span style="font-size:18pt;color:black">특별한 렌트카</span>
+											<div align="right">
+											<span style="color:red;text-decoration: line-through">43,000원</span>
+											<span style="font-size:18pt;color:black">32,400원</span>
+											</div>
 											<p class="star"><span><i class="icon-star-full"></i><i class="icon-star-full"></i><i class="icon-star-full"></i><i class="icon-star-full"></i><i class="icon-star-full"></i></span> 545 Reviews</p>
 											<span class="place">금연차량 네비 후방센서  블랙박스 블루투스 후방카메라 썬루프</span>
 											<!-- <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p> -->
 											<div id="board">
-												<table border="1" width="100%"  cellpadding="0" cellspacing="0">	
-													<tr style="color:white;font-size:8pt">			
-														<th  height="30px" width="23%" class="text-center" style="background-color: #01bbf0">대여업체</th>
-														<th  width="7%" class="text-center" style="background-color: #01bbf0">평점</th>
-														<th  width="12%" class="text-center" style="background-color: #01bbf0">대여료</th>
-														<th  width="12%" class="text-center" style="background-color: #01bbf0">보험료</th>
-														<th  width="12%" class="text-center" style="background-color: #01bbf0">보상한도</th>
-														<th  width="12%" class="text-center" style="background-color: #01bbf0">총 금액</th>
-														<th  width="17%" class="text-center" style="background-color: #01bbf0"></th>
+												<table border="1" style="border-bottom:none;border-left:hidden;border-right:hidden" width="100%"  cellpadding="0" cellspacing="0">	
+													<tr style="color:#717886;font-size:8pt">			
+														<th  height="30px" width="23%" class="text-center" style="background-color: #f8fafb;border-right: hidden;">대여업체</th>
+														<th  width="7%" class="text-center" style="background-color: #f8fafb;border-right: hidden;">평점</th>
+														<th  width="12%" class="text-center" style="background-color: #f8fafb;border-right: hidden;">대여료</th>
+														<th  width="12%" class="text-center" style="background-color: #f8fafb;border-right: hidden;">보험료</th>
+														<th  width="12%" class="text-center" style="background-color: #f8fafb;border-right: hidden;">보상한도</th>
+														<th  width="12%" class="text-center" style="background-color: #f8fafb;border-right: hidden;">총 금액</th>
+														<th  width="17%" class="text-center" style="background-color: #f8fafb;border-right: hidden;"></th>
 													</tr>
-													<tr style="font-size:8pt">
-														<td align="center">특별한렌트카</td>
-														<td align="center">4.5</td>
-														<td align="center">13,400원</td>
-														<td align="center">13,000원</td>
-														<td align="center">1,000만원</td>
-														<td align="center">26,400원</td>
+													<tr style="font-size:8pt;border-bottom: hidden">
+														<td height="50px" align="center" style="border-right: hidden">특별한렌트카</td>
+														<td align="center" style="border-right: hidden">4.5</td>
+														<td align="center" style="border-right: hidden">13,400원</td>
+														<td align="center" style="border-right: hidden">13,000원</td>
+														<td align="center" style="border-right: hidden">1,000만원</td>
+														<td align="center" style="border-right: hidden">26,400원</td>
 														<td align="center">													
-											                  	<button type="button"><a href="rentcar.do" style="color:black">실시간예약</a></button>								                
+											              <button type="button" style="background-color:#f8fafb;border:0"><a href="rentcar.do" style="color:black">실시간예약</a></button>								                
 														</td>
 													</tr>
-													<tr style="font-size:8pt">
-														<td align="center">제주렌트카</td>
-														<td align="center">4.5</td>
-														<td align="center">13,400원</td>
-														<td align="center">13,000원</td>
-														<td align="center">1,000만원</td>
-														<td align="center">26,400원</td>
+													<tr style="font-size:8pt;border-bottom: hidden">
+														<td align="center" style="border-right: hidden">제주렌트카</td>
+														<td align="center" style="border-right: hidden">4.5</td>
+														<td align="center" style="border-right: hidden">13,400원</td>
+														<td align="center" style="border-right: hidden">13,000원</td>
+														<td align="center" style="border-right: hidden">1,000만원</td>
+														<td align="center" style="border-right: hidden">26,400원</td>
 														<td align="center">													
-											                  	<button type="button"><a href="rentcar.do" style="color:black">실시간예약</a></button>									                
+											              <button type="button" style="background-color:#f8fafb;border:0"><a href="rentcar.do" style="color:black">실시간예약</a></button>									                
 														</td>
 													</tr>
 												</table>
@@ -411,198 +483,257 @@
 				                  </div>
 				                </div>
 				                <div class="col-md-12">
-				                  <input type="submit" name="submit" id="submit" value="차량검색" class="btn btn-primary btn-block">
+				                  <input type="submit" name="submit" id="submit" value="차량검색" class="btn btn-primary btn-block" style="background-color:#ffdd00">
 				                </div>
 				              </div>
 				            </form>
 							</div>
-						
-							<div class="side animate-box">
+							<!-- -------------------------------- -->
+							<div class="side search-wrap animate-box" style="background-color:white">
+								<span class="glyphicon glyphicon-filter">&nbsp;결과 내 검색</span><hr>
+								<div class="side animate-box">
 								<div class="row">
 									<div class="col-md-12">
-										<h3 class="sidebar-heading">제조사</h3>
+										<h3 class="sidebar-heading" style="color:black">제조사</h3>
 										<form method="post" class="colorlib-form-2">
-										   <div class="form-check">
-												<input type="checkbox" class="form-check-input" id="car_manufacturer" value="현대" >
-												<label class="form-check-label" for="exampleCheck1">
-													<h4 class="place">현대</h4>
-												</label>
-												<input type="checkbox" class="form-check-input" id="car_manufacturer" value="르노삼성">
-												<label class="form-check-label" for="exampleCheck1">
-													<h4 class="place">르노삼성</h4>
-												</label>
+										   <div class="form-check" style="height:30px">
+										   <div class="checkbox">
+									          <label>
+									            <input type="checkbox" id="car_manufacturer" value="현대">
+									            <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+									            	현대
+									          </label>
+									          <label>
+									            <input type="checkbox" id="car_manufacturer" value="르노삼성">
+									            <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+									            	르노삼성
+									          </label>
+									        </div>
+										   </div>
+										   
+										   <div class="form-check" style="height:30px">
+										   <div class="checkbox">
+									          <label>
+									            <input type="checkbox" id="car_manufacturer" value="기아">
+									            <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+									            	기아
+									          </label>
+									          <label>
+									            <input type="checkbox" id="car_manufacturer" value="쉐보레">
+									            <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+									            	쉐보레
+									          </label>
+									        </div>
+										   </div>
+										   
+										   <div class="form-check" style="height:30px">
+										   <div class="checkbox">
+									          <label>
+									            <input type="checkbox" id="car_manufacturer" value="쌍용">
+									            <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+									            	쌍용
+									          </label>
+									          <label>
+									            <input type="checkbox" id="car_manufacturer" value="제네시스">
+									            <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+									            	제네시스
+									          </label>
+									        </div>
 										   </div>
 										   
 										   <div class="form-check">
-										      <input type="checkbox" class="form-check-input" id="car_manufacturer" value="기아">
-										      <label class="form-check-label" for="exampleCheck1">
-													<h4 class="place">기아</h4>
-												</label>
-												<input type="checkbox" class="form-check-input" id="car_manufacturer" value="쉐보레">
-										      <label class="form-check-label" for="exampleCheck1">
-													<h4 class="place">쉐보레</h4>
-												</label>
-										   </div>
-										   
-										   <div class="form-check">
-										      <input type="checkbox" class="form-check-input" id="car_manufacturer" value="쌍용">
-										      <label class="form-check-label" for="exampleCheck1">
-													<h4 class="place">쌍용</h4>
-												</label>
-												<input type="checkbox" class="form-check-input" id="car_manufacturer" value="제네시스">
-										      <label class="form-check-label" for="exampleCheck1">
-													<h4 class="place">제네시스</h4>
-												</label>
-										   </div>
-										   
-										   <div class="form-check">
-										      <input type="checkbox" class="form-check-input" id="car_manufacturer" value="수입">
-										      <label class="form-check-label" for="exampleCheck1">
-													<h4 class="place">수입</h4>
-												</label>
+										   <div class="checkbox">
+									          <label>
+									            <input type="checkbox" id="car_manufacturer" value="수입">
+									            <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+									            	수입
+									          </label>
+									        </div>
 										   </div>
 										</form>
 									</div>
 								</div>
+							</div><hr>
+							<div class="side animate-box">
+								<div class="row">
+									<div class="col-md-12">
+										<h3 class="sidebar-heading" style="color:black">연료타입</h3>
+										<form method="post" class="colorlib-form-2">
+										   <div class="form-check" style="height:30px">
+										   <div class="checkbox">
+									          <label>
+									            <input type="checkbox" id="car_fuel" value="휘발유">
+									            <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+									            	휘발유
+									          </label>
+									          <label>
+									            <input type="checkbox" id="car_fuel" value="경유">
+									            <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+									            	경유
+									          </label>
+									        </div>
+										   </div>
+										   
+										   <div class="form-check" style="height:30px">
+										   <div class="checkbox">
+									          <label>
+									            <input type="checkbox" id="car_fuel" value="전기차">
+									            <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+									            	전기차
+									          </label>
+									          <label>
+									            <input type="checkbox" id="car_fuel" value="LPG">
+									            <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+									            	LPG
+									          </label>
+									        </div>
+										   </div>
+										   
+										   <div class="form-check">
+										   <div class="checkbox">
+									          <label>
+									            <input type="checkbox" id="car_fuel" value="하이브리드">
+									            <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+									            	하이브리드
+									          </label>
+									        </div>
+										   </div>
+									
+										</form>
+									</div>
+								</div>
+							</div><hr>
+							<div class="side animate-box">
+								<div class="row">
+									<div class="col-md-12">
+										<h3 class="sidebar-heading" style="color:black">차종</h3>
+										<form method="post" class="colorlib-form-2">
+										   <div class="form-check" style="height:30px">
+										   <div class="checkbox">
+									          <label>
+									            <input type="checkbox" id="car_type" value="경차">
+									            <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+									            	경차
+									          </label>
+									          <label>
+									            <input type="checkbox" id="car_type" value="중소형">
+									            <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+									            	중소형
+									          </label>
+									        </div>
+										   </div>
+										   
+										   <div class="form-check" style="height:30px">
+										   <div class="checkbox">
+									          <label>
+									            <input type="checkbox" id="car_type" value="중형">
+									            <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+									            	중형
+									          </label>
+									          <label>
+									            <input type="checkbox" id="car_type" value="고급">
+									            <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+									            	고급
+									          </label>
+									        </div>
+										   </div>
+										   
+										   <div class="form-check" style="height:30px">
+										   <div class="checkbox">
+									          <label>
+									            <input type="checkbox" id="car_type" value="SUV">
+									            <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+									            	SUV
+									          </label>
+									          <label>
+									            <input type="checkbox" id="car_type" value="승합">
+									            <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+									            	승합
+									          </label>
+									        </div>
+										   </div>
+										   
+										   <div class="form-check">
+										   <div class="checkbox">
+									          <label>
+									            <input type="checkbox" id="car_type" value="수입">
+									            <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+									            	수입
+									          </label>
+									        </div>		
+										   </div>
+									
+										</form>
+									</div>
+								</div>
+							</div><hr>
+							<div class="side animate-box">
+								<div class="row">
+									<div class="col-md-12">
+										<h3 class="sidebar-heading" style="color:black">차량옵션</h3>
+										<form method="post" class="colorlib-form-2">
+										   <div class="form-check" style="height:30px">
+										   <div class="checkbox">
+									          <label>
+									            <input type="checkbox" id="car_option" value="car_kind_nonsmoke">
+									            <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+									            	금연차량
+									          </label>
+									          <label>
+									            <input type="checkbox" id="car_option" value="car_kind_navi">
+									            <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+									            	네비
+									          </label>
+									        </div>
+										   </div>
+										   
+										   <div class="form-check" style="height:30px">
+										   <div class="checkbox">
+									          <label>
+									            <input type="checkbox" id="car_option" value="car_kind_sensor">
+									            <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+									            	후방센서
+									          </label>
+									          <label>
+									            <input type="checkbox" id="car_option" value="car_kind_blackbox">
+									            <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+									            	블랙박스
+									          </label>
+									        </div>
+										   </div>
+										   
+										   <div class="form-check" style="height:30px">
+										   <div class="checkbox">
+									          <label>
+									            <input type="checkbox" id="car_option" value="car_kind_bluetooth">
+									            <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+									            	블루투스
+									          </label>
+									           <label>
+									            <input type="checkbox" id="car_option" value="car_kind_sunroof">
+									            <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+									            	썬루프
+									          </label>
+									        </div>
+										   </div>
+										   
+										   <div class="form-check">
+										   <div class="checkbox">
+									          <label>
+									            <input type="checkbox" id="car_option" value="car_kind_camera">
+									            <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+									            	후방카메라
+									          </label>
+									        </div>		
+										   </div>
+									
+										</form>
+									</div>
+								</div>
 							</div>
+						</div>
+							<!-- ----------------------------------- -->
 							
-							<div class="side animate-box">
-								<div class="row">
-									<div class="col-md-12">
-										<h3 class="sidebar-heading">연료타입</h3>
-										<form method="post" class="colorlib-form-2">
-										   <div class="form-check">
-												<input type="checkbox" class="form-check-input" id="car_fuel" value="휘발유">
-												<label class="form-check-label" for="exampleCheck1">
-													<h4 class="place">휘발유</h4>
-												</label>
-												<input type="checkbox" class="form-check-input" id="car_fuel" value="경유">
-												<label class="form-check-label" for="exampleCheck1">
-													<h4 class="place">경유</h4>
-												</label>
-										   </div>
-										   
-										   <div class="form-check">
-										      <input type="checkbox" class="form-check-input" id="car_fuel" value="전기차">
-										      <label class="form-check-label" for="exampleCheck1">
-													<h4 class="place">전기차</h4>
-												</label>
-												<input type="checkbox" class="form-check-input" id="car_fuel" value="LPG">
-										      <label class="form-check-label" for="exampleCheck1">
-													<h4 class="place">LPG</h4>
-												</label>
-										   </div>
-										   
-										   <div class="form-check">
-										      <input type="checkbox" class="form-check-input" id="car_fuel" value="하이브리드">
-										      <label class="form-check-label" for="exampleCheck1">
-													<h4 class="place">하이브리드</h4>
-												</label>
-										   </div>
-									
-										</form>
-									</div>
-								</div>
-							</div>
-							<div class="side animate-box">
-								<div class="row">
-									<div class="col-md-12">
-										<h3 class="sidebar-heading">차종</h3>
-										<form method="post" class="colorlib-form-2">
-										   <div class="form-check">
-												<input type="checkbox" class="form-check-input" id="car_type" value="경차">
-												<label class="form-check-label" for="exampleCheck1">
-													<h4 class="place">경차</h4>
-												</label>
-												<input type="checkbox" class="form-check-input" id="car_type" value="중소형">
-												<label class="form-check-label" for="exampleCheck1">
-													<h4 class="place">중소형</h4>
-												</label>
-										   </div>
-										   
-										   <div class="form-check">
-										      <input type="checkbox" class="form-check-input" id="car_type" value="중형">
-										      <label class="form-check-label" for="exampleCheck1">
-													<h4 class="place">중형</h4>
-												</label>
-												<input type="checkbox" class="form-check-input" id="car_type" value="고급">
-										      <label class="form-check-label" for="exampleCheck1">
-													<h4 class="place">고급</h4>
-												</label>
-										   </div>
-										   
-										   <div class="form-check">
-										      <input type="checkbox" class="form-check-input" id="car_type" value="SUV">
-										      <label class="form-check-label" for="exampleCheck1">
-													<h4 class="place">SUV</h4>
-												</label>
-												<input type="checkbox" class="form-check-input" id="car_type" value="승합">
-										      <label class="form-check-label" for="exampleCheck1">
-													<h4 class="place">승합</h4>
-												</label>
-										   </div>
-										   
-										   <div class="form-check">
-										      <input type="checkbox" class="form-check-input" id="car_type" value="수입">
-										      <label class="form-check-label" for="exampleCheck1">
-													<h4 class="place">수입</h4>
-												</label>		
-										   </div>
-									
-										</form>
-									</div>
-								</div>
-							</div>
-							
-							<div class="side animate-box">
-								<div class="row">
-									<div class="col-md-12">
-										<h3 class="sidebar-heading">차량옵션</h3>
-										<form method="post" class="colorlib-form-2">
-										   <div class="form-check">
-												<input type="checkbox" class="form-check-input" id="car_option" value="car_kind_nonsmoke">
-												<label class="form-check-label" for="exampleCheck1">
-													<h4 class="place">금연차량</h4>
-												</label>
-												<input type="checkbox" class="form-check-input" id="car_option" value="car_kind_navi">
-												<label class="form-check-label" for="exampleCheck1">
-													<h4 class="place">네비</h4>
-												</label>
-										   </div>
-										   
-										   <div class="form-check">
-										      <input type="checkbox" class="form-check-input" id="car_option" value="car_kind_sensor">
-										      <label class="form-check-label" for="exampleCheck1">
-													<h4 class="place">후방센서</h4>
-												</label>
-												<input type="checkbox" class="form-check-input" id="car_option" value="car_kind_blackbox">
-										      <label class="form-check-label" for="exampleCheck1">
-													<h4 class="place">블랙박스</h4>
-												</label>
-										   </div>
-										   
-										   <div class="form-check">
-										      <input type="checkbox" class="form-check-input" id="car_option" value="car_kind_bluetooth">
-										      <label class="form-check-label" for="exampleCheck1">
-													<h4 class="place">블루투스</h4>
-												</label>
-												<input type="checkbox" class="form-check-input" id="car_option" value=car_kind_camera>
-										      <label class="form-check-label" for="exampleCheck1">
-													<h4 class="place">후방카메라</h4>
-												</label>
-										   </div>
-										   
-										   <div class="form-check">
-										      <input type="checkbox" class="form-check-input" id="car_option" value="car_kind_sunroof">
-										      <label class="form-check-label" for="exampleCheck1">
-													<h4 class="place">썬루프</h4>
-												</label>		
-										   </div>
-									
-										</form>
-									</div>
-								</div>
-							</div>
 						</div>
 					</div>
 				</div>

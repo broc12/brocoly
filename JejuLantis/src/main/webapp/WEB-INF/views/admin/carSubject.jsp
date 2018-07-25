@@ -133,7 +133,7 @@
 						<button type="button" class="btn btn-primary">
 						<input type="hidden" id="car_no" name="car_no" value="${subject.car_no}"/>
 						<input type="hidden" id="fileName" name="fileName" value="${subject.car_image}"/>
-						<a style="color:white" href="javascript:goDel();">삭제</avv>
+						<a style="color:white" href="javascript:goDel();">삭제</a>
 						</button>
 					</td>
 				</tr>

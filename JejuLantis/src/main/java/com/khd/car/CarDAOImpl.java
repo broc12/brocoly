@@ -22,16 +22,16 @@ public class CarDAOImpl implements CarDAO{
 		sqlSession.insert(ns+".myInsert",car);
 	}
 	@Override
-	public List<Car>subject(String car_no){
+	public List<Car>subject(long car_no){
 		List<Car>subject = sqlSession.selectList(ns+".mySubject",car_no);
 		return subject;
 	}
 	@Override
-	public void delete(String car_no) {
+	public void delete(long car_no) {
 		sqlSession.delete(ns+".myDelete",car_no);
 	}
 	@Override
-	public List<Car>modify(String car_no){
+	public List<Car>modify(long car_no){
 		List<Car>modify = sqlSession.selectList(ns+".myModify",car_no);
 		return modify;
 	}

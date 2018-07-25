@@ -22,19 +22,16 @@
 
 					<c:choose>
 						<c:when test="${log.member_id ne null}">
-							<span style="color: yellow"> ${log.member_id}님 반갑습니다</span>&nbsp;&nbsp;&nbsp;
-						<a href="login/logout">로그아웃</a>&nbsp;&nbsp;&nbsp;
-						<a href="mypage.do">마이페이지</a>&nbsp;&nbsp;&nbsp;
+							<span style="color: #ffdd00"> ${log.member_id}님 반갑습니다</span>&nbsp;&nbsp;&nbsp;
+						<a href="login/logout" style="color:#ffdd00">로그아웃</a>&nbsp;&nbsp;&nbsp;
+						<a href="mypage.do" style="color:#ffdd00">마이페이지</a>&nbsp;&nbsp;&nbsp;
 						</c:when>
 						<c:otherwise>
-							<a href="login.do">로그인</a>&nbsp;&nbsp;&nbsp;
-       				<a href="member.do">회원가입</a>&nbsp;&nbsp;&nbsp;	
-			</c:otherwise>
+							<a href="login.do" style="color:#ffdd00">로그인</a>&nbsp;&nbsp;&nbsp;
+       				<a href="member.do" style="color:#ffdd00">회원가입</a>&nbsp;&nbsp;&nbsp;	
+						</c:otherwise>
 					</c:choose>
-
-
-
-					<a>${log.member_id}</a> <a href="service.do">고객센터</a>
+					<a href="service.do" style="color:#ffdd00">고객센터</a>
 				</div>
 			</div>
 			<div class="row">
@@ -60,7 +57,7 @@
 						<li><a href="car.do">렌트카</a></li>
 						<li><a href="">패키지</a></li>
 						<li><a href="board.do">이용후기</a></li>
-						<li><a href="">예약확인</a></li>
+						<li><a href="check.do">예약확인</a></li>
 					</ul>
 				</div>
 			</div>

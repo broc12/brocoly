@@ -23,17 +23,17 @@ public class CarServiceImpl implements CarService{
 	}
 	
 	@Override
-	public List<Car>subjectService(String car_no){
+	public List<Car>subjectService(long car_no){
 		return carDAO.subject(car_no);
 	}
 	
 	@Override
-	public void deleteService(String car_no) {
+	public void deleteService(long car_no) {
 		carDAO.delete(car_no);
 	}
 	
 	@Override
-	public List<Car>modifyService(String car_no){
+	public List<Car>modifyService(long car_no){
 		return carDAO.modify(car_no);
 	}
 	

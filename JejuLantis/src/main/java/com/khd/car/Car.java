@@ -3,7 +3,7 @@ package com.khd.car;
 import java.sql.Date;
 
 public class Car {
-	private String car_no;
+	private long car_no;
 	private String car_name;
 	private String car_manufacturer;
 	private String car_fuel;
@@ -17,7 +17,7 @@ public class Car {
 	private Date car_resist;
 	public Car() {
 	}
-	public Car(String car_no, String car_name, String car_manufacturer, String car_fuel, String car_type,
+	public Car(long car_no, String car_name, String car_manufacturer, String car_fuel, String car_type,
 			long car_passenger, String car_trans, long car_count, String car_image, String car_withdraw_at,
 			long car_rating, Date car_resist) {
 		this.car_no = car_no;
@@ -33,10 +33,10 @@ public class Car {
 		this.car_rating = car_rating;
 		this.car_resist = car_resist;
 	}
-	public String getCar_no() {
+	public long getCar_no() {
 		return car_no;
 	}
-	public void setCar_no(String car_no) {
+	public void setCar_no(long car_no) {
 		this.car_no = car_no;
 	}
 	public String getCar_name() {

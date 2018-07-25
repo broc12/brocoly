@@ -1,8 +1,8 @@
-package com.khd.ReviewController;
+package com.khd.review;
 
 import java.util.List;
-import com.khd.ReviewController.BranchName;
-import com.khd.ReviewController.ReviewContent;
+import com.khd.review.BranchName;
+import com.khd.review.ReviewContent;
 public interface ReviewService {
 	List<BranchName> listService();
 	List<ReviewContent> listServiceAll();

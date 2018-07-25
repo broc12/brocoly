@@ -1,11 +1,11 @@
-package com.khd.ReviewController;
+package com.khd.review;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.khd.ReviewController.ReviewDao;
-import com.khd.ReviewController.BranchName;
-import com.khd.ReviewController.ReviewContent;
+
+import com.khd.review.BranchName;
+import com.khd.review.ReviewService;
 
 @Service("reviewService")
 public class ReviewServiceImpl implements ReviewService {
@@ -32,4 +32,5 @@ public class ReviewServiceImpl implements ReviewService {
 	public List<ReviewContent> reviewContentService(String rent_review_no) {
 		return reviewDAO.reviewDetailContent(rent_review_no);
 	}
+
 }

@@ -1,5 +1,4 @@
-package com.khd.ReviewController;
-
+package com.khd.review;
 import java.sql.Date;
 import java.util.List;
 

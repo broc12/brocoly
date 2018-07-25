@@ -1,8 +1,8 @@
-package com.khd.ReviewController;
+package com.khd.review;
 
 import java.util.List;
 
-import com.khd.ReviewController.BranchName;
+import com.khd.review.BranchName;
 public interface ReviewDao {
 	List<BranchName> branchName();
 	List<ReviewContent> reviewContentAll();	

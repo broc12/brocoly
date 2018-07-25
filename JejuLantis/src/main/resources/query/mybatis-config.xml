@@ -14,11 +14,10 @@
 		<typeAlias alias="Qna" type="com.khd.model.Qna"/>
 		<typeAlias alias="Notice" type="com.khd.notice.Notice"/>
 		<typeAlias alias="Branch" type="com.khd.branch.Branch"/>
-		<typeAlias alias="ReviewContent" type="com.khd.ReviewController.ReviewContent"/>
-		<typeAlias alias="BranchName" type="com.khd.ReviewController.BranchName"/>
-		<typeAlias alias="BranchNameSelect" type="com.khd.ReviewController.BranchName"/>
+		<typeAlias alias="ReviewContent" type="com.khd.review.ReviewContent"/>
+		<typeAlias alias="BranchName" type="com.khd.review.BranchName"/>
 		<typeAlias alias="Manager" type="com.khd.admin.ManagerModel.Manager"/>
-		<typeAlias alias="Carkind" type="com.khd.CarkindController.Carkind"/>
+		<typeAlias alias="Carkind" type="com.khd.CarkindDetail.Carkind"/>
 		<typeAlias alias="Car" type="com.khd.car.Car"/>
 		<typeAlias alias="CarInfo" type="com.khd.model.CarInfo"/>
 	</typeAliases>
@@ -36,7 +35,6 @@
 		<mapper resource="query/BranchName.xml"/>
 		<mapper resource="query/Manager.xml"/>
 		<mapper resource="query/ReviewContent.xml"/>
-		<mapper resource="query/BranchName.xml"/>
 		<mapper resource="query/Carkind.xml"/>
 		<mapper resource="query/car.xml"/>
 		<mapper resource="query/carInfo.xml"/>

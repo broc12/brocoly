@@ -244,7 +244,9 @@ public class SearchRequirements {
 		errorMsg = null;
 		if(Minutes.minutesBetween(today, this.rent_reserve_start).getMinutes()<0) {
 			errorMsg = "현재 시각 이후부터 검색 가능합니다.";
-		}else if(today.getDayOfMonth()==this.rent_reserve_start.getDayOfMonth()){
+		}else if(today.getDayOfYear()==this.rent_reserve_start.getDayOfYear()&&
+				today.getDayOfMonth()==this.rent_reserve_start.getDayOfMonth()&&
+				today.getDayOfWeek()==this.rent_reserve_start.getDayOfWeek()){
 			if(this.rent_reserve_start.getHourOfDay()<14) {
 				errorMsg = "당일 예약은 14시 이후부터 가능합니다.";
 			}

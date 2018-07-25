@@ -140,7 +140,7 @@ FROM
 										]]>
 										TO_DATE(#{rent_reserve_endDateTime},'yyyy-mm-dd hh24:mi'))
 								AND
-									CAR_INFO_RENT_AT='y'
+									CAR_INFO_RENT_AT='Y'
 								GROUP BY
 									BRANCH_NO,CAR_NO,INSURANCE_NO,CAR_KIND_NO
 							)

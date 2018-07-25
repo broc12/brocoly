@@ -53,7 +53,7 @@ insert into MEMBER values (MEMBER_seq.nextval,#{id},#{pwd},#{name},#{birth},'남
 
 <delete id="delete" parameterType="String" >
 <!--         DELETE FROM member WHERE id=#{id} -->
-UPDATE member SET memeber_withdraw_at  ='y' where id=#{id}
+UPDATE member SET memeber_withdraw_at  ='Y' where id=#{id}
     </delete>
     
    <!-- 아이디 찾기 -->

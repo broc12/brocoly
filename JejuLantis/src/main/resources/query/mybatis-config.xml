@@ -17,7 +17,7 @@
 		<typeAlias alias="ReviewContent" type="com.khd.review.ReviewContent"/>
 		<typeAlias alias="BranchName" type="com.khd.review.BranchName"/>
 		<typeAlias alias="Manager" type="com.khd.admin.ManagerModel.Manager"/>
-		<typeAlias alias="Carkind" type="com.khd.CarkindDetail.Carkind"/>
+		<typeAlias alias="Carkind" type="com.khd.CarkindDetail.CarkindDetail"/>
 		<typeAlias alias="Car" type="com.khd.car.Car"/>
 		<typeAlias alias="CarInfo" type="com.khd.model.CarInfo"/>
 	</typeAliases>

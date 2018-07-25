@@ -6,7 +6,7 @@ import com.khd.admin.ManagerModel.Manager;
 import com.khd.branch.Branch;
 
 public interface ManagerDao {
-	boolean join(Manager manager1);
+	boolean join(Manager manager);
 
 	List<Branch> post(String branch);
 

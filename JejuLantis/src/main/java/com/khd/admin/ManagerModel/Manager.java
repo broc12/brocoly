@@ -4,6 +4,7 @@ import java.sql.Date;
 
 public class Manager {		 
 		long manager_no;
+		long branch_no;
 		String manager_id; 
 		String manager_pwd;
 		String manager_name;
@@ -39,7 +40,7 @@ public class Manager {
 			this.manager_id=manager_id;
 		}
 
-		public Manager(long manager_no, String manager_id, String manager_pwd, String manager_name,
+		public Manager(long manager_no, long branch_no, String manager_id, String manager_pwd, String manager_name,
 				String manager_email, String manager_birth, String manager_tel1, String manager_tel2,
 				String manager_withdraw_at, Date manager_resist_member, String main, String chart,
 				String manager_reservstatus, String ars_reserv, String travelmanagement, String manager_review,
@@ -48,6 +49,7 @@ public class Manager {
 				String manager_salestatus, String banner, String coupon, String sms, String manager_insurance) {
 			super();
 			this.manager_no = manager_no;
+			this.branch_no = branch_no;
 			this.manager_id = manager_id;
 			this.manager_pwd = manager_pwd;
 			this.manager_name = manager_name;
@@ -84,6 +86,14 @@ public class Manager {
 
 		public void setManager_no(long manager_no) {
 			this.manager_no = manager_no;
+		}
+
+		public long getBranch_no() {
+			return branch_no;
+		}
+
+		public void setBranch_no(long branch_no) {
+			this.branch_no = branch_no;
 		}
 
 		public String getManager_id() {
@@ -309,7 +319,18 @@ public class Manager {
 		public void setManager_insurance(String manager_insurance) {
 			this.manager_insurance = manager_insurance;
 		}
-		
+
+		public String getBranch_noSTR() {
+			return String.valueOf(branch_no);
+		}
+
+		public void setBranch_noSTR(String branch_no) {
+			try {
+				this.branch_no = Integer.parseInt(branch_no);
+			}catch(NumberFormatException ne) {
+				this.branch_no = -1;
+			}
+		}
 		
 		
 }

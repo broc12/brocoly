@@ -49,7 +49,7 @@
             </tr>
             <c:forEach items="${result}" var="post">
                 <tr>
-                    <td><a id="branch_name" href="javascript:sendAdd('${post.branch_name}','${post.branch_line_no}')" >
+                    <td><a id="branch_name" href="javascript:sendAdd('${post.branch_name}','${post.branch_no}')" >
                      ${post.branch_tel}  ${post.branch_local} ${post.branch_name} 
                     </a></td>
                 </tr>

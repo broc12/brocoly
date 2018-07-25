@@ -16,10 +16,7 @@ public class AdminController {
 	public String navbar() {
 		return "admin/navbar";
 	}
-	@RequestMapping(value="admin/login.do",method=RequestMethod.GET)
-	public String login() {
-		return "admin/login";
-	}
+	
 	@RequestMapping(value="admin/forgot-password.do",method=RequestMethod.GET)
 	public String forgotpassword() {
 		return "admin/forgot-password";

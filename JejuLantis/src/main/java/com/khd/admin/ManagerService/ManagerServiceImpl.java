@@ -12,14 +12,13 @@ import com.khd.branch.Branch;
 
 @Service
 public class ManagerServiceImpl implements ManagerService {
-	
 
 	@Autowired
 	ManagerDao managerDao; 
 	
 	@Override
-	public boolean joinService(Manager manager1) {		
-		return false;
+	public boolean joinService(Manager manager) {		
+		return managerDao.join(manager);
 	}
 
 	@Override

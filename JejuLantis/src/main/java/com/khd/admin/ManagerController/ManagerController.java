@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
-
+import java.lang.Long;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,22 +27,37 @@ public class ManagerController {
 	@Autowired
 	ManagerService managerService;
 	
+	@RequestMapping(value="admin/login.do",method=RequestMethod.GET)
+	public String login() {
+		return "admin/login";
+	}
 	@RequestMapping(value="admin/register.do",method=RequestMethod.GET)
 	public String register() {
 		return "admin/register";
 	}
-	@RequestMapping(value="resist.do", method=RequestMethod.POST)
-	public String join(Manager manager,@RequestParam(value="birth1")String birth1,@RequestParam(value="hp1")String hp1,@RequestParam(value="hp2")String hp2,@RequestParam(value="hp3")String hp3,@RequestParam(value="birth2")String birth2,@RequestParam(value="birth3")String birth3) {
-		System.out.println("지나감");
+	@RequestMapping(value="admin/manager.do", method=RequestMethod.POST)
+	public String join(Manager manager,@RequestParam(value="hp1")String hp1,@RequestParam(value="hp2")String hp2,@RequestParam(value="hp3")String hp3,@RequestParam(value="hp4")String hp4,@RequestParam(value="hp5")String hp5,@RequestParam(value="hp6")String hp6,@RequestParam(value="birth1")String birth1,@RequestParam(value="birth2")String birth2,@RequestParam(value="birth3")String birth3) {
+		System.out.println("지나감99");
+		System.out.println(manager.getBranch_no());
 		String manager_birth = birth1+"-"+birth2+"-"+birth3;
 		String manager_tel1 = hp1+"-"+hp2+"-"+hp3;
+		if( hp4 == null && hp5 == null && hp6 == null) {
+			String manager_tel2 = null;	
+		}else{
+			String manager_tel2 = hp4+"-"+hp5+"-"+hp6;
+		}
+		String manager_tel2 = hp4+"-"+hp5+"-"+hp6;
+		manager.setManager_tel1(manager_tel1);
+		manager.setManager_tel2(manager_tel2);
+		manager.setManager_birth(manager_birth);
 //		String manager_birth =  manager.getManager_birth();
 //		Manager manager1 = new Manager(null,null,manager_id,manager_pwd,manager_name,manager_email,manager_birth,manager_tel1,
 //				manager_tel2,"N","N","N","N","N",
 //				"N","N","N","N","N","N",
 //				"N","N","N","N","N","N",
 //				"N","N","N",null);
-//		boolean flag = managerService.joinService(manager1);
+//		System.out.println("branch_no"+ manager.getBranch_no());
+		boolean flag = managerService.joinService(manager);
 		return "admin/login";
 	}
 	@RequestMapping(value = "admin/post", method = RequestMethod.GET)
@@ -80,10 +95,10 @@ public class ManagerController {
 	public String main(){
 		return "main";
 	}
-	 @RequestMapping(value = "/idcheckmanager.do" , method = RequestMethod.POST)
+	 @RequestMapping(value = "admin/idcheckmanager.do" , method = RequestMethod.POST)
 	    @ResponseBody
 	    public Map<Object, Object> idcheck(@RequestBody String manager_id) {
-//		 System.out.println("id1 =" +manager_id);
+		 System.out.println("id1 =" +manager_id);
 	        int count = 0;
 	        Map<Object, Object> map = new HashMap<Object, Object>();
 //	        System.out.println("id2 =" +member_id);
@@ -92,7 +107,7 @@ public class ManagerController {
 //	        System.out.println("id3 =" +member_id);
 	        return map;
 	    }
-	 @RequestMapping(value = "/emailcheckmanager.do" , method = RequestMethod.POST)
+	 @RequestMapping(value = "admin/emailcheckmanager.do" , method = RequestMethod.POST)
 	    @ResponseBody
 	    public Map<Object, Object> emailcheck(@RequestBody String manager_email) {
 		 System.out.println("manager_email =" +manager_email);

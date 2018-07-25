@@ -219,7 +219,7 @@ $(document).ready(function() {
 
 function sendIt() {
 	var email2 = document.f.member_email.value;
-	var tel2 = document.f.member_tel.value;
+// 	var tel2 = document.f.member_tel.value;
 	var regex = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/;								         
 	var regExp = /^(01[016789]{1}|02|0[3-9]{1}[0-9]{1})-?[0-9]{3,4}-?[0-9]{4}$/; 
 	var regPhone = /(01[0|1|6|9|7])[-](\d{3}|\d{4})[-](\d{4}$)/;
@@ -352,7 +352,7 @@ function sendIt() {
 
 							<tr>
 								<td>아이디</td>
-								<td><input type="text" name="manager_id" id="manager_id" /> <input type="button" value="중복확인" name="confirm_id"
+								<td><input type="text" name="member_id" id="member_id" /> <input type="button" value="중복확인" name="confirm_id"
 									id="idck" onclick="confirmId(this.form)"></td>
 							</tr>
 							<div class="row form-group">
@@ -452,11 +452,10 @@ function sendIt() {
 														<script type="text/javascript">
 														var target = document.getElementById("member_tel");
 														target.options[target.selectedIndex].text
-														</script>
+														</script> 
 														<input type="hidden" id="member_tel" name="member_tel" >
 													</td>
-												</tr>
-<!-- 													<input type="text" id="subject" name= "tel" class="form-control" placeholder="ex)01086308690"/> -->
+												</tr>													
 								</div>
 							</div>
 
@@ -467,7 +466,7 @@ function sendIt() {
 									class="form-check-label" for="exampleCheck1">
 									<h4 class="place">SMS수신(이벤트)</h4>
 								</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-								<input type="checkbox" class="form-check-input" name="member_email_at"
+								<input type="checkbox" class="form-check-input"
 									id="exampleCheck2" /> <label class="form-check-label"
 									for="exampleCheck2">
 									<h4 class="place">이메일 수신(이벤트)</h4>

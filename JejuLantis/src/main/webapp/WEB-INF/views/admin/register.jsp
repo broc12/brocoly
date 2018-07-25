@@ -75,7 +75,7 @@ $(document).ready(function() {
                     //아이디가 존제할 경우 빨깡으로 , 아니면 파랑으로 처리하는 디자인
                     $("#divInputId").addClass("has-error")
                     $("#divInputId").removeClass("has-success")
-                    $("#manager_id").focus();				                
+                    $("#manager_email").focus();				                
                 } else {
                     alert("사용가능한 email입니다.");
                     //아이디가 존제할 경우 빨깡으로 , 아니면 파랑으로 처리하는 디자인
@@ -161,7 +161,7 @@ $(document).ready(function() {
 
 function sendIt() {
 	var email2 = document.f.manager_email.value;
-	var tel2 = document.f.manager_tel1.value;
+// 	var tel2 = document.f.manager_tel1.value;
 	var regex = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/;								         
 	var regExp = /^(01[016789]{1}|02|0[3-9]{1}[0-9]{1})-?[0-9]{3,4}-?[0-9]{4}$/; 
 	var regPhone = /(01[0|1|6|9|7])[-](\d{3}|\d{4})[-](\d{4}$)/;
@@ -256,9 +256,6 @@ function sendIt() {
 	}
 }
 </script>
-
-
-
 </head>
 <script type="text/javascript">
     function branchOpen() {
@@ -282,7 +279,7 @@ function sendIt() {
     <div class="card card-register mx-auto mt-5">
       <div class="card-header">관리자가입</div>
       <div class="card-body">
-        <form name="f" action="./resist.do" method="post">												
+        <form name="f" action="manager.do"  method="post">												
           <div class="form-group">
             <div class="form-row">
               <div class="col-md-6">             		
@@ -303,11 +300,11 @@ function sendIt() {
             <div class="form-row">
               <div class="col-md-6">
                 <label for="exampleInputName"><a style="color:red">*</a>비밀번호</label>
-                <input class="form-control" id="manager_pwd1" name="manager_pwd1" type="text" aria-describedby="nameHelp" placeholder="">
+                <input class="form-control" id="manager_pwd" name="manager_pwd" type="text" aria-describedby="nameHelp" placeholder="">
               </div>
               <div class="col-md-6">
                 <label for="exampleInputLastName"><a style="color:red">*</a>비밀번호 확인</label>
-                <input class="form-control" id="manager_pwd2" name="manager_pwd2" type="text" aria-describedby="nameHelp" placeholder="">
+                <input class="form-control" id="manager_pwd1" name="manager_pwd1" type="text" aria-describedby="nameHelp" placeholder="">
               </div>
             </div>
           </div>
@@ -407,7 +404,7 @@ function sendIt() {
 <!-- //             $scope.bookList = [ -->
 <%-- //             	<c:forEach var="i" begin="1" end="7"> --%>
 <%-- //                     { "id": "${i}", "title": "${i}", "author": "${i}"}, --%>
-<%-- //                     </c:forEach> --%>
+<%-- //                     </c:forEach>  --%>
 <!-- //                     ]; -->
 <!-- //         }); -->
 <!--     </script> -->
@@ -415,13 +412,57 @@ function sendIt() {
 			
 			
             <div class="form-row">
-              <div class="col-md-6">             		
-                <label for="exampleInputName"><a style="color:red">*</a>핸드폰번호</label>
-                <input class="form-control" id="exampleInputName" type="text" aria-describedby="nameHelp" placeholder="">
-              </div>
+       				<tr>
+						<td rowspan="2" height="30" align="center" bgcolor="#FFDEAD">연락처1</td>
+						<td bgcolor="#E0FFFF">
+							<select id="hp1" name="hp1" style="width:70;">
+							   <option value="010"  selected> 010 </option>
+							   <option value="011"> 011 </option>
+							   <option value="016"> 016 </option>
+							   <option value="017"> 017 </option>
+							   <option value="018"> 018 </option>
+							   <option value="019"> 019 </option>
+							</select>
+							-
+							<input type="text" id="hp2" name="hp2" size="2" maxlength="4">
+							-
+							<input type="text" id="hp3" name="hp3" size="2" maxlength="4">
+							
+<!-- 															document.getElementByName("selBox").value -->
+
+							<script type="text/javascript">
+							var target = document.getElementById("manager_tel1");
+							target.options[target.selectedIndex].text
+							</script>
+							<input type="hidden" id="manager_tel1" name="manager_tel1" >
+						</td>
+					</tr>	
               <div class="col-md-6">
-                <label for="exampleInputLastName">핸드폰번호2</label>
-                <input class="form-control" id="exampleInputLastName" type="text" aria-describedby="nameHelp" placeholder="">
+             			<tr>
+							<td rowspan="2" height="30" align="center" bgcolor="#FFDEAD">연락처2</td>
+							<td bgcolor="#E0FFFF">
+								<select id="hp4" name="hp4" style="width:70;">
+								   <option value="010"  selected> 010 </option>
+								   <option value="011"> 011 </option>
+								   <option value="016"> 016 </option>
+								   <option value="017"> 017 </option>
+								   <option value="018"> 018 </option>
+								   <option value="019"> 019 </option>
+								</select>
+								-
+								<input type="text" id="hp5" name="hp5" size="2" maxlength="4">
+								-
+								<input type="text" id="hp6" name="hp6" size="2" maxlength="4">
+								
+<!-- 															document.getElementByName("selBox").value -->
+
+								<script type="text/javascript">
+								var target = document.getElementById("manager_tel2");
+								target.options[target.selectedIndex].text
+								</script>
+								<input type="hidden" id="manager_tel2" name="manager_tel2" >
+							</td>
+						</tr>	
               </div>
             </div>
             <div class="form-row">
@@ -431,8 +472,8 @@ function sendIt() {
             	<div class="col-md-6">
             	<label for="exampleInputName"><a style="color:red">*</a>업체명</label>
             	<input type="button" value="업체명검색" onclick="branchOpen()">
-              	<input type="hidden" id="branch_no" name="branch_no" >                		                
-                <input class="form-control"  id="branch_name" value="${branch_name}" type="text" aria-describedby="nameHelp" placeholder="">
+              	<input type="hidden" id="branch_no" name="branch_noSTR" >                		                
+                <input class="form-control"  id="branch_name" name="branch_name" type="text" aria-describedby="nameHelp" placeholder="">
               </div>
               </br>
           <input type="submit" class="btn btn-primary btn-block" value="등록하기" onclick="sendIt()">

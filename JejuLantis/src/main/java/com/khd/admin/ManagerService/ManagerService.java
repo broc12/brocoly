@@ -7,7 +7,7 @@ import com.khd.branch.Branch;
 
 public interface ManagerService {
 
-	boolean joinService(Manager manager1);
+	boolean joinService(Manager manager);
 	List<Branch> postService(String branch);
 	int idcheck(String manager_id);
 	int emailcheck(String manager_email);

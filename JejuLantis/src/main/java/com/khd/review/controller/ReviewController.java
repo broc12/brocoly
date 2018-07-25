@@ -19,7 +19,7 @@ public class ReviewController {
 	@Autowired
 	private ReviewService rservice;
 	
-	@RequestMapping(value="admin/list.do",method=RequestMethod.GET)
+	@RequestMapping(value="admin/list.do")
 	public ModelAndView admin_list() {
 		List<ReviewContent> list_ = rservice.listServiceAll();
 		String view = "admin/list";

@@ -42,4 +42,17 @@ public class ManagerDaoImpl implements ManagerDao{
 		return Select;
 	}
 
+	@Override
+	public boolean loginCheck(Manager manager) {
+		int count = Integer.parseInt(sql.selectOne("managerloginCheck",manager).toString()),
+				totalCount = sql.selectOne("managertotalAccount");
+		if(totalCount > 0) {
+			if(count > 0) {
+				return true;
+			}else
+				return false;
+		}
+		return false;
+	}
+
 }

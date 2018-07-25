@@ -12,8 +12,7 @@
 	<result column="MANAGER_BIRTH" property="manager_birth"/>
 	<result column="MANAGER_TEL1" property="manager_tel1"/>
 	<result column="MANAGER_TEL2" property="manager_tel2"/>
-	<result column="MANAGER_WITHDRAW_AT" property="manager_withdraw_at"/>
-	
+	<result column="MANAGER_WITHDRAW_AT" property="manager_withdraw_at"/>	
 	<result column="MANAGER_MAIN " property="manager_main"/>
 	<result column="MANAGER_CHART " property="manager_chart"/>
 	<result column="MANAGER_RESERVSTATUS" property="manager_reservstatus"/>
@@ -37,8 +36,8 @@
 </resultMap>
 <insert id="managerresist" parameterType="Manager">
 	insert into Manager values (Manager_seq.nextval,#{branch_no},#{manager_id},#{manager_pwd},#{manager_name},#{manager_email},
-	#{manager_birth},#{manager_tel1},#{manager_tel2},'n',
-	'n','n','n','n','n','n','n','n','n','n','n','n','n','n','n','n','n','n','n',SYSDATE)
+	#{manager_birth},#{manager_tel1},#{manager_tel2},'N',
+	'N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N',SYSDATE)
 </insert>
 
 <select id="branchcheck" parameterType="String" resultType="Branch">
@@ -55,4 +54,20 @@
           manager_email = #{manager_email} 
 </select>
 
+<!-- 로그인 체키쿼리 -->
+	<select id="managerloginCheck" resultType="integer" parameterType="Manager"> 
+		select count(*) from MANAGER
+		<where>
+		MANAGER_ID = #{manager_id}
+			AND
+		MANAGER_PWD = #{manager_pwd}	
+			AND 	
+		MANAGER_WITHDRAW_AT ='N'
+		</where>
+	</select>
+	
+<!-- 	select -->
+	<select id="managertotalAccount" resultType="integer">
+		SELECT COUNT(*) FROM MANAGER
+	</select>
 </mapper>

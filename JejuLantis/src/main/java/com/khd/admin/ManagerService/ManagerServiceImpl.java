@@ -35,5 +35,10 @@ public class ManagerServiceImpl implements ManagerService {
 	public int emailcheck(String manager_email) {
 		return managerDao.emailcheck(manager_email);
 	}
+
+	@Override
+	public boolean loginCheck(Manager manager) {
+		return managerDao.loginCheck(manager);
+	}
 	
 }

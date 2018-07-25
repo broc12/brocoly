@@ -12,5 +12,7 @@ public interface ManagerDao {
 
 	int idcheck(String manager_id);
 	int emailcheck(String manager_email);
+
+	boolean loginCheck(Manager manager);
 	
 }

@@ -25,16 +25,19 @@
     <div class="card card-login mx-auto mt-5">
       <div class="card-header">Login</div>
       <div class="card-body">
-        <form>
+        <form action="<%=request.getContextPath()%>/Managerlogin/ManagerloginCheck">
           <div class="form-group">
             <label for="exampleInputEmail1">아이디</label>
-            <input class="form-control" id="exampleInputEmail1" type="email" aria-describedby="emailHelp" placeholder="">
+            	<input type="text" id="fname" name="manager_id"	class="form-control" placeholder="아이디">
+<!--             <input class="form-control" id="exampleInputEmail1" type="email" aria-describedby="emailHelp" placeholder=""> -->
           </div>
           <div class="form-group">
             <label for="exampleInputPassword1">비밀번호</label>
-            <input class="form-control" id="exampleInputPassword1" type="password" placeholder="">
+            	<input type="password" id="fname" name="manager_pwd" class="form-control" placeholder="비밀번호">
+<!--             <input class="form-control" id="exampleInputPassword1" type="password" placeholder=""> -->
           </div>
-          <a class="btn btn-primary btn-block" href="index.do">Login</a>
+          	   <input type="submit" class="btn btn-primary btn-block" value="로그인" />
+<!--           <a class="btn btn-primary btn-block" href="index.do">Login</a> -->
         </form>
         <div class="text-center">
           <a class="d-block small mt-3" href="register.do">회원가입</a>

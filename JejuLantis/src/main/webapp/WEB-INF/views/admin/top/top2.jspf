@@ -267,8 +267,19 @@
           </form>
         </li>
         <li class="nav-item">
-          <a class="nav-link" data-toggle="modal" data-target="#exampleModal">
-            <i class="fa fa-fw fa-sign-out"></i>Login</a>
+<!--           <a class="nav-link" data-toggle="modal" data-target="#exampleModal"> -->
+<!--             <i class="fa fa-fw fa-sign-out"></i>Login</a> -->
+					<c:choose>
+						<c:when test="${managerlog.manager_id ne null}">
+							<span style="color: yellow"> ${managerlog.manager_id}님 반갑습니다</span>&nbsp;&nbsp;&nbsp;
+								<a href="<%=request.getContextPath()%>/managerlogin/managerlogout">로그아웃</a>&nbsp;&nbsp;&nbsp;
+								<a href="managermypage.do">마이페이지</a>&nbsp;&nbsp;&nbsp;
+								</c:when>
+								<c:otherwise>
+							<a href="login.do">로그인</a>&nbsp;&nbsp;&nbsp;
+       				<a href="register.do">회원가입</a>&nbsp;&nbsp;&nbsp;	
+				</c:otherwise>
+			</c:choose>
         </li>
       </ul>
     </div>

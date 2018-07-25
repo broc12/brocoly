@@ -47,7 +47,7 @@ public class LoginController {
 				out.close();
 			}
 			if (loginDAO.loginCheck(member) == false) {
-				out.println("<script>alert(''); history.go(-1); </script>");
+				out.println("<script>alert('로그인정보를확인하세요'); history.go(-1); </script>");
 				out.flush();
 				out.close();
 			}
@@ -66,56 +66,5 @@ public class LoginController {
 		return mv;
 		}
 
-//	@RequestMapping("mypage.do")
-//    public String memberView(Member member, Model model){
-//        // 
-//       model.addAttribute("dto", MemberService.viewMember(member));
-//        
-//        return "member/member_view";
-//    }
-//	
-//	@RequestMapping(value="mypage.do",method=RequestMethod.GET)
-//	public String mypage() {	
-//		System.out.println("----- ");
-//		return "rentcar/mypage";
-//	}
-//	@RequestMapping(value = "/membersmodify.do" )		
-//	public ModelAndView members(HttpSession session){
-//		ModelAndView mav = new ModelAndView();
-//		String member_id = (String)session.getAttribute("id");
-//		if ( member_id == null) {		//session check
-//			mav.setViewName("");
-//			return mav;
-//		}
-//		mav.addObject("id",member_id);
-//		mav.addObject("member_info", MemberDAO.getMemberInfo(member_id));
-//		mav.setViewName("/members/members_modify");
-//		return mav;
-//	}
 
-
-
-
-
-//    @RequestMapping(value="/login/mypage", method=RequestMethod.POST)
-//    public String editAccount(Member member, HttpSession session) throws Exception {
-//    	Member loginUser = (Member) session.getAttribute("log");
-//        String id = loginUser.getId(); //
-//       
-//        if (member.getName() == null) {
-//        	member.setName(loginUser.getName());
-//        }
-//        if (member.getTel() == null) {
-//        	member.setTel(loginUser.getTel());
-//        }
-//       
-//        member.setEmail(email);
-//        int check = MemberService.modify(member);
-//        if (check == 1) {
-//            session.setAttribute("log",member);
-//        }
-//       
-//        return "users/changePasswd";
-//       
-//    }
 }

@@ -20,7 +20,7 @@
   <link href="../resources/admin/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
   <!-- Custom styles for this template-->
   <link href="../resources/admin/css/sb-admin.css" rel="stylesheet">
-  <script src="<c:url value="/resources/js/jquery-2.1.4.min.js"/>"></script>
+<%--   <script src="<c:url value="/resources/js/jquery-2.1.4.min.js"/>"></script> --%>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
     <!-- <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
@@ -28,8 +28,12 @@
 <!-- /*         body { padding-top: 30px; } */ -->
 <!--     </style> -->
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
-	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.14/jquery-ui.min.js"></script>
-									
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.14/jquery-ui.min.js"></script>
+<!-- Bootstrap core JavaScript-->
+  <script src="../resources/admin/vendor/jquery/jquery.min.js"></script>
+  <script src="../resources/admin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <!-- Core plugin JavaScript-->
+  <script src="../resources/admin/vendor/jquery-easing/jquery.easing.min.js"></script>							
 <script type="text/javascript">
 
 //아이디 체크여부 확인 (아이디 중복일 경우 = 0 , 중복이 아닐경우 = 1 )
@@ -198,17 +202,6 @@ function sendIt() {
 			document.f.manager_pwd1.focus()
 			return false;
 		}									 
-		if (document.f.manager_email.value == "") {
-			alert("이메일을 입력하지 않았습니다.")
-			document.f.manager_email.focus()
-			return false;
-		}									        								 
-		if (regex.test(email2) === false) {
-			alert("잘못된 이메일 형식입니다.");
-			document.f.manager_email.value=""
-			document.f.manager_email.focus()
-			return false;
-		}
 		if (document.f.manager_name.value == "") {
 			alert("이름을 입력하지 않았습니다.")
 			document.f.manager_name.focus()
@@ -234,11 +227,7 @@ function sendIt() {
 		    document.f.lname.focus()
 		    return false;
 	  	}
-	    if (document.f.people.value == "pp") {
-		    alert(" 지역 을 입력하지 않았습니다.")
-		    document.f.lname.focus()
-		    return false;
-	  	}
+	    
 	    /*핸드폰 번호 길이 체크*/
 		if(hp2.value.length<=2 || hp3.value.length!=4){
 			alert("휴대폰번호를 제대로 입력해주세요");
@@ -251,6 +240,33 @@ function sendIt() {
 			alert("휴대폰번호는 숫자만 들어갈 수 있습니다.");
 			return false;
 		}
+ 		/*핸드폰 번호 길이 체크*/
+// 		if(hp5.value.length<=2 || hp6.value.length!=4){
+// 			alert("휴대폰번호를 제대로 입력해주세요");
+// 			focus.hp2;
+// 			return false;
+// 		}
+	
+//  		/*핸드폰이 숫자만 들어가는지 체크*/
+//  		if(isNaN(hp5.value) || isNaN(hp6.value))
+// 		{
+// 			alert("휴대폰번호는 숫자만 들어갈 수 있습니다.");
+// 			return false;
+// 		}
+ 		
+ 		
+ 		 if (hp5.value == "" && hp6.value == "") {
+		       
+		}else if(hp5.value.length<=2 || hp6.value.length!=4){
+			alert("휴대폰번호를 제대로 입력해주세요");
+			focus.hp2;
+			return false;
+		}else if(isNaN(hp5.value) || isNaN(hp6.value))
+		{
+			alert("휴대폰번호는 숫자만 들어갈 수 있습니다.");
+			return false;
+		}	    
+ 		 
 	    alert("회원가입을 축하합니다");
 		document.f.submit();
 	}
@@ -283,16 +299,16 @@ function sendIt() {
           <div class="form-group">
             <div class="form-row">
               <div class="col-md-6">             		
-                <label for="exampleInputName"><a style="color:red">*</a>ID</label>
-                <input type="button" value="중복확인" name="confirm_id"
-									id="idck" onclick="confirmId(this.form)"></td>
-                <input class="form-control" id="manager_id" name="manager_id" type="text" aria-describedby="nameHelp" placeholder="">
+                <label for="exampleInputName"><a style="color:red">*</a>ID</label></br>      
+                <input style="width:70%;height:40px" id="manager_id" name="manager_id" type="text" aria-describedby="nameHelp" placeholder="">
+              	<input type="button" value="중복확인" name="confirm_id"
+									id="idck" onclick="confirmId(this.form)" class="btn btn-primary" style="width:80px;height:40px;margin-top:-5px;font-size:10pt">
               </div>
               <div class="col-md-6">             		
-                <label for="exampleInputName"><a style="color:red">*</a>이메일</label>
-                <input type="button" value="중복확인2" name="confirm_email"
-									id="emailck"></td>
-                <input class="form-control" id="manager_email" name="manager_email" type="text" aria-describedby="nameHelp" placeholder="">
+                <label for="exampleInputName"><a style="color:red">*</a>이메일</label></br>
+                <input style="width:70%;height:40px" id="manager_email" name="manager_email" type="text" aria-describedby="nameHelp" placeholder="">
+              	<input type="button" value="중복확인" name="confirm_email"
+									id="emailck" class="btn btn-primary" style="width:80px;height:40px;margin-top:-5px;font-size:10pt"></td>
               </div>                
             </div>
           </div>
@@ -300,11 +316,11 @@ function sendIt() {
             <div class="form-row">
               <div class="col-md-6">
                 <label for="exampleInputName"><a style="color:red">*</a>비밀번호</label>
-                <input class="form-control" id="manager_pwd" name="manager_pwd" type="text" aria-describedby="nameHelp" placeholder="">
+                <input style="width:100%;height:40px" id="manager_pwd" name="manager_pwd" type="password" aria-describedby="nameHelp" placeholder="">
               </div>
               <div class="col-md-6">
                 <label for="exampleInputLastName"><a style="color:red">*</a>비밀번호 확인</label>
-                <input class="form-control" id="manager_pwd1" name="manager_pwd1" type="text" aria-describedby="nameHelp" placeholder="">
+                <input style="width:100%;height:40px" id="manager_pwd1" name="manager_pwd1" type="password" aria-describedby="nameHelp" placeholder="">
               </div>
             </div>
           </div>
@@ -312,41 +328,41 @@ function sendIt() {
             <div class="form-row">
               <div class="col-md-6">
                 <label for="exampleInputPassword1"><a style="color:red">*</a>이름</label>
-                <input class="form-control" id="manager_name" name="manager_name" type="text" placeholder="">
+                <input style="width:100%;height:40px" id="manager_name" name="manager_name" type="text" placeholder="">
               </div>
               <div class="col-md-6">
                 <label for="exampleConfirmPassword"><a style="color:red">*</a>생년월일</label>
                 </br>
                 <script language="Javascript">							
 								
-									var today = new Date();
-									var toyear = parseInt(today.getFullYear());
-									var start = toyear - 5
-									var end = toyear - 70;
-									
-									document.write("<font size=4><style=font><select name=birth1 id=birth1>");
-									document.write("<option value='' selected>");
-									for (i=start;i>=end;i--) document.write("<option>"+i);
-									document.write("</select>&nbsp;년  "); 
-									
-									document.write("<select name=birth2 id=birth2>");
-									document.write("<option value='' selected>");
-									for (i=1;i<=12;i++) document.write("<option>"+i);
-									document.write("</select>&nbsp;&nbsp;월  ");
-									
-									document.write("<select name=birth3 id=birth3>");
-									document.write("<option value='' selected>");
-									for (i=1;i<=31;i++) document.write("<option>"+i); 
-									document.write("</select>&nbsp;&nbsp;일   </font>");
-									
-									var birth1 = $("#birth1").val();
-									var birth2 = $("#birth2").val();
-									var birth3 = $("#birth3").val();
-									var manager_birth = birth1+birth2+birth3;
-									$("#manager_birth").val(manager_birth);
-									
-									</script>
-									<input type="hidden" id="manager_birth" name="manager_birth" >
+				var today = new Date();
+				var toyear = parseInt(today.getFullYear());
+				var start = toyear - 5
+				var end = toyear - 70;
+				
+				document.write("<select name=birth1 id=birth1  style=width:23%;height:40px>");
+				document.write("<option value='' selected>");
+				for (i=start;i>=end;i--) document.write("<option>"+i);
+				document.write("</select>&nbsp;년  "); 
+				
+				document.write("<select name=birth2 id=birth2  style=width:25%;height:40px>");
+				document.write("<option value='' selected>");
+				for (i=1;i<=12;i++) document.write("<option>"+i);
+				document.write("</select>&nbsp;&nbsp;월  ");
+				
+				document.write("<select name=birth3 id=birth3  style=width:25%;height:40px>");
+				document.write("<option value='' selected>");
+				for (i=1;i<=31;i++) document.write("<option>"+i); 
+				document.write("</select>&nbsp;&nbsp;일   </font>");
+				
+				var birth1 = $("#birth1").val();
+				var birth2 = $("#birth2").val();
+				var birth3 = $("#birth3").val();
+				var manager_birth = birth1+birth2+birth3;
+				$("#manager_birth").val(manager_birth);
+				
+				</script>
+				<input type="hidden" id="manager_birth" name="manager_birth" >
               </div>
             </div>
           </div>  
@@ -408,75 +424,71 @@ function sendIt() {
 <!-- //                     ]; -->
 <!-- //         }); -->
 <!--     </script> -->
-
-			
-			
+     
+            <div class="form-group">
             <div class="form-row">
-       				<tr>
-						<td rowspan="2" height="30" align="center" bgcolor="#FFDEAD">연락처1</td>
-						<td bgcolor="#E0FFFF">
-							<select id="hp1" name="hp1" style="width:70;">
-							   <option value="010"  selected> 010 </option>
-							   <option value="011"> 011 </option>
-							   <option value="016"> 016 </option>
-							   <option value="017"> 017 </option>
-							   <option value="018"> 018 </option>
-							   <option value="019"> 019 </option>
-							</select>
-							-
-							<input type="text" id="hp2" name="hp2" size="2" maxlength="4">
-							-
-							<input type="text" id="hp3" name="hp3" size="2" maxlength="4">
-							
-<!-- 															document.getElementByName("selBox").value -->
-
-							<script type="text/javascript">
-							var target = document.getElementById("manager_tel1");
-							target.options[target.selectedIndex].text
-							</script>
-							<input type="hidden" id="manager_tel1" name="manager_tel1" >
-						</td>
-					</tr>	
-              <div class="col-md-6">
-             			<tr>
-							<td rowspan="2" height="30" align="center" bgcolor="#FFDEAD">연락처2</td>
-							<td bgcolor="#E0FFFF">
-								<select id="hp4" name="hp4" style="width:70;">
-								   <option value="010"  selected> 010 </option>
-								   <option value="011"> 011 </option>
-								   <option value="016"> 016 </option>
-								   <option value="017"> 017 </option>
-								   <option value="018"> 018 </option>
-								   <option value="019"> 019 </option>
-								</select>
-								-
-								<input type="text" id="hp5" name="hp5" size="2" maxlength="4">
-								-
-								<input type="text" id="hp6" name="hp6" size="2" maxlength="4">
-								
-<!-- 															document.getElementByName("selBox").value -->
-
-								<script type="text/javascript">
-								var target = document.getElementById("manager_tel2");
-								target.options[target.selectedIndex].text
-								</script>
-								<input type="hidden" id="manager_tel2" name="manager_tel2" >
-							</td>
-						</tr>	
+              <div class="col-md-6">             		
+                <label for="exampleInputName"><a style="color:red">*</a>연락처1</label></br>
+                <select id="hp1" name="hp1" style="width:28%;height:40px">
+				   <option value="010"  selected> 010 </option>
+				   <option value="011"> 011 </option>
+				   <option value="016"> 016 </option>
+				   <option value="017"> 017 </option>
+				   <option value="018"> 018 </option>
+				   <option value="019"> 019 </option>
+				</select>
+				-
+				<input type="text" id="hp2" name="hp2" size="2" maxlength="4" style="width:30%;height:40px">
+				-
+				<input type="text" id="hp3" name="hp3" size="2" maxlength="4" style="width:30%;height:40px">
+					<script type="text/javascript">
+					var target = document.getElementById("manager_tel1");
+					target.options[target.selectedIndex].text
+					</script>
+				<input type="hidden" id="manager_tel1" name="manager_tel1" >
               </div>
+              
+              <div class="col-md-6">             		
+                <label for="exampleInputName">연락처2</label></br>
+                <select id="hp4" name="hp4" style="width:28%;height:40px">
+				   <option value="010"  selected> 010 </option>
+				   <option value="011"> 011 </option>
+				   <option value="016"> 016 </option>
+				   <option value="017"> 017 </option>
+				   <option value="018"> 018 </option>
+				   <option value="019"> 019 </option>
+				</select>
+				-
+				<input type="text" id="hp5" name="hp5" size="2" maxlength="4" style="width:30%;height:40px">
+				-
+				<input type="text" id="hp6" name="hp6" size="2" maxlength="4" style="width:30%;height:40px">
+					<script type="text/javascript">
+					var target = document.getElementById("manager_tel2");
+						target.options[target.selectedIndex].text
+					</script>
+				<input type="hidden" id="manager_tel2" name="manager_tel2" >
+              </div>                
             </div>
-            <div class="form-row">
-            </div>	
-            </br>
+          </div>
             
-            	<div class="col-md-6">
-            	<label for="exampleInputName"><a style="color:red">*</a>업체명</label>
-            	<input type="button" value="업체명검색" onclick="branchOpen()">
-              	<input type="hidden" id="branch_no" name="branch_noSTR" >                		                
-                <input class="form-control"  id="branch_name" name="branch_name" type="text" aria-describedby="nameHelp" placeholder="">
-              </div>
+           	<!-- <div class="col-md-6">
+           	<label for="exampleInputName"><a style="color:red">*</a>업체명</label>
+           	<input type="button" value="업체명검색" onclick="branchOpen()" class="btn btn-primary" style="width:80px;height:40px;margin-top:-5px;font-size:10pt">
+             	<input type="hidden" id="branch_no" name="branch_noSTR" >                		                
+               <input style="width:100%;height:40px" id="branch_name" name="branch_name" type="text" aria-describedby="nameHelp" placeholder="">
+             </div> -->
+           <div class="form-group">
+            <div class="form-row">
+            <div class="col-md-12">
+                <label for="exampleInputName"><a style="color:red">*</a>업체명</label></br>
+                <input type="hidden" id="branch_no" name="branch_noSTR">
+                <input style="width:81%;height:40px" id="branch_name" name="branch_name" type="text" aria-describedby="nameHelp" placeholder="">
+                <input type="button" value="업체명검색" onclick="branchOpen()" class="btn btn-primary" style="width:100px;height:40px;font-size:10pt;margin-top:-5px;">   
+            </div>
+            </div>
+          </div>
               </br>
-          <input type="submit" class="btn btn-primary btn-block" value="등록하기" onclick="sendIt()">
+          <input type="button" class="btn btn-primary btn-block" value="등록하기" onclick="sendIt()">
         </form>
         <div class="text-center">
           <a class="d-block small mt-3" href="login.do">로그인</a>
@@ -485,11 +497,7 @@ function sendIt() {
       </div>
     </div>
   </div>
-  <!-- Bootstrap core JavaScript-->
-  <script src="../resources/admin/vendor/jquery/jquery.min.js"></script>
-  <script src="../resources/admin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <!-- Core plugin JavaScript-->
-  <script src="../resources/admin/vendor/jquery-easing/jquery.easing.min.js"></script>
+  
 </body>
 
 </html>

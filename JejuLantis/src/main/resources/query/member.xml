@@ -67,6 +67,7 @@ UPDATE member SET member_withdraw_at  ='y' where member_id=#{member_id}
 		select member_pwd from member where member_id = #{member_id}
 	</select>
 	
+	
 <!--  <update id="deletemodify" parameterType="String" > -->
 <!--  	UPDATE member SET memeber_whithdraw_at  ='y' where id=#{id} -->
 <!--  </update> -->

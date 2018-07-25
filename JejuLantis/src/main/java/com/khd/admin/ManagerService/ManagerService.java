@@ -11,4 +11,5 @@ public interface ManagerService {
 	List<Branch> postService(String branch);
 	int idcheck(String manager_id);
 	int emailcheck(String manager_email);
+	boolean loginCheck(Manager manager);
 }

@@ -51,7 +51,7 @@ public class RentcarController {
 	public @ResponseBody List<Rcar> searchcar(@RequestParam(value="checkListmanu[]",required=false) List<String> checkListmanu,@RequestParam(value="checkListfuel[]",required=false) List<String> checkListfuel,@RequestParam(value="checkListtype[]",required=false) List<String> checkListtype,@RequestParam(value="checkListoption[]",required=false) List<String> checkListoption,@RequestParam(value="checkindate",required=false) String checkindate,@RequestParam(value="checkoutdate",required=false) String checkoutdate,@RequestParam(value="car_name",required=false) String car_name) {
 		SearchRequirements requirements = new SearchRequirements(checkindate,checkoutdate,car_name,checkListmanu,checkListfuel,checkListtype,checkListoption);
 		List<Rcar> list = rentcarservice.rentcarListService(requirements);
-		if(list!=null)System.out.println(list.size());
+		/*if(list!=null)System.out.println(list.size());*/
 		return list;
 	}
 	@RequestMapping(value="currenttime.do",method=RequestMethod.GET)

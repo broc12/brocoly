@@ -3,31 +3,30 @@
 <mapper namespace = "query.query">
 
 <resultMap type="com.khd.model.Member" id="MemberResult">
-	<result column="MEMEMBER_NO" property="memember_no"/>
-	<result column="ID" property="id"/>
-	<result column="PWD" property="pwd"/>
-	<result column="NAME" property="name"/>
-	<result column="BIRTH" property="birth"/>
-	<result column="SEX" property="sex"/>
-	<result column="SCLC" property="sclc"/>
-	<result column="MEMEBER_LOCAL" property="memeber_local"/>
-	<result column="TEL" property="tel"/>
-	<result column="EMAIL" property="email"/>
-	<result column="SMS_AT" property="sms_at"/>
-	<result column="RESIST_MEMBER" property="resist_member"/>
-	<result column="MEMEBER_WITHDRAW_AT" property="memeber_withdraw_at"/>
-	<result column="WITHDRAW_DATE" property="whithdraw_date"/>
+	<result column="MEMBER_NO" property="member_no"/>
+	<result column="MEMBER_ID" property="member_id"/>
+	<result column="MEMBER_PWD" property="member_pwd"/>
+	<result column="MEMBER_NAME" property="member_name"/>
+	<result column="MEMBER_BIRTH" property="member_birth"/>
+	<result column="MEMBER_SEX" property="member_sex"/>
+	<result column="MEMBER_LOCAL" property="member_local"/>
+	<result column="MEMBER_TEL" property="member_tel"/>
+	<result column="MEMBER_EMAIL" property="member_email"/>
+	<result column="MEMBER_SMS_AT" property="member_sms_at"/>
+	<result column="MEMBER_RESIST_MEMBER" property="member_resist_member"/>
+	<result column="MEMBER_WITHDRAW_AT" property="member_withdraw_at"/>
+	<result column="MEMBER_WITHDRAW_DATE" property="member_withdraw_date"/>
 </resultMap>
 
 <!-- 로그인 체키쿼리 -->
 	<select id="loginCheck" resultType="integer" parameterType="Member"> 
 		select count(*) from MEMBER
 		<where>
-		ID = #{id}
+		MEMBER_ID = #{member_id}
 			AND
-		PWD = #{pwd}	
+		MEMBER_PWD = #{member_pwd}	
 			AND 	
-		memeber_withdraw_at ='N'
+		MEMBER_WITHDRAW_AT ='N'
 		</where>
 	</select>
 	

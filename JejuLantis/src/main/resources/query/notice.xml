@@ -6,10 +6,9 @@
 	<result column="ANNOUNCE_NO" property="announce_no"/>
 	<result column="ANNOUNCE_TITLE" property="announce_title"/>
 	<result column="ANNOUNCE_CONTENT" property="announce_content"/>
-	<result column="ANNOUNCE_RESIST" property="announce_resist"/>
-	<result column="ANNOUNCE_COUNT" property="announce_count"/>
-	<result column="ANNOUNCE_WRITER" property="announce_writer"/>
+	<result column="ANNOUNCE_HITS" property="announce_hits"/>
 	<result column="ANNOUNCE_TOP" property="announce_top"/>
+	<result column="ANNOUNCE_RESIST" property="announce_resist"/>
 </resultMap>
 
 <!-- 	select -->
@@ -22,27 +21,27 @@
 	<select id="myTotalNotice" resultType="Notice">
 		select * from ANNOUNCE order by announce_resist desc
 	</select>
-	<delete id="myDelete" parameterType="String">
+	<delete id="myDelete" parameterType="long">
 		delete from ANNOUNCE where announce_no=#{announce_no}
 	</delete>
 	
 	<insert id="myInsert" parameterType="Notice">
-		insert into ANNOUNCE values(ANNOUNCE_seq.NEXTVAL,#{announce_title},#{announce_content},SYSDATE,0,'user',#{announce_top,jdbcType=VARCHAR})
+		insert into ANNOUNCE values(ANNOUNCE_seq.NEXTVAL,#{announce_title},#{announce_content},0,#{announce_top,jdbcType=VARCHAR},SYSDATE)
 	</insert>
 	
 	<select id="mySubject" resultType="Notice">
-   		select * from ANNOUNCE where announ_no=#{announ_no}
+   		select * from ANNOUNCE where announce_no=#{announce_no}
    </select>
    
    <select id="myUpdate" resultType="Notice">
-   	select * from ANNOUNCE where announ_no=#{announ_no}
+   	select * from ANNOUNCE where announce_no=#{announce_no}
    </select>
    
    <update id="myModify" parameterType="Notice">
-   	Update ANNOUNCE set announ_title=#{announ_title}, announ_content=#{announ_content},announ_top=#{announ_top,jdbcType=VARCHAR} where announ_no=#{announ_no}
+   	Update ANNOUNCE set announce_title=#{announce_title}, announce_content=#{announce_content},announce_top=#{announce_top,jdbcType=VARCHAR} where announce_no=#{announce_no}
    </update>
    
-   <update id="myCount" parameterType="int">
-   	Update ANNOUNCE set announ_count = announ_count+1 where announ_no=#{announ_no}
+   <update id="myhits" parameterType="long">
+   	Update ANNOUNCE set announce_hits = announce_hits+1 where announce_no=#{announce_no}
    </update>
 </mapper>

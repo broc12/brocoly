@@ -5,19 +5,59 @@
 <resultMap type="Branch" id="branchResult">
 	<result column="BRANCH_NO" property="branch_no"/>
 	<result column="BRANCH_NAME" property="branch_name"/>
-	<result column="BRANCE_TEL" property="branch_tel"/>
+	<result column="BRANCH_TEL" property="branch_tel"/>
+	<result column="BRANCH_FAX" property="branch_fax"/>
 	<result column="BRANCH_LOCAL" property="branch_local"/>
-	<result column="BRANCH_RESIST" property="branch_resist"/>
 	<result column="BRANCH_BUSINESS_NO" property="branch_business_no"/>
 	<result column="BRANCH_BANKACCOUNT" property="branch_bankaccount"/>
+	<result column="BRANCH_MEMBER_NAME" property="branch_member_name"/>
 	<result column="BRANCH_MEMBER_TEL" property="branch_member_tel"/>
+	<result column="BRANCH_MEMBER_TEL2" property="branch_member_tel2"/>
+	<result column="BRANCH_EMAIL" property="branch_email"/>
 	<result column="BRANCH_LOGO" property="branch_logo"/>
 	<result column="BRANCH_COMFEE" property="branch_comfee"/>
 	<result column="BRANCH_WITHDRAW_AT" property="branch_withdraw_at"/>
+	<result column="BRANCH_BUSSPOT" property="branch_busspot"/>
+	<result column="BRANCH_BUSTIME" property="branch_bustime"/>
+	<result column="BRANCH_BUSGAP" property="branch_busgap"/>
+	<result column="BRANCH_BOSS" property="branch_boss"/>
+	<result column="BRANCH_TODAY" property="branch_today"/>
+	<result column="BRANCH_TODAYTIME" property="branch_todaytime"/>
+	<result column="BRANCH_RULE" property="branch_rule"/>
+	<result column="BRANCH_RATING" property="branch_rating"/>
+	<result column="BRANCH_RESIST" property="branch_resist"/>
 </resultMap>
 
 <!-- 	select -->
 	<select id="myBranch" resultType="Branch">
-		SELECT * from BRANCH order by BRANCH_RESIST desc
+		SELECT * from BRANCH where branch_withdraw_at='N' order by BRANCH_RESIST desc
 	</select>
+	
+	<insert id="myInsert" parameterType="Branch">
+		insert into BRANCH values(BRANCH_seq.NEXTVAL,#{branch_name},#{branch_tel},#{branch_fax},
+		#{branch_local},#{branch_business_no},#{branch_bankaccount},#{branch_member_name},#{branch_member_tel},
+		#{branch_member_tel2},#{branch_email},#{branch_logo},#{branch_comfee},'N',#{branch_busspot},#{branch_bustime}
+		,#{branch_busgap},#{branch_boss},#{branch_today},#{branch_todaytime},#{branch_rule},0,SYSDATE)
+	</insert>
+	
+	<select id="mySubject" resultType="Branch">
+   		select * from BRANCH where branch_no=#{branch_no}
+   </select>
+   
+   <select id="myFull" resultType="Branch">
+   		select * from BRANCH where branch_no=#{branch_no}
+   </select>
+   
+    <update id="myModify" parameterType="Branch">
+   	Update BRANCH set branch_name=#{branch_name}, branch_tel=#{branch_tel},branch_fax=#{branch_fax},
+   	branch_local=#{branch_local},branch_business_no=#{branch_business_no},branch_bankaccount=#{branch_bankaccount},
+   	branch_member_name=#{branch_member_name},branch_member_tel=#{branch_member_tel},branch_member_tel2=#{branch_member_tel2},
+   	branch_email=#{branch_email},branch_logo=#{branch_logo},branch_comfee=#{branch_comfee},branch_busspot=#{branch_busspot},
+   	branch_bustime=#{branch_bustime},branch_busgap=#{branch_busgap},branch_boss=#{branch_boss},
+   	branch_today=#{branch_today,jdbcType=VARCHAR},branch_todaytime=#{branch_todaytime},branch_rule=#{branch_rule},branch_rating=#{branch_rating} where branch_no=#{branch_no}
+   </update>
+   
+     <update id="myWithdraw" parameterType="long">
+   	Update BRANCH set branch_withdraw_at='Y' where branch_no=#{branch_no}
+   </update>
 </mapper>

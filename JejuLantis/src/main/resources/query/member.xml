@@ -3,26 +3,27 @@
 <mapper namespace = "query.member">
 
 <resultMap type="Member" id="MemberResult">
-	<result column="MEMEMBER_NO" property="memember_no"/>
-	<result column="ID" property="id"/>
-	<result column="PWD" property="pwd"/>
-	<result column="NAME" property="name"/>
-	<result column="BIRTH" property="birth"/>
-	<result column="SEX" property="sex"/>
-	<result column="SCLC" property="sclc"/>
-	<result column="MEMEBER_LOCAL" property="memeber_local"/>
-	<result column="TEL" property="tel"/>
-	<result column="EMAIL" property="email"/>
-	<result column="SMS_AT" property="sms_at"/>
-	<result column="RESIST_MEMBER" property="resist_member"/>
-	<result column="MEMEBER_WITHDRAW_AT" property="memeber_whithdraw_at"/>
-	<result column="WITHDRAW_DATE" property="whithdraw_date"/>
+	<result column="MEMBER_NO" property="member_no"/>
+	<result column="MEMBER_ID" property="member_id"/>
+	<result column="MEMBER_PWD" property="member_pwd"/>
+	<result column="MEMBER_NAME" property="member_name"/>
+	<result column="MEMBER_BIRTH" property="member_birth"/>
+	<result column="MEMBER_SEX" property="member_sex"/>
+	<result column="MEMBER_LOCAL" property="member_local"/>
+	<result column="MEMBER_TEL" property="member_tel"/>
+	<result column="MEMBER_EMAIL" property="member_email"/>
+	<result column="MEMBER_SMS_AT" property="member_sms_at"/>
+	<result column="MEMBER_EMAIL_AT" property="member_email_at"/>
+	<result column="MEMBER_RESIST_MEMBER" property="member_resist_member"/>
+	<result column="MEMBER_WITHDRAW_AT" property="member_withdraw_at"/>
+	<result column="MEMBER_WITHDRAW_DATE" property="member_withdraw_date"/>
 </resultMap>
 
 
 	
 <insert id="memberjoin" parameterType="Member">
-insert into MEMBER values (MEMBER_seq.nextval,#{id},#{pwd},#{name},#{birth},'남','양력',#{memeber_local},#{tel},#{email},'jjj',SYSDATE,'n',SYSDATE)
+insert into MEMBER values (MEMBER_seq.nextval,#{member_id},#{member_pwd},#{member_name},#{member_birth},'M',#{member_local},#{member_tel},#{member_email},#{member_sms_at},#{member_email_at},
+SYSDATE,#{member_withdraw_at},SYSDATE)
 <!--   insert into MEMBER(member_no,id,pwd,name,birth,sex,sclc,memeber_local,tel,email,sms_at,resist_member,memeber_whithdraw_at) -->
 <!--   values (MEMBER_seq.nextval,#{id},#{pwd},#{name},SYSDATE,#{sex},#{sclc},#{memeber_local},#{tel},#{email},#{sms_at},SYSDATE,#{memeber_whithdraw_at}) -->
 </insert>
@@ -30,41 +31,42 @@ insert into MEMBER values (MEMBER_seq.nextval,#{id},#{pwd},#{name},#{birth},'남
 <select id="idcheck" parameterType="String" resultType="Integer">
       SELECT COUNT(*) FROM MEMBER
       WHERE
-          id = #{id} 
+          member_id = #{member_id} 
 </select>
 
 <select id="emailcheck" parameterType="String" resultType="Integer">
       SELECT COUNT(*) FROM MEMBER
       WHERE
-          email = #{email} 
+          member_email = #{member_email} 
 </select>
 
 <select id="idview" parameterType="String" resultType="Member">
       SELECT * FROM MEMBER
       WHERE
-          id = #{id}
+          member_id = #{member_id}
 </select>
 
 <update id="modify" parameterType="Member" >
-	 UPDATE member SET id = #{id} , pwd = #{pwd}, name = #{name}, tel = #{tel} ,birth = #{birth}, memeber_local = #{memeber_local}
-        WHERE id = #{id} 
+	 UPDATE member SET member_id = #{member_id} , member_pwd = #{member_pwd}, member_name = #{member_name}, member_tel = #{member_tel} ,member_birth = #{member_birth}, member_local = #{member_local}
+        WHERE member_id = #{member_id} 
 <!--         AND pwd = #{pwd}  -->
 </update>
 
 <delete id="delete" parameterType="String" >
 <!--         DELETE FROM member WHERE id=#{id} -->
-UPDATE member SET memeber_withdraw_at  ='Y' where id=#{id}
+UPDATE member SET member_withdraw_at  ='y' where member_id=#{member_id}
     </delete>
     
    <!-- 아이디 찾기 -->
 	<select id="find_id" parameterType="String" resultType="String">
-		select id from member where email = #{email}
+		select member_id from member where member_email = #{member_email}
 	</select>
 	
 	 <!-- 아이디 찾기 -->
 	<select id="find_pwd" parameterType="String" resultType="String">
-		select pwd from member where id = #{id}
+		select member_pwd from member where member_id = #{member_id}
 	</select>
+	
 	
 <!--  <update id="deletemodify" parameterType="String" > -->
 <!--  	UPDATE member SET memeber_whithdraw_at  ='y' where id=#{id} -->

@@ -10,6 +10,6 @@ import com.khd.model.SearchRequirements;
 public interface RentcarService {
 
 	public List<Rcar> rentcarListService(SearchRequirements requirements);
-	public List<Rcar> searchService();
+	public Date currenttimeStampService();
 	public Date timeStampService();
 }

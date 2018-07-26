@@ -21,12 +21,11 @@ public class RentcarServiceImpl implements RentcarService {
 		return rentcardao.rentcarList(requirements);
 	}	
 	@Override
-	public List<Rcar> searchService() {
-		return rentcardao.search();
+	public Date currenttimeStampService() {
+		return rentcardao.currenttimeStamp();
 	}
 	@Override
 	public Date timeStampService() {
 		return rentcardao.timeStamp();
-	};
-
+	}
 }

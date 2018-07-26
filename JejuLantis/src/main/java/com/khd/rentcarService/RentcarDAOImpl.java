@@ -20,11 +20,12 @@ public class RentcarDAOImpl implements RentcarDAO {
 	
 	@Override
 	public List<Rcar> rentcarList(SearchRequirements requirements) {
+		
 		return sqlsession.selectList(ns+".selectCarList",requirements);	
-	}	
+	}
 	@Override
-	public List<Rcar> search() {
-		return sqlsession.selectList(ns+".selectRcar");	
+	public Date currenttimeStamp() {
+		return sqlsession.selectOne(ns+".currenttime");
 	}
 	@Override
 	public Date timeStamp() {

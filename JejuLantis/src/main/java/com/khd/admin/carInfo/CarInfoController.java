@@ -23,7 +23,6 @@ import com.khd.review.ReviewService;
 import com.khd.util.UtilFile;
 import com.khd.customerCenterService.CustomerCenterService;
 import com.khd.model.Qna;
-import com.khd.admin.carInfo.service.*;
 import com.khd.carInfo.file.service.*;
 
 @Controller
@@ -64,9 +63,9 @@ public class CarInfoController {
     @RequestMapping(value = "admin/excelUploadAjax.do", method = RequestMethod.POST)
     public ModelAndView excelUploadAjax(MultipartHttpServletRequest request)  throws Exception{
         MultipartFile excelFile =request.getFile("excelFile");
-        System.out.println("¿¢¼¿ ÆÄÀÏ ¾÷·Îµå ÄÁÆ®·Ñ·¯");
+        System.out.println("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Îµï¿½ ï¿½ï¿½Æ®ï¿½Ñ·ï¿½");
         if(excelFile==null || excelFile.isEmpty()){
-            throw new RuntimeException("¿¢¼¿ÆÄÀÏÀ» ¼±ÅÃ ÇØ ÁÖ¼¼¿ä.");
+            throw new RuntimeException("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ö¼ï¿½ï¿½ï¿½.");
         }
         
         File destFile = new File("C:\\excel\\"+excelFile.getOriginalFilename());

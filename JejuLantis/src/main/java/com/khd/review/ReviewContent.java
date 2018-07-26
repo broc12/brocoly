@@ -3,6 +3,7 @@ package com.khd.review;
 import java.sql.Date;
 
 public class ReviewContent {
+
 	private String member_name;
 	private String branch_name;
 	private String name;
@@ -13,7 +14,7 @@ public class ReviewContent {
 	private Date rent_reserv_start;
 	private Date rent_reserv_end;
 	private String car_image;
-	//°ü¸®ÀÚÆäÀÌÁö ÀÌ¿ëÈÄ±â »ó¼¼º¸±â 
+	//ê´€ë¦¬ìí˜ì´ì§€ ì´ìš©í›„ê¸° ìƒì„¸ë³´ê¸° 
 	private int rent_review_no;
 	private int rent_reserv_no;
 	private int driver_line_no;
@@ -29,19 +30,21 @@ public class ReviewContent {
 	private Date rent_review_date;
 	
 	public ReviewContent() {}
-	//°ü¸®ÀÚÆäÀÌÁö ÀÌ¿ëÈÄ±â »ó¼¼º¸±â 
+	//ê´€ë¦¬ìí˜ì´ì§€ ì´ìš©í›„ê¸° ìƒì„¸ë³´ê¸° 
 	public ReviewContent(String member_name, int rent_review_no, Date rent_review_date, String branch_name,
 			String name, String rent_review_rating_car, String rent_review_content, String car_name,
 			String car_fuel, String car_type, Date rent_reserv_start, Date rent_reserv_end,
 			String car_image) {
 		super();
 		this.member_name = member_name;
+
 		this.rent_review_no = rent_review_no;
 		this.rent_review_date = rent_review_date;
 		this.branch_name = branch_name;
 		this.name = name;
 		this.rent_review_rating_car = rent_review_rating_car;
 		this.rent_review_content = rent_review_content;
+
 		this.car_name = car_name;
 		this.car_fuel = car_fuel;
 		this.car_type = car_type;
@@ -206,5 +209,6 @@ public class ReviewContent {
 	public void setRent_review_date(Date rent_review_date) {
 		this.rent_review_date = rent_review_date;
 	}
+
 	
 }

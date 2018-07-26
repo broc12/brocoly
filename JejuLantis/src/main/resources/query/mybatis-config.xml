@@ -38,6 +38,7 @@
 		<mapper resource="query/Carkind.xml"/>
 		<mapper resource="query/car.xml"/>
 		<mapper resource="query/carInfo.xml"/>
+		<!-- <mapper resource="query/ManagerPower.xml"/> -->
 	</mappers>
 	
 	

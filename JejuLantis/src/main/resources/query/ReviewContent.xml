@@ -10,14 +10,12 @@
         <result property="name" column="NAME"/>
         <result property="rent_review_rating_car" column="RENT_REVIEW_RATING_CAR"/>
         <result property="rent_review_content" column="RENT_REVIEW_CONTENT"/>
-        <result property="car_name" column="CAR_NAME"/>
-        <result property="car_fuel" column="CAR_FUEL"/>
-        <result property="car_type" column="CAR_TYPE"/>
+        <result property="car_kind_name" column="CAR_KIND_NAME"/>
+        <result property="car_kind_fuel" column="CAR_KIND_FUEL"/>
+        <result property="car_kind_type" column="CAR_KIND_TYPE"/>
         <result property="rent_reserv_start" column="RENT_RESERV_START"/>
         <result property="rent_reserv_end" column="RENT_RESERV_END"/>
-        <result property="car_image" column="CAR_IMAGE"/>
-        
-        <result property="insurance_name" column="INSURANCE_NAME"/>
+        <result property="car_kind_image" column="CAR_KIND_IMAGE"/>
         
         <!-- 관리자페이지 이용후기 상세보기 -->
         <result property="rent_review_no" column="RENT_REVIEW_NO"/>
@@ -37,31 +35,27 @@
         
 	</resultMap>
 	<select id="reviewContent" parameterType="HashMap" resultMap="reviewResult">
-		select Rent_Review.Rent_Review_No, Rent_Review.Rent_Review_Date, RENT_RESERV.RENT_RESERV_START, 
-		RENT_RESERV.RENT_RESERV_END, MEMBER.MEMBER_NAME, CAR.CAR_NAME, RENT_REVIEW.RENT_REVIEW_RATING_CAR, 
-		RENT_REVIEW.RENT_REVIEW_CONTENT, CAR.CAR_IMAGE, 
-		CAR.CAR_NAME, CAR.CAR_FUEL, CAR.CAR_TYPE,
-		INSURANCE.INSURANCE_NAME
-		from RENT_REVIEW, RENT_RESERV, MEMBER, CAR, BRANCH, INSURANCE 
+        select Rent_Review.Rent_Review_No, Rent_Review.Rent_Review_Date, RENT_RESERV.RENT_RESERV_START, 
+		RENT_RESERV.RENT_RESERV_END, MEMBER.MEMBER_NAME, CAR_KIND.CAR_KIND_NAME, RENT_REVIEW.RENT_REVIEW_RATING_CAR, 
+		RENT_REVIEW.RENT_REVIEW_CONTENT, CAR_KIND.CAR_KIND_IMAGE
+		from RENT_REVIEW, RENT_RESERV, MEMBER, CAR_KIND, BRANCH 
 		where RENT_REVIEW.BRANCH_NO = RENT_RESERV.BRANCH_NO 
 		and RENT_REVIEW.MEMBER_NO = MEMBER.MEMBER_NO
-		and RENT_REVIEW.CAR_NO = CAR.CAR_NO
+		and RENT_REVIEW.CAR_KIND_NO = CAR_KIND.CAR_KIND_NO
 		and BRANCH.BRANCH_NO = RENT_REVIEW.BRANCH_NO 
-		and RENT_REVIEW.BRANCH_NO = BRANCH.BRANCH_NO
-		and INSURANCE.INSURANCE_NO = RENT_REVIEW.INSURANCE_NO 
-		and BRANCH.BRANCH_NO = #{a} and ROWNUM <![CDATA[<=]]>3	
+		and RENT_REVIEW.BRANCH_NO = BRANCH.BRANCH_NO and BRANCH.BRANCH_NO = #{a} and ROWNUM <![CDATA[<=]]>3	
 	</select>	
 	<!-- 관리자페이지 이용후기 리스트 -->
 	<select id="reviewContentAll" resultType="ReviewContent">
-		select RENT_REVIEW.RENT_REVIEW_NO, RENT_REVIEW.RENT_REVIEW_DATE, 
+		select Rent_Review.Rent_Review_No, Rent_Review.Rent_Review_Date, 
         RENT_RESERV.RENT_RESERV_START, RENT_RESERV.RENT_RESERV_END, 
         MEMBER.MEMBER_NAME, BRANCH.BRANCH_NAME,   
-        CAR.CAR_NAME, RENT_REVIEW.RENT_REVIEW_RATING_CAR, 
-        RENT_REVIEW.RENT_REVIEW_CONTENT, CAR.CAR_IMAGE
-		from RENT_REVIEW, RENT_RESERV, MEMBER, CAR, BRANCH 
+        CAR_KIND.CAR_KIND_NAME ,  RENT_REVIEW.RENT_REVIEW_RATING_CAR, 
+        RENT_REVIEW.RENT_REVIEW_CONTENT, CAR_KIND.CAR_KIND_IMAGE
+		from RENT_REVIEW, RENT_RESERV, MEMBER, CAR_KIND, BRANCH 
 		where RENT_REVIEW.BRANCH_NO = RENT_RESERV.BRANCH_NO 
 		and RENT_REVIEW.MEMBER_NO = MEMBER.MEMBER_NO
-		and RENT_REVIEW.CAR_NO = CAR.CAR_NO
+		and RENT_REVIEW.CAR_KIND_NO = CAR_KIND.CAR_KIND_NO
 		and BRANCH.BRANCH_NO = RENT_REVIEW.BRANCH_NO 
 		and RENT_REVIEW.BRANCH_NO = BRANCH.BRANCH_NO 
 		and RENT_REVIEW.BRANCH_NO = (select BRANCH_NO from MANAGER where MANAGER_ID=#{manager_id})

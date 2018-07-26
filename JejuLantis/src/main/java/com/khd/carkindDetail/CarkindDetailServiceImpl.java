@@ -49,5 +49,9 @@ public class CarkindDetailServiceImpl implements CarkindDetailService {
 	public List<CarkindDetail> branchNoSelect(String manager_id) {
 		return carkindDAO.branchNoSelect(manager_id);
 	}
+	@Override
+	public List<CarkindDetail> insuranceUpdateSelectService(String manager_id, int car_kind_no) {
+		return carkindDAO.insuranceUpdateSelectBox(manager_id, car_kind_no);
+	}
 	
 }

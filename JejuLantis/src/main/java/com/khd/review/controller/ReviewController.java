@@ -27,9 +27,10 @@ public class ReviewController {
 		return mv;
 	}
 	@RequestMapping(value="admin/reviewDel.do")
-	public String admin_Delete(@RequestParam("rent_review_no")String rent_review_no) {
+	public String admin_Delete(@RequestParam("manager_id")String manager_id,
+		@RequestParam("rent_review_no")String rent_review_no) {
 		rservice.deleteService(rent_review_no);
-		return "redirect:list.do";
+		return "redirect:list.do?manager_id="+manager_id;
 	}
 	@RequestMapping(value="admin/reviewContent.do")
 	public ModelAndView admin_reviewContent(@RequestParam("rent_review_no")String rent_review_no) {

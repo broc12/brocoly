@@ -359,7 +359,7 @@
 						<tr>
 							<td>
 							<div class="col-md-15" style="margin-top:40px" align="center">
-				                  <button class="btn btn-default"><a href="rentcar.do" style="color:black">예약하기</a></button>
+				                  <button class="btn btn-default"><a href="rentcar.do" style="color:black;text-decoration:none">예약하기</a></button>
 				                </div>
 							</td>
 						</tr>
@@ -400,7 +400,7 @@
 						<tr>
 							<td>
 								<div class="col-md-15" style="margin-top:40px" align="center">
-				                  <button class="btn btn-primary" style="background-color:#ffdd00"><a href="input.do" style="color:white">예약하기</a></button>
+				                  <button class="btn btn-primary" style="background-color:#ffdd00"><a href="input.do" style="color:white;text-decoration:none">예약하기</a></button>
 				                </div>
 							</td>
 						</tr>
@@ -434,8 +434,7 @@
 								<span style="margin-left:20px; margin-right:20px;color:black;">011-121-4544</span></br>
 						</td>				
 					</tr>
-					</table>
-					
+				</table>	
 			</div>
 		</div>
 		

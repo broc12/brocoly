@@ -23,21 +23,21 @@
 					<c:choose>
 						<c:when test="${log.member_id ne null}">
 							<span style="color: #ffdd00"> ${log.member_id}님 반갑습니다</span>&nbsp;&nbsp;&nbsp;
-						<a href="login/logout" style="color:#ffdd00">로그아웃</a>&nbsp;&nbsp;&nbsp;
-						<a href="mypage.do" style="color:#ffdd00">마이페이지</a>&nbsp;&nbsp;&nbsp;
+						<a href="login/logout" style="color:#ffdd00;text-decoration:none">로그아웃</a>&nbsp;&nbsp;&nbsp;
+						<a href="mypage.do" style="color:#ffdd00;text-decoration:none">마이페이지</a>&nbsp;&nbsp;&nbsp;
 						</c:when>
 						<c:otherwise>
-							<a href="login.do" style="color:#ffdd00">로그인</a>&nbsp;&nbsp;&nbsp;
-       				<a href="member.do" style="color:#ffdd00">회원가입</a>&nbsp;&nbsp;&nbsp;	
+							<a href="login.do" style="color:#ffdd00;text-decoration:none">로그인</a>&nbsp;&nbsp;&nbsp;
+       				<a href="member.do" style="color:#ffdd00;text-decoration:none">회원가입</a>&nbsp;&nbsp;&nbsp;	
 						</c:otherwise>
 					</c:choose>
-					<a href="service.do" style="color:#ffdd00">고객센터</a>
+					<a href="service.do" style="color:#ffdd00;text-decoration:none">고객센터</a>
 				</div>
 			</div>
 			<div class="row">
 				<div class="col-xs-2">
 					<div id="colorlib-logo">
-						<a href="/jejulantis">JejuLantis</a>
+						<a href="/jejulantis" style="text-decoration:none">JejuLantis</a>
 					</div>
 				</div>
 			</div>
@@ -45,8 +45,8 @@
 
 				<div class="col-xs-13 text-right menu-1">
 					<ul>
-						<li class="active"><a href="/jejulantis">Home</a></li>
-						<li class="has-dropdown"><a href="">숙박</a>
+						<li class="active"><a href="/jejulantis" style="text-decoration:none">Home</a></li>
+						<li class="has-dropdown"><a href="" style="text-decoration:none">숙박</a>
 							<ul class="dropdown">
 								<li><a href="#">호텔</a></li>
 								<li><a href="#">콘도/리조트</a></li>
@@ -54,10 +54,10 @@
 								<li><a href="#">펜션</a></li>
 								<li><a href="#">풀빌라</a></li>
 							</ul></li>
-						<li><a href="car.do">렌트카</a></li>
-						<li><a href="">패키지</a></li>
-						<li><a href="board.do">이용후기</a></li>
-						<li><a href="check.do">예약확인</a></li>
+						<li><a href="car.do" style="text-decoration:none">렌트카</a></li>
+						<li><a href="" style="text-decoration:none">패키지</a></li>
+						<li><a href="board.do" style="text-decoration:none">이용후기</a></li>
+						<li><a href="check.do" style="text-decoration:none">예약확인</a></li>
 					</ul>
 				</div>
 			</div>

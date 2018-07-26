@@ -341,7 +341,7 @@
 														<td align="center" style="border-right: hidden">1,000만원</td>
 														<td align="center" style="border-right: hidden">26,400원</td>
 														<td align="center">													
-											              <button type="button" style="background-color:#f8fafb;border:0"><a href="rentcar.do" style="color:black">실시간예약</a></button>								                
+											              <button type="button" style="background-color:#f8fafb;border:0"><a href="rentcar.do" style="color:black;text-decoration:none">실시간예약</a></button>								                
 														</td>
 													</tr>
 													<tr style="font-size:8pt;border-bottom: hidden">
@@ -352,7 +352,7 @@
 														<td align="center" style="border-right: hidden">1,000만원</td>
 														<td align="center" style="border-right: hidden">26,400원</td>
 														<td align="center">													
-											              <button type="button" style="background-color:#f8fafb;border:0"><a href="rentcar.do" style="color:black">실시간예약</a></button>									                
+											              <button type="button" style="background-color:#f8fafb;border:0"><a href="rentcar.do" style="color:black;text-decoration:none">실시간예약</a></button>									                
 														</td>
 													</tr>
 												</table>

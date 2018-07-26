@@ -15,32 +15,32 @@ import com.khd.review.ReviewService;
 
 @Controller
 public class ReviewController {
-
+	
 	@Autowired
 	private ReviewService rservice;
 	
 	@RequestMapping(value="admin/list.do")
-	public ModelAndView list() {
-		List<ReviewContent> reviewList = rservice.listServiceAll();
+	public ModelAndView list(@RequestParam("manager_id")String manager_id) {
+		List<ReviewContent> reviewList = rservice.listServiceAll(manager_id);
 		String view = "admin/list";
 		ModelAndView mv = new ModelAndView(view, "reviewList", reviewList);
 		return mv;
 	}
-	@RequestMapping(value="admin/rdel.do")
+	@RequestMapping(value="admin/reviewDel.do")
 	public String admin_Delete(@RequestParam("rent_review_no")String rent_review_no) {
 		rservice.deleteService(rent_review_no);
 		return "redirect:list.do";
 	}
 	@RequestMapping(value="admin/reviewContent.do")
-	public String admin_reviewContent(@RequestParam("rent_review_no")String rent_review_no) {
-		//List<ReviewContent> reviewContentList = rservice.reviewContentService(rent_review_no);
-		//String view = "admin/reviewContent";
-		//ModelAndView mv = new ModelAndView(view, "reviewContentList", reviewContentList);
-		//return mv;
-		return "admin/reviewContent";
+	public ModelAndView admin_reviewContent(@RequestParam("rent_review_no")String rent_review_no) {
+		List<ReviewContent> reviewContentList = rservice.reviewContentService(rent_review_no);
+		String view = "admin/reviewContent";
+		ModelAndView mv = new ModelAndView(view, "reviewContentList", reviewContentList);
+		return mv;
+		//return "admin/reviewContent";
 	}
 	@RequestMapping(value="board.do")
-	public ModelAndView list(@RequestParam(value ="searchValue", required= false)String searchValue){
+	public ModelAndView board(@RequestParam(value ="searchValue", required= false)String searchValue){
 		List<BranchName> branch = null;
 		if(searchValue == null) {
 			branch = rservice.listService();

@@ -49,90 +49,87 @@
         <li class="breadcrumb-item">
           <a href="#">JEJULANTIS</a>
         </li>
-        <li class="breadcrumb-item active">차종상세관리</li>
+        <li class="breadcrumb-item active">이용후기관리</li>
       </ol>
       <!-- Example DataTables Card-->
       <div class="card mb-3">
         <div class="card-header">
-          <i class="fa fa-table"></i>차종상세관리</div>
+          <i class="fa fa-table"></i>이용후기관리</div>
         <div class="card-body">
         <div class="table-responsive">
-        	<c:forEach items="${carDetailContent}" var="carDetailContent" varStatus="status">
+        	<c:forEach items="${reviewContentList}" var="reviewContentList" varStatus="status">
 		    	<table border="0" width="100%"  cellpadding="0" cellspacing="0">
-					<h3 style="color:#007bff">차종상세등록</h3>	
+					<h3 style="color:#007bff">이용후기관리</h3>	
 					<tr style="color:#808080;font-size:12pt">			
-						<th  height="60px" width="10%" class="text-center" style="background-color: #fafafa">지점코드</th>
+						<th  height="60px" width="10%" class="text-center" style="background-color: #fafafa">후기일련번호</th>
 						<th  width="35%" class="text-left">
-							${carDetailContent.branch_no}
+							${reviewContentList.rent_review_no}
 						</th>
 					</tr>
 					<tr style="color:#808080;font-size:12pt">	
-						<th  height="60px" width="10%" class="text-center" style="background-color: #fafafa">보험코드</th>
+						<th  height="60px" width="10%" class="text-center" style="background-color: #fafafa">예약일련번호</th>
 						<th  width="35%" class="text-left">
-							${carDetailContent.insurance_no}
+							${reviewContentList.rent_reserv_no}
 						</th>
-						<th  height="60px" width="10%" class="text-center" style="background-color: #fafafa">차종코드</th>
+						<th  height="60px" width="10%" class="text-center" style="background-color: #fafafa">운전자일련번호</th>
 						<th  width="35%" class="text-left">
-							${carDetailContent.car_no}
+							${reviewContentList.driver_line_no}
 						</th>
 					</tr>
 					<tr style="color:#808080;font-size:12pt">
-						<th  height="60px" width="10%" class="text-center" style="background-color: #fafafa">주중가</th>
+						<th  height="60px" width="10%" class="text-center" style="background-color: #fafafa">렌트카결제일련번호</th>
 						<th  width="35%" class="text-left">
-							${carDetailContent.car_kind_price_week}
+							${reviewContentList.rent_payment_no}
 						</th>
-						<th  height="60px" width="10%" class="text-center" style="background-color: #fafafa">주말가</th>
+						<th  height="60px" width="10%" class="text-center" style="background-color: #fafafa">맴버일련번호</th>
 						<th  width="35%" class="text-left">
-							${carDetailContent.car_kind_price_weekend}
+							${reviewContentList.member_no}
 						</th>
 					</tr>
 					<tr style="color:#808080;font-size:12pt">			
-						<th  height="60px" width="10%" class="text-center" style="background-color: #fafafa">성수기가</th>
+						<th  height="60px" width="10%" class="text-center" style="background-color: #fafafa">차량일련번호</th>
 						<th  width="35%" class="text-left">
-							${carDetailContent.car_kind_price_holiday}
+							${reviewContentList.car_info_no}
 						</th>
-						<th  height="60px" width="10%" class="text-center" style="background-color: #fafafa">극성수기가</th>
+						<th  height="60px" width="10%" class="text-center" style="background-color: #fafafa">차종일련번호</th>
 						<th  width="35%" class="text-left">
-							${carDetailContent.car_kind_price_h_holiday}
+							${reviewContentList.car_kind_no}
 						</th>
 					</tr>
-				    <tr style="color:#808080;font-size:12pt">			
-						<th  height="60px" width="10%" class="text-center" style="background-color: #fafafa">차량옵션</th>
+					<tr style="color:#808080;font-size:12pt">			
+						<th  height="60px" width="10%" class="text-center" style="background-color: #fafafa">지점일련번호</th>
 						<th  width="35%" class="text-left">
-							<div class="custom-control custom-checkbox">
-						   		<input type="checkbox" class="custom-control-input" id="customCheck1" disabled="disabled" <c:if test="${carDetailContent.car_kind_navi eq 'Y' }">checked</c:if>>
-						   		<label class="custom-control-label" for="customCheck1">네비</label>
-						  	</div>
-						  	<div class="custom-control custom-checkbox">
-						   		<input type="checkbox" class="custom-control-input" id="customCheck2" disabled="disabled" <c:if test="${carDetailContent.car_kind_sensor eq 'Y' }">checked</c:if>>
-						   		<label class="custom-control-label" for="customCheck2">후방센서</label>
-						  	</div>
-							<div class="custom-control custom-checkbox">
-						   		<input type="checkbox" class="custom-control-input" id="customCheck3" disabled="disabled" <c:if test="${carDetailContent.car_kind_blackbox eq 'Y' }">checked</c:if>>
-						   		<label class="custom-control-label" for="customCheck3">블랙박스</label>
-						  	</div>
-						  	<div class="custom-control custom-checkbox">
-						   		<input type="checkbox" class="custom-control-input" id="customCheck4" disabled="disabled" <c:if test="${carDetailContent.car_kind_bluetooth eq 'Y' }">checked</c:if>>
-						   		<label class="custom-control-label" for="customCheck4">블루투스</label>
-						  	</div>
-							<div class="custom-control custom-checkbox">
-						   		<input type="checkbox" class="custom-control-input" id="customCheck5" disabled="disabled" <c:if test="${carDetailContent.car_kind_sunroof eq 'Y' }">checked</c:if>>
-						   		<label class="custom-control-label" for="customCheck5">썬루프</label>
-						  	</div>
-						  	<div class="custom-control custom-checkbox">
-						   		<input type="checkbox" class="custom-control-input" id="customCheck6" disabled="disabled" <c:if test="${carDetailContent.car_kind_camera eq 'Y' }">checked</c:if>>
-						   		<label class="custom-control-label" for="customCheck6">후방카메라</label>
-						  	</div>					  	
-							<div class="custom-control custom-checkbox">
-						   		<input type="checkbox" class="custom-control-input" id="customCheck7" disabled="disabled" <c:if test="${carDetailContent.car_kind_nonsmoke eq 'Y' }">checked</c:if>>
-						   		<label class="custom-control-label" for="customCheck7">금연차량</label>
-						  	</div>	
+							${reviewContentList.branch_no}
+						</th>
+						<th  height="60px" width="10%" class="text-center" style="background-color: #fafafa">보험일련번호</th>
+						<th  width="35%" class="text-left">
+							${reviewContentList.insurance_no}
+						</th>
+					</tr>
+					<tr style="color:#808080;font-size:12pt">			
+						<th  height="60px" width="10%" class="text-center" style="background-color: #fafafa">글제목</th>
+						<th  width="35%" class="text-left">
+							${reviewContentList.rent_review_title}
+						</th>
+						<th  height="60px" width="10%" class="text-center" style="background-color: #fafafa">글내용</th>
+						<th  width="35%" class="text-left">
+							${reviewContentList.rent_review_content}
+						</th>
+					</tr>
+					<tr style="color:#808080;font-size:12pt">			
+						<th  height="60px" width="10%" class="text-center" style="background-color: #fafafa">평점</th>
+						<th  width="35%" class="text-left">
+							${reviewContentList.rent_review_rating_car}
+						</th>
+						<th  height="60px" width="10%" class="text-center" style="background-color: #fafafa">등록날짜</th>
+						<th  width="35%" class="text-left">
+							${reviewContentList.rent_review_date}
 						</th>
 					</tr>
 					<tr style="font-size:10pt" height="60px">
 						<td align="center"></td>
 						<td align="right">
-							<button type="button" class="btn btn-primary"><a href="carDetail.do" style="color:white">목록</a></button>
+							<button type="button" class="btn btn-primary"><a href="list.do" style="color:white">목록</a></button>
 						</td>
 					</tr>
 				</table>

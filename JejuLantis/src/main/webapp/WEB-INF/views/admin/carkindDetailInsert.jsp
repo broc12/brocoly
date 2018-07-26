@@ -1,5 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page session="false" %>
+<%@ page session="true" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -158,10 +158,13 @@
 
             		<table border="0" width="100%"  cellpadding="0" cellspacing="0">
 						<h3 style="color:#007bff">차종상세등록</h3>	
-						<tr style="color:#808080;font-size:12pt">			
+						<tr style="color:#808080;font-size:12pt">		
+						
 							<th  height="60px" width="10%" class="text-center" style="background-color: #fafafa"><a style="color:red">*</a>지점코드</th>
 							<th  width="35%" class="text-left">
-								<input name="branch_no" type="text" size="30" value="1" class="form-control" style="width:250px" readonly>
+								<c:forEach items="${branchNoSelect}" var="branchNoSelect" varStatus="status">	
+									<input name="branch_no" type="text" size="30" value="${branchNoSelect.branch_no}" class="form-control" style="width:250px" readonly>
+								</c:forEach>
 							</th>
 						</tr>
 						<tr style="color:#808080;font-size:12pt">	
@@ -179,7 +182,7 @@
 								<select name="car_no" id="car_no" class="form-control" style="width:250px">
 									<option value="" style="color:black">차종코드선택</option>
 									<c:forEach items="${carDetailWrite}" var="carDetailWrite" varStatus="status">
-										<option value="${carDetailWrite.car_no}" style="color:black">${carDetailWrite.car_no}</option>
+										<option value="${carDetailWrite.car_name}" style="color:black">${carDetailWrite.car_no}</option>
 									</c:forEach>
                        			</select>
 							</th>

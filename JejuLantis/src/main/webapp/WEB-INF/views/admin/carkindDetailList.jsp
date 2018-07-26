@@ -1,5 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page session="false" %>
+<%@ page session="true" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -40,7 +40,7 @@
         <div class="card-header">
           <i class="fa fa-table"></i>차종상세목록</div>
         <div class="card-body">
-        <button type="button" class="btn btn-primary btn-xs" align="right"><a href="carDetailWrite.do" style="color:white">차종상세등록</a></button></br></br>
+        <button type="button" class="btn btn-primary btn-xs" align="right"><a href="carDetailWrite.do?manager_id=${managerlog.manager_id}" style="color:white">차종상세등록</a></button></br></br>
           <div class="table-responsive">
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" style="font-size:8pt">
               <thead>

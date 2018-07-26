@@ -5,13 +5,13 @@ import java.util.List;
 import com.khd.carkindDetail.CarkindDetail;
 
 public interface CarkindDetailDao {
-	List<CarkindDetail> carkind();
-	void delete(String car_kind_no);
-	List<CarkindDetail> carkind(String car_kind_no);
+	List<CarkindDetail> carkind(String manager_id);
+	void delete(int car_kind_no);
+	List<CarkindDetail> carkind(int car_kind_no);
 	List<CarkindDetail> carkindI();
 	void insert(CarkindDetail carkind);
-	List<CarkindDetail> carkindSelectBox(String car_kind_no);
+	List<CarkindDetail> carkindSelectBox(int car_kind_no);
 	void update(CarkindDetail carkind);
-	List<CarkindDetail> insuranceSelectBox();
-	
+	List<CarkindDetail> insuranceSelectBox(String manager_id);
+	List<CarkindDetail> branchNoSelect(String manager_id);
 }

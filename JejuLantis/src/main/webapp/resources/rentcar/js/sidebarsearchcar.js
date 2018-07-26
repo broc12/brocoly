@@ -1,7 +1,8 @@
-$(document).ready(function(){
+$(document).ready(
+function(){
 	$("input[type='checkbox']").click(function(){
     	var checkListmanu = [];
-    	$("input[id='car_manufacturer']").each(function(i){
+    	$("input[id='car_manufacture']").each(function(i){
     		if($(this).is(":checked")){
     			checkListmanu.push($(this).val());
     		}
@@ -44,7 +45,7 @@ $(document).ready(function(){
     				if(data.length != 0){
 						for (var i=0; i<data.length; i++) {
 							html += "<div class='row'><div class='wrap-division'><div class='row'><div class='col-md-6 col-sm-6 animate-box'><div class='hotel-entry'>";
-							html += "<h3><a>" + data[i].car_name + "</a></h3><span class='place'>" + data[i].car_manufacturer + "</span>";
+							html += "<h3><a>" + data[i].car_name + "</a></h3><span class='place'>" + data[i].car_manufactur + "</span>";
 							html += "<a class='hotel-img' style='background-image: url(resources/rentcar/images/car1.jpg);'>";
 							html += "<p class='price'><span>" + data[i].mtotView + "</span><small>/24시간</small></p>";
 							html += "</a><a>실시간 예약 가능 차량 : " + data[i].cn + "</a>";
@@ -88,4 +89,95 @@ $(document).ready(function(){
             }
         });
     });
+	
+	jQuery('#date1').datepicker({
+		  format: 'yyyy-mm-dd',
+		  autoclose: true,
+		  startDate:"today"
+		});
+	$('#date1').on('changeDate', function() {
+	    $('#date2').val(
+	        $('#date1').datepicker('getFormattedDate')
+	    );
+	    var b = $('#date1').datepicker('getFormattedDate');
+	    var c = new Date(b);
+	    $('#date2').datepicker('setStartDate',c.getFullYear()+"-"+(c.getMonth()+1)+"-"+c.getDate());
+	    c.setDate(c.getDate()+7);
+	    $('#date2').datepicker('setEndDate',c);
+	});
+	jQuery('#date2').datepicker({
+		  format: 'yyyy-mm-dd',
+		  autoclose: true,
+		  startDate:"today"
+	});
+	$('#date2').on('changeDate', function() {
+		var a = new Date($('#date2').datepicker('getFormattedDate'));
+	    var b = new Date($('#date1').datepicker('getFormattedDate'));
+	    if(a<b){
+	    	$('#date1').val(
+	    	        $('#date2').datepicker('getFormattedDate')
+	    	    );
+	    }
+	});
+$("#searchbutton").click(
+function(){
+	
+	var startT = new Date(document.getElementById("date1").value+" "+document.getElementById("Checkintime").value);
+	var endT = new Date(document.getElementById("date2").value+" "+document.getElementById("Checkouttime").value);
+	console.log(startT);
+	console.log(endT);
+	$.ajax({
+    	url:"currenttime.do",
+        type:'GET',
+        error:function(error) {
+            alert("서버와 연결에 실패하엿습니다.");
+        },
+        success:function(data){
+        	if(data!=null){
+	        	var d = JSON.parse(data);
+	        	var currnetT = new Date(d);
+	        	console.log(currnetT);
+	        	if(currnetT.getFullYear()==startT.getFullYear()&&
+	        			currnetT.getMonth()==startT.getMonth()&&
+	        			currnetT.getDate()==startT.getDate()&&
+	        			startT.getHours()<14){
+	        		alert("당일 예약은 14시 이후부터 가능합니다.");
+	        		return false;
+	        	}
+	        	if(startT<currnetT){
+	        		alert("현재 시각 이후부터 검색 가능합니다.");
+	        		return false;
+	        	}
+	        	if(endT<startT){
+	        		alert("예약 종료시간이 시작 시간보다 빠릅니다.");
+	        		return false;
+	        	}
+	        	var g = endT-startT;
+	        	if((g/3600000)<24){
+	        		alert("최소 예약 시간은 24시간입니다.");
+	        		return false;
+	        	}
+	        	if((g/3600000)>180){
+	        		alert("최대 예약 시간은 180시간 입니다.");
+	        		return false;
+	        	}
+	        	$("#searchform").submit();
+        	}
+        }
+	});
+/*	if(endT<startT){
+		alert("시간오류");
+		return false;
+	}
+	var g = endT-startT;
+	if((g/3600000)<24){
+		alert("최소시간 오류");
+		return false;
+	}
+	if((g/3600000)>180){
+		alert("최대시간 오류");
+		return false;
+	}*/
+	/*$("#searchform").submit();*/
+});
 });

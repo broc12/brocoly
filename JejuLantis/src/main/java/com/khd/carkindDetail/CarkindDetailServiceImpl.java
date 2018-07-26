@@ -10,15 +10,15 @@ public class CarkindDetailServiceImpl implements CarkindDetailService {
 	@Autowired
 	private CarkindDetailDao carkindDAO;
 	@Override
-	public List<CarkindDetail> listService() {
-		return carkindDAO.carkind();
+	public List<CarkindDetail> listService(String manager_id) {
+		return carkindDAO.carkind(manager_id);
 	}
 	@Override
-	public void deleteService(String car_kind_no) {
+	public void deleteService(int car_kind_no) {
 		carkindDAO.delete(car_kind_no);
 	}
 	@Override
-	public List<CarkindDetail> contentListService(String car_kind_no) {
+	public List<CarkindDetail> contentListService(int car_kind_no) {
 		return carkindDAO.carkind(car_kind_no);
 	}
 	@Override
@@ -30,11 +30,11 @@ public class CarkindDetailServiceImpl implements CarkindDetailService {
 		carkindDAO.insert(carkind);
 	}
 	@Override
-	public List<CarkindDetail> ContentService(String car_kind_no) {
+	public List<CarkindDetail> ContentService(int car_kind_no) {
 		return carkindDAO.carkind(car_kind_no);
 	}
 	@Override
-	public List<CarkindDetail> NotContentService(String car_kind_no) {
+	public List<CarkindDetail> NotContentService(int car_kind_no) {
 		return carkindDAO.carkindSelectBox(car_kind_no);
 	}
 	@Override
@@ -42,7 +42,12 @@ public class CarkindDetailServiceImpl implements CarkindDetailService {
 		carkindDAO.update(carkind);
 	}
 	@Override
-	public List<CarkindDetail> insuranceSelectService() {
-		return carkindDAO.insuranceSelectBox();
+	public List<CarkindDetail> insuranceSelectService(String manager_id) {
+		return carkindDAO.insuranceSelectBox(manager_id);
 	}
+	@Override
+	public List<CarkindDetail> branchNoSelect(String manager_id) {
+		return carkindDAO.branchNoSelect(manager_id);
+	}
+	
 }

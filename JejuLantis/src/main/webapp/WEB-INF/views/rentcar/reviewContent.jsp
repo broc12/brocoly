@@ -59,7 +59,7 @@
         <div class="table-responsive">
         	<c:forEach items="${reviewContentList}" var="reviewContentList" varStatus="status">
 		    	<table border="0" width="100%"  cellpadding="0" cellspacing="0">
-					<h3 style="color:#007bff">차종상세등록</h3>	
+					<h3 style="color:#007bff">이용후기관리</h3>	
 					<tr style="color:#808080;font-size:12pt">			
 						<th  height="60px" width="10%" class="text-center" style="background-color: #fafafa">후기일련번호</th>
 						<th  width="35%" class="text-left">

@@ -5,6 +5,7 @@
 <mapper namespace="review.BranchName">
 	
 	<resultMap id="reviewResult" type="BranchName">
+
 		
 		<result property="branch_no" column="BRANCH_NO"/>
         <result property="branch_name" column="BRANCH_NAME"/>
@@ -39,13 +40,16 @@
     </select> 		
 		<select id="branchNameSelect" parameterType="HashMap" resultMap="reviewResult">
     	select BRANCH.BRANCH_NAME, REV.* 
+
 		from BRANCH, 
 		(select RENT_REVIEW.BRANCH_NO, 
 		avg(RENT_REVIEW.Rent_Review_Rating_Car) as SCORE, count(*) as SALE, 
 		max(RENT_REVIEW.RENT_REVIEW_DATE) as NEW 
 		from RENT_REVIEW 
 		group by RENT_REVIEW.BRANCH_NO ) REV
+
 		where REV.BRANCH_NO = BRANCH.BRANCH_NO
+
 		<if test="review_sel != null"> ORDER BY 
 	  		<choose>
 	    		<when test="review_sel eq 'SCORE'"> SCORE </when>
@@ -54,6 +58,7 @@
 	  		</choose>
 	  	DESC
   		</if>
+
     </select> 	
     <select id="branchNameContent" parameterType="String" resultMap="reviewResult">
         select BRANCH.BRANCH_NO, BRANCH.BRANCH_NAME, REV.SCORE, REV.SALE, 
@@ -68,4 +73,5 @@
     <select id="adminBranchNameContent" resultMap="reviewResult">
     	select * from BRANCH
     </select>
+
 </mapper>

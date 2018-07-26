@@ -1,8 +1,10 @@
 package com.khd.review;
+
 import java.sql.Date;
 import java.util.List;
 
 public class BranchName {
+
 	private List reviewList;
 	private List reviewCount;
 	
@@ -73,12 +75,14 @@ public class BranchName {
 	public void setCount_review(String count_review) {
 		this.count_review = count_review;
 	}
+
 	public String getReview_sel() {
 		return review_sel;
 	}
 	public void setReview_sel(String review_sel) {
 		this.review_sel = review_sel;
 	}
+
 	public String getScore() {
 		return score;
 	}
@@ -95,6 +99,7 @@ public class BranchName {
 		return branch_no;
 	}
 	public void setBranch_no(int branch_no) {
+
 		this.branch_no = branch_no;
 	}
 	public String getBranch_name() {
@@ -103,6 +108,7 @@ public class BranchName {
 	public void setBranch_name(String branch_name) {
 		this.branch_name = branch_name;
 	}
+
 	public String getBranch_tel() {
 		return branch_tel;
 	}
@@ -182,3 +188,4 @@ public class BranchName {
 		this.branch_busgap = branch_busgap;
 	}
 }
+

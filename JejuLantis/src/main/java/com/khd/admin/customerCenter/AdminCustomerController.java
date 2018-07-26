@@ -9,10 +9,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.khd.ReviewController.ReviewContent;
-import com.khd.ReviewController.ReviewService;
 import com.khd.notice.Notice;
 import com.khd.notice.NoticeService;
+import com.khd.review.ReviewContent;
+import com.khd.review.ReviewService;
 import com.khd.customerCenterService.CustomerCenterService;
 import com.khd.model.Qna;
 
@@ -54,7 +54,7 @@ public class AdminCustomerController {
 		long qna_group = 0;
 		if(Strqna_group!=null)Strqna_group=Strqna_group.trim();
 		if(Strqna_group.length()!=0) qna_group = Long.parseLong(Strqna_group);
-		qna_name = "[RE]"+qna_name+"´Ô ´äº¯µå¸³´Ï´Ù";
+		qna_name = "[RE]"+qna_name+"ï¿½ï¿½ ï¿½äº¯ï¿½å¸³ï¿½Ï´ï¿½";
 		Qna qna = new Qna(qna_group, qna_group, -1, qna_name, "admin", "admin","admin", qna_content, qna_pwd, 0, 0, null , "admin");
 		customerService.replyUpdate(qna_group);
 		boolean flag = customerService.replyInsert(qna);

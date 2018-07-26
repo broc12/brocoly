@@ -13,10 +13,10 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.khd.ReviewController.ReviewContent;
-import com.khd.ReviewController.ReviewService;
 import com.khd.notice.Notice;
 import com.khd.notice.NoticeService;
+import com.khd.review.ReviewContent;
+import com.khd.review.ReviewService;
 import com.khd.util.UtilFile;
 import com.khd.customerCenterService.CustomerCenterService;
 import com.khd.model.Qna;

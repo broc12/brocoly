@@ -1,4 +1,4 @@
-package com.khd.ReviewController;
+package com.khd.review;
 
 import java.util.HashMap;
 import java.util.List;
@@ -6,8 +6,9 @@ import java.util.List;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import com.khd.ReviewController.BranchName;
-import com.khd.ReviewController.ReviewContent;
+
+import com.khd.review.BranchName;
+import com.khd.review.ReviewContent;
 @Repository("ReviewDao")
 public class ReviewDaoImpl implements ReviewDao {
 	@Autowired

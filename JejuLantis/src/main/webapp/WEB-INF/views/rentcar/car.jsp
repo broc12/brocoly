@@ -224,7 +224,7 @@
 								<div class="row">
 								<div class="col-md-6 col-sm-6 animate-box">
 									<div class="hotel-entry">
-										<h3><a>${dto.car_name }</a></h3><span class="place">${dto.car_manufacture }</span>
+										<h3><a>${dto.car_name }</a></h3><span class="place">${dto.car_manufacturer }</span>
 										<a class="hotel-img" style="background-image: url(resources/rentcar/images/car1.jpg);">
 											<p class="price"><span>${dto.mtotView}</span><small>/24시간</small></p>
 										</a>

@@ -86,7 +86,6 @@
 			<artifactId>joda-time</artifactId>	
 			<version>2.9.9</version>	
 		</dependency>
-		
 		<!-- AspectJ -->
 		<dependency>
 			<groupId>org.aspectj</groupId>

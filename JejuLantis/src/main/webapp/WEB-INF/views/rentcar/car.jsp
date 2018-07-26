@@ -77,7 +77,7 @@
 <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
 	
 	<script>
-	function time(){
+	function settime(){
 		if(${requirements.searchFlag}){
  			var sel = document.getElementById("Checkintime");
 			var val;
@@ -97,6 +97,7 @@
 				}
 			}
 			sel = document.getElementById("carname");
+			if("${requirements.car_name}"!="")
 			sel.value="${requirements.car_name}";
 		}
 	}
@@ -161,7 +162,7 @@
 }
 </style>
 	</head>
-	<body onload="time()">
+	<body onload="settime()">
 	<%@ include file="./top/top.jspf" %>
 	<div class="colorlib-loader"></div>
 
@@ -227,7 +228,7 @@
 										<a class="hotel-img" style="background-image: url(resources/rentcar/images/car1.jpg);">
 											<p class="price"><span>${dto.mtotView}</span><small>/24시간</small></p>
 										</a>
-										<a>실시간 예약 가능 차량 : ${dto.cn}</a>
+										<a>실시간 예약 가능 차량 : ${dto.actot }</a>
 										<div class="desc">
 											<p align="center">${dto.car_passenger }인승 ${dto.car_type } ${dto.car_fuel }</p>
 										</div>
@@ -382,7 +383,7 @@
 						<div class="sidebar-wrap">
 							<div class="side search-wrap animate-box">
 								<h3 class="sidebar-heading">차량검색</h3>
-								<form action="car.do" method="post" class="colorlib-form">
+								<form action="car.do" method="post" class="colorlib-form" id="searchform" >
 				              	<div class="row">
 				                <div class="col-md-12">
 				                  <div class="form-group">
@@ -478,12 +479,12 @@
 				                  <div class="form-group">
 				                    <label for="guests">자동차 모델</label>
 				                    <div class="form-field">
-				                      <input type="text" name="car_name" id="car_name" class="form-control" placeholder="모델명 입력" value="">
+				                      <input type="text" name="car_name" id="car_name" class="form-control" placeholder="모델명 입력" value=""/>
 				                    </div>
 				                  </div>
 				                </div>
 				                <div class="col-md-12">
-				                  <input type="submit" name="submit" id="submit" value="차량검색" class="btn btn-primary btn-block" style="background-color:#ffdd00">
+				                  <input type="button" id="searchbutton" value="차량검색" class="btn btn-primary btn-block" style="background-color:#ffdd00">
 				                </div>
 				              </div>
 				            </form>

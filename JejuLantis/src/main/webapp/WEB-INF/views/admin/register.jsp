@@ -38,6 +38,7 @@
 
 //아이디 체크여부 확인 (아이디 중복일 경우 = 0 , 중복이 아닐경우 = 1 )
 var idck = 0;
+
 $(document).ready(function() {
 	//emailck 버튼을 클릭했을 때 
  $("#emailck").click(function() {
@@ -85,9 +86,9 @@ $(document).ready(function() {
                     //아이디가 존제할 경우 빨깡으로 , 아니면 파랑으로 처리하는 디자인
                     $("#divInputId").addClass("has-success")
                     $("#divInputId").removeClass("has-error")
-                    $("#manager_tel1").focus();
+                    $("#manager_pwd").focus();
                     //아이디가 중복하지 않으면  idck = 1 
-                    idck = 1;								                    
+                    emailck = 1;								                    
                 }
             },
             error : function(error) {								                
@@ -151,7 +152,7 @@ $(document).ready(function() {
                     //아이디가 존제할 경우 빨깡으로 , 아니면 파랑으로 처리하는 디자인
                     $("#divInputId").addClass("has-success")
                     $("#divInputId").removeClass("has-error")
-                    $("#manager_pwd").focus();
+                    $("#manager_email").focus();
                     //아이디가 중복하지 않으면  idck = 1 
                     idck = 1;								                    
                 }
@@ -175,6 +176,11 @@ function sendIt() {
 		if(idck==0){
 			alert('아이디 중복체크를 해주세요');
 			document.f.manager_id.focus()
+			return false;
+		}
+		if(emailck==0){
+			alert('이메일 중복체크를 해주세요');
+			document.f.manager_email.focus()
 			return false;
 		}
 //비밀번호 입력여부 체크
@@ -265,7 +271,12 @@ function sendIt() {
 		{
 			alert("휴대폰번호는 숫자만 들어갈 수 있습니다.");
 			return false;
-		}	    
+		}
+ 		if(branch_no==0){
+			alert('업체');
+			document.f.branch_no.focus()
+			return false;
+		}
  		 
 	    alert("회원가입을 축하합니다");
 		document.f.submit();
@@ -308,7 +319,7 @@ function sendIt() {
                 <label for="exampleInputName"><a style="color:red">*</a>이메일</label></br>
                 <input style="width:70%;height:40px" id="manager_email" name="manager_email" type="text" aria-describedby="nameHelp" placeholder="">
               	<input type="button" value="중복확인" name="confirm_email"
-									id="emailck" class="btn btn-primary" style="width:80px;height:40px;margin-top:-5px;font-size:10pt"></td>
+									id="emailck"  class="btn btn-primary" style="width:80px;height:40px;margin-top:-5px;font-size:10pt"></td>
               </div>                
             </div>
           </div>

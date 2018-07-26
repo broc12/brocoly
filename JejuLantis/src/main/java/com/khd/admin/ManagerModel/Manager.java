@@ -34,11 +34,18 @@ public class Manager {
 		String sms;
 		String manager_insurance;
 		
-		public Manager(){}
+		
+		
+		public Manager(String manager_id, long branch_no){
+			this.manager_id=manager_id;
+			this.branch_no=branch_no;
+		}
 		
 		public Manager(String manager_id){
 			this.manager_id=manager_id;
+			
 		}
+
 
 		public Manager(long manager_no, long branch_no, String manager_id, String manager_pwd, String manager_name,
 				String manager_email, String manager_birth, String manager_tel1, String manager_tel2,

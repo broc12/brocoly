@@ -125,7 +125,7 @@ public class ManagerController {
 	        return map;
 	    }
 	 @RequestMapping(value = "/Managerlogin/ManagerloginCheck")
-		public void loginCheck(Manager manager, HttpSession session,
+		public void loginCheck(Manager manager,HttpSession session,
 				HttpServletResponse response) throws IOException {
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();
@@ -136,7 +136,7 @@ public class ManagerController {
 				Manager Info1 = null;
 				if (managerService.loginCheck(manager)) {					 
 					session.setAttribute("managerlogin", 0);	
-					Info1 = new Manager(manager.getManager_id());
+					Info1 = new Manager(manager.getManager_id(),manager.getBranch_no());
 					session.setAttribute("managerlog", Info1);
 					Manager managerlog = (Manager)session.getAttribute("managerlog");
 					out.println("<script>location.href='/jejulantis/admin/index.do'; </script>");

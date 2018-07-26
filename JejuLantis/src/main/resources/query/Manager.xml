@@ -55,8 +55,9 @@
 </select>
 
 <!-- 로그인 체키쿼리 -->
-	<select id="managerloginCheck" resultType="integer" parameterType="Manager"> 
-		select count(*) from MANAGER
+	<select id="managerloginCheck" resultType="Manager" parameterType="Manager"> 
+		select manager_no,branch_no,manager_id,manager_main,manager_chart,manager_reservstatus,manager_ars_reserv,manager_travelmanagement,manager_review,manager_notice,manager_user,manager_manager,manager_company,manager_carkind,manager_d_carkind 
+		,manager_carinfo,manager_paystatus,manager_salestatus,manager_banner,manager_coupon,manager_sms,manager_insurance from MANAGER
 		<where>
 		MANAGER_ID = #{manager_id}
 			AND

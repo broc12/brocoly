@@ -125,7 +125,7 @@ public class ManagerController {
 	        return map;
 	    }
 	 @RequestMapping(value = "/Managerlogin/ManagerloginCheck")
-		public void loginCheck(Manager manager, HttpSession session,
+		public void loginCheck(Manager manager,HttpSession session,
 				HttpServletResponse response) throws IOException {
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();
@@ -134,21 +134,23 @@ public class ManagerController {
 				 System.out.println("getManager_id =" +manager.getManager_id());
 				 System.out.println("getManager_pwd =" + manager.getManager_pwd());
 				Manager Info1 = null;
-				if (managerService.loginCheck(manager)) {					 
+				 Manager nn = managerService.loginCheck(manager);
+				if (nn != null) {					 
 					session.setAttribute("managerlogin", 0);	
-					Info1 = new Manager(manager.getManager_id());
-					session.setAttribute("managerlog", Info1);
+//					Info1 = new Manager(manager.getManager_id(),manager.getBranch_no());
+					session.setAttribute("managerlog", nn);
 					Manager managerlog = (Manager)session.getAttribute("managerlog");
 					out.println("<script>location.href='/jejulantis/admin/index.do'; </script>");
 					out.flush();
 					out.close();
 				}
-				if (managerService.loginCheck(manager) == false) {
+				if (nn == null) {
 					out.println("<script>alert('로그인정보를확인하세요'); history.go(-1); </script>");
 					out.flush();
 					out.close();
 				}
-			}System.out.println("getManager_id 1111=" +manager.getManager_id());
+			}
+			 System.out.println("getManager_id 1111=" +manager.getManager_id());
 			 System.out.println("getManager_pwd 1111=" + manager.getManager_pwd());
 		}
 

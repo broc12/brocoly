@@ -137,8 +137,8 @@ public class ManagerController {
 				 Manager nn = managerService.loginCheck(manager);
 				if (nn != null) {					 
 					session.setAttribute("managerlogin", 0);	
-					Info1 = new Manager(manager.getManager_id(),manager.getBranch_no());
-					session.setAttribute("managerlog", Info1);
+//					Info1 = new Manager(manager.getManager_id(),manager.getBranch_no());
+					session.setAttribute("managerlog", nn);
 					Manager managerlog = (Manager)session.getAttribute("managerlog");
 					out.println("<script>location.href='/jejulantis/admin/index.do'; </script>");
 					out.flush();
@@ -149,7 +149,8 @@ public class ManagerController {
 					out.flush();
 					out.close();
 				}
-			}System.out.println("getManager_id 1111=" +manager.getManager_id());
+			}
+			 System.out.println("getManager_id 1111=" +manager.getManager_id());
 			 System.out.println("getManager_pwd 1111=" + manager.getManager_pwd());
 		}
 

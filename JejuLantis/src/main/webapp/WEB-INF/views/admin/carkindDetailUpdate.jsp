@@ -1,5 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page session="false" %>
+<%@ page session="true" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -74,12 +74,12 @@
             f.car_kind_price_weekend.focus();
             return;
          }
-		if(f.car_kind_price_1.value ==""){
+		if(f.car_kind_price_holiday.value ==""){
             alert("성수기가를 채워주세요");
             f.car_kind_price_1.focus();
             return;
          }
-		if(f.car_kind_price_2.value ==""){
+		if(f.car_kind_price_h_holiday.value ==""){
             alert("극성수기가를 채워주세요");
             f.car_kind_price_2.focus();
             return;
@@ -192,11 +192,11 @@
 							<tr style="color:#808080;font-size:12pt">			
 								<th  height="60px" width="10%" class="text-center" style="background-color: #fafafa"><a style="color:red">*</a>성수기가</th>
 								<th  width="35%" class="text-left">
-									<input name="car_kind_price_1" type="text" size="30" value="${carDetailUpdate.car_kind_price_1}" class="form-control" style="width:250px">
+									<input name="car_kind_price_1" type="text" size="30" value="${carDetailUpdate.car_kind_price_holiday}" class="form-control" style="width:250px">
 								</th>
 								<th  height="60px" width="10%" class="text-center" style="background-color: #fafafa"><a style="color:red">*</a>극성수기가</th>
 								<th  width="35%" class="text-left">
-									<input name="car_kind_price_2" type="text" size="30" value="${carDetailUpdate.car_kind_price_2}" class="form-control" style="width:250px">
+									<input name="car_kind_price_2" type="text" size="30" value="${carDetailUpdate.car_kind_price_h_holiday}" class="form-control" style="width:250px">
 								</th>
 							</tr>
 						    <tr style="color:#808080;font-size:12pt">			

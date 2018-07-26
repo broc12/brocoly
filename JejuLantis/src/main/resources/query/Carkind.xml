@@ -28,12 +28,14 @@
 		<result property="car_kind_sunroof" column="CAR_KIND_SUNROOF"/>
 		<result property="car_kind_camera" column="CAR_KIND_CAMERA"/>
 		<result property="car_kind_nonsmoke" column="CAR_KIND_NONSMOKE"/>
+		
+		<result property="manager_id" column="MANAGER_ID"/>
 	</resultMap>
 	<select id="carkindListI" resultType="Carkind">
 		select CAR_NO from CAR
 	</select>
-	<select id="carkindList" resultType="Carkind">
-		select * from CAR_KIND
+	<select id="carkindList" resultType="Carkind" parameterType="String">
+		select * from CAR_KIND where BRANCH_NO=(select BRANCH_NO from MANAGER where MANAGER_ID=#{manager_id})
 	</select>
 	<delete id="delete" parameterType="String">
 		delete from CAR_KIND where CAR_KIND_NO=#{car_kind_no}
@@ -50,16 +52,19 @@
 		select * from CAR_KIND
 		where CAR_KIND_NO=#{car_kind_no}
 	</select>
+	<select id="branchNoSelect" resultType="Carkind" parameterType="String">
+		select BRANCH_NO from BRANCH where BRANCH_NO=(select BRANCH_NO from MANAGER where MANAGER_ID=#{manager_id})
+	</select>
 	<select id="carSelectBox" resultType="Carkind">
-		select CAR_NO 
+		select CAR_NO, CAR_NAME
 		from CAR
 		where CAR_NO
 		!=(select CAR_NO from CAR_KIND where CAR_KIND_NO=#{car_kind_no})
 	</select>
-	<select id="insuranceSelectBox" resultType="Carkind">
-		select INSURANCE_NO, INSURANCE_NAME 
-		from INSURANCE 
-		where BRANCH_NO=1
+	<select id="insuranceSelectBox" resultType="Carkind" parameterType="String">
+		select INSURANCE_NO, INSURANCE_NAME
+		from INSURANCE
+		where BRANCH_NO= (select BRANCH_NO from MANAGER where MANAGER_ID=#{manager_id})
 	</select>
 	<update id="carkindUpdate" parameterType="Carkind">
 		update CAR_KIND

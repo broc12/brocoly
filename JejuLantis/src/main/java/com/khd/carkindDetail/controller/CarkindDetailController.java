@@ -20,16 +20,18 @@ public class CarkindDetailController {
 	private CarkindDetailService cservice;
 
 	@RequestMapping(value="admin/carDetailWrite.do")
-	public ModelAndView carDetailListInsert() {
+	public ModelAndView carDetailListInsert(@RequestParam("manager_id")String manager_id) {
 		List<CarkindDetail> carDetailWrite = cservice.listIService();
-		List<CarkindDetail> insuranceSelectBox = cservice.insuranceSelectService();
+		List<CarkindDetail> insuranceSelectBox = cservice.insuranceSelectService(manager_id);
+		List<CarkindDetail> branchNoSelect = cservice.branchNoSelect(manager_id);
 		String view = "admin/carkindDetailInsert";
 		ModelAndView mv = new ModelAndView(view, "carDetailWrite", carDetailWrite);
 		mv.addObject("insuranceSelectBox",insuranceSelectBox);
+		mv.addObject("branchNoSelect", branchNoSelect);
 		return mv;
 	}
 	@RequestMapping(value="admin/carDetailUpdate.do")
-	public ModelAndView carDetailListUpdate(@RequestParam("car_kind_no")String car_kind_no) {
+	public ModelAndView carDetailListUpdate(@RequestParam("car_kind_no")int car_kind_no) {
 		System.out.println("car_kind_no : " + car_kind_no);
 		List<CarkindDetail> carDetailUpdate = cservice.ContentService(car_kind_no);
 		List<CarkindDetail> carDetailSelectBox = cservice.NotContentService(car_kind_no);
@@ -44,7 +46,7 @@ public class CarkindDetailController {
 		return "redirect:carDetail.do";
 	}
 	@RequestMapping(value="admin/carDetailContent.do")
-	public ModelAndView carDetailListContent(@RequestParam("car_kind_no")String car_kind_no) {
+	public ModelAndView carDetailListContent(@RequestParam("car_kind_no")int car_kind_no) {
 		System.out.println("car_kind_no : " + car_kind_no);
 		List<CarkindDetail> carDetailContent = cservice.ContentService(car_kind_no);
 		String view = "admin/carkindDetailContent";
@@ -52,7 +54,7 @@ public class CarkindDetailController {
 		return mv;
 	}
 	@RequestMapping(value="admin/carDetailDel.do")
-	public String carDetailListdelete(@RequestParam("car_kind_no")String car_kind_no) {
+	public String carDetailListdelete(@RequestParam("car_kind_no")int car_kind_no) {
 		System.out.println("car_kind_no : " + car_kind_no);
 		cservice.deleteService(car_kind_no);
 		return "redirect:carDetail.do";
@@ -82,8 +84,9 @@ public class CarkindDetailController {
 		return "redirect:carDetail.do";
 	}
 	@RequestMapping(value="admin/carDetail.do")
-	public ModelAndView carDetailList() {
-		List<CarkindDetail> carDetailList = cservice.listService();
+	public ModelAndView carDetailList(@RequestParam("manager_id")String manager_id) {
+		List<CarkindDetail> carDetailList = cservice.listService(manager_id);
+		System.out.println("manager_id : " + manager_id);
 		String view = "admin/carkindDetailList";
 		ModelAndView mv = new ModelAndView(view, "carDetailList", carDetailList);
 		return mv;

@@ -22,7 +22,7 @@
         <!-- 관리자페이지 이용후기 상세보기 -->
         <result property="rent_review_no" column="RENT_REVIEW_NO"/>
         <result property="rent_reserv_no" column="RENT_RESERV_NO"/>
-        <result property="driver_no" column="DRIVER_NO"/>
+        <result property="driver_line_no" column="DRIVER_LINE_NO"/>
         <result property="rent_payment_no" column="RENT_PAYMENT_NO"/>
         <result property="member_no" column="MEMBER_NO"/>
         <result property="car_info_no" column="CAR_INFO_NO"/>
@@ -63,7 +63,8 @@
 		and RENT_REVIEW.MEMBER_NO = MEMBER.MEMBER_NO
 		and RENT_REVIEW.CAR_NO = CAR.CAR_NO
 		and BRANCH.BRANCH_NO = RENT_REVIEW.BRANCH_NO 
-		and RENT_REVIEW.BRANCH_NO = BRANCH.BRANCH_NO order by BRANCH.BRANCH_NO	
+		and RENT_REVIEW.BRANCH_NO = BRANCH.BRANCH_NO 
+		and RENT_REVIEW.BRANCH_NO = (select BRANCH_NO from MANAGER where MANAGER_ID=#{manager_id})
 	</select>
 	<!-- 관리자페이지 이용후기 리스트 -->
 	<delete id="delete" parameterType="String">

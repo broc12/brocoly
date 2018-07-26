@@ -18,8 +18,8 @@ public class ReviewDaoImpl implements ReviewDao {
 		List<BranchName> branchName = sqlSession.selectList(ns_branchName+".branchName");
 		return branchName;
 	}
-	public List<ReviewContent> reviewContentAll(){
-		List<ReviewContent> reviewContent = sqlSession.selectList(ns_reviewContent+".reviewContentAll"); 
+	public List<ReviewContent> reviewContentAll(String manager_id){
+		List<ReviewContent> reviewContent = sqlSession.selectList(ns_reviewContent+".reviewContentAll", manager_id); 
 		return reviewContent;		
 	}
 	public void delete(String rent_review_no) {

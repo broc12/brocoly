@@ -5,7 +5,7 @@ import java.util.List;
 import com.khd.review.BranchName;
 public interface ReviewDao {
 	List<BranchName> branchName();
-	List<ReviewContent> reviewContentAll();	
+	List<ReviewContent> reviewContentAll(String manager_id);	
 	void delete(String rent_review_no);
 	List<BranchName> select(String review_sel);
 	List<ReviewContent> reviewContent();

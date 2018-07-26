@@ -16,8 +16,8 @@ public class ReviewServiceImpl implements ReviewService {
 		return reviewDAO.branchName();
 	}	
 	@Override
-	public List<ReviewContent> listServiceAll() {
-		return reviewDAO.reviewContentAll();
+	public List<ReviewContent> listServiceAll(String manager_id) {
+		return reviewDAO.reviewContentAll(manager_id);
 	}
 	@Override
 	public void deleteService(String rent_review_no) {

@@ -16,7 +16,7 @@ public class ReviewContent {
 	//관리자페이지 이용후기 상세보기 
 	private int rent_review_no;
 	private int rent_reserv_no;
-	private int driver_no;
+	private int driver_line_no;
 	private int rent_payment_no;
 	private int member_no;
 	private int car_info_no;
@@ -49,14 +49,14 @@ public class ReviewContent {
 		this.rent_reserv_end = rent_reserv_end;
 		this.car_image = car_image;
 	}
-	public ReviewContent(int rent_review_no, int rent_reserv_no, int driver_no, int rent_payment_no,
+	public ReviewContent(int rent_review_no, int rent_reserv_no, int driver_line_no, int rent_payment_no,
 			int member_no, int car_info_no, int car_kind_no, int branch_no, int insurance_no,
 			String rent_review_title, String rent_review_content, String rent_review_rating_car,
 			Date rent_review_date) {
 		super();
 		this.rent_review_no = rent_review_no;
 		this.rent_reserv_no = rent_reserv_no;
-		this.driver_no = driver_no;
+		this.driver_line_no = driver_line_no;
 		this.rent_payment_no = rent_payment_no;
 		this.member_no = member_no;
 		this.car_info_no = car_info_no;
@@ -140,11 +140,11 @@ public class ReviewContent {
 	public void setRent_reserv_no(int rent_reserv_no) {
 		this.rent_reserv_no = rent_reserv_no;
 	}
-	public int getDriver_no() {
-		return driver_no;
+	public int getdriver_line_no() {
+		return driver_line_no;
 	}
-	public void setDriver_no(int driver_no) {
-		this.driver_no = driver_no;
+	public void setdriver_line_no(int driver_line_no) {
+		this.driver_line_no = driver_line_no;
 	}
 	public int getRent_payment_no() {
 		return rent_payment_no;

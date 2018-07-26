@@ -28,6 +28,7 @@ public class Branch {
 	private Date branch_resist;
 	public Branch() {
 	}
+	
 	public Branch(long branch_no, String branch_name, String branch_tel, String branch_fax, String branch_local,
 			String branch_business_no, String branch_bankaccount, String branch_member_name, String branch_member_tel,
 			String branch_member_tel2, String branch_email, String branch_logo, long branch_comfee,
@@ -58,6 +59,7 @@ public class Branch {
 		this.branch_rating = branch_rating;
 		this.branch_resist = branch_resist;
 	}
+	
 	public long getBranch_no() {
 		return branch_no;
 	}

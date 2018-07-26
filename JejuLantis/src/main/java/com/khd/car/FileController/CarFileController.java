@@ -1,4 +1,4 @@
-package com.khd.carInfo.file.controller;
+package com.khd.car.FileController;
 
 import java.io.File;
 import java.io.IOException;
@@ -9,16 +9,16 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.khd.carInfo.file.service.FileService;
-import com.khd.carInfo.file.FileDTO;
+import com.khd.car.file.FileService;
+import com.khd.car.file.FileDTO;
 
 @Controller
-public class FileController {
+public class CarFileController {
 	
 	@Autowired
 	private FileService service;
 	
-	@RequestMapping(value = "admin/carInfoExcel.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/file/file.do", method = RequestMethod.POST)
 	public ModelAndView fileSubmitUp(FileDTO dto) {
 		ModelAndView mv = new ModelAndView();
 		
@@ -27,7 +27,7 @@ public class FileController {
 		}else {
 			mv.addObject("result",false);
 		}
-		mv.setViewName("admin/file_result_msg");
+		/*mv.setViewName("file/result_msg");*/
 		
 		return mv;
 	}

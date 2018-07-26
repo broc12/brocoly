@@ -43,8 +43,7 @@
 
 <!-- Owl Carousel -->
 <link rel="stylesheet" href="resources/rentcar/css/owl.carousel.min.css">
-<link rel="stylesheet"
-	href="resources/rentcar/css/owl.theme.default.min.css">
+<link rel="stylesheet" href="resources/rentcar/css/owl.theme.default.min.css">
 
 <!-- Date Picker -->
 <link rel="stylesheet"
@@ -85,28 +84,30 @@
 <!--[if lt IE 9]>
 	<script src="js/respond.min.js"></script>
 	<![endif]-->
-	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
-	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.14/jquery-ui.min.js"></script>
-									
-<script type="text/javascript">
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.14/jquery-ui.min.js"></script>							
 
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+<script type="text/javascript">
 //아이디 체크여부 확인 (아이디 중복일 경우 = 0 , 중복이 아닐경우 = 1 )
 var idck = 0;
 $(document).ready(function() {
 	//emailck 버튼을 클릭했을 때 
  $("#emailck").click(function() {
- 	var email2 = document.f.email.value;
+ 	var email2 = document.f.member_email.value;
 	var regex = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/;			
 	var emailck = 0;
-    	 if (f.email.value == "") {
+    	 if (f.member_email.value == "") {
 	            alert("email를 입력하지 않았습니다.")
-	            f.email.focus()
+	            f.member_email.focus()
 	            return false;
 	        }
     		 if (regex.test(email2) === false) {
 				alert("잘못된 이메일 형식입니다.");
-				document.f.email.value=""
-				document.f.email.focus()
+				document.f.member_email.value=""
+				document.f.member_email.focus()
 				return false;
 			
 	        }
@@ -122,14 +123,14 @@ $(document).ready(function() {
 // 				return false;
 // 			}
 	        //email에 공백 사용하지 않기
-	        if (document.f.email.value.indexOf(" ") >= 0) {
+	        if (document.f.member_email.value.indexOf(" ") >= 0) {
 	            alert("email에 공백을 사용할 수 없습니다.")
-	            document.f.email.focus()      
+	            document.f.member_email.focus()      
 	            return false;
 	        }
 	        
         //userid 를 param.
-        var useremail =  $("#email").val(); 								        
+        var useremail =  $("#member_email").val(); 								        
         $.ajax({
             async: true,
             type : 'POST',
@@ -144,13 +145,13 @@ $(document).ready(function() {
                     //아이디가 존제할 경우 빨깡으로 , 아니면 파랑으로 처리하는 디자인
                     $("#divInputId").addClass("has-error")
                     $("#divInputId").removeClass("has-success")
-                    $("#id").focus();				                
+                    $("#member_id").focus();				                
                 } else {
                     alert("사용가능한 email입니다.");
                     //아이디가 존제할 경우 빨깡으로 , 아니면 파랑으로 처리하는 디자인
                     $("#divInputId").addClass("has-success")
                     $("#divInputId").removeClass("has-error")
-                    $("#tel").focus();
+                    $("#member_tel").focus();
                     //아이디가 중복하지 않으면  idck = 1 
                     idck = 1;								                    
                 }
@@ -165,37 +166,37 @@ $(document).ready(function() {
 
 	//idck 버튼을 클릭했을 때 
     $("#idck").click(function() {
-    	 if (f.id.value == "") {
+    	 if (f.member_id.value == "") {
 	            alert("아이디를 입력하지 않았습니다.")
-	            f.id.focus()
+	            f.member_id.focus()
 	            return false;
 	        }
 	        //아이디 유효성 검사 (영문소문자, 숫자만 허용)
-	        for (i = 0; i < document.f.id.value.length; i++) {
-	            ch = document.f.id.value.charAt(i)
+	        for (i = 0; i < document.f.member_id.value.length; i++) {
+	            ch = document.f.member_id.value.charAt(i)
 	            if (!(ch >= '0' && ch <= '9') && !(ch >= 'a' && ch <= 'z')&&!(ch >= 'A' && ch <= 'Z')) {
 	                alert("아이디는 대소문자, 숫자만 입력가능합니다.")
-	                document.f.id.focus()
-	                document.f.id.select()
+	                document.f.member_id.focus()
+	                document.f.member_id.select()
 	                return false;
 	            }
 	        }
 	        //아이디에 공백 사용하지 않기
-	        if (document.f.id.value.indexOf(" ") >= 0) {
+	        if (document.f.member_id.value.indexOf(" ") >= 0) {
 	            alert("아이디에 공백을 사용할 수 없습니다.")
-	            document.f.id.focus()
-	            document.f.id.select()
+	            document.f.member_id.focus()
+	            document.f.member_id.select()
 	            return false;
 	        }
 	        //아이디 길이 체크 (4~12자)
-	        if (document.f.id.value.length<4 || document.f.id.value.length>12) {
+	        if (document.f.member_id.value.length<4 || document.f.member_id.value.length>12) {
 	            alert("아이디를 4~12자까지 입력해주세요.")
-	            document.f.id.focus()
-	            document.f.id.select()
+	            document.f.member_id.focus()
+	            document.f.member_id.select()
 	            return false;
 	        }
         //userid 를 param.
-        var userid =  $("#id").val(); 								        
+        var userid =  $("#member_id").val(); 								        
         $.ajax({
             async: true,
             type : 'POST',
@@ -210,13 +211,13 @@ $(document).ready(function() {
                     //아이디가 존제할 경우 빨깡으로 , 아니면 파랑으로 처리하는 디자인
                     $("#divInputId").addClass("has-error")
                     $("#divInputId").removeClass("has-success")
-                    $("#id").focus();				                
+                    $("#member_id").focus();				                
                 } else {
                     alert("사용가능한 아이디입니다.");
                     //아이디가 존제할 경우 빨깡으로 , 아니면 파랑으로 처리하는 디자인
                     $("#divInputId").addClass("has-success")
                     $("#divInputId").removeClass("has-error")
-                    $("#pwd").focus();
+                    $("#member_pwd").focus();
                     //아이디가 중복하지 않으면  idck = 1 
                     idck = 1;								                    
                 }
@@ -229,8 +230,8 @@ $(document).ready(function() {
 });
 
 function sendIt() {
-	var email2 = document.f.email.value;
-	var tel2 = document.f.tel.value;
+	var email2 = document.f.member_email.value;
+	var tel2 = document.f.member_tel.value;
 	var regex = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/;								         
 	var regExp = /^(01[016789]{1}|02|0[3-9]{1}[0-9]{1})-?[0-9]{3,4}-?[0-9]{4}$/; 
 	var regPhone = /(01[0|1|6|9|7])[-](\d{3}|\d{4})[-](\d{4}$)/;
@@ -244,53 +245,53 @@ function sendIt() {
 	if(confirm("회원가입을 하시겠습니까?")){
 		if(idck==0){
 			alert('아이디 중복체크를 해주세요');
-			document.f.id.focus()
+			document.f.member_id.focus()
 			return false;
 		}
 //비밀번호 입력여부 체크
-		if (document.f.pwd.value == "") {
+		if (document.f.member_pwd.value == "") {
 			alert("비밀번호를 입력하지 않았습니다.")
-			document.f.pwd.focus()
+			document.f.member_pwd.focus()
 			return false;
 		}
-		if (document.f.pwd.value == document.f.id.value) {
+		if (document.f.member_pwd.value == document.f.member_id.value) {
 			alert("아이디와 비밀번호가 같습니다.")
-			document.f.pwd.focus()
+			document.f.member_pwd.focus()
 			return false;
 		}
 	//비밀번호 길이 체크(4~8자 까지 허용)
-		if (document.f.pwd.value.length<4 || document.f.pwd.value.length>12) {
+		if (document.f.member_pwd.value.length<4 || document.f.member_pwd.value.length>12) {
 			alert("비밀번호를 4~12자까지 입력해주세요.")
-			document.f.pwd.focus()
-			document.f.pwd.select()
+			document.f.member_pwd.focus()
+			document.f.member_pwd.select()
 			return false;
 		}									 
 //비밀번호와 비밀번호 확인 일치여부 체크
-		if (document.f.pwd.value != document.f.pwd1.value) {
+		if (document.f.member_pwd.value != document.f.member_pwd1.value) {
 			alert("비밀번호가 일치하지 않습니다")
-			document.f.pwd.value = ""
-			document.f.pwd1.focus()
+			document.f.member_pwd.value = ""
+			document.f.member_pwd1.focus()
 			return false;
 		}									 
-		if (document.f.email.value == "") {
+		if (document.f.member_email.value == "") {
 			alert("이메일을 입력하지 않았습니다.")
-			document.f.email.focus()
+			document.f.member_email.focus()
 			return false;
 		}									        								 
 		if (regex.test(email2) === false) {
 			alert("잘못된 이메일 형식입니다.");
-			document.f.email.value=""
-			document.f.email.focus()
+			document.f.member_email.value=""
+			document.f.member_email.focus()
 			return false;
 		}
-		if (document.f.name.value == "") {
+		if (document.f.member_name.value == "") {
 			alert("이름을 입력하지 않았습니다.")
-			document.f.name.focus()
+			document.f.member_name.focus()
 			return false;
 		}
-		if(document.f.name.value.length<2){
+		if(document.f.member_name.value.length<2){
 			alert("이름을 2자 이상 입력해주십시오.")
-			document.f.name.focus()
+			document.f.member_name.focus()
 		    return false;
 	    }
 	    if (document.f.birth1.value == "") {
@@ -384,6 +385,7 @@ function sendIt() {
 //	document.getElementById("tel").value = tel;
 //	document.f.submit()	 
 </script>
+
 </head>
 <body>
 	<%@ include file="./top/top.jspf"%>
@@ -393,8 +395,7 @@ function sendIt() {
 		<aside id="colorlib-hero">
 			<div class="flexslider">
 				<ul class="slides">
-					<li
-						style="background-image: url(resources/rentcar/images/cover-img-3.jpg);">
+					<li style="background-image: url(resources/rentcar/images/cover-img-3.jpg);">
 						<div class="overlay"></div>
 						<div class="container-fluid">
 							<div class="row">
@@ -419,28 +420,31 @@ function sendIt() {
 						<h3>회원가입</h3>
 						<form name="f" action="member/memberjoin" method="post">
 							<!-- onsubmit="return sendIt();" -->
-
-							<tr>
-								<td>아이디</td>
-								<td><input type="text" name="id" id="id" /> <input type="button" value="중복확인" name="confirm_id"
-									id="idck" onclick="confirmId(this.form)"></td>
-							</tr>
 							<div class="row form-group">
 								<div class="col-md-6 padding-bottom">
-									<label for="fname">비밀번호</label> <input type="password" id="pwd"
-										name="pwd" class="form-control" placeholder="PASSWORD">
+									<label for="fname">아이디</label></br>
+									<input type="text" name="member_id" id="member_id" style="width:75%;height:50px"/>
+									<input type="button" value="중복확인" style="border-radius:0px;background-color:#eea236;color:white" class="btn btn-dark" name="confirm_id" id="idck" onclick="confirmId(this.form)">		
+								</div>
+							</div>
+							<div class="row form-group">
+								<div class="col-md-6 padding-bottom">
+									<label for="fname">비밀번호</label> <input type="password" id="member_pwd"
+										name="member_pwd" style="width:100%;height:50px" placeholder="PASSWORD">
 								</div>
 								<div class="col-md-6">
 									<label for="lname">비밀번호확인</label> <input type="password"
-										id="pwd1" name="pwd1" class="form-control" placeholder="">
+										id="member_pwd1" name="member_pwd1" style="width:100%;height:50px" placeholder="">
 								</div>
 							</div>
 
 							<div class="row form-group">
 								<div class="col-md-6 padding-bottom">
-									<label for="fname">이름</label> <input type="text" id="name"
-										name="name" class="form-control" placeholder="NAME">
+									<label for="fname">이름</label> <input type="text" id="member_name"
+										name="member_name" style="width:100%;height:50px" placeholder="NAME">
 								</div>
+								<div class="col-md-6">
+									<label for="lname" id="lname">생년월일</label></br>
 								<script language="Javascript">							
 								
 									var today = new Date();
@@ -448,31 +452,28 @@ function sendIt() {
 									var start = toyear - 5
 									var end = toyear - 70;
 									
-									document.write("<font size=2><select name=birth1 id=birth1>");
+									document.write("<font size=2><select name=birth1 id=birth1 style=width:29%;height:50px>");
 									document.write("<option value='' selected>");
 									for (i=start;i>=end;i--) document.write("<option>"+i);
 									document.write("</select>년  "); 
 									
-									document.write("<select name=birth2 id=birth2>");
+									document.write("<select name=birth2 id=birth2 style=width:30%;height:50px>");
 									document.write("<option value='' selected>");
 									for (i=1;i<=12;i++) document.write("<option>"+i);
 									document.write("</select>월  ");
 									
-									document.write("<select name=birth3 id=birth3>");
+									document.write("<select name=birth3 id=birth3 style=width:30%;height:50px>");
 									document.write("<option value='' selected>");
 									for (i=1;i<=31;i++) document.write("<option>"+i); 
 									document.write("</select>일   </font>");
 									
 									</script>
-								<div class="col-md-6">
-									<label for="lname" id="lname">생년월일</label>
-									<!--<input type="text" id="lname" name= "birth"class="form-control" placeholder="ex)19920704"> -->
 								</div>
 							</div>
 							<div class="row form-group">
 								<div class="col-md-12">
-									<label for="subject">거주지</label> <select name="memeber_local"
-										id="people" class="form-control">
+									<label for="subject">거주지</label> <select name="member_local"
+										id="people" style="width:100%;height:50px">
 										<option value="pp" style="color: black">거주지 선택(시/도)</option>
 										<option value="서울" style="color: black">서울</option>
 										<option value="부산" style="color: black">부산</option>
@@ -494,75 +495,130 @@ function sendIt() {
 									</select>
 								</div>
 							</div>
-<!-- 							<tr> -->
-<!-- 								<td>아이디</td> -->
-<!-- 								<td><input type="text" name="id" id="id" /> <input type="button" value="중복확인" name="confirm_id" -->
-<!-- 									id="idck" onclick="confirmId(this.form)"></td> -->
-<!-- 							</tr> -->
-							
-
-
-
-							<tr>
-								<td>email</td>
-								<td><input type="text" name="email" id="email" /> <input type="button" value="중복확인2" name="confirm_email"
-									id="emailck"></td>
-							</tr>
-
-
-<!-- onclick="confirmEmail(this.form) -->
-
-
-
-
-<!-- 											<label for="subject">번호</label> <input type="text" name="tel" -->
-<!-- 												id="tel" placeholder="phone number" maxlength="13" /> -->
-
-
-										</div>
-									</div>
-																		<tr>
-													<td rowspan="2" height="30" align="center" bgcolor="#FFDEAD">연락처</td>
-													<td bgcolor="#E0FFFF">
-														<select id="hp1" name="hp1" style="width:70;">
-														   <option value="010"  selected> 010 </option>
-														   <option value="011"> 011 </option>
-														   <option value="016"> 016 </option>
-														   <option value="017"> 017 </option>
-														   <option value="018"> 018 </option>
-														   <option value="019"> 019 </option>
-														</select>
-														-
-														<input type="text" id="hp2" name="hp2" size="2" maxlength="4">
-														-
-														<input type="text" id="hp3" name="hp3" size="2" maxlength="4">
-														<input type="hidden" id="tel" name="tel" >
-													</td>
-												</tr>
-<!-- 																		<input type="text" id="subject" name= "tel" class="form-control" placeholder="ex)01086308690"/> -->
+<!-- 	<tr> -->
+<!-- 	<td>아이디</td> -->
+<!-- 	<td><input type="text" name="id" id="id" /> <input type="button" value="중복확인" name="confirm_id" -->
+<!-- 	id="idck" onclick="confirmId(this.form)"></td> -->
+<!-- 	</tr> -->
+							<div class="row form-group">
+								<div class="col-md-6 padding-bottom">
+									<label for="fname">이메일</label></br>
+									<input type="text" name="member_email" id="member_email" style="width:75%;height:50px"/>
+									<input type="button" value="중복확인" style="border-radius:0px;background-color:#eea236;color:white" class="btn btn-dark" name="confirm_email" id="emailck">		
+								</div>
+								<div class="col-md-6">
+									<label for="lname">연락처</label></br>
+									<select id="hp1" name="hp1" style=width:29%;height:50px>
+									   <option value="010"  selected> 010 </option>
+									   <option value="011"> 011 </option>
+									   <option value="016"> 016 </option>
+									   <option value="017"> 017 </option>
+									   <option value="018"> 018 </option>
+									   <option value="019"> 019 </option>
+									</select>
+									-
+									<input type="text" id="hp2" name="hp2" size="2" maxlength="4" style=width:29%;height:50px>
+									-
+									<input type="text" id="hp3" name="hp3" size="2" maxlength="4" style=width:29%;height:50px>
+									<script type="text/javascript">
+										var target = document.getElementById("member_tel");
+										target.options[target.selectedIndex].text
+									</script>
+									<input type="hidden" id="member_tel" name="member_tel" >
 								</div>
 							</div>
+<!-- onclick="confirmEmail(this.form) -->
+<!-- <label for="subject">번호</label> <input type="text" name="tel" -->
+<!-- id="tel" placeholder="phone number" maxlength="13" /> -->
+						</div>
+					</div>
+<!-- <input type="text" id="subject" name= "tel" class="form-control" placeholder="ex)01086308690"/> -->
+				</div>
+			</div>
 
-							<!-- 							<form method="post" class="colorlib-form-2"> -->
-							<div class="form-check text-center">
-								<input type="checkbox" class="form-check-input"
-									id="exampleCheck1" name="sms_at" value="y" /> <label
-									class="form-check-label" for="exampleCheck1">
-									<h4 class="place">SMS수신(이벤트)</h4>
-								</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-								<input type="checkbox" class="form-check-input"
-									id="exampleCheck2" /> <label class="form-check-label"
-									for="exampleCheck2">
-									<h4 class="place">이메일 수신(이벤트)</h4>
-								</label>
-							</div>
-							<!-- 							</form> -->
-							<div class="form-group text-center">
-								<input type="button" value="가입하기" onclick="sendIt()"
-									class="btn btn-primary" />
-							</div>
+			<!-- <form method="post" class="colorlib-form-2"> -->
+			<div class="form-check text-center">
+				<span class="button-checkbox">
+			        <button type="button" class="btn" data-color="warning">SMS수신(이벤트)</button>
+			        <input type="checkbox" class="hidden" id="exampleCheck1" name="member_sms_at" value="y"/>
+			    </span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			    <span class="button-checkbox">
+			        <button type="button" class="btn" data-color="warning">이메일 수신(이벤트)</button>
+			        <input type="checkbox" class="hidden" id="exampleCheck2" />
+			    </span>
+			</div></br>
+			<!-- </form> -->
+			<div class="form-group text-center">
+			<input type="button" value="가입하기" style="width:200px;height:50px;border-radius:0px;background-color:#eea236;color:white" class="btn btn-dark" onclick="sendIt()">
+			</div>
+<script>
+$(function () {
+    $('.button-checkbox').each(function () {
 
-						</form>
+        // Settings
+        var $widget = $(this),
+            $button = $widget.find('button'),
+            $checkbox = $widget.find('input:checkbox'),
+            color = $button.data('color'),
+            settings = {
+                on: {
+                    icon: 'glyphicon glyphicon-check'
+                },
+                off: {
+                    icon: 'glyphicon glyphicon-unchecked'
+                }
+            };
+
+        // Event Handlers
+        $button.on('click', function () {
+            $checkbox.prop('checked', !$checkbox.is(':checked'));
+            $checkbox.triggerHandler('change');
+            updateDisplay();
+        });
+        $checkbox.on('change', function () {
+            updateDisplay();
+        });
+
+        // Actions
+        function updateDisplay() {
+            var isChecked = $checkbox.is(':checked');
+
+            // Set the button's state
+            $button.data('state', (isChecked) ? "on" : "off");
+
+            // Set the button's icon
+            $button.find('.state-icon')
+                .removeClass()
+                .addClass('state-icon ' + settings[$button.data('state')].icon);
+
+            // Update the button's color
+            if (isChecked) {
+                $button
+                    .removeClass('btn-default')
+                    .addClass('btn-' + color + ' active');
+            }
+            else {
+                $button
+                    .removeClass('btn-' + color + ' active')
+                    .addClass('btn-default');
+            }
+        }
+
+        // Initialization
+        function init() {
+
+            updateDisplay();
+
+            // Inject the icon if applicable
+            if ($button.find('.state-icon').length == 0) {
+                $button.prepend('<i class="state-icon ' + settings[$button.data('state')].icon + '"></i> ');
+            }
+        }
+        init();
+    });
+});
+</script>
+				</form>
 					</div>
 					<div class="col-md-10 col-md-offset-1 animate-box">
 						<h3>Contact Information</h3>

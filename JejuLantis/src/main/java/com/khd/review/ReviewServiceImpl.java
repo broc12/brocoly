@@ -5,8 +5,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.khd.review.BranchName;
-import com.khd.review.ReviewContent;
-import com.khd.review.ReviewDao;
+
+import com.khd.review.ReviewService;
+
 
 @Service("reviewService")
 public class ReviewServiceImpl implements ReviewService {
@@ -29,4 +30,14 @@ public class ReviewServiceImpl implements ReviewService {
 		System.out.println("review_sel : " + review_sel);
 		return reviewDAO.select(review_sel);
 	}
+
+	@Override
+	public List<ReviewContent> reviewContentService(String rent_review_no) {
+		return reviewDAO.reviewDetailContent(rent_review_no);
+	}
+	@Override
+	public List<BranchName> listServiceAll(int branch_no) {
+		return reviewDAO.reviewContentAll(branch_no);
+	}
+
 }

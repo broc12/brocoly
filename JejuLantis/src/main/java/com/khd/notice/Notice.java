@@ -3,66 +3,58 @@ package com.khd.notice;
 import java.sql.Date;
 
 public class Notice {
-	private String announ_no;
-	private String announ_title;
-	private String announ_content;
-	private Date announ_resist;
-	private int announ_count;
-	private String announ_writer;
-	private String announ_top;
+	private long announce_no;
+	private String announce_title;
+	private String announce_content;
+	private long announce_hits;
+	private String announce_top;
+	private Date announce_resist;
 	public Notice() {
 	}
-	public Notice(String announ_no, String announ_title, String announ_content, Date announ_resist, int announ_count,
-			String announ_writer, String announ_top) {
-		this.announ_no = announ_no;
-		this.announ_title = announ_title;
-		this.announ_content = announ_content;
-		this.announ_resist = announ_resist;
-		this.announ_count = announ_count;
-		this.announ_writer = announ_writer;
-		this.announ_top = announ_top;
+	public Notice(long announce_no, String announce_title, String announce_content, long announce_hits,
+			String announce_top, Date announce_resist) {
+		this.announce_no = announce_no;
+		this.announce_title = announce_title;
+		this.announce_content = announce_content;
+		this.announce_hits = announce_hits;
+		this.announce_top = announce_top;
+		this.announce_resist = announce_resist;
 	}
-	public String getAnnoun_no() {
-		return announ_no;
+	public long getAnnounce_no() {
+		return announce_no;
 	}
-	public void setAnnoun_no(String announ_no) {
-		this.announ_no = announ_no;
+	public void setAnnounce_no(long announce_no) {
+		this.announce_no = announce_no;
 	}
-	public String getAnnoun_title() {
-		return announ_title;
+	public String getAnnounce_title() {
+		return announce_title;
 	}
-	public void setAnnoun_title(String announ_title) {
-		this.announ_title = announ_title;
+	public void setAnnounce_title(String announce_title) {
+		this.announce_title = announce_title;
 	}
-	public String getAnnoun_content() {
-		return announ_content;
+	public String getAnnounce_content() {
+		return announce_content;
 	}
-	public void setAnnoun_content(String announ_content) {
-		this.announ_content = announ_content;
+	public void setAnnounce_content(String announce_content) {
+		this.announce_content = announce_content;
 	}
-	public Date getAnnoun_resist() {
-		return announ_resist;
+	public long getAnnounce_hits() {
+		return announce_hits;
 	}
-	public void setAnnoun_resist(Date announ_resist) {
-		this.announ_resist = announ_resist;
+	public void setAnnounce_hits(long announce_hits) {
+		this.announce_hits = announce_hits;
 	}
-	public int getAnnoun_count() {
-		return announ_count;
+	public String getAnnounce_top() {
+		return announce_top;
 	}
-	public void setAnnoun_count(int announ_count) {
-		this.announ_count = announ_count;
+	public void setAnnounce_top(String announce_top) {
+		this.announce_top = announce_top;
 	}
-	public String getAnnoun_writer() {
-		return announ_writer;
+	public Date getAnnounce_resist() {
+		return announce_resist;
 	}
-	public void setAnnoun_writer(String announ_writer) {
-		this.announ_writer = announ_writer;
-	}
-	public String getAnnoun_top() {
-		return announ_top;
-	}
-	public void setAnnoun_top(String announ_top) {
-		this.announ_top = announ_top;
+	public void setAnnounce_resist(Date announce_resist) {
+		this.announce_resist = announce_resist;
 	}
 	
 }

@@ -21,8 +21,8 @@ public class MemberServiceImpl implements MemberService {
 		return memberDao.join(member);
 	}
 	@Override
-	public int idcheck(String id) {
-		return memberDao.check(id);
+	public int idcheck(String member_id) {
+		return memberDao.check(member_id);
 	}
 //	@Override
 //	public int modify(Member member) {
@@ -31,9 +31,9 @@ public class MemberServiceImpl implements MemberService {
 //	
 
 	@Override
-	public Member mypageService(String id) {
+	public Member mypageService(String member_id) {
 		// TODO Auto-generated method stub
-		return memberDao.mypage(id);	 
+		return memberDao.mypage(member_id);	 
 	}
 //	@Override
 //	public boolean modifyService(HashMap<String, String> hm) {
@@ -51,24 +51,24 @@ public class MemberServiceImpl implements MemberService {
 //		return memberDao.delete(member);
 //	}
 	@Override
-	public int deleteService(String id) {
+	public int deleteService(String member_id) {
 		// TODO Auto-generated method stub
-		return memberDao.delete(id);
+		return memberDao.delete(member_id);
 	}
 	
 	// 아이디 찾기
 	@Override
-	public String find_id(String email) throws Exception {
-		return memberDao.find_id(email);	
+	public String find_id(String member_email) throws Exception {
+		return memberDao.find_id(member_email);	
 	}
 	// 비밀번호 찾기
 		@Override
-		public String find_pwd(String id) throws Exception {
-			return memberDao.find_pwd(id);	
+		public String find_pwd(String member_id) throws Exception {
+			return memberDao.find_pwd(member_id);	
 		}
 		@Override
-		public int emailcheck(String email) {
-			return memberDao.echeck(email);
+		public int emailcheck(String member_email) {
+			return memberDao.echeck(member_email);
 		}
 	
 //	@Override

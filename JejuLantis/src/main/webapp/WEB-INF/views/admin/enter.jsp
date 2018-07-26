@@ -41,7 +41,7 @@
         <div class="card-header">
           <i class="fa fa-table"></i>업체목록</div>
         <div class="card-body">
-        <button type="button" class="btn btn-primary btn-xs" align="right"><a href="" style="color:white">업체등록</a></button></br></br>
+        <button type="button" class="btn btn-primary btn-xs" align="right"><a href="branch.do" style="color:white">업체등록</a></button></br></br>
           <div class="table-responsive">
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
               <thead>
@@ -50,6 +50,7 @@
                   <th>업체명</th>
                   <th>담당자명</th>
                   <th>업체주소</th>
+                  <th>당일예약가능여부</th>
                   <th>등록일</th>
                 </tr>
                 <c:if test="${empty list}">
@@ -61,10 +62,11 @@
               <tbody>
               <c:forEach items="${list}" var="list">
                 <tr>
-                  <td>${list.branch_line_no}</td>
-                  <td>${list.branch_name}</td>
+                  <td>${list.branch_no}</td>
+                  <td><a href="branchfull.do?branch_no=${list.branch_no}">${list.branch_name}</a></td>
                   <td>${list.branch_member_name}</td>
                   <td>${list.branch_local}</td>
+                  <td>${list.branch_today}</td>
                   <td>${list.branch_resist}</td>
                 </tr>
             </c:forEach>

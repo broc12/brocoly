@@ -48,19 +48,19 @@
         		isChecked = "N"
         	}
         	
-        	jQuery("#announ_top").val(isChecked);
+        	jQuery("#announce_top").val(isChecked);
         	  
-            if(f.announ_title.value ==""){
+            if(f.announce_title.value ==""){
                alert("제목을 채워주세요");
-               f.announ_title.focus();
+               f.announce_title.focus();
                return;
             }
             
-            var _contents = CKEDITOR.instances.announ_content.document.getBody().getText();
+            var _contents = CKEDITOR.instances.announce_content.document.getBody().getText();
 
             if (_contents.trim() == '') {
             	alert("내용을 채워주세요");
-            	f.announ_content.focus();
+            	f.announce_content.focus();
             	return false;
             }
             
@@ -84,19 +84,19 @@
         <div class="card-body">
           <div class="table-responsive">
           <form name="f" action="write.do" method="post">
-          	<input type="hidden" name="announ_top" id="announ_top"/>
+          	<input type="hidden" name="announce_top" id="announce_top"/>
             <table border="0" width="100%"  cellpadding="0" cellspacing="0">
 				<h3 style="color:#007bff">공지작성</h3>	
 				<tr style="color:#808080;font-size:12pt">			
 					<th  height="60px" width="10%" class="text-center" style="background-color: #fafafa">제목</th>
 					<th  width="35%" class="text-left">
-						<input name="announ_title"type="text" size="80" placeholder="">
+						<input name="announce_title"type="text" size="80" placeholder="">
 					</th>
 				</tr>
 				<tr style="font-size:10pt" height="60px">
 					<td height="100px" align="center" style="background-color: #fafafa">내용</td>
 					<td align="left">
-						<textarea class="ckeditor" rows="8" cols="110" name="announ_content" id="announ_content"></textarea>
+						<textarea class="ckeditor" rows="8" cols="110" name="announce_content" id="announce_content"></textarea>
 					</td>
 				</tr>
 				<tr style="font-size:10pt" height="60px">
@@ -152,9 +152,10 @@
     </div>
     <!-- Bootstrap core JavaScript-->
    <script>
-	    CKEDITOR.replace('announ_content',{
+	    CKEDITOR.replace('announce_content',{
 	            /* toolbar: 'Full',
 	            uiColor: '#9AB8F3', */
+	    	filebrowserImageUploadUrl: '/community/imageUpload'
 	        }
 	    );
 	</script>

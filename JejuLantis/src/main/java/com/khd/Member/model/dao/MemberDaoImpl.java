@@ -28,8 +28,8 @@ public class MemberDaoImpl implements MemberDao {
 //		System.out.println("member sex"+member.getSex());
 //		System.out.println("member scls"+member.getSclc());
 //		System.out.println("member memlocal"+member.getMember_local());
-//		System.out.println("member tel"+member.getTel());
-//		System.out.println("member email"+member.getEmail());
+		System.out.println("member tel6666"+member.getMember_tel());
+		System.out.println("member_email6666"+member.getMember_email());
 //		System.out.println("member resist"+member.getResist_member());
 //		
 		

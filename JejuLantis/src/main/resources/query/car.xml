@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace = "query.car">
+
+<resultMap type="Car" id="carResult">
+	<result column="CAR_NO" property="car_no"/>
+	<result column="CAR_NAME" property="car_name"/>
+	<result column="CAR_MANUFACTURER" property="car_manufacturer"/>
+	<result column="CAR_FUEL" property="car_fuel"/>
+	<result column="CAR_TYPE" property="car_type"/>
+	<result column="CAR_PASSENGER" property="car_passenger"/>
+	<result column="CAR_TRANS" property="car_trans"/>
+	<result column="CAR_COUNT" property="car_count"/>
+	<result column="CAR_IMAGE" property="car_image"/>
+	<result column="CAR_WITHDRAW_AT" property="car_withdraw_at"/>
+	<result column="CAR_RATING" property="car_rating"/>
+	<result column="CAR_RESIST" property="car_resist"/>
+</resultMap>
+
+<!-- 	select -->
+	<select id="myCar" resultType="Car">
+		SELECT * from CAR where car_withdraw_at='N' order by CAR_RESIST desc
+	</select>
+	
+	<insert id="myInsert" parameterType="Car">
+		insert into CAR values(CAR_seq.NEXTVAL,#{car_name},#{car_manufacturer},
+		#{car_fuel},#{car_type},#{car_passenger},#{car_trans,jdbcType=VARCHAR},0,#{car_image},'N',0,SYSDATE)
+	</insert>
+	
+	<select id="mySubject" resultType="Car">
+		SELECT * from CAR where car_no=#{car_no}
+	</select>
+	
+	<select id="myModify" resultType="Car">
+		SELECT * from CAR where car_no=#{car_no}
+	</select>
+	
+	<update id="myDelete" parameterType="long">
+		Update CAR set car_withdraw_at='Y' where car_no=#{car_no}
+	</update>
+	
+	<update id="myUpdate" parameterType="Car">
+	Update CAR set car_no=#{car_no},car_name=#{car_name},car_manufacturer=#{car_manufacturer},
+	car_fuel=#{car_fuel},car_type=#{car_type},car_passenger=#{car_passenger},car_trans=#{car_trans},
+	car_image=#{car_image} where car_no=#{car_no}
+	</update>
+</mapper>

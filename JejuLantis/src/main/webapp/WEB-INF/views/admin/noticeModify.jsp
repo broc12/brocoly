@@ -48,7 +48,7 @@
     		isChecked = "N"
     	}
 		
-    	jQuery("#announ_top").val(isChecked);
+    	jQuery("#announce_top").val(isChecked);
     	
     	document.f.submit();
     	
@@ -70,27 +70,27 @@
         <div class="card-body">
           <div class="table-responsive">
           <form name="f" action="modify.do" method="post">
-          	<input type="hidden" name="announ_top" id="announ_top"/>
+          	<input type="hidden" name="announce_top" id="announce_top"/>
           <c:forEach items="${update}" var="update">
             <table border="0" width="100%"  cellpadding="0" cellspacing="0">
 				<h3 style="color:#007bff">공지수정</h3>	
 				<tr style="color:#808080;font-size:12pt">			
 					<th  height="60px" width="10%" class="text-center" style="background-color: #fafafa">제목</th>
 					<th  width="35%" class="text-left">
-						<input name="announ_title"type="text" size="80" value='${update.announ_title}'>
-						<input type="hidden" value='${update.announ_no}' name="announ_no">
+						<input name="announce_title"type="text" size="80" value='${update.announce_title}'>
+						<input type="hidden" value='${update.announce_no}' name="announce_no">
 					</th>
 				</tr>
 				<tr style="font-size:10pt" height="60px">
 					<td height="100px" align="center" style="background-color: #fafafa">내용</td>
 					<td align="left">
-						<textarea  class="ckeditor" rows="8" cols="110" name="announ_content" >${update.announ_content}</textarea>
+						<textarea  class="ckeditor" rows="8" cols="110" name="announce_content" >${update.announce_content}</textarea>
 					</td>
 				</tr>
 				<tr style="font-size:10pt" height="60px">
 					<td align="center" style="background-color: #fafafa">중요</td>
 					<td align="left">
-						&nbsp;&nbsp;&nbsp;<input type="checkbox" name="topYn" <c:if test="${update.announ_top eq 'Y' }">checked</c:if>>
+						&nbsp;&nbsp;&nbsp;<input type="checkbox" name="topYn" <c:if test="${update.announce_top eq 'Y' }">checked</c:if>>
 					</td>
 				</tr>
 				<tr style="font-size:10pt" height="60px">
@@ -141,7 +141,7 @@
     </div>
     <!-- Bootstrap core JavaScript-->
    <script>
-    CKEDITOR.replace('announ_content',{
+    CKEDITOR.replace('announce_content',{
             /* toolbar: 'Full',
             uiColor: '#9AB8F3', */
         }

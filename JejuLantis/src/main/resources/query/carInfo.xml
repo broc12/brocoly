@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="query.carInfo">
+
+	<resultMap id="carInfoResult" type="CarInfo">
+	<result property="car_info_no" column="CAR_INFO_NO"/> 
+	<result property="car_no" column="CAR_NO"/> 
+	<result property="insurance_no" column="INSURANCE_NO"/> 
+	<result property="car_kind_no" column="CAR_KIND_NO"/>
+	<result property="branch_no" column="BRANCH_NO"/>
+	<result property="car_info_rent_at" column="CAR_INFO_RENT_AT"/>
+	<result property="car_info_state" column="CAR_INFO_STATE"/>
+	<result property="car_info_resist" column="CAR_INFO_RESIST"/>
+	</resultMap>
+
+	
+    <insert id="myInsert" parameterType="java.util.List">
+        insert into CAR_INFO(
+            car_info_no,
+            car_no,
+            insurance_no,
+            car_kind_no,
+            branch_no,
+            car_info_rent_at,
+            car_info_state,
+            car_info_resist
+        )values
+        <foreach collection="excelContent" item="item" separator=",">
+        (
+            #{item.A},
+            #{item.B},
+            #{item.C},
+            #{item.D},
+            #{item.E),
+            #{item.F},
+            #{item.G},
+            sysdate
+        )
+        </foreach>
+</insert>
+
+
+</mapper>

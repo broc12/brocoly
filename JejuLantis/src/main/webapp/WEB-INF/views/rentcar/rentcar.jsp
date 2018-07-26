@@ -50,7 +50,7 @@
 
 	<!-- Theme style  -->
 	<link rel="stylesheet" href="resources/rentcar/css/style.css">
-
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
 	<!-- Modernizr JS -->
 	<script src="resources/rentcar/js/modernizr-2.6.2.min.js"></script>
 	<!-- FOR IE9 below -->
@@ -85,7 +85,7 @@
 		</aside>
 		<div id="board">
 			<table border="0" width="100%"  cellpadding="0" cellspacing="0">	
-				<tr style="color:#8c9094;background-color:#eef2f5;font-size:10pt">			
+				<tr style="color:#8c9094;background-color:white;font-size:10pt">			
 					<th  height="60px" class="text-center" width="15%">1. 차량/대여업체 선택</th>
 					<th  class="text-center" width="10%" style="color:#ffdd01">2. 요금선택</th>
 					<th  class="text-center" width="15%">3. 고객 정보 입력 & 결제</th>
@@ -95,64 +95,111 @@
 			</table>
 		</div>				
 		
-		<div class="colorlib-wrap">
+		<div class="colorlib-wrap" style="height:800px;background-color:#eef2f5">
 			<div class="container">
 				<div class="row">
 					<div class="col-md-9">
 						<div class="row">
 							<div class="wrap-division">
 								<div class="row">
-								<div class="col-md-6 col-sm-6 animate-box">
-									<div class="hotel-entry">
-										<p align="center">스팅어</p>	
-										<a class="hotel-img" style="background-image: url(resources/rentcar/images/car1.jpg);"></a>
-										<div align="center">
-										<a style="color:black;font-size:10pt">5인승 경차 휘발유 오토</a>
+								<div class="col-md-6 col-sm-6 animate-box" style="width:100%;padding:0px">
+									<table border="0" style="width:100%;height:50px">
+									<tr>
+										<td style="width:6%;background-color:black" align="center">
+											<a class="glyphicon glyphicon-chevron-left" style="color:white" href="car.do"></a>
+										</td>
+										<td style="background-color:white">
+											&nbsp;&nbsp;&nbsp;
+											<span style="font-size:16pt">2018.07.25</span>
+											<span>09:00</span>&nbsp;&nbsp;&nbsp;
+											<span class="glyphicon glyphicon-arrow-right" style="color:black"></span>
+											&nbsp;&nbsp;&nbsp;
+											<span style="font-size:16pt">2018.07.26</span>
+											<span>09:00</span>
+										</td>
+									</tr>
+									</table></br>
+								</div>
+							</div>
+						</div>
+						</div>
+						<div class="row">
+							<div class="wrap-division">
+								<div class="row">
+								<div class="col-md-6 col-sm-6 animate-box" style="width:40%;padding:0px">
+									<div class="hotel-entry" style="background-color:#f8fafb;padding:15px;height:410px"></br>
+										<span style="color:black;font-size:18pt">아반떼</span><span style="color:black">(LPG)</span>
+										<img width="100%" weight="200" src="resources/car/2017Avante.png"/>
+										<div class="desc">
+											<p align="center" style="color:#0090f0"></p>
+										</div>
+										</br>
+										<div class="desc">
+											<p align="center">
+												<span class="glyphicon glyphicon-road">중소형</span>
+												<span class="glyphicon glyphicon-user">5인승</span>
+												<span class="glyphicon glyphicon-tint">LPG</span>
+											</p>
 										</div>
 									</div>
 								</div>
 
-								<div class="col-md-6 col-sm-6 animate-box">
-									<div class="hotel-entry">
-										<div class="blog-entry aside-stretch-right">
-											<div class="row">
-												<div class="col-md-12 animate-box">		
-													<div>
-														<a>※차량 인수/ 반납시간 08:00~20:00 이외 이용을 원할경우 업체에 따라 이용제한 또는 추가요금이 발생되거나 완전자차보험을 필수가입해야 하기때문에 상담원과 통화 후 진행바랍니다</a></br></br>
-														<h5 style="font-weight: bold">차량정보</h5>
-														<a style="color:black;font-size:10pt">5인승 경차 휘발유 오토</a></br></br>
-														<h5 style="font-weight: bold">대여규정</h5>
-														<table border="0" width="100%">
-															<tr align="center" style="background-color: #fafafa;font-weight:bold">
-																<td>나이</td>
-																<td>운전경력</td>
-																<td>면허종류</td>
-															<tr>
-															<tr align="center">
-																<td>만 21세 이상</td>
-																<td>1년 이상</td>
-																<td>2종보통 이상</td>
-															<tr>
-														</table></br>
-														<h5 style="font-weight: bold">일반자차 보험 규정</h5>
-														<table border="0" width="100%">
-															<tr align="center" style="background-color: #fafafa;font-weight:bold">
-																<td>나이</td>
-																<td>운전경력</td>
-															<tr>
-															<tr align="center">
-																<td>만 21세 이상</td>
-																<td>1년이상</td>
-															<tr>
-														</table>
-													</div>
-												</div>			
+								<div class="col-md-6 col-sm-6 animate-box" style="padding:0px;width:60%">
+									<div class="hotel-entry" style="background-color:white">
+										<div class="desc" style="padding:15px;height:410px"></br>
+											<span style="font-size:18pt;color:black">특별한 렌트카</span>
+											
+											<p class="star"><span><i class="icon-star-full"></i><i class="icon-star-full"></i><i class="icon-star-full"></i><i class="icon-star-full"></i><i class="icon-star-full"></i></span> 545 Reviews</p>
+											<div id="board">
+											<h5 style="font-weight: bold">대여 규정</h5>
+												<table border="0" width="70%">
+													<tr align="center" style="background-color: #fafafa;font-weight:bold">
+														<td style="width:33%">나이</td>
+														<td style="width:33%">운전경력</td>
+														<td>면허종류</td>
+													<tr>
+													<tr align="center">
+														<td>만 21세 이상</td>
+														<td>1년 이상</td>
+														<td>2종보통 이상</td>
+													<tr>
+												</table></br>
+												<h5 style="font-weight: bold">일반자차 보험 규정</h5>
+												<table border="0" width="70%">
+													<tr align="center" style="background-color: #fafafa;font-weight:bold">
+														<td style="width:33%">나이</td>
+														<td style="width:33%">운전경력</td>
+														<td style="background-color:white"></td>
+													<tr>
+													<tr align="center">
+														<td>만 21세 이상</td>
+														<td>1년 이상</td>
+														<td></td>
+													<tr>
+												</table></br>
+												
+												<table border="1" width="100%" height="100px">
+													<tr>
+													<th colspan="5" width="48%" style="border-right: hidden;border-left: hidden;border-top: hidden">보상한도</th>
+													<th style="border-right: hidden;border-top: hidden;border-bottom: hidden"></th>
+													<th width="48%" style="border-top: hidden;border-right: hidden">고객부담금</th>
+													</tr>
+													<tr align="center">
+														<td>250만원</td>
+														<td style="color:white;background-color:black">300만원</td>
+														<td>400만원</td>
+														<td>500만원</td>
+														<td >무제한</td>
+														<td style="border-bottom: hidden">&nbsp;</td>
+														<td style="background-color:#2d2f3f;color:white;font-size:10pt">보상한도까지 수리비, 면책금, 휴차보상료 면제</td>
+													<tr>
+												</table>
 											</div>
 										</div>
 									</div>
 								</div>
 							</div>
-							</div>
+						</div>
 						</div>
 					</div>
 
@@ -262,7 +309,7 @@
 				                  </div>
 				                </div>
 				                <div class="col-md-12">
-				                  <input type="submit" name="submit" id="submit" value="차량검색" class="btn btn-primary btn-block">
+				                  <input type="submit" name="submit" id="submit" value="차량검색" class="btn btn-primary btn-block" style="background-color:#ffdd00">
 				                </div>
 				              </div>
 				            </form>
@@ -273,46 +320,46 @@
 			</div>
 		</div>
 		<div id="colorlib-blog" style="background-color:#eef2f5">
-			<div class="container">
-				<div class="row">	
+			<div class="container" style="margin-top:-100px">
+				<div class="row" style="margin-top:-20px;margin-bottom:20px">	
 						<h2>요금선택</h2>		
 				</div>
 				<div class="blog-flex">
 					<table border="0" width="45%" style="background-color:white">
 						<!-- <뿌려주기 start> -->
 						<tr>
-							<td colspan="2" width=33%><p style="margin-left:20px; margin-right:20px;font-weight: bold;">이코노미</p></td>
+							<td colspan="2" width=33%><p style="margin-left:20px; margin-right:20px;margin-top:20px;font-weight: bold;">이코노미</p></td>
 						</tr>
 						<tr>
 							<td>
 								<h2 style="margin-left:20px; margin-right:20px;color:#868c98; font-weight: bold;">24,200원</h2>
-								<a style="margin-left:20px; margin-right:20px;color:#868c98">차량 대여료 6,200원</a></br>
-								<a style="margin-left:20px; margin-right:20px;color:#868c98">보험료 18,000원</a>
+								<span style="margin-left:20px; margin-right:20px;color:#868c98">차량 대여료 6,200원</span></br>
+								<span style="margin-left:20px; margin-right:20px;color:#868c98">보험료 18,000원</span>
 							</td>
 						</tr>
 						<tr>
 							<td colspan="2"><p style="margin-left:20px; margin-right:20px;margin-top:20px;font-weight: bold;">예약취소</p>
-								<a style="margin-left:20px; margin-right:20px;color:black;">결제 24시간 이내 :</a><a style="color:red">수수료 없음 </a></br>
-								<a style="margin-left:20px; margin-right:20px;color:black;">결제 24시간 이후 :</a><a style="color:red">수수료 30%</a></br>
-								<a style="margin-left:20px; margin-right:20px;color:black;">대여 24시간 이내 :</a><a style="color:red">수수료 30%</a>
+								<span style="margin-left:20px; margin-right:20px;color:black;">결제 24시간 이내 :</span><span style="color:red">수수료 없음 </span></br>
+								<span style="margin-left:20px; margin-right:20px;color:black;">결제 24시간 이후 :</span><span style="color:red">수수료 30%</span></br>
+								<span style="margin-left:20px; margin-right:20px;color:black;">대여 24시간 이내 :</span><span style="color:red">수수료 30%</span>
 							</td>
 						</tr>
 						<tr>
 							<td colspan="2">
 								<p style="margin-left:20px; margin-right:20px;margin-top:20px;font-weight: bold;">일정변경</p>
-								<a style="margin-left:20px; margin-right:20px;color:red;">변경 불가</a>
+								<span style="margin-left:20px; margin-right:20px;color:red;">변경 불가</span>
 							</td>
 						</tr>
 						<tr>
 							<td colspan="2">
 								<p style="margin-left:20px; margin-right:20px;margin-top:60px;font-weight: bold;">예약부도(No-show)</p>
-								<a style="margin-left:20px; margin-right:20px;color:red;">환불 불가</a>
+								<span style="margin-left:20px; margin-right:20px;color:red;">환불 불가</span>
 							</td>
 						</tr>
 						<tr>
 							<td>
 							<div class="col-md-15" style="margin-top:40px" align="center">
-				                  <button class="btn btn-default"><a href="rentcar.do" style="color:black">예약하기</a></button>
+				                  <button class="btn btn-default"><a href="rentcar.do" style="color:black;text-decoration:none">예약하기</a></button>
 				                </div>
 							</td>
 						</tr>
@@ -321,39 +368,39 @@
 					<table border="0" width="45%" style="background-color:white">
 						<!-- <뿌려주기 start> -->
 						<tr>
-							<td colspan="2" width=33%><p style="margin-left:20px; margin-right:20px;font-weight: bold; color:#ffdd00;">스탠다드</p></td>
+							<td colspan="2" width=33%><p style="margin-left:20px; margin-right:20px;margin-top:20px;font-weight: bold; color:#ffdd00;">스탠다드</p></td>
 						</tr>
 						<tr>
 							<td>
 								<h2 style="margin-left:20px; margin-right:20px;color:#868c98; font-weight: bold; color:#ffdd00;">26,700원</h2>
-								<a style="margin-left:20px; margin-right:20px;color:#868c98; color:#ffeb5f;">차량 대여료 8,700원</a></br>
-								<a style="margin-left:20px; margin-right:20px;color:#868c98; color:#ffeb5f;">보험료 18,000원</a>
+								<span style="margin-left:20px; margin-right:20px;color:#868c98; color:#ffeb5f;">차량 대여료 8,700원</span></br>
+								<span style="margin-left:20px; margin-right:20px;color:#868c98; color:#ffeb5f;">보험료 18,000원</span>
 							</td>
 						</tr>
 						<tr>
 							<td colspan="2"><p style="margin-left:20px; margin-right:20px;margin-top:20px;font-weight: bold;">예약취소</p>
-								<a style="margin-left:20px; margin-right:20px;color:black;">대여 72시간 이전 :</a><a style="color:red">수수료 없음 </a></br>
-								<a style="margin-left:20px; margin-right:20px;color:black;">대여 72시간 이내 :</a><a style="color:red">수수료 30%</a>
+								<span style="margin-left:20px; margin-right:20px;color:black;">대여 72시간 이전 :</span><span style="color:red">수수료 없음 </span></br>
+								<span style="margin-left:20px; margin-right:20px;color:black;">대여 72시간 이내 :</span><span style="color:red">수수료 30%</span>
 							</td>
 						</tr>
 						<tr>
 							<td colspan="2">
 								<p style="margin-left:20px; margin-right:20px;margin-top:35px;font-weight: bold;">일정변경</p>
-								<a style="margin-left:20px; margin-right:20px;color:black;">대여 72시간 이전 :</a><a style="color:red">수수료 없음 </a></br>
-								<a style="margin-left:20px; margin-right:20px;color:black;">대여 72시간 이내 :</a><a style="color:red">수수료 3,000원</a></br>
-								<a style="margin-left:20px; margin-right:20px;color:black;">대여 24시간 이내 :</a><a style="color:red">변경불가</a>
+								<span style="margin-left:20px; margin-right:20px;color:black;">대여 72시간 이전 :</span><span style="color:red">수수료 없음 </span></br>
+								<span style="margin-left:20px; margin-right:20px;color:black;">대여 72시간 이내 :</span><span style="color:red">수수료 3,000원</span></br>
+								<span style="margin-left:20px; margin-right:20px;color:black;">대여 24시간 이내 :</span><span style="color:red">변경불가</span>
 							</td>
 						</tr>
 						<tr>
 							<td colspan="2">
 								<p style="margin-left:20px; margin-right:20px;margin-top:20px;font-weight: bold;">예약부도(No-show)</p>
-								<a style="margin-left:20px; margin-right:20px;color:red;">취소수수료 50%</a></br>
+								<span style="margin-left:20px; margin-right:20px;color:red;">취소수수료 50%</span></br>
 							</td>
 						</tr>
 						<tr>
 							<td>
 								<div class="col-md-15" style="margin-top:40px" align="center">
-				                  <button class="btn btn-primary"><a href="input.do" style="color:black">예약하기</a></button>
+				                  <button class="btn btn-primary" style="background-color:#ffdd00"><a href="input.do" style="color:white;text-decoration:none">예약하기</a></button>
 				                </div>
 							</td>
 						</tr>
@@ -375,20 +422,19 @@
 						<td colspan="2" width="50%">
 							<h3 style="margin-left:20px; margin-right:20px;color:#868c98; font-weight: bold; color:black;">차량 인수/반납 장소</h3>
 							<h3 style="margin-left:20px; margin-right:20px;margin-top:20px;">한성렌트가</h3>
-								<a style="margin-left:20px; margin-right:20px;color:#8c9094;">셔틀타는곳</a></br></br>
-								<a style="margin-left:20px; margin-right:20px;color:black;">제주공항 1층 5번 게이트 건너편 렌트카종합안내센터 [7구역 3번]</a></br></br>
-								<a style="margin-left:20px; margin-right:20px;color:#8c9094;">셔틀 운행간격</a></br>
-								<a style="margin-left:20px; margin-right:20px;color:black;">20분</a></br></br>
-								<a style="margin-left:20px; margin-right:20px;color:#8c9094;">소요시간</a></br>
-								<a style="margin-left:20px; margin-right:20px;color:black;">10분</a></br></br>
-								<a style="margin-left:20px; margin-right:20px;color:#8c9094;">주소</a></br>
-								<a style="margin-left:20px; margin-right:20px;color:black;">제주시 연미길 42</a></br></br>
-								<a style="margin-left:20px; margin-right:20px;color:#8c9094;">전화번호</a></br>
-								<a style="margin-left:20px; margin-right:20px;color:black;">011-121-4544</a></br>
+								<span style="margin-left:20px; margin-right:20px;color:#8c9094;">셔틀타는곳</span></br></br>
+								<span style="margin-left:20px; margin-right:20px;color:black;">제주공항 1층 5번 게이트 건너편 렌트카종합안내센터 [7구역 3번]</span></br></br>
+								<span style="margin-left:20px; margin-right:20px;color:#8c9094;">셔틀 운행간격</span></br>
+								<span style="margin-left:20px; margin-right:20px;color:black;">20분</span></br></br>
+								<span style="margin-left:20px; margin-right:20px;color:#8c9094;">소요시간</span></br>
+								<span style="margin-left:20px; margin-right:20px;color:black;">10분</span></br></br>
+								<span style="margin-left:20px; margin-right:20px;color:#8c9094;">주소</span></br>
+								<span style="margin-left:20px; margin-right:20px;color:black;">제주시 연미길 42</span></br></br>
+								<span style="margin-left:20px; margin-right:20px;color:#8c9094;">전화번호</span></br>
+								<span style="margin-left:20px; margin-right:20px;color:black;">011-121-4544</span></br>
 						</td>				
 					</tr>
-					</table>
-					
+				</table>	
 			</div>
 		</div>
 		

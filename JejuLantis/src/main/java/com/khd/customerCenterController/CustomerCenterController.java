@@ -86,7 +86,7 @@ public class CustomerCenterController {
 			System.out.println(list.size());*/
 			Member temp = (Member)session.getAttribute("log");
 			if(temp!=null)
-			id = temp.getId();
+			id = temp.getMember_id();
 			String view = "rentcar/help";
 			ModelAndView mv = new ModelAndView(view,"list",list);
 			mv.addObject("id", id);

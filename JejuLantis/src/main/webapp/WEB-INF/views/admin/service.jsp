@@ -1,5 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page session="false" %>
+<%@ page session="true" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@page import="com.khd.notice.Notice"%>
@@ -42,8 +42,8 @@
 
 	<script>
 	function goDel (v){
-		if (confirm("정말 삭제하시겠습니까??") == true){    //확인
-			location.href="del.do?announ_no=" +v;
+		if (confirm("정말 삭제하시겠습니까??"+v) == true){    //확인
+			location.href="noticedel.do?announce_no="+v;
 		}else{   //취소
 		    return;
 		}
@@ -59,7 +59,7 @@
 	
 	function goDelModal(){
 		var anno = jQuery("#hiddenValue").val();
-		location.href="del.do?announ_no=" +anno;
+		location.href="del.do?announce_no=" +anno;
 	} */
 	</script>
   <div class="content-wrapper">
@@ -81,10 +81,9 @@
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
               <thead>
                 <tr>
-                <th>타입</th>
+                <th>중요도</th>
                   <th>번호</th>
                   <th>제목</th>
-                  <th>작성자</th>
                   <th>등록일</th>
                   <th>조회수</th>
                   <th>
@@ -100,17 +99,16 @@
               <tbody>
               <c:forEach items="${totallist}" var="notice">
                 <tr>
-                <td>${notice.announ_top}</td>
-                  <td>${notice.announ_no}</td>
-                  <td>${notice.announ_title}</td>
-                  <td>${notice.announ_writer}</td>
-                  <td>${notice.announ_resist}</td>
-                  <td>${notice.announ_count}</td>
+                <td>${notice.announce_top}</td>
+                  <td>${notice.announce_no}</td>
+                  <td>${notice.announce_title}</td>
+                  <td>${notice.announce_resist}</td>
+                  <td>${notice.announce_hits}</td>
                   <td>
-                  	<button type="button" class="btn btn-defalut btn-sm"><a href="noticeModify.do?announ_no=${notice.announ_no}">수정</a></button>
+                  	<button type="button" class="btn btn-defalut btn-sm"><a href="noticeModify.do?announce_no=${notice.announce_no}">수정</a></button>
                   	<button type="button" class="btn btn-defalut btn-sm">
-                  	<a href="javascript:goDel(${notice.announ_no});">삭제</a>
-                  	<%-- <a data-toggle="modal" data-target="#exampleModal2" class="identifyingClass" data-id="${notice.announ_no}">삭제</a> --%>
+                  	<a href="javascript:goDel(${notice.announce_no});">삭제</a>
+                  	<%-- <a data-toggle="modal" data-target="#exampleModal2" class="identifyingClass" data-id="${notice.announce_no}">삭제</a> --%>
                   	</button>
                   </td>
                 </tr>

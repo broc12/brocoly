@@ -58,19 +58,19 @@
               </thead>
    
               <tbody>
-              <c:forEach items="${list_}" var="review" varStatus="status">
+              <c:forEach items="${reviewList}" var="review" varStatus="status">
                 <tr>
                   <td>${review.rent_review_no}</td>
                   <td>${review.rent_review_date}</td>
                   <td>${review.rent_reserv_start}</td>
                   <td>${review.rent_reserv_end}</td>
-                  <td>${review.name}</td>
+                  <td>${review.member_name}</td>
                   <td>${review.branch_name}</td>
-                  <td>${review.car_kind_name}</td>
+                  <td>${review.car_name}</td>
                   <td>${review.rent_review_rating_car}</td>
                   <td>${review.rent_review_content}</td>
                   <td>
-                  	<button type="button" class="btn btn-defalut btn-sm"><a>수정</a></button>
+                  	<button type="button" class="btn btn-defalut btn-sm"><a href="content.do?rent_review_no=${review.rent_review_no}">세부내용</a></button>
                   	<button type="button" class="btn btn-defalut btn-sm""><a href="rdel.do?rent_review_no=${review.rent_review_no}">삭제</a></button>
                   </td>
                 </tr>

@@ -62,11 +62,6 @@
 	<%@ include file="./top/top.jspf" %>
 	<div class="colorlib-loader"></div>
 
-	<script>
-	 jQuery(document).ready(function(){
-	    	alert("####");
-	    });
-	</script>
 	<div id="page">
 		<aside id="colorlib-hero">
 			<div class="flexslider">

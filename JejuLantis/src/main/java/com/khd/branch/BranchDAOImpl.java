@@ -17,4 +17,28 @@ public class BranchDAOImpl implements BranchDAO{
 		List<Branch>list = sqlSession.selectList(ns+".myBranch");
 		return list;
 	}
+	@Override
+	public void insert(Branch branch) {
+		sqlSession.insert(ns+".myInsert",branch);
+	}
+	
+	@Override
+	public List<Branch>subject(long branch_no){
+		List<Branch>subject = sqlSession.selectList(ns+".mySubject",branch_no);
+		return subject;
+	}
+	@Override
+	public List<Branch>full(long branch_no){
+		List<Branch>full = sqlSession.selectList(ns+".myFull",branch_no);
+		return full;
+	}
+	@Override
+	public void modify(Branch branch) {
+		sqlSession.update(ns+".myModify",branch);
+	}
+	@Override
+	public void withdraw(long branch_no) {
+		sqlSession.update(ns+".myWithdraw",branch_no);
+	}
+	
 }

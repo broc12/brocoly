@@ -77,7 +77,5 @@ public class CustomerCenterDaoImpl implements CustomerCenterDao {
 	public void replyUpdate(long qna_group) {
 		sqlSession.update(nsQna+".myReplyUpdate", qna_group);
 	}
-	
-	
 
 }

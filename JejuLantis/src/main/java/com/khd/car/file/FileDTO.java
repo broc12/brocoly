@@ -1,4 +1,4 @@
-package com.khd.carInfo.file;
+package com.khd.car.file;
 
 import org.springframework.web.multipart.MultipartFile;
 

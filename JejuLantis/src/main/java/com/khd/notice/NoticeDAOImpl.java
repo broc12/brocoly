@@ -28,21 +28,21 @@ public class NoticeDAOImpl implements NoticeDAO{
 		return totallist;
 	}
 	@Override
-	public void delete(String announ_no) {
-		sqlSession.delete(ns+".myDelete",announ_no);
+	public void delete(long announce_no) {
+		sqlSession.delete(ns+".myDelete",announce_no);
 	}
 	@Override
 	public void insert(Notice notice) {
 		sqlSession.insert(ns+".myInsert",notice);
 	}
 	@Override
-	public List<Notice>subject(String announ_no){
-		List<Notice>subject = sqlSession.selectList(ns+".mySubject",announ_no);
+	public List<Notice>subject(long announce_no){
+		List<Notice>subject = sqlSession.selectList(ns+".mySubject",announce_no);
 		return subject;
 	}
 	@Override
-	public List<Notice>update(String announ_no){
-		List<Notice>update = sqlSession.selectList(ns+".myUpdate",announ_no);
+	public List<Notice>update(long announce_no){
+		List<Notice>update = sqlSession.selectList(ns+".myUpdate",announce_no);
 		return update;
 	}
 	@Override
@@ -50,8 +50,8 @@ public class NoticeDAOImpl implements NoticeDAO{
 		sqlSession.update(ns+".myModify",notice);
 	}
 	@Override
-	public void hitPost(String announ_no) {
-		sqlSession.update(ns+".myCount",announ_no);
+	public void hitPost(long announce_no) {
+		sqlSession.update(ns+".myhits",announce_no);
 	}
 
 }

@@ -37,7 +37,7 @@ public class ManagerServiceImpl implements ManagerService {
 	}
 
 	@Override
-	public boolean loginCheck(Manager manager) {
+	public Manager loginCheck(Manager manager) {
 		return managerDao.loginCheck(manager);
 	}
 	

@@ -37,10 +37,25 @@ public class CarInfoController {
 		return "admin/carInfo";
 		
 	}
+	@RequestMapping(value="admin/carInfoAdd.do",method=RequestMethod.GET)
+	public String carInfoAdd() {
+		
+		return "admin/carInfoAdd";
+		
+	}
 	@RequestMapping(value="admin/carInfoUpload.do",method=RequestMethod.GET)
 	public String carInfoUpload() {
 		
 		return "admin/excelUploadForm";
+		
+	}	/*@RequestParam(value="aa[]") List<String> aa*/
+	@RequestMapping(value="admin/carInfoInsert.do",method=RequestMethod.POST)
+	public String carInfoInsert(String[]aa) {
+		System.out.println("hi");
+		System.out.println("size = "+aa.length);
+		
+		
+		return "admin/carInfo";
 		
 	}
 	@ResponseBody

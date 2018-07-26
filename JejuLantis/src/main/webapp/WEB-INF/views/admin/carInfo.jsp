@@ -41,7 +41,7 @@
         <div class="card-header">
           <i class="fa fa-table"></i>업체목록</div>
         <div class="card-body">
-        <button type="button" class="btn btn-primary btn-xs" align="right"><a href="carInfoUpload.do" style="color:white">차량등록</a></button></br></br>
+        <button type="button" class="btn btn-primary btn-xs" align="right"><a href="carInfoAdd.do" style="color:white">차량등록</a></button></br></br>
           <div class="table-responsive">
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
               <thead>

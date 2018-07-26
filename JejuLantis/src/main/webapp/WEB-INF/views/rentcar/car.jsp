@@ -215,66 +215,75 @@
 						<!-- start -->
 						<div id="result">
 						<div id="inner">
-						<%-- <c:if test="${empty list }">
-						<h1>사용 가능한 차량이 없습니다(위치 변경 요망)</h1>
-						</c:if> --%>
+						 <c:if test="${empty list }">
+						<h4>사용 가능한 차량이 없습니다(위치 변경 요망)</h4>
+						</c:if>
 						<c:forEach items="${list }" var="dto" varStatus="status">
-						<div class="row">
+							<div class="row">
 							<div class="wrap-division">
 								<div class="row">
-								<div class="col-md-6 col-sm-6 animate-box">
-									<div class="hotel-entry">
-										<h3><a>${dto.car_name }</a></h3><span class="place">${dto.car_manufacturer }</span>
-										<a class="hotel-img" style="background-image: url(resources/rentcar/images/car1.jpg);">
-											<p class="price"><span>${dto.mtotView}</span><small>/24시간</small></p>
-										</a>
-										<a>실시간 예약 가능 차량 : ${dto.actot }</a>
+								<div class="col-md-6 col-sm-6 animate-box" style="width:40%;padding:0px">
+									<div class="hotel-entry" style="background-color:#f8fafb;padding:15px;height:410px"></br>
+										<span style="color:black;font-size:18pt">${dto.car_name }</span><span style="color:black">${dto.car_manufacturer }</span>
+										<img width="100%" weight="200" src="resources/car/2017Avante.png"/>
 										<div class="desc">
-											<p align="center">${dto.car_passenger }인승 ${dto.car_type } ${dto.car_fuel }</p>
+											<p align="center" style="color:#0090f0">실시간 예약 가능 차량 : ${dto.actot }</p>
+										</div>
+										</br>
+										<div class="desc">
+											<p align="center">
+												<span class="glyphicon glyphicon-road">${dto.car_type }</span>
+												<span class="glyphicon glyphicon-user">${dto.car_passenger }인승</span>
+												<span class="glyphicon glyphicon-tint">${dto.car_fuel }</span>
+											</p>
 										</div>
 									</div>
 								</div>
 
-								<div class="col-md-6 col-sm-6 animate-box">
-									<div class="hotel-entry">
-										<div class="desc">
-											<h3><a href="rentcar.do">${dto.blist[0].branch_name}</a></h3>
+								<div class="col-md-6 col-sm-6 animate-box" style="padding:0px;width:60%">
+									<div class="hotel-entry" style="background-color:white">
+										<div class="desc" style="padding:15px;height:410px"></br>
+											<span style="font-size:18pt;color:black">${dto.blist[0].branch_name}</span>
+											<div align="right">
+											<span style="color:red;text-decoration: line-through">43,000원</span>
+											<span style="font-size:18pt;color:black">32,400원</span>
+											</div>
 											<p class="star"><span><i class="icon-star-full"></i><i class="icon-star-full"></i><i class="icon-star-full"></i><i class="icon-star-full"></i><i class="icon-star-full"></i></span> 545 Reviews</p>
 											<span class="place">${dto.blist[0].car_kind_naviView} ${dto.blist[0].car_kind_sensorView} ${dto.blist[0].car_kind_bluetoothView} ${dto.blist[0].car_kind_blackboxView} ${dto.blist[0].car_kind_sunroofView} ${dto.blist[0].car_kind_cameraView} ${dto.blist[0].car_kind_nonsmokeView}</span>
 											<!-- <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p> -->
 											<div id="board">
-												<table border="1" width="100%"  cellpadding="0" cellspacing="0">	
-													<tr style="color:white;font-size:8pt">			
-														<th  height="30px" width="23%" class="text-center" style="background-color: #01bbf0">대여업체</th>
-														<th  width="7%" class="text-center" style="background-color: #01bbf0">평점</th>
-														<th  width="12%" class="text-center" style="background-color: #01bbf0">대여료</th>
-														<th  width="12%" class="text-center" style="background-color: #01bbf0">보험료</th>
-														<th  width="12%" class="text-center" style="background-color: #01bbf0">보상한도</th>
-														<th  width="12%" class="text-center" style="background-color: #01bbf0">총 금액</th>
-														<th  width="17%" class="text-center" style="background-color: #01bbf0"></th>
+												<table border="1" style="border-bottom:none;border-left:hidden;border-right:hidden" width="100%"  cellpadding="0" cellspacing="0">	
+													<tr style="color:#717886;font-size:8pt">			
+														<th  height="30px" width="23%" class="text-center" style="background-color: #f8fafb;border-right: hidden;">대여업체</th>
+														<th  width="7%" class="text-center" style="background-color: #f8fafb;border-right: hidden;">평점</th>
+														<th  width="12%" class="text-center" style="background-color: #f8fafb;border-right: hidden;">대여료</th>
+														<th  width="12%" class="text-center" style="background-color: #f8fafb;border-right: hidden;">보험료</th>
+														<th  width="12%" class="text-center" style="background-color: #f8fafb;border-right: hidden;">보상한도</th>
+														<th  width="12%" class="text-center" style="background-color: #f8fafb;border-right: hidden;">총 금액</th>
+														<th  width="17%" class="text-center" style="background-color: #f8fafb;border-right: hidden;"></th>
 													</tr>
 													<c:forEach items="${dto.blist }" var="bdto" varStatus="status">
-													<tr style="font-size:8pt">
-														<td align="center">${bdto.branch_name }</td>
-														<td align="center"></td>
-														<td align="center">${bdto.car_kind_price_weekView }원</td>
-														<td align="center">${bdto.insurance_priceView }원</td>
-														<td align="center">만원</td>
-														<td align="center">${bdto.totView }원</td>
+													<tr style="font-size:8pt;border-bottom: hidden">
+														<td height="50px" align="center" style="border-right: hidden">${bdto.branch_name }</td>
+														<td align="center" style="border-right: hidden">4.5</td>
+														<td align="center" style="border-right: hidden">${bdto.car_kind_price_weekView }원</td>
+														<td align="center" style="border-right: hidden">${bdto.insurance_priceView }원</td>
+														<td align="center" style="border-right: hidden">1,000만원</td>
+														<td align="center" style="border-right: hidden">${bdto.totView }원</td>
 														<td align="center">													
-											            <button type="button"><a href="rentcar.do?kno=${bdto.car_kind_no}" style="color:black">실시간예약</a></button>								                
+											              <button type="button" style="background-color:#f8fafb;border:0"><a href="rentcar.do?car_kind=${bdto.car_kind_no }" style="color:black;text-decoration:none">실시간예약</a></button>								                
 														</td>
 													</tr>
 													</c:forEach>
-													<tr style="font-size:8pt">
-														<td align="center">제주렌트카</td>
-														<td align="center">4.5</td>
-														<td align="center">13,400원</td>
-														<td align="center">13,000원</td>
-														<td align="center">1,000만원</td>
-														<td align="center">26,400원</td>
+													<tr style="font-size:8pt;border-bottom: hidden">
+														<td align="center" style="border-right: hidden">제주렌트카</td>
+														<td align="center" style="border-right: hidden">4.5</td>
+														<td align="center" style="border-right: hidden">13,400원</td>
+														<td align="center" style="border-right: hidden">13,000원</td>
+														<td align="center" style="border-right: hidden">1,000만원</td>
+														<td align="center" style="border-right: hidden">26,400원</td>
 														<td align="center">													
-											            <button type="button"><a href="rentcar.do" style="color:black">실시간예약</a></button>									                
+											              <button type="button" style="background-color:#f8fafb;border:0"><a href="rentcar.do" style="color:black;text-decoration:none">실시간예약</a></button>									                
 														</td>
 													</tr>
 												</table>
@@ -285,8 +294,7 @@
 							</div>
 						</div>
 						</div>
-						
-						<hr>
+	
 						</c:forEach>
 						</div>
 						</div>
@@ -733,7 +741,6 @@
 								</div>
 							</div>
 						</div>
-							<!-- ----------------------------------- -->
 							
 						</div>
 					</div>

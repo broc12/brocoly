@@ -8,7 +8,7 @@
 	<!-- Root Context: defines shared resources visible to all other web components -->
 	<bean id="dataSource" class="org.apache.tomcat.dbcp.dbcp.BasicDataSource" destroy-method="close">
 		<property name="driverClassName" value="oracle.jdbc.OracleDriver"/>
-		<property name="url" value="jdbc:oracle:thin:@localhost:1521:JAVA"/>
+		<property name="url" value="jdbc:oracle:thin:@localhost:1521:orcl"/>
 		<property name="username" value="spring"/>
 		<property name="password" value="java"/>
 	</bean>
@@ -20,9 +20,9 @@
 		<constructor-arg index="0" ref="sqlSessionFactory"/>
 	</bean>
 	
-	<!-- ¾î³ëÅ×ÀÌ¼Ç ±â¹ÝÀ¸·Î °´Ã¼ ÀÚµ¿ »ý¼ºÇÏ±â -->
+	<!-- ì–´ë…¸í…Œì´ì…˜ ê¸°ë°˜ìœ¼ë¡œ ê°ì²´ ìžë™ ìƒì„±í•˜ê¸° -->
 	<context:annotation-config/>
-	<context:component-scan base-package="com.khd">
+	<context:component-scan base-package="com.khd.jejulantis">
 		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
 	</context:component-scan>	
 	

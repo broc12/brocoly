@@ -21,17 +21,33 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
-	<context:component-scan base-package="com.khd.jejulantis" />
-	<context:component-scan base-package="com.khd.customerCenterController" />
-	<context:component-scan base-package="com.khd.loginController" />
-	<context:component-scan base-package="com.khd.rentcarController" />
-	<context:component-scan base-package="com.khd.admin" />
-	<context:component-scan base-package="com.khd.branch.controller" />
-	<context:component-scan base-package="com.khd.MemberController" />
-	<context:component-scan base-package="com.khd.Mypage.MypageController" />
-	<context:component-scan base-package="com.khd.branch.controller" />
-	<context:component-scan base-package="com.khd.carInfo.file.controller" />
-	
+	<!-- 파일 업로드용 resolver -->
+   <beans:bean id="multipartResolver"
+      class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+      <beans:property name="defaultEncoding" value="UTF-8" />
+      <beans:property name="maxUploadSize" value="10485760" />
+   </beans:bean>
+   
+	<context:component-scan base-package="com.khd.jejulanits.admin.carInfo.Controller"/>
+	<context:component-scan base-package="com.khd.jejulantis.admin.admin.Controller" />
+	<context:component-scan base-package="com.khd.jejulantis.admin.branch.Controller" />
+	<context:component-scan base-package="com.khd.jejulantis.admin.car.Controller" />
+	<context:component-scan base-package="com.khd.jejulantis.admin.cardetail.Controller" />
+	<context:component-scan base-package="com.khd.jejulantis.admin.carfile.Controller" />
+	<context:component-scan base-package="com.khd.jejulantis.admin.carInfofile.Controller" />
+	<context:component-scan base-package="com.khd.jejulantis.admin.main.Controller" />
+	<context:component-scan base-package="com.khd.jejulantis.admin.manager.Controller" />
+	<context:component-scan base-package="com.khd.jejulantis.admin.notice.Controller" />
+	<context:component-scan base-package="com.khd.jejulantis.admin.power.Controller" />
+	<context:component-scan base-package="com.khd.jejulantis.admin.qna.Controller" />
+	<context:component-scan base-package="com.khd.jejulantis.admin.review.Controller" />
+	<context:component-scan base-package="com.khd.jejulantis.client.home.Controller" />
+	<context:component-scan base-package="com.khd.jejulantis.client.login.Controller" />
+	<context:component-scan base-package="com.khd.jejulantis.client.member.Controller" />
+	<context:component-scan base-package="com.khd.jejulantis.client.notice.Controller" />
+	<context:component-scan base-package="com.khd.jejulantis.client.qna.Controller" />
+	<context:component-scan base-package="com.khd.jejulantis.client.rentcar.Controller" />
+	<context:component-scan base-package="com.khd.jejulantis.client.review.Controller" />
 	
 	
 </beans:beans>

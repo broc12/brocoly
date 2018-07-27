@@ -4,26 +4,25 @@
   "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 	<typeAliases>
-		<typeAlias alias="LoginDAO" type="com.khd.model.LoginInfo"/>
-		<typeAlias alias="CustomerCenter" type="com.khd.model.CustomerCenter"/>
-		<typeAlias alias="RentcarSearchResult" type="com.khd.model.RentcarSearchResult"/>
-		<typeAlias alias="Rcar" type="com.khd.model.Rcar"/>
-		<typeAlias alias="Blist" type="com.khd.model.Blist"/>
-		<typeAlias alias="SearchRequirements" type="com.khd.model.SearchRequirements"/>
-		<typeAlias alias="Member" type="com.khd.model.Member"/>
-		<typeAlias alias="Qna" type="com.khd.model.Qna"/>
-		<typeAlias alias="Notice" type="com.khd.notice.Notice"/>
-		<typeAlias alias="Branch" type="com.khd.branch.Branch"/>
-		<typeAlias alias="ReviewContent" type="com.khd.review.ReviewContent"/>
-		<typeAlias alias="BranchName" type="com.khd.review.BranchName"/>
-		<typeAlias alias="Manager" type="com.khd.admin.ManagerModel.Manager"/>
-		<typeAlias alias="Carkind" type="com.khd.carkindDetail.CarkindDetail"/>
-		<typeAlias alias="Car" type="com.khd.car.Car"/>
-		<typeAlias alias="CarInfo" type="com.khd.model.CarInfo"/>
-		<typeAlias alias="Power" type="com.khd.model.PowerModel.Power"/>
+		<typeAlias alias="LoginDAO" type="com.khd.jejulantis.model.LoginInfo"/>
+		<typeAlias alias="CustomerCenter" type="com.khd.jejulantis.model.CustomerCenter"/>
+		<typeAlias alias="RentcarSearchResult" type="com.khd.jejulantis.model.RentcarSearchResult"/>
+		<typeAlias alias="Rcar" type="com.khd.jejulantis.model.Rcar"/>
+		<typeAlias alias="Blist" type="com.khd.jejulantis.model.Blist"/>
+		<typeAlias alias="SearchRequirements" type="com.khd.jejulantis.model.SearchRequirements"/>
+		<typeAlias alias="Member" type="com.khd.jejulantis.model.Member"/>
+		<typeAlias alias="Qna" type="com.khd.jejulantis.model.Qna"/>
+		<typeAlias alias="Notice" type="com.khd.jejulantis.model.Notice"/>
+		<typeAlias alias="Branch" type="com.khd.jejulantis.model.Branch"/>
+		<typeAlias alias="ReviewContent" type="com.khd.jejulantis.model.ReviewContent"/>
+		<typeAlias alias="BranchName" type="com.khd.jejulantis.model.BranchName"/>
+		<typeAlias alias="Manager" type="com.khd.jejulantis.model.Manager"/>
+		<typeAlias alias="Carkind" type="com.khd.jejulantis.model.CarkindDetail"/>
+		<typeAlias alias="Car" type="com.khd.jejulantis.model.Car"/>
+		<typeAlias alias="CarInfo" type="com.khd.jejulantis.model.CarInfo"/>
+		<typeAlias alias="Power" type="com.khd.jejulantis.model.Power"/>
 	</typeAliases>
 	<mappers>
-		<mapper resource="query/query.xml"/>
 		<mapper resource="query/CustomerCenter.xml"/>
 		<mapper resource="query/searchrentcar.xml"/>
 		<mapper resource="query/rcar.xml"/>

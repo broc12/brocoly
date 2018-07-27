@@ -23,7 +23,7 @@
 </head>
 
 <body class="fixed-nav sticky-footer bg-dark" id="page-top">
-<%@ include file="./top/top2.jspf" %>
+<%@ include file="../top/top2.jspf" %>
 <script>
 function replysubmit(){
 	document.h.submit();

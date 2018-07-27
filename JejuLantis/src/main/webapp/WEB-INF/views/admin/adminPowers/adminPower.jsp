@@ -35,7 +35,7 @@
 </head>
 
 <body class="fixed-nav sticky-footer bg-dark" id="page-top">
-<%@ include file="./top/top2.jspf" %>
+<%@ include file="../top/top2.jspf" %>
   <!-- Navigation-->
 <script>
 $(document).ready(function(){

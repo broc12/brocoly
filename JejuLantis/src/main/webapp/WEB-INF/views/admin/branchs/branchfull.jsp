@@ -35,7 +35,7 @@
 </head>
 
 <body class="fixed-nav sticky-footer bg-dark" id="page-top">
-<%@ include file="./top/top2.jspf" %>
+<%@ include file="../top/top2.jspf" %>
 	<script>
 	function goDel (v){
 		if (confirm("정말 탈퇴하시겠습니까??"+v) == true){    //확인

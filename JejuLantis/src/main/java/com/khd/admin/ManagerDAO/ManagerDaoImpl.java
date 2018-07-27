@@ -24,9 +24,9 @@ public class ManagerDaoImpl implements ManagerDao{
 
 	@Override
 	public List<Branch> post(String branch) {
-		System.out.println("가나다"+branch);
+		
 		List<Branch> Select = sql.selectList(ns+".branchcheck", branch);
-		System.out.println("1241다"+Select.size());
+	
 		return Select;
 	}
 
@@ -45,15 +45,6 @@ public class ManagerDaoImpl implements ManagerDao{
 	@Override
 	public Manager loginCheck(Manager manager) {
 		Manager Select = sql.selectOne(ns+".managerloginCheck", manager);
-		
-//		int count = Integer.parseInt(sql.selectOne("managerloginCheck",manager).toString()),
-//				totalCount = sql.selectOne("managertotalAccount");
-//		if(totalCount > 0) {
-//			if(count > 0) {
-//				return true;
-//			}else
-//				return false;
-//		}
 		return Select;
 	}
 

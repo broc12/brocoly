@@ -6,6 +6,10 @@ import java.util.Locale;
 import java.util.Map;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.lang.Long;
+
+import javax.security.auth.message.callback.PrivateKeyCallback.Request;
+import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -22,6 +26,8 @@ import org.springframework.web.servlet.ModelAndView;
 import com.khd.admin.ManagerModel.Manager;
 import com.khd.admin.ManagerService.ManagerService;
 import com.khd.branch.Branch;
+import com.khd.model.Member;
+
 
 @Controller
 public class ManagerController {
@@ -38,9 +44,7 @@ public class ManagerController {
 		return "admin/register";
 	}
 	@RequestMapping(value="admin/manager.do", method=RequestMethod.POST)
-	public String join(Manager manager,@RequestParam(value="hp1")String hp1,@RequestParam(value="hp2")String hp2,@RequestParam(value="hp3")String hp3,@RequestParam(value="hp4")String hp4,@RequestParam(value="hp5")String hp5,@RequestParam(value="hp6")String hp6,@RequestParam(value="birth1")String birth1,@RequestParam(value="birth2")String birth2,@RequestParam(value="birth3")String birth3) {
-		System.out.println("������99");
-		System.out.println(manager.getBranch_no());
+	public String join(Manager manager,@RequestParam(value="hp1")String hp1,@RequestParam(value="hp2")String hp2,@RequestParam(value="hp3")String hp3,@RequestParam(value="hp4")String hp4,@RequestParam(value="hp5")String hp5,@RequestParam(value="hp6")String hp6,@RequestParam(value="birth1")String birth1,@RequestParam(value="birth2")String birth2,@RequestParam(value="birth3")String birth3) {		
 		String manager_birth = birth1+"-"+birth2+"-"+birth3;
 		String manager_tel1 = hp1+"-"+hp2+"-"+hp3;
 		if( hp4 == null && hp5 == null && hp6 == null) {
@@ -52,13 +56,6 @@ public class ManagerController {
 		manager.setManager_tel1(manager_tel1);
 		manager.setManager_tel2(manager_tel2);
 		manager.setManager_birth(manager_birth);
-//		String manager_birth =  manager.getManager_birth();
-//		Manager manager1 = new Manager(null,null,manager_id,manager_pwd,manager_name,manager_email,manager_birth,manager_tel1,
-//				manager_tel2,"N","N","N","N","N",
-//				"N","N","N","N","N","N",
-//				"N","N","N","N","N","N",
-//				"N","N","N",null);
-//		System.out.println("branch_no"+ manager.getBranch_no());
 		boolean flag = managerService.joinService(manager);
 		return "admin/login";
 	}
@@ -68,19 +65,16 @@ public class ManagerController {
 	}
 	@RequestMapping(value = "admin/post", method = RequestMethod.POST)
 	public ModelAndView post(Locale locale,Branch branch,HttpServletRequest request, @RequestParam(value = "branch_name", required=false) String branch_name){
-			
-	/*	String address = request.getParameter("address");
-	*/	
-		
+
 		ModelAndView result = new ModelAndView();
 		if(branch_name != ""){
 			List<Branch> branchList = managerService.postService(branch_name);
 			
 			for (Branch post : branchList) {
 				
-				System.out.println("��ü�� "+post.getBranch_name());
-				System.out.println("��ü�ּ�"+post.getBranch_local());
-				System.out.println("��ü��ȣ"+post.getBranch_member_tel());				
+				System.out.println("업체명 "+post.getBranch_name());
+				System.out.println("업체주소"+post.getBranch_local());
+				System.out.println("업체번호"+post.getBranch_member_tel());				
 			}
 			
 			result.addObject("result", branchList);
@@ -88,7 +82,7 @@ public class ManagerController {
 			return result;
 			
 		}else{
-			result.addObject("nullResult", "�˻����ּ���.");
+			result.addObject("nullResult", "검색해주세요.");
 			result.setViewName("admin/post");
 			return result;
 		}
@@ -142,7 +136,7 @@ public class ManagerController {
 					out.close();
 				}
 				if (nn == null) {
-					out.println("<script>alert('�α���������Ȯ���ϼ���'); history.go(-1); </script>");
+					out.println("<script>alert('로그인정보를확인하세요'); history.go(-1); </script>");
 					out.flush();
 					out.close();
 				}
@@ -152,14 +146,10 @@ public class ManagerController {
 		}
 
 		@RequestMapping(value = "/managerlogin/managerlogout")
-		public ModelAndView logOut(ModelAndView mv, HttpSession session) {
-			System.out.println("��������");
+		public ModelAndView logOut(ModelAndView mv, HttpSession session) {			
 			String page = "redirect:/admin/index.do";
 			session.removeAttribute("managerlog");
-//			System.out.println("");
-//			System.out.println( "page :" + page);
 			mv.setViewName(page);
-//			System.out.println("mv :" + mv);
 			return mv;
 			}
 

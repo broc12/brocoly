@@ -7,6 +7,9 @@ import java.util.Map;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.lang.Long;
+
+import javax.security.auth.message.callback.PrivateKeyCallback.Request;
+import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -124,8 +127,8 @@ public class ManagerController {
 //	        System.out.println("id3 =" +id);
 	        return map;
 	    }
-	 @RequestMapping(value = "/Managerlogin/ManagerloginCheck")
-		public void loginCheck(Manager manager,HttpSession session,
+	 @RequestMapping(value = "/Managerlogin/ManagerloginCheck",method = RequestMethod.POST)
+		public void loginCheck(Manager manager,HttpSession session,HttpServletResponse request,
 				HttpServletResponse response) throws IOException {
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();

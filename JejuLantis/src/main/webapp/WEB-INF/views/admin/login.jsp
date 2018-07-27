@@ -25,7 +25,7 @@
     <div class="card card-login mx-auto mt-5">
       <div class="card-header">Login</div>
       <div class="card-body">
-        <form action="<%=request.getContextPath()%>/Managerlogin/ManagerloginCheck">
+        <form action="<%=request.getContextPath()%>/Managerlogin/ManagerloginCheck" method="post">
           <div class="form-group">
             <label for="exampleInputEmail1">아이디</label>
             	<input type="text" id="fname" name="manager_id"	class="form-control" placeholder="아이디">

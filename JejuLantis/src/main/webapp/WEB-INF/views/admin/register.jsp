@@ -38,13 +38,14 @@
 
 //아이디 체크여부 확인 (아이디 중복일 경우 = 0 , 중복이 아닐경우 = 1 )
 var idck = 0;
-
+var emailck = 0;
+var branchck = 0;
 $(document).ready(function() {
 	//emailck 버튼을 클릭했을 때 
  $("#emailck").click(function() {
  	var email2 = document.f.manager_email.value;
 	var regex = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/;			
-	var emailck = 0;
+
     	 if (f.manager_email.value == "") {
 	            alert("email를 입력하지 않았습니다.")
 	            f.manager_email.focus()
@@ -87,6 +88,7 @@ $(document).ready(function() {
                     $("#divInputId").addClass("has-success")
                     $("#divInputId").removeClass("has-error")
                     $("#manager_pwd").focus();
+                    $("#emailCheck").val("emailCheck");
                     //아이디가 중복하지 않으면  idck = 1 
                     emailck = 1;								                    
                 }
@@ -152,7 +154,9 @@ $(document).ready(function() {
                     //아이디가 존제할 경우 빨깡으로 , 아니면 파랑으로 처리하는 디자인
                     $("#divInputId").addClass("has-success")
                     $("#divInputId").removeClass("has-error")
+//                     $("#manager_email").focus();
                     $("#manager_email").focus();
+                    $("#idCheck").val("idCheck");
                     //아이디가 중복하지 않으면  idck = 1 
                     idck = 1;								                    
                 }
@@ -164,7 +168,18 @@ $(document).ready(function() {
     });
 });
 
+function inputIdChk(){
+	document.f.idDuplication.value = "idUncheck";
+}
+function inputEmailChk(){
+	document.f.emailDuplication.value = "emailUncheck";
+}
+
 function sendIt() {
+	
+	var year = Number(document.f.birth1.value);
+	var month = Number(document.f.birth2.value);
+    var day = Number(document.f.birth3.value);
 	var email2 = document.f.manager_email.value;
 // 	var tel2 = document.f.manager_tel1.value;
 	var regex = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/;								         
@@ -172,17 +187,32 @@ function sendIt() {
 	var regPhone = /(01[0|1|6|9|7])[-](\d{3}|\d{4})[-](\d{4}$)/;
 	var hp = '01012345678';
 	hp = hp.replace(/(^02.{0}|^01.{1}|[0-9]{3})([0-9]+)([0-9]{4})/,"$1-$2-$3");
+	var today = new Date(); // 날자 변수 선언
+    var yearNow = today.getFullYear();
+    var adultYear = yearNow-20;
+//     var year = Number(document.f.bitrh1.value);
+// 	var month = Number(document.f.bitrh2.value);
+//     var day = Number(document.f.bitrh3.value);
+
 	if(confirm("회원가입을 하시겠습니까?")){
-		if(idck==0){
+		if(document.f.idDuplication.value != "idCheck"){
 			alert('아이디 중복체크를 해주세요');
 			document.f.manager_id.focus()
 			return false;
 		}
-		if(emailck==0){
+		if(document.f.emailDuplication.value != "emailCheck"){
 			alert('이메일 중복체크를 해주세요');
 			document.f.manager_email.focus()
 			return false;
 		}
+// 		var flg = true;
+// 		function off(id){
+// 		if(!document.form.manager_id.value==""){
+// 		document.form.manager_id.disabled=flg;
+
+		
+// 		flg = !flg;
+// 		}
 //비밀번호 입력여부 체크
 		if (document.f.manager_pwd.value == "") {
 			alert("비밀번호를 입력하지 않았습니다.")
@@ -223,16 +253,31 @@ function sendIt() {
 		    document.f.lname.focus()
 		    return false;
 		} 
+	    if (year < 1900 || year > adultYear){
+	          alert("년도를 확인하세요. "+adultYear+"년생 이전 출생자만 등록 가능합니다.");
+	          return false;
+	     }
 	    if (document.f.birth2.value == "") {
 		    alert(" 월 을 입력하지 않았습니다.")
 		    document.f.lname.focus()
 		    return false;
-	  	}  
+	  	} 
+	    if ((month==4 || month==6 || month==9 || month==11) && day==31) {
+	          alert(month+"월은 31일이 존재하지 않습니다.");
+	          return false;
+	     }
 	    if (document.f.birth3.value == "") {
 		    alert(" 일 을 입력하지 않았습니다.")
 		    document.f.lname.focus()
 		    return false;
 	  	}
+	    if (month == 2) {
+	          var isleap = (year % 4 == 0 && (year % 100 != 0 || year % 400 == 0));
+	          if (day>29 || (day==29 && !isleap)) {
+	               alert(year + "년 2월은  " + day + "일이 없습니다.");
+	               return false;
+	          }
+	     }
 	    
 	    /*핸드폰 번호 길이 체크*/
 		if(hp2.value.length<=2 || hp3.value.length!=4){
@@ -272,8 +317,8 @@ function sendIt() {
 			alert("휴대폰번호는 숫자만 들어갈 수 있습니다.");
 			return false;
 		}
- 		if(branch_no==0){
-			alert('업체');
+ 		if(branchck ==0){
+			alert('업체명을 입력해주세요');
 			document.f.branch_no.focus()
 			return false;
 		}
@@ -292,6 +337,7 @@ function sendIt() {
 						+ "status=yes,scrollbars=yes,menubar=yes");
 <%--         var win_post = window.open('<%=request.getContextPath()%>/admin/register/post',  --%>
 //         		"post", "toolbar=no ,width=370 ,height=300 ,directories=no," + "status=yes,scrollbars=yes,menubar=no");
+			branchck =1;
     }
 </script>
 
@@ -311,15 +357,17 @@ function sendIt() {
             <div class="form-row">
               <div class="col-md-6">             		
                 <label for="exampleInputName"><a style="color:red">*</a>ID</label></br>      
-                <input style="width:70%;height:40px" id="manager_id" name="manager_id" type="text" aria-describedby="nameHelp" placeholder="">
+                <input style="width:70%;height:40px" onkeydown="inputIdChk()"  id="manager_id" name="manager_id" type="text" aria-describedby="nameHelp" placeholder="">
               	<input type="button" value="중복확인" name="confirm_id"
 									id="idck" onclick="confirmId(this.form)" class="btn btn-primary" style="width:80px;height:40px;margin-top:-5px;font-size:10pt">
+              						<input type="hidden" id="idCheck" name="idDuplication" value="idUncheck">
               </div>
               <div class="col-md-6">             		
                 <label for="exampleInputName"><a style="color:red">*</a>이메일</label></br>
-                <input style="width:70%;height:40px" id="manager_email" name="manager_email" type="text" aria-describedby="nameHelp" placeholder="">
+                <input style="width:70%;height:40px" onkeydown="inputEmailChk()" id="manager_email" name="manager_email" type="text" aria-describedby="nameHelp" placeholder="">
               	<input type="button" value="중복확인" name="confirm_email"
-									id="emailck"  class="btn btn-primary" style="width:80px;height:40px;margin-top:-5px;font-size:10pt"></td>
+									id="emailck"  class="btn btn-primary" style="width:80px;height:40px;margin-top:-5px;font-size:10pt"></td>    
+									<input type="hidden"  id="emailCheck" name="emailDuplication" value="emailUncheck" >          	
               </div>                
             </div>
           </div>
@@ -347,11 +395,11 @@ function sendIt() {
                 <script language="Javascript">							
 								
 				var today = new Date();
-				var toyear = parseInt(today.getFullYear());
+				var toyear =  today.getFullYear();
 				var start = toyear - 5
 				var end = toyear - 70;
 				
-				document.write("<select name=birth1 id=birth1  style=width:23%;height:40px>");
+				document.write("<select name=birth1 id=birth1 style=width:23%;height:40px>");
 				document.write("<option value='' selected>");
 				for (i=start;i>=end;i--) document.write("<option>"+i);
 				document.write("</select>&nbsp;년  "); 
@@ -493,8 +541,8 @@ function sendIt() {
             <div class="col-md-12">
                 <label for="exampleInputName"><a style="color:red">*</a>업체명</label></br>
                 <input type="hidden" id="branch_no" name="branch_noSTR">
-                <input style="width:81%;height:40px" id="branch_name" name="branch_name" type="text" aria-describedby="nameHelp" placeholder="">
-                <input type="button" value="업체명검색" onclick="branchOpen()" class="btn btn-primary" style="width:100px;height:40px;font-size:10pt;margin-top:-5px;">   
+                <input style="width:81%;height:40px" readonly  id="branch_name" name="branch_name" type="text" aria-describedby="nameHelp" placeholder="">
+                <input type="button" id="branchck" value="업체명검색" onclick="branchOpen()" class="btn btn-primary" style="width:100px;height:40px;font-size:10pt;margin-top:-5px;">   
             </div>
             </div>
           </div>

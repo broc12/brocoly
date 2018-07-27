@@ -41,7 +41,7 @@
           <i class="fa fa-table"></i>이용후기</div>
         <div class="card-body">
           <div class="table-responsive">
-            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" style="font-size:8pt">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" style="font-size:8pt" style=TABLE-layout:fixed>
               <thead>
                 <tr>
                   <th width="7%">번호</th>
@@ -68,7 +68,7 @@
                   <td>${review.branch_name}</td>
                   <td>${review.car_name}</td>
                   <td>${review.rent_review_rating_car}</td>
-                  <td>${review.rent_review_content}</td>
+                  <td >${review.rent_review_content}</td>
                   <td>
                   	<button type="button" class="btn btn-defalut btn-sm"><a href="reviewContent.do?rent_review_no=${review.rent_review_no}">세부내용</a></button>
                   	<button type="button" class="btn btn-defalut btn-sm""><a href="reviewDel.do?rent_review_no=${review.rent_review_no}&manager_id=${managerlog.manager_id}">삭제</a></button>

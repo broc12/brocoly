@@ -148,7 +148,7 @@
           <div class="table-responsive">
           	<form name="f" action="carDetailUpdateOk.do" method="post">
           		<c:forEach items="${carDetailUpdate}" var="carDetailUpdate" varStatus="status">
-          			<input type="hidden" name="manager_id" value="${managerlog.manager_id}"/> 
+          			<input type="hidden" name="manager_id" value="${managerlog.manager_id}" id="manager_id"/> 
 	          		<input type="hidden" value="${carDetailUpdate.car_kind_no}" name="car_kind_no" id="car_kind_no"/>
 	          		<input type="hidden" name="car_kind_navi" id="car_kind_navi"/>
 	          		<input type="hidden" name="car_kind_sensor" id="car_kind_sensor"/>
@@ -168,7 +168,7 @@
 							<tr style="color:#808080;font-size:12pt">	
 								<th  height="60px" width="10%" class="text-center" style="background-color: #fafafa"><a style="color:red">*</a>보험코드</th>
 								<th  width="35%" class="text-left">
-									<select name="car_no" id="car_no" class="form-control" style="width:250px">
+									<select name="insurance_no" id="insurance_no" class="form-control" style="width:250px">
 										<option value="${carDetailUpdate.insurance_no}" style="color:black">${carDetailUpdate.insurance_name}/${carDetailUpdate.insurance_price}/${carDetailUpdate.insurance_limit}</option>
 											<c:forEach items="${insuranceUpdateSelectBox}" var="insuranceUpdateSelectBox" varStatus="status">
 												<option value="${insuranceUpdateSelectBox.insurance_no}" style="color:black">${insuranceUpdateSelectBox.insurance_name}/${insuranceUpdateSelectBox.insurance_price}/${insuranceUpdateSelectBox.insurance_limit}</option>

@@ -43,7 +43,7 @@
 </insert>
 	<insert id="myInsert" parameterType ="List">
 	 insert into carInfo VALUES(
-	 	<foreach collection="car" item="item" separator=" , ">
+	 	<foreach collection="car" item="item" separator=",">
            (CAR_INFO_NO_SEQ.NEXTVAL,1111,2222,3333,4444,'Y','신차',{#item.carNumber)
         </foreach>
 	)

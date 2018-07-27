@@ -37,9 +37,7 @@ public class CarInfoController {
 	
 	@RequestMapping(value="admin/carInfo.do",method=RequestMethod.GET)
 	public String carInfo() {
-		
 		return "admin/carInfo";
-		
 	}
 	@RequestMapping(value="admin/carInfoAdd.do",method=RequestMethod.GET)
 	public String carInfoAdd() {
@@ -54,23 +52,32 @@ public class CarInfoController {
 		
 	}	
 	@RequestMapping(value="admin/carInfoInsert.do",method=RequestMethod.POST)
-	public void carInfoInsert(@RequestParam(value="carKind",required = true)List <String> carKind,
+	public ModelAndView carInfoInsert(@RequestParam(value="carKind",required = true)List <String> carKind,
 								@RequestParam(value="carNumber",required = true)List <String> carNumber){
+		for(String cars : carKind) {
+			System.out.println("ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½"+cars);
+		}
+		for(String cars : carNumber) {
+			System.out.println("ï¿½ï¿½ ï¿½Ñ¹ï¿½"+cars);
+		}
 		
 		List<CarInfo> car = new ArrayList<CarInfo>();
 		for(int i=0; i<carKind.size();i++) {
-			car.add(new CarInfo(1, 1, 1, 1, 1, "Y", "ÁÁÀ½",carNumber.get(i) ,null));
+			car.add(new CarInfo(1, 1, 1, 1, 1, "Y", "ï¿½ï¿½ï¿½ï¿½",carNumber.get(i) ,null));
 		}
+		System.out.println("ï¿½ï¿½Æ®ï¿½Ñ·ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½"+car.size());
 		boolean flag = carInfoService.carInsert(car);
-		String view = "";
+		String view = "admin/carInfoInsertCheck";
+		ModelAndView mv = new ModelAndView(view,"flag",flag);
+		return mv;
 	}
 	@ResponseBody
     @RequestMapping(value = "admin/excelUploadAjax.do", method = RequestMethod.POST)
     public ModelAndView excelUploadAjax(MultipartHttpServletRequest request)  throws Exception{
         MultipartFile excelFile =request.getFile("excelFile");
-        System.out.println("¿¢¼¿ ÆÄÀÏ ¾÷·Îµå ÄÁÆ®·Ñ·¯");
+        System.out.println("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Îµï¿½ ï¿½ï¿½Æ®ï¿½Ñ·ï¿½");
         if(excelFile==null || excelFile.isEmpty()){
-            throw new RuntimeException("¿¢¼¿ÆÄÀÏÀ» ¼±ÅÃ ÇØ ÁÖ¼¼¿ä.");
+            throw new RuntimeException("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ö¼ï¿½ï¿½ï¿½.");
         }
         
         File destFile = new File("C:\\excel\\"+excelFile.getOriginalFilename());

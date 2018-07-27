@@ -28,34 +28,7 @@ public class CustomerCenterController {
 	@Autowired 
 	private CustomerCenterService service;
 	
-	/*@RequestMapping(value="service.do",method=RequestMethod.GET)
-	public ModelAndView list(@RequestParam(value="strInput",required=false) String strInput) {
-		//System.out.println(input);
-		//if(input == 0) input=1;
-		int input;
-		if (strInput==null) {
-		input = 1;
-		}else input =Integer.parseInt(strInput);
-		long totalNum = service.totalNum();
-		int showList = 10;
-		int betweenA = ((input-1)*showList)+1;
-		int betweenB = showList*input;	
-		HashMap<String, Integer> map = new HashMap<String, Integer>();
-		map.put("A", betweenA);
-		map.put("B", betweenB);
-		long totalPage = 0;
-			if(totalNum%showList!=0){
-				totalPage = (totalNum/showList)+1;
-			}else {
-				totalPage =(totalNum/showList);
-			}
-
-		List<CustomerCenter> list = service.list(map);
-		String view = "rentcar/service";
-		ModelAndView mv = new ModelAndView(view,"list",list);
-		mv.addObject("totalPage", totalPage);
-		return mv;
-	}*/
+	
 	@RequestMapping(value="help.do",method=RequestMethod.GET)
 	public ModelAndView help(@RequestParam(value="strInput",required=false) String strInput,
 			HttpSession session) {
@@ -134,7 +107,7 @@ public class CustomerCenterController {
 		v.put("flagId", flag);
 		return v;		
 	}
-	//@RequestParam("hiddenValue") String Strqna_no, @RequestParam("inputPwd") String inputPwd °æÈ£Çü´Ô
+	//@RequestParam("hiddenValue") String Strqna_no, @RequestParam("inputPwd") String inputPwd ï¿½ï¿½È£ï¿½ï¿½ï¿½ï¿½
 	@RequestMapping(value="helpContent.do",method=RequestMethod.GET)
 	public ModelAndView helpContent(@RequestParam("qna_no") String Strqna_no) {
 		long qna_no = 0;
@@ -142,8 +115,8 @@ public class CustomerCenterController {
 			if(Strqna_no!=null)Strqna_no=Strqna_no.trim();
 			if(Strqna_no.length()!=0) qna_no = Integer.parseInt(Strqna_no);
 			Qna qna = service.qnaContent(qna_no);
-				/*System.out.println("¼¼¼Ç id  "+ id);
-				System.out.println("±Û id  "+qna.getQna_resist_id());
+				/*System.out.println("ï¿½ï¿½ï¿½ï¿½ id  "+ id);
+				System.out.println("ï¿½ï¿½ id  "+qna.getQna_resist_id());
 				if(qna.getQna_resist_id().equals(id))*/
 			ModelAndView mv = new ModelAndView(view,"qna",qna);
 		return mv;

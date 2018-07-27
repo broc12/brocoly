@@ -8,5 +8,5 @@
     }else{
 		alert("입력 실패");
 	}
-    location.href='tables.do';
+    location.href='carInfo.do';
 </script>

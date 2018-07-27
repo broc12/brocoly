@@ -54,7 +54,7 @@ public class AdminCustomerController {
 		long qna_group = 0;
 		if(Strqna_group!=null)Strqna_group=Strqna_group.trim();
 		if(Strqna_group.length()!=0) qna_group = Long.parseLong(Strqna_group);
-		qna_name = "[RE]"+qna_name+"�� �亯�帳�ϴ�";
+		qna_name = "[RE]"+qna_name+"님 답변드립니다.";
 		Qna qna = new Qna(qna_group, qna_group, -1, qna_name, "admin", "admin","admin", qna_content, qna_pwd, 0, 0, null , "admin");
 		customerService.replyUpdate(qna_group);
 		boolean flag = customerService.replyInsert(qna);

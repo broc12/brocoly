@@ -23,7 +23,9 @@ public class CarInfoDaoImpl implements CarInfoDao {
 	}*/
 	@Override
 	public boolean carInsert(List<CarInfo> car) {
+		System.out.println("size : "+car.size());
 		int i = sqlSession.insert(ns+".myInsert", car);
+		System.out.println("I값 " +i );
 		boolean flag;
 		if(i>0) flag = true;
 		else flag = false;

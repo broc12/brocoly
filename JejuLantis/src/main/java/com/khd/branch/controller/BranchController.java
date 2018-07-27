@@ -26,19 +26,6 @@ public class BranchController {
 		return mv;	
 	}
 	
-/*	@RequestMapping(value="admin/branchadd.do",method=RequestMethod.POST)
-	public String insert(@RequestParam("branch_name")String branch_name,@RequestParam("branch_tel")String branch_tel,@RequestParam("branch_fax")String branch_fax,
-			@RequestParam("branch_local")String branch_local,@RequestParam("branch_business_no")String branch_business_no,@RequestParam("branch_bankaccount")String branch_bankaccount,
-			@RequestParam("branch_member_name")String branch_member_name,@RequestParam("branch_member_tel")String branch_member_tel,@RequestParam("branch_member_tel2")String branch_member_tel2,
-			@RequestParam("branch_email")String branch_email,@RequestParam("branch_logo")String branch_logo,@RequestParam("branch_comfee")long branch_comfee,
-			@RequestParam("branch_busspot")String branch_busspot,@RequestParam("branch_bustime")String branch_bustime,
-			@RequestParam("branch_busgap")String branch_busgap,@RequestParam("branch_boss")String branch_boss,@RequestParam("branch_today")String branch_today,
-			@RequestParam("branch_todaytime")String branch_todaytime,@RequestParam("branch_rule")String branch_rule) {
-		Branch branch = new Branch(null,branch_name,branch_tel,branch_fax,branch_local,null,branch_business_no,branch_bankaccount,branch_member_name,
-				branch_member_tel,branch_member_tel2,branch_email,branch_logo,branch_comfee,null,branch_busspot,branch_bustime,branch_busgap,branch_boss,branch_today,branch_todaytime,branch_rule);
-		service.insertService(branch);
-		return "redirect:enter.do";
-	}*/
 	@RequestMapping(value="admin/branchadd.do",method=RequestMethod.POST)
 	public String insert(Branch branch) {
 		service.insertService(branch);

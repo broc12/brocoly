@@ -38,7 +38,7 @@ public class PowerController {
 			return result;
 			
 		}else{
-			result.addObject("nullResult", "°Ë»öÇØÁÖ¼¼¿ä.");
+			result.addObject("nullResult", "ê²€ìƒ‰í•´ì£¼ì„¸ìš”.");
 			result.setViewName("admin/idpost");
 			return result;
 		}

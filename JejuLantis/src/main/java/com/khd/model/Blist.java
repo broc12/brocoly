@@ -102,50 +102,50 @@ public class Blist implements Serializable{
 		return df.format(number);
 	}
 	public String getCar_kind_naviView() {
-		if(car_kind_navi.equals("y")) {
-			return "³×ºñ°ÔÀÌ¼Ç";
+		if(car_kind_navi.equals("Y")) {
+			return "ë„¤ë¹„ê²Œì´ì…˜";
 		}else {
 			return "";
 		}
 	}
 	public String getCar_kind_sensorView() {
-		if(car_kind_sensor.equals("y")) {
-			return "ÈÄ¹æ¼¾¼­";
+		if(car_kind_sensor.equals("Y")) {
+			return "í›„ë°©ì„¼ì„œ";
 		}else {
 			return "";
 		}
 	}
 	public String getCar_kind_bluetoothView() {
-		if(car_kind_bluetooth.equals("y")) {
-			return "ºí·çÅõ½º";
+		if(car_kind_bluetooth.equals("Y")) {
+			return "ë¸”ë£¨íˆ¬ìŠ¤";
 		}else {
 			return "";
 		}
 	}
 	public String getCar_kind_blackboxView() {
-		if(car_kind_blackbox.equals("y")) {
-			return "ºí·¢¹Ú½º";
+		if(car_kind_blackbox.equals("Y")) {
+			return "ë¸”ë™ë°•ìŠ¤";
 		}else {
 			return "";
 		}
 	}
 	public String getCar_kind_sunroofView() {
-		if(car_kind_sunroof.equals("y")) {
-			return "¼±·çÇÁ";
+		if(car_kind_sunroof.equals("Y")) {
+			return "ì„ ë£¨í”„";
 		}else {
 			return "";
 		}
 	}
 	public String getCar_kind_cameraView() {
-		if(car_kind_camera.equals("y")) {
-			return "ÈÄ¹æÄ«¸Ş¶ó";
+		if(car_kind_camera.equals("Y")) {
+			return "í›„ë°©ì¹´ë©”ë¼";
 		}else {
 			return "";
 		}
 	}
 	public String getCar_kind_nonsmokeView() {
-		if(car_kind_nonsmoke.equals("y")) {
-			return "±İ¿¬Â÷·®";
+		if(car_kind_nonsmoke.equals("Y")) {
+			return "ê¸ˆì—°ì°¨ëŸ‰";
 		}else {
 			return "";
 		}

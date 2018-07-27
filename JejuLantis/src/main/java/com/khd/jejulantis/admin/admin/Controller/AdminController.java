@@ -19,11 +19,11 @@ public class AdminController {
 	
 	@RequestMapping(value="admin/forgot-password.do",method=RequestMethod.GET)
 	public String forgotpassword() {
-		return "admin/forgot-password";
+		return "admin/adminUsers/forgot-password";
 	}
 	@RequestMapping(value="admin/charts.do",method=RequestMethod.GET)
 	public String charts() {
-		return "admin/charts";
+		return "admin/charts/charts";
 	}
 	@RequestMapping(value="admin/cards.do",method=RequestMethod.GET)
 	public String cards() {
@@ -39,15 +39,15 @@ public class AdminController {
 	}*/
 	@RequestMapping(value="admin/member.do",method=RequestMethod.GET)
 	public String member() {
-		return "admin/member";
+		return "admin/members/member";
 	}
 	@RequestMapping(value="admin/payment.do",method=RequestMethod.GET)
 	public String payment() {
-		return "admin/payment";
+		return "admin/payments/payment";
 	}
 	@RequestMapping(value="admin/admin.do",method=RequestMethod.GET)
 	public String admin() {
-		return "admin/admin";
+		return "admin/admins/admin";
 	}
 	/*@RequestMapping(value="admin/carDetail.do")
 	public String carDetailList() {

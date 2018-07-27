@@ -163,7 +163,7 @@
 </style>
 	</head>
 	<body onload="settime()">
-	<%@ include file="./top/top.jspf" %>
+	<%@ include file="../top/top.jspf" %>
 	<div class="colorlib-loader"></div>
 
 	<div id="page">

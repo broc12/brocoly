@@ -60,7 +60,7 @@
 
 	</head>
 	<body>
-	<%@ include file="./top/top.jspf" %>
+	<%@ include file="../top/top.jspf" %>
 	<div class="colorlib-loader"></div>
 
 	<div id="page">
@@ -74,7 +74,7 @@
 				   			<div class="col-md-6 col-md-offset-3 col-sm-12 col-xs-12 slider-text">
 				   				<div class="slider-text-inner text-center">
 				   					<h2>by colorlib.com</h2>
-				   					<h1>공지사항</h1>
+				   					<h1>공지 사항</h1>
 				   				</div>
 				   			</div>
 				   		</div>
@@ -83,18 +83,12 @@
 			  	</ul>
 		  	</div>
 		</aside>
-		<div id="board">
-			<table border="0" width="100%"  cellpadding="0" cellspacing="0">	
-				<tr style="color:#8c9094;background-color:#eef2f5;font-size:10pt">			
-					<th  height="60px" class="text-center" width="15%" style="color:black">고객센터</th>
-					<th  class="text-center" width="10%"><a href="service.do" style="color:#ffdd01">공지사항</a></th>
-					<th  class="text-center" width="15%"><a href="faq.do" style="color:#8c9094">자주찾는 질문</a></th>
-					<th  class="text-center" width="10%"><a href="faq.do" style="color:#8c9094">여행상담</a></th>
-					<th  class="text-center"></th>
-				</tr>
-			</table>
-		</div>
-		
+				
+			<!-- 		<div class="col-md-6 col-md-offset-3" style="top:100px;left:400px;">
+						<a href="">·최저가순</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<a href="">·인기순</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<a href="">·평점순</a>
+					</div> -->
 		<div class="colorlib-wrap">
 			<div class="container">
 				<div class="row">
@@ -107,26 +101,27 @@
 										<div class="desc">
 											<!-- <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p> -->
 											<div id="board">
-												<h3 style="text-decoration: underline;text-decoration-color: #ffdd00;">공지사항</h3></br>
-												<table border="0" width="100%"  cellpadding="0" cellspacing="0">
-												<c:forEach items="${subject}" var="subject">
-													<tr>
-														<th height="100px" width="10%" style="background-color: #fafafa">
-														<a style="color:black;font-size:14pt">${subject.announce_title}</a></br>
-														<a style="color:#808090;font-size:8pt">${subject.announce_resist}</a>
-														</th>
+												<h3>공지사항</h3>
+												<table border="0" width="100%"  cellpadding="0" cellspacing="0">	
+													<tr style="color:#808080;font-size:12pt">			
+														<th  height="50px" width="10%" class="text-center" style="background-color: #fafafa">번호</th>
+														<th  width="60%" class="text-center" style="background-color: #fafafa"></th>
+														<th  width="15%" class="text-center" style="background-color: #fafafa">등록일</th>
+														<th  width="155%" class="text-center" style="background-color: #fafafa">조회수</th>
 													</tr>
-													<tr style="font-size:10pt" height="150px">
-														<td>${subject.announce_content}</td>
-													</tr>
+													 <c:if test="${empty list}">
+													     <tr>
+													     	<td align="center" colspan="5">데이터가 없음</td>
+													     </tr>
+													  </c:if>
+													  <c:forEach items="${list}" var="board">
+														<tr style="font-size:10pt" height="60px">
+															<td align="center">${board.announ_no}</td>
+															<td align="center">${board.announ_title}</td>
+															<td align="center">${board.announ_resist}</td>
+															<td align="center">${board.announ_view}</td>
+														</tr>
 												</c:forEach>
-													<tr style="font-size:10pt" height="60px">
-														<td align="right">
-															<button type="submit" class="btn btn-primary" style="border-radius: 0px">
-																<a href="service.do" style="color:white">목록</a>
-															</button>
-														</td>
-													</tr>
 												</table>
 											</div>
 										</div>
@@ -136,25 +131,34 @@
 							
 							</div>
 						</div>
+						<div class="row">
+							<div class="col-md-12 text-center">
+								<ul class="pagination">
+									<li class="disabled"><a href="#">&laquo;</a></li>
+									<li class="active"><a href="#">1</a></li>
+									<li><a href="#">2</a></li>
+									<li><a href="#">3</a></li>
+									<li><a href="#">4</a></li>
+									<li><a href="#">&raquo;</a></li>
+								</ul>
+							</div>
+						</div>
 					</div>
 
 					<!-- SIDEBAR-->
 					<div class="col-md-3">
 						<div class="sidebar-wrap">
 							<div class="side search-wrap animate-box">
-								<h3 class="sidebar-heading" align="center">고객센터</h3>
+								<h3 class="sidebar-heading">고객센터</h3>
 								<form method="post" class="colorlib-form">
 				              	<div class="row">
-				                 <div class="col-md-18" align="center">
-				                 <img src="resources/rentcar/images/phone1.jpg" width=40% height=40% align="center">
-				                 <h3 class="sidebar-heading" align="center">1544-0704</h3><hr>
-				                 <h3 class="sidebar-heading" align="center">카카오톡 1:1 상담</h3>
-				                 <img src="resources/rentcar/images/kakao.jpg" width=40% height=40% align="center">
-				                 <h3 class="sidebar-heading" align="center">@제주란티스</h3><hr>
-				                 <a class="sidebar-heading" align="left">월-금요일</a>
-				                 <a class="sidebar-heading" align="right">09:00-18:00</a></br>
-				                 <a class="sidebar-heading" align="left">점심시간</a>
-				                 <a class="sidebar-heading" align="right">12:00-13:30</a>
+				                
+				                 <div class="col-md-18">
+				                  <input type="submit" name="submit" id="submit" value="공지사항" class="btn btn-primary btn-block">
+				                </div>
+				                 
+				                <div class="col-md-18">
+				                  <input type="submit" name="submit" id="submit" value="여행상담" class="btn btn-primary btn-block">
 				                </div>
 				              </div>
 				            </form>
@@ -213,7 +217,7 @@
 						</ul>
 					</div>
 
-					<div class="col-md-3 col-md-push-1">
+					<div class="col-md-3 col-md-push-1">		
 						<h4>Contact Information</h4>
 						<ul class="colorlib-footer-links">
 							<li>291 South 21th Street, <br> Suite 721 New York NY 10016</li>

@@ -57,9 +57,10 @@
 	<!--[if lt IE 9]>
 	<script src="js/respond.min.js"></script>
 	<![endif]-->
+
 	</head>
 	<body>
-	<%@ include file="./top/top.jspf" %>
+	<%@ include file="../top/top.jspf" %>
 	<div class="colorlib-loader"></div>
 
 	<div id="page">
@@ -82,87 +83,68 @@
 			  	</ul>
 		  	</div>
 		</aside>
+		<div id="board">
+			<table border="0" width="100%"  cellpadding="0" cellspacing="0">	
+				<tr style="color:#8c9094;background-color:#eef2f5;font-size:10pt">			
+					<th  height="60px" class="text-center" width="15%">1. 차량/대여업체 선택</th>
+					<th  class="text-center" width="10%">2. 요금선택</th>
+					<th  class="text-center" width="15%">3. 고객 정보 입력 & 결제</th>
+					<th  class="text-center" width="10%" style="color:#ffdd01">4. 예약 완료</th>
+					<th  class="text-center"></th>
+				</tr>
+			</table>
+		</div>				
 	
 		<div id="colorlib-blog" style="background-color:#eef2f5">
 			<div class="container">
-				<div class="blog-flex">
-				<c:forEach items="${branchContent}" var="branchContent" varStatus="status">
-				<table border="0" width="100%" style="background-color:white">
-					<tr align="center">
-						<td>	
-						 <h3>${branchContent.branch_name} </br> 
-						 	<p class="star">
-						 		<span>
-									<c:forEach var="score" begin="1" end="${branchContent.score}" step="1">
-										<i class="icon-star-full" style="color:blue"></i>
-									</c:forEach>
-								</span> ${branchContent.score}점 (후기 ${branchContent.sale}개)
-							</p>
-						  </h3>
-						</td>		
-					</tr>
-				</table></br></br></br>
-				<table border="0" width="100%" style="background-color:white">
-				<!-- <뿌려주기 start> -->
+				<table border="0" width="100%" rules="rows">
 					<tr>
-						<td>	
-						 <h>주소</h></br>
-						 <h>${branchContent.branch_local}</h>	
-						</td>	
-						<td>	
-						 <h>전화번호</h></br>
-						 <h>${branchContent.branch_tel}</h>	
-						</td>	<td>	
-						 <h>셔틀 탑승장소</h></br>
-						 <h>${branchContent.branch_busspot}</h>	
-						</td>	<td>	
-						 <h>셔틀 운행간격</h></br>
-						 <h>${branchContent.branch_busgap}</h>	
-						</td>	<td>	
-						 <h>소요시간</h></br>
-						 <h>${branchContent.branch_bustime}</h>
-						</td>	
+					 <td colspan="3" style="background-color:#2c2e3e" height="250px" align="center">
+					 	<img src="resources/rentcar/images/check.jpg" width=20%, height=60%></br>
+					 	<a style="color:white;font-size:25pt">결제가 정상적으로 완료되었습니다.</a></br>
+					 	<a style="color:#8caaca">제주란티스를 이용해주셔서 감사합니다.</a>
+					 </td>
 					</tr>
-				<div id="map" style="width:1200px;height:400px;"></div>
-				<!-- 지도 -->
-				<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f0cfd90b11f1fceed206c4f201756973"></script>
-					<script>
-						var container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
-						var options = { //지도를 생성할 때 필요한 기본 옵션
-							center: new daum.maps.LatLng(33.450701, 126.570667), //지도의 중심좌표.
-							level: 3 //지도의 레벨(확대, 축소 정도)
-						};
-					
-						var map = new daum.maps.Map(container, options); //지도 생성 및 객체 리턴
-					</script>
-				<!-- 지도 -->
-				</table></br></br></br>
-				<c:forEach items="${branchContent.reviewList}" var="branchContentList" varStatus="status">
-					<table border="0" width="50%" style="background-color:white">	
-					
-						<tr>
-							<td rowspan="4" width=33%>	
-									<img src="${branchContentList.car_image}" width=100%, height=50%>		
-							</td>
-							<td>${branchContentList.member_name}</td>
-						</tr>
-						<tr>
-							<td><p class="star"><span>
-								<c:forEach var="score" begin="1" end="${branchContentList.rent_review_rating_car}" step="1">
-									<i class="icon-star-full" style="color:blue"></i>
-								</c:forEach>
-							</span> ${branchContentList.rent_review_rating_car}</p></td>
-						</tr>
-						<tr>
-							<td>${branchContentList.rent_review_content}</td>
-						</tr>
-						<tr>
-							<td><span class="place">${branchContentList.car_name} ${branchContentList.car_fuel} ${branchContentList.car_type}  ${branchContentList.rent_reserv_start} ~ ${branchContentList.rent_reserv_end}</span></td>
-						</tr>	
-						
-					</table>
-				</c:forEach>
-				</c:forEach>
+					<tr>
+					 <td  rowspan="2" width="25%" style="background-color:white"><img src="resources/rentcar/images/car1.jpg" width=100% height=50%></td>
+					 <td width="35%" style="background-color:white">
+					 	<h style="color:#8caaca">대여일시</h></br>
+					 	<a style="color:black;font-size:18pt">18/07/04</a></br><a style="color:black">09:00</a></br>
+					 	<h style="color:#8caaca">반납일시</h></br>
+					 	<a style="color:black;font-size:18pt">18/07/05</a></br><a style="color:black">09:00</a></br>	
+					 </td>
+					 <td style="background-color:white">
+					 	<h style="color:#8caaca">차량</h></br>
+					 	<a style="color:black">스팅어</a></br></br>
+					 	<h style="color:#8caaca">대여업체</h></br>
+					 	<a style="color:black">한성렌트카</a></br>
+					 	<a style="color:black">010-5655-4547</a></br></br>
+					 	<h style="color:#8caaca">보험</h></br>
+					 	<a style="color:black">일반자차</a>
+					 </td>
+					</tr>
+					<tr>
+					 <td style="background-color:white">
+					 	<h style="color:#8caaca">요금</h></br>
+					 	<a style="color:black">스탠다드</a></br></br>
+					 	<h style="color:#8caaca">결제방법</h></br>
+					 	<a style="color:black">신용카드/체크카드</a></br></br>
+					 	<h style="color:#8caaca">예약번호</h></br>
+					 	<a style="color:black">1807030623</a>
+					 </td>
+					 <td style="background-color:white">
+					 	<h style="color:#8caaca">결제금액</h></br>
+					 	<a style="color:black">60,100원</a></br></br>
+					 	<h style="color:#8caaca">차량 대여료(24시간)</h></br>
+					 	<a style="color:black">52,100원</a></br></br>
+					 	<h style="color:#8caaca">보험료(2일)</h></br>
+					 	<a style="color:black">8,000원</a>
+					 </td>
+					</tr>	
+				</table></br>
+				<div align="center">
+					<button class="btn btn-primary"><a href="/jejulantis" style="color:black">HOME</a></button>
+					<button class="btn btn-primary"><a href="check.do" style="color:black">예약확인</a></button>
 				</div>
 			</div>
 		</div>

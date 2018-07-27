@@ -60,7 +60,7 @@
 
 </head>
 <body>
-<%@ include file="./top/top.jspf" %>
+<%@ include file="../top/top.jspf" %>
 <div class="colorlib-loader"></div>
 
 <div id="page">

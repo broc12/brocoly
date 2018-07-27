@@ -86,7 +86,7 @@
 
 	</head>
 	<body>
-	<%@ include file="./top/top.jspf" %>
+	<%@ include file="../top/top.jspf" %>
 	
 	<script type="text/javascript">
 	function check(){

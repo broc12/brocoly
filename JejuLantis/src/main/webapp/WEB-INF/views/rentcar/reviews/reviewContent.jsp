@@ -40,7 +40,7 @@
 </head>
 
 <body class="fixed-nav sticky-footer bg-dark" id="page-top">
-<%@ include file="./top/top.jspf" %>
+<%@ include file="../top/top.jspf" %>
   <!-- Navigation-->
   <div class="content-wrapper">
     <div class="container-fluid">

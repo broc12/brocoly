@@ -1,15 +1,13 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page session="false" %>
+<%@ page session="true" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@page import="com.khd.notice.Notice"%>
 <!DOCTYPE HTML>
 <html>
 	<head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>Tour Template</title>
-	<script type="text/javascript" language="javascript" src="http://code.jquery.com/jquery-1.3.1.min.js"></script>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="description" content="" />
 	<meta name="keywords" content="" />
@@ -56,13 +54,89 @@
 	<!-- Modernizr JS -->
 	<script src="resources/rentcar/js/modernizr-2.6.2.min.js"></script>
 	<!-- FOR IE9 below -->
-	<!--[if lt IE 9]>
+	<!--[if lt IE 9]>\\\\\\\\
+	
 	<script src="js/respond.min.js"></script>
 	<![endif]-->
+	<!-- jQuery -->
+	<script src="resources/rentcar/js/jquery.min.js"></script>
+	<!-- jQuery Easing -->
+	<script src="resources/rentcar/js/jquery.easing.1.3.js"></script>
+	<!-- Bootstrap -->
+	<script src="resources/rentcar/js/bootstrap.min.js"></script>
+	<!-- Waypoints -->
+	<script src="resources/rentcar/js/jquery.waypoints.min.js"></script>
+	<!-- Flexslider -->
+	<script src="resources/rentcar/js/jquery.flexslider-min.js"></script>
+	<!-- Owl carousel -->
+	<script src="resources/rentcar/js/owl.carousel.min.js"></script>
+	<!-- Magnific Popup -->
+	<script src="resources/rentcar/js/jquery.magnific-popup.min.js"></script>
+	<script src="resources/rentcar/js/magnific-popup-options.js"></script>
+	<!-- Date Picker -->
+	<script src="resources/rentcar/js/bootstrap-datepicker.js"></script>
+	<!-- Stellar Parallax -->
+	<script src="resources/rentcar/js/jquery.stellar.min.js"></script>
 
+	<!-- Main -->
+	<script src="resources/rentcar/js/main.js"></script>
 	</head>
 	<body>
-	<%@ include file="./top/top.jspf" %>
+	<%@ include file="../top/top.jspf" %>
+	<script>
+	
+    /* jQuery(document).ready(function(){
+    	$(".identifyingClass").click(function () {
+             var my_id_value = $(this).data('qna_no');
+             $(".modal-footer #hiddenValue").val(my_id_value);
+         })
+    }); */
+    function checkId(s,h){
+    	var ii = "${id}";
+   	 $.ajax({
+            url: 'checkId.do',
+            data:{"qna_no":s,"id":ii},
+            success: function(data){
+				 var answer = data.flagId;
+				 if(answer==true){
+					 location.href = "helpContent.do?qna_no="+s;
+				 }
+			     else if(answer==false){
+			    	 $("#strqna_no").val(s);
+			    	 $("#exampleModal2").modal('show');
+			     }
+			     else {alert('들어왔는데 실패');
+				 	return false;
+			     }
+            },
+            error : function (data) {
+           	    alert('실패');
+           	    return false;
+           	   }  
+        });
+	} 
+    
+	
+	/* function checkId(s){
+    	 $.ajax({
+             url: 'checkId.do',
+             data:'qna_no=s&id=&{id}',
+             success: function(data){
+            	 alert("성공");
+             },
+             error : function (data) {
+            	    alert('실패');
+            	    return false;
+            	   }  
+         });
+	} */ 
+    
+	
+	function hiddensubmit(){
+		document.f.submit();
+	}
+	
+	</script>
 	<div class="colorlib-loader"></div>
 
 	<div id="page">
@@ -76,7 +150,7 @@
 				   			<div class="col-md-6 col-md-offset-3 col-sm-12 col-xs-12 slider-text">
 				   				<div class="slider-text-inner text-center">
 				   					<h2>by colorlib.com</h2>
-				   					<h1>공지 사항</h1>
+				   					<h1>여행상담</h1>
 				   				</div>
 				   			</div>
 				   		</div>
@@ -89,9 +163,9 @@
 			<table border="0" width="100%"  cellpadding="0" cellspacing="0">	
 				<tr style="color:#8c9094;background-color:#eef2f5;font-size:10pt">			
 					<th  height="60px" class="text-center" width="15%" style="color:black">고객센터</th>
-					<th  class="text-center" width="10%"><a href="service.do" style="color:#ffdd01">공지사항</a></th>
+					<th  class="text-center" width="10%"><a href="service.do" style="color:#8c9094">공지사항</a></th>
 					<th  class="text-center" width="15%"><a href="faq.do" style="color:#8c9094">자주찾는 질문</a></th>
-					<th  class="text-center" width="15%"><a href="help.do" style="color:#8c9094">여행상담</a></th>
+					<th  class="text-center" width="10%"><a href="faq.do" style="color:#ffdd01">여행상담</a></th>
 					<th  class="text-center"></th>
 				</tr>
 			</table>
@@ -109,63 +183,80 @@
 										<div class="desc">
 											<!-- <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p> -->
 											<div id="board">
-												<h3>공지사항</h3>
+												<h3>여행상담</h3>
+												<a style="color:black">제주란티스 상품 및 서비스에 대해 궁금하신 사항을 친절하게 안내해드리겠습니다.</a></br>
+												<a style="color:black">문의 하시기 전 '자주묻는질문' 을 찾아 보시면 신속하게 궁금증을 해소하실 수 있습니다</a></br>
+												<div class="col-md-12 text-right">
+													<ul class="pagination">
+														<form action="helpadd.do" method="POST" >
+															<input type="hidden" name="id" value="${id}">
+															<button type="submit" class="btn btn-primary" style="border-radius:0px">글쓰기</button>
+															<!-- <a data-toggle="modal" data-target="#exampleModal2" class="identifyingClass" data-id="">삭제</a> -->
+															</form>
+													</ul>
+												</div>
 												<table border="0" width="100%"  cellpadding="0" cellspacing="0">	
 													<tr style="color:#808080;font-size:12pt">			
-														<th  height="50px" width="10%" class="text-center" style="background-color: #dcdcdc">번호</th>
-														<th  width="60%" class="text-center" style="background-color: #dcdcdc">제목</th>
-														<th  width="15%" class="text-center" style="background-color: #dcdcdc">등록일</th>
-														<th  width="155%" class="text-center" style="background-color: #dcdcdc">조회수</th>
+														<th  height="50px" width="10%" class="text-center" style="background-color: #fafafa">번호</th>
+														<th  width="35%" class="text-center" style="background-color: #fafafa">제목</th>
+														<th  width="15%" class="text-center" style="background-color: #fafafa">작성자</th>
+														<th  width="15%" class="text-center" style="background-color: #fafafa">등록일</th>
+														<th  width="15%" class="text-center" style="background-color: #fafafa">답변유무</th>
 													</tr>
-													<c:if test="${empty toplist}">
-														<tr>
-												           <td align="center" colspan="4">데이터가 없음</td>
-												        </tr>
-													</c:if>
-													<c:forEach items="${toplist}" var="topnotice">
-													<tr style="font-size:10pt;background-color:#fafafa" height="60px">
-														<td align="center" style="color:red">중요</td>
-														<td align="center"><a href="serviceContent.do?announce_no=${topnotice.announce_no}" style="color:black">${topnotice.announce_title}</a></td>
-														<td align="center">${topnotice.announce_resist}</td>
-														<td align="center">${topnotice.announce_hits}</td>
-													</tr>
-													</c:forEach>
 													<c:if test="${empty list}">
-														<tr>
-												           <td align="center" colspan="4">데이터가 없음</td>
-												        </tr>
-													</c:if>
-													<c:forEach items="${list}" var="notice">
-													<tr style="font-size:10pt" height="60px">
-														<td align="center">${notice.announce_no}</td>
-														<td align="center"><a href="serviceContent.do?announce_no=${notice.announce_no}" style="color:black">${notice.announce_title}</a></td>
-														<td align="center">${notice.announce_resist}</td>
-														<td align="center">${notice.announce_hits}</td>
-													</tr>
-													</c:forEach>
+													     <tr>
+													     	<td align="center" colspan="5">데이터가 없음</td>
+													     </tr>
+													  </c:if>
+													  <c:forEach items="${list}" var="board">
+														<tr style="font-size:10pt;color:black" height="60px">
+															<td align="center" style="color:black">
+															<c:if test="${board.qna_lev==0}">
+															${board.qna_group}
+															</c:if>
+															</td>
+															<td align="center">
+															<a style="color:black" href="javascript:checkId(${board.qna_no},${board.qna_pwd});">${board.qna_title}</a>
+															<c:if test="${board.qna_secret==0}">
+															<img src="resources/rentcar/images/locker.png" width=6% height=10%>
+															</c:if>
+															</td>	
+															<td align="center">${board.qna_name}</td>
+															<td align="center">${board.qna_resist}</td>
+															<td align="center">${board.qna_answer_checkString}</td>
+														</tr>
+												</c:forEach>
 												</table>
 											</div>
 										</div>
 									</div>
 								</div>
 							</div>
-							
 							</div>
 						</div>
-						<div class="row">
+							
+						  <div class="row">
 							<div class="col-md-12 text-center">
 								<ul class="pagination">
-									<li class="disabled"><a href="#">&laquo;</a></li>
-									<li class="active"><a href="#">1</a></li>
+									
+									<li><a href="#">&laquo;</a></li>
+									<c:forEach var="i" begin="1" end="${totalPage}">
+								    <li> <a href="help.do?strInput=${i}">${i}</a> </li>
+									</c:forEach>
+									<!-- <li class="active"><a href="#">1</a></li>
 									<li><a href="#">2</a></li>
 									<li><a href="#">3</a></li>
-									<li><a href="#">4</a></li>
+									<li><a href="#">4</a></li> -->
 									<li><a href="#">&raquo;</a></li>
 								</ul>
+								
+					
 							</div>
 						</div>
 					</div>
-
+					<c:forEach var="i" begin="1" end="${totalPage}">
+							 <a href="help.do?strInput=$'i'">i</a>
+									</c:forEach>
 					<!-- SIDEBAR-->
 					<div class="col-md-3">
 						<div class="sidebar-wrap">
@@ -191,7 +282,7 @@
 					</div>
 				</div>
 			</div>
-		</div>
+		</div>	
 		<footer id="colorlib-footer" role="contentinfo">
 			<div class="container">
 				<div class="row row-pb-md">
@@ -269,29 +360,30 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 		<a href="#" class="js-gotop"><i class="icon-arrow-up2"></i></a>
 	</div>
 
-	<!-- jQuery -->
-	<script src="resources/rentcar/js/jquery.min.js"></script>
-	<!-- jQuery Easing -->
-	<script src="resources/rentcar/js/jquery.easing.1.3.js"></script>
-	<!-- Bootstrap -->
-	<script src="resources/rentcar/js/bootstrap.min.js"></script>
-	<!-- Waypoints -->
-	<script src="resources/rentcar/js/jquery.waypoints.min.js"></script>
-	<!-- Flexslider -->
-	<script src="resources/rentcar/js/jquery.flexslider-min.js"></script>
-	<!-- Owl carousel -->
-	<script src="resources/rentcar/js/owl.carousel.min.js"></script>
-	<!-- Magnific Popup -->
-	<script src="resources/rentcar/js/jquery.magnific-popup.min.js"></script>
-	<script src="resources/rentcar/js/magnific-popup-options.js"></script>
-	<!-- Date Picker -->
-	<script src="resources/rentcar/js/bootstrap-datepicker.js"></script>
-	<!-- Stellar Parallax -->
-	<script src="resources/rentcar/js/jquery.stellar.min.js"></script>
-
-	<!-- Main -->
-	<script src="resources/rentcar/js/main.js"></script>
-
+<div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel2" aria-hidden="true"><!-- 모달 -->
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">비밀번호 확인</h5>
+            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+		  <form action="helpCheckPwd.do" method="POST" name="f">
+          <div class="modal-body">
+          	<input type="text"  id = "inputPwd" name="inputPwd">
+         	<input type="hidden"  id = "strqna_no" name="strqna_no" value="">
+          </div>
+          
+          <div class="modal-footer">
+            <button class="btn btn-secondary" type="button" data-dismiss="modal">취소</button>
+            <a class="btn btn-primary" href="#" onclick="hiddensubmit()" name="hiddenValue" id="hiddenValue">확인</a>
+            <input type="hidden" value=""/>
+          </div>
+		  </form>
+        </div>
+      </div>
+    </div>
 	</body>
 </html>
 

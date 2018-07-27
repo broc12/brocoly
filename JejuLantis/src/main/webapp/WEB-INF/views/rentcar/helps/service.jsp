@@ -1,13 +1,15 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page session="true" %>
+<%@ page session="false" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@page import="com.khd.notice.Notice"%>
 <!DOCTYPE HTML>
 <html>
 	<head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>Tour Template</title>
+	<script type="text/javascript" language="javascript" src="http://code.jquery.com/jquery-1.3.1.min.js"></script>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="description" content="" />
 	<meta name="keywords" content="" />
@@ -60,10 +62,10 @@
 
 	</head>
 	<body>
-	<%@ include file="./top/top.jspf" %>
+	<%@ include file="../top/top.jspf" %>
 	<div class="colorlib-loader"></div>
 
-	<div id="page" style="background-color:#eef2f5">
+	<div id="page">
 		<aside id="colorlib-hero">
 			<div class="flexslider">
 				<ul class="slides">
@@ -73,8 +75,8 @@
 			   			<div class="row">
 				   			<div class="col-md-6 col-md-offset-3 col-sm-12 col-xs-12 slider-text">
 				   				<div class="slider-text-inner text-center">
-				   					<h2>어떤 업체를 선택해야 할지 고민하시나요?</h2>
-				   					<h1>제주란티스렌트카를 이용했던 고객들의 후기를 확인하세요.</h1>
+				   					<h2>by colorlib.com</h2>
+				   					<h1>공지 사항</h1>
 				   				</div>
 				   			</div>
 				   		</div>
@@ -83,70 +85,113 @@
 			  	</ul>
 		  	</div>
 		</aside>
-				
-			<div class="col-md-6 col-md-offset-3" align="center">
-				</br></br></br><a href="board.do?searchValue=SCORE">·평점순</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				<a href="board.do?searchValue=NEW">·최신순</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				<a href="board.do?searchValue=SALE">·후기 많은순</a>
-			</div>
-				
+		<div id="board">
+			<table border="0" width="100%"  cellpadding="0" cellspacing="0">	
+				<tr style="color:#8c9094;background-color:#eef2f5;font-size:10pt">			
+					<th  height="60px" class="text-center" width="15%" style="color:black">고객센터</th>
+					<th  class="text-center" width="10%"><a href="service.do" style="color:#ffdd01">공지사항</a></th>
+					<th  class="text-center" width="15%"><a href="faq.do" style="color:#8c9094">자주찾는 질문</a></th>
+					<th  class="text-center" width="15%"><a href="help.do" style="color:#8c9094">여행상담</a></th>
+					<th  class="text-center"></th>
+				</tr>
+			</table>
+		</div>
+		
 		<div class="colorlib-wrap">
 			<div class="container">
+				<div class="row">
 					<div class="col-md-9">
-						<div class="row" style="margin-right: -400px; margin-left: -80px">
-							<div class="wrap-division" >
-							
-							<!-- <뿌려주기 start> -->
-								<c:forEach items="${branch}" var="branch" varStatus="status">
-				
-								<div class="col-md-6 col-sm-6 animate-box" >
-								
-									<div class="hotel-entry" >
+						<div class="row">
+							<div class="wrap-division">
+								<div class="row">
+								<div class="">
+									<div class="hotel-entry">
 										<div class="desc">
-											
-											<table border="0" width="100%" style="background-color:white">
-											
-												<tr>
-													<td colspan="2" height="50px" style="background-color:#eef2f5">${branch.branch_name}  (${branch.sale})&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="boardview.do?branch_no=${branch.branch_no}">더보기</a> </td>
-												</tr>
-												
-												<c:forEach items="${branch.reviewList}" var="review" varStatus="status">
-										
-												<tr>
-													<td rowspan="4" width=33%>	
-															<img src="${review.car_image}" width=100%, height=50%>		
-													</td>
-													<td>${review.member_name}</td>
-												</tr>
-												<tr>
-												
-													<td><p class="star"><span>
-													<c:forEach var="score" begin="1" end="${review.rent_review_rating_car}" step="1">
-														<i class="icon-star-full"></i>
+											<!-- <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p> -->
+											<div id="board">
+												<h3>공지사항</h3>
+												<table border="0" width="100%"  cellpadding="0" cellspacing="0">	
+													<tr style="color:#808080;font-size:12pt">			
+														<th  height="50px" width="10%" class="text-center" style="background-color: #dcdcdc">번호</th>
+														<th  width="60%" class="text-center" style="background-color: #dcdcdc">제목</th>
+														<th  width="15%" class="text-center" style="background-color: #dcdcdc">등록일</th>
+														<th  width="155%" class="text-center" style="background-color: #dcdcdc">조회수</th>
+													</tr>
+													<c:if test="${empty toplist}">
+														<tr>
+												           <td align="center" colspan="4">데이터가 없음</td>
+												        </tr>
+													</c:if>
+													<c:forEach items="${toplist}" var="topnotice">
+													<tr style="font-size:10pt;background-color:#fafafa" height="60px">
+														<td align="center" style="color:red">중요</td>
+														<td align="center"><a href="serviceContent.do?announce_no=${topnotice.announce_no}" style="color:black">${topnotice.announce_title}</a></td>
+														<td align="center">${topnotice.announce_resist}</td>
+														<td align="center">${topnotice.announce_hits}</td>
+													</tr>
 													</c:forEach>
-													</span>
-													${review.rent_review_rating_car}</p></td>
-												</tr>
-												<tr>
-													<td>${review.rent_review_content}</td>
-												</tr>
-												<tr>
-													<td><span class="place">${review.car_name} ${review.car_type} (${review.car_fuel}) ${review.insurance_name}  ${review.rent_reserv_start} ~ ${review.rent_reserv_end}</span></td>
-												</tr>
-												</c:forEach>
-											</table>
-											<!-- <뿌려주기EnD> -->
+													<c:if test="${empty list}">
+														<tr>
+												           <td align="center" colspan="4">데이터가 없음</td>
+												        </tr>
+													</c:if>
+													<c:forEach items="${list}" var="notice">
+													<tr style="font-size:10pt" height="60px">
+														<td align="center">${notice.announce_no}</td>
+														<td align="center"><a href="serviceContent.do?announce_no=${notice.announce_no}" style="color:black">${notice.announce_title}</a></td>
+														<td align="center">${notice.announce_resist}</td>
+														<td align="center">${notice.announce_hits}</td>
+													</tr>
+													</c:forEach>
+												</table>
+											</div>
 										</div>
 									</div>
 								</div>
-								</c:forEach>
-								
+							</div>
+							
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-12 text-center">
+								<ul class="pagination">
+									<li class="disabled"><a href="#">&laquo;</a></li>
+									<li class="active"><a href="#">1</a></li>
+									<li><a href="#">2</a></li>
+									<li><a href="#">3</a></li>
+									<li><a href="#">4</a></li>
+									<li><a href="#">&raquo;</a></li>
+								</ul>
 							</div>
 						</div>
 					</div>
+
+					<!-- SIDEBAR-->
+					<div class="col-md-3">
+						<div class="sidebar-wrap">
+							<div class="side search-wrap animate-box">
+								<h3 class="sidebar-heading" align="center">고객센터</h3>
+								<form method="post" class="colorlib-form">
+				              	<div class="row">
+				                 <div class="col-md-18" align="center">
+				                 <img src="resources/rentcar/images/phone1.jpg" width=40% height=40% align="center">
+				                 <h3 class="sidebar-heading" align="center">1544-0704</h3><hr>
+				                 <h3 class="sidebar-heading" align="center">카카오톡 1:1 상담</h3>
+				                 <img src="resources/rentcar/images/kakao.jpg" width=40% height=40% align="center">
+				                 <h3 class="sidebar-heading" align="center">@제주란티스</h3><hr>
+				                 <a class="sidebar-heading" align="left">월-금요일</a>
+				                 <a class="sidebar-heading" align="right">09:00-18:00</a></br>
+				                 <a class="sidebar-heading" align="left">점심시간</a>
+				                 <a class="sidebar-heading" align="right">12:00-13:30</a>
+				                </div>
+				              </div>
+				            </form>
+							</div>						
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
-
 		<footer id="colorlib-footer" role="contentinfo">
 			<div class="container">
 				<div class="row row-pb-md">

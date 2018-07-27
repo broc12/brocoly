@@ -6,10 +6,6 @@ import java.util.Locale;
 import java.util.Map;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.lang.Long;
-
-import javax.security.auth.message.callback.PrivateKeyCallback.Request;
-import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -26,8 +22,6 @@ import org.springframework.web.servlet.ModelAndView;
 import com.khd.admin.ManagerModel.Manager;
 import com.khd.admin.ManagerService.ManagerService;
 import com.khd.branch.Branch;
-import com.khd.model.Member;
-
 
 @Controller
 public class ManagerController {
@@ -45,7 +39,7 @@ public class ManagerController {
 	}
 	@RequestMapping(value="admin/manager.do", method=RequestMethod.POST)
 	public String join(Manager manager,@RequestParam(value="hp1")String hp1,@RequestParam(value="hp2")String hp2,@RequestParam(value="hp3")String hp3,@RequestParam(value="hp4")String hp4,@RequestParam(value="hp5")String hp5,@RequestParam(value="hp6")String hp6,@RequestParam(value="birth1")String birth1,@RequestParam(value="birth2")String birth2,@RequestParam(value="birth3")String birth3) {
-		System.out.println("Áö³ª°¨99");
+		System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½99");
 		System.out.println(manager.getBranch_no());
 		String manager_birth = birth1+"-"+birth2+"-"+birth3;
 		String manager_tel1 = hp1+"-"+hp2+"-"+hp3;
@@ -84,9 +78,9 @@ public class ManagerController {
 			
 			for (Branch post : branchList) {
 				
-				System.out.println("¾÷Ã¼¸í "+post.getBranch_name());
-				System.out.println("¾÷Ã¼ÁÖ¼Ò"+post.getBranch_local());
-				System.out.println("¾÷Ã¼¹øÈ£"+post.getBranch_member_tel());				
+				System.out.println("ï¿½ï¿½Ã¼ï¿½ï¿½ "+post.getBranch_name());
+				System.out.println("ï¿½ï¿½Ã¼ï¿½Ö¼ï¿½"+post.getBranch_local());
+				System.out.println("ï¿½ï¿½Ã¼ï¿½ï¿½È£"+post.getBranch_member_tel());				
 			}
 			
 			result.addObject("result", branchList);
@@ -94,7 +88,7 @@ public class ManagerController {
 			return result;
 			
 		}else{
-			result.addObject("nullResult", "°Ë»öÇØÁÖ¼¼¿ä.");
+			result.addObject("nullResult", "ï¿½Ë»ï¿½ï¿½ï¿½ï¿½Ö¼ï¿½ï¿½ï¿½.");
 			result.setViewName("admin/post");
 			return result;
 		}
@@ -148,7 +142,7 @@ public class ManagerController {
 					out.close();
 				}
 				if (nn == null) {
-					out.println("<script>alert('·Î±×ÀÎÁ¤º¸¸¦È®ÀÎÇÏ¼¼¿ä'); history.go(-1); </script>");
+					out.println("<script>alert('ï¿½Î±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È®ï¿½ï¿½ï¿½Ï¼ï¿½ï¿½ï¿½'); history.go(-1); </script>");
 					out.flush();
 					out.close();
 				}
@@ -159,7 +153,7 @@ public class ManagerController {
 
 		@RequestMapping(value = "/managerlogin/managerlogout")
 		public ModelAndView logOut(ModelAndView mv, HttpSession session) {
-			System.out.println("Áö³ª°£´Ù");
+			System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
 			String page = "redirect:/admin/index.do";
 			session.removeAttribute("managerlog");
 //			System.out.println("");

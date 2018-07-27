@@ -2,6 +2,7 @@ package com.khd.admin.carInfo;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -18,11 +19,11 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.khd.notice.Notice;
 import com.khd.notice.NoticeService;
-import com.khd.review.ReviewContent;
-import com.khd.review.ReviewService;
 import com.khd.util.UtilFile;
 import com.khd.customerCenterService.CustomerCenterService;
+import com.khd.model.CarInfo;
 import com.khd.model.Qna;
+import com.khd.admin.carInfo.service.*;
 import com.khd.carInfo.file.service.*;
 
 @Controller
@@ -31,6 +32,8 @@ public class CarInfoController {
 	private CustomerCenterService customerService;
 	@Autowired
 	private ExcelUploadService excelUploadService;
+	@Autowired
+	private CarInfoService carInfoService;
 	
 	@RequestMapping(value="admin/carInfo.do",method=RequestMethod.GET)
 	public String carInfo() {
@@ -49,23 +52,25 @@ public class CarInfoController {
 		
 		return "admin/excelUploadForm";
 		
-	}	/*@RequestParam(value="aa[]") List<String> aa*/
+	}	
 	@RequestMapping(value="admin/carInfoInsert.do",method=RequestMethod.POST)
-	public String carInfoInsert(String[]aa) {
-		System.out.println("hi");
-		System.out.println("size = "+aa.length);
+	public void carInfoInsert(@RequestParam(value="carKind",required = true)List <String> carKind,
+								@RequestParam(value="carNumber",required = true)List <String> carNumber){
 		
-		
-		return "admin/carInfo";
-		
+		List<CarInfo> car = new ArrayList<CarInfo>();
+		for(int i=0; i<carKind.size();i++) {
+			car.add(new CarInfo(1, 1, 1, 1, 1, "Y", "ÁÁÀ½",carNumber.get(i) ,null));
+		}
+		boolean flag = carInfoService.carInsert(car);
+		String view = "";
 	}
 	@ResponseBody
     @RequestMapping(value = "admin/excelUploadAjax.do", method = RequestMethod.POST)
     public ModelAndView excelUploadAjax(MultipartHttpServletRequest request)  throws Exception{
         MultipartFile excelFile =request.getFile("excelFile");
-        System.out.println("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Îµï¿½ ï¿½ï¿½Æ®ï¿½Ñ·ï¿½");
+        System.out.println("¿¢¼¿ ÆÄÀÏ ¾÷·Îµå ÄÁÆ®·Ñ·¯");
         if(excelFile==null || excelFile.isEmpty()){
-            throw new RuntimeException("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ö¼ï¿½ï¿½ï¿½.");
+            throw new RuntimeException("¿¢¼¿ÆÄÀÏÀ» ¼±ÅÃ ÇØ ÁÖ¼¼¿ä.");
         }
         
         File destFile = new File("C:\\excel\\"+excelFile.getOriginalFilename());

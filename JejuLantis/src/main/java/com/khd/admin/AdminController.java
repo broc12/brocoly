@@ -49,10 +49,6 @@ public class AdminController {
 	public String admin() {
 		return "admin/admin";
 	}
-	@RequestMapping(value="admin/adminPower.do",method=RequestMethod.GET)
-	public String adminPower() {
-		return "admin/adminPower";
-	}
 	/*@RequestMapping(value="admin/carDetail.do")
 	public String carDetailList() {
 		return "admin/carkindDetailList";

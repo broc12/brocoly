@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace = "query.ManagerPower">
+
+<resultMap type="Power" id="PowerResult">
+	<result column="MANAGER_NO" property="manager_no"/>
+	<result column="MANAGER_ID" property="manager_id"/>
+	<result column="MANAGER_NAME" property="manager_name"/>
+	<result column="BRANCH_NAME" property="branch_name"/>
+	<result column="MANAGER_MAIN " property="manager_main"/>
+	<result column="MANAGER_CHART " property="manager_chart"/>
+	<result column="MANAGER_RESERVSTATUS" property="manager_reservstatus"/>
+	<result column="MANAGER_ARS_RESERV" property="manager_ars_reserv"/>
+	<result column="MANAGER_TRAVELMANAGEMENT" property="manager_travelmanagement"/>
+	<result column="MANAGER_REVIEW" property="manager_review"/>
+	<result column="MANAGER_NOTICE" property="manager_notice"/>
+	<result column="MANAGER_USER" property="manager_user"/>
+	<result column="MANAGER_MANAGER" property="manager_manager"/>
+	<result column="MANAGER_COMPANY" property="manager_company"/>
+	<result column="MANAGER_CARKIND" property="manager_carkind"/>
+	<result column="MANAGER_D_CARKIND" property="manager_d_carkind"/>
+	<result column="MANAGER_CARINFO" property="manager_carinfo"/>
+	<result column="MANAGER_PAYSTATUS" property="manager_paystatus"/>
+	<result column="MANAGER_SALESTATUS" property="manager_salestatus"/>
+	<result column="MANAGER_BANNER" property="manager_banner"/>
+	<result column="MANAGER_COUPON" property="manager_coupon"/>
+	<result column="MANAGER_SMS" property="manager_sms"/>
+	<result column="MANAGER_INSURANCE" property="manager_insurance"/>
+</resultMap>
+
+<select id="myPower" parameterType="String" resultType="Power">
+	select M.*, B.branch_name from 
+	Manager M, branch B where M.branch_no=B.branch_no and M.manager_id like '%'||#{manager_id}||'%'
+</select>
+
+<update id="myUpdate" parameterType="Power">
+	update MANAGER set manager_main=#{manager_main},manager_chart=#{manager_chart},manager_reservstatus=#{manager_reservstatus},
+	manager_ars_reserv=#{manager_ars_reserv},manager_travelmanagement=#{manager_travelmanagement},manager_review=#{manager_review},
+	manager_notice=#{manager_notice},manager_user=#{manager_user},manager_manager=#{manager_manager},
+	manager_company=#{manager_company},manager_carkind=#{manager_carkind},manager_d_carkind=#{manager_d_carkind},
+	manager_carinfo=#{manager_carinfo},manager_paystatus=#{manager_paystatus},manager_salestatus=#{manager_salestatus},
+	manager_banner=#{manager_banner},manager_coupon=#{manager_coupon},manager_sms=#{manager_sms},
+	manager_insurance=#{manager_insurance} where manager_no=#{manager_no}
+</update>
+</mapper>

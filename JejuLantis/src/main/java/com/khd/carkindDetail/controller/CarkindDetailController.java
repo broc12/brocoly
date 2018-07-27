@@ -31,19 +31,25 @@ public class CarkindDetailController {
 		return mv;
 	}
 	@RequestMapping(value="admin/carDetailUpdate.do")
-	public ModelAndView carDetailListUpdate(@RequestParam("car_kind_no")int car_kind_no) {
+	public ModelAndView carDetailListUpdate(
+			@RequestParam("manager_id")String manager_id,
+			@RequestParam("car_kind_no")int car_kind_no) {
 		System.out.println("car_kind_no : " + car_kind_no);
 		List<CarkindDetail> carDetailUpdate = cservice.ContentService(car_kind_no);
 		List<CarkindDetail> carDetailSelectBox = cservice.NotContentService(car_kind_no);
+		List<CarkindDetail> insuranceUpdateSelectBox = cservice.insuranceUpdateSelectService(manager_id,car_kind_no);
 		String view = "admin/carkindDetailUpdate";
 		ModelAndView mv = new ModelAndView(view, "carDetailUpdate", carDetailUpdate);
 		mv.addObject("carDetailSelectBox", carDetailSelectBox);
+		mv.addObject("insuranceUpdateSelectBox",insuranceUpdateSelectBox);
 		return mv;
 	}
 	@RequestMapping(value="admin/carDetailUpdateOk.do",method=RequestMethod.POST)
-	public String carDetailListUpdateOk(@ModelAttribute("carkind") CarkindDetail carkind) {
+	public String carDetailListUpdateOk(
+			@RequestParam("manager_id")String manager_id,
+			@ModelAttribute("carkind") CarkindDetail carkind) {
 		cservice.UpdateService(carkind);
-		return "redirect:carDetail.do";
+		return "redirect:carDetail.do?manager_id="+manager_id;
 	}
 	@RequestMapping(value="admin/carDetailContent.do")
 	public ModelAndView carDetailListContent(@RequestParam("car_kind_no")int car_kind_no) {
@@ -54,13 +60,15 @@ public class CarkindDetailController {
 		return mv;
 	}
 	@RequestMapping(value="admin/carDetailDel.do")
-	public String carDetailListdelete(@RequestParam("car_kind_no")int car_kind_no) {
+	public String carDetailListdelete(@RequestParam("manager_id")String manager_id,
+			@RequestParam("car_kind_no")int car_kind_no) {
 		System.out.println("car_kind_no : " + car_kind_no);
 		cservice.deleteService(car_kind_no);
-		return "redirect:carDetail.do";
+		return "redirect:carDetail.do?manager_id="+manager_id;
 	}
 	@RequestMapping(value="admin/carDetailWriteOk.do",method=RequestMethod.POST)
 	public String carDetailListInsertOk(
+		@RequestParam("manager_id")String manager_id,
 		@RequestParam("branch_no")int branch_no,
 		@RequestParam("insurance_no")int insurance_no,
 		@RequestParam("car_no")int car_no,
@@ -77,11 +85,26 @@ public class CarkindDetailController {
 		@RequestParam(value="car_kind_nonsmoke",required=false)String car_kind_nonsmoke) {
 		System.out.println("branch_no : " + branch_no);
 		System.out.println("insurance_no : " + insurance_no);
-		CarkindDetail carDetail = new CarkindDetail(null, branch_no, insurance_no, car_no, 
-				0, car_kind_price_week, car_kind_price_weekend, car_kind_price_holiday, car_kind_price_h_holiday, car_kind_navi, car_kind_sensor, car_kind_blackbox,
-				car_kind_bluetooth, car_kind_sunroof, car_kind_camera, car_kind_nonsmoke, 0, 'N', null);
+		System.out.println("car_no : " + car_no);
+		System.out.println("car_kind_price_week : " + car_kind_price_week);
+		System.out.println("car_kind_price_weekend : " + car_kind_price_weekend);
+		System.out.println("car_kind_price_holiday : " + car_kind_price_holiday);
+		System.out.println("car_kind_price_h_holiday : " + car_kind_price_h_holiday);
+		System.out.println("car_kind_navi : " + car_kind_navi);
+		System.out.println("car_kind_sensor : " + car_kind_sensor);
+		System.out.println("car_kind_blackbox : " + car_kind_blackbox);
+		System.out.println("car_kind_bluetooth : " + car_kind_bluetooth);
+		System.out.println("car_kind_sunroof : " + car_kind_sunroof);
+		System.out.println("car_kind_camera : " + car_kind_camera);
+		System.out.println("car_kind_nonsmoke : " + car_kind_nonsmoke);
+		CarkindDetail carDetail = new CarkindDetail(0, branch_no, car_no, insurance_no, 0, 
+			car_kind_price_week, car_kind_price_weekend, car_kind_price_holiday, car_kind_price_h_holiday, 
+			car_kind_navi, car_kind_sensor, car_kind_blackbox,car_kind_bluetooth, car_kind_sunroof, 
+			car_kind_camera, car_kind_nonsmoke, 0, "N", null);
+		System.out.println("test1");
 		cservice.insertService(carDetail);
-		return "redirect:carDetail.do";
+		System.out.println("test2");
+		return "redirect:carDetail.do?manager_id="+manager_id;
 	}
 	@RequestMapping(value="admin/carDetail.do")
 	public ModelAndView carDetailList(@RequestParam("manager_id")String manager_id) {

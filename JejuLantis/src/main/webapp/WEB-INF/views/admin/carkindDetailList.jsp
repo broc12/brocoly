@@ -65,8 +65,8 @@
 					<td>${carDetailList.car_kind_price_weekend}</td>
                 	<td>
                     <button type="button" class="btn btn-defalut btn-sm"><a href="carDetailContent.do?car_kind_no=${carDetailList.car_kind_no}">세부내용</a></button>
-                  	<button type="button" class="btn btn-defalut btn-sm"><a href="carDetailUpdate.do?car_kind_no=${carDetailList.car_kind_no}">수정</a></button>
-                  	<button type="button" class="btn btn-defalut btn-sm"><a href="carDetailDel.do?car_kind_no=${carDetailList.car_kind_no}">삭제</a></button>
+                  	<button type="button" class="btn btn-defalut btn-sm"><a href="carDetailUpdate.do?car_kind_no=${carDetailList.car_kind_no}&manager_id=${managerlog.manager_id}">수정</a></button>
+                  	<button type="button" class="btn btn-defalut btn-sm"><a href="carDetailDel.do?car_kind_no=${carDetailList.car_kind_no}&manager_id=${managerlog.manager_id}">삭제</a></button>
                 	</td>                  
                 </tr>
               </c:forEach>

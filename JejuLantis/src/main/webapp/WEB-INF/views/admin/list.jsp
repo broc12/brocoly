@@ -71,7 +71,7 @@
                   <td>${review.rent_review_content}</td>
                   <td>
                   	<button type="button" class="btn btn-defalut btn-sm"><a href="reviewContent.do?rent_review_no=${review.rent_review_no}">세부내용</a></button>
-                  	<button type="button" class="btn btn-defalut btn-sm""><a href="reviewDel.do?rent_review_no=${review.rent_review_no}">삭제</a></button>
+                  	<button type="button" class="btn btn-defalut btn-sm""><a href="reviewDel.do?rent_review_no=${review.rent_review_no}&manager_id=${managerlog.manager_id}">삭제</a></button>
                   </td>
                 </tr>
                 </c:forEach>

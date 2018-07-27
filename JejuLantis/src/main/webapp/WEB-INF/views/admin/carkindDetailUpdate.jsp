@@ -76,12 +76,12 @@
          }
 		if(f.car_kind_price_holiday.value ==""){
             alert("성수기가를 채워주세요");
-            f.car_kind_price_1.focus();
+            f.car_kind_price_holiday.focus();
             return;
          }
 		if(f.car_kind_price_h_holiday.value ==""){
             alert("극성수기가를 채워주세요");
-            f.car_kind_price_2.focus();
+            f.car_kind_price_h_holiday.focus();
             return;
          }
 		var isChecked = "";
@@ -148,6 +148,7 @@
           <div class="table-responsive">
           	<form name="f" action="carDetailUpdateOk.do" method="post">
           		<c:forEach items="${carDetailUpdate}" var="carDetailUpdate" varStatus="status">
+          			<input type="hidden" name="manager_id" value="${managerlog.manager_id}"/> 
 	          		<input type="hidden" value="${carDetailUpdate.car_kind_no}" name="car_kind_no" id="car_kind_no"/>
 	          		<input type="hidden" name="car_kind_navi" id="car_kind_navi"/>
 	          		<input type="hidden" name="car_kind_sensor" id="car_kind_sensor"/>
@@ -161,21 +162,26 @@
 							<tr style="color:#808080;font-size:12pt">			
 								<th  height="60px" width="10%" class="text-center" style="background-color: #fafafa"><a style="color:red">*</a>지점코드</th>
 								<th  width="35%" class="text-left">
-									<input name="branch_no" type="text" size="30" value="${carDetailUpdate.branch_no}" class="form-control" style="width:250px">
+									<input name="branch_no" type="text" size="30" value="${carDetailUpdate.branch_no}" class="form-control" style="width:250px"readonly>
 								</th>
 							</tr>
 							<tr style="color:#808080;font-size:12pt">	
 								<th  height="60px" width="10%" class="text-center" style="background-color: #fafafa"><a style="color:red">*</a>보험코드</th>
 								<th  width="35%" class="text-left">
-									<input name="insurance_no"type="text" size="30" value="${carDetailUpdate.insurance_no}" class="form-control" style="width:250px">
+									<select name="car_no" id="car_no" class="form-control" style="width:250px">
+										<option value="${carDetailUpdate.insurance_no}" style="color:black">${carDetailUpdate.insurance_name}/${carDetailUpdate.insurance_price}/${carDetailUpdate.insurance_limit}</option>
+											<c:forEach items="${insuranceUpdateSelectBox}" var="insuranceUpdateSelectBox" varStatus="status">
+												<option value="${insuranceUpdateSelectBox.insurance_no}" style="color:black">${insuranceUpdateSelectBox.insurance_name}/${insuranceUpdateSelectBox.insurance_price}/${insuranceUpdateSelectBox.insurance_limit}</option>
+											</c:forEach>	
+	                       			</select>
 								</th>
 								<th  height="60px" width="10%" class="text-center" style="background-color: #fafafa"><a style="color:red">*</a>차종코드</th>
 								<th  width="35%" class="text-left">
-									<select name="car_no" id="car_no" value=class="form-control" style="width:250px">
-										<option value="${carDetailUpdate.car_no}" style="color:black">${carDetailUpdate.car_no}</option>
-										<c:forEach items="${carDetailSelectBox}" var="carDetailSelectBox" varStatus="status">
-											<option value="${carDetailSelectBox.car_no}" style="color:black">${carDetailSelectBox.car_no}</option>
-										</c:forEach>
+									<select name="car_no" id="car_no" class="form-control" style="width:250px">
+										<option value="${carDetailUpdate.car_no}" style="color:black">${carDetailUpdate.car_manufacturer}/${carDetailUpdate.car_type}/${carDetailUpdate.car_name}(${carDetailUpdate.car_fuel})</option>
+											<c:forEach items="${carDetailSelectBox}" var="carDetailSelectBox" varStatus="status">
+												<option value="${carDetailSelectBox.car_no}" style="color:black">${carDetailSelectBox.car_manufacturer}/${carDetailSelectBox.car_type}/${carDetailSelectBox.car_name}(${carDetailSelectBox.car_fuel})</option>
+											</c:forEach>
 	                       			</select>
 								</th>
 							</tr>
@@ -192,11 +198,11 @@
 							<tr style="color:#808080;font-size:12pt">			
 								<th  height="60px" width="10%" class="text-center" style="background-color: #fafafa"><a style="color:red">*</a>성수기가</th>
 								<th  width="35%" class="text-left">
-									<input name="car_kind_price_1" type="text" size="30" value="${carDetailUpdate.car_kind_price_holiday}" class="form-control" style="width:250px">
+									<input name="car_kind_price_holiday" type="text" size="30" value="${carDetailUpdate.car_kind_price_holiday}" class="form-control" style="width:250px">
 								</th>
 								<th  height="60px" width="10%" class="text-center" style="background-color: #fafafa"><a style="color:red">*</a>극성수기가</th>
 								<th  width="35%" class="text-left">
-									<input name="car_kind_price_2" type="text" size="30" value="${carDetailUpdate.car_kind_price_h_holiday}" class="form-control" style="width:250px">
+									<input name="car_kind_price_h_holiday" type="text" size="30" value="${carDetailUpdate.car_kind_price_h_holiday}" class="form-control" style="width:250px">
 								</th>
 							</tr>
 						    <tr style="color:#808080;font-size:12pt">			
@@ -235,7 +241,7 @@
 							<tr style="font-size:10pt" height="60px">
 								<td align="center"></td>
 								<td align="right">
-									<button type="button" class="btn btn-primary"><a href="carDetail.do" style="color:white">목록</a></button>
+									<button type="button" class="btn btn-primary"><a href="carDetail.do?manager_id=${managerlog.manager_id}" style="color:white">목록</a></button>
 									<button type="button" class="btn btn-primary" onclick="check()">완료</button>
 								</td>
 							</tr>

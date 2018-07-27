@@ -4,23 +4,39 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="carkind.Carkind">
 	<resultMap id="carkindResult" type="Carkind">
+		<result property="branch_no" column="BRANCH_NO"/>
 		<result property="branch_name" column="BRANCH_NAME"/>
 		<result property="car_kind_no" column="CAR_KIND_NO"/>
 		<result property="branch_no" column="BRANCH_NO"/>
+		
 		<result property="insurance_no" column="INSURANCE_NO"/>
+		<result property="insurance_price" column="INSURANCE_PRICE"/>
+		<result property="insurance_name" column="INSURANCE_NAME"/>
+		<result property="insurance_limit" column="INSURANCE_LIMIT"/>
+		<result property="insurance_burden_price" column="INSURANCE_BURDEN_PRICE"/>
+		<result property="insurance_limit_age" column="INSURANCE_LIMIT_AGE"/>
+		<result property="insurance_limit_carrier" column="INSURANCE_LIMIT_CARRIER"/>
+		<result property="insurance_withdraw_at" column="INSURANCE_WITHDRAW_AT"/>
+		<result property="insurance_resist" column="INSURANCE_RESIST"/>
+		
 		<result property="car_no" column="CAR_NO"/>
-		<result property="car_kind_fuel" column="CAR_KIND_FUEL"/>
-		<result property="car_kind_name" column="CAR_KIND_NAME"/>
-		<result property="car_kind_type" column="CAR_KIND_TYPE"/>
-		<result property="car_kind_resist" column="CAR_KIND_RESIST"/>
-		<result property="car_kind_passenger" column="CAR_KIND_PASSENGER"/>
-		<result property="car_kind_trans" column="CAR_KIND_TRANS"/>
+		<result property="car_name" column="CAR_NAME"/>
+		<result property="car_manufacturer" column="MANUFACTURER"/>
+		<result property="car_fuel" column="CAR_FUEL"/>
+		<result property="car_type" column="CAR_TYPE"/>
+		<result property="car_passenger" column="CAR_PASSENGER"/>
+		<result property="car_trans" column="CAR_TRANS"/>
+		<result property="car_count" column="CAR_COUNT"/>
+		<result property="car_image" column="CAR_IMAGE"/>
+		<result property="car_rating" column="CAR_RATING"/>
+		<result property="car_withdraw_at" column="CAR_WITHDRAW_AT"/>
+		<result property="car_resist" column="CAR_RESIST"/>
+		
 		<result property="car_kind_count" column="CAR_KIND_COUNT"/>
-		<result property="car_kind_image" column="CAR_KIND_IMAGE"/>
 		<result property="car_kind_price_week" column="CAR_KIND_PRICE_WEEK"/>
 		<result property="car_kind_price_weekend" column="CAR_KIND_PRICE_WEEKEND"/>
-		<result property="car_kind_price_1" column="CAR_KIND_PRICE_1"/>
-		<result property="car_kind_price_2" column="CAR_KIND_PRICE_2"/>
+		<result property="car_kind_price_holiday" column="CAR_KIND_PRICE_HOLIDAY"/>
+		<result property="car_kind_price_h_holiday" column="CAR_KIND_PRICE_H_HOLIDAY"/>
 		<result property="car_kind_navi" column="CAR_KIND_NAVI"/>
 		<result property="car_kind_sensor" column="CAR_KIND_SENSOR"/>
 		<result property="car_kind_blackbox" column="CAR_KIND_BLACKBOX"/>
@@ -28,51 +44,69 @@
 		<result property="car_kind_sunroof" column="CAR_KIND_SUNROOF"/>
 		<result property="car_kind_camera" column="CAR_KIND_CAMERA"/>
 		<result property="car_kind_nonsmoke" column="CAR_KIND_NONSMOKE"/>
+		<result property="car_kind_resist" column="CAR_KIND_RESIST"/>
 		
 		<result property="manager_id" column="MANAGER_ID"/>
 	</resultMap>
 	<select id="carkindListI" resultType="Carkind">
-		select CAR_NO from CAR
+		select * from CAR where CAR_WITHDRAW_AT='N'
 	</select>
 	<select id="carkindList" resultType="Carkind" parameterType="String">
-		select * from CAR_KIND where BRANCH_NO=(select BRANCH_NO from MANAGER where MANAGER_ID=#{manager_id})
+		select * from CAR_KIND where BRANCH_NO=(select BRANCH_NO from MANAGER where MANAGER_ID=#{manager_id}) and CAR_KIND_WITHDRAW_AT='N'
 	</select>
-	<delete id="delete" parameterType="String">
-		delete from CAR_KIND where CAR_KIND_NO=#{car_kind_no}
-	</delete>
+	<update id="update" parameterType="String">
+		{call
+			declare
+			begin
+				update CAR_KIND set CAR_KIND_WITHDRAW_AT='Y' where CAR_KIND_NO=#{car_kind_no};
+				update CAR_INFO set CAR_INFO_WITHDRAW_AT='Y' where CAR_KIND_NO=#{car_kind_no};
+			end
+		}
+	</update>
 	<insert id="insert" parameterType="CarKind">
 		insert into CAR_KIND values(CAR_KIND_SEQ.NEXTVAL, #{branch_no}, 
-		#{insurance_no}, #{car_no}, 0, #{car_kind_price_week}, 
-		#{car_kind_price_weekend}, #{car_kind_price_1}, #{car_kind_price_2},
+		#{car_no}, #{insurance_no}, 0, #{car_kind_price_week}, 
+		#{car_kind_price_weekend}, #{car_kind_price_holiday}, #{car_kind_price_h_holiday},
 		#{car_kind_navi}, #{car_kind_sensor}, #{car_kind_blackbox}, 
 		#{car_kind_bluetooth}, #{car_kind_sunroof}, #{car_kind_camera}, #{car_kind_nonsmoke},
+		0, 'N',
 		SYSDATE)
 	</insert>
 	<select id="carkindContentList" resultType="Carkind">
-		select * from CAR_KIND
-		where CAR_KIND_NO=#{car_kind_no}
+        select * from CAR_KIND, CAR, INSURANCE
+		where CAR_KIND.CAR_KIND_NO=#{car_kind_no}
+		and CAR.CAR_NO=CAR_KIND.CAR_NO
+        and INSURANCE.INSURANCE_NO=CAR_KIND.INSURANCE_NO
 	</select>
 	<select id="branchNoSelect" resultType="Carkind" parameterType="String">
 		select BRANCH_NO from BRANCH where BRANCH_NO=(select BRANCH_NO from MANAGER where MANAGER_ID=#{manager_id})
 	</select>
 	<select id="carSelectBox" resultType="Carkind">
-		select CAR_NO, CAR_NAME
+		select *
 		from CAR
 		where CAR_NO
-		!=(select CAR_NO from CAR_KIND where CAR_KIND_NO=#{car_kind_no})
+		!=(select CAR_NO from CAR_KIND where CAR_KIND_NO=#{car_kind_no}) and CAR_WITHDRAW_AT='N'
+	</select>
+	<select id="insuranceUpdateSelectBox" resultType="Carkind" parameterType="HashMap">
+		select *
+		from INSURANCE
+		where INSURANCE_NO
+		!=(select INSURANCE_NO from CAR_KIND where CAR_KIND_NO=#{car_kind_no}) and INSURANCE.INSURANCE_WITHDRAW_AT='N'
+		and BRANCH_NO=(select BRANCH_NO from MANAGER where MANAGER_ID=#{manager_id})
 	</select>
 	<select id="insuranceSelectBox" resultType="Carkind" parameterType="String">
-		select INSURANCE_NO, INSURANCE_NAME
+		select *
 		from INSURANCE
-		where BRANCH_NO= (select BRANCH_NO from MANAGER where MANAGER_ID=#{manager_id})
+		where BRANCH_NO
+		=(select BRANCH_NO from MANAGER where MANAGER_ID=#{manager_id}) and INSURANCE_WITHDRAW_AT='N'
 	</select>
 	<update id="carkindUpdate" parameterType="Carkind">
 		update CAR_KIND
 		set BRANCH_NO=#{branch_no}, INSURANCE_NO=#{insurance_no}, CAR_NO=#{car_no}, CAR_KIND_COUNT=#{car_kind_count}, 
 		CAR_KIND_PRICE_WEEK=#{car_kind_price_week},
 		CAR_KIND_PRICE_WEEKEND=#{car_kind_price_weekend},
-		CAR_KIND_PRICE_1=#{car_kind_price_1},
-		CAR_KIND_PRICE_2=#{car_kind_price_2},
+		CAR_KIND_PRICE_HOLIDAY=#{car_kind_price_holiday},
+		CAR_KIND_PRICE_H_HOLIDAY=#{car_kind_price_h_holiday},
 		CAR_KIND_NAVI=#{car_kind_navi},
 		CAR_KIND_SENSOR=#{car_kind_sensor},
 		CAR_KIND_BLACKBOX=#{car_kind_blackbox},
@@ -80,6 +114,7 @@
 		CAR_KIND_SUNROOF=#{car_kind_sunroof},
 		CAR_KIND_CAMERA=#{car_kind_camera},
 		CAR_KIND_NONSMOKE=#{car_kind_nonsmoke},
+		CAR_KIND_WITHDRAW_AT='N',
 		CAR_KIND_RESIST=SYSDATE
 		where CAR_KIND_NO=#{car_kind_no}
 	</update>

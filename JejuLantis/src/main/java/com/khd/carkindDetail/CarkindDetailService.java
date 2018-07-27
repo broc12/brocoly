@@ -14,5 +14,6 @@ public interface CarkindDetailService {
 	List<CarkindDetail> NotContentService(int car_kind_no);
 	void UpdateService(CarkindDetail carkind);
 	List<CarkindDetail> insuranceSelectService(String manager_id);
+	List<CarkindDetail> insuranceUpdateSelectService(String manager_id, int car_kind_no);
 	List<CarkindDetail> branchNoSelect(String manager_id);
 }

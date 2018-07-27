@@ -1,5 +1,6 @@
 package com.khd.carkindDetail;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -52,6 +53,15 @@ public class CarkindDetailDaoImpl implements CarkindDetailDao {
 	public List<CarkindDetail> branchNoSelect(String manager_id) {
 		List<CarkindDetail> branchNoSelect = sqlSession.selectList(ns_carkind+".branchNoSelect", manager_id);
 		return branchNoSelect;
+	}
+	@Override
+	public List<CarkindDetail> insuranceUpdateSelectBox(String manager_id, int car_kind_no) {
+		HashMap<String,Object> map = new HashMap<String,Object>();
+		map.put("manager_id", manager_id);
+		map.put("car_kind_no", car_kind_no);
+		
+		List<CarkindDetail> insuranceSelectBox = sqlSession.selectList(ns_carkind+".insuranceUpdateSelectBox", map);
+		return insuranceSelectBox;
 	}
 	
 }

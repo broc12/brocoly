@@ -22,7 +22,7 @@ public class ReviewController {
 	@RequestMapping(value="admin/list.do")
 	public ModelAndView list(@RequestParam("manager_id")String manager_id) {
 		List<ReviewContent> reviewList = rservice.listServiceAll(manager_id);
-		String view = "admin/list";
+		String view = "admin/reviews/list";
 		ModelAndView mv = new ModelAndView(view, "reviewList", reviewList);
 		return mv;
 	}
@@ -35,7 +35,7 @@ public class ReviewController {
 	@RequestMapping(value="admin/reviewContent.do")
 	public ModelAndView admin_reviewContent(@RequestParam("rent_review_no")String rent_review_no) {
 		List<ReviewContent> reviewContentList = rservice.reviewContentService(rent_review_no);
-		String view = "admin/reviewContent";
+		String view = "admin/reviews/reviewContent";
 		ModelAndView mv = new ModelAndView(view, "reviewContentList", reviewContentList);
 		return mv;
 		//return "admin/reviewContent";

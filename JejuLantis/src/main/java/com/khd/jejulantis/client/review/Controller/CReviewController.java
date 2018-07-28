@@ -25,13 +25,13 @@ public class CReviewController {
 		}else if(searchValue != null){
 			branch = rservice.selectService(searchValue);
 		}
-		String view = "rentcar/board";
+		String view = "rentcar/reviews/board";
 		ModelAndView mv = new ModelAndView(view, "branch", branch);
 		return mv;
 	}	
 	@RequestMapping(value="boardview.do")
 	public ModelAndView reviewContent(@RequestParam(value ="branch_no")int branch_no){
-		String view = "rentcar/boardview";
+		String view = "rentcar/reviews/boardview";
 		List<BranchName> branchContent = rservice.listServiceAll(branch_no);
 		ModelAndView mv = new ModelAndView(view, "branchContent", branchContent);
 		return mv;

@@ -24,7 +24,7 @@ public class CarkindDetailController {
 		List<CarkindDetail> carDetailWrite = cservice.listIService();
 		List<CarkindDetail> insuranceSelectBox = cservice.insuranceSelectService(manager_id);
 		List<CarkindDetail> branchNoSelect = cservice.branchNoSelect(manager_id);
-		String view = "admin/carkindDetailInsert";
+		String view = "admin/cartypeDetails/carkindDetailInsert";
 		ModelAndView mv = new ModelAndView(view, "carDetailWrite", carDetailWrite);
 		mv.addObject("insuranceSelectBox",insuranceSelectBox);
 		mv.addObject("branchNoSelect", branchNoSelect);
@@ -38,7 +38,7 @@ public class CarkindDetailController {
 		List<CarkindDetail> carDetailUpdate = cservice.ContentService(car_kind_no);
 		List<CarkindDetail> carDetailSelectBox = cservice.NotContentService(car_kind_no);
 		List<CarkindDetail> insuranceUpdateSelectBox = cservice.insuranceUpdateSelectService(manager_id,car_kind_no);
-		String view = "admin/carkindDetailUpdate";
+		String view = "admin/cartypeDetails/carkindDetailUpdate";
 		ModelAndView mv = new ModelAndView(view, "carDetailUpdate", carDetailUpdate);
 		mv.addObject("carDetailSelectBox", carDetailSelectBox);
 		mv.addObject("insuranceUpdateSelectBox",insuranceUpdateSelectBox);
@@ -55,7 +55,7 @@ public class CarkindDetailController {
 	public ModelAndView carDetailListContent(@RequestParam("car_kind_no")int car_kind_no) {
 		System.out.println("car_kind_no : " + car_kind_no);
 		List<CarkindDetail> carDetailContent = cservice.ContentService(car_kind_no);
-		String view = "admin/carkindDetailContent";
+		String view = "admin/cartypeDetails/carkindDetailContent";
 		ModelAndView mv = new ModelAndView(view, "carDetailContent", carDetailContent);
 		return mv;
 	}
@@ -110,7 +110,7 @@ public class CarkindDetailController {
 	public ModelAndView carDetailList(@RequestParam("manager_id")String manager_id) {
 		List<CarkindDetail> carDetailList = cservice.listService(manager_id);
 		System.out.println("manager_id : " + manager_id);
-		String view = "admin/carkindDetailList";
+		String view = "admin/cartypeDetails/carkindDetailList";
 		ModelAndView mv = new ModelAndView(view, "carDetailList", carDetailList);
 		return mv;
 	}

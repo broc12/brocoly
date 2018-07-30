@@ -37,14 +37,55 @@ function(){
             	"car_name":$("#searchcarname").val()},
             success:function(data){
             	console.log(data);
+            	var html = "<div id='inner'>";
     			if(!data){
-    				
+    				html += "<p>검색결과없음</p>";
     			}else{
     				$("#result").empty();
-    				var html = "<div id='inner'>";
     				if(data.length != 0){
-						for (var i=0; i<data.length; i++) {
-							html += "<div class='row'><div class='wrap-division'><div class='row'><div class='col-md-6 col-sm-6 animate-box'><div class='hotel-entry'>";
+						for (var i=0; i<data.length; i++) {							
+							html += "<div class='row'><div class='wrap-division'><div class='row'><div class='col-md-6 col-sm-6 animate-box' style='width:40%;padding:0px'>";
+							html += "<div class='hotel-entry' style='background-color:#f8fafb;padding:15px;height:410px'></br>";
+							html += "<span style='color:black;font-size:18pt'>"+ data[i].car_name +"</span>";
+							html += "<span style='color:black'>"+ data[i].car_manufacturer +"</span>";
+							html += "<img width='100%' weight='200' src='resources/car/2017Avante.png'/><div class='desc'>";
+							html += "<p align='center' style='color:#0090f0'>실시간 예약 가능 차량 : "+ data[i].cn +"</p>";
+							html += "</div></br><div class='desc'><p align='center'>";
+							html += "<span class='glyphicon glyphicon-road'>"+ data[i].car_type +"</span>";
+							html += "<span class='glyphicon glyphicon-user'>"+ data[i].car_passenger +"인승</span>";
+							html += "<span class='glyphicon glyphicon-tint'>"+ data[i].car_fuel +"</span>";
+							html += "</p></div></div></div><div class='col-md-6 col-sm-6 animate-box' style='padding:0px;width:60%'>";
+							html += "<div class='hotel-entry' style='background-color:white'><div class='desc' style='padding:15px;height:410px'></br>";
+							html += "<span style='font-size:18pt;color:black'>"+ data[i].blist[0].branch_name +"</span><div align='right'>";
+							html += "<span style='color:red;text-decoration: line-through'>43,000원</span>";
+							html += "span style='font-size:18pt;color:black'>32,400원</span>";
+							html += "</div><p class='star'><span><i class='icon-star-full'></i><i class='icon-star-full'></i>";
+							html += "<i class='icon-star-full'></i><i class='icon-star-full'></i><i class='icon-star-full'></i></span> 545 Reviews</p>";
+							html += "<span class='place'>"+ data[i].blist[0].car_kind_naviView + " " + data[i].blist[0].car_kind_sensorView +" "+ data[i].blist[0].car_kind_bluetoothView +" "+ data[i].blist[0].car_kind_blackboxView +" "+ data[i].blist[0].car_kind_sunroofView +" "+ data[i].blist[0].car_kind_cameraView +" "+ data[i].blist[0].car_kind_nonsmokeView +"</span>";
+							html += "<div id='board'><table border='1' style='border-bottom:none;border-left:hidden;border-right:hidden' width='100%'  cellpadding='0' cellspacing='0'>";
+							html += "<tr style='color:#717886;font-size:8pt'>";
+							html += "<th  height='30px' width='23%' class='text-center' style='background-color: #f8fafb;border-right: hidden;'>대여업체</th>";
+							html += "<th  width='7%' class='text-center' style='background-color: #f8fafb;border-right: hidden;'>평점</th>";
+							html += "<th  width='12%' class='text-center' style='background-color: #f8fafb;border-right: hidden;'>대여료</th>";
+							html += "<th  width='12%' class='text-center' style='background-color: #f8fafb;border-right: hidden;'>보험료</th>";
+							html += "<th  width='12%' class='text-center' style='background-color: #f8fafb;border-right: hidden;'>보상한도</th>";
+							html += "<th  width='12%' class='text-center' style='background-color: #f8fafb;border-right: hidden;'>총 금액</th>";
+							html += "<th  width='17%' class='text-center' style='background-color: #f8fafb;border-right: hidden;'></th></tr>";
+							for (var j=0; j<data[i].blist.length; j++) {
+								html += "<tr style='font-size:8pt;border-bottom: hidden'>";
+								html += "<td height='50px' align='center' style='border-right: hidden'>"+ data[i].blist[j].branch_name +"</td>";
+								html += "<td align='center' style='border-right: hidden'>"+ 4.5 +"</td>";
+								html += "<td align='center' style='border-right: hidden'>"+ data[i].blist[j].car_kind_price_weekView +"원</td>";
+								html += "<td align='center' style='border-right: hidden'>"+ data[i].blist[j].insurance_priceView +"원</td>";
+								html += "<td align='center' style='border-right: hidden'>"+ "1,000만" +"원</td>";
+								html += "<td align='center' style='border-right: hidden'>"+ data[i].blist[j].totView +"원</td>";
+								html += "<td align='center'><button type='button' style='background-color:#f8fafb;border:0'><a href='rentcar.do' style='color:black;text-decoration:none'>실시간예약</a></button></td></tr>";
+							}
+							html += "</table></div></div></div></div></div></div></div>";
+						}
+    				}else{
+							
+							/*html += "<div class='row'><div class='wrap-division'><div class='row'><div class='col-md-6 col-sm-6 animate-box'><div class='hotel-entry'>";
 							html += "<h3><a>" + data[i].car_name + "</a></h3><span class='place'>" + data[i].car_manufactur + "</span>";
 							html += "<a class='hotel-img' style='background-image: url(resources/rentcar/images/car1.jpg);'>";
 							html += "<p class='price'><span>" + data[i].mtotView + "</span><small>/24시간</small></p>";
@@ -74,9 +115,8 @@ function(){
 								html += "<button type='button'><a href='rentcar.do?kno=" + data[i].blist[j].car_kind_no + "' style='color:black'>실시간예약</a></button></td></tr>";		
 							}
 							html += "</table></div></div></div></div></div></div></div><hr>";
-						}
-						
-					}else{
+						}*/
+    					html += "<p>검색결과없음</p>";
 					}
     				html += "</div>";
     				$("#result").append(html);
@@ -96,13 +136,12 @@ function(){
 		  startDate:"today"
 		});
 	$('#date1').on('changeDate', function() {
-	    $('#date2').val(
-	        $('#date1').datepicker('getFormattedDate')
-	    );
-	    var b = $('#date1').datepicker('getFormattedDate');
-	    var c = new Date(b);
-	    $('#date2').datepicker('setStartDate',c.getFullYear()+"-"+(c.getMonth()+1)+"-"+c.getDate());
-	    c.setDate(c.getDate()+7);
+	    var temp = $('#date1').datepicker('getFormattedDate');
+	    var c = new Date(temp);
+	    c.setDate(c.getDate()+1);
+	    $('#date2').val( c.getFullYear()+"-"+("0"+(c.getMonth()+1)).slice(-2) +"-"+("0"+(c.getDate())).slice(-2) );
+	    $('#date2').datepicker('setStartDate',c.getFullYear()+"-"+ (c.getMonth()+1) +"-" + c.getDate());
+	    c.setDate(c.getDate()+6);
 	    $('#date2').datepicker('setEndDate',c);
 	});
 	jQuery('#date2').datepicker({
@@ -162,6 +201,8 @@ function(){
 	        		return false;
 	        	}
 	        	$("#searchform").submit();
+        	}else{
+        		alert("서버와 연결에 실패하엿습니다.");
         	}
         }
 	});

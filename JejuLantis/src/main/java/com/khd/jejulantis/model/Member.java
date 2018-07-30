@@ -8,7 +8,7 @@ public class Member {
 	String member_id;
 	String member_pwd;
 	String member_name;
-	java.sql.Date member_birth;
+	String member_birth;
 	String member_sex;
 	String member_local;
 	String member_tel;
@@ -23,7 +23,7 @@ public class Member {
 	public Member(String member_id) {
 		this.member_id = member_id;
 	}
-	public Member(long member_no, String member_id, String member_pwd, String member_name, Date member_birth,
+	public Member(long member_no, String member_id, String member_pwd, String member_name, String member_birth,
 			String member_sex, String member_local, String member_tel, String member_email, String member_sms_at,
 			String member_email_at, Date member_resist_member, String member_withdraw_at, Date member_withdraw_date) {
 		super();
@@ -66,10 +66,10 @@ public class Member {
 	public void setMember_name(String member_name) {
 		this.member_name = member_name;
 	}
-	public Date getMember_birth() {
+	public String getMember_birth() {
 		return member_birth;
 	}
-	public void setMember_birth(Date member_birth) {
+	public void setMember_birth(String member_birth) {
 		this.member_birth = member_birth;
 	}
 	public String getMember_sex() {

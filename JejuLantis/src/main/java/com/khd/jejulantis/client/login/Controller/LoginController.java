@@ -42,7 +42,7 @@ public class LoginController {
 				out.close();
 			}
 			if (loginDAO.loginCheck(member) == false) {
-				out.println("<script>alert('�α���������Ȯ���ϼ���'); history.go(-1); </script>");
+				out.println("<script>alert('로그인 정보를 확인해주세요'); history.go(-1); </script>");
 				out.flush();
 				out.close();
 			}

@@ -38,11 +38,11 @@ public class HomeController {
 	}*/
 	@RequestMapping(value = "find_id_form.do",method=RequestMethod.GET)
 	public String find_id_form() {
-		return "rentcar/find_id_form";
+		return "rentcar/users/find_id_form";
 	}
 	@RequestMapping(value = "find_pwd_form.do",method=RequestMethod.GET)
 	public String find_pwd_form() {
-		return "rentcar/find_pwd_form";
+		return "rentcar/users/find_pwd_form";
 	}
 	/*@RequestMapping(value="rentcar.do",method=RequestMethod.GET)
 	public String rentcar() {
@@ -50,20 +50,20 @@ public class HomeController {
 	}*/
 	@RequestMapping(value="member.do",method=RequestMethod.GET)
 	public String member() {
-		return "rentcar/member";
+		return "rentcar/users/member";
 	}
 	@RequestMapping(value="login.do",method=RequestMethod.GET)
 	public String login() {
-		return "rentcar/login";
+		return "rentcar/users/login";
 	}
 	/*@RequestMapping(value="board.do")
 	public String list(){
 		return "rentcar/board";
 	}*/
-	/*@RequestMapping(value="mypage.do",method=RequestMethod.GET)
-	public String mypage() {
-		return "rentcar/mypage";
-	}*/
+//	@RequestMapping(value="mypage.do",method=RequestMethod.GET)
+//	public String mypage() {
+//		return "rentcar/users/mypage";
+//	}
 	@RequestMapping(value="input.do",method=RequestMethod.GET)
 	public String input() {
 		return "rentcar/input";

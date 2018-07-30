@@ -33,11 +33,11 @@ public class ManagerController {
 	
 	@RequestMapping(value="admin/login.do",method=RequestMethod.GET)
 	public String login() {
-		return "admin/login";
+		return "admin/adminUsers/login";
 	}
 	@RequestMapping(value="admin/register.do",method=RequestMethod.GET)
 	public String register() {
-		return "admin/register";
+		return "admin/adminUsers/register";
 	}
 	@RequestMapping(value="admin/manager.do", method=RequestMethod.POST)
 	public String join(Manager manager,@RequestParam(value="hp1")String hp1,@RequestParam(value="hp2")String hp2,@RequestParam(value="hp3")String hp3,@RequestParam(value="hp4")String hp4,@RequestParam(value="hp5")String hp5,@RequestParam(value="hp6")String hp6,@RequestParam(value="birth1")String birth1,@RequestParam(value="birth2")String birth2,@RequestParam(value="birth3")String birth3) {		
@@ -53,18 +53,19 @@ public class ManagerController {
 		manager.setManager_tel2(manager_tel2);
 		manager.setManager_birth(manager_birth);
 		boolean flag = managerService.joinService(manager);
-		return "admin/login";
+		return "admin/adminUsers/login";
 	}
-	@RequestMapping(value = "admin/post", method = RequestMethod.GET)
+	@RequestMapping(value = "admin/adminUsers/post", method = RequestMethod.GET)
 	public void get(){
 		
 	}
-	@RequestMapping(value = "admin/post", method = RequestMethod.POST)
+	@RequestMapping(value = "admin/adminUsers/post", method = RequestMethod.POST)
 	public ModelAndView post(Locale locale,Branch branch,HttpServletRequest request, @RequestParam(value = "branch_name", required=false) String branch_name){
 
 		ModelAndView result = new ModelAndView();
 		if(branch_name != ""){
 			List<Branch> branchList = managerService.postService(branch_name);
+			System.out.println("branchname"+ branch_name);
 			
 			for (Branch post : branchList) {
 				
@@ -72,14 +73,14 @@ public class ManagerController {
 				System.out.println("업체주소"+post.getBranch_local());
 				System.out.println("업체번호"+post.getBranch_member_tel());				
 			}
-			
+			System.out.println("branchname11"+ branchList.size());
 			result.addObject("result", branchList);
-			result.setViewName("admin/post");
+			result.setViewName("admin/adminUsers/post");
 			return result;
 			
 		}else{
 			result.addObject("nullResult", "검색해주세요.");
-			result.setViewName("admin/post");
+			result.setViewName("admin/adminUsers/post");
 			return result;
 		}
 	}

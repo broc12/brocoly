@@ -213,7 +213,7 @@
 //	var hp2 = document.getElementById('hp2'); 								
 //	var hp3 = document.getElementById('hp3'); 									
 // 	var tel = hp1.value + "-" + hp2.value + "-" + hp3.value;
-	if(confirm("회원가입을 하시겠습니까?")){
+// 	if(confirm("회원가입을 하시겠습니까?")){
 // 		if(idck==0){
 // 			alert('아이디 중복체크를 해주세요');
 // 			document.f.member_id.focus()
@@ -411,27 +411,36 @@
 								</div>
 								<div class="col-md-6">
 									<label for="lname" id="lname">생년월일</label>
+<!-- 									<div class="col-md-6 padding-bottom"> -->
+<%-- 									<label for="fname">생년월일</label><input type="text" value="${nn.member_birth}" name="member_name" id="fname" class="form-control" placeholder="NAME"> --%>
+<!-- 								</div> -->
 								<script language="Javascript">							
+// 							 
+
 								
 									var today = new Date();
 									var toyear = parseInt(today.getFullYear());
-									var start = toyear - 5
-									var end = toyear - 70;
+ 									var start = toyear - 5
+ 									var end = toyear - 70;
 									
-									document.write("<font size=2><select name=birth1 id=birth1 style=width:29%;height:50px>");
-									document.write("<option value='' selected>");
+									document.write("<font size=2><select name='birth1' id='birth1' style='width:29%;height:50px'>");
+									document.write("<option value="+start+" selected>");
 									for (i=start;i>=end;i--) document.write("<option>"+i);
 									document.write("</select>년  "); 
 									
-									document.write("<select name=birth2 id=birth2 style=width:30%;height:50px>");
+									document.write("<select name='birth2' id='birth2' style='width:30%;height:50px'>");
 									document.write("<option value='' selected>");
-									for (i=1;i<=12;i++) document.write("<option>"+i);
+ 									for (i=1;i<=12;i++) document.write("<option>"+i);
 									document.write("</select>월  ");
 									
-									document.write("<select name=birth3 id=birth3 style=width:30%;height:50px>");
+ 									document.write("<select name='birth3' id='birth3' style='width:30%;height:50px'>");
 									document.write("<option value='' selected>");
 									for (i=1;i<=31;i++) document.write("<option>"+i); 
 									document.write("</select>일   </font>");
+									
+									   var obj = document.getElementById('birth1');
+			 						   var text = obj.options[obj.selectedIndex].value;
+			 						   alert(text); 
 									
 								</script>
 								</div>
@@ -473,34 +482,35 @@
 <!-- 	<td><input type="text" name="id" id="id" /> <input type="button" value="중복확인" name="confirm_id" -->
 <!-- 	id="idck" onclick="confirmId(this.form)"></td> -->
 <!-- 	</tr> -->
-							<div class="row form-group">
+<!-- 							<div class="row form-group"> -->
 								<div class="col-md-6 padding-bottom">
 									<label for="fname">이메일</label></br>									
 									<input type="text" name="member_email"  value="${nn.member_email}" id="member_email" class="form-control" style="width:75%;height:50px"/>
 									<input type="button" value="중복확인" style="border-radius:0px;background-color:#eea236;color:white" class="btn btn-dark" name="confirm_email" id="emailck">		
 								</div>
-								<div class="col-md-6">
-									<label for="lname">연락처</label></br>
-									<select id="hp1" name="hp1" style=width:29%;height:50px>
-<%-- 									<option value="${nn.member_hp1}" style="color:black">${nn.hp1}</option> --%>
-									   <option value="010"  selected> 010 </option>
-									   <option value="011"> 011 </option>
-									   <option value="016"> 016 </option>
-									   <option value="017"> 017 </option>
-									   <option value="018"> 018 </option>
-									   <option value="019"> 019 </option>
-									</select>
-									-
-									<input type="text" id="hp2" name="hp2" size="2" maxlength="4" style=width:29%;height:50px>
-									-
-									<input type="text" id="hp3" name="hp3" size="2" maxlength="4" style=width:29%;height:50px>
-									<script type="text/javascript">
-										var target = document.getElementById("member_tel");
-										target.options[target.selectedIndex].text
-									</script>
-									<input type="hidden" id="member_tel" name="member_tel" >
-								</div>
-							</div>
+								<label for="fname">연락처</label></br>									
+									<input type="text" name="member_tel"  value="${nn.member_tel}" id="member_tel" class="form-control" style="width:75%;height:50px"/>
+<!-- 								<div class="col-md-6"> -->
+<!-- 									<label for="lname">연락처</label></br> -->
+									
+<!-- 									<select id="hp1" name="hp1" style=width:29%;height:50px> -->
+									
+<%-- <%-- 									<option value="${nn.member_hp1}" style="color:black">${nn.hp1}</option> --%> 
+<!-- 									   <option value="010"  selected> 010 </option> -->
+<!-- 									   <option value="011"> 011 </option> -->
+<!-- 									   <option value="016"> 016 </option> -->
+<!-- 									   <option value="017"> 017 </option> -->
+<!-- 									   <option value="018"> 018 </option> -->
+<!-- 									   <option value="019"> 019 </option> -->
+<!-- 									</select> -->
+<!-- 									- -->
+<%-- 									<input type="text" id="hp2" name="hp2" value="${nn.member_tel}" s size="2" maxlength="4" style=width:29%;height:50px> --%>
+<!-- 									- -->
+<!-- 									<input type="text" id="hp3" name="hp3" size="2" maxlength="4" style=width:29%;height:50px> -->
+									
+<!-- 									<input type="hidden" id="member_tel" name="member_tel" > -->
+<!-- 								</div> -->
+<!-- 							</div> -->
 <!-- onclick="confirmEmail(this.form) -->
 <!-- <label for="subject">번호</label> <input type="text" name="tel" -->
 <!-- id="tel" placeholder="phone number" maxlength="13" /> -->

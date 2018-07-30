@@ -93,6 +93,7 @@
 <script type="text/javascript">
 //아이디 체크여부 확인 (아이디 중복일 경우 = 0 , 중복이 아닐경우 = 1 )
 var idck = 0;
+var emailck = 0;
 $(document).ready(function() {
 	//emailck 버튼을 클릭했을 때 
  $("#emailck").click(function() {
@@ -111,17 +112,6 @@ $(document).ready(function() {
 				return false;
 			
 	        }
-// 	        if (document.f.email.value == "") {
-// 				alert("이메일을 입력하지 않았습니다.")
-// 				document.f.email.focus()
-// 				return false;
-// 			}									        								 
-// 			if (regex.test(email2) === false) {
-// 				alert("잘못된 이메일 형식입니다.");
-// 				document.f.email.value=""
-// 				document.f.email.focus()
-// 				return false;
-// 			}
 	        //email에 공백 사용하지 않기
 	        if (document.f.member_email.value.indexOf(" ") >= 0) {
 	            alert("email에 공백을 사용할 수 없습니다.")
@@ -145,15 +135,15 @@ $(document).ready(function() {
                     //아이디가 존제할 경우 빨깡으로 , 아니면 파랑으로 처리하는 디자인
                     $("#divInputId").addClass("has-error")
                     $("#divInputId").removeClass("has-success")
-                    $("#member_id").focus();				                
+                    $("#member_email").focus();				                
                 } else {
                     alert("사용가능한 email입니다.");
                     //아이디가 존제할 경우 빨깡으로 , 아니면 파랑으로 처리하는 디자인
                     $("#divInputId").addClass("has-success")
                     $("#divInputId").removeClass("has-error")
-                    $("#member_tel").focus();
+                    $("#emailCheck").val("emailCheck");
                     //아이디가 중복하지 않으면  idck = 1 
-                    idck = 1;								                    
+                    emailck = 1;						                    
                 }
             },
             error : function(error) {								                
@@ -218,6 +208,7 @@ $(document).ready(function() {
                     $("#divInputId").addClass("has-success")
                     $("#divInputId").removeClass("has-error")
                     $("#member_pwd").focus();
+                    $("#idCheck").val("idCheck");
                     //아이디가 중복하지 않으면  idck = 1 
                     idck = 1;								                    
                 }
@@ -228,8 +219,17 @@ $(document).ready(function() {
         });
     });
 });
-
+function inputIdChk(){
+	document.f.idDuplication.value = "idUncheck";
+}
+function inputEmailChk(){
+	document.f.emailDuplication.value = "emailUncheck";
+}
 function sendIt() {
+	
+	var year = Number(document.f.birth1.value);
+	var month = Number(document.f.birth2.value);
+    var day = Number(document.f.birth3.value);
 	var email2 = document.f.member_email.value;
 	var tel2 = document.f.member_tel.value;
 	var regex = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/;								         
@@ -237,15 +237,18 @@ function sendIt() {
 	var regPhone = /(01[0|1|6|9|7])[-](\d{3}|\d{4})[-](\d{4}$)/;
 	var hp = '01012345678';
 	hp = hp.replace(/(^02.{0}|^01.{1}|[0-9]{3})([0-9]+)([0-9]{4})/,"$1-$2-$3");
-//	var hp1 = document.getElementById('hp1'); 
-
-//	var hp2 = document.getElementById('hp2'); 								
-//	var hp3 = document.getElementById('hp3'); 									
-// 	var tel = hp1.value + "-" + hp2.value + "-" + hp3.value;
+	var today = new Date(); // 날자 변수 선언
+    var yearNow = today.getFullYear();
+    var adultYear = yearNow-20;
 	if(confirm("회원가입을 하시겠습니까?")){
-		if(idck==0){
+		if(document.f.idDuplication.value != "idCheck"){
 			alert('아이디 중복체크를 해주세요');
 			document.f.member_id.focus()
+			return false;
+		}
+		if(document.f.emailDuplication.value != "emailCheck"){
+			alert('이메일 중복체크를 해주세요');
+			document.f.member_email.focus()
 			return false;
 		}
 //비밀번호 입력여부 체크
@@ -299,16 +302,32 @@ function sendIt() {
 		    document.f.lname.focus()
 		    return false;
 		} 
+	    if (year < 1900 || year > adultYear){
+	          alert("년도를 확인하세요. "+adultYear+"년생 이전 출생자만 등록 가능합니다.");
+	          return false;
+	     }
 	    if (document.f.birth2.value == "") {
 		    alert(" 월 을 입력하지 않았습니다.")
 		    document.f.lname.focus()
 		    return false;
 	  	}  
+	    if ((month==4 || month==6 || month==9 || month==11) && day==31) {
+	          alert(month+"월은 31일이 존재하지 않습니다.");
+	          return false;
+	     }
 	    if (document.f.birth3.value == "") {
 		    alert(" 일 을 입력하지 않았습니다.")
 		    document.f.lname.focus()
 		    return false;
 	  	}
+	    if (month == 2) {
+	          var isleap = (year % 4 == 0 && (year % 100 != 0 || year % 400 == 0));
+	          if (day>29 || (day==29 && !isleap)) {
+	               alert(year + "년 2월은  " + day + "일이 없습니다.");
+	               return false;
+	          }
+	     }
+	    
 	    if (document.f.people.value == "pp") {
 		    alert(" 지역 을 입력하지 않았습니다.")
 		    document.f.lname.focus()
@@ -423,8 +442,9 @@ function sendIt() {
 							<div class="row form-group">
 								<div class="col-md-6 padding-bottom">
 									<label for="fname">아이디</label></br>
-									<input type="text" name="member_id" id="member_id" style="width:75%;height:50px"/>
+									<input type="text" name="member_id" onkeydown="inputIdChk()" id="member_id" style="width:75%;height:50px"/>
 									<input type="button" value="중복확인" style="border-radius:0px;background-color:#eea236;color:white" class="btn btn-dark" name="confirm_id" id="idck" onclick="confirmId(this.form)">		
+									<input type="hidden" id="idCheck" name="idDuplication" value="idUncheck">
 								</div>
 							</div>
 							<div class="row form-group">
@@ -467,7 +487,14 @@ function sendIt() {
 									for (i=1;i<=31;i++) document.write("<option>"+i); 
 									document.write("</select>일   </font>");
 									
+									var birth1 = $("#birth1").val();
+									var birth2 = $("#birth2").val();
+									var birth3 = $("#birth3").val();
+									var manager_birth = birth1+birth2+birth3;
+									$("#member_birth").val(manager_birth);
+									
 									</script>
+									<input type="hidden" id="member_birth" name="member_birth" >
 								</div>
 							</div>
 							<div class="row form-group">
@@ -503,8 +530,9 @@ function sendIt() {
 							<div class="row form-group">
 								<div class="col-md-6 padding-bottom">
 									<label for="fname">이메일</label></br>
-									<input type="text" name="member_email" id="member_email" style="width:75%;height:50px"/>
+									<input type="text" name="member_email" onkeydown="inputEmailChk()" id="member_email" style="width:75%;height:50px"/>
 									<input type="button" value="중복확인" style="border-radius:0px;background-color:#eea236;color:white" class="btn btn-dark" name="confirm_email" id="emailck">		
+									<input type="hidden"  id="emailCheck" name="emailDuplication" value="emailUncheck" >  
 								</div>
 								<div class="col-md-6">
 									<label for="lname">연락처</label></br>

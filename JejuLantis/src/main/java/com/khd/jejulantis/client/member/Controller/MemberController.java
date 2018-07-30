@@ -33,22 +33,11 @@ public class MemberController {
 	@RequestMapping(value = "member/memberjoin", method = RequestMethod.POST)
 	public String join(Member member,@RequestParam(value="hp1")String hp1,@RequestParam(value="hp2")String hp2,@RequestParam(value="hp3")String hp3,@RequestParam(value="birth1")String birth1,@RequestParam(value="birth2")String birth2,@RequestParam(value="birth3")String birth3, HttpSession session) {
 		//@RequestParam(value="member_name")String member_name,@RequestParam(value="member_id")String member_id,@RequestParam(value="member_pwd")String member_pwd,@RequestParam(value="hp1")String hp1,@RequestParam(value="hp2")String hp2,@RequestParam(value="hp3")String hp3,@RequestParam(value="birth1")String birth1,@RequestParam(value="birth2")String birth2,@RequestParam(value="birth3")String birth3,@RequestParam(value="member_local")String member_local,@RequestParam(value="member_email")String member_email,@RequestParam(value="member_sms_at", required=false)String member_sms_at, HttpSession session) {
-		String totalbirth = birth1+"-"+birth2+"-"+birth3;
+		String member_birth = birth1+"-"+birth2+"-"+birth3;
 		String member_tel = hp1+"-"+hp2+"-"+hp3;
-		java.sql.Date dd = null;
-		java.util.Date d = null;
-		try {
-			System.out.println(totalbirth);
-		d = new SimpleDateFormat("yyyy-MM-dd").parse(totalbirth);
-		}catch(ParseException pe) {}
-        dd = new java.sql.Date(d.getTime());
         member.setMember_tel(member_tel);
-		member.setMember_birth(dd);
-        boolean flag = memberService.joinService(member);
-		LoginInfo log = null;
-		if(flag) {
-			log = new LoginInfo(member.getMember_id());
-		}	
+		member.setMember_birth(member_birth);
+        boolean flag = memberService.joinService(member);		
 		return "redirect:../login.do";		
 	}
 	@RequestMapping(value="mypage.do",method=RequestMethod.GET)
@@ -60,7 +49,7 @@ public class MemberController {
 		Member nn = memberService.mypageService(member_id);
 		model.addAttribute("nn", nn);
 		System.out.println("id :" + nn.getMember_id());
-		return "rentcar/mypage";
+		return "rentcar/mypages/mypage";
 	
 	}
 	 @RequestMapping(value = "/idcheck.do" , method = RequestMethod.POST)
@@ -103,7 +92,7 @@ public class MemberController {
 		 int dm = memberService.deleteService(member_id);
 		 session.removeAttribute("log");
 		 System.out.println("idwqeqwqwe:"+ member_id);
-			return "rentcar/login";
+			return "rentcar/users/login";
 		
 		}
 		@RequestMapping(value = "/find_id.do", method = RequestMethod.POST)

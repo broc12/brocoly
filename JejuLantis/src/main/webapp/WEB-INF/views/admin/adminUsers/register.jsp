@@ -204,14 +204,6 @@ function sendIt() {
 			document.f.manager_email.focus()
 			return false;
 		}
-// 		var flg = true;
-// 		function off(id){
-// 		if(!document.form.manager_id.value==""){
-// 		document.form.manager_id.disabled=flg;
-
-		
-// 		flg = !flg;
-// 		}
 //비밀번호 입력여부 체크
 		if (document.f.manager_pwd.value == "") {
 			alert("비밀번호를 입력하지 않았습니다.")
@@ -331,7 +323,7 @@ function sendIt() {
 <script type="text/javascript">
     function branchOpen() {
         alert("test post open");
-        win_post = window.open('./post', "post",
+        win_post = window.open('./adminUsers/post', "post",
 				"toolbar=no ,width=450 ,height=400 ,directories=yes,"
 						+ "status=yes,scrollbars=yes,menubar=yes");
 <%--         var win_post = window.open('<%=request.getContextPath()%>/admin/register/post',  --%>

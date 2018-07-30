@@ -20,6 +20,7 @@ public class ManagerDaoImpl implements ManagerDao{
 	public boolean join(Manager manager) {
 		
 		int insert = sql.insert(ns+".managerresist", manager);
+		System.out.println("branchname"+ manager.getBranch_no());
 		return false;
 	}
 
@@ -27,7 +28,6 @@ public class ManagerDaoImpl implements ManagerDao{
 	public List<Branch> post(String branch) {
 		
 		List<Branch> Select = sql.selectList(ns+".branchcheck", branch);
-	
 		return Select;
 	}
 

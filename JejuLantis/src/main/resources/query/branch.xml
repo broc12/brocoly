@@ -26,6 +26,9 @@
 	<result column="BRANCH_RULE" property="branch_rule"/>
 	<result column="BRANCH_RATING" property="branch_rating"/>
 	<result column="BRANCH_RESIST" property="branch_resist"/>
+	<result column="BRANCH_LATI" property="branch_lait"/>
+	<result column="BRANCH_LONG" property="branch_long"/>
+	
 </resultMap>
 
 <!-- 	select -->
@@ -37,7 +40,7 @@
 		insert into BRANCH values(BRANCH_seq.NEXTVAL,#{branch_name},#{branch_tel},#{branch_fax},
 		#{branch_local},#{branch_business_no},#{branch_bankaccount},#{branch_member_name},#{branch_member_tel},
 		#{branch_member_tel2},#{branch_email},#{branch_logo},#{branch_comfee},'N',#{branch_busspot},#{branch_bustime}
-		,#{branch_busgap},#{branch_boss},#{branch_today},#{branch_todaytime},#{branch_rule},0,SYSDATE)
+		,#{branch_busgap},#{branch_boss},#{branch_today},#{branch_todaytime},#{branch_rule},0,SYSDATE,null,null)
 	</insert>
 	
 	<select id="mySubject" resultType="Branch">

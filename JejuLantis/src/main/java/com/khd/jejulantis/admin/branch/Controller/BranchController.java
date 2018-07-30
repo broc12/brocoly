@@ -21,7 +21,7 @@ public class BranchController {
 	@RequestMapping(value="admin/enter.do",method=RequestMethod.GET)
 	public ModelAndView enter() {
 		List<Branch>list = service.listService();
-		String view = "admin/enter";
+		String view = "admin/branchs/enter";
 		ModelAndView mv = new ModelAndView(view,"list",list);
 		return mv;	
 	}
@@ -34,14 +34,14 @@ public class BranchController {
 	@RequestMapping(value="admin/branchSubject.do",method=RequestMethod.GET)
 	public ModelAndView branchModify(@RequestParam("branch_no")long branch_no) {
 		List<Branch>subject = service.subjectService(branch_no);
-		String view = "admin/branchModify";
+		String view = "admin/branchs/branchModify";
 		ModelAndView mv = new ModelAndView(view,"subject",subject);
 		return mv;
 	}
 	@RequestMapping(value="admin/branchfull.do",method=RequestMethod.GET)
 	public ModelAndView branchfull(@RequestParam("branch_no")long branch_no) {
 		List<Branch>subject = service.fullService(branch_no);
-		String view = "admin/branchfull";
+		String view = "admin/branchs/branchfull";
 		ModelAndView mv = new ModelAndView(view,"subject",subject);
 		return mv;
 	}
@@ -58,6 +58,6 @@ public class BranchController {
 	}
 	@RequestMapping(value="admin/branch.do",method=RequestMethod.GET)
 	public String branch() {
-		return "admin/branch";
+		return "admin/branchs/branch";
 	}
 }

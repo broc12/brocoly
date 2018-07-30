@@ -87,7 +87,8 @@
 			<div class="col-md-6 col-md-offset-3" align="center">
 				</br></br></br><a href="board.do?searchValue=SCORE">·평점순</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				<a href="board.do?searchValue=NEW">·최신순</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				<a href="board.do?searchValue=SALE">·후기 많은순</a>
+				<a href="board.do?searchValue=SALE">·후기 많은순</a>&nbsp;&nbsp;&nbsp;
+				<a href="test.do">테스트</a>
 			</div>
 				
 		<div class="colorlib-wrap">
@@ -95,7 +96,6 @@
 					<div class="col-md-9">
 						<div class="row" style="margin-right: -400px; margin-left: -80px">
 							<div class="wrap-division" >
-							
 							<!-- <뿌려주기 start> -->
 								<c:forEach items="${branch}" var="branch" varStatus="status">
 				
@@ -249,4 +249,3 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 
 	</body>
 </html>
-

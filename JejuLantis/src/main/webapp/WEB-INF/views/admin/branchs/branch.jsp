@@ -105,9 +105,55 @@
         	
         	jQuery("#branch_today").val(isChecked);
             document.f.submit();
-         }
-          
-     </script>
+         }    
+    </script>
+    <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+	<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f0cfd90b11f1fceed206c4f201756973&libraries=services"></script>
+    <script>
+    var mapContainer = document.getElementById('map')//, // 지도를 표시할 div
+    var geocoder = new daum.maps.services.Geocoder();
+    function DaumPostcode() {
+        new daum.Postcode({
+            oncomplete: function(data) {
+                // 각 주소의 노출 규칙에 따라 주소를 조합한다.
+                // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+                var fullAddr = data.address; // 최종 주소 변수
+                var extraAddr = ''; // 조합형 주소 변수
+                // 기본 주소가 도로명 타입일때 조합한다.
+                if(data.addressType === 'R'){
+                    //법정동명이 있을 경우 추가한다.
+                    if(data.bname !== ''){
+                        extraAddr += data.bname;
+                    }
+                    // 건물명이 있을 경우 추가한다.
+                    if(data.buildingName !== ''){
+                        extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+                    }
+                    // 조합형주소의 유무에 따라 양쪽에 괄호를 추가하여 최종 주소를 만든다.
+                    fullAddr += (extraAddr !== '' ? ' ('+ extraAddr +')' : '');
+                }
+                // 주소 정보를 해당 필드에 넣는다.
+                document.getElementById("address").value = fullAddr;
+                // 주소로 상세 정보를 검색
+                geocoder.addressSearch(data.address, function(results, status) {
+                    // 정상적으로 검색이 완료됐으면
+                    if (status === daum.maps.services.Status.OK) {
+                        var result = results[0]; //첫번째 결과의 값을 활용
+                        // 해당 주소에 대한 좌표를 받아서
+                        var coords = new daum.maps.LatLng(result.y, result.x);
+                        //alert(coords);
+                        result.y
+                        var lan = ""+result.y;
+                      	var lon = ""+result.x;
+                      	document.getElementById("branch_lati").value = lan;
+                      	document.getElementById("branch_long").value = lon;
+        				//alert(lan);
+                    }
+                });
+            }
+        }).open();
+    }
+</script>
   <div class="content-wrapper">
     <div class="container-fluid">
       <!-- Breadcrumbs-->
@@ -124,6 +170,8 @@
         <div class="card-body">
           <div class="table-responsive">
           <form name="f" action="branchadd.do" method="post">
+          	<input type="hidden" name="branch_lati" id="branch_lati"/>
+			<input type="hidden" name="branch_long" id="branch_long"/>
           	<input type="hidden" name="branch_today" id="branch_today"/>
             <table border="0" width="100%"  cellpadding="0" cellspacing="0">
             	
@@ -147,9 +195,9 @@
 				<tr style="color:#808080;font-size:12pt">			
 					<th  height="60px" width="10%" class="text-center" style="background-color: #fafafa">업체주소<a style="color:red">*</a></th>
 					<th  width="35%" class="text-left" colspan="3">
-						<input name="branch_local"type="text" size="30" placeholder="">
-					</th>
-				
+						<input name="branch_local"type="text" size="30" placeholder="" id="address">
+						<input type="button" onclick="DaumPostcode()" value="주소 검색">
+					</th> 
 				</tr>
 				<tr style="color:#808080;font-size:12pt">			
 					<th  height="60px" width="10%" class="text-center" style="background-color: #fafafa">사업자번호<a style="color:red">*</a></th>

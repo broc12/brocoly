@@ -26,15 +26,17 @@ public class Branch {
 	private String branch_rule;
 	private long branch_rating;
 	private Date branch_resist;
+	private String branch_lati;
+	private String branch_long;
 	public Branch() {
 	}
-	
 	public Branch(long branch_no, String branch_name, String branch_tel, String branch_fax, String branch_local,
 			String branch_business_no, String branch_bankaccount, String branch_member_name, String branch_member_tel,
 			String branch_member_tel2, String branch_email, String branch_logo, long branch_comfee,
 			String branch_withdraw_at, String branch_busspot, String branch_bustime, String branch_busgap,
 			String branch_boss, String branch_today, String branch_todaytime, String branch_rule, long branch_rating,
-			Date branch_resist) {
+			Date branch_resist, String branch_lati, String branch_long) {
+		super();
 		this.branch_no = branch_no;
 		this.branch_name = branch_name;
 		this.branch_tel = branch_tel;
@@ -58,8 +60,21 @@ public class Branch {
 		this.branch_rule = branch_rule;
 		this.branch_rating = branch_rating;
 		this.branch_resist = branch_resist;
+		this.branch_lati = branch_lati;
+		this.branch_long = branch_long;
 	}
-	
+	public String getBranch_lati() {
+		return branch_lati;
+	}
+	public void setBranch_lati(String branch_lati) {
+		this.branch_lati = branch_lati;
+	}
+	public String getBranch_long() {
+		return branch_long;
+	}
+	public void setBranch_long(String branch_long) {
+		this.branch_long = branch_long;
+	}
 	public long getBranch_no() {
 		return branch_no;
 	}

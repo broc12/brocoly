@@ -9,6 +9,6 @@ public class MainController {
 	
 	@RequestMapping(value="admin/bestseller.do",method=RequestMethod.GET)
 	public String bestseller() {
-		return "admin/bestseller";
+		return "admin/bestseller/bestseller";
 	}
 }

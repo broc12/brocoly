@@ -1,6 +1,8 @@
 package com.khd.jejulantis.admin.carInfo.DAO;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,9 +24,11 @@ public class CarInfoDaoImpl implements CarInfoDao {
 	}*/
 	@Override
 	public boolean carInsert(List<CarInfo> car) {
+		Map< String, List<CarInfo> > carMap = new HashMap<String, List<CarInfo>>();
+		carMap.put("car", car);
 		System.out.println("size : "+car.size());
-		int i = sqlSession.insert(ns+".myInsert", car);
-		System.out.println("I값 " +i );
+		int i = sqlSession.insert(ns+".myInsert", carMap);
+		System.out.println("I size " +i );
 		boolean flag;
 		if(i>0) flag = true;
 		else flag = false;

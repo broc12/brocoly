@@ -3,7 +3,9 @@ package com.khd.jejulantis.admin.carInfo.Controller;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -49,15 +51,14 @@ public class CarInfoController {
 	public ModelAndView carInfoInsert(@RequestParam(value="carKind",required = true)List <String> carKind,
 								@RequestParam(value="carNumber",required = true)List <String> carNumber){
 		for(String cars : carKind) {
-			System.out.println("�� ����"+cars);
+			System.out.println("name"+cars);
 		}
 		for(String cars : carNumber) {
-			System.out.println("�� �ѹ�"+cars);
+			System.out.println("size"+cars);
 		}
-		
 		List<CarInfo> car = new ArrayList<CarInfo>();
 		for(int i=0; i<carKind.size();i++) {
-			car.add(new CarInfo(1, 1, 1, 1, 1, "Y", "����",carNumber.get(i) ,null));
+			car.add(new CarInfo(1, 1, 1, 1, 1, "Y", "신차","N", carNumber.get(i),null));
 		}
 		System.out.println("��Ʈ�ѷ� ������"+car.size());
 		boolean flag = carInfoService.carInsert(car);

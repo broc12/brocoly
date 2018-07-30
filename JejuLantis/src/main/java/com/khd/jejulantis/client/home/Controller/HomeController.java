@@ -84,10 +84,6 @@ public class HomeController {
 	public String help() {
 		return "rentcar/help";
 	}*/
-	@RequestMapping(value="helpadd.do",method=RequestMethod.GET)
-	public String helpadd() {
-		return "rentcar/helpadd";
-	}
 	/*@RequestMapping(value="helpContent.do",method=RequestMethod.GET)
 	public String helpContent() {
 		return "rentcar/helpContent";

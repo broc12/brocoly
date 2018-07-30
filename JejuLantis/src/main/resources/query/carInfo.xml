@@ -10,6 +10,7 @@
 	<result property="branch_no" column="BRANCH_NO"/>
 	<result property="car_info_rent_at" column="CAR_INFO_RENT_AT"/>
 	<result property="car_info_state" column="CAR_INFO_STATE"/>
+	<result property="car_info_withdraw_at" column="CAR_INFO_WITHDRAW_AT"/>
 	<result property="car_info_back_no" column="CAR_INFO_BACK_NO"/>
 	<result property="car_info_resist" column="CAR_INFO_RESIST"/>
 	</resultMap>
@@ -41,12 +42,35 @@
         )
         </foreach>
 </insert>
-	<insert id="myInsert" parameterType ="List">
-	 insert into carInfo VALUES(
+	<insert id="myInsert" parameterType="lIST">
+        insert into CAR_INFO(
+            car_info_no,
+            car_no,
+            insurance_no,
+            car_kind_no,
+            branch_no,
+            car_info_rent_at,
+            car_info_state,
+            car_info_withdraw_at,
+            car_info_back_no,
+            car_info_resist
+            )
+	 VALUES
 	 	<foreach collection="car" item="item" separator=",">
-           (CAR_INFO_NO_SEQ.NEXTVAL,1111,2222,3333,4444,'Y','신차',{#item.carNumber)
+           (
+           CAR_INFO_NO_SEQ.NEXTVAL,
+           1111,
+           2222,
+           3333,
+           4444,
+           'Y',
+           '신차',
+           'N',
+           #{item.car_info_back_no},
+           SYSDATE
+           )
         </foreach>
-	)
+	
 	 </insert>
 
 

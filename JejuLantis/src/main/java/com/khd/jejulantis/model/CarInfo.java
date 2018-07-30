@@ -11,13 +11,15 @@ public class CarInfo {
 	private int branch_no;
 	private String car_info_rent_at;
 	private String car_info_rent_state;
+	private String car_info_withdraw_at;
 	private String car_info_back_no;
 	private Date car_info_resist;
 	
 	public CarInfo() {}
 
 	public CarInfo(int car_info_no, int car_no, int insurance_no, int car_kind_no, int branch_no,
-			String car_info_rent_at, String car_info_rent_state, String car_info_back_no, Date car_info_resist) {
+			String car_info_rent_at, String car_info_rent_state, String car_info_withdraw_at, String car_info_back_no,
+			Date car_info_resist) {
 		super();
 		this.car_info_no = car_info_no;
 		this.car_no = car_no;
@@ -26,6 +28,7 @@ public class CarInfo {
 		this.branch_no = branch_no;
 		this.car_info_rent_at = car_info_rent_at;
 		this.car_info_rent_state = car_info_rent_state;
+		this.car_info_withdraw_at = car_info_withdraw_at;
 		this.car_info_back_no = car_info_back_no;
 		this.car_info_resist = car_info_resist;
 	}
@@ -86,6 +89,14 @@ public class CarInfo {
 		this.car_info_rent_state = car_info_rent_state;
 	}
 
+	public String getCar_info_withdraw_at() {
+		return car_info_withdraw_at;
+	}
+
+	public void setCar_info_withdraw_at(String car_info_withdraw_at) {
+		this.car_info_withdraw_at = car_info_withdraw_at;
+	}
+
 	public String getCar_info_back_no() {
 		return car_info_back_no;
 	}
@@ -101,5 +112,6 @@ public class CarInfo {
 	public void setCar_info_resist(Date car_info_resist) {
 		this.car_info_resist = car_info_resist;
 	}
+
 
 }

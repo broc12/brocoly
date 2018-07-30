@@ -3,19 +3,53 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<HTML>
-<HEAD>
-	<title>BLUEB</title>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script>document.write(document.lastModified); //일자</script>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <title>SB Admin</title>
+  <!-- Bootstrap core CSS-->
+  <link href="../resources/admin/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Custom fonts for this template-->
+  <link href="../resources/admin/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <!-- Page level plugin CSS-->
+  <link href="../resources/admin/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
+  <!-- Custom styles for this template-->
+  <link href="../resources/admin/css/sb-admin.css" rel="stylesheet">
+   <script src="../resources/admin/vendor/jquery/jquery.min.js"></script>
+    <script src="../resources/admin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- Core plugin JavaScript-->
+    <script src="../resources/admin/vendor/jquery-easing/jquery.easing.min.js"></script>
+    <!-- Page level plugin JavaScript-->
+    <script src="../resources/admin/vendor/datatables/jquery.dataTables.js"></script>
+    <script src="../resources/admin/vendor/datatables/dataTables.bootstrap4.js"></script>
+    <!-- Custom scripts for all pages-->
+    <script src="../resources/admin/js/sb-admin.min.js"></script>
+    <!-- Custom scripts for this page-->
+    <script src="../resources/admin/js/sb-admin-datatables.min.js"></script>
+    <script src="../resources/ck/ckeditor/ckeditor.js"></script>
+    <!-- 체크박스-->
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+	<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+</head>
+
+<body class="fixed-nav sticky-footer bg-dark" id="page-top">
+<%@ include file="../top/top2.jspf" %>
+  <!-- Navigation-->
+	<script>document.write(document.lastModified); //일자</script>
 <script language="JavaScript">
 var lineNo = 0; 
 var beforeNo = 0; 
 
 function insertLine(){
-	lineNo++;
+	lineNo++;	
 	var html = "<tr id=content_"+lineNo+">";
-html+="<td>"+num+"</td><td><select name=carKind id=carKind";
+html+="<td>"+num+"</td><td><select style='width:90%' name=carKind id=carKind";
 html+="<option value='#' style='color:black'></option>";
 html+="<option value='경차' style='color:black'>경차</option>";
 html+="<option value='중소형' style='color:black'>중소형</option>";
@@ -24,7 +58,7 @@ html+="<option value='고급' style='color:black'>고급</option>";
 html+="<option value='SUV' style='color:black'>SUV</option>";
 html+="<option value='승합' style='color:black'>승합</option>";
 html+="<option value='수입' style='color:black'>수입</option>";
-html+="</select></td><td><input type=text size=15 name=carNumber id=carNumber</td>";
+html+="</select></td><td><input style='width:90%' type=text size=15 name=carNumber id=carNumber"+lineNo+"></td>";
 html+="<td><input type=button value=삭제 onclick='del("+lineNo+")' style=\"background:#abcdef;border:1x solid black\" onMouseOrver=\"this.style.background:#000000;border:1x solid black\" >";
 html+="</td></tr>";		
 $("#content_"+beforeNo).after(html);
@@ -32,8 +66,8 @@ beforeNo++;
 num++;
 }
 
-
-/* $(document).ready(function(){
+/* 
+$(document).ready(function(){
 	$("#save").click(function(){tr>
     	var selectListKind = [];
     	$("select[id='aa']").each(function(i){
@@ -47,7 +81,38 @@ num++;
     	});
     	alert("hi2")
 	})
-}) */
+})  */
+$(document).ready(function(){
+	// btn click
+	$("#test").click(function(){
+	var result = txtFieldCheck() == true ? true : false;
+	if(!result){
+		document.form1.submit();
+	}
+	});
+	});
+	function txtFieldCheck(){
+	// form안의 모든 text type 조회
+	var txtEle = $("#form1 input[type=text]");
+	for(var i = 0; i < txtEle.length; i ++){
+	// console.log($(txtEle[i]).val());
+	if("" == $(txtEle[i]).val() || null == $(txtEle[i]).val()){
+	var ele_id = $(txtEle[i]).attr("id");
+	var label_txt = $("label[for='" + ele_id +"']").text();
+	console.log("id : " + ele_id + ", label : " + label_txt);
+	showAlert(ele_id, label_txt);
+	return true;
+	}
+	}
+	}
+	function showAlert(ele_id, label_txt){
+
+	alert("모든 항목을 입력해주세요");
+
+	// 해당 id에 focus.
+
+	$("#" + ele_id).focus();
+	}
 
 var StaticText='oni';
 window.status = StaticText;
@@ -61,6 +126,7 @@ function dispExample(no){
   if(sample.style.display=="none") sample.style.display="block";
 }
 
+
 function del(no){
 	$("#content_"+no).remove();
 	if(beforeNo==no){
@@ -69,7 +135,7 @@ function del(no){
 	}
 } 
 		
-function input_del_1(no){
+/* function input_del_1(no){
         var for_in_type_sum=2; //순환문 안의 input type 갯수
         var no_1=parseInt(no)+((parseInt(no)-2)*for_in_type_sum);
         var no_2=parseInt(no_1)+1;
@@ -82,23 +148,37 @@ function input_del_1(no){
         no=parseInt(no)-1;
         var sample=eval("content_"+no);
         sample.style.display="none";
-} 
+}  */
 
 </script>
-<body>
-<form name=form1 id=form1 method='post' action='carInfoInsert.do' >		
-<table border=0 cellpadding=4 cellspacing=1 bgcolor=777777 width=400>
+  <div class="content-wrapper">
+    <div class="container-fluid">
+      <!-- Breadcrumbs-->
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+          <a href="#">JEJULANTIS</a>
+        </li>
+        <li class="breadcrumb-item active">차종관리</li>
+      </ol>
+      <!-- Example DataTables Card-->
+      <div class="card mb-3">
+        <div class="card-header">
+          <i class="fa fa-table"></i>차종관리</div>
+        <div class="card-body">
+          <div class="table-responsive">
+          <form name=form1 id=form1 method='post' action='carInfoInsert.do' >		
+<table border="0" cellpadding="4" cellspacing="1" bgcolor="777777" width="100%">
 <td><span style="cursor:hand;color:navy;text-decoration:underline" onClick="insertLine()" onMouseOver="this.style.color='red'" onMouseOut="this.style.color='navy'">입력양식 늘이기</span></td>
 <tr bgcolor=white>
 </tr>
 
 <tr bgcolor=white>
 	<td>
-	<table border=1 width=100%>
+	<table border=0 width=100%>
 	<tr>	
-	<th width=30%>No.</th>
-	<th width=30%>차종</th>
-	<th width=40%>차 번호</th>
+	<th width=10%>No.</th>
+	<th width=45%>차종</th>
+	<th width=45%>차 번호</th>
 </tr>
 				<script>
 				var num=1;
@@ -110,8 +190,7 @@ function input_del_1(no){
 						document.write(num);
 						document.write("</td>");
 						document.write("<td>");
-						document.write("<select name=carKind id=carKind");											
-						document.write("<option value='#' style='color:black'></option>");
+						document.write("<select style='width:90%' name=carKind id=carKind"+lineNo+">");											
 						document.write("<option value='경차' style='color:black'>경차</option>");
 						document.write("<option value='중소형' style='color:black'>중소형</option>");
 						document.write("<option value='중형' style='color:black'>중형</option>");
@@ -122,10 +201,10 @@ function input_del_1(no){
 						document.write("</select>");
 						document.write("</td>");
 						document.write("<td>");
-						document.write("<input type=text size=15 name=carNumber id=carNumber");
+						document.write("<input style='width:90%' type=text size=15 name=carNumber id=carNumber>");
 						document.write("</td>");
 						document.write("<td>");
-						document.write("<input type=button value=삭제 onclick='input_del_1("+num+")' style=\"background:#abcdef;border:1x solid black\" onMouseOrver=\"this.style.background:#000000;border:1x solid black\" >");
+						document.write("<input type=button value=삭제  onclick='del("+lineNo+")' style=\"background:#abcdef;border:1x solid black\" onMouseOrver=\"this.style.background:#000000;border:1x solid black\" >");
 						document.write("</td>");
 						document.write("</tr>");
 						num++;
@@ -136,10 +215,52 @@ function input_del_1(no){
 </tr>
 <tr bgcolor=white>
 	<td align=center><a href='javascript:document.form1.reset();'>reset</a> /
-	<button type="submit" class="btn btn-primary" style="border-radius:0px" id="save">저장</button>
+	<!-- <button type="submit" class="btn btn-primary" style="border-radius:0px" id="save">저장</button> -->
+	<input type="button" class="btn btn-primary" style="border-radius:0px"  id="test" value="저장1" />
 	</td>
 </tr>
 <input type=hidden name=max_1 value=0>
 </table>
 </form>
-</HTML>
+          </div>
+        </div>
+        <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+      </div>
+    </div>
+    <!-- /.container-fluid-->
+    <!-- /.content-wrapper-->
+    <footer class="sticky-footer">
+      <div class="container">
+        <div class="text-center">
+          <small>Copyright © Your Website 2018</small>
+        </div>
+      </div>
+    </footer>
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+      <i class="fa fa-angle-up"></i>
+    </a>
+    <!-- Logout Modal-->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+          <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+          <div class="modal-footer">
+            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+            <a class="btn btn-primary" href="login.do">Logout</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Bootstrap core JavaScript-->
+
+  </div>
+</body>
+
+</html>

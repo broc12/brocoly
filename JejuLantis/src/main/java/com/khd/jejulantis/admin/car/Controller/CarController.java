@@ -26,14 +26,14 @@ public class CarController {
 	@RequestMapping(value="admin/carlist.do",method=RequestMethod.GET)
 	public ModelAndView carlist() {
 		List<Car>list = service.listService();
-		String view = "admin/carlist";
+		String view = "admin/cartypes/carlist";
 		ModelAndView mv = new ModelAndView(view,"list",list);
 		return mv;
 	}
 	@RequestMapping(value="admin/carModify.do",method=RequestMethod.GET)
 	public ModelAndView modify(@RequestParam("car_no")long car_no) {
 		List<Car>modify = service.modifyService(car_no);
-		String view = "admin/carModify";
+		String view = "admin/cartypes/carModify";
 		ModelAndView mv = new ModelAndView(view,"modify",modify);
 		return mv;
 	}
@@ -55,12 +55,12 @@ public class CarController {
 	
 	@RequestMapping(value="admin/caradd.do",method=RequestMethod.GET)
 	public String caradd() {
-		return "admin/caradd";
+		return "admin/cartypes/caradd";
 	}
 	@RequestMapping(value="admin/carSubject.do",method=RequestMethod.GET)
 	public ModelAndView carSubject(@RequestParam("car_no")long car_no) {
 		List<Car>subject = service.subjectService(car_no);
-		String view = "admin/carSubject";
+		String view = "admin/cartypes/carSubject";
 		ModelAndView mv = new ModelAndView(view,"subject",subject);
 		return mv;
 	}

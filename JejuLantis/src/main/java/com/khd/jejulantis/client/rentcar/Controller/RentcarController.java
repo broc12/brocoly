@@ -28,7 +28,7 @@ public class RentcarController {
 		List<Rcar> list = rentcarservice.rentcarListService(requirements);
 		request.setAttribute("list", list);
 		request.setAttribute("requirements", requirements);
-		return "rentcar/car";
+		return "rentcar/rentcars/car";
 	}
 	
 	@RequestMapping(value="car.do",method=RequestMethod.POST)
@@ -40,12 +40,12 @@ public class RentcarController {
 			request.setAttribute("list", list);
 		}
 		request.setAttribute("requirements", requirements);
-		return "rentcar/car";
+		return "rentcar/rentcars/car";
 	}
 	
 	@RequestMapping(value="rentcar.do",method=RequestMethod.GET)
 	public String rentcar() {
-		return "rentcar/rentcar";
+		return "rentcar/rentcars/rentcar";
 	}
 	@RequestMapping(value="searchcar.do",method=RequestMethod.GET)
 	public @ResponseBody List<Rcar> searchcar(@RequestParam(value="checkListmanu[]",required=false) List<String> checkListmanu,@RequestParam(value="checkListfuel[]",required=false) List<String> checkListfuel,@RequestParam(value="checkListtype[]",required=false) List<String> checkListtype,@RequestParam(value="checkListoption[]",required=false) List<String> checkListoption,@RequestParam(value="checkindate",required=false) String checkindate,@RequestParam(value="checkoutdate",required=false) String checkoutdate,@RequestParam(value="car_name",required=false) String car_name) {

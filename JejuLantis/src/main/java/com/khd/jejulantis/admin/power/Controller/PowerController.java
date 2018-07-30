@@ -20,11 +20,11 @@ public class PowerController {
 	
 	@RequestMapping(value="admin/adminPower.do",method=RequestMethod.GET)
 	public String adminPower() {
-		return "admin/adminPower";
+		return "admin/adminPowers/adminPower";
 	}
 	@RequestMapping(value="admin/idpost",method=RequestMethod.GET)
 	public String idpost() {
-		return "admin/idpost";
+		return "admin/adminPowers/idpost";
 	}
 	
 	@RequestMapping(value = "admin/idpost", method = RequestMethod.POST)
@@ -34,12 +34,12 @@ public class PowerController {
 		if(manager_id != ""){
 			List<Power>list = powerService.listService(manager_id);
 			result.addObject("result", list);
-			result.setViewName("admin/idpost");
+			result.setViewName("admin/adminPowers/idpost");
 			return result;
 			
 		}else{
 			result.addObject("nullResult", "검색해주세요.");
-			result.setViewName("admin/idpost");
+			result.setViewName("admin/adminPowers/idpost");
 			return result;
 		}
 	}

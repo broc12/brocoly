@@ -21,7 +21,7 @@ public class NoticeController {
 	@RequestMapping("admin/noticeModify.do")
 	public ModelAndView noticeModify(@RequestParam("announce_no")long announce_no) {
 		List<Notice>update = service.updateService(announce_no);
-		String view = "admin/noticeModify";
+		String view = "admin/notices/noticeModify";
 		ModelAndView mv = new ModelAndView(view,"update",update);
 		return mv;
 	}
@@ -46,13 +46,13 @@ public class NoticeController {
 	@RequestMapping(value="admin/service.do",method=RequestMethod.GET)
 	public ModelAndView service2() {
 		List<Notice>totallist = service.totallistService();
-		String view = "admin/service";
+		String view = "admin/notices/service";
 		ModelAndView mv = new ModelAndView(view,"totallist",totallist);
 		return mv;	
 	}
 	
 	@RequestMapping(value="admin/notice.do",method=RequestMethod.GET)
 	public String notice() {
-		return "admin/notice";
+		return "admin/notices/notice";
 	}
 }

@@ -13,13 +13,16 @@ public class Car {
 	private long car_count;
 	private String car_image;
 	private long car_rating;
+	private String car_best;
+	private String car_md;
+	private long car_total;
 	private String car_withdraw_at;
 	private Date car_resist;
 	public Car() {
 	}
 	public Car(long car_no, String car_name, String car_manufacturer, String car_fuel, String car_type,
-			long car_passenger, String car_trans, long car_count, String car_image, long car_rating,
-			String car_withdraw_at, Date car_resist) {
+			long car_passenger, String car_trans, long car_count, String car_image, long car_rating, String car_best,
+			String car_md, long car_total, String car_withdraw_at, Date car_resist) {
 		this.car_no = car_no;
 		this.car_name = car_name;
 		this.car_manufacturer = car_manufacturer;
@@ -30,6 +33,9 @@ public class Car {
 		this.car_count = car_count;
 		this.car_image = car_image;
 		this.car_rating = car_rating;
+		this.car_best = car_best;
+		this.car_md = car_md;
+		this.car_total = car_total;
 		this.car_withdraw_at = car_withdraw_at;
 		this.car_resist = car_resist;
 	}
@@ -92,6 +98,24 @@ public class Car {
 	}
 	public void setCar_rating(long car_rating) {
 		this.car_rating = car_rating;
+	}
+	public String getCar_best() {
+		return car_best;
+	}
+	public void setCar_best(String car_best) {
+		this.car_best = car_best;
+	}
+	public String getCar_md() {
+		return car_md;
+	}
+	public void setCar_md(String car_md) {
+		this.car_md = car_md;
+	}
+	public long getCar_total() {
+		return car_total;
+	}
+	public void setCar_total(long car_total) {
+		this.car_total = car_total;
 	}
 	public String getCar_withdraw_at() {
 		return car_withdraw_at;

@@ -13,6 +13,9 @@
 	<result column="CAR_COUNT" property="car_count"/>
 	<result column="CAR_IMAGE" property="car_image"/>
 	<result column="CAR_RATING" property="car_rating"/>
+	<result column="CAR_BEST" property="car_best"/>
+	<result column="CAR_MD" property="car_md"/>
+	<result column="CAR_TOTAL" property="car_total"/>
 	<result column="CAR_WITHDRAW_AT" property="car_withdraw_at"/>
 	<result column="CAR_RESIST" property="car_resist"/>
 </resultMap>
@@ -24,7 +27,7 @@
 	
 	<insert id="myInsert" parameterType="Car">
 		insert into CAR values(CAR_seq.NEXTVAL,#{car_name},#{car_manufacturer},
-		#{car_fuel},#{car_type},#{car_passenger},#{car_trans,jdbcType=VARCHAR},0,#{car_image},0,'N',SYSDATE)
+		#{car_fuel},#{car_type},#{car_passenger},#{car_trans,jdbcType=VARCHAR},0,#{car_image},0,'N','N',0,'N',SYSDATE)
 	</insert>
 	
 	<select id="mySubject" resultType="Car">

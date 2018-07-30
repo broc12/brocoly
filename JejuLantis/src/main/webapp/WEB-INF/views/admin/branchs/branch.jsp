@@ -126,6 +126,7 @@
           <form name="f" action="branchadd.do" method="post">
           	<input type="hidden" name="branch_today" id="branch_today"/>
             <table border="0" width="100%"  cellpadding="0" cellspacing="0">
+            	
 				<h3 style="color:#007bff">업체등록</h3>	
 				<tr style="color:#808080;font-size:12pt">			
 					<th  height="60px" width="10%" class="text-center" style="background-color: #fafafa">업체명<a style="color:red">*</a></th>

@@ -9,6 +9,7 @@
 	<result column="ANNOUNCE_HITS" property="announce_hits"/>
 	<result column="ANNOUNCE_TOP" property="announce_top"/>
 	<result column="ANNOUNCE_RESIST" property="announce_resist"/>
+	<result column="MANAGER_NO" property="manager_no"/>
 </resultMap>
 
 <!-- 	select -->
@@ -26,7 +27,7 @@
 	</delete>
 	
 	<insert id="myInsert" parameterType="Notice">
-		insert into ANNOUNCE values(ANNOUNCE_seq.NEXTVAL,#{announce_title},#{announce_content},0,#{announce_top,jdbcType=VARCHAR},SYSDATE)
+		insert into ANNOUNCE values(ANNOUNCE_seq.NEXTVAL,#{announce_title},#{announce_content},0,#{announce_top,jdbcType=VARCHAR},SYSDATE,#{manager_no},null)
 	</insert>
 	
 	<select id="mySubject" resultType="Notice">

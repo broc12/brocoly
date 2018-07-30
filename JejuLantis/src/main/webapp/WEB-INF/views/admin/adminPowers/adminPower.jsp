@@ -91,141 +91,141 @@ $(document).ready(function(){
 </script>
 <script>
         function check(){
-          var main = "";
-          var charts = "";
-          var reserv = "";
-          var ars = "";
-          var tables = "";
-          var list = "";
-          var service = "";
-          var member = "";
-          var admin = "";
-          var enter = "";
-          var carlist = "";
-          var carDetail = "";
-          var carInfo = "";
-          var pay = "";
-          var payment = "";
-          var banner = "";
-          var coupon = "";
-          var sms = "";
-          var ins = "";
+          var manager_main = "";
+          var manager_chart = "";
+          var manager_reservstatus = "";
+          var manager_ars_reserv = "";
+          var manager_travelmanagement = "";
+          var manager_review = "";
+          var manager_notice = "";
+          var manager_user = "";
+          var manager_manager = "";
+          var manager_company = "";
+          var manager_carkind = "";
+          var manager_d_carkind = "";
+          var manager_carinfo = "";
+          var manager_paystatus = "";
+          var manager_salestatus = "";
+          var manager_banner = "";
+          var manager_coupon = "";
+          var manager_sms = "";
+          var manager_insurance = "";
           
       	if($("input:checkbox[name=manager_main]").is(":checked")){	// 쳬크 되어있으면
-      		main = "Y"
+      		manager_main = "Y"
       	}else{
-      		main = "N"
+      		manager_main = "N"
       	}
       	if($("input:checkbox[name=manager_chart]").is(":checked")){	// 쳬크 되어있으면
-      		charts = "Y"
+      		manager_chart = "Y"
       	}else{
-      		charts = "N"
+      		manager_chart = "N"
       	}
     	if($("input:checkbox[name=manager_reservstatus]").is(":checked")){	// 쳬크 되어있으면
-    		reserv = "Y"
+    		manager_reservstatus = "Y"
       	}else{
-      		reserv = "N"
+      		manager_reservstatus = "N"
       	}
     	if($("input:checkbox[name=manager_ars_reserv]").is(":checked")){	// 쳬크 되어있으면
-    		ars = "Y"
+    		manager_ars_reserv = "Y"
       	}else{
-      		ars = "N"
+      		manager_ars_reserv = "N"
       	}
     	if($("input:checkbox[name=manager_travelmanagement]").is(":checked")){	// 쳬크 되어있으면
-    		tables = "Y"
+    		manager_travelmanagement = "Y"
       	}else{
-      		tables = "N"
+      		manager_travelmanagement = "N"
       	}
     	if($("input:checkbox[name=manager_review]").is(":checked")){	// 쳬크 되어있으면
-    		list = "Y"
+    		manager_review = "Y"
       	}else{
-      		list = "N"
+      		manager_review = "N"
       	}
     	if($("input:checkbox[name=manager_notice]").is(":checked")){	// 쳬크 되어있으면
-    		service = "Y"
+    		manager_notice = "Y"
       	}else{
-      		service = "N"
+      		manager_notice = "N"
       	}
     	if($("input:checkbox[name=manager_user]").is(":checked")){	// 쳬크 되어있으면
-    		member = "Y"
+    		manager_user = "Y"
       	}else{
-      		member = "N"
+      		manager_user = "N"
       	}
     	if($("input:checkbox[name=manager_manager]").is(":checked")){	// 쳬크 되어있으면
-    		admin = "Y"
+    		manager_manager = "Y"
       	}else{
-      		admin = "N"
+      		manager_manager = "N"
       	}
     	if($("input:checkbox[name=manager_company]").is(":checked")){	// 쳬크 되어있으면
-    		enter = "Y"
+    		manager_company = "Y"
       	}else{
-      		enter = "N"
+      		manager_company = "N"
       	}
     	if($("input:checkbox[name=manager_carkind]").is(":checked")){	// 쳬크 되어있으면
-    		carlist = "Y"
+    		manager_carkind = "Y"
       	}else{
-      		carlist = "N"
+      		manager_carkind = "N"
       	}
     	if($("input:checkbox[name=manager_d_carkind]").is(":checked")){	// 쳬크 되어있으면
-    		carDetail = "Y"
+    		manager_d_carkind = "Y"
       	}else{
-      		carDetail = "N"
+      		manager_d_carkind = "N"
       	}
     	if($("input:checkbox[name=manager_carinfo]").is(":checked")){	// 쳬크 되어있으면
-    		carInfo = "Y"
+    		manager_carinfo = "Y"
       	}else{
-      		carInfo = "N"
+      		manager_carinfo = "N"
       	}
     	if($("input:checkbox[name=manager_paystatus]").is(":checked")){	// 쳬크 되어있으면
-    		pay = "Y"
+    		manager_paystatus = "Y"
       	}else{
-      		pay = "N"
+      		manager_paystatus = "N"
       	}
     	if($("input:checkbox[name=manager_salestatus]").is(":checked")){	// 쳬크 되어있으면
-    		payment = "Y"
+    		manager_salestatus = "Y"
       	}else{
-      		payment = "N"
+      		manager_salestatus = "N"
       	}
     	if($("input:checkbox[name=manager_banner]").is(":checked")){	// 쳬크 되어있으면
-    		banner = "Y"
+    		manager_banner = "Y"
       	}else{
-      		banner = "N"
+      		manager_banner = "N"
       	}
     	if($("input:checkbox[name=manager_coupon]").is(":checked")){	// 쳬크 되어있으면
-    		coupon = "Y"
+    		manager_coupon = "Y"
       	}else{
-      		coupon = "N"
+      		manager_coupon = "N"
       	}
     	if($("input:checkbox[name=manager_sms]").is(":checked")){	// 쳬크 되어있으면
-    		sms = "Y"
+    		manager_sms = "Y"
       	}else{
-      		sms = "N"
+      		manager_sms = "N"
       	}
     	if($("input:checkbox[name=manager_insurance]").is(":checked")){	// 쳬크 되어있으면
-    		ins = "Y"
+    		manager_insurance = "Y"
       	}else{
-      		ins = "N"
+      		manager_insurance = "N"
       	}
    		
-      	jQuery("#manager_main").val(main);
-      	jQuery("#manager_chart").val(charts);
-      	jQuery("#manager_reservstatus").val(reserv);
-      	jQuery("#manager_ars_reserv").val(ars);
-      	jQuery("#manager_travelmanagement").val(tables);
-      	jQuery("#manager_review").val(list);
-      	jQuery("#manager_notice").val(service);
-      	jQuery("#manager_user").val(member);
-      	jQuery("#manager_manager").val(admin);
-      	jQuery("#manager_company").val(enter);
-      	jQuery("#manager_carkind").val(carlist);
-      	jQuery("#manager_d_carkind").val(carDetail);
-      	jQuery("#manager_carinfo").val(carInfo);
-      	jQuery("#manager_paystatus").val(pay);
-      	jQuery("#manager_salestatus").val(payment);
-      	jQuery("#manager_banner").val(banner);
-      	jQuery("#manager_coupon").val(coupon);
-      	jQuery("#manager_sms").val(sms);
-      	jQuery("#manager_insurance").val(ins);
+      	jQuery("#manager_main").val(manager_main);
+      	jQuery("#manager_chart").val(manager_chart);
+      	jQuery("#manager_reservstatus").val(manager_reservstatus);
+      	jQuery("#manager_ars_reserv").val(manager_ars_reserv);
+      	jQuery("#manager_travelmanagement").val(manager_travelmanagement);
+      	jQuery("#manager_review").val(manager_review);
+      	jQuery("#manager_notice").val(manager_notice);
+      	jQuery("#manager_user").val(manager_user);
+      	jQuery("#manager_manager").val(manager_manager);
+      	jQuery("#manager_company").val(manager_company);
+      	jQuery("#manager_carkind").val(manager_carkind);
+      	jQuery("#manager_d_carkind").val(manager_d_carkind);
+      	jQuery("#manager_carinfo").val(manager_carinfo);
+      	jQuery("#manager_paystatus").val(manager_paystatus);
+      	jQuery("#manager_salestatus").val(manager_salestatus);
+      	jQuery("#manager_banner").val(manager_banner);
+      	jQuery("#manager_coupon").val(manager_coupon);
+      	jQuery("#manager_sms").val(manager_sms);
+      	jQuery("#manager_insurance").val(manager_insurance);
       	
       	alert("권한이 수정되었습니다.");
         document.f.submit();
@@ -277,7 +277,7 @@ $(document).ready(function(){
 	       	<td width="40%" align="center"><b>메뉴 권한</b></td>
 	       	<td>
 	       		<input type="checkbox" id="checkall"/><span>전체선택</span></br>
-	       		<input type="checkbox" name="manager_main" id="manager_main"/><span>메인관리</span></br>
+	       		<input type="checkbox" name="manager_main" id="manager_main" /><span>메인관리</span></br>
 	       		<input type="checkbox" name="manager_chart" id="manager_chart"/><span>그래프</span></br>
 	       		<input type="checkbox" name="manager_reservstatus" id="manager_reservstatus"/><span>예약현황</span></br>
 	       		<input type="checkbox" name="manager_ars_reserv" id="manager_ars_reserv"/><span>ARS예약현황</span></br>

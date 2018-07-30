@@ -9,16 +9,18 @@ public class Notice {
 	private long announce_hits;
 	private String announce_top;
 	private Date announce_resist;
+	private long manager_no;
 	public Notice() {
 	}
 	public Notice(long announce_no, String announce_title, String announce_content, long announce_hits,
-			String announce_top, Date announce_resist) {
+			String announce_top, Date announce_resist, long manager_no) {
 		this.announce_no = announce_no;
 		this.announce_title = announce_title;
 		this.announce_content = announce_content;
 		this.announce_hits = announce_hits;
 		this.announce_top = announce_top;
 		this.announce_resist = announce_resist;
+		this.manager_no = manager_no;
 	}
 	public long getAnnounce_no() {
 		return announce_no;
@@ -55,6 +57,12 @@ public class Notice {
 	}
 	public void setAnnounce_resist(Date announce_resist) {
 		this.announce_resist = announce_resist;
+	}
+	public long getManager_no() {
+		return manager_no;
+	}
+	public void setManager_no(long manager_no) {
+		this.manager_no = manager_no;
 	}
 	
 }

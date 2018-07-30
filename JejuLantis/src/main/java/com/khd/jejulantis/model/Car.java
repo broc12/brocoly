@@ -12,14 +12,14 @@ public class Car {
 	private String car_trans;
 	private long car_count;
 	private String car_image;
-	private String car_withdraw_at;
 	private long car_rating;
+	private String car_withdraw_at;
 	private Date car_resist;
 	public Car() {
 	}
 	public Car(long car_no, String car_name, String car_manufacturer, String car_fuel, String car_type,
-			long car_passenger, String car_trans, long car_count, String car_image, String car_withdraw_at,
-			long car_rating, Date car_resist) {
+			long car_passenger, String car_trans, long car_count, String car_image, long car_rating,
+			String car_withdraw_at, Date car_resist) {
 		this.car_no = car_no;
 		this.car_name = car_name;
 		this.car_manufacturer = car_manufacturer;
@@ -29,8 +29,8 @@ public class Car {
 		this.car_trans = car_trans;
 		this.car_count = car_count;
 		this.car_image = car_image;
-		this.car_withdraw_at = car_withdraw_at;
 		this.car_rating = car_rating;
+		this.car_withdraw_at = car_withdraw_at;
 		this.car_resist = car_resist;
 	}
 	public long getCar_no() {
@@ -87,17 +87,17 @@ public class Car {
 	public void setCar_image(String car_image) {
 		this.car_image = car_image;
 	}
-	public String getCar_withdraw_at() {
-		return car_withdraw_at;
-	}
-	public void setCar_withdraw_at(String car_withdraw_at) {
-		this.car_withdraw_at = car_withdraw_at;
-	}
 	public long getCar_rating() {
 		return car_rating;
 	}
 	public void setCar_rating(long car_rating) {
 		this.car_rating = car_rating;
+	}
+	public String getCar_withdraw_at() {
+		return car_withdraw_at;
+	}
+	public void setCar_withdraw_at(String car_withdraw_at) {
+		this.car_withdraw_at = car_withdraw_at;
 	}
 	public Date getCar_resist() {
 		return car_resist;
@@ -105,6 +105,5 @@ public class Car {
 	public void setCar_resist(Date car_resist) {
 		this.car_resist = car_resist;
 	}
-	
 	
 }

@@ -108,7 +108,7 @@ public class Power {
 	}
 
 	public String getManager_reservstatus() {
-		if(manager_chart == null) {
+		if(manager_reservstatus == null) {
 			return "N";
 		}else {
 			return manager_reservstatus;

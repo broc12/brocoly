@@ -85,6 +85,7 @@
           <div class="table-responsive">
           <form name="f" action="write.do" method="post">
           	<input type="hidden" name="announce_top" id="announce_top"/>
+          	<input type="hidden" name="manager_no" value="${managerlog.manager_no}" id="manager_no">
             <table border="0" width="100%"  cellpadding="0" cellspacing="0">
 				<h3 style="color:#007bff">공지작성</h3>	
 				<tr style="color:#808080;font-size:12pt">			

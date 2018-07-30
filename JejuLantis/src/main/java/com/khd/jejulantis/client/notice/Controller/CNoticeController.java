@@ -22,7 +22,7 @@ public class CNoticeController {
 	public ModelAndView service() {
 		List<Notice>list = service.listService();
 		List<Notice>toplist = service.toplistService();
-		String view = "rentcar/service";
+		String view = "rentcar/helps/service";
 		ModelAndView mv = new ModelAndView(view,"list",list);
 		mv.addObject("toplist", toplist);
 		return mv;
@@ -31,7 +31,7 @@ public class CNoticeController {
 	@RequestMapping(value="serviceContent.do")
 	public ModelAndView serviceContent(@RequestParam("announce_no")long announce_no) {
 		List<Notice>subject = service.subjectService(announce_no);
-		String view = "rentcar/serviceContent";
+		String view = "rentcar/helps/serviceContent";
 		ModelAndView mv = new ModelAndView(view,"subject",subject);
 		return mv;
 	}

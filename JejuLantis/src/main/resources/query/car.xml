@@ -12,8 +12,8 @@
 	<result column="CAR_TRANS" property="car_trans"/>
 	<result column="CAR_COUNT" property="car_count"/>
 	<result column="CAR_IMAGE" property="car_image"/>
-	<result column="CAR_WITHDRAW_AT" property="car_withdraw_at"/>
 	<result column="CAR_RATING" property="car_rating"/>
+	<result column="CAR_WITHDRAW_AT" property="car_withdraw_at"/>
 	<result column="CAR_RESIST" property="car_resist"/>
 </resultMap>
 

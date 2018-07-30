@@ -44,11 +44,7 @@
 	<script>
           function check(){
         	         	  
-            if(f.car_no.value ==""){
-               alert("차종코드 채워주세요");
-               f.car_no.focus();
-               return;
-            }
+      
             if(f.car_name.value ==""){
                 alert("차종명을 채워주세요");
                 f.car_name.focus();
@@ -87,7 +83,7 @@
         		return;
         	}
         	jQuery("#car_trans").val(isChecked);
-        	alert("car_no:"+f.car_no.value+"car_name:"+f.car_name.value+"car_manufacturer:"+f.car_manufacturer.value+"car_fuel:"+f.car_fuel.value+"car_type:"+f.car_type.value);
+        	alert("car_name:"+f.car_name.value+"car_manufacturer:"+f.car_manufacturer.value+"car_fuel:"+f.car_fuel.value+"car_type:"+f.car_type.value);
             document.f.submit();
          }
           
@@ -111,12 +107,12 @@
           	<input type="hidden" name="car_trans" id="car_trans"/>
             <table border="0" width="100%"  cellpadding="0" cellspacing="0">
 				<h3 style="color:#007bff">차종등록</h3>	
-				<tr style="color:#808080;font-size:12pt">			
+			<!-- 	<tr style="color:#808080;font-size:12pt">			
 					<th  height="60px" width="10%" class="text-center" style="background-color: #fafafa"><a style="color:red">*</a>차종코드</th>
 					<th  width="35%" class="text-left">
 						<input name="car_no"type="text" size="30" class="form-control" style="width:250px">
 					</th>
-				</tr>
+				</tr> -->
 				<tr style="color:#808080;font-size:12pt">			
 					<th  height="60px" width="10%" class="text-center" style="background-color: #fafafa"><a style="color:red">*</a>차종명</th>
 					<th  width="35%" class="text-left">

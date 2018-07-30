@@ -52,22 +52,20 @@
                   <th>대여가능여부</th>
                   <th>차량상태</th>
                 </tr>
-                <c:if test="${empty list}">
+                <%-- <c:if test="${empty list}">
 					<tr>
 			           <td align="center" colspan="5">데이터가 없음</td>
 			        </tr>
-				</c:if>
+				</c:if> --%>
               </thead>
               <tbody>
-              <c:forEach items="${list}" var="list">
                 <tr>
-                  <td>${list.branch_line_no}</td>
-                  <td>${list.branch_name}</td>
-                  <td>${list.branch_member_name}</td>
-                  <td>${list.branch_local}</td>
-                  <td>${list.branch_resist}</td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
                 </tr>
-            </c:forEach>
               </tbody>
             </table>
           </div>

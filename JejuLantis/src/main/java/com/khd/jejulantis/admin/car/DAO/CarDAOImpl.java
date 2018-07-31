@@ -1,5 +1,6 @@
 package com.khd.jejulantis.admin.car.DAO;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -41,4 +42,14 @@ public class CarDAOImpl implements CarDAO{
 	public void update(Car car) {
 		sqlSession.update(ns+".myUpdate",car);
 	}
+	@Override
+	public void best(List<Long>best) {
+		sqlSession.update(ns+".myBestN");
+		if(best != null) {
+			HashMap<String,List<Long>>map = new HashMap<String,List<Long>>();
+			map.put("best", best);
+			sqlSession.update(ns+".myBestY",map);
+		}
+	}
+
 }

@@ -26,6 +26,18 @@
 <body class="fixed-nav sticky-footer bg-dark" id="page-top">
 <%@ include file="../top/top2.jspf" %>
   <!-- Navigation-->
+<script>
+function check(){
+	
+	var godo = $("input:checkbox[name=bestYn]:checked").length;
+	if(godo<3 || godo>6){
+		alert("3개이상 6개이하로 선택해주세요.현재갯수:"+godo);
+		return;
+	}
+	alert("베스트셀러가 수정되었습니다.");
+    document.f.submit();
+}
+</script>
 
   <div class="content-wrapper">
     <div class="container-fluid">
@@ -42,7 +54,8 @@
           <i class="fa fa-table"></i>베스트셀러관리</div>
         <div class="card-body">
           <div class="table-responsive">
-            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+          <form name="f" action="best.do" method="post">
+            <table class="table table-bordered" id="" width="100%" cellspacing="0">
               <thead>
                 <tr>
                   <th width="35%">차량</th>
@@ -59,14 +72,18 @@
               <tbody>
               <c:forEach items="${list}" var="list">
                 <tr>
-                  <td>${list.branch_no}</td>
-                  <td>${list.branch_member_name}</td>
-                  <td>${list.branch_local}</td>
-                  <td><input type="Checkbox" id="" name="" value=""></td>
+                  <td>${list.car_name} (${list.car_fuel})</td>
+                  <td>${list.car_total}</td>
+                  <td>${list.car_count}</td>
+                  <td><input type="Checkbox" id="bestYn" name="bestYn" value="${list.car_no}" <c:if test="${list.car_best eq 'Y' }">checked</c:if>></td>
                 </tr>
             </c:forEach>
               </tbody>
+              <tr>
+              <td colspan="4" align="right"><input type="button" value="저장하기" onclick="check()"></td>
+              <tr>
             </table>
+            </form>
           </div>
         </div>
         <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>

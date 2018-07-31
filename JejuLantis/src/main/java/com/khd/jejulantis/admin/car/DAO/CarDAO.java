@@ -11,4 +11,5 @@ public interface CarDAO {
 	void delete(long car_no);
 	List<Car>modify(long car_no);
 	void update(Car car);
+	void best(List<Long>best);
 }

@@ -47,4 +47,25 @@
 	car_fuel=#{car_fuel},car_type=#{car_type},car_passenger=#{car_passenger},car_trans=#{car_trans},
 	car_image=#{car_image} where car_no=#{car_no}
 	</update>
+	
+	<update id="myBestN" parameterType="String">
+	Update CAR set car_best='N'
+	</update>
+	
+	<update id="myBestY" parameterType="HashMap">
+	Update CAR set car_best='Y'
+	<where>
+		<if test="best != '' and best != null ">
+		car_no in
+		<foreach item="item" index="index" open="(" separator="," close=")" collection="best">
+		#{item}
+		</foreach>
+		</if>
+	</where>
+	</update>
+	
+	<select id="myBestlist" resultType="Car">
+		SELECT * from CAR where car_withdraw_at='N' and car_best='Y'
+	</select>
+
 </mapper>

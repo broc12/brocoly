@@ -42,4 +42,10 @@ public class CarServiceImpl implements CarService{
 	public void updateService(Car car) {
 		carDAO.update(car);
 	}
+	
+	@Override
+	public void bestService(List<Long>best) {
+		carDAO.best(best);
+	}
+	
 }

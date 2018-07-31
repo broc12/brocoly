@@ -10,4 +10,5 @@ public interface CarService {
 	void deleteService(long car_no);
 	List<Car>modifyService(long car_no);
 	void updateService(Car car);
+	void bestService(List<Long>best);
 }

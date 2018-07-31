@@ -48,7 +48,7 @@ public class CarkindDetail {
 	private String car_kind_camera;
 	private String car_kind_nonsmoke;
 	private int car_kind_rating;
-	private int car_kind_tatal;
+	private int car_kind_total;
 	private String car_kind_withdraw_at;
 	private Date car_kind_resist;
 	public CarkindDetail() {}
@@ -66,7 +66,7 @@ public class CarkindDetail {
 			int car_kind_price_h_holiday,  int car_kind_count, 
 			String car_kind_navi, String car_kind_sensor, String car_kind_blackbox,
 			String car_kind_bluetooth, String car_kind_sunroof, String car_kind_camera, String car_kind_nonsmoke,
-			int car_kind_rating, int car_kind_tatal, String car_kind_withdraw_at, Date car_kind_resist) {
+			int car_kind_rating, int car_kind_total, String car_kind_withdraw_at, Date car_kind_resist) {
 		super();
 		this.car_kind_no = car_kind_no;
 		this.branch_no = branch_no;
@@ -85,7 +85,7 @@ public class CarkindDetail {
 		this.car_kind_camera = car_kind_camera;
 		this.car_kind_nonsmoke = car_kind_nonsmoke;
 		this.car_kind_rating = car_kind_rating;
-		this.car_kind_tatal = car_kind_tatal;
+		this.car_kind_total = car_kind_total;
 		this.car_kind_withdraw_at = car_kind_withdraw_at;
 		this.car_kind_resist = car_kind_resist;
 	}
@@ -178,13 +178,13 @@ public class CarkindDetail {
 	}
 
 
-	public int getCar_kind_tatal() {
-		return car_kind_tatal;
+	public int getCar_kind_total() {
+		return car_kind_total;
 	}
 
 
-	public void setCar_kind_tatal(int car_kind_tatal) {
-		this.car_kind_tatal = car_kind_tatal;
+	public void setCar_kind_total(int car_kind_total) {
+		this.car_kind_total = car_kind_total;
 	}
 
 

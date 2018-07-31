@@ -53,6 +53,7 @@ public class ManagerDaoImpl implements ManagerDao{
 	@Override
 	public Manager mypage(String manager_id) {
 		Manager select = sql.selectOne(ns+".idview", manager_id);
+		
 		return select;
 	}
 

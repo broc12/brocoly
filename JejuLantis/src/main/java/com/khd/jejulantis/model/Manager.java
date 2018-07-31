@@ -33,15 +33,57 @@ public class Manager {
 		String manager_coupon;
 		String manager_sms;
 		String manager_insurance;
+		String branch_name;
 		
 		public Manager() {
 		}
 		
-		public Manager(String manager_id, long branch_no){
-			this.manager_id=manager_id;
-			this.branch_no=branch_no;
-		}
 		
+		
+		public Manager(long manager_no, long branch_no, String manager_id, String manager_pwd, String manager_name,
+				String manager_email, String manager_birth, String manager_tel1, String manager_tel2,
+				String manager_withdraw_at, Date manager_resist_member, String manager_main, String manager_chart,
+				String manager_reservstatus, String manager_ars_reserv, String manager_travelmanagement,
+				String manager_review, String manager_notice, String manager_user, String manager_manager,
+				String manager_company, String manager_carkind, String manager_d_carkind, String manager_carinfo,
+				String manager_paystatus, String manager_salestatus, String manager_banner, String manager_coupon,
+				String manager_sms, String manager_insurance, String branch_name) {
+			super();
+			this.manager_no = manager_no;
+			this.branch_no = branch_no;
+			this.manager_id = manager_id;
+			this.manager_pwd = manager_pwd;
+			this.manager_name = manager_name;
+			this.manager_email = manager_email;
+			this.manager_birth = manager_birth;
+			this.manager_tel1 = manager_tel1;
+			this.manager_tel2 = manager_tel2;
+			this.manager_withdraw_at = manager_withdraw_at;
+			this.manager_resist_member = manager_resist_member;
+			this.manager_main = manager_main;
+			this.manager_chart = manager_chart;
+			this.manager_reservstatus = manager_reservstatus;
+			this.manager_ars_reserv = manager_ars_reserv;
+			this.manager_travelmanagement = manager_travelmanagement;
+			this.manager_review = manager_review;
+			this.manager_notice = manager_notice;
+			this.manager_user = manager_user;
+			this.manager_manager = manager_manager;
+			this.manager_company = manager_company;
+			this.manager_carkind = manager_carkind;
+			this.manager_d_carkind = manager_d_carkind;
+			this.manager_carinfo = manager_carinfo;
+			this.manager_paystatus = manager_paystatus;
+			this.manager_salestatus = manager_salestatus;
+			this.manager_banner = manager_banner;
+			this.manager_coupon = manager_coupon;
+			this.manager_sms = manager_sms;
+			this.manager_insurance = manager_insurance;
+			this.branch_name = branch_name;
+		}
+
+
+
 		public Manager(String manager_id){
 			this.manager_id=manager_id;
 			
@@ -302,6 +344,81 @@ public class Manager {
 			}catch(NumberFormatException ne) {
 				this.branch_no = -1;
 			}
+		}
+		public String getManager_birth1() {
+			  String str1 = manager_birth;
+			  System.out.println("str1"+ str1);
+		        String word1 = str1.split("-")[0];
+		        String word2 = str1.split("-")[1];
+		        String word3 = str1.split("-")[2];	      
+				return word1;	
+		}
+		public String getManager_birth2() {
+			  String str1 = manager_birth;
+		        String word1 = str1.split("-")[0];
+		        String word2 = str1.split("-")[1];
+		        String word3 = str1.split("-")[2];	      
+				return word2;	
+		}
+		public String getManager_birth3() {
+			  String str1 = manager_birth;
+		        String word1 = str1.split("-")[0];
+		        String word2 = str1.split("-")[1];
+		        String word3 = str1.split("-")[2];	      
+				return word3;	
+		}
+		public String getManager_tel3() {
+			  String str1 = manager_tel1;
+			  System.out.println("str1"+ str1);
+		        String word1 = str1.split("-")[0];
+		        String word2 = str1.split("-")[1];
+		        String word3 = str1.split("-")[2];	      
+				return word1;	
+		}
+		public String getManager_tel4() {
+			  String str1 = manager_tel1;
+		        String word1 = str1.split("-")[0];
+		        String word2 = str1.split("-")[1];
+		        String word3 = str1.split("-")[2];	      
+				return word2;	
+		}
+		public String getManager_tel5() {
+			  String str1 = manager_tel1;
+		        String word1 = str1.split("-")[0];
+		        String word2 = str1.split("-")[1];
+		        String word3 = str1.split("-")[2];	      
+				return word3;	
+		}
+		public String getManager_tel6() {
+			  String str1 = manager_tel2;
+			  System.out.println("str1"+ str1);
+		        String word1 = str1.split("-")[0];
+		        String word2 = str1.split("-")[1];
+		        String word3 = str1.split("-")[2];	      
+				return word1;	
+		}
+		public String getManager_tel7() {
+			  String str1 = manager_tel2;
+		        String word1 = str1.split("-")[0];
+		        String word2 = str1.split("-")[1];
+		        String word3 = str1.split("-")[2];	      
+				return word2;	
+		}
+		public String getManager_tel8() {
+			  String str1 = manager_tel2;
+		        String word1 = str1.split("-")[0];
+		        String word2 = str1.split("-")[1];
+		        String word3 = str1.split("-")[2];	      
+				return word3;	
+		}
+
+		public void setBranch_name(String branch_name) {
+			this.branch_name = branch_name;
+		}
+		
+		public String getBranch_name() {	
+			return branch_name;
+			  
 		}
 
 }

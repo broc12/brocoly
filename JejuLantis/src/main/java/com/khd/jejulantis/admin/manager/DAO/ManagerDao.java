@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.khd.jejulantis.model.Branch;
 import com.khd.jejulantis.model.Manager;
+import com.khd.jejulantis.model.Member;
 
 public interface ManagerDao {
 	boolean join(Manager manager);
@@ -14,5 +15,9 @@ public interface ManagerDao {
 	int emailcheck(String manager_email);
 
 	Manager loginCheck(Manager manager);
+
+	Manager mypage(String manager_id);
+
+	Manager modify(Manager manager);
 	
 }

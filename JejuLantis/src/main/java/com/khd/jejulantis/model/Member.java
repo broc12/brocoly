@@ -19,6 +19,7 @@ public class Member {
 	String member_withdraw_at;
 	java.sql.Date member_withdraw_date;
 	
+	
 	public Member() {}
 	public Member(String member_id) {
 		this.member_id = member_id;
@@ -137,5 +138,49 @@ public class Member {
 	}
 	public void setMember_withdraw_date(Date member_withdraw_date) {
 		this.member_withdraw_date = member_withdraw_date;
-	}	
+	}
+	public String getMember_birth1() {
+		  String str1 = member_birth;
+		  System.out.println("str1"+ str1);
+	        String word1 = str1.split("-")[0];
+	        String word2 = str1.split("-")[1];
+	        String word3 = str1.split("-")[2];	      
+			return word1;	
+	}
+	public String getMember_birth2() {
+		  String str1 = member_birth;
+	        String word1 = str1.split("-")[0];
+	        String word2 = str1.split("-")[1];
+	        String word3 = str1.split("-")[2];	      
+			return word2;	
+	}
+	public String getMember_birth3() {
+		  String str1 = member_birth;
+	        String word1 = str1.split("-")[0];
+	        String word2 = str1.split("-")[1];
+	        String word3 = str1.split("-")[2];	      
+			return word3;	
+	}
+	public String getMember_tel1() {
+		  String str1 = member_tel;
+		  System.out.println("str1"+ str1);
+	        String word1 = str1.split("-")[0];
+	        String word2 = str1.split("-")[1];
+	        String word3 = str1.split("-")[2];	      
+			return word1;	
+	}
+	public String getMember_tel2() {
+		  String str1 = member_tel;
+	        String word1 = str1.split("-")[0];
+	        String word2 = str1.split("-")[1];
+	        String word3 = str1.split("-")[2];	      
+			return word2;	
+	}
+	public String getMember_tel3() {
+		  String str1 = member_tel;
+	        String word1 = str1.split("-")[0];
+	        String word2 = str1.split("-")[1];
+	        String word3 = str1.split("-")[2];	      
+			return word3;	
+	}
 }

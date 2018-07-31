@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -23,6 +24,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.khd.jejulantis.admin.manager.Service.ManagerService;
 import com.khd.jejulantis.model.Branch;
 import com.khd.jejulantis.model.Manager;
+import com.khd.jejulantis.model.Member;
 
 
 @Controller
@@ -55,6 +57,32 @@ public class ManagerController {
 		boolean flag = managerService.joinService(manager);
 		return "admin/adminUsers/login";
 	}
+	@RequestMapping(value="admin/managermypage.do", method=RequestMethod.GET)
+	public String mypage(Model model,Branch branch,HttpSession session) {		
+		System.out.println("지나감!!");
+		Manager log = (Manager) session.getAttribute("managerlog");	
+		String manager_id = log.getManager_id();
+		String branch_name = log.getBranch_name();
+		Manager nn = managerService.mypageService(manager_id);
+		System.out.println("idCkkkk :" + manager_id);
+		System.out.println("branch_name :" + branch_name);
+		model.addAttribute("nn", nn);
+	
+		return "admin/adminUsers/mypage";
+	}
+	@RequestMapping(value="admin/managermodify.do", method=RequestMethod.POST)
+	 public String modify(Manager manager, HttpSession session)  {	
+		/* System.out.println("tel123 :" +member.getMember_tel());
+		 System.out.println("birth123 :" +member.getMember_birth());*/
+		 Manager md = managerService.modifyService(manager);
+			if(md!=null) {
+				md = new Manager(manager.getManager_id());
+				session.setAttribute("log", md);	
+				System.out.println("id1 :" +manager.getManager_id());
+			}			
+			
+			return "redirect:/mypage.do";
+		}
 	@RequestMapping(value = "admin/adminUsers/post", method = RequestMethod.GET)
 	public void get(){
 		
@@ -138,6 +166,7 @@ public class ManagerController {
 					out.close();
 				}
 			}
+			 System.out.println("getManager_id 1111=" +manager.getManager_id());
 			 System.out.println("getManager_id 1111=" +manager.getManager_id());
 			 System.out.println("getManager_pwd 1111=" + manager.getManager_pwd());
 		}

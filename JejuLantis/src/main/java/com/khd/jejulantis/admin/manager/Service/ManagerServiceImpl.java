@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.khd.jejulantis.admin.manager.DAO.ManagerDao;
 import com.khd.jejulantis.model.Branch;
 import com.khd.jejulantis.model.Manager;
+import com.khd.jejulantis.model.Member;
 
 @Service
 public class ManagerServiceImpl implements ManagerService {
@@ -38,6 +39,17 @@ public class ManagerServiceImpl implements ManagerService {
 	@Override
 	public Manager loginCheck(Manager manager) {
 		return managerDao.loginCheck(manager);
+	}
+
+	@Override
+	public Manager mypageService(String manager_id) {		
+		return managerDao.mypage(manager_id);
+	}
+
+	@Override
+	public Manager modifyService(Manager manager) {
+		// TODO Auto-generated method stub
+		return managerDao.modify(manager);
 	}
 	
 }

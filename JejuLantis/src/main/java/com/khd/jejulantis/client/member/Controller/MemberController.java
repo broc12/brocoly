@@ -44,9 +44,11 @@ public class MemberController {
 	public String mypage( HttpSession session,Model model) {
 	
 		Member log = (Member) session.getAttribute("log");
-		String member_id = log.getMember_id();		
+		String member_id = log.getMember_id();
+		Member nn = memberService.mypageService(member_id);	
+		//String member_id = nn.getMember_id();		
+		String member_birth1 = nn.getMember_birth1();	
 		System.out.println("idCkkkk :" + member_id);	
-		Member nn = memberService.mypageService(member_id);
 		model.addAttribute("nn", nn);
 		System.out.println("id :" + nn.getMember_id());
 		return "rentcar/mypages/mypage";
@@ -73,12 +75,15 @@ public class MemberController {
 	    }
 	 @RequestMapping(value="/modify.do", method=RequestMethod.POST)
 	 public String modify(Member member, HttpSession session)  {	
-			Member md = memberService.modifyService(member);
+		 System.out.println("tel123 :" +member.getMember_tel());
+		 System.out.println("birth123 :" +member.getMember_birth());
+		 Member md = memberService.modifyService(member);
 			if(md!=null) {
 				md = new Member(member.getMember_id());
 				session.setAttribute("log", md);	
 				System.out.println("id1 :" +member.getMember_id());
 			}			
+			
 			return "redirect:/mypage.do";
 		}
 	 @RequestMapping(value="delete.do")

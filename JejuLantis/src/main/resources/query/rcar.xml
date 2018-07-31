@@ -90,7 +90,6 @@ FROM
 						SELECT
 							BRANCH_NO,
 							CAR_NO,
-							INSURANCE_NO,
 							CAR_KIND_NO,
 							SUM(AC) OVER(PARTITION BY CAR_NO) ACTOT,
 							CAR_KIND_COUNT,
@@ -107,7 +106,6 @@ FROM
 								SELECT
 									BRANCH_NO,
 									CAR_NO,
-									INSURANCE_NO,
 									CAR_KIND_NO,
 									COUNT(CAR_INFO_NO) AC
 				                FROM
@@ -122,8 +120,6 @@ FROM
 				                    AND
 										CAR_INFO.CAR_NO=RENT_RESERV.CAR_NO
 				                    AND
-										CAR_INFO.INSURANCE_NO=RENT_RESERV.INSURANCE_NO
-									AND
 										CAR_INFO.CAR_KIND_NO=RENT_RESERV.CAR_KIND_NO
 									AND
 										CAR_INFO.CAR_INFO_NO=RENT_RESERV.CAR_INFO_NO
@@ -142,7 +138,7 @@ FROM
 								AND
 									CAR_INFO_RENT_AT='Y'
 								GROUP BY
-									BRANCH_NO,CAR_NO,INSURANCE_NO,CAR_KIND_NO
+									BRANCH_NO,CAR_NO,CAR_KIND_NO
 							)
 						<where>
 							<if test="car_kind_navi != '' and car_kind_navi != null ">

@@ -67,10 +67,6 @@
 						</th>
 					</tr>
 					<tr style="color:#808080;font-size:12pt">	
-						<th  height="60px" width="10%" class="text-center" style="background-color: #fafafa">보험코드</th>
-						<th  width="35%" class="text-left">
-							${carDetailContent.insurance_no}
-						</th>
 						<th  height="60px" width="10%" class="text-center" style="background-color: #fafafa">차종코드</th>
 						<th  width="35%" class="text-left">
 							${carDetailContent.car_no}

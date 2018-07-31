@@ -22,11 +22,9 @@ public class CarkindDetailController {
 	@RequestMapping(value="admin/carDetailWrite.do")
 	public ModelAndView carDetailListInsert(@RequestParam("manager_id")String manager_id) {
 		List<CarkindDetail> carDetailWrite = cservice.listIService();
-		List<CarkindDetail> insuranceSelectBox = cservice.insuranceSelectService(manager_id);
 		List<CarkindDetail> branchNoSelect = cservice.branchNoSelect(manager_id);
 		String view = "admin/cartypeDetails/carkindDetailInsert";
 		ModelAndView mv = new ModelAndView(view, "carDetailWrite", carDetailWrite);
-		mv.addObject("insuranceSelectBox",insuranceSelectBox);
 		mv.addObject("branchNoSelect", branchNoSelect);
 		return mv;
 	}
@@ -37,11 +35,9 @@ public class CarkindDetailController {
 		System.out.println("car_kind_no : " + car_kind_no);
 		List<CarkindDetail> carDetailUpdate = cservice.ContentService(car_kind_no);
 		List<CarkindDetail> carDetailSelectBox = cservice.NotContentService(car_kind_no);
-		List<CarkindDetail> insuranceUpdateSelectBox = cservice.insuranceUpdateSelectService(manager_id,car_kind_no);
 		String view = "admin/cartypeDetails/carkindDetailUpdate";
 		ModelAndView mv = new ModelAndView(view, "carDetailUpdate", carDetailUpdate);
 		mv.addObject("carDetailSelectBox", carDetailSelectBox);
-		mv.addObject("insuranceUpdateSelectBox",insuranceUpdateSelectBox);
 		return mv;
 	}
 	@RequestMapping(value="admin/carDetailUpdateOk.do",method=RequestMethod.POST)
@@ -70,7 +66,6 @@ public class CarkindDetailController {
 	public String carDetailListInsertOk(
 		@RequestParam("manager_id")String manager_id,
 		@RequestParam("branch_no")int branch_no,
-		@RequestParam("insurance_no")int insurance_no,
 		@RequestParam("car_no")int car_no,
 		@RequestParam("car_kind_price_week")int car_kind_price_week,
 		@RequestParam("car_kind_price_weekend")int car_kind_price_weekend,
@@ -84,7 +79,6 @@ public class CarkindDetailController {
 		@RequestParam(value="car_kind_camera",required=false)String car_kind_camera,
 		@RequestParam(value="car_kind_nonsmoke",required=false)String car_kind_nonsmoke) {
 		System.out.println("branch_no : " + branch_no);
-		System.out.println("insurance_no : " + insurance_no);
 		System.out.println("car_no : " + car_no);
 		System.out.println("car_kind_price_week : " + car_kind_price_week);
 		System.out.println("car_kind_price_weekend : " + car_kind_price_weekend);
@@ -97,10 +91,10 @@ public class CarkindDetailController {
 		System.out.println("car_kind_sunroof : " + car_kind_sunroof);
 		System.out.println("car_kind_camera : " + car_kind_camera);
 		System.out.println("car_kind_nonsmoke : " + car_kind_nonsmoke);
-		CarkindDetail carDetail = new CarkindDetail(0, branch_no, car_no, insurance_no, 0, 
+		CarkindDetail carDetail = new CarkindDetail(0, branch_no, car_no, 
 			car_kind_price_week, car_kind_price_weekend, car_kind_price_holiday, car_kind_price_h_holiday, 
-			car_kind_navi, car_kind_sensor, car_kind_blackbox,car_kind_bluetooth, car_kind_sunroof, 
-			car_kind_camera, car_kind_nonsmoke, 0, "N", null);
+			 0, car_kind_navi, car_kind_sensor, car_kind_blackbox,car_kind_bluetooth, car_kind_sunroof, 
+			car_kind_camera, car_kind_nonsmoke, 0, 0, "N", null);
 		System.out.println("test1");
 		cservice.insertService(carDetail);
 		System.out.println("test2");

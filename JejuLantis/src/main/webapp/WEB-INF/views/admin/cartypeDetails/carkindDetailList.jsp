@@ -46,7 +46,6 @@
               <thead>
                 <tr>
                   <th width="5%">지점일련번호</th>
-                  <th width="5%">보험일련번호</th>
                   <th width="5%">차일련번호</th>
                   <th width="5%">대여횟수</th>
                   <th width="5%">주중가</th>
@@ -58,7 +57,6 @@
               <c:forEach items="${carDetailList}" var="carDetailList" varStatus="status">
                 <tr>
 					<td>${carDetailList.branch_no}</td>
-					<td>${carDetailList.insurance_no}</td>
 					<td>${carDetailList.car_no}</td>
 					<td>${carDetailList.car_kind_count}</td>
 					<td>${carDetailList.car_kind_price_week}</td>

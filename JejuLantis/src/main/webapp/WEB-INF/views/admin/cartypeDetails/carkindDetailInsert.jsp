@@ -50,11 +50,6 @@
             f.branch_no.focus();
             return;
          }
-		if(f.insurance_no.value ==""){
-            alert("보험코드를 채워주세요");
-            f.insurance_no.focus();
-            return;
-         }
 		if(f.branch_no.value ==""){
             alert("지점코드를 채워주세요");
             f.branch_no.focus();
@@ -168,15 +163,6 @@
 							</th>
 						</tr>
 						<tr style="color:#808080;font-size:12pt">	
-							<th  height="60px" width="10%" class="text-center" style="background-color: #fafafa"><a style="color:red">*</a>보험코드</th>
-							<th  width="35%" class="text-left">
-								<select name="insurance_no" id="insurance_no" class="form-control" style="width:250px">
-									<option value="" style="color:black">보험명/보험료/보상한도</option>
-									<c:forEach items="${insuranceSelectBox}" var="insuranceSelectBox" varStatus="status">
-										<option value="${insuranceSelectBox.insurance_no}" style="color:black">${insuranceSelectBox.insurance_name}/${insuranceSelectBox.insurance_price}/${insuranceSelectBox.insurance_limit}</option>
-									</c:forEach>
-                       			</select>
-							</th>
 							<th  height="60px" width="10%" class="text-center" style="background-color: #fafafa"><a style="color:red">*</a>차종코드</th>
 							<th  width="35%" class="text-left">
 								<select name="car_no" id="car_no" class="form-control" style="width:250px">

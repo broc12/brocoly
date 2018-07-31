@@ -45,7 +45,7 @@
 		<result property="car_kind_camera" column="CAR_KIND_CAMERA"/>
 		<result property="car_kind_nonsmoke" column="CAR_KIND_NONSMOKE"/>
 		<result property="car_kind_resist" column="CAR_KIND_RESIST"/>
-		
+		<result property="car_kind_total" column="CAR_KIND_TOTAL"/>
 		<result property="manager_id" column="MANAGER_ID"/>
 	</resultMap>
 	<select id="carkindListI" resultType="Carkind">
@@ -65,18 +65,17 @@
 	</update>
 	<insert id="insert" parameterType="CarKind">
 		insert into CAR_KIND values(CAR_KIND_SEQ.NEXTVAL, #{branch_no}, 
-		#{car_no}, #{insurance_no}, 0, #{car_kind_price_week}, 
+		#{car_no}, #{car_kind_price_week}, 
 		#{car_kind_price_weekend}, #{car_kind_price_holiday}, #{car_kind_price_h_holiday},
-		#{car_kind_navi}, #{car_kind_sensor}, #{car_kind_blackbox}, 
+		0, #{car_kind_navi}, #{car_kind_sensor}, #{car_kind_blackbox}, 
 		#{car_kind_bluetooth}, #{car_kind_sunroof}, #{car_kind_camera}, #{car_kind_nonsmoke},
-		0, 'N',
+		0, 0, 'N',
 		SYSDATE)
 	</insert>
 	<select id="carkindContentList" resultType="Carkind">
-        select * from CAR_KIND, CAR, INSURANCE
+        select * from CAR_KIND, CAR
 		where CAR_KIND.CAR_KIND_NO=#{car_kind_no}
 		and CAR.CAR_NO=CAR_KIND.CAR_NO
-        and INSURANCE.INSURANCE_NO=CAR_KIND.INSURANCE_NO
 	</select>
 	<select id="branchNoSelect" resultType="Carkind" parameterType="String">
 		select BRANCH_NO from BRANCH where BRANCH_NO=(select BRANCH_NO from MANAGER where MANAGER_ID=#{manager_id})
@@ -87,26 +86,27 @@
 		where CAR_NO
 		!=(select CAR_NO from CAR_KIND where CAR_KIND_NO=#{car_kind_no}) and CAR_WITHDRAW_AT='N'
 	</select>
-	<select id="insuranceUpdateSelectBox" resultType="Carkind" parameterType="HashMap">
-		select *
-		from INSURANCE
-		where INSURANCE_NO
-		!=(select INSURANCE_NO from CAR_KIND where CAR_KIND_NO=#{car_kind_no}) and INSURANCE.INSURANCE_WITHDRAW_AT='N'
-		and BRANCH_NO=(select BRANCH_NO from MANAGER where MANAGER_ID=#{manager_id})
-	</select>
-	<select id="insuranceSelectBox" resultType="Carkind" parameterType="String">
-		select *
-		from INSURANCE
-		where BRANCH_NO
-		=(select BRANCH_NO from MANAGER where MANAGER_ID=#{manager_id}) and INSURANCE_WITHDRAW_AT='N'
-	</select>
+<!-- 	<select id="insuranceUpdateSelectBox" resultType="Carkind" parameterType="HashMap"> -->
+<!-- 		select * -->
+<!-- 		from INSURANCE -->
+<!-- 		where INSURANCE_NO -->
+<!-- 		!=(select INSURANCE_NO from CAR_KIND where CAR_KIND_NO=#{car_kind_no}) and INSURANCE.INSURANCE_WITHDRAW_AT='N' -->
+<!-- 		and BRANCH_NO=(select BRANCH_NO from MANAGER where MANAGER_ID=#{manager_id}) -->
+<!-- 	</select> -->
+<!-- 	<select id="insuranceSelectBox" resultType="Carkind" parameterType="String"> -->
+<!-- 		select * -->
+<!-- 		from INSURANCE -->
+<!-- 		where BRANCH_NO -->
+<!-- 		=(select BRANCH_NO from MANAGER where MANAGER_ID=#{manager_id}) and INSURANCE_WITHDRAW_AT='N' -->
+<!-- 	</select> -->
 	<update id="carkindUpdate" parameterType="Carkind">
 		update CAR_KIND
-		set BRANCH_NO=#{branch_no}, INSURANCE_NO=#{insurance_no}, CAR_NO=#{car_no}, CAR_KIND_COUNT=#{car_kind_count}, 
+		set BRANCH_NO=#{branch_no}, CAR_NO=#{car_no},  
 		CAR_KIND_PRICE_WEEK=#{car_kind_price_week},
 		CAR_KIND_PRICE_WEEKEND=#{car_kind_price_weekend},
 		CAR_KIND_PRICE_HOLIDAY=#{car_kind_price_holiday},
 		CAR_KIND_PRICE_H_HOLIDAY=#{car_kind_price_h_holiday},
+		CAR_KIND_COUNT=#{car_kind_count},
 		CAR_KIND_NAVI=#{car_kind_navi},
 		CAR_KIND_SENSOR=#{car_kind_sensor},
 		CAR_KIND_BLACKBOX=#{car_kind_blackbox},
@@ -114,6 +114,7 @@
 		CAR_KIND_SUNROOF=#{car_kind_sunroof},
 		CAR_KIND_CAMERA=#{car_kind_camera},
 		CAR_KIND_NONSMOKE=#{car_kind_nonsmoke},
+		CAR_KIND_TOTAL=#{car_kind_total},
 		CAR_KIND_WITHDRAW_AT='N',
 		CAR_KIND_RESIST=SYSDATE
 		where CAR_KIND_NO=#{car_kind_no}

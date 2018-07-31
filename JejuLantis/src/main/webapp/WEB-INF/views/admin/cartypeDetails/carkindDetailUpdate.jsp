@@ -49,11 +49,6 @@
             f.branch_no.focus();
             return;
          }
-		if(f.insurance_no.value ==""){
-            alert("보험코드를 채워주세요");
-            f.insurance_no.focus();
-            return;
-         }
 		if(f.branch_no.value ==""){
             alert("지점코드를 채워주세요");
             f.branch_no.focus();
@@ -165,16 +160,7 @@
 									<input name="branch_no" type="text" size="30" value="${carDetailUpdate.branch_no}" class="form-control" style="width:250px"readonly>
 								</th>
 							</tr>
-							<tr style="color:#808080;font-size:12pt">	
-								<th  height="60px" width="10%" class="text-center" style="background-color: #fafafa"><a style="color:red">*</a>보험코드</th>
-								<th  width="35%" class="text-left">
-									<select name="insurance_no" id="insurance_no" class="form-control" style="width:250px">
-										<option value="${carDetailUpdate.insurance_no}" style="color:black">${carDetailUpdate.insurance_name}/${carDetailUpdate.insurance_price}/${carDetailUpdate.insurance_limit}</option>
-											<c:forEach items="${insuranceUpdateSelectBox}" var="insuranceUpdateSelectBox" varStatus="status">
-												<option value="${insuranceUpdateSelectBox.insurance_no}" style="color:black">${insuranceUpdateSelectBox.insurance_name}/${insuranceUpdateSelectBox.insurance_price}/${insuranceUpdateSelectBox.insurance_limit}</option>
-											</c:forEach>	
-	                       			</select>
-								</th>
+							<tr style="color:#808080;font-size:12pt">
 								<th  height="60px" width="10%" class="text-center" style="background-color: #fafafa"><a style="color:red">*</a>차종코드</th>
 								<th  width="35%" class="text-left">
 									<select name="car_no" id="car_no" class="form-control" style="width:250px">

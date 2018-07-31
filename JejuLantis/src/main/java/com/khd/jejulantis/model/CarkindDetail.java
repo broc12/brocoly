@@ -48,9 +48,9 @@ public class CarkindDetail {
 	private String car_kind_camera;
 	private String car_kind_nonsmoke;
 	private int car_kind_rating;
+	private int car_kind_tatal;
 	private String car_kind_withdraw_at;
 	private Date car_kind_resist;
-
 	public CarkindDetail() {}
 	
 
@@ -61,16 +61,17 @@ public class CarkindDetail {
 	}
 	//CAR_KIND INSERT
 	
-	public CarkindDetail(int car_kind_no, int branch_no, int car_no, int insurance_no, int car_kind_count,
+	public CarkindDetail(int car_kind_no, int branch_no, int car_no,
 			int car_kind_price_week, int car_kind_price_weekend, int car_kind_price_holiday,
-			int car_kind_price_h_holiday, String car_kind_navi, String car_kind_sensor, String car_kind_blackbox,
+			int car_kind_price_h_holiday,  int car_kind_count, 
+			String car_kind_navi, String car_kind_sensor, String car_kind_blackbox,
 			String car_kind_bluetooth, String car_kind_sunroof, String car_kind_camera, String car_kind_nonsmoke,
-			int car_kind_rating, String car_kind_withdraw_at, Date car_kind_resist) {
+			int car_kind_rating, int car_kind_tatal, String car_kind_withdraw_at, Date car_kind_resist) {
 		super();
 		this.car_kind_no = car_kind_no;
 		this.branch_no = branch_no;
 		this.car_no = car_no;
-		this.insurance_no = insurance_no;
+		//this.insurance_no = insurance_no;
 		this.car_kind_count = car_kind_count;
 		this.car_kind_price_week = car_kind_price_week;
 		this.car_kind_price_weekend = car_kind_price_weekend;
@@ -84,6 +85,7 @@ public class CarkindDetail {
 		this.car_kind_camera = car_kind_camera;
 		this.car_kind_nonsmoke = car_kind_nonsmoke;
 		this.car_kind_rating = car_kind_rating;
+		this.car_kind_tatal = car_kind_tatal;
 		this.car_kind_withdraw_at = car_kind_withdraw_at;
 		this.car_kind_resist = car_kind_resist;
 	}
@@ -173,6 +175,16 @@ public class CarkindDetail {
 		this.car_rating = car_rating;
 		this.car_withdraw_at = car_withdraw_at;
 		this.car_resist = car_resist;
+	}
+
+
+	public int getCar_kind_tatal() {
+		return car_kind_tatal;
+	}
+
+
+	public void setCar_kind_tatal(int car_kind_tatal) {
+		this.car_kind_tatal = car_kind_tatal;
 	}
 
 

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.khd.jejulantis.admin.carInfo.DAO.CarInfoDao;
 import com.khd.jejulantis.model.CarInfo;
+import com.khd.jejulantis.model.CarInfoInsert;
 
 @Service
 public class CarInfoServiceImpl implements CarInfoService {
@@ -18,6 +19,8 @@ public class CarInfoServiceImpl implements CarInfoService {
 	public boolean carInsert(List<CarInfo> car) {
 		return CarInfoDao.carInsert(car);
 	}
-	
+	public List<CarInfoInsert> carInfoInsert(String manager_id){
+		return CarInfoDao.carInfoInsert(manager_id);
+	}
 	
 }

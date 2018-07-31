@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.SynchronousQueue;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,8 +20,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.khd.jejulantis.admin.carInfo.Service.CarInfoService;
 import com.khd.jejulantis.admin.carInfofile.Service.ExcelUploadService;
+import com.khd.jejulantis.admin.cardetail.Service.CarkindDetailService;
 import com.khd.jejulantis.client.qna.Service.CustomerCenterService;
-import com.khd.jejulantis.model.CarInfo;
+import com.khd.jejulantis.model.*;
 
 @Controller
 public class CarInfoController {
@@ -30,9 +32,18 @@ public class CarInfoController {
 	private ExcelUploadService excelUploadService;
 	@Autowired
 	private CarInfoService carInfoService;
+	@Autowired
+	private CarkindDetailService carKindService;
 	
 	@RequestMapping(value="admin/carInfo.do",method=RequestMethod.GET)
-	public String carInfo() {
+	public String carInfo(@RequestParam("manager_id")String manager_id ) {
+		List<CarkindDetail>carList = new ArrayList<CarkindDetail>();
+		System.out.println("manager id : "+manager_id);
+		carList = carKindService.listService(manager_id);
+		System.out.println("carList size " + carList.size());
+		String view = "admin/cars/carInfo";
+		
+		ModelAndView mv = new ModelAndView(view,"carList",carList);
 		return "admin/cars/carInfo";
 	}
 	@RequestMapping(value="admin/carInfoAdd.do",method=RequestMethod.GET)

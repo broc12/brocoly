@@ -34,6 +34,9 @@ public class CarInfoDaoImpl implements CarInfoDao {
 		else flag = false;
 		return flag;
 	}
+	
+	
+	
 	/*@Override
 	public boolean qnaDel(long qna_no) {
 		int i = sqlSession.delete(nsQna+".myQnaDel", qna_no);

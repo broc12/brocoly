@@ -49,9 +49,9 @@
             f.branch_no.focus();
             return;
          }
-		if(f.branch_no.value ==""){
-            alert("지점코드를 채워주세요");
-            f.branch_no.focus();
+		if(f.car_kind_no.value ==""){
+            alert("차종상세코드를 채워주세요");
+            f.car_kind_no.focus();
             return;
          }
 		if(f.car_no.value ==""){
@@ -59,69 +59,36 @@
             f.car_no.focus();
             return;
          }
-		if(f.car_kind_price_week.value ==""){
-            alert("주중가를 채워주세요");
-            f.car_kind_price_week.focus();
+		if(f.insurance_name.value ==""){
+            alert("보험명을 채워주세요");
+            f.insurance_name.focus();
             return;
          }
-		if(f.car_kind_price_weekend.value ==""){
-            alert("주말가를 채워주세요");
-            f.car_kind_price_weekend.focus();
+		if(f.insurance_price.value ==""){
+            alert("보험료를 채워주세요");
+            f.insurance_price.focus();
             return;
          }
-		if(f.car_kind_price_holiday.value ==""){
-            alert("성수기가를 채워주세요");
-            f.car_kind_price_holiday.focus();
+		if(f.insurance_limit.value ==""){
+            alert("보상한도를 채워주세요");
+            f.insurance_limit.focus();
             return;
          }
-		if(f.car_kind_price_h_holiday.value ==""){
-            alert("극성수기가를 채워주세요");
-            f.car_kind_price_h_holiday.focus();
+		if(f.insurance_burden_price.value ==""){
+            alert("자가부담을 채워주세요");
+            f.insurance_burden_price.focus();
             return;
          }
-		var isChecked = "";
-    	if($("input:checkbox[id='customCheck1']").is(":checked")){	// 쳬크 되어있으면
-    		isChecked = "Y"
-    	} else {
-    		isChecked = "N"
-    	}
-    	jQuery("#car_kind_navi").val(isChecked);
-    	if($("input:checkbox[id='customCheck2']").is(":checked")){	// 쳬크 되어있으면
-    		isChecked = "Y"
-    	} else {
-    		isChecked = "N"
-    	}
-    	jQuery("#car_kind_sensor").val(isChecked);
-    	if($("input:checkbox[id='customCheck3']").is(":checked")){	// 쳬크 되어있으면
-    		isChecked = "Y"
-    	} else {
-    		isChecked = "N"
-    	}
-    	jQuery("#car_kind_blackbox").val(isChecked);
-    	if($("input:checkbox[id='customCheck4']").is(":checked")){	// 쳬크 되어있으면
-    		isChecked = "Y"
-    	} else {
-    		isChecked = "N"
-    	}
-    	jQuery("#car_kind_bluetooth").val(isChecked);
-    	if($("input:checkbox[id='customCheck5']").is(":checked")){	// 쳬크 되어있으면
-    		isChecked = "Y"
-    	} else {
-    		isChecked = "N"
-    	}
-    	jQuery("#car_kind_sunroof").val(isChecked);
-    	if($("input:checkbox[id='customCheck6']").is(":checked")){	// 쳬크 되어있으면
-    		isChecked = "Y"
-    	} else {
-    		isChecked = "N"
-    	}
-    	jQuery("#car_kind_camera").val(isChecked);
-    	if($("input:checkbox[id='customCheck7']").is(":checked")){	// 쳬크 되어있으면
-    		isChecked = "Y"
-    	} else {
-    		isChecked = "N"
-    	}
-    	jQuery("#car_kind_nonsmoke").val(isChecked);
+		if(f.insurance_limit_age.value ==""){
+            alert("규정나이를 채워주세요");
+            f.insurance_limit_age.focus();
+            return;
+         }
+		if(f.insurance_limit_carrier.value ==""){
+            alert("규정경력을 채워주세요");
+            f.insurance_limit_carrier.focus();
+            return;
+         }
     	document.f.submit();
 	}
 	</script>
@@ -133,12 +100,12 @@
         <li class="breadcrumb-item">
           <a href="#">JEJULANTIS</a>
         </li>
-        <li class="breadcrumb-item active">차종상세관리</li>
+        <li class="breadcrumb-item active">보험관리</li>
       </ol>
       <!-- Example DataTables Card-->
       <div class="card mb-3">
         <div class="card-header">
-          <i class="fa fa-table"></i>차종상세관리</div>
+          <i class="fa fa-table"></i>보험관리</div>
         <div class="card-body">
           <div class="table-responsive">
           	<form name="f" action="carDetailUpdateOk.do" method="post">
@@ -153,7 +120,6 @@
 	          		<input type="hidden" name="car_kind_camera" id="car_kind_camera"/>
 	          		<input type="hidden" name="car_kind_nonsmoke" id="car_kind_nonsmoke"/>
 	            		<table border="0" width="100%"  cellpadding="0" cellspacing="0">
-							<h3 style="color:#007bff">차종상세등록</h3>	
 							<tr style="color:#808080;font-size:12pt">			
 								<th  height="60px" width="10%" class="text-center" style="background-color: #fafafa"><a style="color:red">*</a>지점코드</th>
 								<th  width="35%" class="text-left">

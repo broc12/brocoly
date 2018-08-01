@@ -41,6 +41,7 @@
 	<context:component-scan base-package="com.khd.jejulantis.admin.power.Controller" />
 	<context:component-scan base-package="com.khd.jejulantis.admin.qna.Controller" />
 	<context:component-scan base-package="com.khd.jejulantis.admin.review.Controller" />
+	<context:component-scan base-package="com.khd.jejulantis.admin.insurance.Controller" />
 	<context:component-scan base-package="com.khd.jejulantis.client.home.Controller" />
 	<context:component-scan base-package="com.khd.jejulantis.client.login.Controller" />
 	<context:component-scan base-package="com.khd.jejulantis.client.member.Controller" />

@@ -3,6 +3,7 @@ package com.khd.jejulantis.model;
 import java.sql.Date;
 
 public class Insurance {
+	private String manager_id;
 	private int insurance_no;
 	private int branch_no;
 	private int car_kind_no;
@@ -20,7 +21,7 @@ public class Insurance {
 	}
 	public Insurance(int insurance_no, int branch_no, int car_kind_no, int car_no, int insurance_price,
 			String insurance_name, String insurance_limit, int insurance_burden_price, int insurance_limit_age,
-			int insurance_limit_carrier, String insurance_withdraw_at, Date insurance_resist) {
+			int insurance_limit_carrier, String insurance_withdraw_at, Date insurance_resist, String manager_id) {
 		super();
 		this.insurance_no = insurance_no;
 		this.branch_no = branch_no;
@@ -34,6 +35,14 @@ public class Insurance {
 		this.insurance_limit_carrier = insurance_limit_carrier;
 		this.insurance_withdraw_at = insurance_withdraw_at;
 		this.insurance_resist = insurance_resist;
+		this.manager_id = manager_id;
+	}
+	
+	public String getManager_id() {
+		return manager_id;
+	}
+	public void setManager_id(String manager_id) {
+		this.manager_id = manager_id;
 	}
 	public int getInsurance_no() {
 		return insurance_no;

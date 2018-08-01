@@ -17,7 +17,7 @@
 		<result property="insurance_withdraw_at" column="INSURANCE_WITHDRAW_AT"/>
 		<result property="insurance_resist" column="INSURANCE_RESIST"/>
 		<result property="manager_id" column="MANAGER_ID"/>
-	</resultMap>
+	</resultMap>				
 	<select id="branchNoSelect" resultType="Insurance" parameterType="String">
 		select BRANCH_NO from BRANCH where BRANCH_NO=(select BRANCH_NO from MANAGER where MANAGER_ID=#{manager_id})
 	</select>
@@ -25,24 +25,48 @@
 		select CAR_KIND.*, CAR.* from CAR_KIND, CAR 
 		where CAR_KIND.CAR_NO=CAR.CAR_NO and BRANCH_NO=(select BRANCH_NO from MANAGER where MANAGER_ID=#{manager_id}) 
 	</select>
+	<select id="carKindNotSelectBox" resultType="Insurance" parameterType="hashmap">
+		select CAR_KIND.*, CAR.* from CAR_KIND, CAR 
+		where CAR_KIND.CAR_NO=CAR.CAR_NO and BRANCH_NO=(select BRANCH_NO from MANAGER where MANAGER_ID=#{manager_id}) 
+		and CAR_KIND_NO!=(select CAR_KIND_NO from INSURANCE where INSURANCE_NO =#{insurance_no})
+	</select>
 	<select id="insuranceList" resultType="Insurance" parameterType="String">
 		select * from INSURANCE 
 		where INSURANCE_WITHDRAW_AT='N' and BRANCH_NO=(select BRANCH_NO from MANAGER where MANAGER_ID=#{manager_id})
 	</select>
+<!-- 	<select id="insuranceCarNo" resultType="Insurance" parameterType="String"> -->
+<!-- 		select CAR.CAR_NO -->
+<!-- 		from CAR_KIND, CAR  -->
+<!-- 		where CAR_KIND.CAR_NO=CAR.CAR_NO  -->
+<!-- 		and BRANCH_NO=(select BRANCH_NO from MANAGER where MANAGER_ID=#{manager_id})  -->
+<!-- 		and CAR_KIND_NO=#{car_kind_no} -->
+<!-- 	</select> -->
 	<select id="insuranceContent" resultType="Insurance">
 		select * from INSURANCE where INSURANCE_NO=#{insurance_no}
 	</select>
 	<insert id="insuranceInsert" parameterType="Insurance">
 		insert into INSURANCE values(INSURANCE_SEQ.NEXTVAL, #{branch_no}, #{car_kind_no},
-		#{car_no}, #{insurance_price}, #{insurance_name}, #{insurance_limit}, #{insurance_burden_price},
+		(select CAR.CAR_NO 
+		from CAR_KIND, CAR 
+		where CAR_KIND.CAR_NO=CAR.CAR_NO 
+		and BRANCH_NO=(select BRANCH_NO from MANAGER where MANAGER_ID=#{manager_id})
+		and CAR_KIND_NO=#{car_kind_no}), #{insurance_price}, #{insurance_name}, #{insurance_limit}, #{insurance_burden_price},
 		#{insurance_limit_age}, #{insurance_limit_carrier}, 'N', SYSDATE)
 	</insert>
-	<update id="insuranceUpdate" parameterType="int">
+	<select id="insuranceUpdate" parameterType="int" resultType="Insurance">
+		select * from INSURANCE where INSURANCE_NO=#{insurance_no}
+	</select>
+	<update id="insuranceUpdateOk" parameterType="Insurance">
 		update INSURANCE
-		set BRANCH_NO=#{branch_no}, CAR_KIND_NO=#{car_kind_no}, CAR_NO=#{car_no}, INSURANCE_PRICE=#{insurance_price},  
-		INSURANCE_NAME=#{insurance_name}, INSURANCE_LIMIT=#{insurance_limit}, INSURANCE_BURDEN_PRICE=#{insurance_burden_price}, 
-		INSURANCE_LIMIT_AGE=#{insurance_limit_age}, INSURANCE_LIMIT_CARRIER=#{insurance_limit_carrier}, 
-		INSURANCE_WITHDRAW_AT='N', INSURANCE_RESIST=SYSDATE 
+		set BRANCH_NO=#{branch_no}, CAR_KIND_NO=#{car_kind_no}, CAR_NO=
+		(select CAR.CAR_NO 
+		from CAR_KIND, CAR 
+		where CAR_KIND.CAR_NO=CAR.CAR_NO 
+		and BRANCH_NO=(select BRANCH_NO from MANAGER where MANAGER_ID=#{manager_id})
+		and CAR_KIND_NO=#{car_kind_no}), 
+		INSURANCE_PRICE=#{insurance_price}, INSURANCE_NAME=#{insurance_name}, INSURANCE_LIMIT=#{insurance_limit}, 
+		INSURANCE_BURDEN_PRICE=#{insurance_burden_price}, INSURANCE_LIMIT_AGE=#{insurance_limit_age}, 
+		INSURANCE_LIMIT_CARRIER=#{insurance_limit_carrier}, INSURANCE_WITHDRAW_AT='N', INSURANCE_RESIST=SYSDATE 
 		where INSURANCE_NO=#{insurance_no}
 	</update>
 	<update id="insuranceDUpdate" parameterType="int">

@@ -54,11 +54,6 @@
             f.car_kind_no.focus();
             return;
          }
-		if(f.car_no.value ==""){
-            alert("차종코드를 채워주세요");
-            f.car_no.focus();
-            return;
-         }
 		if(f.insurance_name.value ==""){
             alert("보험명을 채워주세요");
             f.insurance_name.focus();
@@ -108,96 +103,70 @@
           <i class="fa fa-table"></i>보험관리</div>
         <div class="card-body">
           <div class="table-responsive">
-          	<form name="f" action="carDetailUpdateOk.do" method="post">
-          		<c:forEach items="${carDetailUpdate}" var="carDetailUpdate" varStatus="status">
-          			<input type="hidden" name="manager_id" value="${managerlog.manager_id}" id="manager_id"/> 
-	          		<input type="hidden" value="${carDetailUpdate.car_kind_no}" name="car_kind_no" id="car_kind_no"/>
-	          		<input type="hidden" name="car_kind_navi" id="car_kind_navi"/>
-	          		<input type="hidden" name="car_kind_sensor" id="car_kind_sensor"/>
-	          		<input type="hidden" name="car_kind_blackbox" id="car_kind_blackbox"/>
-	          		<input type="hidden" name="car_kind_bluetooth" id="car_kind_bluetooth"/>
-	          		<input type="hidden" name="car_kind_sunroof" id="car_kind_sunroof"/>
-	          		<input type="hidden" name="car_kind_camera" id="car_kind_camera"/>
-	          		<input type="hidden" name="car_kind_nonsmoke" id="car_kind_nonsmoke"/>
-	            		<table border="0" width="100%"  cellpadding="0" cellspacing="0">
-							<tr style="color:#808080;font-size:12pt">			
-								<th  height="60px" width="10%" class="text-center" style="background-color: #fafafa"><a style="color:red">*</a>지점코드</th>
-								<th  width="35%" class="text-left">
-									<input name="branch_no" type="text" size="30" value="${carDetailUpdate.branch_no}" class="form-control" style="width:250px"readonly>
-								</th>
-							</tr>
-							<tr style="color:#808080;font-size:12pt">
-								<th  height="60px" width="10%" class="text-center" style="background-color: #fafafa"><a style="color:red">*</a>차종코드</th>
-								<th  width="35%" class="text-left">
-									<select name="car_no" id="car_no" class="form-control" style="width:250px">
-										<option value="${carDetailUpdate.car_no}" style="color:black">${carDetailUpdate.car_manufacturer}/${carDetailUpdate.car_type}/${carDetailUpdate.car_name}(${carDetailUpdate.car_fuel})</option>
-											<c:forEach items="${carDetailSelectBox}" var="carDetailSelectBox" varStatus="status">
-												<option value="${carDetailSelectBox.car_no}" style="color:black">${carDetailSelectBox.car_manufacturer}/${carDetailSelectBox.car_type}/${carDetailSelectBox.car_name}(${carDetailSelectBox.car_fuel})</option>
-											</c:forEach>
-	                       			</select>
-								</th>
-							</tr>
-							<tr style="color:#808080;font-size:12pt">
-								<th  height="60px" width="10%" class="text-center" style="background-color: #fafafa"><a style="color:red">*</a>주중가</th>
-								<th  width="35%" class="text-left">
-									<input name="car_kind_price_week" type="text" size="30" value="${carDetailUpdate.car_kind_price_week}"  class="form-control" style="width:250px">
-								</th>
-								<th  height="60px" width="10%" class="text-center" style="background-color: #fafafa"><a style="color:red">*</a>주말가</th>
-								<th  width="35%" class="text-left">
-									<input name="car_kind_price_weekend" type="text" size="30" value="${carDetailUpdate.car_kind_price_weekend}" class="form-control" style="width:250px">
-								</th>
-							</tr>
-							<tr style="color:#808080;font-size:12pt">			
-								<th  height="60px" width="10%" class="text-center" style="background-color: #fafafa"><a style="color:red">*</a>성수기가</th>
-								<th  width="35%" class="text-left">
-									<input name="car_kind_price_holiday" type="text" size="30" value="${carDetailUpdate.car_kind_price_holiday}" class="form-control" style="width:250px">
-								</th>
-								<th  height="60px" width="10%" class="text-center" style="background-color: #fafafa"><a style="color:red">*</a>극성수기가</th>
-								<th  width="35%" class="text-left">
-									<input name="car_kind_price_h_holiday" type="text" size="30" value="${carDetailUpdate.car_kind_price_h_holiday}" class="form-control" style="width:250px">
-								</th>
-							</tr>
-						    <tr style="color:#808080;font-size:12pt">			
-								<th  height="60px" width="10%" class="text-center" style="background-color: #fafafa">차량옵션</th>
-								<th  width="35%" class="text-left">
-									<div class="custom-control custom-checkbox">
-								   		<input type="checkbox" class="custom-control-input" id="customCheck1" <c:if test="${carDetailUpdate.car_kind_navi eq 'Y' }">checked</c:if>>
-								   		<label class="custom-control-label" for="customCheck1">네비</label>
-								  	</div>
-								  	<div class="custom-control custom-checkbox">
-								   		<input type="checkbox" class="custom-control-input" id="customCheck2" <c:if test="${carDetailUpdate.car_kind_sensor eq 'Y' }">checked</c:if>>
-								   		<label class="custom-control-label" for="customCheck2">후방센서</label>
-								  	</div>
-									<div class="custom-control custom-checkbox">
-								   		<input type="checkbox" class="custom-control-input" id="customCheck3" <c:if test="${carDetailUpdate.car_kind_blackbox eq 'Y' }">checked</c:if>>
-								   		<label class="custom-control-label" for="customCheck3">블랙박스</label>
-								  	</div>
-								  	<div class="custom-control custom-checkbox">
-								   		<input type="checkbox" class="custom-control-input" id="customCheck4" <c:if test="${carDetailUpdate.car_kind_bluetooth eq 'Y' }">checked</c:if>>
-								   		<label class="custom-control-label" for="customCheck4">블루투스</label>
-								  	</div>
-									<div class="custom-control custom-checkbox">
-								   		<input type="checkbox" class="custom-control-input" id="customCheck5" <c:if test="${carDetailUpdate.car_kind_sunroof eq 'Y' }">checked</c:if>>
-								   		<label class="custom-control-label" for="customCheck5">썬루프</label>
-								  	</div>
-								  	<div class="custom-control custom-checkbox">
-								   		<input type="checkbox" class="custom-control-input" id="customCheck6" <c:if test="${carDetailUpdate.car_kind_camera eq 'Y' }">checked</c:if>>
-								   		<label class="custom-control-label" for="customCheck6">후방카메라</label>
-								  	</div>					  	
-									<div class="custom-control custom-checkbox">
-								   		<input type="checkbox" class="custom-control-input" id="customCheck7" <c:if test="${carDetailUpdate.car_kind_nonsmoke eq 'Y' }">checked</c:if>>
-								   		<label class="custom-control-label" for="customCheck7">금연차량</label>
-								  	</div>	
-								</th>
-							</tr>
-							<tr style="font-size:10pt" height="60px">
-								<td align="center"></td>
-								<td align="right">
-									<button type="button" class="btn btn-primary"><a href="carDetail.do?manager_id=${managerlog.manager_id}" style="color:white">목록</a></button>
-									<button type="button" class="btn btn-primary" onclick="check()">완료</button>
-								</td>
-							</tr>
-						</table>
+          	<form name="f" action="insuranceUpdateOk.do" method="post">
+          		<c:forEach items="${insuranceUpdate}" var="insuranceUpdate" varStatus="status">
+          			<input type="hidden" name="manager_id" value="${managerlog.manager_id}" id="manager_id"/>
+	            		            		<table border="0" width="100%"  cellpadding="0" cellspacing="0">
+						<tr style="color:#808080;font-size:12pt">
+							<th  height="60px" width="10%" class="text-center" style="background-color: #fafafa"><a style="color:red">*</a>지점코드</th>
+							<th  width="35%" class="text-left">
+								<input name="branch_no" type="text" size="30" value="${insuranceUpdate.branch_no}" class="form-control" style="width:250px" readonly>
+							</th>
+						</tr>
+						<tr style="color:#808080;font-size:12pt">	
+							<th  height="60px" width="10%" class="text-center" style="background-color: #fafafa"><a style="color:red">*</a>차종상세코드</th>
+							<th  width="35%" class="text-left">
+								<select name="car_kind_no" id="car_kind_no" class="form-control" style="width:250px">
+									<option value="${insuranceUpdate.car_kind_no}" style="color:black">${insuranceUpdate.car_kind_no}</option>
+									<c:forEach items="${carKindNotSelect}" var="carKindNotSelect" varStatus="status">
+										<option value="${carKindNotSelect.car_kind_no}" style="color:black">${carKindNotSelect.car_kind_no}</option>
+									</c:forEach>
+                       			</select>
+							</th>
+						</tr>
+						<tr style="color:#808080;font-size:12pt">	
+							<th  height="60px" width="10%" class="text-center" style="background-color: #fafafa"><a style="color:red">*</a>보험명</th>
+							<th  width="35%" class="text-left">
+								<select name="insurance_name" id="insurance_name" class="form-control" style="width:250px">
+									<option value="${insuranceUpdate.insurance_name}" style="color:black">${insuranceUpdate.insurance_name}</option>
+										<option value="일반자차" style="color:black">일반자차</option>
+										<option value="완전자차" style="color:black">완전자차</option>
+										<option value="완전자차(무제한)" style="color:black">완전자차(무제한)</option>
+                       			</select>
+							</th>
+							<th  height="60px" width="10%" class="text-center" style="background-color: #fafafa"><a style="color:red">*</a>보험료</th>
+							<th  width="35%" class="text-left">
+								<input name="insurance_price" type="text" size="30" class="form-control" style="width:250px" value="${insuranceUpdate.insurance_price}">
+							</th>
+						</tr>	
+						<tr style="color:#808080;font-size:12pt">
+							<th  height="60px" width="10%" class="text-center" style="background-color: #fafafa"><a style="color:red">*</a>보상한도</th>
+							<th  width="35%" class="text-left">
+								<input name="insurance_limit" type="text" size="30" class="form-control" style="width:250px" value="${insuranceUpdate.insurance_limit}">
+							</th>
+							<th  height="60px" width="10%" class="text-center" style="background-color: #fafafa"><a style="color:red">*</a>자가부담</th>
+							<th  width="35%" class="text-left">
+								<input name="insurance_burden_price" type="text" size="30" class="form-control" style="width:250px" value="${insuranceUpdate.insurance_burden_price}">
+							</th>
+						</tr>
+						<tr style="color:#808080;font-size:12pt">
+							<th  height="60px" width="10%" class="text-center" style="background-color: #fafafa"><a style="color:red">*</a>규정나이</th>
+							<th  width="35%" class="text-left">
+								<input name="insurance_limit_age" type="text" size="30" class="form-control" style="width:250px" value="${insuranceUpdate.insurance_limit_age}">
+							</th>
+							<th  height="60px" width="10%" class="text-center" style="background-color: #fafafa"><a style="color:red">*</a>규정경력</th>
+							<th  width="35%" class="text-left">
+								<input name="insurance_limit_carrier" type="text" size="30" class="form-control" style="width:250px" value="${insuranceUpdate.insurance_limit_carrier}">
+							</th>
+						</tr>
+						<tr style="font-size:10pt" height="60px">
+							<td align="center"></td>
+							<td align="right">
+								<button type="button" class="btn btn-primary"><a href="insuranceList.do?manager_id=${managerlog.manager_id}" style="color:white">목록</a></button>
+								<button type="button" class="btn btn-primary" onclick="check()">완료</button>
+							</td>
+						</tr>
+					</table>
 					</c:forEach>
 				</form>
 	        </div>

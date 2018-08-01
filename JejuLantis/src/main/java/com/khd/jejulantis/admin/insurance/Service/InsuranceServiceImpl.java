@@ -39,4 +39,20 @@ public class InsuranceServiceImpl implements InsuranceService {
 	public List<Insurance> branchNoSelectService(String manager_id) {
 		return InsuranceDao.branchNoSelect(manager_id);
 	}
+	@Override
+	public List<Insurance> insuranceCarNoService(String manager_id, int car_kind_no) {
+		return InsuranceDao.insuranceCarNo(manager_id, car_kind_no);
+	}
+	@Override
+	public List<Insurance> insuranceUpdateService(int insurance_no) {
+		return InsuranceDao.insuranceUpdate(insurance_no);
+	}
+	@Override
+	public List<Insurance> carKindNotSelectBoxService(String manager_id, int insurance_no) {
+		return InsuranceDao.carKindNotSelectBox(manager_id, insurance_no);
+	}
+	@Override
+	public void updateOkService(Insurance insurance) {
+		InsuranceDao.insuranceUpdateOk(insurance);
+	}
 }

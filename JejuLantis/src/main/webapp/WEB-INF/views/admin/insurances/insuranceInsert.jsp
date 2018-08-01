@@ -54,11 +54,6 @@
             f.car_kind_no.focus();
             return;
          }
-		if(f.car_no.value ==""){
-            alert("차종코드를 채워주세요");
-            f.car_no.focus();
-            return;
-         }
 		if(f.insurance_name.value ==""){
             alert("보험명을 채워주세요");
             f.insurance_name.focus();
@@ -126,15 +121,6 @@
 									<option value="" style="color:black">차종상세코드</option>
 									<c:forEach items="${carKindSelectBox}" var="carKindSelectBox" varStatus="status">
 										<option value="${carKindSelectBox.car_kind_no}" style="color:black">${carKindSelectBox.car_kind_no}</option>
-									</c:forEach>
-                       			</select>
-							</th>
-							<th  height="60px" width="10%" class="text-center" style="background-color: #fafafa"><a style="color:red">*</a>차종코드</th>
-							<th  width="35%" class="text-left">
-								<select name="car_no" id="car_no" class="form-control" style="width:250px">
-									<option value="" style="color:black">차종코드</option>
-									<c:forEach items="${carKindSelectBox}" var="carKindSelectBox" varStatus="status">
-										<option value="${carKindSelectBox.car_no}" style="color:black">${carKindSelectBox.car_no}</option>
 									</c:forEach>
                        			</select>
 							</th>

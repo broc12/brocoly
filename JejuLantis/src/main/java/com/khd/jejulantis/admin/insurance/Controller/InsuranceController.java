@@ -46,7 +46,6 @@ public class InsuranceController {
 			Insurance insurance,
 			@RequestParam("branch_no")int branch_no,
 			@RequestParam("car_kind_no")int car_kind_no,
-			@RequestParam("car_no")int car_no,
 			@RequestParam("insurance_name")String insurance_name,
 			@RequestParam("insurance_price")int insurance_price,
 			@RequestParam("insurance_limit")String insurance_limit,
@@ -54,28 +53,39 @@ public class InsuranceController {
 			@RequestParam("insurance_limit_age")int insurance_limit_age,
 			@RequestParam("insurance_limit_carrier")int insurance_limit_carrier
 			) {
-		/*System.out.println("branch_no : "+branch_no);
+		System.out.println("branch_no : "+branch_no);
 		System.out.println("car_kind_no : "+car_kind_no);
-		System.out.println("car_no : "+car_no);
 		System.out.println("insurance_name : "+insurance_name);
 		System.out.println("insurance_price : "+insurance_price);
 		System.out.println("insurance_limit : "+insurance_limit);
 		System.out.println("insurance_burden_price : "+insurance_burden_price);
 		System.out.println("insurance_limit_age : "+insurance_limit_age);
-		System.out.println("insurance_limit_carrier : "+insurance_limit_carrier);*/
+		System.out.println("insurance_limit_carrier : "+insurance_limit_carrier);
+		System.out.println("manager_id : " + manager_id);
+		//List<Insurance> insuranceCarNo = iservice.insuranceCarNoService(manager_id, car_kind_no);
+		
 		iservice.insertService(insurance);
 		return "redirect:insuranceList.do?manager_id="+manager_id;
 	}
 	@RequestMapping(value="admin/insuranceUpdate.do")
-	public String insuranceUpdate() {
-		return "admin/insurances/insuranceUpdate";
+	public ModelAndView insuranceUpdate(@RequestParam("manager_id")String manager_id, @RequestParam("insurance_no")int insurance_no) {
+		List<Insurance> insuranceUpdate = iservice.insuranceUpdateService(insurance_no);
+		List<Insurance> carKindNotSelect = iservice.carKindNotSelectBoxService(manager_id, insurance_no);
+		String view = "admin/insurances/insuranceUpdate";
+		ModelAndView mv = new ModelAndView(view, "insuranceUpdate", insuranceUpdate);
+		mv.addObject("carKindNotSelect", carKindNotSelect);
+		return mv;
+		//return "admin/insurances/insuranceUpdate";
 	}
-	@RequestMapping(value="admin/insuranceUpdateOk.do")
-	public String insuranceUpdateOk() {
-		return "admin/insurances/insuranceUpdate";
+	@RequestMapping(value="admin/insuranceUpdateOk.do", method=RequestMethod.POST)
+	public String insuranceUpdateOk(@RequestParam("manager_id")String manager_id,
+			Insurance insurance) {
+		iservice.updateOkService(insurance);
+		return "redirect:insuranceList.do?manager_id="+manager_id;
 	}
 	@RequestMapping(value="admin/insuranceDelete.do")
-	public String insuranceDelete() {
-		return "admin/insurances/insuranceDelete";
+	public String insuranceDelete(@RequestParam("manager_id")String manager_id, @RequestParam("insurance_no")int insurance_no) {
+		iservice.deleteService(insurance_no);
+		return "redirect:insuranceList.do?manager_id="+manager_id;
 	}
 }

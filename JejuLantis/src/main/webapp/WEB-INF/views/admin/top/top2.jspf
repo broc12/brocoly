@@ -30,7 +30,7 @@
               <a href="bestseller.do">베스트셀러관리</a>
             </li>
             <li>
-              <a href="">MD추천관리</a>
+              <a href="md.do">MD추천관리</a>
             </li>
           </ul>
         </li>

@@ -52,19 +52,19 @@ public class HomeController {
 
 	@RequestMapping(value="input.do",method=RequestMethod.GET)
 	public String input() {
-		return "rentcar/input";
+		return "rentcar/rentcars/input";
 	}
 	@RequestMapping(value="end.do",method=RequestMethod.GET)
 	public String end() {
-		return "rentcar/end";
+		return "rentcar/rentcars/end";
 	}
 	@RequestMapping(value="check.do",method=RequestMethod.GET)
 	public String check() {
-		return "rentcar/check";
+		return "rentcar/reservations/check";
 	}
 	@RequestMapping(value="faq.do",method=RequestMethod.GET)
 	public String faq() {
-		return "rentcar/faq";
+		return "rentcar/helps/faq";
 	}
 
 }

@@ -30,5 +30,13 @@ public class MainController {
 	public String best(@RequestParam(value="bestYn",required=false)List<Long>best) {
 		service.bestService(best);
 		return "redirect:bestseller.do";
-	}	
+	}
+	
+	@RequestMapping(value="admin/md.do",method=RequestMethod.GET)
+	public ModelAndView md() {
+		List<Car>list = service.listService();
+		String view = "admin/bestseller/md";
+		ModelAndView mv = new ModelAndView(view,"list",list);
+		return mv;
+	}
 }

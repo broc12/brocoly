@@ -21,7 +21,7 @@ public class ManagerDaoImpl implements ManagerDao{
 	public boolean join(Manager manager) {
 		
 		int insert = sql.insert(ns+".managerresist", manager);
-		System.out.println("branchname"+ manager.getBranch_no());
+		System.out.println("branch_name"+ manager.getBranch_no());
 		return false;
 	}
 
@@ -53,7 +53,6 @@ public class ManagerDaoImpl implements ManagerDao{
 	@Override
 	public Manager mypage(String manager_id) {
 		Manager select = sql.selectOne(ns+".idview", manager_id);
-		
 		return select;
 	}
 

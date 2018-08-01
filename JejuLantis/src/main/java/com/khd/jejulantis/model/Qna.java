@@ -123,9 +123,9 @@ public class Qna {
 	}
 	public String getQna_answer_checkString() {
 		if(qna_answer_check==0)
-			return "�亯���";
+			return "답변대기";
 		else if(qna_answer_check==1)
-			return "�亯�Ϸ�";
+			return "답변완료";
 		else if(qna_answer_check==2)
 		return "";
 		else return "";

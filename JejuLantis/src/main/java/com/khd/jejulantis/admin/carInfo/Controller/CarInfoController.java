@@ -1,5 +1,6 @@
 package com.khd.jejulantis.admin.carInfo.Controller;
 
+import java.awt.Dialog.ModalExclusionType;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -36,21 +37,19 @@ public class CarInfoController {
 	private CarkindDetailService carKindService;
 	
 	@RequestMapping(value="admin/carInfo.do",method=RequestMethod.GET)
-	public String carInfo(@RequestParam("manager_id")String manager_id ) {
-		List<CarkindDetail>carList = new ArrayList<CarkindDetail>();
+	public ModelAndView carInfo(@RequestParam("manager_id")String manager_id ) {
 		System.out.println("manager id : "+manager_id);
-		carList = carKindService.listService(manager_id);
-		System.out.println("carList size " + carList.size());
 		String view = "admin/cars/carInfo";
-		
-		ModelAndView mv = new ModelAndView(view,"carList",carList);
-		return "admin/cars/carInfo";
+		ModelAndView mv = new ModelAndView(view,"manager_id",manager_id);
+		return mv;
 	}
 	@RequestMapping(value="admin/carInfoAdd.do",method=RequestMethod.GET)
-	public String carInfoAdd() {
-		
-		return "admin/cars/carInfoAdd";
-		
+	public ModelAndView carInfoAdd(@RequestParam("manager_id")String manager_id) {
+		List<CarInfoInsert>carList = new ArrayList<CarInfoInsert>();
+		carList = carInfoService.carInfoInsert(manager_id);
+		String view = "admin/cars/carInfoAdd";
+		ModelAndView mv = new ModelAndView(view,"carList",carList);
+		return mv;
 	}
 	@RequestMapping(value="admin/carInfoUpload.do",method=RequestMethod.GET)
 	public String carInfoUpload() {
@@ -59,25 +58,25 @@ public class CarInfoController {
 		
 	}	
 	@RequestMapping(value="admin/carInfoInsert.do",method=RequestMethod.POST)
-	public ModelAndView carInfoInsert(@RequestParam(value="carKind",required = true)List <String> carKind,
-								@RequestParam(value="carNumber",required = true)List <String> carNumber){
-		for(String cars : carKind) {
+	public String carInfoInsert(@RequestParam(value="carKind",required = true)List <Integer> car_kind_no,
+								@RequestParam(value="carNumber",required = true)List <String> carNumber
+								){
+		for(Integer cars : car_kind_no) {
 			System.out.println("name"+cars);
 		}
 		for(String cars : carNumber) {
 			System.out.println("size"+cars);
 		}
-		List<CarInfo> car = new ArrayList<CarInfo>();
-		for(int i=0; i<carKind.size();i++) {
-			car.add(new CarInfo(1, 1, 1, 1, 1, "Y", "신차","N", carNumber.get(i),null));
-		}
-		System.out.println("��Ʈ�ѷ� ������"+car.size());
-		boolean flag = carInfoService.carInsert(car);
+		List<CarInfoInsert> branchNo = carInfoService.selectBranchNo(car_kind_no.get(0));
+		System.out.println("branchNo =" + branchNo.get(0).getBranch_no());
+		System.out.println("car_no =" +branchNo.get(0).getCar_no());
+		/*boolean flag = carInfoService.carInsert(car);
 		String view = "admin/carInfoInsertCheck";
 		ModelAndView mv = new ModelAndView(view,"flag",flag);
-		return mv;
+		return mv;*/
+		return "admin/cars/carInfo";
 	}
-	@ResponseBody
+	/*@ResponseBody
     @RequestMapping(value = "admin/cars/excelUploadAjax.do", method = RequestMethod.POST)
     public ModelAndView excelUploadAjax(MultipartHttpServletRequest request)  throws Exception{
         MultipartFile excelFile =request.getFile("excelFile");
@@ -98,7 +97,7 @@ public class CarInfoController {
         ModelAndView view = new ModelAndView();
         view.setViewName("");
         return view;
-    }
+    }*/
 }
 
 

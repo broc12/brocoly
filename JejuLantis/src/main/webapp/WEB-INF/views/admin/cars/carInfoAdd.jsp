@@ -1,4 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %> 
 <%@ page session="true" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -45,19 +46,15 @@
 <script language="JavaScript">
 var lineNo = 0; 
 var beforeNo = 0; 
-
 function insertLine(){
 	lineNo++;	
 	var html = "<tr id=content_"+lineNo+">";
-html+="<td>"+num+"</td><td><select style='width:90%' name=carKind id=carKind";
-html+="<option value='#' style='color:black'></option>";
-html+="<option value='경차' style='color:black'>경차</option>";
-html+="<option value='중소형' style='color:black'>중소형</option>";
-html+="<option value='중형' style='color:black'>중형</option>";
-html+="<option value='고급' style='color:black'>고급</option>";
-html+="<option value='SUV' style='color:black'>SUV</option>";
-html+="<option value='승합' style='color:black'>승합</option>";
-html+="<option value='수입' style='color:black'>수입</option>";
+html+="<td>"+num+"</td><td><select style='width:90%' name=carKind id=carKind"+lineNo+">";
+html+="<c:forEach items='${carList}' var='item'>";
+html+="<option value='${item.car_kind_no}'	style='color:black'>${item.car_manufacturer}/${item.car_name}/${item.car_fuel}";
+html+="   ${item.stringCar_kind_navi} ${item.stringCar_kind_sensor} ${item.stringCar_kind_blackbox}";
+html+="${item.stringCar_kind_bluetooth} ${item.stringCar_kind_sunroof} ${item.stringCar_kind_camera} ${item.stringCar_kind_nonsmoke}</option>";
+html+="</c:forEach>";
 html+="</select></td><td><input style='width:90%' type=text size=15 name=carNumber id=carNumber"+lineNo+"></td>";
 html+="<td><input type=button value=삭제 onclick='del("+lineNo+")' style=\"background:#abcdef;border:1x solid black\" onMouseOrver=\"this.style.background:#000000;border:1x solid black\" >";
 html+="</td></tr>";		
@@ -181,23 +178,19 @@ function del(no){
 	<th width=45%>차 번호</th>
 </tr>
 				<script>
-				var num=1;
-/* 				for(var ii=in_sum ;ii<  parseInt(max_input)+ parseInt(in_sum);ii++){  */
+				/* var num=1;
 				for(var ii=0 ;ii<  parseInt(max_input);ii++){ 
-					/* for(var ii=0 ;ii<parseInt(in_sum);ii++){ */
 						document.write("<tr id=content_"+ii+">");
 						document.write("<td>");
 						document.write(num);
 						document.write("</td>");
 						document.write("<td>");
-						document.write("<select style='width:90%' name=carKind id=carKind"+lineNo+">");											
-						document.write("<option value='경차' style='color:black'>경차</option>");
-						document.write("<option value='중소형' style='color:black'>중소형</option>");
-						document.write("<option value='중형' style='color:black'>중형</option>");
-						document.write("<option value='고급' style='color:black'>고급</option>");
-						document.write("<option value='SUV' style='color:black'>SUV</option>");
-						document.write("<option value='승합' style='color:black'>승합</option>");
-						document.write("<option value='수입' style='color:black'>수입</option>");
+						document.write("<select style='width:90%' name=carKind id=carKind"+lineNo+">");	
+						document.write("for(var i=0;i< ${fn:length(carList)} ;i++){");
+						document.write("<option value='${carList[i].getCar_kind_no()}'	style='color:black'>${carList[i].car_manufacturer}/${carList[i].car_name}/${carList[i].car_fuel}");
+						document.write("옵션 : ${carList[i].getStringCar_kind_navi()} ${carList[i].stringCar_kind_sensor} ${carList[i].stringCar_kind_blackbox}");
+						document.write("${carList[i].stringCar_kind_bluetooth} ${carList[i].stringCar_kind_sunroof} ${carList[i].stringCar_kind_camera} ${carList[i].stringCar_kind_nonsmoke}</option>");				
+						document.write("}");
 						document.write("</select>");
 						document.write("</td>");
 						document.write("<td>");
@@ -208,7 +201,29 @@ function del(no){
 						document.write("</td>");
 						document.write("</tr>");
 						num++;
-				}
+				} */
+				var num=1;
+					document.write("<tr id=content_"+0+">");
+					document.write("<td>");
+					document.write(num);
+					document.write("</td>");
+					document.write("<td>");
+					document.write("<select style='width:90%' name=carKind id=carKind"+lineNo+">");	
+					document.write("<c:forEach items='${carList}' var='item'>");
+					document.write("<option value='${item.car_kind_no}'	style='color:black'>${item.car_manufacturer}/${item.car_name}/${item.car_fuel}    ");
+					document.write("   ${item.stringCar_kind_navi} ${item.stringCar_kind_sensor} ${item.stringCar_kind_blackbox}");
+					document.write("${item.stringCar_kind_bluetooth} ${item.stringCar_kind_sunroof} ${item.stringCar_kind_camera} ${item.stringCar_kind_nonsmoke}</option>");				
+					document.write("</c:forEach>");
+					document.write("</select>");
+					document.write("</td>");
+					document.write("<td>");
+					document.write("<input style='width:90%' type=text size=15 name=carNumber id=carNumber>");
+					document.write("</td>");
+					document.write("<td>");
+					document.write("<input type=button value=삭제  onclick='del("+lineNo+")' style=\"background:#abcdef;border:1x solid black\" onMouseOrver=\"this.style.background:#000000;border:1x solid black\" >");
+					document.write("</td>");
+					document.write("</tr>");
+					num++;
 				</script>
 			</table>
 	</td>

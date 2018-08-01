@@ -22,5 +22,8 @@ public class CarInfoServiceImpl implements CarInfoService {
 	public List<CarInfoInsert> carInfoInsert(String manager_id){
 		return CarInfoDao.carInfoInsert(manager_id);
 	}
+	public List<CarInfoInsert> selectBranchNo(Integer car_kind_no){
+		return CarInfoDao.selectBranchNo(car_kind_no);
+	}
 	
 }

@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.khd.jejulantis.model.CarInfo;
+import com.khd.jejulantis.model.CarInfoInsert;
 
 @Repository
 public class CarInfoDaoImpl implements CarInfoDao {
@@ -33,6 +34,17 @@ public class CarInfoDaoImpl implements CarInfoDao {
 		if(i>0) flag = true;
 		else flag = false;
 		return flag;
+	}
+	@Override
+	public List<CarInfoInsert> carInfoInsert(String manager_id) {
+		List<CarInfoInsert> carInfoInsert = sqlSession.selectList(ns+".myAddSelect",manager_id);
+		return carInfoInsert;
+	}
+	@Override
+	public List<CarInfoInsert> selectBranchNo(Integer car_kind_no) {
+		System.out.println("car_kind_no = "+car_kind_no);
+		List<CarInfoInsert> carInfoInsert = sqlSession.selectList(ns+".mySelectBrancNo",car_kind_no);
+		return carInfoInsert;
 	}
 	
 	

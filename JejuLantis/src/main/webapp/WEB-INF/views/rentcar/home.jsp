@@ -452,7 +452,7 @@
 						<c:forEach items="${best}" var="best">
 							<div class="item">
 								<div class="hotel-entry">
-									<a href="hotels.html" class="hotel-img" style="background-image: url(resources/car/${best.car_image});">
+									<a href="car.do" class="hotel-img" style="background-image: url(resources/car/${best.car_image});">
 									</a>
 									<div class="desc">
 										<p class="star"><span><i class="icon-star-full"></i><i class="icon-star-full"></i><i class="icon-star-full"></i><i class="icon-star-full"></i><i class="icon-star-full"></i></span> 545 Reviews</p>

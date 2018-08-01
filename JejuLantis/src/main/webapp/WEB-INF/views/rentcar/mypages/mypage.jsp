@@ -60,7 +60,7 @@
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.14/jquery-ui.min.js"></script>							
 <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
 <script type="text/javascript">
  function sendIt() {  
 	 var hp1 =$("#member_tel1 option:selected").val()
@@ -73,17 +73,9 @@
 	 var birth3 =$("#member_birth3 option:selected").val()
 	$("#member_birth").val(birth1+"-"+birth2+"-"+birth3)
 	
-	
-// 	if(confirm("회원수정 하시겠습니까?")){
-	
-	
-	
-	
-		
-		document.f.submit();
-	 	}	
-// 	 alert("정보가 수정")
-// 	 }
+	document.f.submit();
+	 alert(hp2)
+ }	 
     </script> 
 	
 	</head>
@@ -241,7 +233,7 @@
 			</div></br>
 			<!-- </form> -->
 			<div class="form-group text-center">
-			<input type="button" value="수정완료" style="width:200px;height:50px;border-radius:0px;background-color:#eea236;color:white" class="btn btn-dark" onclick="sendIt()">
+			<input type="submit" value="수정완료" style="width:200px;height:50px;border-radius:0px;background-color:#eea236;color:white" class="btn btn-dark" onclick="sendIt()">
 			</div>
 			<div class="form-group text-right">
 <!-- 								<input type="submit" value="회원탈퇴" class="btn btn-primary"> -->

@@ -58,7 +58,7 @@ public class ManagerController {
 		return "admin/adminUsers/login";
 	}
 	@RequestMapping(value="admin/managermypage.do", method=RequestMethod.GET)
-	public String mypage(Model model,Branch branch,HttpSession session) {		
+	public String mypage(Model model,HttpSession session) {		
 		System.out.println("지나감!!");
 		Manager log = (Manager) session.getAttribute("managerlog");	
 		String manager_id = log.getManager_id();
@@ -66,23 +66,28 @@ public class ManagerController {
 		Manager nn = managerService.mypageService(manager_id);
 		System.out.println("idCkkkk :" + manager_id);
 		System.out.println("branch_name :" + branch_name);
+		System.out.println("getManager_id :" + nn.getManager_id());
+		//System.out.println("nn.manager_birth1 :" + nn.getManager_birth());
 		model.addAttribute("nn", nn);
 	
 		return "admin/adminUsers/mypage";
 	}
 	@RequestMapping(value="admin/managermodify.do", method=RequestMethod.POST)
-	 public String modify(Manager manager, HttpSession session)  {	
-		/* System.out.println("tel123 :" +member.getMember_tel());
-		 System.out.println("birth123 :" +member.getMember_birth());*/
-		 Manager md = managerService.modifyService(manager);
+	 public String managermodify(Manager manager, HttpSession session)  {	
+		System.out.println("지나감!~~~~");
+		System.out.println("tel123 :" +manager.getManager_tel1());
+		System.out.println("tel456 :" +manager.getManager_tel2());
+		 System.out.println("birth123 :" +manager.getManager_birth());
+		Manager md = managerService.modifyService(manager);
 			if(md!=null) {
 				md = new Manager(manager.getManager_id());
-				session.setAttribute("log", md);	
+				session.setAttribute("managerlog", md);	
 				System.out.println("id1 :" +manager.getManager_id());
 			}			
 			
-			return "redirect:/mypage.do";
+			return "redirect:./managermypage.do";
 		}
+	
 	@RequestMapping(value = "admin/adminUsers/post", method = RequestMethod.GET)
 	public void get(){
 		

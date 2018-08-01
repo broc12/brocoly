@@ -32,25 +32,168 @@
   <script src="../resources/admin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <!-- Core plugin JavaScript-->
   <script src="../resources/admin/vendor/jquery-easing/jquery.easing.min.js"></script>							
+ <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
  <script type="text/javascript">
+//아이디 체크여부 확인 (아이디 중복일 경우 = 0 , 중복이 아닐경우 = 1 )
+ var idck = 0;
+ var emailck = 0;
+ var branchck = 0;
+ $(document).ready(function() {
+ 	//emailck 버튼을 클릭했을 때 
+  $("#emailck").click(function() {
+  	var email2 = document.f.manager_email.value;
+ 	var regex = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/;			
+
+     	 if (f.manager_email.value == "") {
+ 	            alert("email를 입력하지 않았습니다.")
+ 	            f.manager_email.focus()
+ 	            return false;
+ 	        }
+     		 if (regex.test(email2) === false) {
+ 				alert("잘못된 이메일 형식입니다.");
+ 				document.f.manager_email.value=""
+ 				document.f.manager_email.focus()
+ 				return false;
+ 			
+ 	        }
+ 	        //email에 공백 사용하지 않기
+ 	        if (document.f.manager_email.value.indexOf(" ") >= 0) {
+ 	            alert("email에 공백을 사용할 수 없습니다.")
+ 	            document.f.manager_email.focus()      
+ 	            return false;
+ 	        }
+ 	        
+         //userid 를 param.
+         var useremail =  $("#manager_email").val(); 								        
+         $.ajax({
+             async: true,
+             type : 'POST',
+             data : useremail,
+             url : "emailcheckmanager.do",
+             dataType : "json",
+             contentType: "application/json; charset=UTF-8",
+             success : function(data) {
+                 if (data.cnt > 0) {
+                     
+                     alert("email가 존재합니다. 다른 email를 입력해주세요.");
+                     //아이디가 존제할 경우 빨깡으로 , 아니면 파랑으로 처리하는 디자인
+                     $("#divInputId").addClass("has-error")
+                     $("#divInputId").removeClass("has-success")
+                     $("#manager_email").focus();				                
+                 } else {
+                     alert("사용가능한 email입니다.");
+                     //아이디가 존제할 경우 빨깡으로 , 아니면 파랑으로 처리하는 디자인
+                     $("#divInputId").addClass("has-success")
+                     $("#divInputId").removeClass("has-error")
+                     $("#manager_pwd").focus();
+                     $("#emailCheck").val("emailCheck");
+                     //아이디가 중복하지 않으면  idck = 1 
+                     emailck = 1;								                    
+                 }
+             },
+             error : function(error) {								                
+                 alert("error : " + error);
+             }
+             
+         });
+     });
+
+
+ 	//idck 버튼을 클릭했을 때 
+     $("#idck").click(function() {
+     	 if (f.manager_id.value == "") {
+ 	            alert("아이디를 입력하지 않았습니다.")
+ 	            f.manager_id.focus()
+ 	            return false;
+ 	        }
+ 	        //아이디 유효성 검사 (영문소문자, 숫자만 허용)
+ 	        for (i = 0; i < document.f.manager_id.value.length; i++) {
+ 	            ch = document.f.manager_id.value.charAt(i)
+ 	            if (!(ch >= '0' && ch <= '9') && !(ch >= 'a' && ch <= 'z')&&!(ch >= 'A' && ch <= 'Z')) {
+ 	                alert("아이디는 대소문자, 숫자만 입력가능합니다.")
+ 	                document.f.manager_id.focus()
+ 	                document.f.manager_id.select()
+ 	                return false;
+ 	            }
+ 	        }
+ 	        //아이디에 공백 사용하지 않기
+ 	        if (document.f.manager_id.value.indexOf(" ") >= 0) {
+ 	            alert("아이디에 공백을 사용할 수 없습니다.")
+ 	            document.f.manager_id.focus()
+ 	            document.f.manager_id.select()
+ 	            return false;
+ 	        }
+ 	        //아이디 길이 체크 (4~12자)
+ 	        if (document.f.manager_id.value.length<4 || document.f.manager_id.value.length>12) {
+ 	            alert("아이디를 4~12자까지 입력해주세요.")
+ 	            document.f.manager_id.focus()
+ 	            document.f.manager_id.select()
+ 	            return false;
+ 	        }
+         //userid 를 param.
+         var userid =  $("#manager_id").val(); 								        
+         $.ajax({
+             async: true,
+             type : 'POST',
+             data : userid,
+             url : "idcheckmanager.do",
+             dataType : "json",
+             contentType: "application/json; charset=UTF-8",
+             success : function(data) {
+                 if (data.cnt > 0) {
+                     
+                     alert("아이디가 존재합니다. 다른 아이디를 입력해주세요.");
+                     //아이디가 존제할 경우 빨깡으로 , 아니면 파랑으로 처리하는 디자인
+                     $("#divInputId").addClass("has-error")
+                     $("#divInputId").removeClass("has-success")
+                     $("#manager_id").focus();				                
+                 } else {
+                     alert("사용가능한 아이디입니다.");
+                     //아이디가 존제할 경우 빨깡으로 , 아니면 파랑으로 처리하는 디자인
+                     $("#divInputId").addClass("has-success")
+                     $("#divInputId").removeClass("has-error")
+//                      $("#manager_email").focus();
+                     $("#manager_email").focus();
+                     $("#idCheck").val("idCheck");
+                     //아이디가 중복하지 않으면  idck = 1 
+                     idck = 1;								                    
+                 }
+             },
+             error : function(error) {								                
+                 alert("error : " + error);
+             }
+         });
+     });
+ });
+
+ function inputIdChk(){
+ 	document.f.idDuplication.value = "idUncheck";
+ }
+ function inputEmailChk(){
+ 	document.f.emailDuplication.value = "emailUncheck";
+ }
+
  function sendIt() {  
+	 if(confirm("회원가입을 하시겠습니까?")){
 	 var hp3 =$("#manager_tel3 option:selected").val()
-	 var hp4 =$("#managerr_tel4").val()
+	 var hp4 =$("#manager_tel4").val()
 	 var hp5 =$("#manager_tel5").val()
 // 	 alert(hp2)
 	$("#manager_tel1").val(hp3+"-"+hp4+"-"+hp5)
-	 var hp6 =$("#manager_tel4 option:selected").val()
-	 var hp7 =$("#managerr_tel5").val()
-	 var hp8 =$("#manager_tel6").val()
+	 var hp6 =$("#manager_tel6 option:selected").val()
+	 var hp7 =$("#manager_tel7").val()
+	 var hp8 =$("#manager_tel8").val()
 	 //alert(hp2)
 	$("#manager_tel2").val(hp6+"-"+hp7+"-"+hp8)
 	 var birth1 =$("#manager_birth1 option:selected").val()
 	 var birth2 =$("#manager_birth2 option:selected").val()
 	 var birth3 =$("#manager_birth3 option:selected").val()
 	$("#manager_birth").val(birth1+"-"+birth2+"-"+birth3)
-		document.f.submit();
+		alert("수정완료 ")
+	document.f.submit();
+// 	 	alert("수정완료 ")
 	 	}	
-
+ }
     </script> 
 </head>
 <script type="text/javascript">
@@ -76,12 +219,12 @@
     <div class="card card-register mx-auto mt-5">
       <div class="card-header">MYPAGE</div>
       <div class="card-body">
-        <form name="f" action="managermypage.do"  method="post">												
+        <form name="f" action="./managermodify.do"  method="post">												
           <div class="form-group">
             <div class="form-row">
               <div class="col-md-6">             		
                 <label for="exampleInputName"><a style="color:red">*</a>ID</label></br>      
-                <input style="width:70%;height:40px" onkeydown="inputIdChk()" readonly id="manager_id" name="manager_id" value="${nn.manager_id}" type="text" aria-describedby="nameHelp" placeholder="">
+                <input style="width:70%;height:40px" onkeydown="inputIdChk()" readonly id="manager_id" name="manager_id"  value="${managerlog.manager_id}" type="text" aria-describedby="nameHelp" placeholder="">
               <!-- 	<input type="button" value="중복확인" name="confirm_id"
 									id="idck" onclick="confirmId(this.form)" class="btn btn-primary" style="width:80px;height:40px;margin-top:-5px;font-size:10pt"> -->
 <!--               						<input type="hidden" id="idCheck" name="idDuplication" value="idUncheck"> -->
@@ -91,7 +234,7 @@
                 <input style="width:70%;height:40px" onkeydown="inputEmailChk()" value="${nn.manager_email}" id="manager_email" name="manager_email" type="text" aria-describedby="nameHelp" placeholder="">
               	<input type="button" value="중복확인" name="confirm_email"
 									id="emailck"  class="btn btn-primary" style="width:80px;height:40px;margin-top:-5px;font-size:10pt"></td>    
-<!-- 									<input type="hidden"  id="emailCheck" name="emailDuplication" value="emailUncheck" >          	 -->
+									<input type="hidden"  id="emailCheck" name="emailDuplication" value="emailUncheck" >          	
               </div>                
             </div>
           </div>
@@ -116,7 +259,7 @@
               <div class="col-md-6">
                 <label for="exampleConfirmPassword"><a style="color:red">*</a>생년월일</label>
                 </br>
-                <script language="Javascript">							
+                <script language="Javascript">
                 var birth1 =${nn.manager_birth1}
 				var birth2 =${nn.manager_birth2}
 				var birth3 =${nn.manager_birth3}
@@ -139,7 +282,7 @@
 				document.write("<select name=manager_birth3 id=manager_birth3  onFocus='this.initialSelect = this.selectedIndex;' onChange='this.selectedIndex = this.initaialSelect;'style=width:25%;height:40px>");
 				document.write("<option value="+birth3+" selected>"+birth3);
 				for (i=1;i<=31;i++) document.write("<option>"+i); 
-				document.write("</select>&nbsp;&nbsp;일   </font>");				
+				document.write("</select>&nbsp;&nbsp;일   </font>");
 				</script>
 				<input type="hidden" readonly id="manager_birth" name="manager_birth" >
               </div>
@@ -227,7 +370,7 @@
               
               <div class="col-md-6">             		
                 <label for="exampleInputName">연락처2</label></br>
-                <select id="manager_tel4" name="manager_tel4" style="width:28%;height:40px">
+                <select id="manager_tel6" name="manager_tel6" style="width:28%;height:40px">
 				   <option value="010"  selected> 010 </option>
 				   <option value="${nn.manager_tel6}"   selected>${nn.manager_tel6} </option>
 				   <option value="011"> 011 </option>
@@ -260,13 +403,13 @@
             <div class="col-md-12">
                 <label for="exampleInputName"><a style="color:red">*</a>업체명</label></br>
                 <input type="hidden" id="branch_no" name="branch_noSTR">
-                <input style="width:81%;height:40px" readonly id="branch_name" name="branch_name" type="text" aria-describedby="nameHelp" placeholder="">
-                <input type="button" id="branchck" value="업체명검색"  onclick="sendIt()" class="btn btn-primary" style="width:100px;height:40px;font-size:10pt;margin-top:-5px;">   
+                <input style="width:81%;height:40px" readonly id="branch_name" name="branch_name" value="${nn.branch_name}" type="text" aria-describedby="nameHelp" placeholder="">
+<!--                 <input type="button" id="branchck" value="업체명검색"  onclick="sendIt()" class="btn btn-primary" style="width:100px;height:40px;font-size:10pt;margin-top:-5px;">    -->
             </div>
             </div>
           </div>
               </br>
-          <input type="button" class="btn btn-primary btn-block" value="등록하기" >
+          <input type="submit" class="btn btn-primary btn-block" value="수정완료" onclick="sendIt()" >
         </form>
         <div class="text-center">
           <a class="d-block small mt-3" href="login.do">로그인</a>

@@ -5,7 +5,6 @@ import java.util.List;
 import com.khd.jejulantis.model.CarkindDetail;
 
 public interface CarkindDetailService {
-	List<CarkindDetail> listService(String manager_id);
 	List<CarkindDetail> listIService();
 	void deleteService(int car_kind_no);
 	List<CarkindDetail> contentListService(int car_kind_no);
@@ -15,5 +14,6 @@ public interface CarkindDetailService {
 	void UpdateService(CarkindDetail carkind);
 	List<CarkindDetail> insuranceSelectService(String manager_id);
 	List<CarkindDetail> insuranceUpdateSelectService(String manager_id, int car_kind_no);
-	List<CarkindDetail> branchNoSelect(String manager_id);
+	List<CarkindDetail> branchNoSelect(String manager_id);	
+	List<CarkindDetail> listService(String manager_id);
 }

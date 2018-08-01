@@ -49,74 +49,46 @@
             f.branch_no.focus();
             return;
          }
+		if(f.car_kind_no.value ==""){
+            alert("차종상세코드를 채워주세요");
+            f.car_kind_no.focus();
+            return;
+         }
 		if(f.car_no.value ==""){
             alert("차종코드를 채워주세요");
             f.car_no.focus();
             return;
          }
-		if(f.car_kind_price_week.value ==""){
-            alert("주중가를 채워주세요");
-            f.car_kind_price_week.focus();
+		if(f.insurance_name.value ==""){
+            alert("보험명을 채워주세요");
+            f.insurance_name.focus();
             return;
          }
-		if(f.car_kind_price_weekend.value ==""){
-            alert("주말가를 채워주세요");
-            f.car_kind_price_weekend.focus();
+		if(f.insurance_price.value ==""){
+            alert("보험료를 채워주세요");
+            f.insurance_price.focus();
             return;
          }
-		if(f.car_kind_price_holiday.value ==""){
-            alert("성수기가를 채워주세요");
-            f.car_kind_price_holiday.focus();
+		if(f.insurance_limit.value ==""){
+            alert("보상한도를 채워주세요");
+            f.insurance_limit.focus();
             return;
          }
-		if(f.car_kind_price_h_holiday.value ==""){
-            alert("극성수기가를 채워주세요");
-            f.car_kind_price_h_holiday.focus();
+		if(f.insurance_burden_price.value ==""){
+            alert("자가부담을 채워주세요");
+            f.insurance_burden_price.focus();
             return;
          }
-		var isChecked = "";
-    	if($("input:checkbox[id='customCheck1']").is(":checked")){	// 쳬크 되어있으면
-    		isChecked = "Y"
-    	} else {
-    		isChecked = "N"
-    	}
-    	jQuery("#car_kind_navi").val(isChecked);
-    	if($("input:checkbox[id='customCheck2']").is(":checked")){	// 쳬크 되어있으면
-    		isChecked = "Y"
-    	} else {
-    		isChecked = "N"
-    	}
-    	jQuery("#car_kind_sensor").val(isChecked);
-    	if($("input:checkbox[id='customCheck3']").is(":checked")){	// 쳬크 되어있으면
-    		isChecked = "Y"
-    	} else {
-    		isChecked = "N"
-    	}
-    	jQuery("#car_kind_blackbox").val(isChecked);
-    	if($("input:checkbox[id='customCheck4']").is(":checked")){	// 쳬크 되어있으면
-    		isChecked = "Y"
-    	} else {
-    		isChecked = "N"
-    	}
-    	jQuery("#car_kind_bluetooth").val(isChecked);
-    	if($("input:checkbox[id='customCheck5']").is(":checked")){	// 쳬크 되어있으면
-    		isChecked = "Y"
-    	} else {
-    		isChecked = "N"
-    	}
-    	jQuery("#car_kind_sunroof").val(isChecked);
-    	if($("input:checkbox[id='customCheck6']").is(":checked")){	// 쳬크 되어있으면
-    		isChecked = "Y"
-    	} else {
-    		isChecked = "N"
-    	}
-    	jQuery("#car_kind_camera").val(isChecked);
-    	if($("input:checkbox[id='customCheck7']").is(":checked")){	// 쳬크 되어있으면
-    		isChecked = "Y"
-    	} else {
-    		isChecked = "N"
-    	}
-    	jQuery("#car_kind_nonsmoke").val(isChecked);
+		if(f.insurance_limit_age.value ==""){
+            alert("규정나이를 채워주세요");
+            f.insurance_limit_age.focus();
+            return;
+         }
+		if(f.insurance_limit_carrier.value ==""){
+            alert("규정경력을 채워주세요");
+            f.insurance_limit_carrier.focus();
+            return;
+         }
     	document.f.submit();
 	}
 	</script>
@@ -128,27 +100,18 @@
         <li class="breadcrumb-item">
           <a href="#">JEJULANTIS</a>
         </li>
-        <li class="breadcrumb-item active">차종상세관리</li>
+        <li class="breadcrumb-item active">보험관리</li>
       </ol>
       <!-- Example DataTables Card-->
       <div class="card mb-3">
         <div class="card-header">
-          <i class="fa fa-table"></i>차종상세관리</div>
+          <i class="fa fa-table"></i>보험등록</div>
         <div class="card-body">
           <div class="table-responsive">
-          	<form name="f" action="carDetailWriteOk.do" method="post">
-          		<input type="hidden" name="car_kind_navi" id="car_kind_navi"/>
-          		<input type="hidden" name="car_kind_sensor" id="car_kind_sensor"/>
-          		<input type="hidden" name="car_kind_blackbox" id="car_kind_blackbox"/>
-          		<input type="hidden" name="car_kind_bluetooth" id="car_kind_bluetooth"/>
-          		<input type="hidden" name="car_kind_sunroof" id="car_kind_sunroof"/>
-          		<input type="hidden" name="car_kind_camera" id="car_kind_camera"/>
-          		<input type="hidden" name="car_kind_nonsmoke" id="car_kind_nonsmoke"/>
+          	<form name="f" action="insuranceInsertOk.do" method="post">
 				<input type="hidden" name="manager_id" value="${managerlog.manager_id}"/> 
             		<table border="0" width="100%"  cellpadding="0" cellspacing="0">
-						<h3 style="color:#007bff">차종상세등록</h3>	
-						<tr style="color:#808080;font-size:12pt">		
-						
+						<tr style="color:#808080;font-size:12pt">
 							<th  height="60px" width="10%" class="text-center" style="background-color: #fafafa"><a style="color:red">*</a>지점코드</th>
 							<th  width="35%" class="text-left">
 								<c:forEach items="${branchNoSelect}" var="branchNoSelect" varStatus="status">	
@@ -157,74 +120,64 @@
 							</th>
 						</tr>
 						<tr style="color:#808080;font-size:12pt">	
+							<th  height="60px" width="10%" class="text-center" style="background-color: #fafafa"><a style="color:red">*</a>차종상세코드</th>
+							<th  width="35%" class="text-left">
+								<select name="car_kind_no" id="car_kind_no" class="form-control" style="width:250px">
+									<option value="" style="color:black">차종상세코드</option>
+									<c:forEach items="${carKindSelectBox}" var="carKindSelectBox" varStatus="status">
+										<option value="${carKindSelectBox.car_kind_no}" style="color:black">${carKindSelectBox.car_kind_no}</option>
+									</c:forEach>
+                       			</select>
+							</th>
 							<th  height="60px" width="10%" class="text-center" style="background-color: #fafafa"><a style="color:red">*</a>차종코드</th>
 							<th  width="35%" class="text-left">
 								<select name="car_no" id="car_no" class="form-control" style="width:250px">
-									<option value="" style="color:black">제조사/차타입/차종명(연료)</option>
-									<c:forEach items="${carDetailWrite}" var="carDetailWrite" varStatus="status">
-										<option value="${carDetailWrite.car_no}" style="color:black">${carDetailWrite.car_manufacturer}/${carDetailWrite.car_type}/${carDetailWrite.car_name}(${carDetailWrite.car_fuel})</option>
+									<option value="" style="color:black">차종코드</option>
+									<c:forEach items="${carKindSelectBox}" var="carKindSelectBox" varStatus="status">
+										<option value="${carKindSelectBox.car_no}" style="color:black">${carKindSelectBox.car_no}</option>
 									</c:forEach>
                        			</select>
 							</th>
 						</tr>
+						<tr style="color:#808080;font-size:12pt">	
+							<th  height="60px" width="10%" class="text-center" style="background-color: #fafafa"><a style="color:red">*</a>차종코드</th>
+							<th  width="35%" class="text-left">
+								<select name="insurance_name" id="insurance_name" class="form-control" style="width:250px">
+									<option value="" style="color:black">보험명</option>
+										<option value="일반자차" style="color:black">일반자차</option>
+										<option value="완전자차" style="color:black">완전자차</option>
+										<option value="완전자차(무제한)" style="color:black">완전자차(무제한)</option>
+                       			</select>
+							</th>
+							<th  height="60px" width="10%" class="text-center" style="background-color: #fafafa"><a style="color:red">*</a>보험료</th>
+							<th  width="35%" class="text-left">
+								<input name="insurance_price" type="text" size="30" class="form-control" style="width:250px">
+							</th>
+						</tr>	
 						<tr style="color:#808080;font-size:12pt">
-							<th  height="60px" width="10%" class="text-center" style="background-color: #fafafa"><a style="color:red">*</a>주중가</th>
+							<th  height="60px" width="10%" class="text-center" style="background-color: #fafafa"><a style="color:red">*</a>보상한도</th>
 							<th  width="35%" class="text-left">
-								<input name="car_kind_price_week" type="text" size="30" class="form-control" style="width:250px">
+								<input name="insurance_limit" type="text" size="30" class="form-control" style="width:250px">
 							</th>
-							<th  height="60px" width="10%" class="text-center" style="background-color: #fafafa"><a style="color:red">*</a>주말가</th>
+							<th  height="60px" width="10%" class="text-center" style="background-color: #fafafa"><a style="color:red">*</a>자가부담</th>
 							<th  width="35%" class="text-left">
-								<input name="car_kind_price_weekend" type="text" size="30" class="form-control" style="width:250px">
-							</th>
-						</tr>
-						<tr style="color:#808080;font-size:12pt">			
-							<th  height="60px" width="10%" class="text-center" style="background-color: #fafafa"><a style="color:red">*</a>성수기가</th>
-							<th  width="35%" class="text-left">
-								<input name="car_kind_price_holiday" type="text" size="30" class="form-control" style="width:250px">
-							</th>
-							<th  height="60px" width="10%" class="text-center" style="background-color: #fafafa"><a style="color:red">*</a>극성수기가</th>
-							<th  width="35%" class="text-left">
-								<input name="car_kind_price_h_holiday" type="text" size="30" class="form-control" style="width:250px">
+								<input name="insurance_burden_price" type="text" size="30" class="form-control" style="width:250px">
 							</th>
 						</tr>
-					    <tr style="color:#808080;font-size:12pt">			
-							<th  height="60px" width="10%" class="text-center" style="background-color: #fafafa"><a style="color:red">*</a>차량옵션</th>
+						<tr style="color:#808080;font-size:12pt">
+							<th  height="60px" width="10%" class="text-center" style="background-color: #fafafa"><a style="color:red">*</a>규정나이</th>
 							<th  width="35%" class="text-left">
-							
-								<div class="custom-control custom-checkbox">
-							   		<input type="checkbox" class="custom-control-input" id="customCheck1" name="customCheck1">
-							   		<label class="custom-control-label" for="customCheck1">네비</label>
-							  	</div>
-							  	<div class="custom-control custom-checkbox">
-							   		<input type="checkbox" class="custom-control-input" id="customCheck2">
-							   	<label class="custom-control-label" for="customCheck2">후방센서</label>
-							  	</div>
-								<div class="custom-control custom-checkbox">
-							   		<input type="checkbox" class="custom-control-input" id="customCheck3">
-							   		<label class="custom-control-label" for="customCheck3">블랙박스</label>
-							  	</div>
-							  	<div class="custom-control custom-checkbox">
-							   		<input type="checkbox" class="custom-control-input" id="customCheck4">
-							   	<label class="custom-control-label" for="customCheck4">블루투스</label>
-							  	</div>
-								<div class="custom-control custom-checkbox">
-							   		<input type="checkbox" class="custom-control-input" id="customCheck5">
-							   		<label class="custom-control-label" for="customCheck5">썬루프</label>
-							  	</div>
-							  	<div class="custom-control custom-checkbox">
-							   		<input type="checkbox" class="custom-control-input" id="customCheck6">
-							   	<label class="custom-control-label" for="customCheck6">후방카메라</label>
-							  	</div>					  	
-								<div class="custom-control custom-checkbox">
-							   		<input type="checkbox" class="custom-control-input" id="customCheck7">
-							   		<label class="custom-control-label" for="customCheck7">금연차량</label>
-							  	</div>	
+								<input name="insurance_limit_age" type="text" size="30" class="form-control" style="width:250px">
+							</th>
+							<th  height="60px" width="10%" class="text-center" style="background-color: #fafafa"><a style="color:red">*</a>규정경력</th>
+							<th  width="35%" class="text-left">
+								<input name="insurance_limit_carrier" type="text" size="30" class="form-control" style="width:250px">
 							</th>
 						</tr>
 						<tr style="font-size:10pt" height="60px">
 							<td align="center"></td>
 							<td align="right">
-								<button type="button" class="btn btn-primary"><a href="carDetail.do?manager_id=${managerlog.manager_id}" style="color:white">목록</a></button>
+								<button type="button" class="btn btn-primary"><a href="insuranceInsertOk.do?manager_id=${managerlog.manager_id}" style="color:white">목록</a></button>
 								<button type="button" class="btn btn-primary" onclick="check()">완료</button>
 							</td>
 						</tr>

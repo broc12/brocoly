@@ -40,7 +40,7 @@
         <div class="card-header">
           <i class="fa fa-table"></i>보험목록</div>
         <div class="card-body">
-        <button type="button" class="btn btn-primary btn-xs" align="right"><a href="carDetailWrite.do?manager_id=${managerlog.manager_id}" style="color:white">보험등록</a></button></br></br>
+        <button type="button" class="btn btn-primary btn-xs" align="right"><a href="insuranceInsert.do?manager_id=${managerlog.manager_id}" style="color:white">보험등록</a></button></br></br>
           <div class="table-responsive">
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" style="font-size:8pt">
               <thead>
@@ -55,19 +55,21 @@
                 </tr>
               </thead>
               <tbody>
+              <c:forEach items="${insuranceList}" var="insuranceList" varStatus="status">
                 <tr>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
+					<td>${insuranceList.insurance_no}</td>
+					<td>${insuranceList.branch_no}</td>
+					<td>${insuranceList.car_kind_no}</td>
+					<td>${insuranceList.car_no}</td>
+					<td>${insuranceList.insurance_name}</td>
+					<td>${insuranceList.insurance_resist}</td>
                 	<td>
-                    <button type="button" class="btn btn-defalut btn-sm"><a href="insuranceContent.do?insurance_no=">세부내용</a></button>
-                  	<button type="button" class="btn btn-defalut btn-sm"><a href="insuranceUpdate.do?insurance_no=&manager_id=${managerlog.manager_id}">수정</a></button>
-                  	<button type="button" class="btn btn-defalut btn-sm"><a href="insuranceDelete.do?insurance_no=&manager_id=${managerlog.manager_id}">삭제</a></button>
+                    <button type="button" class="btn btn-defalut btn-sm"><a href="insuranceContent.do?insurance_no=${insuranceList.insurance_no}">세부내용</a></button>
+                  	<button type="button" class="btn btn-defalut btn-sm"><a href="insuranceUpdate.do?insurance_no=${insuranceList.insurance_no}&manager_id=${managerlog.manager_id}">수정</a></button>
+                  	<button type="button" class="btn btn-defalut btn-sm"><a href="insuranceDelete.do?insurance_no=${insuranceList.insurance_no}&manager_id=${managerlog.manager_id}">삭제</a></button>
                 	</td>                  
                 </tr>
+                </c:forEach>
               </tbody>
             </table>
           </div>

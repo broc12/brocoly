@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.khd.jejulantis.admin.insurance.Service.InsuranceService;
@@ -15,19 +17,61 @@ public class InsuranceController {
 	@Autowired
 	private InsuranceService iservice;
 	@RequestMapping(value="admin/insuranceList.do")
-	public String insuranceList() {
-		//List<Insurance> insuranceList = iservice
+	public ModelAndView insuranceList(@RequestParam("manager_id")String manager_id) {
+		List<Insurance> insuranceList = iservice.insuranceListService(manager_id);
 		String view = "admin/insurances/insuranceList";
-		//ModelAndView mv = ModelAndView(view, "insuranceList", insuranceList);
-		//return mv;
-		return "admin/insurances/insuranceList";
+		ModelAndView mv = new ModelAndView(view, "insuranceList", insuranceList);
+		return mv;
+		//return "admin/insurances/insuranceList";
 	}
 	@RequestMapping(value="admin/insuranceContent.do")
-	public String insuranceContent() {
-		return "admin/insurances/insuranceContent";
+	public ModelAndView insuranceContent(@RequestParam("insurance_no")int insurance_no) {
+		List<Insurance> insuranceContent = iservice.insuranceContentService(insurance_no);
+		String view = "admin/insurances/insuranceContent";
+		ModelAndView mv = new ModelAndView(view, "insuranceContent", insuranceContent);
+		return mv;
+		//return "admin/insurances/insuranceContent";
+	}
+	@RequestMapping(value="admin/insuranceInsert.do")
+	public ModelAndView insuranceInsert(@RequestParam("manager_id")String manager_id) {
+		List<Insurance> branchNoSelect = iservice.branchNoSelectService(manager_id);
+		List<Insurance> carKindSelectBox = iservice.carKindSelectBoxService(manager_id);
+		String view = "admin/insurances/insuranceInsert";
+		ModelAndView mv = new ModelAndView(view, "branchNoSelect", branchNoSelect);
+		mv.addObject("carKindSelectBox", carKindSelectBox);
+		return mv;
+	}
+	@RequestMapping(value="admin/insuranceInsertOk.do", method=RequestMethod.POST)
+	public String insuranceInsertOk(@RequestParam("manager_id")String manager_id,
+			Insurance insurance,
+			@RequestParam("branch_no")int branch_no,
+			@RequestParam("car_kind_no")int car_kind_no,
+			@RequestParam("car_no")int car_no,
+			@RequestParam("insurance_name")String insurance_name,
+			@RequestParam("insurance_price")int insurance_price,
+			@RequestParam("insurance_limit")String insurance_limit,
+			@RequestParam("insurance_burden_price")int insurance_burden_price,
+			@RequestParam("insurance_limit_age")int insurance_limit_age,
+			@RequestParam("insurance_limit_carrier")int insurance_limit_carrier
+			) {
+		/*System.out.println("branch_no : "+branch_no);
+		System.out.println("car_kind_no : "+car_kind_no);
+		System.out.println("car_no : "+car_no);
+		System.out.println("insurance_name : "+insurance_name);
+		System.out.println("insurance_price : "+insurance_price);
+		System.out.println("insurance_limit : "+insurance_limit);
+		System.out.println("insurance_burden_price : "+insurance_burden_price);
+		System.out.println("insurance_limit_age : "+insurance_limit_age);
+		System.out.println("insurance_limit_carrier : "+insurance_limit_carrier);*/
+		iservice.insertService(insurance);
+		return "redirect:insuranceList.do?manager_id="+manager_id;
 	}
 	@RequestMapping(value="admin/insuranceUpdate.do")
 	public String insuranceUpdate() {
+		return "admin/insurances/insuranceUpdate";
+	}
+	@RequestMapping(value="admin/insuranceUpdateOk.do")
+	public String insuranceUpdateOk() {
 		return "admin/insurances/insuranceUpdate";
 	}
 	@RequestMapping(value="admin/insuranceDelete.do")

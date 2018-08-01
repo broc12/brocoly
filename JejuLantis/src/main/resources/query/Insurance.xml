@@ -18,8 +18,16 @@
 		<result property="insurance_resist" column="INSURANCE_RESIST"/>
 		<result property="manager_id" column="MANAGER_ID"/>
 	</resultMap>
-	<select id="insuranceList" resultType="Insurance">
-		select * from INSURANCE where INSURANCE_WITHDRAW_AT='N' and BRANCH_NO=(select BRANCH_NO from MANAGER where MANAGER_ID=#{manager_id})
+	<select id="branchNoSelect" resultType="Insurance" parameterType="String">
+		select BRANCH_NO from BRANCH where BRANCH_NO=(select BRANCH_NO from MANAGER where MANAGER_ID=#{manager_id})
+	</select>
+	<select id="carKindSelectBox" resultType="Insurance" parameterType="String">
+		select CAR_KIND.*, CAR.* from CAR_KIND, CAR 
+		where CAR_KIND.CAR_NO=CAR.CAR_NO and BRANCH_NO=(select BRANCH_NO from MANAGER where MANAGER_ID=#{manager_id}) 
+	</select>
+	<select id="insuranceList" resultType="Insurance" parameterType="String">
+		select * from INSURANCE 
+		where INSURANCE_WITHDRAW_AT='N' and BRANCH_NO=(select BRANCH_NO from MANAGER where MANAGER_ID=#{manager_id})
 	</select>
 	<select id="insuranceContent" resultType="Insurance">
 		select * from INSURANCE where INSURANCE_NO=#{insurance_no}

@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 
 import com.khd.jejulantis.client.rentcar.DAO.RentcarDAO;
 import com.khd.jejulantis.model.Rcar;
-import com.khd.jejulantis.model.RentcarSearchResult;
 import com.khd.jejulantis.model.SearchRequirements;
 @Service
 public class RentcarServiceImpl implements RentcarService {

@@ -70,4 +70,10 @@ public class InsuranceDaoImpl implements InsuranceDao {
 	public void insuranceUpdateOk(Insurance insurance) {
 		sqlSession.update(ns_insurance+".insuranceUpdateOk", insurance);
 	}
+	@Override
+	public List<Insurance> kingBranchNotSelect(String manager_id) {
+		List<Insurance> kingBranchNotSelect = sqlSession.selectList(ns_insurance+".kingBranchNotSelect", manager_id);
+		return kingBranchNotSelect;
+	}
+	
 }

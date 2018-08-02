@@ -72,4 +72,10 @@
 	<update id="insuranceDUpdate" parameterType="int">
 		update INSURANCE set INSURANCE_WITHDRAW_AT='Y' where INSURANCE_NO=#{insurance_no}
 	</update>
+	<select id="kingBranchNotSelect" parameterType="String" resultType="Insurance">
+		select BRANCH_NO 
+		from BRANCH 
+		where BRANCH_WITHDRAW_AT='N' 
+		and BRANCH_NO!=(select BRANCH_NO from MANAGER where MANAGER_ID=#{manager_id})
+	</select>
 </mapper>

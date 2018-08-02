@@ -55,4 +55,8 @@ public class InsuranceServiceImpl implements InsuranceService {
 	public void updateOkService(Insurance insurance) {
 		InsuranceDao.insuranceUpdateOk(insurance);
 	}
+	@Override
+	public List<Insurance> kingbranchNotSelectService(String manager_id) {
+		return InsuranceDao.kingBranchNotSelect(manager_id);
+	}
 }

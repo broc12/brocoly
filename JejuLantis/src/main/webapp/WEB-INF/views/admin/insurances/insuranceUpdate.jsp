@@ -106,67 +106,80 @@
           	<form name="f" action="insuranceUpdateOk.do" method="post">
           		<c:forEach items="${insuranceUpdate}" var="insuranceUpdate" varStatus="status">
           			<input type="hidden" name="manager_id" value="${managerlog.manager_id}" id="manager_id"/>
-	            		            		<table border="0" width="100%"  cellpadding="0" cellspacing="0">
-						<tr style="color:#808080;font-size:12pt">
-							<th  height="60px" width="10%" class="text-center" style="background-color: #fafafa"><a style="color:red">*</a>지점코드</th>
-							<th  width="35%" class="text-left">
-								<input name="branch_no" type="text" size="30" value="${insuranceUpdate.branch_no}" class="form-control" style="width:250px" readonly>
-							</th>
-						</tr>
-						<tr style="color:#808080;font-size:12pt">	
-							<th  height="60px" width="10%" class="text-center" style="background-color: #fafafa"><a style="color:red">*</a>차종상세코드</th>
-							<th  width="35%" class="text-left">
-								<select name="car_kind_no" id="car_kind_no" class="form-control" style="width:250px">
-									<option value="${insuranceUpdate.car_kind_no}" style="color:black">${insuranceUpdate.car_kind_no}</option>
-									<c:forEach items="${carKindNotSelect}" var="carKindNotSelect" varStatus="status">
-										<option value="${carKindNotSelect.car_kind_no}" style="color:black">${carKindNotSelect.car_kind_no}</option>
-									</c:forEach>
-                       			</select>
-							</th>
-						</tr>
-						<tr style="color:#808080;font-size:12pt">	
-							<th  height="60px" width="10%" class="text-center" style="background-color: #fafafa"><a style="color:red">*</a>보험명</th>
-							<th  width="35%" class="text-left">
-								<select name="insurance_name" id="insurance_name" class="form-control" style="width:250px">
-									<option value="${insuranceUpdate.insurance_name}" style="color:black">${insuranceUpdate.insurance_name}</option>
-										<option value="일반자차" style="color:black">일반자차</option>
-										<option value="완전자차" style="color:black">완전자차</option>
-										<option value="완전자차(무제한)" style="color:black">완전자차(무제한)</option>
-                       			</select>
-							</th>
-							<th  height="60px" width="10%" class="text-center" style="background-color: #fafafa"><a style="color:red">*</a>보험료</th>
-							<th  width="35%" class="text-left">
-								<input name="insurance_price" type="text" size="30" class="form-control" style="width:250px" value="${insuranceUpdate.insurance_price}">
-							</th>
-						</tr>	
-						<tr style="color:#808080;font-size:12pt">
-							<th  height="60px" width="10%" class="text-center" style="background-color: #fafafa"><a style="color:red">*</a>보상한도</th>
-							<th  width="35%" class="text-left">
-								<input name="insurance_limit" type="text" size="30" class="form-control" style="width:250px" value="${insuranceUpdate.insurance_limit}">
-							</th>
-							<th  height="60px" width="10%" class="text-center" style="background-color: #fafafa"><a style="color:red">*</a>자가부담</th>
-							<th  width="35%" class="text-left">
-								<input name="insurance_burden_price" type="text" size="30" class="form-control" style="width:250px" value="${insuranceUpdate.insurance_burden_price}">
-							</th>
-						</tr>
-						<tr style="color:#808080;font-size:12pt">
-							<th  height="60px" width="10%" class="text-center" style="background-color: #fafafa"><a style="color:red">*</a>규정나이</th>
-							<th  width="35%" class="text-left">
-								<input name="insurance_limit_age" type="text" size="30" class="form-control" style="width:250px" value="${insuranceUpdate.insurance_limit_age}">
-							</th>
-							<th  height="60px" width="10%" class="text-center" style="background-color: #fafafa"><a style="color:red">*</a>규정경력</th>
-							<th  width="35%" class="text-left">
-								<input name="insurance_limit_carrier" type="text" size="30" class="form-control" style="width:250px" value="${insuranceUpdate.insurance_limit_carrier}">
-							</th>
-						</tr>
-						<tr style="font-size:10pt" height="60px">
-							<td align="center"></td>
-							<td align="right">
-								<button type="button" class="btn btn-primary"><a href="insuranceList.do?manager_id=${managerlog.manager_id}" style="color:white">목록</a></button>
-								<button type="button" class="btn btn-primary" onclick="check()">완료</button>
-							</td>
-						</tr>
-					</table>
+	            		<table border="0" width="100%"  cellpadding="0" cellspacing="0">
+	            			<c:set var="data" value="${insuranceUpdate.branch_no}" />
+								<c:choose>
+								    <c:when test="${data eq 1}">
+										<tr style="color:#808080;font-size:12pt">
+											<th  height="60px" width="10%" class="text-center" style="background-color: #fafafa"><a style="color:red">*</a>지점코드</th>
+											<th  width="35%" class="text-left">
+												<input name="branch_no" type="text" size="30" value="${insuranceUpdate.branch_no}" class="form-control" style="width:250px">
+											</th>
+										</tr>							        	
+								    </c:when>
+								    <c:otherwise>
+										<tr style="color:#808080;font-size:12pt">
+											<th  height="60px" width="10%" class="text-center" style="background-color: #fafafa"><a style="color:red">*</a>지점코드</th>
+											<th  width="35%" class="text-left">
+												<input name="branch_no" type="text" size="30" value="${insuranceUpdate.branch_no}" class="form-control" style="width:250px" readonly>
+											</th>
+										</tr>
+								    </c:otherwise>
+								</c:choose>
+							<tr style="color:#808080;font-size:12pt">	
+								<th  height="60px" width="10%" class="text-center" style="background-color: #fafafa"><a style="color:red">*</a>차종상세코드</th>
+								<th  width="35%" class="text-left">
+									<select name="car_kind_no" id="car_kind_no" class="form-control" style="width:250px">
+										<option value="${insuranceUpdate.car_kind_no}" style="color:black">${insuranceUpdate.car_kind_no}</option>
+										<c:forEach items="${carKindNotSelect}" var="carKindNotSelect" varStatus="status">
+											<option value="${carKindNotSelect.car_kind_no}" style="color:black">${carKindNotSelect.car_kind_no}</option>
+										</c:forEach>
+	                       			</select>
+								</th>
+							</tr>
+							<tr style="color:#808080;font-size:12pt">	
+								<th  height="60px" width="10%" class="text-center" style="background-color: #fafafa"><a style="color:red">*</a>보험명</th>
+								<th  width="35%" class="text-left">
+									<select name="insurance_name" id="insurance_name" class="form-control" style="width:250px">
+										<option value="${insuranceUpdate.insurance_name}" style="color:black">${insuranceUpdate.insurance_name}</option>
+											<option value="일반자차" style="color:black">일반자차</option>
+											<option value="완전자차" style="color:black">완전자차</option>
+											<option value="완전자차(무제한)" style="color:black">완전자차(무제한)</option>
+	                       			</select>
+								</th>
+								<th  height="60px" width="10%" class="text-center" style="background-color: #fafafa"><a style="color:red">*</a>보험료</th>
+								<th  width="35%" class="text-left">
+									<input name="insurance_price" type="text" size="30" class="form-control" style="width:250px" value="${insuranceUpdate.insurance_price}">
+								</th>
+							</tr>	
+							<tr style="color:#808080;font-size:12pt">
+								<th  height="60px" width="10%" class="text-center" style="background-color: #fafafa"><a style="color:red">*</a>보상한도</th>
+								<th  width="35%" class="text-left">
+									<input name="insurance_limit" type="text" size="30" class="form-control" style="width:250px" value="${insuranceUpdate.insurance_limit}">
+								</th>
+								<th  height="60px" width="10%" class="text-center" style="background-color: #fafafa"><a style="color:red">*</a>자가부담</th>
+								<th  width="35%" class="text-left">
+									<input name="insurance_burden_price" type="text" size="30" class="form-control" style="width:250px" value="${insuranceUpdate.insurance_burden_price}">
+								</th>
+							</tr>
+							<tr style="color:#808080;font-size:12pt">
+								<th  height="60px" width="10%" class="text-center" style="background-color: #fafafa"><a style="color:red">*</a>규정나이</th>
+								<th  width="35%" class="text-left">
+									<input name="insurance_limit_age" type="text" size="30" class="form-control" style="width:250px" value="${insuranceUpdate.insurance_limit_age}">
+								</th>
+								<th  height="60px" width="10%" class="text-center" style="background-color: #fafafa"><a style="color:red">*</a>규정경력</th>
+								<th  width="35%" class="text-left">
+									<input name="insurance_limit_carrier" type="text" size="30" class="form-control" style="width:250px" value="${insuranceUpdate.insurance_limit_carrier}">
+								</th>
+							</tr>
+							<tr style="font-size:10pt" height="60px">
+								<td align="center"></td>
+								<td align="right">
+									<button type="button" class="btn btn-primary"><a href="insuranceList.do?manager_id=${managerlog.manager_id}" style="color:white">목록</a></button>
+									<button type="button" class="btn btn-primary" onclick="check()">완료</button>
+								</td>
+							</tr>
+						</table>
 					</c:forEach>
 				</form>
 	        </div>

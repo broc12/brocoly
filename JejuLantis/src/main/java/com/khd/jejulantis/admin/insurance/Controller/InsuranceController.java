@@ -36,9 +36,11 @@ public class InsuranceController {
 	public ModelAndView insuranceInsert(@RequestParam("manager_id")String manager_id) {
 		List<Insurance> branchNoSelect = iservice.branchNoSelectService(manager_id);
 		List<Insurance> carKindSelectBox = iservice.carKindSelectBoxService(manager_id);
+		List<Insurance> kingbranchNotSelect = iservice.kingbranchNotSelectService(manager_id);
 		String view = "admin/insurances/insuranceInsert";
 		ModelAndView mv = new ModelAndView(view, "branchNoSelect", branchNoSelect);
 		mv.addObject("carKindSelectBox", carKindSelectBox);
+		mv.addObject("kingbranchNotSelect", kingbranchNotSelect);
 		return mv;
 	}
 	@RequestMapping(value="admin/insuranceInsertOk.do", method=RequestMethod.POST)
@@ -88,4 +90,5 @@ public class InsuranceController {
 		iservice.deleteService(insurance_no);
 		return "redirect:insuranceList.do?manager_id="+manager_id;
 	}
+
 }

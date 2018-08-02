@@ -87,7 +87,25 @@
     	document.f.submit();
 	}
 	</script>
-	
+	<script>
+	function setCategory2(){
+		form = document.f;
+		if(document.f.branch_no.value == 1){
+		form.car_kind_no.length = 1;
+		form.car_kind_no.options[1] = new Option("일본");
+		form.car_kind_no.options[1].value = "일본";
+		form.car_kind_no.options[2] = new Option("중국");
+		form.car_kind_no.options[2].value = "중국";
+		}
+		if(document.f.branch_no.value == 3){
+		form.car_kind_no.length = 1;
+		form.car_kind_no.options[1] = new Option("프랑스");
+		form.car_kind_no.options[1].value = "프랑스";
+		form.car_kind_no.options[2] = new Option("네덜란드");
+		form.car_kind_no.options[2].value = "네덜란드";
+		}
+	}
+	</script>
   <div class="content-wrapper">
     <div class="container-fluid">
       <!-- Breadcrumbs-->
@@ -106,25 +124,54 @@
           	<form name="f" action="insuranceInsertOk.do" method="post">
 				<input type="hidden" name="manager_id" value="${managerlog.manager_id}"/> 
             		<table border="0" width="100%"  cellpadding="0" cellspacing="0">
-						<tr style="color:#808080;font-size:12pt">
-							<th  height="60px" width="10%" class="text-center" style="background-color: #fafafa"><a style="color:red">*</a>지점코드</th>
-							<th  width="35%" class="text-left">
-								<c:forEach items="${branchNoSelect}" var="branchNoSelect" varStatus="status">	
-									<input name="branch_no" type="text" size="30" value="${branchNoSelect.branch_no}" class="form-control" style="width:250px" readonly>
-								</c:forEach>
-							</th>
-						</tr>
-						<tr style="color:#808080;font-size:12pt">	
-							<th  height="60px" width="10%" class="text-center" style="background-color: #fafafa"><a style="color:red">*</a>차종상세코드</th>
-							<th  width="35%" class="text-left">
-								<select name="car_kind_no" id="car_kind_no" class="form-control" style="width:250px">
-									<option value="" style="color:black">차종상세코드</option>
-									<c:forEach items="${carKindSelectBox}" var="carKindSelectBox" varStatus="status">
-										<option value="${carKindSelectBox.car_kind_no}" style="color:black">${carKindSelectBox.car_kind_no}</option>
-									</c:forEach>
-                       			</select>
-							</th>
-						</tr>
+            			<c:forEach items="${branchNoSelect}" var="branchNoSelect" varStatus="status">
+	            			<c:set var="data" value="${branchNoSelect.branch_no}" />
+								<c:choose>
+								    <c:when test="${data eq 1}">
+										<tr style="color:#808080;font-size:12pt">
+											<th  height="60px" width="10%" class="text-center" style="background-color: #fafafa"><a style="color:red">*</a>지점코드</th>
+											<th  width="35%" class="text-left">
+												<select name="branch_no" id="branch_no" class="form-control" style="width:250px" onchange="setCategory2()">
+													<option value="" style="color:black">지점코드</option>
+														<c:forEach items="${kingbranchNotSelect}" var="kingbranchNotSelect" varStatus="status">
+															<option value="${kingbranchNotSelect.branch_no}" style="color:black">${kingbranchNotSelect.branch_no}</option>
+														</c:forEach>
+												</select>
+											</th>
+										</tr>
+										<tr style="color:#808080;font-size:12pt">	
+											<th  height="60px" width="10%" class="text-center" style="background-color: #fafafa"><a style="color:red">*</a>차종상세코드</th>
+											<th  width="35%" class="text-left">
+												<select name="car_kind_no" id="car_kind_no" class="form-control" style="width:250px">
+													<option value="" style="color:black">차종상세코드</option>
+														<c:forEach items="${carKindSelectBox}" var="carKindSelectBox" varStatus="status">
+<%-- 															<option disabled="disabled" value="${carKindSelectBox.car_kind_no}" style="color:black">${carKindSelectBox.car_kind_no}</option> --%>
+														</c:forEach>
+                       							</select>
+											</th>
+										</tr>							        	
+								    </c:when>
+								    <c:otherwise>
+										<tr style="color:#808080;font-size:12pt">
+											<th  height="60px" width="10%" class="text-center" style="background-color: #fafafa"><a style="color:red">*</a>지점코드</th>
+											<th  width="35%" class="text-left">
+												<input name="branch_no" type="text" size="30" value="${branchNoSelect.branch_no}" class="form-control" style="width:250px" readonly>
+											</th>
+										</tr>
+										<tr style="color:#808080;font-size:12pt">	
+											<th  height="60px" width="10%" class="text-center" style="background-color: #fafafa"><a style="color:red">*</a>차종상세코드</th>
+											<th  width="35%" class="text-left">
+												<select name="car_kind_no" id="car_kind_no" class="form-control" style="width:250px">
+													<option value="" style="color:black">차종상세코드</option>
+														<c:forEach items="${carKindSelectBox}" var="carKindSelectBox" varStatus="status">
+															<option value="${carKindSelectBox.car_kind_no}" style="color:black">${carKindSelectBox.car_kind_no}</option>
+														</c:forEach>
+                      							</select>
+											</th>
+										</tr>
+								    </c:otherwise>
+								</c:choose>
+						</c:forEach>
 						<tr style="color:#808080;font-size:12pt">	
 							<th  height="60px" width="10%" class="text-center" style="background-color: #fafafa"><a style="color:red">*</a>차종코드</th>
 							<th  width="35%" class="text-left">
@@ -163,7 +210,7 @@
 						<tr style="font-size:10pt" height="60px">
 							<td align="center"></td>
 							<td align="right">
-								<button type="button" class="btn btn-primary"><a href="insuranceInsertOk.do?manager_id=${managerlog.manager_id}" style="color:white">목록</a></button>
+								<button type="button" class="btn btn-primary"><a href="insuranceList.do?manager_id=${managerlog.manager_id}" style="color:white">목록</a></button>
 								<button type="button" class="btn btn-primary" onclick="check()">완료</button>
 							</td>
 						</tr>

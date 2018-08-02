@@ -21,6 +21,10 @@ SELECT SYSDATE FROM DUAL
 SELECT (TRUNC(SYSDATE+1)+(8/24)) FROM DUAL
 </select>
 
+<select id="nextsat" resultType="java.util.Date">
+SELECT TRUNC(NEXT_DAY(TO_DATE ('2018-08-01 18:30','yyyy-mm-dd hh24:mi'),7)) FROM DUAL;
+</select>
+
 <select id="selectCarList" parameterType="SearchRequirements" resultMap="RcarResult">
 SELECT
 	CAR_NAME,

@@ -183,5 +183,19 @@ public class ManagerController {
 			mv.setViewName(page);
 			return mv;
 			}
+		 @RequestMapping(value="admin/managerdelete.do")
+			public String delete(HttpSession session) {
+			 System.out.println("id1:"+ session.getId());		
+			 Manager log = (Manager) session.getAttribute("managerlog");
+			 System.out.println("id2:"+ session.getId());
+				String manager_id = log.getManager_id();
+				System.out.println("idwqeqwqwe:"+ manager_id);
+			 System.out.println("id7777:"+ manager_id);	
+			 int dm = managerService.managerdeleteService(manager_id);
+			 session.removeAttribute("managerlog");
+			 System.out.println("idwqeqwqwe:"+ manager_id);
+				return "admin/adminUsers/login";
+			
+			}
 
 }

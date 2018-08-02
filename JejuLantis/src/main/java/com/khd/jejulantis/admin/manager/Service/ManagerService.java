@@ -15,4 +15,5 @@ public interface ManagerService {
 	Manager loginCheck(Manager manager);
 	Manager mypageService(String manager_id);
 	Manager modifyService(Manager manager);
+	int managerdeleteService(String manager_id);
 }

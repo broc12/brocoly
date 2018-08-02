@@ -51,5 +51,10 @@ public class ManagerServiceImpl implements ManagerService {
 		// TODO Auto-generated method stub
 		return managerDao.modify(manager);
 	}
+
+	@Override
+	public int managerdeleteService(String manager_id) {
+		return managerDao.managerdelete(manager_id);
+	}
 	
 }

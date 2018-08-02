@@ -85,5 +85,8 @@
         WHERE manager_id = #{manager_id} 
 <!--         AND pwd = #{pwd}  -->
 </update>
-
+<delete id="managerdelete" parameterType="String" >
+<!--         DELETE FROM member WHERE id=#{id} -->
+UPDATE MANAGER SET manager_withdraw_at  ='Y' where manager_id=#{manager_id}
+    </delete>
 </mapper>

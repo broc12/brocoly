@@ -174,11 +174,11 @@
  }
 
  function sendIt() {  
-	 if(confirm("회원가입을 하시겠습니까?")){
+	 if(confirm("회원정보를 수정 하시겠습니까?")){
 	 var hp3 =$("#manager_tel3 option:selected").val()
 	 var hp4 =$("#manager_tel4").val()
 	 var hp5 =$("#manager_tel5").val()
-// 	 alert(hp2)
+	//alert(hp2)
 	$("#manager_tel1").val(hp3+"-"+hp4+"-"+hp5)
 	 var hp6 =$("#manager_tel6 option:selected").val()
 	 var hp7 =$("#manager_tel7").val()
@@ -413,7 +413,9 @@
         </form>
         <div class="text-center">
           <a class="d-block small mt-3" href="login.do">로그인</a>
+          <a href="./managerdelete.do" class="d-block small">회원탈퇴</a>
           <a class="d-block small" href="forgot-password.do">고객센터 1577-0704</a>
+          
         </div>
       </div>
     </div>

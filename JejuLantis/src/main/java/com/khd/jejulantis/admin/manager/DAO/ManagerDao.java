@@ -19,5 +19,7 @@ public interface ManagerDao {
 	Manager mypage(String manager_id);
 
 	Manager modify(Manager manager);
+
+	int managerdelete(String manager_id);
 	
 }

@@ -67,4 +67,11 @@ public class ManagerDaoImpl implements ManagerDao{
 				}
 			}
 
+	@Override
+	public int managerdelete(String manager_id) {
+		int delete = sql.update(ns+".managerdelete", manager_id);
+//		System.out.println("id6:"+ manager_id);
+		return delete;
+	}
+
 }

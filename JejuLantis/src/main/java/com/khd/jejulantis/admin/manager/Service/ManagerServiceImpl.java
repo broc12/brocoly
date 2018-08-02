@@ -56,5 +56,15 @@ public class ManagerServiceImpl implements ManagerService {
 	public int managerdeleteService(String manager_id) {
 		return managerDao.managerdelete(manager_id);
 	}
+
+	@Override
+	public String find_id(String manager_email) {
+		return managerDao.managerfind_id(manager_email);
+	}
+
+	@Override
+	public String find_pwd(String manager_id) {
+		return managerDao.managerfind_pwd(manager_id);
+	}
 	
 }

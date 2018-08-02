@@ -16,4 +16,6 @@ public interface ManagerService {
 	Manager mypageService(String manager_id);
 	Manager modifyService(Manager manager);
 	int managerdeleteService(String manager_id);
+	String find_id(String manager_email);
+	String find_pwd(String manager_id);
 }

@@ -36,7 +36,7 @@ public class SearchRequirements {
 	public SearchRequirements() {}
 	public SearchRequirements(Date rent_reserve_start,String sort) {
 		this.rent_reserve_start = new DateTime(rent_reserve_start);
-		this.rent_reserve_end = this.rent_reserve_start.plusDays(3);
+		this.rent_reserve_end = this.rent_reserve_start.plusDays(1);
 		this.sort = sort;
 		this.searchFlag=false;
 	}
@@ -282,5 +282,10 @@ public class SearchRequirements {
 		}else {
 			return 0;
 		}
+	}
+	public float getPeriod() {
+		float time = Hours.hoursBetween(this.rent_reserve_start, this.rent_reserve_end).getHours();
+		time = (float) (Math.round(time/24*10)/10.0);
+		return time;
 	}
 }

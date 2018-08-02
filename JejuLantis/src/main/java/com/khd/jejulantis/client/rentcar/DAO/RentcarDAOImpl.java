@@ -16,20 +16,21 @@ public class RentcarDAOImpl implements RentcarDAO {
 
 	@Autowired
 	SqlSessionTemplate sqlsession;
-	String ns = "query.rcar";
+	String n2s = "query.rcar";
+	String ns = "query.rentcarSearch";
 	
 	@Override
 	public List<Rcar> rentcarList(SearchRequirements requirements) {
 		
-		return sqlsession.selectList(ns+".selectCarList",requirements);	
+		return sqlsession.selectList(ns+".rentcarsearch",requirements);	
 	}
 	@Override
 	public Date currenttimeStamp() {
-		return sqlsession.selectOne(ns+".currenttime");
+		return sqlsession.selectOne(n2s+".currenttime");
 	}
 	@Override
 	public Date timeStamp() {
-		return sqlsession.selectOne(ns+".nexttime");
+		return sqlsession.selectOne(n2s+".nexttime");
 	}
 
 }

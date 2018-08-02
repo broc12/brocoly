@@ -26,6 +26,7 @@
 	<mappers>
 		<mapper resource="query/CustomerCenter.xml"/>
 		<mapper resource="query/rcar.xml"/>
+		<mapper resource="query/rentcarSearch.xml"/>
 		<mapper resource="query/blist.xml"/>
 		<mapper resource="query/member.xml"/>
 		<mapper resource="query/Qna.xml"/>

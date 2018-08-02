@@ -22,6 +22,7 @@
 		<typeAlias alias="Power" type="com.khd.jejulantis.model.Power"/>
 		<typeAlias alias="Insurance" type="com.khd.jejulantis.model.Insurance"/>
 		<typeAlias alias="CarInfoInsert" type="com.khd.jejulantis.model.CarInfoInsert"/>
+		<typeAlias alias="CarInfoSelect" type="com.khd.jejulantis.model.CarInfoSelect"/>
 	</typeAliases>
 	<mappers>
 		<mapper resource="query/CustomerCenter.xml"/>

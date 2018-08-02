@@ -27,32 +27,7 @@
 	</select>
 
 	
-    <insert id="myExcelInsert" parameterType="java.util.List">
-        insert into CAR_INFO(
-            car_info_no,
-            car_no,
-            insurance_no,
-            car_kind_no,
-            branch_no,
-            car_info_rent_at,
-            car_info_state,
-            car_info_back_no,
-            car_info_resist
-        )values
-        <foreach collection="excelContent" item="item" separator=",">
-        (
-            #{item.A},
-            #{item.B},
-            #{item.C},
-            #{item.D},
-            #{item.E),
-            #{item.F},
-            #{item.G},
-            #{item.H},
-            sysdate
-        )
-        </foreach>
-</insert>
+    
 	<insert id="myInsert" parameterType="lIST">
         insert into CAR_INFO(
             car_info_no,
@@ -81,8 +56,68 @@
            SYSDATE
            )
         </foreach>
+	 </insert>
+	<insert id="mycarInfoListInsert" parameterType="lIST">
+        insert into CAR_INFO(
+            car_info_no,
+            branch_no,
+            car_no,
+            car_kind_no,
+            car_info_rent_at,
+            car_info_state,
+            car_info_withdraw_at,
+            car_info_back_no,
+            car_info_resist
+            )
+	 VALUES
+	 	<foreach collection="car" item="item" separator=",">
+           (
+           CAR_INFO_SEQ.NEXTVAL,
+           #{item.branch_no},
+           #{item.car_no},
+           #{item.car_kind_no},
+           'Y',
+           '신차',
+           'N',
+           #{item.car_info_back_no},
+           sysdate
+           )
+        </foreach>
 	
 	 </insert>
 
+
+	 
+
+<insert id="myExcelInsert" parameterType="java.util.List">
+        insert into CAR_INFO(
+            car_info_no,
+            car_no,
+            insurance_no,
+            car_kind_no,
+            branch_no,
+            car_info_rent_at,
+            car_info_state,
+            car_info_back_no,
+            car_info_resist
+        )values
+        <foreach collection="excelContent" item="item" separator=",">
+        (
+            #{item.A},
+            #{item.B},
+            #{item.C},
+            #{item.D},
+            #{item.E),
+            #{item.F},
+            #{item.G},
+            #{item.H},
+            sysdate
+        )
+        </foreach>
+</insert>
+<select id="mySelectAll" parameterType="Integer" resultType="CarInfoSelect">
+select B.branch_name, C.car_name, K.CAR_INFO_RENT_AT, K.CAR_INFO_STATE, K.CAR_INFO_BACK_NO, K.CAR_INFO_NO FROM 
+CAR C, CAR_INFO K, BRANCH B WHERE C.CAR_NO = K.CAR_NO AND B.BRANCH_NO = (select BRANCH_NO FROM MANAGER WHERE MANAGER_ID=#{manager_id});
+</select>
 
 </mapper>

@@ -46,11 +46,11 @@
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
               <thead>
                 <tr>
-                  <th>업체코드</th>
-                  <th>차량코드</th>
+                  <th>업체이름</th>
                   <th>차량이름</th>
                   <th>대여가능여부</th>
                   <th>차량상태</th>
+                  <th>차량번호</th>
                 </tr>
                 <%-- <c:if test="${empty list}">
 					<tr>

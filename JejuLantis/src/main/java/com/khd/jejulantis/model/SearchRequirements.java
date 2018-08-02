@@ -4,8 +4,10 @@ import java.util.Date;
 import java.util.List;
 
 import org.joda.time.DateTime;
+import org.joda.time.DateTimeConstants;
 import org.joda.time.Days;
 import org.joda.time.Hours;
+import org.joda.time.LocalDate;
 import org.joda.time.Minutes;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
@@ -34,7 +36,7 @@ public class SearchRequirements {
 	public SearchRequirements() {}
 	public SearchRequirements(Date rent_reserve_start,String sort) {
 		this.rent_reserve_start = new DateTime(rent_reserve_start);
-		this.rent_reserve_end = this.rent_reserve_start.plusDays(1);
+		this.rent_reserve_end = this.rent_reserve_start.plusDays(3);
 		this.sort = sort;
 		this.searchFlag=false;
 	}
@@ -256,6 +258,29 @@ public class SearchRequirements {
 			errorMsg = "최소 예약 시간은 24시간입니다.";
 		}else if(Hours.hoursBetween(this.rent_reserve_start, this.rent_reserve_end).getHours()>180) {
 			errorMsg = "최대 예약 시간은 180시간 입니다.";
+		}
+	}
+	public int getWeekTime() {
+		int h1 = Hours.hoursBetween(this.rent_reserve_start, this.rent_reserve_end).getHours();
+		int h2 = getWeekendTime();
+		return h1-h2;
+	}
+	
+	public int getWeekendTime() {
+		LocalDate localstart = rent_reserve_start.toLocalDate();
+		LocalDate locatSAT = localstart.withDayOfWeek(DateTimeConstants.SATURDAY);
+		DateTime dateSAT = locatSAT.toDateTime(rent_reserve_start.toLocalTime());
+		int h1 = Hours.hoursBetween(this.rent_reserve_start, this.rent_reserve_end).getHours();
+		int h2 = Hours.hoursBetween(this.rent_reserve_start, dateSAT).getHours();
+		if(h1>h2) {
+			int h3 = h1-h2;
+			if(h3<48) {
+				return h3;
+			}else {
+				return 48;
+			}
+		}else {
+			return 0;
 		}
 	}
 }

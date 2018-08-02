@@ -26,9 +26,12 @@ public class RentcarController {
 	public String car(HttpServletRequest request,@RequestParam(value="sort",required=false) String sort) {		
 		SearchRequirements requirements = new SearchRequirements(rentcarservice.timeStampService(),sort);
 		List<Rcar> list = rentcarservice.rentcarListService(requirements);
+		System.out.println(requirements.getWeekendTime());
+		System.out.println(requirements.getWeekTime());
 		request.setAttribute("list", list);
 		request.setAttribute("requirements", requirements);
-		return "rentcar/rentcars/car";
+		//return "rentcar/rentcars/car";
+		return null;
 	}
 	
 	@RequestMapping(value="car.do",method=RequestMethod.POST)

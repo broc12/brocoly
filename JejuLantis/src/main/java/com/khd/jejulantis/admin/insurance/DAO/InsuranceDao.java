@@ -13,6 +13,8 @@ public interface InsuranceDao {
 	List<Insurance> insuranceUpdate(int insurance_no);
 	List<Insurance> carKindNotSelectBox(String manager_id, int insurance_no);
 	List<Insurance> kingBranchNotSelect(String manager_id);
+	List<Insurance> kingBranchNotSelect(int branch_no);
+	List<Insurance> kingBranchCarKindSelect(int branch_no);
 	void insuranceDUpdate(int insurance_no);
 	void insuranceUpdate(Insurance insurance);
 	void insuranceInsert(Insurance insurance);

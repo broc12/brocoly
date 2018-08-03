@@ -13,6 +13,8 @@ public interface InsuranceService {
 	List<Insurance> insuranceCarNoService(String manager_id, int car_kind_no);
 	List<Insurance> insuranceUpdateService(int insurance_no);
 	List<Insurance> kingbranchNotSelectService(String manager_id);
+	List<Insurance> kingbranchNotSelectService(int branch_no);
+	List<Insurance> kingBranchCarKindSelectService(int branch_no);
 	void deleteService(int insurance_no);
 	void insertService(Insurance insurance);
 	void updateService(Insurance insurance);

@@ -1,16 +1,22 @@
 package com.khd.jejulantis.admin.insurance.Controller;
 
+import java.io.IOException;
 import java.util.List;
 
+import javax.servlet.http.HttpServletResponse;
+
+import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.khd.jejulantis.admin.insurance.Service.InsuranceService;
 import com.khd.jejulantis.model.Insurance;
+
 
 @Controller
 public class InsuranceController {
@@ -90,5 +96,22 @@ public class InsuranceController {
 		iservice.deleteService(insurance_no);
 		return "redirect:insuranceList.do?manager_id="+manager_id;
 	}
-
+	@RequestMapping(value= "admin/ajax1.do")
+	public @ResponseBody List<Insurance> ajax1(@RequestParam("branch_no") int branch_no)  {
+		System.out.println("1");
+		System.out.println("branch_no : " + branch_no);
+		List<Insurance> list = iservice.kingBranchCarKindSelectService(branch_no);
+		System.out.println("2");
+		
+	    return list;
+	}
+	@RequestMapping(value= "admin/ajax.do")
+	public @ResponseBody List<Insurance> ajax(@RequestParam("branch_no") int branch_no)  {
+		System.out.println("1");
+		System.out.println("branch_no : " + branch_no);
+		List<Insurance> list = iservice.kingbranchNotSelectService(branch_no);
+		System.out.println("2");
+		
+	    return list;
+	}
 }

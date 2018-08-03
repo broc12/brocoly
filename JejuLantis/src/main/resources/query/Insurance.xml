@@ -49,7 +49,7 @@
 		(select CAR.CAR_NO 
 		from CAR_KIND, CAR 
 		where CAR_KIND.CAR_NO=CAR.CAR_NO 
-		and BRANCH_NO=(select BRANCH_NO from MANAGER where MANAGER_ID=#{manager_id})
+		and BRANCH_NO=#{branch_no}
 		and CAR_KIND_NO=#{car_kind_no}), #{insurance_price}, #{insurance_name}, #{insurance_limit}, #{insurance_burden_price},
 		#{insurance_limit_age}, #{insurance_limit_carrier}, 'N', SYSDATE)
 	</insert>
@@ -77,5 +77,16 @@
 		from BRANCH 
 		where BRANCH_WITHDRAW_AT='N' 
 		and BRANCH_NO!=(select BRANCH_NO from MANAGER where MANAGER_ID=#{manager_id})
+	</select>
+	<select id="kingBranchNot_Select" parameterType="int" resultType="Insurance">
+		select BRANCH_NO 
+		from BRANCH 
+		where BRANCH_WITHDRAW_AT='N' 
+		and BRANCH_NO!=#{branch_no}
+	</select>
+	<select id="kingBranchCarKindSelect" parameterType="String" resultType="Insurance">
+		select CAR_KIND_NO 
+		from CAR_KIND
+		where BRANCH_NO=#{branch_no}
 	</select>
 </mapper>

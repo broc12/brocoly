@@ -59,4 +59,13 @@ public class InsuranceServiceImpl implements InsuranceService {
 	public List<Insurance> kingbranchNotSelectService(String manager_id) {
 		return InsuranceDao.kingBranchNotSelect(manager_id);
 	}
+	@Override
+	public List<Insurance> kingbranchNotSelectService(int branch_no) {
+		return InsuranceDao.kingBranchNotSelect(branch_no);
+	}
+	@Override
+	public List<Insurance> kingBranchCarKindSelectService(int branch_no) {
+		return InsuranceDao.kingBranchCarKindSelect(branch_no);
+	}
+	
 }

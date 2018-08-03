@@ -75,5 +75,14 @@ public class InsuranceDaoImpl implements InsuranceDao {
 		List<Insurance> kingBranchNotSelect = sqlSession.selectList(ns_insurance+".kingBranchNotSelect", manager_id);
 		return kingBranchNotSelect;
 	}
-	
+	@Override
+	public List<Insurance> kingBranchNotSelect(int branch_no) {
+		List<Insurance> kingBranchNotSelect = sqlSession.selectList(ns_insurance+".kingBranchNot_Select", branch_no);
+		return kingBranchNotSelect;
+	}
+	@Override
+	public List<Insurance> kingBranchCarKindSelect(int branch_no) {
+		List<Insurance> kingBranchCarKindSelect = sqlSession.selectList(ns_insurance+".kingBranchCarKindSelect", branch_no);
+		return kingBranchCarKindSelect;
+	}
 }

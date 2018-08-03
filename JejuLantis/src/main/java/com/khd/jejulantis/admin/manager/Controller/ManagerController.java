@@ -197,5 +197,57 @@ public class ManagerController {
 				return "admin/adminUsers/login";
 			
 			}
+		 @RequestMapping(value = "admin/managerfind_id.do", method = RequestMethod.POST)
+			public String find_id(HttpServletResponse response, @RequestParam("manager_email") String manager_email, Model md) throws Exception{
+				 System.out.println("지나감123456");
+				 response.setCharacterEncoding("UTF-8");
+					response.setContentType("text/html; charset=UTF-8");
+					PrintWriter out = response.getWriter();
+				 String manager_id = managerService.find_id(manager_email);
+				 if (manager_id == null) {
+					 	out.println("<script language='javascript'>");
+						out.println("alert('일치하지 않습니다');");
+						out.println("history.go(-1);");
+						out.println("</script>");
+						out.close();
+						return null;
+					} else {
+						md.addAttribute("manager_id", managerService.find_id(manager_email));
+					}
+				 return "/admin/adminUsers/managerfind_id";
+				
+			}
+					@RequestMapping(value = "admin/managerfind_pwd.do", method = RequestMethod.POST)
+					public String find_pwd(HttpServletRequest request,HttpServletResponse response, @RequestParam("manager_id") String manager_id, Model md) throws Exception{												
+						System.out.println("");
+						 System.out.println("id11111:"+ manager_id);
+						 response.setCharacterEncoding("UTF-8");
+							response.setContentType("text/html; charset=UTF-8");
+							PrintWriter out = response.getWriter();
+						 String manager_pwd = managerService.find_pwd(manager_id);
+						 System.out.println("pwd222221:"+ manager_pwd);
+						 if (manager_pwd == null) {
+								out.println("<script language='javascript'>");
+								out.println("alert('일치하지 않습니다');");
+								out.println("history.go(-1);");
+								out.println("</script>");
+								out.close();
+								return null;
+							} else {
+								md.addAttribute("manager_pwd", managerService.find_pwd(manager_id));
+							}
+						 return "/admin/adminUsers/managerfind_pwd";
+						
+					}
+					@RequestMapping(value = "admin/managerfind_id_form.do",method=RequestMethod.GET)
+					public String find_id_form() {
+						System.out.println("뭔대 ㅅㅂ");
+						return "admin/adminUsers/managerfind_id_form";
+					}
+					@RequestMapping(value = "admin/managerfind_pwd_form.do",method=RequestMethod.GET)
+					public String find_pwd_form() {
+						return "admin/adminUsers/managerfind_pwd_form";
+					}
+
 
 }

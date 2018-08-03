@@ -8,6 +8,7 @@ public class Blist implements Serializable{
 	String branch_name;
 	long car_kind_price_week;
 	long insurance_price;
+	String insurance_limit;
 	long tot;
 	long branch_no;
 	long car_no;
@@ -22,14 +23,14 @@ public class Blist implements Serializable{
 	String car_kind_nonsmoke;
 	
 	public Blist() {}
-	public Blist(String branch_name, long car_kind_price_week, long insurance_price, long tot, long branch_no,
-			long car_no, long insurance_no, long car_kind_no, String car_kind_navi, String car_kind_sensor,
-			String car_kind_bluetooth, String car_kind_blackbox, String car_kind_sunroof, String car_kind_camera,
-			String car_kind_nonsmoke) {
-		super();
+	public Blist(String branch_name, long car_kind_price_week, long insurance_price, String insurance_limit, long tot,
+			long branch_no, long car_no, long insurance_no, long car_kind_no, String car_kind_navi,
+			String car_kind_sensor, String car_kind_bluetooth, String car_kind_blackbox, String car_kind_sunroof,
+			String car_kind_camera, String car_kind_nonsmoke) {
 		this.branch_name = branch_name;
 		this.car_kind_price_week = car_kind_price_week;
 		this.insurance_price = insurance_price;
+		this.insurance_limit = insurance_limit;
 		this.tot = tot;
 		this.branch_no = branch_no;
 		this.car_no = car_no;
@@ -51,6 +52,9 @@ public class Blist implements Serializable{
 	}
 	public long getInsurance_price() {
 		return insurance_price;
+	}
+	public String getInsurance_limit() {
+		return insurance_limit;
 	}
 	public long getTot() {
 		return tot;
@@ -158,6 +162,9 @@ public class Blist implements Serializable{
 	}
 	public void setInsurance_price(long insurance_price) {
 		this.insurance_price = insurance_price;
+	}
+	public void setInsurance_limit(String insurance_limit) {
+		this.insurance_limit = insurance_limit;
 	}
 	public void setTot(long tot) {
 		this.tot = tot;

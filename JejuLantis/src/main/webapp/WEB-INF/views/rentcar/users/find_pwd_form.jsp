@@ -12,14 +12,14 @@
 <body>
 	<div class="w3-content w3-container w3-margin-top">
 		<div class="w3-container w3-card-4">
-			<form action="<%=request.getContextPath()%>/find_pwd.do" method="post">
+			<form action="./find_pwd.do" method="post">
 				<div class="w3-center w3-large w3-margin-top">
 					<h3>비밀번호 찾기</h3>
 				</div>
 				<div>
 					<p>
 						<label>ID</label>
-						<input class="w3-input" type="text" id="id" name="id" required>
+						<input class="w3-input" type="text" id="member_id" name="member_id" required>
 					</p>
 					<p class="w3-center">
 						<button type="submit" id=findBtn class="w3-button w3-block w3-black w3-ripple w3-margin-top w3-round">find</button>

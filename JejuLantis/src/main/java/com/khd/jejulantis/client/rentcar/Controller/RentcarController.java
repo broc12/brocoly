@@ -28,10 +28,10 @@ public class RentcarController {
 		List<Rcar> list = rentcarservice.rentcarListService(requirements);
 		System.out.println(requirements.getWeekendTime());
 		System.out.println(requirements.getWeekTime());
+		System.out.println(requirements.getPeriod());
 		request.setAttribute("list", list);
 		request.setAttribute("requirements", requirements);
-		//return "rentcar/rentcars/car";
-		return null;
+		return "rentcar/rentcars/car";
 	}
 	
 	@RequestMapping(value="car.do",method=RequestMethod.POST)

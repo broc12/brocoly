@@ -102,12 +102,14 @@ public class MemberController {
 		}
 		@RequestMapping(value = "/find_id.do", method = RequestMethod.POST)
 		public String find_id(HttpServletResponse response, @RequestParam("member_email") String member_email, Model md) throws Exception{
-
-			 PrintWriter out = response.getWriter();
+			 System.out.println("지나감123456");
+			 response.setCharacterEncoding("UTF-8");
+				response.setContentType("text/html; charset=UTF-8");
+				PrintWriter out = response.getWriter();
 			 String member_id = memberService.find_id(member_email);
 			 if (member_id == null) {
-					out.println("<script>");
-					out.println("alert('');");
+				 out.println("<script language='javascript'>");
+					out.println("alert('일치하지 않습니다');");
 					out.println("history.go(-1);");
 					out.println("</script>");
 					out.close();
@@ -115,21 +117,21 @@ public class MemberController {
 				} else {
 					md.addAttribute("member_id", memberService.find_id(member_email));
 				}
-			 return "/rentcar/find_id";
+			 return "/rentcar/users/find_id";
 			
 		}
 				@RequestMapping(value = "/find_pwd.do", method = RequestMethod.POST)
 				public String find_pwd(HttpServletRequest request,HttpServletResponse response, @RequestParam("member_id") String member_id, Model md) throws Exception{
-					
-					request.setCharacterEncoding("utf-8");
+					response.setCharacterEncoding("UTF-8");
+					response.setContentType("text/html; charset=UTF-8");
+					PrintWriter out = response.getWriter();
 					System.out.println("");
-					 System.out.println("id11111:"+ member_id);
-					 PrintWriter out = response.getWriter();
+					 System.out.println("id11111:"+ member_id);				
 					 String member_pwd = memberService.find_pwd(member_id);
 					 System.out.println("pwd222221:"+ member_pwd);
 					 if (member_pwd == null) {
-							out.println("<script>");
-							out.println("alert('');");
+						 	out.println("<script language='javascript'>");
+							out.println("alert('일치하지 않습니다');");
 							out.println("history.go(-1);");
 							out.println("</script>");
 							out.close();
@@ -137,7 +139,7 @@ public class MemberController {
 						} else {
 							md.addAttribute("member_pwd", memberService.find_pwd(member_id));
 						}
-					 return "/rentcar/find_pwd";
+					 return "/rentcar/users/find_pwd";
 					
 				}
 

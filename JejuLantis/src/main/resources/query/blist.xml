@@ -6,6 +6,7 @@
 	<result column="BRANCH_NAME" property="branch_name"/>
 	<result column="CAR_KIND_PRICE_WEEK" property="car_kind_price_week"/>
 	<result column="INSURANCE_PRICE" property="insurance_price"/>
+	<result column="INSURANCE_LIMIT" property="insurance_limit"/>
 	<result column="TOT" property="tot"/>
 	<result column="BRANCH_NO" property="branch_no"/>
 	<result column="CAR_NO" property="car_no"/>

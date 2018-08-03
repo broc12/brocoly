@@ -268,7 +268,7 @@
 														<td align="center" style="border-right: hidden">4.5</td>
 														<td align="center" style="border-right: hidden">${bdto.car_kind_price_weekView }원</td>
 														<td align="center" style="border-right: hidden">${bdto.insurance_priceView }원</td>
-														<td align="center" style="border-right: hidden">1,000만원</td>
+														<td align="center" style="border-right: hidden">${bdto.insurance_limit }원</td>
 														<td align="center" style="border-right: hidden">${bdto.totView }원</td>
 														<td align="center">													
 											              <button type="button" style="background-color:#f8fafb;border:0"><a href="rentcar.do?car_kind=${bdto.car_kind_no }" style="color:black;text-decoration:none">실시간예약</a></button>								                

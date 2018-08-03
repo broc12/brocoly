@@ -2,7 +2,6 @@
 <%@ page session="true" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@page import="com.khd.jejulantis.model.Branch"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -34,37 +33,38 @@
         <li class="breadcrumb-item">
           <a href="#">JEJULANTIS</a>
         </li>
-        <li class="breadcrumb-item active">업체관리</li>
+        <li class="breadcrumb-item active">관리자관리</li>
       </ol>
       <!-- Example DataTables Card-->
       <div class="card mb-3">
         <div class="card-header">
-          <i class="fa fa-table"></i>업체목록</div>
+          <i class="fa fa-table"></i>관리자목록</div>
         <div class="card-body">
-        <button type="button" class="btn btn-primary btn-xs" align="right"><a href="carInfoAdd.do?manager_id=${manager_id}" style="color:white">차량등록</a></button></br></br>
           <div class="table-responsive">
+          <button type="button" class="btn btn-primary btn-xs" align="right"><a href="register.do" style="color:white">관리자등록</a></button></br></br>
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
               <thead>
                 <tr>
-                  <th>업체이름</th>
-                  <th>차량이름</th>
-                  <th>대여가능여부</th>
-                  <th>차량상태</th>
-                  <th>차량번호</th>
+                  <th>번호</th>
+                  <th>지점명</th>
+                  <th>관리자ID</th>
+                  <th>관리자명</th>
+                  <th>생년월일</th>
+                  <th>이메일</th>
+                  <th>전화번호</th>
+                  <th>등록날짜</th>
                 </tr>
-                <%-- <c:if test="${empty list}">
-					<tr>
-			           <td align="center" colspan="5">데이터가 없음</td>
-			        </tr>
-				</c:if> --%>
               </thead>
               <tbody>
                 <tr>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
+                  <td>Tiger Nixon</td>
+                  <td>System Architect</td>
+                  <td>Edinburgh</td>
+                  <td>61</td>
+                  <td>2011/04/25</td>
+                  <td>$320,800</td>
+                  <td>$320,800</td>
+                  <td>$320,800</td>
                 </tr>
               </tbody>
             </table>

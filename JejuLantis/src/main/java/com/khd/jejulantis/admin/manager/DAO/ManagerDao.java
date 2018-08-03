@@ -21,5 +21,9 @@ public interface ManagerDao {
 	Manager modify(Manager manager);
 
 	int managerdelete(String manager_id);
+
+	String managerfind_id(String manager_email);
+
+	String managerfind_pwd(String manager_id);
 	
 }

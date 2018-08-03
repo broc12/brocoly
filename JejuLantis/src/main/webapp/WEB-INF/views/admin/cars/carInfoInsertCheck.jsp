@@ -8,5 +8,5 @@
     }else{
 		alert("입력 실패");
 	}
-    location.href='carInfo.do';
+    location.href='carInfo.do?manager_id=${managerlog.manager_id}';
 </script>

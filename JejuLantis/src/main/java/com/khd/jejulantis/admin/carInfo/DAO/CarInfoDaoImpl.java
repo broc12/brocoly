@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import com.khd.jejulantis.model.CarInfo;
 import com.khd.jejulantis.model.CarInfoInsert;
+import com.khd.jejulantis.model.CarInfoSelect;
 
 @Repository
 public class CarInfoDaoImpl implements CarInfoDao {
@@ -23,7 +24,7 @@ public class CarInfoDaoImpl implements CarInfoDao {
 		List<CustomerCenter> list = sqlSession.selectList(ns+".mySelectAll",map);
 		return list;
 	}*/
-	@Override
+	/*@Override
 	public boolean carInsert(List<CarInfo> car) {
 		Map< String, List<CarInfo> > carMap = new HashMap<String, List<CarInfo>>();
 		carMap.put("car", car);
@@ -34,16 +35,32 @@ public class CarInfoDaoImpl implements CarInfoDao {
 		if(i>0) flag = true;
 		else flag = false;
 		return flag;
+	}*/
+	public boolean carInfoInsert(List<CarInfo> carInfoList) {
+		Map< String, List<CarInfo> > carMap = new HashMap<String, List<CarInfo>>();
+		carMap.put("car", carInfoList);
+		System.out.println("size : "+carInfoList.size());
+		int i = sqlSession.insert(ns+".mycarInfoListInsert", carMap);
+		System.out.println("I size " +i );
+		boolean flag;
+		if(i>0) flag = true;
+		else flag = false;
+		return flag;
 	}
 	@Override
-	public List<CarInfoInsert> carInfoInsert(String manager_id) {
+	public List<CarInfoInsert> selectCarJoin(String manager_id) {
 		List<CarInfoInsert> carInfoInsert = sqlSession.selectList(ns+".myAddSelect",manager_id);
 		return carInfoInsert;
 	}
 	@Override
-	public List<CarInfoInsert> selectBranchNo(Integer car_kind_no) {
+	public List<CarInfoSelect> selectList(int manager_id) {
+		List<CarInfoSelect> carInfoList = sqlSession.selectList(ns+".mySelectAll",manager_id);
+		return carInfoList;
+	}
+	@Override
+	public CarInfoInsert selectBranchNo(Integer car_kind_no) {
 		System.out.println("car_kind_no = "+car_kind_no);
-		List<CarInfoInsert> carInfoInsert = sqlSession.selectList(ns+".mySelectBrancNo",car_kind_no);
+		CarInfoInsert carInfoInsert = sqlSession.selectOne(ns+".mySelectBrancNo",car_kind_no);
 		return carInfoInsert;
 	}
 	

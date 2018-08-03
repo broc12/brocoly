@@ -37,8 +37,10 @@ public class CarInfoController {
 	private CarkindDetailService carKindService;
 	
 	@RequestMapping(value="admin/carInfo.do",method=RequestMethod.GET)
-	public ModelAndView carInfo(@RequestParam("manager_id")String manager_id ) {
+	public ModelAndView carInfo(@RequestParam("manager_id")int manager_id ) {
 		System.out.println("manager id : "+manager_id);
+		List<CarInfoSelect> selectList = carInfoService.selectList(manager_id);
+		System.out.println("selectList size = "+selectList.size());
 		String view = "admin/cars/carInfo";
 		ModelAndView mv = new ModelAndView(view,"manager_id",manager_id);
 		return mv;
@@ -46,19 +48,14 @@ public class CarInfoController {
 	@RequestMapping(value="admin/carInfoAdd.do",method=RequestMethod.GET)
 	public ModelAndView carInfoAdd(@RequestParam("manager_id")String manager_id) {
 		List<CarInfoInsert>carList = new ArrayList<CarInfoInsert>();
-		carList = carInfoService.carInfoInsert(manager_id);
+		carList = carInfoService.selectCarJoin(manager_id);
 		String view = "admin/cars/carInfoAdd";
 		ModelAndView mv = new ModelAndView(view,"carList",carList);
 		return mv;
 	}
-	@RequestMapping(value="admin/carInfoUpload.do",method=RequestMethod.GET)
-	public String carInfoUpload() {
-		
-		return "admin/cars/excelUploadForm";
-		
-	}	
+
 	@RequestMapping(value="admin/carInfoInsert.do",method=RequestMethod.POST)
-	public String carInfoInsert(@RequestParam(value="carKind",required = true)List <Integer> car_kind_no,
+	public ModelAndView carInfoInsert(@RequestParam(value="carKind",required = true)List <Integer> car_kind_no,
 								@RequestParam(value="carNumber",required = true)List <String> carNumber
 								){
 		for(Integer cars : car_kind_no) {
@@ -66,16 +63,28 @@ public class CarInfoController {
 		}
 		for(String cars : carNumber) {
 			System.out.println("size"+cars);
-		}
-		List<CarInfoInsert> branchNo = carInfoService.selectBranchNo(car_kind_no.get(0));
-		System.out.println("branchNo =" + branchNo.get(0).getBranch_no());
-		System.out.println("car_no =" +branchNo.get(0).getCar_no());
-		/*boolean flag = carInfoService.carInsert(car);
-		String view = "admin/carInfoInsertCheck";
+		}	
+		List<CarInfoInsert> branchNo = new ArrayList<CarInfoInsert>();
+			for(int i=0; i<carNumber.size();i++)  branchNo.add(carInfoService.selectBranchNo(car_kind_no.get(i)));
+		List<CarInfo> carInfoList = new ArrayList<CarInfo>();
+			for(int i=0; i<carNumber.size();i++) {
+				carInfoList.add(new CarInfo(0, branchNo.get(i).getCar_no(), car_kind_no.get(i),
+						branchNo.get(i).getBranch_no(), "Y", "신차", "N", carNumber.get(i), null));
+			}
+		System.out.println("최종 사이즈" + carInfoList.size());
+		boolean flag = carInfoService.carInfoInsert(carInfoList);
+		System.out.println(flag);
+		String view = "admin/cars/carInfoInsertCheck";
 		ModelAndView mv = new ModelAndView(view,"flag",flag);
-		return mv;*/
-		return "admin/cars/carInfo";
+		return mv;
 	}
+	/*@RequestMapping(value="admin/carInfoUpload.do",method=RequestMethod.GET)
+	public String carInfoUpload() {
+		
+		return "admin/cars/excelUploadForm";
+		
+	}	*/
+	
 	/*@ResponseBody
     @RequestMapping(value = "admin/cars/excelUploadAjax.do", method = RequestMethod.POST)
     public ModelAndView excelUploadAjax(MultipartHttpServletRequest request)  throws Exception{

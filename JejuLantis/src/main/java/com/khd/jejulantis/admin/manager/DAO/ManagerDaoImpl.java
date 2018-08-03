@@ -74,4 +74,16 @@ public class ManagerDaoImpl implements ManagerDao{
 		return delete;
 	}
 
+	@Override
+	public String managerfind_id(String manager_email) {
+		String select = sql.selectOne(ns+".managerfind_id",manager_email);
+		return select;
+	}
+
+	@Override
+	public String managerfind_pwd(String manager_id) {
+		String select = sql.selectOne(ns+".managerfind_pwd",manager_id);
+		return select;
+	}
+
 }

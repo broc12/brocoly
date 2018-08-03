@@ -89,4 +89,12 @@
 <!--         DELETE FROM member WHERE id=#{id} -->
 UPDATE MANAGER SET manager_withdraw_at  ='Y' where manager_id=#{manager_id}
     </delete>
+    <select id="managerfind_id" parameterType="String" resultType="String">
+		select manager_id from manager where manager_email = #{manager_email}
+	</select>
+	
+	 <!-- 아이디 찾기 -->
+	<select id="managerfind_pwd" parameterType="String" resultType="String">
+		select manager_pwd from manager where manager_id = #{manager_id}
+	</select>
 </mapper>

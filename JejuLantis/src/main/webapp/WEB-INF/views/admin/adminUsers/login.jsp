@@ -40,6 +40,7 @@
 <!--           <a class="btn btn-primary btn-block" href="index.do">Login</a> -->
         </form>
         <div class="text-center">
+        <a href="./managerfind_id_form.do">아이디찾기</a> ｜ <a href="./managerfind_pwd_form.do">비밀번호찾기</a>
           <a class="d-block small mt-3" href="register.do">회원가입</a>
           </div>
       </div>

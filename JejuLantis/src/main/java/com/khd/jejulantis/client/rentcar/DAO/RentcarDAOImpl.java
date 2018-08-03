@@ -32,5 +32,16 @@ public class RentcarDAOImpl implements RentcarDAO {
 	public Date timeStamp() {
 		return sqlsession.selectOne(n2s+".nexttime");
 	}
+	@Override
+	public List<Rcar> confirmrentcar(SearchRequirements requirements) {
+		long i = sqlsession.selectOne(ns+".confirmremainder",requirements);
+		if(i>0) {
+			HashMap<String,Object> map = new HashMap<String,Object>();
+			/*Branch branch = sqlsession.selectOne(statement, parameter);
+			Car car = sqlsession.selectOne(statement, parameter);
+			CarKind cakind = sqlsession.selectOne(statement, parameter);*/
+		}
+		return null;
+	}
 
 }

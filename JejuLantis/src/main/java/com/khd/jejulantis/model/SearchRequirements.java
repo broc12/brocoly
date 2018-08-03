@@ -32,6 +32,7 @@ public class SearchRequirements {
 	String sort;
 //	boolean errorFlag;
 	String errorMsg;
+	long car_kind_no;
 	
 	public SearchRequirements() {}
 	public SearchRequirements(Date rent_reserve_start,String sort) {
@@ -62,7 +63,7 @@ public class SearchRequirements {
 			List<String> car_manufacturer, List<String> car_fuel, List<String> car_type, String car_kind_navi,
 			String car_kind_sensor, String car_kind_blackbox, String car_kind_bluetooth, String car_kind_sunroof,
 			String car_kind_camera, String car_kind_nonsmoke, String car_kind_resist, boolean searchFlag, String sort,
-			boolean errorFlag, String errorMsg) {
+			boolean errorFlag, String errorMsg,long car_kind_no) {
 		super();
 		this.rent_reserve_start = rent_reserve_start;
 		this.rent_reserve_end = rent_reserve_end;
@@ -82,6 +83,7 @@ public class SearchRequirements {
 		this.sort = sort;
 //		this.errorFlag = errorFlag;
 		this.errorMsg = errorMsg;
+		this.car_kind_no = car_kind_no;
 	}
 	public DateTime getRent_reserve_start() {
 		return rent_reserve_start;
@@ -179,6 +181,12 @@ public class SearchRequirements {
 	public void setSort(String sort) {
 		this.sort = sort;
 	}
+	public long getCar_kind_no() {
+		return car_kind_no;
+	}
+	public void setCar_kind_no(long car_kind_no) {
+		this.car_kind_no = car_kind_no;
+	}
 	public boolean isErrorFlag() {
 		if(errorMsg!=null) {
 			return true;
@@ -207,6 +215,12 @@ public class SearchRequirements {
 	}
 	public String getRent_reserve_endDate() {
 		return rent_reserve_end.toString("yyyy-MM-dd");
+	}
+	public String getRent_reserve_startDaterentcarview() {
+		return rent_reserve_start.toString("yyyy.MM.dd");
+	}
+	public String getRent_reserve_endDaterentcarview() {
+		return rent_reserve_end.toString("yyyy.MM.dd");
 	}
 	public String getRent_reserve_startTime() {
 		return rent_reserve_start.toString("HH:mm");
@@ -287,5 +301,28 @@ public class SearchRequirements {
 		float time = Hours.hoursBetween(this.rent_reserve_start, this.rent_reserve_end).getHours();
 		time = (float) (Math.round(time/24*10)/10.0);
 		return time;
+	}
+/*	public String getRentstartdate() {
+		return
+	}*/
+	public void setRentstartdate(String rentstartdate) {
+		DateTimeFormatter fmt = DateTimeFormat.forPattern("yyyy-MM-dd HH:mm");
+		rent_reserve_start = DateTime.parse(rentstartdate,fmt);
+	}
+/*	public void getRentenddate() {
+		
+	}*/
+	public void setRentenddate(String rentenddate) {
+		DateTimeFormatter fmt = DateTimeFormat.forPattern("yyyy-MM-dd HH:mm");
+		rent_reserve_end = DateTime.parse(rentenddate,fmt);
+	}
+/*	public void getRentcarname() {
+		
+	}*/
+	public void setRentcarname(String rentcarname) {
+		this.car_name = rentcarname;
+	}
+	public void setCarkindno(long car_kind_no) {
+		this.car_kind_no = car_kind_no;
 	}
 }

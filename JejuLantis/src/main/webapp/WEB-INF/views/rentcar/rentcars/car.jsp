@@ -78,6 +78,7 @@
 	
 	<script>
 	function settime(){
+		if(!${requirements.errorFlag}){
 		if(${requirements.searchFlag}){
  			var sel = document.getElementById("Checkintime");
 			var val;
@@ -100,6 +101,15 @@
 			if("${requirements.car_name}"!="")
 			sel.value="${requirements.car_name}";
 		}
+		}else{
+			alert("${requirements.errorMsg}");
+			location.href="car.do";
+		}
+	}
+	function reservcar(carkindno){
+		alert(carkindno);
+		document.getElementById("carkindno").value = carkindno;
+		document.getElementById("confirmreserv").submit();
 	}
 </script>
 <style type="text/css">
@@ -216,7 +226,7 @@
 						<div id="result">
 						<div id="inner">
 						 <c:if test="${empty list }">
-						<h4>사용 가능한 차량이 없습니다(위치 변경 요망)</h4>
+						<h4>사용 가능한 차량이 없습니다</h4>
 						</c:if>
 						<c:forEach items="${list }" var="dto" varStatus="status">
 							<div class="row">
@@ -271,7 +281,7 @@
 														<td align="center" style="border-right: hidden">${bdto.insurance_limit }원</td>
 														<td align="center" style="border-right: hidden">${bdto.totView }원</td>
 														<td align="center">													
-											              <button type="button" style="background-color:#f8fafb;border:0"><a href="rentcar.do?car_kind=${bdto.car_kind_no }" style="color:black;text-decoration:none">실시간예약</a></button>								                
+											              <button type="button" style="background-color:#f8fafb;border:0"><a href="#" onclick="reservcar(${bdto.car_kind_no });return false;" style="color:black;text-decoration:none">실시간예약</a></button>								                
 														</td>
 													</tr>
 													</c:forEach>
@@ -293,11 +303,16 @@
 								</div>
 							</div>
 						</div>
-						</div>
-	
+						</div>	
 						</c:forEach>
 						</div>
 						</div>
+						<form id="confirmreserv" action="rentcar.do" method="post">
+							<input type="hidden" id="searchstartdate" name="rentstartdate" value="${requirements.rent_reserve_startDateTime }">
+							<input type="hidden" id="searchenddate" name="rentenddate" value="${requirements.rent_reserve_endDateTime }">
+							<input type="hidden" id="searchcarname" name="rentcarname" value="${requirements.car_name }" />
+							<input type="hidden" id="carkindno" name="carkindno" />
+						</form>						
 						<!-- end -->
 						<div class="row">
 							<div class="wrap-division">
@@ -409,31 +424,18 @@
 				                      <i class="icon icon-arrow-down3"></i>
 				                      <select name="Checkintime" id="Checkintime" class="form-control">
 				                        <option value="08:00" style="color:black">08:00</option>
-				                        <option value="08:30" style="color:black">08:30</option>
 				                        <option value="09:00" style="color:black">09:00</option>
-				                        <option value="09:30" style="color:black">09:30</option>
 				                        <option value="10:00" style="color:black">10:00</option>
-				                        <option value="10:30" style="color:black">10:30</option>
 				                        <option value="11:00" style="color:black">11:00</option>
-				                        <option value="11:30" style="color:black">11:30</option>
 				                        <option value="12:00" style="color:black">12:00</option>
-				                        <option value="12:30" style="color:black">12:30</option>
 				                        <option value="13:00" style="color:black">13:00</option>
-				                        <option value="13:30" style="color:black">13:30</option>
 				                        <option value="14:00" style="color:black">14:00</option>
-				                        <option value="14:30" style="color:black">14:30</option>
 				                        <option value="15:00" style="color:black">15:00</option>
-				                        <option value="15:30" style="color:black">15:30</option>
 				                        <option value="16:00" style="color:black">16:00</option>
-				                        <option value="16:30" style="color:black">16:30</option>
 				                        <option value="17:00" style="color:black">17:00</option>
-				                        <option value="17:30" style="color:black">17:30</option>
 				                        <option value="18:00" style="color:black">18:00</option>
-				                        <option value="18:30" style="color:black">18:30</option>
 				                        <option value="19:00" style="color:black">19:00</option>
-				                        <option value="19:30" style="color:black">19:30</option>
 				                        <option value="20:00" style="color:black">20:00</option>
-				                        <option value="20:30" style="color:black">20:30</option>
 				                      </select>
 				                    </div>
 				                  </div>
@@ -454,31 +456,18 @@
 				                      <i class="icon icon-arrow-down3"></i>
 				                      <select name="Checkouttime" id="Checkouttime" class="form-control">
 				                        <option value="08:00" style="color:black">08:00</option>
-				                        <option value="08:30" style="color:black">08:30</option>
 				                        <option value="09:00" style="color:black">09:00</option>
-				                        <option value="09:30" style="color:black">09:30</option>
 				                        <option value="10:00" style="color:black">10:00</option>
-				                        <option value="10:30" style="color:black">10:30</option>
 				                        <option value="11:00" style="color:black">11:00</option>
-				                        <option value="11:30" style="color:black">11:30</option>
 				                        <option value="12:00" style="color:black">12:00</option>
-				                        <option value="12:30" style="color:black">12:30</option>
 				                        <option value="13:00" style="color:black">13:00</option>
-				                        <option value="13:30" style="color:black">13:30</option>
 				                        <option value="14:00" style="color:black">14:00</option>
-				                        <option value="14:30" style="color:black">14:30</option>
 				                        <option value="15:00" style="color:black">15:00</option>
-				                        <option value="15:30" style="color:black">15:30</option>
 				                        <option value="16:00" style="color:black">16:00</option>
-				                        <option value="16:30" style="color:black">16:30</option>
 				                        <option value="17:00" style="color:black">17:00</option>
-				                        <option value="17:30" style="color:black">17:30</option>
 				                        <option value="18:00" style="color:black">18:00</option>
-				                        <option value="18:30" style="color:black">18:30</option>
 				                        <option value="19:00" style="color:black">19:00</option>
-				                        <option value="19:30" style="color:black">19:30</option>
 				                        <option value="20:00" style="color:black">20:00</option>
-				                        <option value="20:30" style="color:black">20:30</option>
 				                      </select>
 				                    </div>
 				                  </div>
@@ -824,9 +813,6 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 	<div class="gototop js-top">
 		<a href="#" class="js-gotop"><i class="icon-arrow-up2"></i></a>
 	</div>
-	<input type="hidden" id="searchstartdate" value="${requirements.rent_reserve_startDateTime }">
-	<input type="hidden" id="searchenddate" value="${requirements.rent_reserve_endDateTime }">
-	<input type="hidden" id="searchcarname" value="${requirements.car_name }" />
 	</body>
 </html>
 

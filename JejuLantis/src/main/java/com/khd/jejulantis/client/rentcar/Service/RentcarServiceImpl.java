@@ -27,4 +27,8 @@ public class RentcarServiceImpl implements RentcarService {
 	public Date timeStampService() {
 		return rentcardao.timeStamp();
 	}
+	@Override
+	public List<Rcar> confirmrentcarService(SearchRequirements requirements) {
+		return rentcardao.rentcarList(requirements);
+	}
 }

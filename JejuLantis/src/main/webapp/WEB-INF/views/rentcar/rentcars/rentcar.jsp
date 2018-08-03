@@ -58,8 +58,89 @@
 	<script src="js/respond.min.js"></script>
 	<![endif]-->
 
+	<!-- jQuery -->
+	<script src="resources/rentcar/js/jquery.min.js"></script>
+	<!-- jQuery Easing -->
+	<script src="resources/rentcar/js/jquery.easing.1.3.js"></script>
+	<!-- Bootstrap -->
+	<script src="resources/rentcar/js/bootstrap.min.js"></script>
+	<!-- Waypoints -->
+	<script src="resources/rentcar/js/jquery.waypoints.min.js"></script>
+	<!-- Flexslider -->
+	<script src="resources/rentcar/js/jquery.flexslider-min.js"></script>
+	<!-- Owl carousel -->
+	<script src="resources/rentcar/js/owl.carousel.min.js"></script>
+	<!-- Magnific Popup -->
+	<script src="resources/rentcar/js/jquery.magnific-popup.min.js"></script>
+	<script src="resources/rentcar/js/magnific-popup-options.js"></script>
+	<!-- Date Picker -->
+	<script src="resources/rentcar/js/bootstrap-datepicker.js"></script>
+	<!-- Stellar Parallax -->
+	<script src="resources/rentcar/js/jquery.stellar.min.js"></script>
+
+	<!-- Main -->
+	<script src="resources/rentcar/js/main.js"></script>
+<script>
+	function settime(){
+		if(${requirements.searchFlag}){
+ 			var sel = document.getElementById("Checkintime");
+			var val;
+			for(i=0; i<sel.options.length; i++) {
+				if(sel.options[i].value == "${requirements.rent_reserve_startTime}") {
+					val = sel.options[i];
+					val.selected="true";
+					break;
+				}
+			}
+			sel = document.getElementById("Checkouttime");
+			for(i=0; i<sel.options.length; i++) {
+				if(sel.options[i].value == "${requirements.rent_reserve_endTime}") {
+					val = sel.options[i];
+					val.selected="true";
+					break;
+				}
+			}
+			sel = document.getElementById("carname");
+			if("${requirements.car_name}"!="")
+			sel.value="${requirements.car_name}";
+		}else{
+			location.href="car.do";
+		}
+	}
+	$(document).ready(
+			function(){
+	jQuery('#date1').datepicker({
+		  format: 'yyyy-mm-dd',
+		  autoclose: true,
+		  startDate:"today"
+		});
+	$('#date1').on('changeDate', function() {
+	    var temp = $('#date1').datepicker('getFormattedDate');
+	    var c = new Date(temp);
+	    c.setDate(c.getDate()+1);
+	    $('#date2').val( c.getFullYear()+"-"+("0"+(c.getMonth()+1)).slice(-2) +"-"+("0"+(c.getDate())).slice(-2) );
+	    $('#date2').datepicker('setStartDate',c.getFullYear()+"-"+ (c.getMonth()+1) +"-" + c.getDate());
+	    c.setDate(c.getDate()+6);
+	    $('#date2').datepicker('setEndDate',c);
+	});
+	jQuery('#date2').datepicker({
+		  format: 'yyyy-mm-dd',
+		  autoclose: true,
+		  startDate:"today"
+	});
+	$('#date2').on('changeDate', function() {
+		var a = new Date($('#date2').datepicker('getFormattedDate'));
+	    var b = new Date($('#date1').datepicker('getFormattedDate'));
+	    if(a<b){
+	    	$('#date1').val(
+	    	        $('#date2').datepicker('getFormattedDate')
+	    	    );
+	    }
+	});
+});
+	</script>
 	</head>
-	<body>
+	<body onload="settime()">
 	<%@ include file="../top/top.jspf" %>
 	<div class="colorlib-loader"></div>
 
@@ -110,12 +191,12 @@
 										</td>
 										<td style="background-color:white">
 											&nbsp;&nbsp;&nbsp;
-											<span style="font-size:16pt">2018.07.25</span>
-											<span>09:00</span>&nbsp;&nbsp;&nbsp;
+											<span style="font-size:16pt">${requirements.rent_reserve_startDaterentcarview}</span>
+											<span>${requirements.rent_reserve_startTime}</span>&nbsp;&nbsp;&nbsp;
 											<span class="glyphicon glyphicon-arrow-right" style="color:black"></span>
 											&nbsp;&nbsp;&nbsp;
-											<span style="font-size:16pt">2018.07.26</span>
-											<span>09:00</span>
+											<span style="font-size:16pt">${requirements.rent_reserve_endDaterentcarview}</span>
+											<span>${requirements.rent_reserve_endTime}</span>
 										</td>
 									</tr>
 									</table></br>
@@ -208,14 +289,14 @@
 						<div class="sidebar-wrap">
 							<div class="side search-wrap animate-box">
 								<h3 class="sidebar-heading">차량검색</h3>
-								<form method="post" class="colorlib-form">
+								<form action="car.do" method="post" class="colorlib-form" id="searchform" >
 				              	<div class="row">
 				                <div class="col-md-12">
 				                  <div class="form-group">
 				                    <label for="date">대여일</label>
 				                    <div class="form-field">
 				                      <i class="icon icon-calendar2"></i>
-				                      <input type="text" id="date" class="form-control date" placeholder="Check-in date">
+				                      <input type="text" id="date1" name="Checkindate" class="form-control date" placeholder="Check-in date" value="${requirements.rent_reserve_startDate }"/>
 				                    </div>        
 				                  </div>
 				                </div>
@@ -224,33 +305,20 @@
 				                    <label for="guests">대여시간</label>
 				                    <div class="form-field">
 				                      <i class="icon icon-arrow-down3"></i>
-				                      <select name="people" id="people" class="form-control">
-				                        <option value="#" style="color:black">08:00</option>
-				                        <option value="#" style="color:black">08:30</option>
-				                        <option value="#" style="color:black">09:00</option>
-				                        <option value="#" style="color:black">09:30</option>
-				                        <option value="#" style="color:black">10:00</option>
-				                        <option value="#" style="color:black">10:30</option>
-				                        <option value="#" style="color:black">11:00</option>
-				                        <option value="#" style="color:black">11:30</option>
-				                        <option value="#" style="color:black">12:00</option>
-				                        <option value="#" style="color:black">12:30</option>
-				                        <option value="#" style="color:black">13:00</option>
-				                        <option value="#" style="color:black">13:30</option>
-				                        <option value="#" style="color:black">14:00</option>
-				                        <option value="#" style="color:black">14:30</option>
-				                        <option value="#" style="color:black">15:00</option>
-				                        <option value="#" style="color:black">15:30</option>
-				                        <option value="#" style="color:black">16:00</option>
-				                        <option value="#" style="color:black">16:30</option>
-				                        <option value="#" style="color:black">17:00</option>
-				                        <option value="#" style="color:black">17:30</option>
-				                        <option value="#" style="color:black">18:00</option>
-				                        <option value="#" style="color:black">18:30</option>
-				                        <option value="#" style="color:black">19:00</option>
-				                        <option value="#" style="color:black">19:30</option>
-				                        <option value="#" style="color:black">20:00</option>
-				                        <option value="#" style="color:black">20:30</option>
+				                      <select name="Checkintime" id="Checkintime" class="form-control">
+				                        <option value="08:00" style="color:black">08:00</option>
+				                        <option value="09:00" style="color:black">09:00</option>
+				                        <option value="10:00" style="color:black">10:00</option>
+				                        <option value="11:00" style="color:black">11:00</option>
+				                        <option value="12:00" style="color:black">12:00</option>
+				                        <option value="13:00" style="color:black">13:00</option>
+				                        <option value="14:00" style="color:black">14:00</option>
+				                        <option value="15:00" style="color:black">15:00</option>
+				                        <option value="16:00" style="color:black">16:00</option>
+				                        <option value="17:00" style="color:black">17:00</option>
+				                        <option value="18:00" style="color:black">18:00</option>
+				                        <option value="19:00" style="color:black">19:00</option>
+				                        <option value="20:00" style="color:black">20:00</option>
 				                      </select>
 				                    </div>
 				                  </div>
@@ -260,7 +328,7 @@
 				                    <label for="date">반납일</label>
 				                    <div class="form-field">
 				                      <i class="icon icon-calendar2"></i>
-				                      <input type="text" id="date" class="form-control date" placeholder="Check-out date">
+				                      <input type="text" id="date2" name="Checkoutdate" class="form-control date" placeholder="Check-out date" value="${requirements.rent_reserve_endDate }"/>
 				                    </div>
 				                  </div>
 				                </div>
@@ -269,33 +337,20 @@
 				                    <label for="guests">반납시간</label>
 				                    <div class="form-field">
 				                      <i class="icon icon-arrow-down3"></i>
-				                      <select name="people" id="people" class="form-control">
-				                        <option value="#" style="color:black">08:00</option>
-				                        <option value="#" style="color:black">08:30</option>
-				                        <option value="#" style="color:black">09:00</option>
-				                        <option value="#" style="color:black">09:30</option>
-				                        <option value="#" style="color:black">10:00</option>
-				                        <option value="#" style="color:black">10:30</option>
-				                        <option value="#" style="color:black">11:00</option>
-				                        <option value="#" style="color:black">11:30</option>
-				                        <option value="#" style="color:black">12:00</option>
-				                        <option value="#" style="color:black">12:30</option>
-				                        <option value="#" style="color:black">13:00</option>
-				                        <option value="#" style="color:black">13:30</option>
-				                        <option value="#" style="color:black">14:00</option>
-				                        <option value="#" style="color:black">14:30</option>
-				                        <option value="#" style="color:black">15:00</option>
-				                        <option value="#" style="color:black">15:30</option>
-				                        <option value="#" style="color:black">16:00</option>
-				                        <option value="#" style="color:black">16:30</option>
-				                        <option value="#" style="color:black">17:00</option>
-				                        <option value="#" style="color:black">17:30</option>
-				                        <option value="#" style="color:black">18:00</option>
-				                        <option value="#" style="color:black">18:30</option>
-				                        <option value="#" style="color:black">19:00</option>
-				                        <option value="#" style="color:black">19:30</option>
-				                        <option value="#" style="color:black">20:00</option>
-				                        <option value="#" style="color:black">20:30</option>
+				                      <select name="Checkouttime" id="Checkouttime" class="form-control">
+				                        <option value="08:00" style="color:black">08:00</option>
+				                        <option value="09:00" style="color:black">09:00</option>
+				                        <option value="10:00" style="color:black">10:00</option>
+				                        <option value="11:00" style="color:black">11:00</option>
+				                        <option value="12:00" style="color:black">12:00</option>
+				                        <option value="13:00" style="color:black">13:00</option>
+				                        <option value="14:00" style="color:black">14:00</option>
+				                        <option value="15:00" style="color:black">15:00</option>
+				                        <option value="16:00" style="color:black">16:00</option>
+				                        <option value="17:00" style="color:black">17:00</option>
+				                        <option value="18:00" style="color:black">18:00</option>
+				                        <option value="19:00" style="color:black">19:00</option>
+				                        <option value="20:00" style="color:black">20:00</option>
 				                      </select>
 				                    </div>
 				                  </div>
@@ -304,12 +359,12 @@
 				                  <div class="form-group">
 				                    <label for="guests">자동차 모델</label>
 				                    <div class="form-field">
-				                      <input type="text" id="location" class="form-control" placeholder="모델명 입력">
+				                      <input type="text" name="car_name" id="car_name" class="form-control" placeholder="모델명 입력" value=""/>
 				                    </div>
 				                  </div>
 				                </div>
 				                <div class="col-md-12">
-				                  <input type="submit" name="submit" id="submit" value="차량검색" class="btn btn-primary btn-block" style="background-color:#ffdd00">
+				                  <input type="button" id="searchbutton" value="차량검색" class="btn btn-primary btn-block" style="background-color:#ffdd00">
 				                </div>
 				              </div>
 				            </form>
@@ -515,29 +570,6 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 	<div class="gototop js-top">
 		<a href="#" class="js-gotop"><i class="icon-arrow-up2"></i></a>
 	</div>
-
-	<!-- jQuery -->
-	<script src="resources/rentcar/js/jquery.min.js"></script>
-	<!-- jQuery Easing -->
-	<script src="resources/rentcar/js/jquery.easing.1.3.js"></script>
-	<!-- Bootstrap -->
-	<script src="resources/rentcar/js/bootstrap.min.js"></script>
-	<!-- Waypoints -->
-	<script src="resources/rentcar/js/jquery.waypoints.min.js"></script>
-	<!-- Flexslider -->
-	<script src="resources/rentcar/js/jquery.flexslider-min.js"></script>
-	<!-- Owl carousel -->
-	<script src="resources/rentcar/js/owl.carousel.min.js"></script>
-	<!-- Magnific Popup -->
-	<script src="resources/rentcar/js/jquery.magnific-popup.min.js"></script>
-	<script src="resources/rentcar/js/magnific-popup-options.js"></script>
-	<!-- Date Picker -->
-	<script src="resources/rentcar/js/bootstrap-datepicker.js"></script>
-	<!-- Stellar Parallax -->
-	<script src="resources/rentcar/js/jquery.stellar.min.js"></script>
-
-	<!-- Main -->
-	<script src="resources/rentcar/js/main.js"></script>
 
 	</body>
 </html>

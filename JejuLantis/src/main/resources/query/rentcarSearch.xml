@@ -12,6 +12,30 @@
 	<result column="ACTOT" property="actot"/>
 	<collection property="blist" javaType="java.util.ArrayList" resultMap="query.blist.BlistResult"/>
 </resultMap>
+<!-- <resultMap type="selectRentcar" id="selectRentcarhResult">
+	<result column="CAR_KIND_NO" property="car_kind_no"/>
+	<result column="BRANCH_NO" property="branch_no"/>
+	<result column="CAR_NO" property="car_no"/>
+	<result column="CAR_KIND_PRICE_WEEK" property="car_kind_price_week"/>
+	<result column="CAR_KIND_PRICE_WEEKEND" property="car_kind_price_weekend"/>	
+	<result column="CAR_KIND_NAVI" property="car_kind_navi"/>
+	<result column="CAR_KIND_SENSOR" property="car_kind_sensor"/>
+	<result column="CAR_KIND_BLACKBOX" property="car_kind_blackbox"/>
+	<result column="CAR_KIND_BLUETOOTH" property="car_kind_bluetooth"/>
+	<result column="CAR_KIND_SUNROOF" property="car_kind_sunroof"/>
+	<result column="CAR_KIND_CAMERA" property="car_kind_camera"/>
+	<result column="CAR_KIND_NONSMOKE" property="car_kind_nonsmoke"/>
+	<result column="CAR_KIND_RATING" property="car_kind_rating"/>
+	<result property="insurance_no" column="INSURANCE_NO"/>
+	<result property="insurance_price" column="INSURANCE_PRICE"/>
+	<result property="insurance_name" column="INSURANCE_NAME"/>
+	<result property="insurance_limit" column="INSURANCE_LIMIT"/>
+	<result property="insurance_burden_price" column="INSURANCE_BURDEN_PRICE"/>
+	<result property="insurance_limit_age" column="INSURANCE_LIMIT_AGE"/>
+	<result property="insurance_limit_carrier" column="INSURANCE_LIMIT_CARRIER"/>
+	<association property="branch" column="BRANCH_NO" javaType="Branch" select="query.branch.mySubject"/>
+	<association property="car" column="CAR_NO" javaType="Car" select="query.car.mySubject"/>
+</resultMap> -->
 <select id="rentcarsearch" parameterType="SearchRequirements" resultMap="rentcarSearchResult">
 SELECT
     CAR_NAME,
@@ -100,23 +124,23 @@ NATURAL JOIN
                     from
                         RENT_RESERV V,
                         (SELECT
-                            (TO_DATE('2018-07-30 00:00','yyyy-mm-dd hh24:mi') + LEVEL -1)DA
+                            (TO_DATE(#{rent_reserve_startDate},'yyyy-mm-dd') + LEVEL -1)DA
                         FROM
                             DUAL
                         CONNECT BY
                             LEVEL 
-							<![CDATA[>=]]> (TRUNC(TO_DATE('2018-08-05 18:30','yyyy-mm-dd hh24:mi') - TO_DATE('2018-07-30 08:30','yyyy-mm-dd hh24:mi')) +1))D
-                        where
-                            RENT_RESERV_END <![CDATA[>]]> DA
-                        AND
-                            RENT_RESERV_START <![CDATA[<]]> (DA+1)
-                        group by
-                            CAR_KIND_NO,
-                            D.DA
-                        order by
-                            D.DA
-                        )
-                    group by CAR_KIND_NO
+							<![CDATA[<=]]> (TO_DATE(#{rent_reserve_endDate},'yyyy-mm-dd') - TO_DATE(#{rent_reserve_startDate},'yyyy-mm-dd') +1))D
+					where
+						RENT_RESERV_END <![CDATA[>]]> DA
+                    AND
+						RENT_RESERV_START <![CDATA[<]]> (DA+1)
+                    group by
+                        CAR_KIND_NO,
+                        D.DA
+                    order by
+                        D.DA
+                    )
+                group by CAR_KIND_NO
                 )J1
             <where>
                 J1.CAR_KIND_NO (+)= K.CAR_KIND_NO
@@ -145,6 +169,10 @@ NATURAL JOIN
             )J2
         WHERE
             INSURANCE_NAME='자차'
+ 		<if test="car_kind_no != 0">
+		AND
+			CAR_KIND_NO = #{car_kind_no}
+		</if>
         ORDER BY
             MTOT
         )
@@ -173,4 +201,45 @@ NATURAL JOIN
 	</if>
 </where>
 </select>
+<select id ="confirmremainder" parameterType="SearchRequirements" resultType="long">
+select
+	K.CAR_KIND_TOTAL-(NVL(J1.MUC,0))AC
+from
+	CAR_KIND K,
+	(select
+		CAR_KIND_NO,
+		MAX(UC) MUC
+	from
+		(select
+			CAR_KIND_NO,
+			D.DA,
+			count(*)UC
+		from
+			RENT_RESERV,
+            (SELECT
+				(TO_DATE(#{rent_reserve_startDate},'yyyy-mm-dd') + LEVEL -1)DA
+			FROM
+				DUAL
+			CONNECT BY
+				LEVEL 
+				<![CDATA[<=]]> (TO_DATE(#{rent_reserve_endDate},'yyyy-mm-dd') - TO_DATE(#{rent_reserve_startDate},'yyyy-mm-dd') +1)
+			)D
+		where
+			RENT_RESERV_END <![CDATA[>]]> DA
+        AND
+			RENT_RESERV_START <![CDATA[<]]> (DA+1)
+		group by
+	    	CAR_KIND_NO,
+	    	D.DA
+		order by
+	    	D.DA
+		)
+	group by CAR_KIND_NO
+	)J1
+where
+	J1.CAR_KIND_NO (+)= K.CAR_KIND_NO
+AND
+	K.car_kind_no = #{car_kind_no}
+</select>
+
 </mapper>

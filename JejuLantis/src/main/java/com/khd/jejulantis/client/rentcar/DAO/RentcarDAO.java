@@ -9,6 +9,7 @@ import com.khd.jejulantis.model.SearchRequirements;
 public interface RentcarDAO {
 	
 	public List<Rcar> rentcarList(SearchRequirements requirements);
+	public List<Rcar> confirmrentcar(SearchRequirements requirements);
 	public Date currenttimeStamp();
 	public Date timeStamp();
 }

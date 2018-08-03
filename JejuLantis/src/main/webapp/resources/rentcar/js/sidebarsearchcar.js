@@ -2,7 +2,7 @@ $(document).ready(
 function(){
 	$("input[type='checkbox']").click(function(){
     	var checkListmanu = [];
-    	$("input[id='car_manufacture']").each(function(i){
+    	$("input[id='car_manufacturer']").each(function(i){
     		if($(this).is(":checked")){
     			checkListmanu.push($(this).val());
     		}
@@ -49,7 +49,7 @@ function(){
 							html += "<span style='color:black;font-size:18pt'>"+ data[i].car_name +"</span>";
 							html += "<span style='color:black'>"+ data[i].car_manufacturer +"</span>";
 							html += "<img width='100%' weight='200' src='resources/car/2017Avante.png'/><div class='desc'>";
-							html += "<p align='center' style='color:#0090f0'>실시간 예약 가능 차량 : "+ data[i].cn +"</p>";
+							html += "<p align='center' style='color:#0090f0'>실시간 예약 가능 차량 : "+ data[i].actot +"</p>";
 							html += "</div></br><div class='desc'><p align='center'>";
 							html += "<span class='glyphicon glyphicon-road'>"+ data[i].car_type +"</span>";
 							html += "<span class='glyphicon glyphicon-user'>"+ data[i].car_passenger +"인승</span>";
@@ -58,7 +58,7 @@ function(){
 							html += "<div class='hotel-entry' style='background-color:white'><div class='desc' style='padding:15px;height:410px'></br>";
 							html += "<span style='font-size:18pt;color:black'>"+ data[i].blist[0].branch_name +"</span><div align='right'>";
 							html += "<span style='color:red;text-decoration: line-through'>43,000원</span>";
-							html += "span style='font-size:18pt;color:black'>32,400원</span>";
+							html += "<span style='font-size:18pt;color:black'>32,400원</span>";
 							html += "</div><p class='star'><span><i class='icon-star-full'></i><i class='icon-star-full'></i>";
 							html += "<i class='icon-star-full'></i><i class='icon-star-full'></i><i class='icon-star-full'></i></span> 545 Reviews</p>";
 							html += "<span class='place'>"+ data[i].blist[0].car_kind_naviView + " " + data[i].blist[0].car_kind_sensorView +" "+ data[i].blist[0].car_kind_bluetoothView +" "+ data[i].blist[0].car_kind_blackboxView +" "+ data[i].blist[0].car_kind_sunroofView +" "+ data[i].blist[0].car_kind_cameraView +" "+ data[i].blist[0].car_kind_nonsmokeView +"</span>";
@@ -77,9 +77,9 @@ function(){
 								html += "<td align='center' style='border-right: hidden'>"+ 4.5 +"</td>";
 								html += "<td align='center' style='border-right: hidden'>"+ data[i].blist[j].car_kind_price_weekView +"원</td>";
 								html += "<td align='center' style='border-right: hidden'>"+ data[i].blist[j].insurance_priceView +"원</td>";
-								html += "<td align='center' style='border-right: hidden'>"+ "1,000만" +"원</td>";
+								html += "<td align='center' style='border-right: hidden'>"+ data[i].blist[j].insurance_limit +"원</td>";
 								html += "<td align='center' style='border-right: hidden'>"+ data[i].blist[j].totView +"원</td>";
-								html += "<td align='center'><button type='button' style='background-color:#f8fafb;border:0'><a href='rentcar.do' style='color:black;text-decoration:none'>실시간예약</a></button></td></tr>";
+								html += "<td align='center'><button type='button' style='background-color:#f8fafb;border:0'><a href='#' onclick='reservcar(" + data[i].blist[j].car_kind_no +");return false;' style='color:black;text-decoration:none'>실시간예약</a></button></td></tr>";
 							}
 							html += "</table></div></div></div></div></div></div></div>";
 						}

@@ -8,7 +8,7 @@
 	<result property="insurance_no" column="INSURANCE_NO"/> 
 	<result property="car_kind_no" column="CAR_KIND_NO"/>
 	<result property="branch_no" column="BRANCH_NO"/>
-	<result property="car_info_rent_at" column="CAR_INFO_RENT_AT"/>
+	<result property="car_info_rent_at" column="CAR_INFO_RENT_AT"/>  
 	<result property="car_info_state" column="CAR_INFO_STATE"/>
 	<result property="car_info_withdraw_at" column="CAR_INFO_WITHDRAW_AT"/>
 	<result property="car_info_back_no" column="CAR_INFO_BACK_NO"/>
@@ -25,6 +25,10 @@
 	<select id="mySelectBrancNo"  resultType="CarInfoInsert">
 	SELECT CAR_NO , BRANCH_NO  FROM CAR_KIND  WHERE CAR_KIND_NO = #{car_kind_no}
 	</select>
+	<select id="myCarInfoContent" resultType="CarInfo">
+		select * from car_info where car_info_no = #{car_info_no}
+	</select>
+
 
 	
     
@@ -58,7 +62,9 @@
         </foreach>
 	 </insert>
 	<insert id="mycarInfoListInsert" parameterType="lIST">
-        insert into CAR_INFO(
+		<foreach collection="car" item="item" index="index"  open="INSERT ALL " separator=" " close="SELECT * FROM DUAL" >
+			into CAR_INFO
+         (
             car_info_no,
             branch_no,
             car_no,
@@ -69,8 +75,7 @@
             car_info_back_no,
             car_info_resist
             )
-	 VALUES
-	 	<foreach collection="car" item="item" separator=",">
+	 VALUES 
            (
            CAR_INFO_SEQ.NEXTVAL,
            #{item.branch_no},
@@ -80,7 +85,7 @@
            '신차',
            'N',
            #{item.car_info_back_no},
-           sysdate
+           SYSDATE
            )
         </foreach>
 	
@@ -115,9 +120,16 @@
         )
         </foreach>
 </insert>
-<select id="mySelectAll" parameterType="Integer" resultType="CarInfoSelect">
-select B.branch_name, C.car_name, K.CAR_INFO_RENT_AT, K.CAR_INFO_STATE, K.CAR_INFO_BACK_NO, K.CAR_INFO_NO FROM 
-CAR C, CAR_INFO K, BRANCH B WHERE C.CAR_NO = K.CAR_NO AND B.BRANCH_NO = (select BRANCH_NO FROM MANAGER WHERE MANAGER_ID=#{manager_id});
+<select id="mySelectAll" parameterType="String" resultType="CarInfoSelect">
+select B.branch_name, C.car_name, C.CAR_FUEL, K.CAR_INFO_RENT_AT, K.CAR_INFO_STATE, K.CAR_INFO_BACK_NO, K.CAR_INFO_NO FROM 
+CAR C, CAR_INFO K, BRANCH B WHERE C.CAR_NO = K.CAR_NO AND B.BRANCH_NO = (select BRANCH_NO FROM MANAGER WHERE MANAGER_ID=#{manager_id})
 </select>
+<delete id="myDel">
+ delete from car_info where car_info_no=#{car_info_no}
+</delete>
+<update id="myUpdate">
+update CAR_INFO SET CAR_INFO_STATE=#{car_info_state}, CAR_INFO_RENT_AT=#{car_info_rent_at} WHERE CAR_INFO_NO=#{car_info_no}
+</update>
+
 
 </mapper>

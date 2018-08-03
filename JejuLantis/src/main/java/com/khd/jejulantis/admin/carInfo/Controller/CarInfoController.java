@@ -37,12 +37,11 @@ public class CarInfoController {
 	private CarkindDetailService carKindService;
 	
 	@RequestMapping(value="admin/carInfo.do",method=RequestMethod.GET)
-	public ModelAndView carInfo(@RequestParam("manager_id")int manager_id ) {
-		System.out.println("manager id : "+manager_id);
+	public ModelAndView carInfo(@RequestParam("manager_id")String manager_id ) {
 		List<CarInfoSelect> selectList = carInfoService.selectList(manager_id);
-		System.out.println("selectList size = "+selectList.size());
 		String view = "admin/cars/carInfo";
 		ModelAndView mv = new ModelAndView(view,"manager_id",manager_id);
+		mv.addObject("selectList",selectList);
 		return mv;
 	}
 	@RequestMapping(value="admin/carInfoAdd.do",method=RequestMethod.GET)
@@ -53,17 +52,46 @@ public class CarInfoController {
 		ModelAndView mv = new ModelAndView(view,"carList",carList);
 		return mv;
 	}
+	@RequestMapping(value="admin/carInfoDel.do",method=RequestMethod.GET)
+	public ModelAndView carInfoDel(@RequestParam("car_info_no")String car_info_no) {
+		boolean flag = carInfoService.del(car_info_no);
+		String view = "admin/cars/carInfoDelete";
+		ModelAndView mv = new ModelAndView(view,"flag",flag);
+		return mv;
+	}
+	@RequestMapping(value="admin/carInfoContent.do",method=RequestMethod.GET)
+	public ModelAndView carInfoContent(@RequestParam("car_info_no")String car_info_no,
+						@RequestParam("car_name")String car_name) {
+		System.out.println("info no "+ car_info_no);
+		CarInfo carInfo = carInfoService.carInfoContent(car_info_no);
+		String view = "admin/cars/carInfoContent";
+		ModelAndView mv = new ModelAndView(view,"carInfo",carInfo);
+		mv.addObject("car_name",car_name);
+		return mv;
+	}
+	@RequestMapping(value="admin/carInfoUpdate.do",method=RequestMethod.POST)
+	public ModelAndView carInfoUpdate(@RequestParam("car_info_state")String car_info_state, 
+			@RequestParam("car_info_rent_at")String car_info_rent_at, @RequestParam("car_info_no")int car_info_no) {
+		System.out.println("이게 되나?"+car_info_state);
+		System.out.println("이게 되나2?"+car_info_rent_at);
+		System.out.println("이게 되나3?"+car_info_no);
+		CarInfo carInfo = new CarInfo(car_info_no, 0, 0, 0, car_info_rent_at, car_info_state, "", "", null);
+		boolean flag = carInfoService.carInfoUpdate(carInfo);
+		String view = "admin/cars/carInfoUpdateCheck";
+		ModelAndView mv = new ModelAndView(view,"flag",flag);
+		return mv;
+	}
 
 	@RequestMapping(value="admin/carInfoInsert.do",method=RequestMethod.POST)
 	public ModelAndView carInfoInsert(@RequestParam(value="carKind",required = true)List <Integer> car_kind_no,
 								@RequestParam(value="carNumber",required = true)List <String> carNumber
 								){
-		for(Integer cars : car_kind_no) {
-			System.out.println("name"+cars);
+		if(car_kind_no!=null) {
+			System.out.println("name"+car_kind_no.toString());
 		}
-		for(String cars : carNumber) {
-			System.out.println("size"+cars);
-		}	
+		if(carNumber!=null) {
+			System.out.println("name"+carNumber.toString());
+		}
 		List<CarInfoInsert> branchNo = new ArrayList<CarInfoInsert>();
 			for(int i=0; i<carNumber.size();i++)  branchNo.add(carInfoService.selectBranchNo(car_kind_no.get(i)));
 		List<CarInfo> carInfoList = new ArrayList<CarInfo>();
@@ -71,6 +99,8 @@ public class CarInfoController {
 				carInfoList.add(new CarInfo(0, branchNo.get(i).getCar_no(), car_kind_no.get(i),
 						branchNo.get(i).getBranch_no(), "Y", "신차", "N", carNumber.get(i), null));
 			}
+			System.out.println("car no "+branchNo.get(0).getCar_no());
+			System.out.println("차 상태" + carInfoList.get(0).getCar_info_state());
 		System.out.println("최종 사이즈" + carInfoList.size());
 		boolean flag = carInfoService.carInfoInsert(carInfoList);
 		System.out.println(flag);

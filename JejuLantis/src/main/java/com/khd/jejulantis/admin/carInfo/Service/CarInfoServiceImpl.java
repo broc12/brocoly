@@ -23,11 +23,20 @@ public class CarInfoServiceImpl implements CarInfoService {
 	public boolean carInfoInsert(List<CarInfo> carInfoList) {
 		return CarInfoDao.carInfoInsert(carInfoList);
 	}
+	public boolean del(String car_info_no) {
+		return CarInfoDao.del(car_info_no);
+	}
+	public boolean carInfoUpdate(CarInfo carInfo) {
+		return CarInfoDao.carInfoUpdate(carInfo);
+	}
 	public List<CarInfoInsert> selectCarJoin(String manager_id){
 		return CarInfoDao.selectCarJoin(manager_id);
 	}
-	public List<CarInfoSelect> selectList(int manager_id){
+	public List<CarInfoSelect> selectList(String manager_id){
 		return CarInfoDao.selectList(manager_id);
+	}
+	public CarInfo carInfoContent(String car_info_no) {
+		return CarInfoDao.carInfoContent(car_info_no);
 	}
 	public CarInfoInsert selectBranchNo(Integer car_kind_no){
 		return CarInfoDao.selectBranchNo(car_kind_no);

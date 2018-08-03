@@ -46,26 +46,27 @@
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
               <thead>
                 <tr>
-                  <th>업체이름</th>
-                  <th>차량이름</th>
-                  <th>대여가능여부</th>
-                  <th>차량상태</th>
-                  <th>차량번호</th>
+                  <th width="15%">업체이름</th>
+                  <th width="25%">차량이름</th>
+                  <th width="15%">대여가능여부</th>
+                  <th width="15%">차량상태</th>
+                  <th width="15%">차량번호</th>
+                  <th width="5%">삭제</th>
                 </tr>
-                <%-- <c:if test="${empty list}">
-					<tr>
-			           <td align="center" colspan="5">데이터가 없음</td>
-			        </tr>
-				</c:if> --%>
               </thead>
               <tbody>
+              <c:forEach items="${selectList}" var="item">
                 <tr>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
+                  <td>${item.branch_name}</td>	
+                  <td><a href="carInfoContent.do?car_info_no=${item.car_info_no}&car_name=${item.car_name}(${item.car_fuel})">${item.car_name}(${item.car_fuel})</a></td>
+                  <td>${item.car_info_rent_at}</td>
+                  <td>${item.car_info_state}</td>
+                  <td>${item.car_info_back_no}</td>
+                  <td>
+                  	<button type="button" class="btn btn-defalut btn-sm"><a href="carInfoDel.do?car_info_no=${item.car_info_no}">삭제</a></button>
+                	</td>
                 </tr>
+                  </c:forEach>
               </tbody>
             </table>
           </div>

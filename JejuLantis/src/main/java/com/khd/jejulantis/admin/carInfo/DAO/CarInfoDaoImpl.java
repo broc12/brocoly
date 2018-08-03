@@ -36,11 +36,33 @@ public class CarInfoDaoImpl implements CarInfoDao {
 		else flag = false;
 		return flag;
 	}*/
+	@Override
 	public boolean carInfoInsert(List<CarInfo> carInfoList) {
 		Map< String, List<CarInfo> > carMap = new HashMap<String, List<CarInfo>>();
 		carMap.put("car", carInfoList);
+		for(int i = 0;i<carInfoList.size();i++) {
+			System.out.println("b:"+carInfoList.get(i).getBranch_no()+" C:"+carInfoList.get(i).getCar_no()+" K:"+carInfoList.get(i).getCar_kind_no()+" bn:"+carInfoList.get(i).getCar_info_back_no());
+			}
 		System.out.println("size : "+carInfoList.size());
 		int i = sqlSession.insert(ns+".mycarInfoListInsert", carMap);
+		System.out.println("I size " +i );
+		boolean flag;
+		if(i>0) flag = true;
+		else flag = false;
+		return flag;
+	}
+	@Override
+	public boolean del(String car_info_no) {
+		int i = sqlSession.delete(ns+".myDel", car_info_no);
+		System.out.println("I size " +i );
+		boolean flag;
+		if(i>0) flag = true;
+		else flag = false;
+		return flag;
+	}
+	@Override
+	public boolean carInfoUpdate(CarInfo carInfo) {
+		int i = sqlSession.update(ns+".myUpdate", carInfo);
 		System.out.println("I size " +i );
 		boolean flag;
 		if(i>0) flag = true;
@@ -53,9 +75,14 @@ public class CarInfoDaoImpl implements CarInfoDao {
 		return carInfoInsert;
 	}
 	@Override
-	public List<CarInfoSelect> selectList(int manager_id) {
+	public List<CarInfoSelect> selectList(String manager_id) {
 		List<CarInfoSelect> carInfoList = sqlSession.selectList(ns+".mySelectAll",manager_id);
 		return carInfoList;
+	}
+	@Override
+	public CarInfo carInfoContent(String car_info_no) {
+		CarInfo carInfoContent = sqlSession.selectOne(ns+".myCarInfoContent",car_info_no);
+		return carInfoContent;
 	}
 	@Override
 	public CarInfoInsert selectBranchNo(Integer car_kind_no) {

@@ -32,4 +32,9 @@ public class RentcarServiceImpl implements RentcarService {
 	public SelectRentcar confirmrentcarService(SearchRequirements requirements) {
 		return rentcardao.confirmrentcar(requirements);
 	}
+	@Override
+	public SelectRentcar inputrentcarService(SearchRequirements requirements) {
+		
+		return rentcardao.inputrentcar(requirements);
+	}
 }

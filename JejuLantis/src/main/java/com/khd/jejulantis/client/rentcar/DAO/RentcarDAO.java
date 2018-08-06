@@ -11,6 +11,7 @@ public interface RentcarDAO {
 	
 	public List<Rcar> rentcarList(SearchRequirements requirements);
 	public SelectRentcar confirmrentcar(SearchRequirements requirements);
+	public SelectRentcar inputrentcar(SearchRequirements requirements);
 	public Date currenttimeStamp();
 	public Date timeStamp();
 }

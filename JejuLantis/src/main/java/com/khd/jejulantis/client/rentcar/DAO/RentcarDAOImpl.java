@@ -42,5 +42,11 @@ public class RentcarDAOImpl implements RentcarDAO {
 		}
 		return selectRentcar;
 	}
+	@Override
+	public SelectRentcar inputrentcar(SearchRequirements requirements) {
+		int i = sqlsession.insert(ns+".inputreserv",requirements);
+		System.out.println(i);
+		return null;
+	}
 
 }

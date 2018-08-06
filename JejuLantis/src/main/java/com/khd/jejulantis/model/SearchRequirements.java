@@ -32,7 +32,12 @@ public class SearchRequirements {
 	String sort;
 //	boolean errorFlag;
 	String errorMsg;
+	long branch_no;
+	long car_no;
 	long car_kind_no;
+	long insurance_no;
+	long rent_reserv_no;
+	String goodstype;
 	
 	public SearchRequirements() {}
 	public SearchRequirements(Date rent_reserve_start,String sort) {
@@ -63,8 +68,8 @@ public class SearchRequirements {
 			List<String> car_manufacturer, List<String> car_fuel, List<String> car_type, String car_kind_navi,
 			String car_kind_sensor, String car_kind_blackbox, String car_kind_bluetooth, String car_kind_sunroof,
 			String car_kind_camera, String car_kind_nonsmoke, String car_kind_resist, boolean searchFlag, String sort,
-			boolean errorFlag, String errorMsg,long car_kind_no) {
-		super();
+			String errorMsg, long branch_no, long car_no, long car_kind_no, long insurance_no, long rent_reserv_no,
+			String goodstype) {
 		this.rent_reserve_start = rent_reserve_start;
 		this.rent_reserve_end = rent_reserve_end;
 		this.car_name = car_name;
@@ -81,9 +86,13 @@ public class SearchRequirements {
 		this.car_kind_resist = car_kind_resist;
 		this.searchFlag = searchFlag;
 		this.sort = sort;
-//		this.errorFlag = errorFlag;
 		this.errorMsg = errorMsg;
+		this.branch_no = branch_no;
+		this.car_no = car_no;
 		this.car_kind_no = car_kind_no;
+		this.insurance_no = insurance_no;
+		this.rent_reserv_no = rent_reserv_no;
+		this.goodstype = goodstype;
 	}
 	public DateTime getRent_reserve_start() {
 		return rent_reserve_start;
@@ -324,5 +333,42 @@ public class SearchRequirements {
 	}
 	public void setCarkindno(long car_kind_no) {
 		this.car_kind_no = car_kind_no;
+	}
+	public long getBranch_no() {
+		return branch_no;
+	}
+	public void setBranch_no(long branch_no) {
+		this.branch_no = branch_no;
+	}
+	public long getCar_no() {
+		return car_no;
+	}
+	public void setCar_no(long car_no) {
+		this.car_no = car_no;
+	}
+	public long getInsurance_no() {
+		return insurance_no;
+	}
+	public void setInsurance_no(long insurance_no) {
+		this.insurance_no = insurance_no;
+	}
+	public long getRent_reserv_no() {
+		return rent_reserv_no;
+	}
+	public void setRent_reserv_no(long rent_reserv_no) {
+		this.rent_reserv_no = rent_reserv_no;
+	}
+	public void setInputno(List<Long> inputno) {
+		branch_no = inputno.get(0);
+		car_no = inputno.get(1);
+		car_kind_no =  inputno.get(2);
+		insurance_no = inputno.get(3);
+				
+	}
+	public String getGoodstype() {
+		return goodstype;
+	}
+	public void setGoodstype(String goodstype) {
+		this.goodstype = goodstype;
 	}
 }

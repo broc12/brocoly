@@ -114,37 +114,11 @@
 			location.href="car.do";
 		}
 	}
-	$(document).ready(
-			function(){
-	jQuery('#date1').datepicker({
-		  format: 'yyyy-mm-dd',
-		  autoclose: true,
-		  startDate:"today"
-		});
-	$('#date1').on('changeDate', function() {
-	    var temp = $('#date1').datepicker('getFormattedDate');
-	    var c = new Date(temp);
-	    c.setDate(c.getDate()+1);
-	    $('#date2').val( c.getFullYear()+"-"+("0"+(c.getMonth()+1)).slice(-2) +"-"+("0"+(c.getDate())).slice(-2) );
-	    $('#date2').datepicker('setStartDate',c.getFullYear()+"-"+ (c.getMonth()+1) +"-" + c.getDate());
-	    c.setDate(c.getDate()+6);
-	    $('#date2').datepicker('setEndDate',c);
-	});
-	jQuery('#date2').datepicker({
-		  format: 'yyyy-mm-dd',
-		  autoclose: true,
-		  startDate:"today"
-	});
-	$('#date2').on('changeDate', function() {
-		var a = new Date($('#date2').datepicker('getFormattedDate'));
-	    var b = new Date($('#date1').datepicker('getFormattedDate'));
-	    if(a<b){
-	    	$('#date1').val(
-	    	        $('#date2').datepicker('getFormattedDate')
-	    	    );
-	    }
-	});
-});
+	function selectgoods(carkindno){
+		alert(carkindno);
+		document.getElementById("goodstype").value = carkindno;
+		document.getElementById("reservform").submit();
+	}
 	</script>
 	</head>
 	<body onload="settime()">
@@ -421,7 +395,9 @@
 						<tr>
 							<td>
 							<div class="col-md-15" style="margin-top:40px" align="center">
-				                  <button class="btn btn-default"><a href="rentcar.do" style="color:black;text-decoration:none">예약하기</a></button>
+				                  <button class="btn btn-default" 
+				                  <c:if test="${login!=0 }">disabled</c:if>>
+				                   <a href="rentcar.do" style="color:black;text-decoration:none">예약하기</a></button>
 				                </div>
 							</td>
 						</tr>
@@ -462,7 +438,7 @@
 						<tr>
 							<td>
 								<div class="col-md-15" style="margin-top:40px" align="center">
-				                  <button class="btn btn-primary" style="background-color:#ffdd00"><a href="input.do" style="color:white;text-decoration:none">예약하기</a></button>
+				                  <button class="btn btn-primary" style="background-color:#ffdd00"><a href="#" onclick="selectgoods(1);return false;" style="color:white;text-decoration:none">예약하기</a></button>
 				                </div>
 							</td>
 						</tr>
@@ -483,23 +459,28 @@
 					<tr>
 						<td colspan="2" width="50%">
 							<h3 style="margin-left:20px; margin-right:20px;color:#868c98; font-weight: bold; color:black;">차량 인수/반납 장소</h3>
-							<h3 style="margin-left:20px; margin-right:20px;margin-top:20px;">${rentcar.barnch.branch_name }</h3>
+							<h3 style="margin-left:20px; margin-right:20px;margin-top:20px;">${rentcar.branch.branch_name }</h3>
 								<span style="margin-left:20px; margin-right:20px;color:#8c9094;">셔틀타는곳</span></br></br>
-								<span style="margin-left:20px; margin-right:20px;color:black;">${rentcar.barnch.branch_busspot }</span></br></br>
+								<span style="margin-left:20px; margin-right:20px;color:black;">${rentcar.branch.branch_busspot }</span></br></br>
 								<span style="margin-left:20px; margin-right:20px;color:#8c9094;">셔틀 운행간격</span></br>
-								<span style="margin-left:20px; margin-right:20px;color:black;">${rentcar.barnch.branch_bustime }분</span></br></br>
+								<span style="margin-left:20px; margin-right:20px;color:black;">${rentcar.branch.branch_bustime }분</span></br></br>
 								<span style="margin-left:20px; margin-right:20px;color:#8c9094;">소요시간</span></br>
-								<span style="margin-left:20px; margin-right:20px;color:black;">${rentcar.barnch.branch_busgap }분</span></br></br>
+								<span style="margin-left:20px; margin-right:20px;color:black;">${rentcar.branch.branch_busgap }분</span></br></br>
 								<span style="margin-left:20px; margin-right:20px;color:#8c9094;">주소</span></br>
-								<span style="margin-left:20px; margin-right:20px;color:black;">${rentcar.barnch.branch_local }</span></br></br>
+								<span style="margin-left:20px; margin-right:20px;color:black;">${rentcar.branch.branch_local }</span></br></br>
 								<span style="margin-left:20px; margin-right:20px;color:#8c9094;">전화번호</span></br>
-								<span style="margin-left:20px; margin-right:20px;color:black;">${rentcar.barnch.branch_tel }</span></br>
+								<span style="margin-left:20px; margin-right:20px;color:black;">${rentcar.branch.branch_tel }</span></br>
 						</td>				
 					</tr>
 				</table>	
 			</div>
 		</div>
-		
+			<form id="reservform" action="input.do" method="post">
+				<input type="hidden" id="searchstartdate" name="rentstartdate" value="${requirements.rent_reserve_startDateTime }">
+				<input type="hidden" id="searchenddate" name="rentenddate" value="${requirements.rent_reserve_endDateTime }">
+				<input type="hidden" id="inputno" name="inputno" value="${rentcar.branch.branch_no },${rentcar.car.car_no },${rentcar.car_kind_no },${rentcar.insurance_no }" />
+				<input type="hidden" id="goodstype" name="goodstype" />
+			</form>
 		
 		<footer id="colorlib-footer" role="contentinfo">
 			<div class="container">

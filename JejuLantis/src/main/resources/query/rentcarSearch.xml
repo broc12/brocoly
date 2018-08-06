@@ -247,4 +247,10 @@ AND
 <select id="selectCar" parameterType="SearchRequirements" resultMap="selectRentcarhResult">
 SELECT (CAR_KIND_PRICE_WEEK * #{weekTime}+CAR_KIND_PRICE_WEEKEND * #{weekendTime}) AS TOTALRENT,(INSURANCE_PRICE * #{period}) AS TOTALINSURANCE, (CAR_KIND_PRICE_WEEK * #{weekTime}+CAR_KIND_PRICE_WEEKEND * #{weekendTime} + INSURANCE_PRICE * #{period}) AS TOTALPRICE,J.* FROM (SELECT * FROM CAR_KIND NATURAL JOIN INSURANCE WHERE CAR_KIND_NO=#{car_kind_no} AND INSURANCE_NAME='자차')J
 </select>
+<insert id="inputreserv" parameterType="SearchRequirements">
+<selectKey keyProperty="rent_reserv_no" resultType="long" order="BEFORE">
+        select RENT_RESERV_SEQ.nextval from DUAL
+</selectKey>
+INSERT INTO RENT_RESERV(RENT_RESERV_NO,BRANCH_NO,CAR_NO,CAR_KIND_NO,INSURANCE_NO,MEMBER_NO,RENT_RESERV_START,RENT_RESERV_END,RENT_RESERV_CANCLE_ABLE,RENT_RESERV_CANCLE_AT,RENT_RESERV_RESIST,RENT_PAYMENT_NO,RENT_RESERV_CANCEL_DATE) VALUES(#{rent_reserv_no},#{branch_no},#{car_no},#{car_kind_no},#{insurance_no},1,TO_DATE(#{rent_reserve_startDateTime},'YYYY-MM-DD HH24:MI:SS'),TO_DATE(#{rent_reserve_endDateTime},'YYYY-MM-DD HH24:MI:SS'),'N','N',SYSDATE,1,SYSDATE)
+</insert>
 </mapper>

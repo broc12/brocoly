@@ -75,4 +75,11 @@ public class RentcarController {
 		Date currentDate = rentcarservice.currenttimeStampService();
 		return currentDate;
 	}
+
+	@RequestMapping(value="input.do",method=RequestMethod.POST)
+	public String input(SearchRequirements requirements) {
+		
+		rentcarservice.inputrentcarService(requirements);
+		return "rentcar/rentcars/input";
+	}
 }

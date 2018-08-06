@@ -11,6 +11,7 @@ public interface RentcarService {
 
 	public List<Rcar> rentcarListService(SearchRequirements requirements);
 	public SelectRentcar confirmrentcarService(SearchRequirements requirements);
+	public SelectRentcar inputrentcarService(SearchRequirements requirements);
 	public Date currenttimeStampService();
 	public Date timeStampService();
 }

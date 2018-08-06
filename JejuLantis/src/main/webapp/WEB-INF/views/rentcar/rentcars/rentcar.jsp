@@ -80,8 +80,10 @@
 
 	<!-- Main -->
 	<script src="resources/rentcar/js/main.js"></script>
+		<script src="resources/rentcar/js/sidebarsearchcar.js"></script>
 <script>
 	function settime(){
+		if(!${requirements.errorFlag}){
 		if(${requirements.searchFlag}){
  			var sel = document.getElementById("Checkintime");
 			var val;
@@ -104,6 +106,11 @@
 			if("${requirements.car_name}"!="")
 			sel.value="${requirements.car_name}";
 		}else{
+			alert("검색결과가 없습니다.");
+			location.href="car.do";
+		}
+		}else{
+			alert("${requirements.errorMsg}");
 			location.href="car.do";
 		}
 	}
@@ -209,7 +216,7 @@
 								<div class="row">
 								<div class="col-md-6 col-sm-6 animate-box" style="width:40%;padding:0px">
 									<div class="hotel-entry" style="background-color:#f8fafb;padding:15px;height:410px"></br>
-										<span style="color:black;font-size:18pt">아반떼</span><span style="color:black">(LPG)</span>
+										<span style="color:black;font-size:18pt">${rentcar.car.car_name }</span><span style="color:black">(${rentcar.car.car_fuel })</span>
 										<img width="100%" weight="200" src="resources/car/2017Avante.png"/>
 										<div class="desc">
 											<p align="center" style="color:#0090f0"></p>
@@ -217,9 +224,9 @@
 										</br>
 										<div class="desc">
 											<p align="center">
-												<span class="glyphicon glyphicon-road">중소형</span>
-												<span class="glyphicon glyphicon-user">5인승</span>
-												<span class="glyphicon glyphicon-tint">LPG</span>
+												<span class="glyphicon glyphicon-road">${rentcar.car.car_type }</span>
+												<span class="glyphicon glyphicon-user">${rentcar.car.car_passenger }인승</span>
+												<span class="glyphicon glyphicon-tint">${rentcar.car.car_fuel }</span>
 											</p>
 										</div>
 									</div>
@@ -228,7 +235,7 @@
 								<div class="col-md-6 col-sm-6 animate-box" style="padding:0px;width:60%">
 									<div class="hotel-entry" style="background-color:white">
 										<div class="desc" style="padding:15px;height:410px"></br>
-											<span style="font-size:18pt;color:black">특별한 렌트카</span>
+											<span style="font-size:18pt;color:black">${rentcar.branch.branch_name }</span>
 											
 											<p class="star"><span><i class="icon-star-full"></i><i class="icon-star-full"></i><i class="icon-star-full"></i><i class="icon-star-full"></i><i class="icon-star-full"></i></span> 545 Reviews</p>
 											<div id="board">
@@ -245,7 +252,7 @@
 														<td>2종보통 이상</td>
 													<tr>
 												</table></br>
-												<h5 style="font-weight: bold">일반자차 보험 규정</h5>
+												<h5 style="font-weight: bold">${rentcar.insurance_name } 보험 규정</h5>
 												<table border="0" width="70%">
 													<tr align="center" style="background-color: #fafafa;font-weight:bold">
 														<td style="width:33%">나이</td>
@@ -253,8 +260,8 @@
 														<td style="background-color:white"></td>
 													<tr>
 													<tr align="center">
-														<td>만 21세 이상</td>
-														<td>1년 이상</td>
+														<td>만 ${rentcar.insurance_limit_age }세 이상</td>
+														<td>${rentcar.insurance_limit_carrier }년 이상</td>
 														<td></td>
 													<tr>
 												</table></br>
@@ -427,9 +434,9 @@
 						</tr>
 						<tr>
 							<td>
-								<h2 style="margin-left:20px; margin-right:20px;color:#868c98; font-weight: bold; color:#ffdd00;">26,700원</h2>
-								<span style="margin-left:20px; margin-right:20px;color:#868c98; color:#ffeb5f;">차량 대여료 8,700원</span></br>
-								<span style="margin-left:20px; margin-right:20px;color:#868c98; color:#ffeb5f;">보험료 18,000원</span>
+								<h2 style="margin-left:20px; margin-right:20px;color:#868c98; font-weight: bold; color:#ffdd00;">${rentcar.totalprice }원</h2>
+								<span style="margin-left:20px; margin-right:20px;color:#868c98; color:#ffeb5f;">차량 대여료 ${rentcar.totalrent }원</span></br>
+								<span style="margin-left:20px; margin-right:20px;color:#868c98; color:#ffeb5f;">보험료 ${rentcar.totalinsurance }원</span>
 							</td>
 						</tr>
 						<tr>
@@ -476,17 +483,17 @@
 					<tr>
 						<td colspan="2" width="50%">
 							<h3 style="margin-left:20px; margin-right:20px;color:#868c98; font-weight: bold; color:black;">차량 인수/반납 장소</h3>
-							<h3 style="margin-left:20px; margin-right:20px;margin-top:20px;">한성렌트가</h3>
+							<h3 style="margin-left:20px; margin-right:20px;margin-top:20px;">${rentcar.barnch.branch_name }</h3>
 								<span style="margin-left:20px; margin-right:20px;color:#8c9094;">셔틀타는곳</span></br></br>
-								<span style="margin-left:20px; margin-right:20px;color:black;">제주공항 1층 5번 게이트 건너편 렌트카종합안내센터 [7구역 3번]</span></br></br>
+								<span style="margin-left:20px; margin-right:20px;color:black;">${rentcar.barnch.branch_busspot }</span></br></br>
 								<span style="margin-left:20px; margin-right:20px;color:#8c9094;">셔틀 운행간격</span></br>
-								<span style="margin-left:20px; margin-right:20px;color:black;">20분</span></br></br>
+								<span style="margin-left:20px; margin-right:20px;color:black;">${rentcar.barnch.branch_bustime }분</span></br></br>
 								<span style="margin-left:20px; margin-right:20px;color:#8c9094;">소요시간</span></br>
-								<span style="margin-left:20px; margin-right:20px;color:black;">10분</span></br></br>
+								<span style="margin-left:20px; margin-right:20px;color:black;">${rentcar.barnch.branch_busgap }분</span></br></br>
 								<span style="margin-left:20px; margin-right:20px;color:#8c9094;">주소</span></br>
-								<span style="margin-left:20px; margin-right:20px;color:black;">제주시 연미길 42</span></br></br>
+								<span style="margin-left:20px; margin-right:20px;color:black;">${rentcar.barnch.branch_local }</span></br></br>
 								<span style="margin-left:20px; margin-right:20px;color:#8c9094;">전화번호</span></br>
-								<span style="margin-left:20px; margin-right:20px;color:black;">011-121-4544</span></br>
+								<span style="margin-left:20px; margin-right:20px;color:black;">${rentcar.barnch.branch_tel }</span></br>
 						</td>				
 					</tr>
 				</table>	

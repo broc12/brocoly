@@ -12,10 +12,13 @@
 	<result column="ACTOT" property="actot"/>
 	<collection property="blist" javaType="java.util.ArrayList" resultMap="query.blist.BlistResult"/>
 </resultMap>
-<!-- <resultMap type="selectRentcar" id="selectRentcarhResult">
+<resultMap type="selectRentcar" id="selectRentcarhResult">
 	<result column="CAR_KIND_NO" property="car_kind_no"/>
 	<result column="BRANCH_NO" property="branch_no"/>
 	<result column="CAR_NO" property="car_no"/>
+	<result column="TOTALRENT" property="totalrent"/>
+	<result column="TOTALINSURANCE" property="totalinsurance"/>
+	<result column="TOTALPRICE" property="totalprice"/>
 	<result column="CAR_KIND_PRICE_WEEK" property="car_kind_price_week"/>
 	<result column="CAR_KIND_PRICE_WEEKEND" property="car_kind_price_weekend"/>	
 	<result column="CAR_KIND_NAVI" property="car_kind_navi"/>
@@ -35,7 +38,7 @@
 	<result property="insurance_limit_carrier" column="INSURANCE_LIMIT_CARRIER"/>
 	<association property="branch" column="BRANCH_NO" javaType="Branch" select="query.branch.mySubject"/>
 	<association property="car" column="CAR_NO" javaType="Car" select="query.car.mySubject"/>
-</resultMap> -->
+</resultMap>
 <select id="rentcarsearch" parameterType="SearchRequirements" resultMap="rentcarSearchResult">
 SELECT
     CAR_NAME,
@@ -241,5 +244,7 @@ where
 AND
 	K.car_kind_no = #{car_kind_no}
 </select>
-
+<select id="selectCar" parameterType="SearchRequirements" resultMap="selectRentcarhResult">
+SELECT (CAR_KIND_PRICE_WEEK * #{weekTime}+CAR_KIND_PRICE_WEEKEND * #{weekendTime}) AS TOTALRENT,(INSURANCE_PRICE * #{period}) AS TOTALINSURANCE, (CAR_KIND_PRICE_WEEK * #{weekTime}+CAR_KIND_PRICE_WEEKEND * #{weekendTime} + INSURANCE_PRICE * #{period}) AS TOTALPRICE,J.* FROM (SELECT * FROM CAR_KIND NATURAL JOIN INSURANCE WHERE CAR_KIND_NO=#{car_kind_no} AND INSURANCE_NAME='자차')J
+</select>
 </mapper>

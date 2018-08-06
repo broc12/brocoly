@@ -16,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.khd.jejulantis.client.rentcar.Service.RentcarService;
 import com.khd.jejulantis.model.Rcar;
 import com.khd.jejulantis.model.SearchRequirements;
+import com.khd.jejulantis.model.SelectRentcar;
 
 @Controller
 public class RentcarController {
@@ -53,11 +54,11 @@ public class RentcarController {
 	@RequestMapping(value="rentcar.do",method=RequestMethod.POST)
 	public ModelAndView rentcar(SearchRequirements requirements) {
 		ModelAndView mv = new ModelAndView("rentcar/rentcars/rentcar");
-		List<Rcar> list = rentcarservice.confirmrentcarService(requirements);
-		if(list == null) {
+		SelectRentcar car = rentcarservice.confirmrentcarService(requirements);
+		if(car == null) {
 			requirements.setErrorMsg("사용 가능한 차량이 없습니다.");
 		}else {
-			mv.addObject("list", list);
+			mv.addObject("rentcar", car);
 		}
 		requirements.setSearchFlag(true);
 		mv.addObject("requirements", requirements);
@@ -67,7 +68,6 @@ public class RentcarController {
 	public @ResponseBody List<Rcar> searchcar(@RequestParam(value="checkListmanu[]",required=false) List<String> checkListmanu,@RequestParam(value="checkListfuel[]",required=false) List<String> checkListfuel,@RequestParam(value="checkListtype[]",required=false) List<String> checkListtype,@RequestParam(value="checkListoption[]",required=false) List<String> checkListoption,@RequestParam(value="checkindate",required=false) String checkindate,@RequestParam(value="checkoutdate",required=false) String checkoutdate,@RequestParam(value="car_name",required=false) String car_name) {
 		SearchRequirements requirements = new SearchRequirements(checkindate,checkoutdate,car_name,checkListmanu,checkListfuel,checkListtype,checkListoption);
 		List<Rcar> list = rentcarservice.rentcarListService(requirements);
-		/*if(list!=null)System.out.println(list.size());*/
 		return list;
 	}
 	@RequestMapping(value="currenttime.do",method=RequestMethod.GET)

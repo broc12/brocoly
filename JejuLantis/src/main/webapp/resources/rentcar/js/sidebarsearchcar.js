@@ -206,19 +206,5 @@ function(){
         	}
         }
 	});
-/*	if(endT<startT){
-		alert("시간오류");
-		return false;
-	}
-	var g = endT-startT;
-	if((g/3600000)<24){
-		alert("최소시간 오류");
-		return false;
-	}
-	if((g/3600000)>180){
-		alert("최대시간 오류");
-		return false;
-	}*/
-	/*$("#searchform").submit();*/
 });
 });

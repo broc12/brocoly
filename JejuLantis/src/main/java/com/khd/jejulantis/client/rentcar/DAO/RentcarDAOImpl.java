@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import com.khd.jejulantis.model.Rcar;
 import com.khd.jejulantis.model.SearchRequirements;
+import com.khd.jejulantis.model.SelectRentcar;
 
 @Repository
 public class RentcarDAOImpl implements RentcarDAO {
@@ -33,15 +34,13 @@ public class RentcarDAOImpl implements RentcarDAO {
 		return sqlsession.selectOne(n2s+".nexttime");
 	}
 	@Override
-	public List<Rcar> confirmrentcar(SearchRequirements requirements) {
+	public SelectRentcar confirmrentcar(SearchRequirements requirements) {
 		long i = sqlsession.selectOne(ns+".confirmremainder",requirements);
+		SelectRentcar selectRentcar = null;
 		if(i>0) {
-			HashMap<String,Object> map = new HashMap<String,Object>();
-			/*Branch branch = sqlsession.selectOne(statement, parameter);
-			Car car = sqlsession.selectOne(statement, parameter);
-			CarKind cakind = sqlsession.selectOne(statement, parameter);*/
+			selectRentcar = sqlsession.selectOne(ns+".selectCar",requirements);
 		}
-		return null;
+		return selectRentcar;
 	}
 
 }

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.khd.jejulantis.client.rentcar.DAO.RentcarDAO;
 import com.khd.jejulantis.model.Rcar;
 import com.khd.jejulantis.model.SearchRequirements;
+import com.khd.jejulantis.model.SelectRentcar;
 @Service
 public class RentcarServiceImpl implements RentcarService {
 
@@ -28,7 +29,7 @@ public class RentcarServiceImpl implements RentcarService {
 		return rentcardao.timeStamp();
 	}
 	@Override
-	public List<Rcar> confirmrentcarService(SearchRequirements requirements) {
-		return rentcardao.rentcarList(requirements);
+	public SelectRentcar confirmrentcarService(SearchRequirements requirements) {
+		return rentcardao.confirmrentcar(requirements);
 	}
 }

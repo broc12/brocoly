@@ -78,45 +78,43 @@
             alert("규정나이를 채워주세요");
             f.insurance_limit_age.focus();
             return;
+         }else{
+        	 for (i = 0; i < document.f.insurance_limit_age.value.length; i++) {
+        		 ch = document.f.insurance_limit_age.value.charAt(i)
+        		 if (!(ch >= '0' && ch <= '9')) {
+	                alert("숫자만 입력해주세요");
+	                f.insurance_limit_age.focus();
+	                return;
+	            }else if(!(f.insurance_limit_age.value >=20 && f.insurance_limit_age.value <= 90)){
+	            	alert("20~90세까지 가능합니다");
+	            	f.insurance_limit_age.focus();
+	            	return;
+	            }
+        	 }
          }
 		if(f.insurance_limit_carrier.value ==""){
             alert("규정경력을 채워주세요");
             f.insurance_limit_carrier.focus();
             return;
+		 }else{
+        	 for (i = 0; i < document.f.insurance_limit_carrier.value.length; i++) {
+        		 ch = document.f.insurance_limit_carrier.value.charAt(i)
+        		 if (!(ch >= '0' && ch <= '9')) {
+	                alert("숫자만 입력해주세요");
+	                f.insurance_limit_carrier.focus();
+	                return;
+	            }else if(!(f.insurance_limit_carrier.value >=1 && f.insurance_limit_carrier.value <= 90)){
+	            	alert("1~90년까지 가능합니다");
+	            	f.insurance_limit_carrier.focus();
+	            	return;
+	            }
+        	 }
          }
     	document.f.submit();
 	}
 	</script>
 	<script type="text/javascript">
-// 		$(document).ready(function(){
-// 			(fuction(){
-// 			    $.ajax({
-// 			    	type: "get",
-// 			        url : "ajax.do",
-// 			        data : { "branch_no" : $("#branch_no").val() },
-// 			        success : function(responseData){
-// 			        	$("#ajax").remove();
-// 			            //alert("responseData: "+ responseData);
-// 			            if(responseData.length == 0){
-// 			            	//alert("존재하지 않는 Seq입니다");
-// 			                return false;
-// 			            }
-// 			            var data = JSON.parse(responseData);
-// 			            //alert("data: " + data);
-			            
-// 			            var html = '<option value="">--선택해주세요--</option>';
-	// 		            html += '<form class="form-signin" action="" id="ajax">';
-	// 		            html += ' 번호<input type="text" class="form-control"  name="seq" value="'+data.seq+'">';
-	// 		            html += ' 이름<input type="text" class="form-control" name="name" value="'+data.name+'">';
-	// 		            html += ' 주소<input type="text" class="form-control"  name="addr" value="'+data.addr+'">';
-	// 		            html += ' 날짜<input type="text" class="form-control" name="rdate" value="'+data.rdate+'">';
-	// 		            html += '</form>';
-	// 		            $("#container").after(html);
-// 						$('select[name=branch_no]').append(html);
-// 			        }
-// 			    });
-// 			})
-// 		});
+
 		var test={
 			branch_no : function(sval){
 				alert(sval);
@@ -129,13 +127,49 @@
 // 					var data = JSON.parse(responseData);
 						var html = '';
 						for (var i=0; i<responseData.length; i++) {
-							html += "<option value="+responseData[i].car_kind_no+">"+responseData[i].car_kind_no+"</option>";
+							html += "<option value="+responseData[i].car_kind_no+">"+responseData[i].car_name+"/"+ responseData[i].car_manufacturer+"</option>";
 						}
 						$("#car_kind_no").append(html);
 					}
 				})
 			}
 		}
+	</script>
+	<script src="../resources/admin/vendor/jquery-easing/jquery.easing.min.js"></script>	
+	<script type="text/javascript" >
+	$(document).ready(
+		function(){
+// 			$("#numberOnly").on("focus", function() {
+// 		    var x = $(this).val();
+// 		    x = removeCommas(x);
+// 		    $(this).val(x);
+// 		})
+// 		.on("focusout", function() {
+// 		    var x = $(this).val();
+// 		    if(x && x.length > 0) {
+// 		        if(!$.isNumeric(x)) {
+// 		            x = x.replace(/[^0-9]/g,"");
+// 		        }
+// 		        x = addCommas(x);
+// 		        $(this).val(x);
+// 		    }
+// 		})
+			$("#insurance_limit").on("keyup", function() {
+			    $(this).val($(this).val().replace(/[^0-9]/g,""));
+			});
+			$("#insurance_price").on("keyup", function() {
+			    $(this).val($(this).val().replace(/[^0-9]/g,""));
+			});
+			$("#insurance_burden_price").on("keyup", function() {
+			    $(this).val($(this).val().replace(/[^0-9]/g,""));
+			});
+			$("#insurance_limit_age").on("keyup", function() {
+			    $(this).val($(this).val().replace(/[^0-9]/g,""));
+			});
+			$("#insurance_limit_carrier").on("keyup", function() {
+			    $(this).val($(this).val().replace(/[^0-9]/g,""));
+			});
+		});
 	</script>
   <div class="content-wrapper">
     <div class="container-fluid">
@@ -165,7 +199,7 @@
 										<select name="branch_no" id="branch_no" class="form-control" style="width:250px" onchange="test.branch_no(this.value);">
 										<option value="" style="color:black">지점코드</option>
 										<c:forEach items="${kingbranchNotSelect}" var="kingbranchNotSelect" varStatus="status">	
-											<option value="${kingbranchNotSelect.branch_no}" style="color:black">${kingbranchNotSelect.branch_no}</option>
+											<option value="${kingbranchNotSelect.branch_no}" style="color:black">${kingbranchNotSelect.branch_name}/${kingbranchNotSelect.branch_member_name}</option>
 										</c:forEach>
 										</select>
 										</th>
@@ -203,7 +237,7 @@
 										<select name="car_kind_no" id="car_kind_no" class="form-control" style="width:250px">
 										<option value="" style="color:black">차종상세코드</option>
 										<c:forEach items="${carKindSelectBox}" var="carKindSelectBox" varStatus="status">
-										<option value="${carKindSelectBox.car_kind_no}" style="color:black">${carKindSelectBox.car_kind_no}</option>
+										<option value="${carKindSelectBox.car_kind_no}" style="color:black">${carKindSelectBox.car_name}/${carKindSelectBox.car_manufacturer}</option>
 										</c:forEach>
                        					</select>
 										</th>
@@ -220,29 +254,30 @@
 										<option value="완전자차(무제한)" style="color:black">완전자차(무제한)</option>
                        			</select>
 							</th>
-							<th  height="60px" width="10%" class="text-center" style="background-color: #fafafa"><a style="color:red">*</a>보험료</th>
+							<th  height="60px" width="10%" class="text-center" style="background-color: #fafafa"><a style="color:red">*</a>보험료 (원)</th>
 							<th  width="35%" class="text-left">
-								<input name="insurance_price" type="text" size="30" class="form-control" style="width:250px">
+								<input name="insurance_price" id="insurance_price" type="text" size="30" class="form-control" style="width:250px">
 							</th>
 						</tr>	
 						<tr style="color:#808080;font-size:12pt">
-							<th  height="60px" width="10%" class="text-center" style="background-color: #fafafa"><a style="color:red">*</a>보상한도</th>
+							<th  height="60px" width="10%" class="text-center" style="background-color: #fafafa"><a style="color:red">*</a>보상한도 (만원)</th>
 							<th  width="35%" class="text-left">
-								<input name="insurance_limit" type="text" size="30" class="form-control" style="width:250px">
+<!-- 							<input type="text" id="numberOnly" numberOnly> -->
+								<input name="insurance_limit" id="insurance_limit" type="text" size="30" class="form-control" style="width:250px">
 							</th>
-							<th  height="60px" width="10%" class="text-center" style="background-color: #fafafa"><a style="color:red">*</a>자가부담</th>
+							<th  height="60px" width="10%" class="text-center" style="background-color: #fafafa"><a style="color:red">*</a>자가부담 (원)</th>
 							<th  width="35%" class="text-left">
-								<input name="insurance_burden_price" type="text" size="30" class="form-control" style="width:250px">
+								<input name="insurance_burden_price" id="insurance_burden_price" type="text" size="30" class="form-control" style="width:250px">
 							</th>
 						</tr>
 						<tr style="color:#808080;font-size:12pt">
-							<th  height="60px" width="10%" class="text-center" style="background-color: #fafafa"><a style="color:red">*</a>규정나이</th>
+							<th  height="60px" width="10%" class="text-center" style="background-color: #fafafa"><a style="color:red">*</a>규정나이 (세)</th>
 							<th  width="35%" class="text-left">
-								<input name="insurance_limit_age" type="text" size="30" class="form-control" style="width:250px">
+								<input name="insurance_limit_age" id="insurance_limit_age" type="text" size="30" class="form-control" style="width:250px">
 							</th>
-							<th  height="60px" width="10%" class="text-center" style="background-color: #fafafa"><a style="color:red">*</a>규정경력</th>
+							<th  height="60px" width="10%" class="text-center" style="background-color: #fafafa"><a style="color:red">*</a>규정경력 (년)</th>
 							<th  width="35%" class="text-left">
-								<input name="insurance_limit_carrier" type="text" size="30" class="form-control" style="width:250px">
+								<input name="insurance_limit_carrier" id="insurance_limit_carrier" type="text" size="30" class="form-control" style="width:250px">
 							</th>
 						</tr>
 						<tr style="font-size:10pt" height="60px">

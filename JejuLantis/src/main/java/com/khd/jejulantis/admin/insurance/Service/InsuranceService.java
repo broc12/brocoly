@@ -6,6 +6,7 @@ import com.khd.jejulantis.model.Insurance;
 
 public interface InsuranceService {
 	List<Insurance> insuranceListService(String manager_id);
+	List<Insurance> insuranceAllListService();
 	List<Insurance> insuranceContentService(int insurance_no);
 	List<Insurance> carKindSelectBoxService(String manager_id);
 	List<Insurance> carKindNotSelectBoxService(String manager_id, int insurance_no);
@@ -19,4 +20,5 @@ public interface InsuranceService {
 	void insertService(Insurance insurance);
 	void updateService(Insurance insurance);
 	void updateOkService(Insurance insurance);
+	List<Insurance> identyBNoService(String manager_id);
 }

@@ -19,6 +19,11 @@ public class InsuranceDaoImpl implements InsuranceDao {
 		return insuranceList;
 	}
 	@Override
+	public List<Insurance> insuranceAllList() {
+		List<Insurance> insuranceAllList = sqlSession.selectList(ns_insurance+".insuranceAllList");
+		return insuranceAllList;
+	}
+	@Override
 	public List<Insurance> insuranceContent(int insurance_no) {
 		List<Insurance> insuranceContent = sqlSession.selectList(ns_insurance+".insuranceContent", insurance_no);
 		return insuranceContent;
@@ -85,4 +90,10 @@ public class InsuranceDaoImpl implements InsuranceDao {
 		List<Insurance> kingBranchCarKindSelect = sqlSession.selectList(ns_insurance+".kingBranchCarKindSelect", branch_no);
 		return kingBranchCarKindSelect;
 	}
+	@Override
+	public List<Insurance> identyBNo(String manager_id) {
+		List<Insurance> identyBNo = sqlSession.selectList(ns_insurance+".identyBNo", manager_id);
+		return identyBNo;
+	}
+	
 }

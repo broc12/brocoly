@@ -16,6 +16,10 @@ public class InsuranceServiceImpl implements InsuranceService {
 		return InsuranceDao.insuranceList(manager_id);
 	}
 	@Override
+	public List<Insurance> insuranceAllListService() {
+		return  InsuranceDao.insuranceAllList();
+	}
+	@Override
 	public List<Insurance> insuranceContentService(int insurance_no) {
 		return InsuranceDao.insuranceContent(insurance_no);
 	}
@@ -67,5 +71,8 @@ public class InsuranceServiceImpl implements InsuranceService {
 	public List<Insurance> kingBranchCarKindSelectService(int branch_no) {
 		return InsuranceDao.kingBranchCarKindSelect(branch_no);
 	}
-	
+	@Override
+	public List<Insurance> identyBNoService(String manager_id) {
+		return InsuranceDao.identyBNo(manager_id);
+	}
 }

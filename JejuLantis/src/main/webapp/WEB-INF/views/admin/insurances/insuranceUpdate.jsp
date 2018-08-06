@@ -78,14 +78,98 @@
             alert("규정나이를 채워주세요");
             f.insurance_limit_age.focus();
             return;
+         }else{
+        	 for (i = 0; i < document.f.insurance_limit_age.value.length; i++) {
+        		 ch = document.f.insurance_limit_age.value.charAt(i)
+        		 if (!(ch >= '0' && ch <= '9')) {
+	                alert("숫자만 입력해주세요");
+	                f.insurance_limit_age.focus();
+	                return;
+	            }else if(!(f.insurance_limit_age.value >=20 && f.insurance_limit_age.value <= 90)){
+	            	alert("20~90세까지 가능합니다");
+	            	f.insurance_limit_age.focus();
+	            	return;
+	            }
+        	 }
          }
 		if(f.insurance_limit_carrier.value ==""){
             alert("규정경력을 채워주세요");
             f.insurance_limit_carrier.focus();
             return;
+		 }else{
+        	 for (i = 0; i < document.f.insurance_limit_carrier.value.length; i++) {
+        		 ch = document.f.insurance_limit_carrier.value.charAt(i)
+        		 if (!(ch >= '0' && ch <= '9')) {
+	                alert("숫자만 입력해주세요");
+	                f.insurance_limit_carrier.focus();
+	                return;
+	            }else if(!(f.insurance_limit_carrier.value >=1 && f.insurance_limit_carrier.value <= 90)){
+	            	alert("1~90년까지 가능합니다");
+	            	f.insurance_limit_carrier.focus();
+	            	return;
+	            }
+        	 }
          }
     	document.f.submit();
 	}
+	</script>
+	<script type="text/javascript">
+
+		var test={
+			branch_no : function(sval){
+				alert(sval);
+				$.ajax({
+					type : 'get',
+					url : 'ajax1.do',
+					data : { "branch_no" : sval },
+					success : function(responseData){
+						console.log(responseData);
+// 					var data = JSON.parse(responseData);
+						var html = '';
+						for (var i=0; i<responseData.length; i++) {
+							html += "<option value="+responseData[i].car_kind_no+">"+responseData[i].car_name+"/"+ responseData[i].car_manufacturer+"</option>";
+						}
+						$("#car_kind_no").append(html);
+					}
+				})
+			}
+		}
+	</script>
+	<script src="../resources/admin/vendor/jquery-easing/jquery.easing.min.js"></script>	
+	<script type="text/javascript" >
+	$(document).ready(
+		function(){
+// 			$("#numberOnly").on("focus", function() {
+// 		    var x = $(this).val();
+// 		    x = removeCommas(x);
+// 		    $(this).val(x);
+// 		})
+// 		.on("focusout", function() {
+// 		    var x = $(this).val();
+// 		    if(x && x.length > 0) {
+// 		        if(!$.isNumeric(x)) {
+// 		            x = x.replace(/[^0-9]/g,"");
+// 		        }
+// 		        x = addCommas(x);
+// 		        $(this).val(x);
+// 		    }
+// 		})
+			$("#insurance_limit").on("keyup", function() {
+			    $(this).val($(this).val().replace(/[^0-9]/g,""));
+			});
+			$("#insurance_price").on("keyup", function() {
+			    $(this).val($(this).val().replace(/[^0-9]/g,""));
+			});
+			$("#insurance_burden_price").on("keyup", function() {
+			    $(this).val($(this).val().replace(/[^0-9]/g,""));
+			});
+			$("#insurance_limit_age").on("keyup", function() {
+			    $(this).val($(this).val().replace(/[^0-9]/g,""));
+			});
+			$("#insurance_limit_carrier").on("keyup", function() {
+			    $(this).val($(this).val().replace(/[^0-9]/g,""));
+			});
+		});
 	</script>
 	
   <div class="content-wrapper">
@@ -105,38 +189,90 @@
           <div class="table-responsive">
           	<form name="f" action="insuranceUpdateOk.do" method="post">
           		<c:forEach items="${insuranceUpdate}" var="insuranceUpdate" varStatus="status">
+          		<c:forEach items="${identyBNo}" var="identyBNo" varStatus="status">
           			<input type="hidden" name="manager_id" value="${managerlog.manager_id}" id="manager_id"/>
 	            		<table border="0" width="100%"  cellpadding="0" cellspacing="0">
-	            			<c:set var="data" value="${insuranceUpdate.branch_no}" />
+	            			<c:set var="data" value="${identyBNo.branch_no}" />
 								<c:choose>
 								    <c:when test="${data eq 1}">
-										<tr style="color:#808080;font-size:12pt">
-											<th  height="60px" width="10%" class="text-center" style="background-color: #fafafa"><a style="color:red">*</a>지점코드</th>
-											<th  width="35%" class="text-left">
-												<input name="branch_no" type="text" size="30" value="${insuranceUpdate.branch_no}" class="form-control" style="width:250px">
-											</th>
-										</tr>							        	
-								    </c:when>
-								    <c:otherwise>
-										<tr style="color:#808080;font-size:12pt">
-											<th  height="60px" width="10%" class="text-center" style="background-color: #fafafa"><a style="color:red">*</a>지점코드</th>
-											<th  width="35%" class="text-left">
-												<input name="branch_no" type="text" size="30" value="${insuranceUpdate.branch_no}" class="form-control" style="width:250px" readonly>
-											</th>
-										</tr>
-								    </c:otherwise>
-								</c:choose>
-							<tr style="color:#808080;font-size:12pt">	
-								<th  height="60px" width="10%" class="text-center" style="background-color: #fafafa"><a style="color:red">*</a>차종상세코드</th>
-								<th  width="35%" class="text-left">
-									<select name="car_kind_no" id="car_kind_no" class="form-control" style="width:250px">
-										<option value="${insuranceUpdate.car_kind_no}" style="color:black">${insuranceUpdate.car_kind_no}</option>
-										<c:forEach items="${carKindNotSelect}" var="carKindNotSelect" varStatus="status">
-											<option value="${carKindNotSelect.car_kind_no}" style="color:black">${carKindNotSelect.car_kind_no}</option>
+								    <tr style="color:#808080;font-size:12pt">
+		    							<th  height="60px" width="10%" class="text-center" style="background-color: #fafafa"><a style="color:red">*</a>지점코드</th>
+										<th  width="35%" class="text-left">
+										<select name="branch_no" id="branch_no" class="form-control" style="width:250px" onchange="test.branch_no(this.value);">
+										<option value="${insuranceUpdate.branch_no}" style="color:black">${insuranceUpdate.branch_name}/${insuranceUpdate.branch_member_name}</option>
+										<c:forEach items="${kingbranchNotSelect}" var="kingbranchNotSelect" varStatus="status">	
+											<option value="${kingbranchNotSelect.branch_no}" style="color:black">${kingbranchNotSelect.branch_name}/${kingbranchNotSelect.branch_member_name}</option>
 										</c:forEach>
-	                       			</select>
-								</th>
-							</tr>
+										</select>
+										</th>
+										</tr>
+										
+										<tr style="color:#808080;font-size:12pt">	
+										<th  height="60px" width="10%" class="text-center" style="background-color: #fafafa"><a style="color:red">*</a>차종상세코드</th>
+										<th  width="35%" class="text-left">
+										<select name="car_kind_no" id="car_kind_no" class="form-control" style="width:250px">
+										<option value="${insuranceUpdate.car_kind_no}" style="color:black">차종상세코드</option>
+<%-- 									<c:forEach items="${carKindSelectBox}" var="carKindSelectBox" varStatus="status"> --%>
+<%-- 									<option value="${carKindSelectBox.car_kind_no}" style="color:black">${carKindSelectBox.car_kind_no}</option> --%>
+<%-- 									</c:forEach> --%>
+                       					</select>
+										</th>
+										</tr>
+									</c:when>
+									<c:otherwise>
+										<tr style="color:#808080;font-size:12pt">
+		    							<th  height="60px" width="10%" class="text-center" style="background-color: #fafafa"><a style="color:red">*</a>지점코드</th>
+										<th  width="35%" class="text-left">
+										<input name="branch_no" type="text" size="30" value="${insuranceUpdate.branch_no}" class="form-control" style="width:250px" readonly>
+<!-- 										<select name="branch_no" id="branch_no" class="form-control" style="width:250px"> -->
+<!-- 										<option value="" style="color:black">지점코드</option> -->
+<%-- 										<c:forEach items="${kingbranchNotSelect}" var="kingbranchNotSelect" varStatus="status">	 --%>
+<%-- 											<option value="${kingbranchNotSelect.branch_no}" style="color:black">${kingbranchNotSelect.branch_no}</option> --%>
+<%-- 										</c:forEach> --%>
+<!-- 										</select> -->
+										</th>
+										</tr>
+										
+										<tr style="color:#808080;font-size:12pt">	
+										<th  height="60px" width="10%" class="text-center" style="background-color: #fafafa"><a style="color:red">*</a>차종상세코드</th>
+										<th  width="35%" class="text-left">
+										<select name="car_kind_no" id="car_kind_no" class="form-control" style="width:250px">
+										<option value="${insuranceUpdate.car_kind_no}" style="color:black">${insuranceUpdate.car_name}/${insuranceUpdate.car_manufacturer}</option>
+										<c:forEach items="${carKindSelectBox}" var="carKindSelectBox" varStatus="status">
+										<option value="${carKindSelectBox.car_kind_no}" style="color:black">${carKindSelectBox.car_name}/${carKindSelectBox.car_manufacturer}</option>
+										</c:forEach>
+                       					</select>
+										</th>
+										</tr>
+    								</c:otherwise>
+								</c:choose>
+<!-- 										<tr style="color:#808080;font-size:12pt"> -->
+<!-- 											<th  height="60px" width="10%" class="text-center" style="background-color: #fafafa"><a style="color:red">*</a>지점코드</th> -->
+<!-- 											<th  width="35%" class="text-left"> -->
+<%-- 												<input name="branch_no" type="text" size="30" value="${insuranceUpdate.branch_no}" class="form-control" style="width:250px"> --%>
+<!-- 											</th> -->
+<!-- 										</tr>							        	 -->
+<%-- 								    </c:when> --%>
+<%-- 								    <c:otherwise> --%>
+<!-- 										<tr style="color:#808080;font-size:12pt"> -->
+<!-- 											<th  height="60px" width="10%" class="text-center" style="background-color: #fafafa"><a style="color:red">*</a>지점코드</th> -->
+<!-- 											<th  width="35%" class="text-left"> -->
+<%-- 												<input name="branch_no" type="text" size="30" value="${insuranceUpdate.branch_no}" class="form-control" style="width:250px" readonly> --%>
+<!-- 											</th> -->
+<!-- 										</tr> -->
+<%-- 								    </c:otherwise> --%>
+<%-- 								</c:choose> --%>
+<!-- 							<tr style="color:#808080;font-size:12pt">	 -->
+<!-- 								<th  height="60px" width="10%" class="text-center" style="background-color: #fafafa"><a style="color:red">*</a>차종상세코드</th> -->
+<!-- 								<th  width="35%" class="text-left"> -->
+<!-- 									<select name="car_kind_no" id="car_kind_no" class="form-control" style="width:250px"> -->
+<%-- 										<option value="${insuranceUpdate.car_kind_no}" style="color:black">${insuranceUpdate.car_kind_no}</option> --%>
+<%-- 										<c:forEach items="${carKindNotSelect}" var="carKindNotSelect" varStatus="status"> --%>
+<%-- 											<option value="${carKindNotSelect.car_kind_no}" style="color:black">${carKindNotSelect.car_kind_no}</option> --%>
+<%-- 										</c:forEach> --%>
+<!-- 	                       			</select> -->
+<!-- 								</th> -->
+<!-- 							</tr> -->
 							<tr style="color:#808080;font-size:12pt">	
 								<th  height="60px" width="10%" class="text-center" style="background-color: #fafafa"><a style="color:red">*</a>보험명</th>
 								<th  width="35%" class="text-left">
@@ -149,27 +285,27 @@
 								</th>
 								<th  height="60px" width="10%" class="text-center" style="background-color: #fafafa"><a style="color:red">*</a>보험료</th>
 								<th  width="35%" class="text-left">
-									<input name="insurance_price" type="text" size="30" class="form-control" style="width:250px" value="${insuranceUpdate.insurance_price}">
+									<input name="insurance_price" id="insurance_price" type="text" size="30" class="form-control" style="width:250px" value="${insuranceUpdate.insurance_price}">
 								</th>
 							</tr>	
 							<tr style="color:#808080;font-size:12pt">
 								<th  height="60px" width="10%" class="text-center" style="background-color: #fafafa"><a style="color:red">*</a>보상한도</th>
 								<th  width="35%" class="text-left">
-									<input name="insurance_limit" type="text" size="30" class="form-control" style="width:250px" value="${insuranceUpdate.insurance_limit}">
+									<input name="insurance_limit" id="insurance_limit" type="text" size="30" class="form-control" style="width:250px" value="${insuranceUpdate.insurance_limit}">
 								</th>
 								<th  height="60px" width="10%" class="text-center" style="background-color: #fafafa"><a style="color:red">*</a>자가부담</th>
 								<th  width="35%" class="text-left">
-									<input name="insurance_burden_price" type="text" size="30" class="form-control" style="width:250px" value="${insuranceUpdate.insurance_burden_price}">
+									<input name="insurance_burden_price" id="insurance_burden_price" type="text" size="30" class="form-control" style="width:250px" value="${insuranceUpdate.insurance_burden_price}">
 								</th>
 							</tr>
 							<tr style="color:#808080;font-size:12pt">
 								<th  height="60px" width="10%" class="text-center" style="background-color: #fafafa"><a style="color:red">*</a>규정나이</th>
 								<th  width="35%" class="text-left">
-									<input name="insurance_limit_age" type="text" size="30" class="form-control" style="width:250px" value="${insuranceUpdate.insurance_limit_age}">
+									<input name="insurance_limit_age" id="insurance_limit_age" type="text" size="30" class="form-control" style="width:250px" value="${insuranceUpdate.insurance_limit_age}">
 								</th>
 								<th  height="60px" width="10%" class="text-center" style="background-color: #fafafa"><a style="color:red">*</a>규정경력</th>
 								<th  width="35%" class="text-left">
-									<input name="insurance_limit_carrier" type="text" size="30" class="form-control" style="width:250px" value="${insuranceUpdate.insurance_limit_carrier}">
+									<input name="insurance_limit_carrier" id="insurance_limit_carrier" type="text" size="30" class="form-control" style="width:250px" value="${insuranceUpdate.insurance_limit_carrier}">
 								</th>
 							</tr>
 							<tr style="font-size:10pt" height="60px">
@@ -180,6 +316,7 @@
 								</td>
 							</tr>
 						</table>
+					</c:forEach>
 					</c:forEach>
 				</form>
 	        </div>

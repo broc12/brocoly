@@ -97,6 +97,7 @@
 						<th  width="35%" class="text-left">
 							<div class="custom-control custom-checkbox">
 						   		<input type="checkbox" class="custom-control-input" id="customCheck1" disabled="disabled" <c:if test="${carDetailContent.car_kind_navi eq 'Y' }">checked</c:if>>
+	
 						   		<label class="custom-control-label" for="customCheck1">네비</label>
 						  	</div>
 						  	<div class="custom-control custom-checkbox">

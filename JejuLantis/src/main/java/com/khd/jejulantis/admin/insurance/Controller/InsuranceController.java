@@ -2,6 +2,7 @@ package com.khd.jejulantis.admin.insurance.Controller;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -25,10 +26,17 @@ public class InsuranceController {
 	@RequestMapping(value="admin/insuranceList.do")
 	public ModelAndView insuranceList(@RequestParam("manager_id")String manager_id) {
 		List<Insurance> insuranceList = iservice.insuranceListService(manager_id);
+//		System.out.println("branch_no : " + insuranceList.get(0).getBranch_no());
+		List<Insurance> selectOne;
+		if(insuranceList.get(0).getBranch_no()==1) {
+			selectOne = iservice.insuranceAllListService();
+		}
+		else {
+			selectOne = iservice.insuranceListService(manager_id);
+		}
 		String view = "admin/insurances/insuranceList";
-		ModelAndView mv = new ModelAndView(view, "insuranceList", insuranceList);
+		ModelAndView mv = new ModelAndView(view, "insuranceList", selectOne);
 		return mv;
-		//return "admin/insurances/insuranceList";
 	}
 	@RequestMapping(value="admin/insuranceContent.do")
 	public ModelAndView insuranceContent(@RequestParam("insurance_no")int insurance_no) {
@@ -79,9 +87,15 @@ public class InsuranceController {
 	public ModelAndView insuranceUpdate(@RequestParam("manager_id")String manager_id, @RequestParam("insurance_no")int insurance_no) {
 		List<Insurance> insuranceUpdate = iservice.insuranceUpdateService(insurance_no);
 		List<Insurance> carKindNotSelect = iservice.carKindNotSelectBoxService(manager_id, insurance_no);
+		List<Insurance> carKindSelectBox = iservice.carKindSelectBoxService(manager_id);
+		List<Insurance> kingbranchNotSelect = iservice.kingbranchNotSelectService(manager_id);
+		List<Insurance> identyBNo= iservice.identyBNoService(manager_id);
 		String view = "admin/insurances/insuranceUpdate";
 		ModelAndView mv = new ModelAndView(view, "insuranceUpdate", insuranceUpdate);
 		mv.addObject("carKindNotSelect", carKindNotSelect);
+		mv.addObject("kingbranchNotSelect", kingbranchNotSelect);
+		mv.addObject("carKindSelectBox", carKindSelectBox);
+		mv.addObject("identyBNo", identyBNo);
 		return mv;
 		//return "admin/insurances/insuranceUpdate";
 	}

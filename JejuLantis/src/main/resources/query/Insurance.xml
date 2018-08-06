@@ -17,9 +17,22 @@
 		<result property="insurance_withdraw_at" column="INSURANCE_WITHDRAW_AT"/>
 		<result property="insurance_resist" column="INSURANCE_RESIST"/>
 		<result property="manager_id" column="MANAGER_ID"/>
+		
+		<result property="branch_name" column="BRANCH_NAME"/>
+		<result property="branch_member_name" column="BRANCH_MEMBER_NAME"/>
+
+		<result property="car_kind_price_week" column="CAR_KIND_PRICE_WEEK"/>
+		<result property="car_kind_price_weekend" column="CAR_KIND_PRICE_WEEKEND"/>
+		<result property="car_kind_price_holiday" column="CAR_KIND_PRICE_HOLIDAY"/>
+		<result property="car_kind_price_h_holiday" column="CAR_KIND_PRICE_H_HOLIDAY"/>
+		<result property="car_kind_rating" column="CAR_KIND_RATING"/>
+		<result property="car_kind_resist" column="CAR_KIND_RESIST"/>
+		
+		<result column="car_name" property="CAR_NAME"/>
+		<result column="car_manufacturer" property="CAR_MANUFACTURER"/>
 	</resultMap>				
 	<select id="branchNoSelect" resultType="Insurance" parameterType="String">
-		select BRANCH_NO from BRANCH where BRANCH_NO=(select BRANCH_NO from MANAGER where MANAGER_ID=#{manager_id})
+		select BRANCH_NO, BRANCH_NAME, BRANCH_MEMBER_NAME from BRANCH where BRANCH_NO=(select BRANCH_NO from MANAGER where MANAGER_ID=#{manager_id})
 	</select>
 	<select id="carKindSelectBox" resultType="Insurance" parameterType="String">
 		select CAR_KIND.*, CAR.* from CAR_KIND, CAR 
@@ -30,9 +43,17 @@
 		where CAR_KIND.CAR_NO=CAR.CAR_NO and BRANCH_NO=(select BRANCH_NO from MANAGER where MANAGER_ID=#{manager_id}) 
 		and CAR_KIND_NO!=(select CAR_KIND_NO from INSURANCE where INSURANCE_NO =#{insurance_no})
 	</select>
+	<select id="branchNo" resultType="Insurance" parameterType="String">
+		select BRANCH_NO from INSURANCE 
+		where INSURANCE_WITHDRAW_AT='N' and BRANCH_NO=(select BRANCH_NO from MANAGER where MANAGER_ID=#{manager_id})
+	</select>
 	<select id="insuranceList" resultType="Insurance" parameterType="String">
 		select * from INSURANCE 
 		where INSURANCE_WITHDRAW_AT='N' and BRANCH_NO=(select BRANCH_NO from MANAGER where MANAGER_ID=#{manager_id})
+	</select>
+	<select id="insuranceAllList" resultType="Insurance">
+		select * from INSURANCE 
+		where INSURANCE_WITHDRAW_AT='N'
 	</select>
 <!-- 	<select id="insuranceCarNo" resultType="Insurance" parameterType="String"> -->
 <!-- 		select CAR.CAR_NO -->
@@ -54,7 +75,8 @@
 		#{insurance_limit_age}, #{insurance_limit_carrier}, 'N', SYSDATE)
 	</insert>
 	<select id="insuranceUpdate" parameterType="int" resultType="Insurance">
-		select * from INSURANCE where INSURANCE_NO=#{insurance_no}
+		select BRANCH.*, INSURANCE.*, CAR.*, CAR_KIND.* from BRANCH, INSURANCE, CAR, CAR_KIND where INSURANCE.INSURANCE_NO=#{insurance_no}
+		and INSURANCE.CAR_KIND_NO = CAR_KIND.CAR_KIND_NO and CAR_KIND.CAR_NO = CAR.CAR_NO and BRANCH.BRANCH_NO = INSURANCE.BRANCH_NO
 	</select>
 	<update id="insuranceUpdateOk" parameterType="Insurance">
 		update INSURANCE
@@ -73,20 +95,25 @@
 		update INSURANCE set INSURANCE_WITHDRAW_AT='Y' where INSURANCE_NO=#{insurance_no}
 	</update>
 	<select id="kingBranchNotSelect" parameterType="String" resultType="Insurance">
-		select BRANCH_NO 
+		select *
 		from BRANCH 
 		where BRANCH_WITHDRAW_AT='N' 
 		and BRANCH_NO!=(select BRANCH_NO from MANAGER where MANAGER_ID=#{manager_id})
 	</select>
 	<select id="kingBranchNot_Select" parameterType="int" resultType="Insurance">
-		select BRANCH_NO 
+		select *
 		from BRANCH 
 		where BRANCH_WITHDRAW_AT='N' 
 		and BRANCH_NO!=#{branch_no}
 	</select>
 	<select id="kingBranchCarKindSelect" parameterType="String" resultType="Insurance">
-		select CAR_KIND_NO 
-		from CAR_KIND
-		where BRANCH_NO=#{branch_no}
+		select CAR_KIND.*, CAR.*
+		from CAR_KIND , CAR
+		where 
+		BRANCH_NO=#{branch_no}
+		and CAR_KIND.CAR_NO = CAR.CAR_NO
+	</select>
+	<select id="identyBNo" parameterType="String" resultType="Insurance">
+		select BRANCH_NO from MANAGER where MANAGER_ID=#{manager_id}
 	</select>
 </mapper>

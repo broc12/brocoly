@@ -33,7 +33,7 @@
     <script src="../resources/admin/js/sb-admin-datatables.min.js"></script>
     <script src="../resources/ck/ckeditor/ckeditor.js"></script>
     <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
-	<!-- <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f0cfd90b11f1fceed206c4f201756973&libraries=services"></script> -->
+	<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f0cfd90b11f1fceed206c4f201756973&libraries=services"></script>
 </head>
 
 <body class="fixed-nav sticky-footer bg-dark" id="page-top">
@@ -148,7 +148,7 @@
                       	var lon = ""+result.x;
                       	document.getElementById("branch_lati").value = lan;
                       	document.getElementById("branch_long").value = lon;
-        				//alert(lan);
+        				alert(lan);
                     }
                 });
             }

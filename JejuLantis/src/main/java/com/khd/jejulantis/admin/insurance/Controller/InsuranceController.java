@@ -25,10 +25,11 @@ public class InsuranceController {
 	private InsuranceService iservice;
 	@RequestMapping(value="admin/insuranceList.do")
 	public ModelAndView insuranceList(@RequestParam("manager_id")String manager_id) {
-		List<Insurance> insuranceList = iservice.insuranceListService(manager_id);
+//		List<Insurance> insuranceList = iservice.insuranceListService(manager_id);
 //		System.out.println("branch_no : " + insuranceList.get(0).getBranch_no());
+		List<Insurance> identyBNo= iservice.identyBNoService(manager_id);
 		List<Insurance> selectOne;
-		if(insuranceList.get(0).getBranch_no()==1) {
+		if(identyBNo.get(0).getBranch_no()==1) {
 			selectOne = iservice.insuranceAllListService();
 		}
 		else {

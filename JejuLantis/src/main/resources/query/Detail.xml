@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace = "query.detail">
+
+<resultMap type="Detail" id="couponResult">
+	<result column="MEMBER_NO" property="member_no"/>
+	<result column="DETAIL_NO" property="detail_no"/>
+	<result column="COUPON_NO" property="coupon_no"/>
+	<result column="DETAIL_START" property="detail_start"/>
+	<result column="DETAIL_END" property="detail_end"/>
+	<result column="DETAIL_RESIST" property="detail_resist"/>
+	<result column="DETAIL_USE" property="detail_use"/>
+	
+	
+</resultMap>
+<!-- 신규가입쿠폰 -->
+	<insert id="myDetail" parameterType="Detail">
+		insert into COUPON_DETAIL values(#{member_no},DETAIL_seq.NEXTVAL,10,SYSDATE,SYSDATE+30,
+		SYSDATE,'N')
+	</insert>
+	
+	<select id="myCouponlist" parameterType="String" resultType="Detail">
+	select D.*, C.coupon_name,C.coupon_discount,C.coupon_way from coupon_detail D, coupon C 
+	where d.coupon_no=c.coupon_no and member_no=(select member_no from member where member_id=#{member_id})
+	</select>
+	
+</mapper>

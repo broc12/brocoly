@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,7 +14,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.khd.jejulantis.client.coupon.Service.DetailService;
 import com.khd.jejulantis.client.rentcar.Service.RentcarService;
+import com.khd.jejulantis.model.Detail;
+import com.khd.jejulantis.model.Member;
 import com.khd.jejulantis.model.Rcar;
 import com.khd.jejulantis.model.SearchRequirements;
 import com.khd.jejulantis.model.SelectRentcar;
@@ -23,6 +27,8 @@ public class RentcarController {
 	
 	@Autowired
 	RentcarService rentcarservice;
+	@Autowired
+	DetailService detailservice;
 	
 	@RequestMapping(value="car.do",method=RequestMethod.GET)
 	public ModelAndView car(HttpServletRequest request,@RequestParam(value="sort",required=false) String sort) {
@@ -47,8 +53,14 @@ public class RentcarController {
 	}
 	
 	@RequestMapping(value="rentcar.do",method=RequestMethod.GET)
-	public String rentcar() {
-		return "redirect:/car.do";
+	public ModelAndView rentcar(HttpSession session) {
+		Member log = (Member)session.getAttribute("log");
+		List<Detail>list = detailservice.listService(log.getMember_id());
+		String view = "rentcar/rentcars/input";
+		ModelAndView mv = new ModelAndView(view,"list",list);
+		/*rentcarservice.inputrentcarService(requirements);*/
+		return mv;
+		/*return "rentcar/rentcars/input";*/
 	}
 	
 	@RequestMapping(value="rentcar.do",method=RequestMethod.POST)
@@ -76,10 +88,12 @@ public class RentcarController {
 		return currentDate;
 	}
 
-	@RequestMapping(value="input.do",method=RequestMethod.POST)
-	public String input(SearchRequirements requirements) {
-		
+	/*@RequestMapping(value="input.do",method=RequestMethod.POST)
+	public ModelAndView input(SearchRequirements requirements) {
+		List<Detail>list = detailservice.listService();
+		String view = "rentcar/rentcars/input";
+		ModelAndView mv = new ModelAndView(view,"list",list);
 		rentcarservice.inputrentcarService(requirements);
-		return "rentcar/rentcars/input";
-	}
+		return mv;
+	}*/
 }

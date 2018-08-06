@@ -45,43 +45,44 @@
       <!-- Example DataTables Card-->
       <div class="card mb-3">
         <div class="card-header">
-          <i class="fa fa-table"></i>쿠폰사용내역</div>
+          <i class="fa fa-table"></i>쿠폰목록</div>
         <div class="card-body">
           <div class="table-responsive">
+          <button type="button" class="btn btn-primary btn-xs" align="right" onclick="COpen()"><span>쿠폰발급</span></button></br></br>
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
               <thead>
                 <tr>
-                  <th>쿠폰번호</th>
+                  <th>쿠폰일련번호</th>
                   <th>쿠폰명</th>
-                  <th>사용자ID</th>
-                  <th>할인율</th>
-                  <th>쿠폰발급날짜</th>
+                  <th>할인방식</th>
+                  <th>할인액</th>
                   <th>쿠폰시작날짜</th>
                   <th>쿠폰종료날짜</th>
-                  <th>사용여부</th>
+                  <th>쿠폰발급날짜</th>
+                  <th>비고</th>
                 </tr>
               </thead>
               <tbody>
+               <c:if test="${empty list}">
+					<tr>
+			           <td align="center" colspan="7">데이터가 없음</td>
+			        </tr>
+				</c:if>
+				 <c:forEach items="${list}" var="list">
                 <tr>
-                  <td>Tiger Nixon</td>
-                  <td>System Architect</td>
-                  <td>Edinburgh</td>
-                  <td>61</td>
-                  <td>2011/04/25</td>
-                  <td>2011/04/25</td>
-                  <td>2011/04/25</td>
-                  <td><a style="color:green">사용완료</a></td>
+                  <td>${list.coupon_no}</td>
+                  <td>${list.coupon_name}</td>
+                  <td>${list.coupon_way}</td>
+                  <td>${list.coupon_discount}</td>
+                  <td>${list.coupon_start}</td>
+                  <td>${list.coupon_end}</td>
+                  <td>${list.coupon_resist}</td>
+                  <td>
+                  <input type="button" value="수정">
+                  <input type="button" value="삭제">
+                  </td>
                 </tr>
-                <tr>
-                  <td>Tiger Nixon</td>
-                  <td>System Architect</td>
-                  <td>Edinburgh</td>
-                  <td>61</td>
-                  <td>2011/04/25</td>
-                  <td>2011/04/25</td>
-                  <td>2011/04/25</td>
-                  <td><a style="color:blue">사용대기</a></td>
-                </tr>
+                </c:forEach>
               </tbody>
             </table>
           </div>

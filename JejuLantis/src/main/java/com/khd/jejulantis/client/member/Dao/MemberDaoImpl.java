@@ -28,6 +28,7 @@ public class MemberDaoImpl implements MemberDao {
 //		
 		
 		int insert = sql.insert(ns+".memberjoin", member);
+		int insert2 = sql.insert("query.detail.myDetail",member);
 		return false;	
 	}
 

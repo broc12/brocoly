@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace = "query.coupon">
+
+<resultMap type="Coupon" id="couponResult">
+	<result column="COUPON_NO" property="coupon_no"/>
+	<result column="COUPON_NAME" property="coupon_name"/>
+	<result column="COUPON_WAY" property="coupon_way"/>
+	<result column="COUPON_DISCOUNT" property="coupon_discount"/>
+	<result column="COUPON_START" property="coupon_start"/>
+	<result column="COUPON_END" property="coupon_end"/>
+	<result column="COUPON_RESIST" property="coupon_resist"/>
+	
+	
+</resultMap>
+
+<!-- 	select -->
+	<select id="myCoupon" resultType="Coupon">
+		SELECT * from COUPON
+	</select>
+	
+	<insert id="myCouponInsert" parameterType="Coupon">
+		insert into COUPON values(COUPON_seq.NEXTVAL,#{coupon_name},#{coupon_way},#{coupon_discount},
+		#{coupon_start},#{coupon_end},SYSDATE)
+	</insert>
+	
+</mapper>

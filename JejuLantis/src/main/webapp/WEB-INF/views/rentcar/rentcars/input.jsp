@@ -89,6 +89,46 @@
 	<%@ include file="../top/top.jspf" %>
 	
 	<script type="text/javascript">
+	
+	$(document).ready(function(){
+	
+		jQuery("input[name='coupon']").change(function(){
+			
+			if($(this).val() == 'N'){
+				jQuery("#promotion").hide();
+				jQuery("#coupon").hide();
+			}	
+			if($(this).val() == 'C'){
+				jQuery("#promotion").hide();
+				jQuery("#coupon").show();
+			}
+			if($(this).val() == 'P'){
+				jQuery("#promotion").show();
+				jQuery("#coupon").hide();
+			}
+			
+		});
+		
+		jQuery("input[name='card']").change(function(){
+			if($(this).val() == 'N'){	
+				$("#Div").find("input,select,button,textarea").prop("disabled",true);
+				jQuery("#pay").hide();
+			}
+			if($(this).val() == 'Y'){	
+				$("#Div").find("input,select,button,textarea").prop("disabled",false);
+				jQuery("#pay").show();
+			}
+		});
+		jQuery("input[name='dnum']").change(function(){
+			
+		});
+		jQuery("input[name='Check']").change(function(){
+			
+		});
+	
+	});
+	
+	
 	function check(){
 		IMP.init('imp60101607');
 		
@@ -117,7 +157,8 @@
 		    }
 		    alert(msg);
 		});
-		}
+	}
+	
 	</script>
 	<div class="colorlib-loader"></div>
 
@@ -262,12 +303,12 @@
 																<p><div class="row form-group">
 																<label>면허 종류</label>
 																	<div style="width:100%;height:50px;background-color:white">
-																		&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" style="margin-top:20px">
-																		<label class="form-check-label" for="exampleCheck1">
+																		&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" style="margin-top:20px" id="one" name="dnum" value="Y">
+																		<label class="form-check-label" for="one">
 																			<h4 style="font-size:10pt">1종보통</h4>
 																		</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-																		&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox">
-																		<label class="form-check-label" for="exampleCheck1">
+																		&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" id="two" name="dnum" value="N">
+																		<label class="form-check-label" for="two">
 																			<h4 style="font-size:10pt">2종보통</h4>
 																		</label>
 																	</div>
@@ -287,13 +328,11 @@
 									<span><span style="color:red">*</span>잘못된 정보 또는 수신이 불가한 정보 입력으로 연락이 불가능할 경우 발생되는 불이익에 대해 당사는 책임지지 않으니 유의해 주시기 바랍니다.</span></br>
 									<span><span style="color:red">*</span>운전자 추가 등록은 차량 대여 시 현장에서 신청 가능합니다.</span></br>
 							</div></br></br></br>
-							
 							<div id="colorlib-reservation">
 				<div class="row">
 					<div class="search-wrap">
 						<div class="container">
 							<ul class="nav nav-tabs">
-								
 								<li><a data-toggle="tab" href="#hotel">대여규정</a></li>
 								<li><a data-toggle="tab" href="#car">보험규정</a></li>
 								<li><a data-toggle="tab" href="#cruises">취소/환불규정</a></li>
@@ -346,12 +385,12 @@
 										<div class="col-md-12">
 											<p><div class="row form-group">
 												<div style="width:100%;height:50px;background-color:white">
-													&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox">
-													<label class="form-check-label" for="exampleCheck1">
+													&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" id="card1" name="card" value="Y">
+													<label class="form-check-label" for="card1">
 														<h4 style="font-size:10pt">정기결제 (신용카드 등록 후 결제)</h4>
 													</label></br>
-													&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox">
-													<label class="form-check-label" for="exampleCheck1">
+													&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" id="card2" name="card" value="N">
+													<label class="form-check-label" for="card2">
 														<h4 style="font-size:10pt">신용카드/체크카드</h4>
 													</label>
 												</div>
@@ -370,30 +409,48 @@
 										<div class="col-md-12">
 											<p><div class="row form-group">
 												<div style="width:100%;height:10px;background-color:white;">
-													&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox">
+													&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" id="exampleCheck1" name="coupon" value="N">
 													<label class="form-check-label" for="exampleCheck1">
 														<h4 style="font-size:10pt">미선택</h4>
 													</label>
-													&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox">
-													<label class="form-check-label" for="exampleCheck1">
+													&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" id="exampleCheck2" name="coupon" value="C">
+													<label class="form-check-label" for="exampleCheck2">
 														<h4 style="font-size:10pt">쿠폰함에서 선택</h4>
 													</label>
-													&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox">
-													<label class="form-check-label" for="exampleCheck1">
+													&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" id="exampleCheck3" name="coupon" value="P">
+													<label class="form-check-label" for="exampleCheck3">
 														<h4 style="font-size:10pt">프로모션 코드</h4>
 													</label>
 												</div>
 												</div></p>
 										</div>
 									</td>
-								</tr>	
+								</tr>
+								<tr>
+									<th>　</th>
+								</tr>
+								<tr>			
+									<th height="50px">
+									<c:forEach items="${list}" var="list">
+									<div id="coupon" style="display:none">
+									<input type="text" style="width:100%" placeholder="쿠폰클릭" id="de" name="de">
+									${list.coupon_no}
+									</div>
+									</c:forEach>
+									<div id="promotion" style="display:none">
+									<input type="text" style="width:80%" placeholder="　코드 입력">
+									<input type="button" value="확인" style="background-color: #2d2f3f;color:white;height:50px;width:77px" border="0">
+									</div>
+									</th>
+								</tr>
+								
 							</table>
 						</div>
 					</div>
 				</div>
 			</div>
 
-			<div class="col-md-6 col-sm-6 animate-box">
+			<div class="col-md-6 col-sm-6 animate-box" id="Div" name="Div">
 				<div class="hotel-entry">
 					<div class="desc">
 						<div id="board">
@@ -416,12 +473,12 @@
 												</div>
 												</div></p>
 											<p style="margin-top:50px"><div class="row form-group">
-												<div style="width:100%;height:10px;background-color:white;">
+												<div style="width:100%;height:10px;background-color:white;" >
 													&nbsp;&nbsp;&nbsp;&nbsp;<label class="form-check-label" for="exampleCheck1">
 														<h4 style="font-size:10pt">유효기간</h4>
 													</label>
-													&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" size="7" style="height:40px;">
-													월&nbsp;<input type="text" size="7" style="height:40px;">&nbsp;일
+													&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" size="7" style="height:40px;" placeholder="MM">
+													월&nbsp;<input type="text" size="7" style="height:40px;" placeholder="YY">&nbsp;년
 												</div>
 												</div></p>
 											<p style="margin-top:50px"><div class="row form-group">
@@ -438,12 +495,12 @@
 													&nbsp;&nbsp;&nbsp;&nbsp;<label class="form-check-label" for="exampleCheck1">
 														<h4 style="font-size:10pt">카드구분</h4>
 													</label>
-													&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox">
-													<label class="form-check-label" for="exampleCheck1">
+													&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" id="Check1" name="Check">
+													<label class="form-check-label" for="Check1">
 														<h4 style="font-size:10pt">개인</h4>
 													</label>
-													&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox">
-													<label class="form-check-label" for="exampleCheck1">
+													&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" id="Check2" name="Check">
+													<label class="form-check-label" for="Check2">
 														<h4 style="font-size:10pt">법인</h4>
 													</label>
 												</div>
@@ -473,10 +530,12 @@
 			<label class="form-check-label" for="exampleCheck1">
 				<h4 style="font-size:14pt">개인정보 수집·이용 및 제3자 정보 제공에 모두 동의합니다.</h4>
 			</label></br>
+		<div id="pay" name="pay">
 		<input type="checkbox">
 			<label class="form-check-label" for="exampleCheck1">
 				<h4 style="font-size:14pt">결제진행약관에 모두 동의합니다.　　　　　　　　　　　</h4>
 			</label></br></br>
+		</div>
 		<!-- <input type="button" value="결제하기" class="btn btn-primary"> -->
 		<button type="button" class="btn btn-primary"><a style="color:white" onclick="check()">결제하기</a></button>
 		</div>

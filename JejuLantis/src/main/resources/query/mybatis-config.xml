@@ -24,6 +24,8 @@
 		<typeAlias alias="CarInfoInsert" type="com.khd.jejulantis.model.CarInfoInsert"/>
 		<typeAlias alias="CarInfoSelect" type="com.khd.jejulantis.model.CarInfoSelect"/>
 		<typeAlias alias="SelectRentcar" type="com.khd.jejulantis.model.SelectRentcar"/>
+		<typeAlias alias="Coupon" type="com.khd.jejulantis.model.Coupon"/>
+		<typeAlias alias="Detail" type="com.khd.jejulantis.model.Detail"/>
 	</typeAliases>
 	<mappers>
 		<mapper resource="query/CustomerCenter.xml"/>
@@ -43,6 +45,8 @@
 		<mapper resource="query/carInfo.xml"/>
 		<mapper resource="query/ManagerPower.xml"/>
 		<mapper resource="query/Insurance.xml"/>
+		<mapper resource="query/Coupon.xml"/>
+		<mapper resource="query/Detail.xml"/>
 	</mappers>
 	
 	

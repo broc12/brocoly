@@ -34,12 +34,12 @@
         <li class="breadcrumb-item">
           <a href="#">JEJULANTIS</a>
         </li>
-        <li class="breadcrumb-item active">업체관리</li>
+        <li class="breadcrumb-item active">차량관리</li>
       </ol>
       <!-- Example DataTables Card-->
       <div class="card mb-3">
         <div class="card-header">
-          <i class="fa fa-table"></i>업체목록</div>
+          <i class="fa fa-table"></i>차량목록</div>
         <div class="card-body">
         <button type="button" class="btn btn-primary btn-xs" align="right"><a href="carInfoAdd.do?manager_id=${manager_id}" style="color:white">차량등록</a></button></br></br>
           <div class="table-responsive">

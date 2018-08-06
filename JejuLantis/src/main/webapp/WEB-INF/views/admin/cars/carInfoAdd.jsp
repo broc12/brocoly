@@ -155,12 +155,12 @@ function del(no){
         <li class="breadcrumb-item">
           <a href="#">JEJULANTIS</a>
         </li>
-        <li class="breadcrumb-item active">차종관리</li>
+        <li class="breadcrumb-item active">차량관리</li>
       </ol>
       <!-- Example DataTables Card-->
       <div class="card mb-3">
         <div class="card-header">
-          <i class="fa fa-table"></i>차종관리</div>
+          <i class="fa fa-table"></i>차량관리</div>
         <div class="card-body">
           <div class="table-responsive">
           <form name=form1 id=form1 method='post' action='carInfoInsert.do' >		

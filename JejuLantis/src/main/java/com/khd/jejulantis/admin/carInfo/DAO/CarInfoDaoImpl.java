@@ -19,33 +19,16 @@ public class CarInfoDaoImpl implements CarInfoDao {
 	private SqlSessionTemplate sqlSession;
 	private String ns = "query.carInfo";
 
-	/*@Override
-	public List<CustomerCenter> list(HashMap map) {
-		List<CustomerCenter> list = sqlSession.selectList(ns+".mySelectAll",map);
-		return list;
-	}*/
-	/*@Override
-	public boolean carInsert(List<CarInfo> car) {
-		Map< String, List<CarInfo> > carMap = new HashMap<String, List<CarInfo>>();
-		carMap.put("car", car);
-		System.out.println("size : "+car.size());
-		int i = sqlSession.insert(ns+".myInsert", carMap);
-		System.out.println("I size " +i );
-		boolean flag;
-		if(i>0) flag = true;
-		else flag = false;
-		return flag;
-	}*/
 	@Override
 	public boolean carInfoInsert(List<CarInfo> carInfoList) {
-		Map< String, List<CarInfo> > carMap = new HashMap<String, List<CarInfo>>();
+		/*Map< String, List<CarInfo> > carMap = new HashMap<String, List<CarInfo>>();
 		carMap.put("car", carInfoList);
-		for(int i = 0;i<carInfoList.size();i++) {
-			System.out.println("b:"+carInfoList.get(i).getBranch_no()+" C:"+carInfoList.get(i).getCar_no()+" K:"+carInfoList.get(i).getCar_kind_no()+" bn:"+carInfoList.get(i).getCar_info_back_no());
-			}
-		System.out.println("size : "+carInfoList.size());
-		int i = sqlSession.insert(ns+".mycarInfoListInsert", carMap);
-		System.out.println("I size " +i );
+		int i = sqlSession.insert(ns+".mycarInfoListInsert", carMap);*/
+		int i = 0;
+		for(int j=0;j<carInfoList.size();j++) {
+			i = sqlSession.insert(ns+".mycarInfoListInsert", carInfoList.get(j));
+			sqlSession.update(ns+".myTotalCountByInsert", carInfoList.get(j).getCar_kind_no());
+		}
 		boolean flag;
 		if(i>0) flag = true;
 		else flag = false;
@@ -54,18 +37,22 @@ public class CarInfoDaoImpl implements CarInfoDao {
 	@Override
 	public boolean del(String car_info_no) {
 		int i = sqlSession.delete(ns+".myDel", car_info_no);
-		System.out.println("I size " +i );
 		boolean flag;
-		if(i>0) flag = true;
+		if(i>0) {
+			flag = true;
+			sqlSession.update(ns+".myTotalCount", car_info_no);
+		}
 		else flag = false;
 		return flag;
 	}
 	@Override
 	public boolean carInfoUpdate(CarInfo carInfo) {
 		int i = sqlSession.update(ns+".myUpdate", carInfo);
-		System.out.println("I size " +i );
 		boolean flag;
-		if(i>0) flag = true;
+		if(i>0) {
+			flag =  true;
+			sqlSession.update(ns+".myTotalCount", carInfo.getCar_info_no());
+		}
 		else flag = false;
 		return flag;
 	}

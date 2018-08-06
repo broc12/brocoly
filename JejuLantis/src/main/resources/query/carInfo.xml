@@ -29,39 +29,8 @@
 		select * from car_info where car_info_no = #{car_info_no}
 	</select>
 
-
 	
-    
-	<insert id="myInsert" parameterType="lIST">
-        insert into CAR_INFO(
-            car_info_no,
-            car_no,
-            insurance_no,
-            car_kind_no,
-            branch_no,
-            car_info_rent_at,
-            car_info_state,
-            car_info_withdraw_at,
-            car_info_back_no,
-            car_info_resist
-            )
-	 VALUES
-	 	<foreach collection="car" item="item" separator=",">
-           (
-           CAR_INFO_NO_SEQ.NEXTVAL,
-           1111,
-           2222,
-           3333,
-           4444,
-           'Y',
-           '신차',
-           'N',
-           #{item.car_info_back_no},
-           SYSDATE
-           )
-        </foreach>
-	 </insert>
-	<insert id="mycarInfoListInsert" parameterType="lIST">
+	<!-- <insert id="mycarInfoListInsert" parameterType="lIST">
 		<foreach collection="car" item="item" index="index"  open="INSERT ALL " separator=" " close="SELECT * FROM DUAL" >
 			into CAR_INFO
          (
@@ -89,10 +58,33 @@
            )
         </foreach>
 	
-	 </insert>
-
-
-	 
+	 </insert> -->
+	 <insert id="mycarInfoListInsert" parameterType="CarInfo">
+	 insert into CAR_INFO
+         (
+            car_info_no,
+            branch_no,
+            car_no,
+            car_kind_no,
+            car_info_rent_at,
+            car_info_state,
+            car_info_withdraw_at,
+            car_info_back_no,
+            car_info_resist
+            )
+	 VALUES 
+           (
+           CAR_INFO_SEQ.NEXTVAL,
+           #{branch_no},
+           #{car_no},
+           #{car_kind_no},
+           'Y',
+           '신차',
+           'N',
+           #{car_info_back_no},
+           SYSDATE
+           )
+           </insert>
 
 <insert id="myExcelInsert" parameterType="java.util.List">
         insert into CAR_INFO(
@@ -123,12 +115,24 @@
 <select id="mySelectAll" parameterType="String" resultType="CarInfoSelect">
 select B.branch_name, C.car_name, C.CAR_FUEL, K.CAR_INFO_RENT_AT, K.CAR_INFO_STATE, K.CAR_INFO_BACK_NO, K.CAR_INFO_NO FROM 
 CAR C, CAR_INFO K, BRANCH B WHERE C.CAR_NO = K.CAR_NO AND B.BRANCH_NO = (select BRANCH_NO FROM MANAGER WHERE MANAGER_ID=#{manager_id})
+ AND K.CAR_INFO_WITHDRAW_AT = 'N'
 </select>
 <delete id="myDel">
- delete from car_info where car_info_no=#{car_info_no}
+ update CAR_INFO SET CAR_INFO_WITHDRAW_AT='Y' WHERE car_info_no=#{car_info_no}
 </delete>
 <update id="myUpdate">
 update CAR_INFO SET CAR_INFO_STATE=#{car_info_state}, CAR_INFO_RENT_AT=#{car_info_rent_at} WHERE CAR_INFO_NO=#{car_info_no}
+</update>
+<update id="myTotalCountByInsert">
+update car_kind SET car_kind_total = (car_kind_total+1) WHERE CAR_KIND_NO = #{CAR_KIND_NO}
+</update>
+<update id="myTotalCount">
+update car_kind k set car_kind_total = 
+(select count(C.CAR_INFO_NO) from car_info C where C.car_kind_no = (select CAR_KIND_NO from car_info C where car_info_no=#{car_info_no})
+	 AND car_info_rent_at='Y' AND CAR_INFO_WITHDRAW_AT = 'N')
+	 WHERE K.CAR_KIND_NO=(select CAR_KIND_NO from car_info C where car_info_no=#{car_info_no})
+
+	 
 </update>
 
 

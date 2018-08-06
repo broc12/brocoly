@@ -96,24 +96,35 @@
                 alert("수수료율을 채워주세요");
                 f.branch_comfee.focus();
                 return;
+            }else{
+            	 for (i = 0; i < document.f.branch_comfee.value.length; i++) {
+            		 ch = document.f.branch_comfee.value.charAt(i)
+            		 if (!(ch >= '0' && ch <= '9')) {
+    	                alert("숫자만 입력해주세요");
+    	                f.insurance_limit_age.focus();
+    	                return;
+    	            }
+            	 }
              }
             var isChecked = "";
-      	  
         	if($("input:checkbox[id='topYn']").is(":checked")){	// 쳬크 되어있으면
         		isChecked = "Y"
         	} else {
         		isChecked = "N"
         	}
-        	
         	jQuery("#branch_today").val(isChecked);
+//         	if(f.branch_rule.value ==""){
+//                 alert("일반규정을 채워주세요");
+//                 f.branch_rule.focus();
+//                 return;
+//              }
             document.f.submit();
          }    
     </script>
-    
     <script>
     var mapContainer = document.getElementById('map')//, // 지도를 표시할 div
     var geocoder = new daum.maps.services.Geocoder();
-    function DaumPostcode() {
+    function DaumPostcode() {	
         new daum.Postcode({
             oncomplete: function(data) {
                 // 각 주소의 노출 규칙에 따라 주소를 조합한다.
@@ -148,13 +159,38 @@
                       	var lon = ""+result.x;
                       	document.getElementById("branch_lati").value = lan;
                       	document.getElementById("branch_long").value = lon;
-        				alert(lan);
+        				//alert(lan);
                     }
                 });
             }
         }).open();
+        f.address_detail.focus();
     }
-</script>
+	</script>
+	<script src="../resources/admin/vendor/jquery-easing/jquery.easing.min.js"></script>	
+	<script type="text/javascript" >
+	$(document).ready(
+		function(){
+// 			$("#numberOnly").on("focus", function() {
+// 		    var x = $(this).val();
+// 		    x = removeCommas(x);
+// 		    $(this).val(x);
+// 		})
+// 		.on("focusout", function() {
+// 		    var x = $(this).val();
+// 		    if(x && x.length > 0) {
+// 		        if(!$.isNumeric(x)) {
+// 		            x = x.replace(/[^0-9]/g,"");
+// 		        }
+// 		        x = addCommas(x);
+// 		        $(this).val(x);
+// 		    }
+// 		})
+			$("#branch_comfee").on("keyup", function() {
+			    $(this).val($(this).val().replace(/[^0-9]/g,""));
+			});
+		});
+	</script>
   <div class="content-wrapper">
     <div class="container-fluid">
       <!-- Breadcrumbs-->
@@ -196,8 +232,14 @@
 				<tr style="color:#808080;font-size:12pt">			
 					<th  height="60px" width="10%" class="text-center" style="background-color: #fafafa">업체주소<a style="color:red">*</a></th>
 					<th  width="35%" class="text-left" colspan="3">
-						<input name="branch_local"type="text" size="30" placeholder="" id="address">
+						<input name="branch_local"type="text" size="30" placeholder="" id="address" readonly>
+						
+						
 						<input type="button" onclick="DaumPostcode()" value="주소 검색">
+						<p></p>
+						<p><input name="branch_local_detail" type="text" size="30" placeholder="" id="address_detail"></p>
+
+						
 					</th> 
 				</tr>
 				<tr style="color:#808080;font-size:12pt">			
@@ -267,11 +309,11 @@
 					</th>
 					<th  height="60px" width="10%" class="text-center" style="background-color: #fafafa">수수료율<a style="color:red">*</a></th>
 					<th  width="35%" class="text-left">
-						<input name="branch_comfee"type="text" size="30" placeholder="">
+						<input name="branch_comfee" id="branch_comfee" type="text" size="30" placeholder="">
 					</th>
 				</tr>
 				<tr style="color:#808080;font-size:12pt">			
-					<th  height="60px" width="10%" class="text-center" style="background-color: #fafafa">일반규정</th>
+					<th  height="60px" width="10%" class="text-center" style="background-color: #fafafa">일반규정<a style="color:red">*</a></th>
 					<th  width="35%" class="text-left" colspan="3">
 						<textarea class="ckeditor" rows="8" cols="110" name="branch_rule" id="branch_rule"></textarea>
 					</th>

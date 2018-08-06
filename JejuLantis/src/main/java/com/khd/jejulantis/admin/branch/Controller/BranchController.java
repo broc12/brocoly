@@ -27,8 +27,16 @@ public class BranchController {
 	}
 	
 	@RequestMapping(value="admin/branchadd.do",method=RequestMethod.POST)
-	public String insert(Branch branch) {
-		service.insertService(branch);
+	public String insert(Branch branch, @RequestParam("branch_local_detail")String branch_local_detail) {
+		//System.out.println("Before branch_local : " + branch.getBranch_local());
+		//System.out.println("branch_local_detail : " + branch_local_detail);
+		if(branch_local_detail != null) {
+			branch.setBranch_local(branch.getBranch_local()+" "+branch_local_detail);
+			service.insertService(branch);
+		}else {
+			service.insertService(branch);
+		}
+		//System.out.println("After branch_local : " + branch.getBranch_local());
 		return "redirect:enter.do";
 	}
 	@RequestMapping(value="admin/branchSubject.do",method=RequestMethod.GET)

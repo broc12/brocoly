@@ -68,6 +68,7 @@ function replysubmit(){
 								<input type="hidden" name ="qna_group" value="${qna.qna_group}"/>
 								<input type="hidden" name ="qna_name" value="${qna.qna_name}"/>
 								<input type="hidden" name ="qna_pwd" value="${qna.qna_pwd}"/>
+								<input type="hidden" name ="manager_no" value="${managerlog.manager_no}"/>
 							<a href="#" onclick="replysubmit()" style="color:white" class="btn btn-primary">등록</a> 
 							<!-- <button class="btn btn-primary" style="border-radius: 0px"> -->
 							<a href="del.do?qna_no=${qna.qna_no}"  class="btn btn-primary" style="color:white">삭제</a>

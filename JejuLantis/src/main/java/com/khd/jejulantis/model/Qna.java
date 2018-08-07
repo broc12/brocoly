@@ -15,13 +15,16 @@ public class Qna {
 	private int qna_secret;
 	private int qna_answer_check;
 	private Date qna_resist;
-	private String qna_resist_id;
+	private String qna_resist_id;	
+	private long member_no;
+	private int manager_no;
+	private int branch_no;
 
 	public Qna() {}
 
 	public Qna(long qna_no, long qna_group, int qna_lev, String qna_name, String qna_email, String qna_tel,
 			String qna_title, String qna_content, String qna_pwd, int qna_secret, int qna_answer_check, Date qna_resist,
-			String qna_resist_id) {
+			String qna_resist_id, long memberNum, int manager_no, int branch_no) {
 		super();
 		this.qna_no = qna_no;
 		this.qna_group = qna_group;
@@ -36,6 +39,9 @@ public class Qna {
 		this.qna_answer_check = qna_answer_check;
 		this.qna_resist = qna_resist;
 		this.qna_resist_id = qna_resist_id;
+		this.member_no = memberNum;
+		this.manager_no = manager_no;
+		this.branch_no = branch_no;
 	}
 
 	public long getQna_no() {
@@ -121,6 +127,11 @@ public class Qna {
 	public int getQna_answer_check() {
 		return qna_answer_check;
 	}
+
+	public void setQna_answer_check(int qna_answer_check) {
+		this.qna_answer_check = qna_answer_check;
+	}
+	
 	public String getQna_answer_checkString() {
 		if(qna_answer_check==0)
 			return "답변대기";
@@ -129,10 +140,6 @@ public class Qna {
 		else if(qna_answer_check==2)
 		return "";
 		else return "";
-	}
-
-	public void setQna_answer_check(int qna_answer_check) {
-		this.qna_answer_check = qna_answer_check;
 	}
 
 	public Date getQna_resist() {
@@ -151,5 +158,30 @@ public class Qna {
 		this.qna_resist_id = qna_resist_id;
 	}
 
+	public long getMember_no() {
+		return member_no;
+	}
+
+	public void setMember_no(long member_no) {
+		this.member_no = member_no;
+	}
+
+	public int getManager_no() {
+		return manager_no;
+	}
+
+	public void setManager_no(int manager_no) {
+		this.manager_no = manager_no;
+	}
+
+	public int getBranch_no() {
+		return branch_no;
+	}
+
+	public void setBranch_no(int branch_no) {
+		this.branch_no = branch_no;
+	}
+
+	
 	
 }

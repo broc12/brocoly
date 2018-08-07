@@ -190,6 +190,7 @@
 													<ul class="pagination">
 														<form action="helpadd.do" method="POST" >
 															<input type="hidden" name="id" value="${id}">
+															<input type="hidden" name="memberNum" value="${memberNum}">
 															<button type="submit" class="btn btn-primary" style="border-radius:0px">글쓰기</button>
 															<!-- <a data-toggle="modal" data-target="#exampleModal2" class="identifyingClass" data-id="">삭제</a> -->
 															</form>
@@ -206,7 +207,7 @@
 													<c:if test="${empty list}">
 													     <tr>
 													     	<td align="center" colspan="5">데이터가 없음</td>
-													     </tr>
+													     </tr>	
 													  </c:if>
 													  <c:forEach items="${list}" var="board">
 														<tr style="font-size:10pt;color:black" height="60px">

@@ -55,7 +55,8 @@ public class CustomerCenterDaoImpl implements CustomerCenterDao {
 	}
 	@Override
 	public long groupNum() {
-		long groupNum = sqlSession.selectOne(nsQna+".myGroupNum");
+		Long groupNum = sqlSession.selectOne(nsQna+".myGroupNum");
+		if(groupNum==null) return 0;
 		return groupNum;
 	}
 	@Override

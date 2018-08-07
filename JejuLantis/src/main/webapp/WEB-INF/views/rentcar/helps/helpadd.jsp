@@ -113,6 +113,7 @@
 												<h3 style="color:#c6c600">작성자 정보</h3>
 												<form action="helpInsert.do" method="POST" >
 												  <input type="hidden" name="id" value="${id}">
+												  <input type="hidden" name="memberNum" value="${memberNum}">
 								                  <div class="form-group">
 								                    <label for="guests">성명</label>
 								                    <div class="form-field">

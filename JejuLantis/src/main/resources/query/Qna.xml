@@ -16,14 +16,20 @@
 	<result property="qna_answer_check" column="QNA_ANSWER_CHECK"/>
 	<result property="qna_resist" column="QNA_RESIST"/>
 	<result property="qna_resist_id" column="QNA_RESIST_ID"/>
+	<result property="member_no" column="MEMBER_NO"/>
+	<result property="manager_no" column="MANAGER_NO"/>
+	<result property="branch_no" column="BRANCH_NO"/>
+	
 	
 	</resultMap>
 	
-	 <insert id="myInsert" parameterType ="Qna">
-	 insert into QNA VALUES(QNA_seq.NEXTVAL,QNA_seq.CURRVAL,0,#{qna_name},#{qna_email},#{qna_tel},#{qna_title},#{qna_content},#{qna_pwd},#{qna_secret},#{qna_answer_check},sysdate,#{qna_resist_id})
+	 <insert id="myInsert" parameterType ="Qna"> <!-- 여기 -->
+	 insert into QNA VALUES(QNA_seq.NEXTVAL,QNA_seq.CURRVAL,0,#{qna_name},#{qna_email},#{qna_tel},
+	 #{qna_title},#{qna_content},#{qna_pwd},#{qna_secret},#{qna_answer_check},#{qna_resist_id},SYSDATE,#{member_no},null,null)
 	 </insert>
-	 <insert id="myReplyInsert" parameterType ="Qna">
-	 insert into QNA VALUES(QNA_seq.NEXTVAL,#{qna_group},1,'admin','jejulantis@jeju.com','02-6655-4885',#{qna_name},#{qna_content},#{qna_pwd},0,2,sysdate,'admin')
+	 <insert id="myReplyInsert" parameterType ="Qna"> <!-- 여기 -->
+	 insert into QNA VALUES(QNA_seq.NEXTVAL,#{qna_group},1,'admin',
+	 'jejulantis@jeju.com','02-6655-4885',#{qna_name},#{qna_content},#{qna_pwd},0,2,'admin',sysdate,null,#{manager_no},null)
 	 </insert>
 	 <update id="myReplyUpdate" parameterType ="long">
 	 	update qna set qna_answer_check = 1 where qna_group = #{qna_group}

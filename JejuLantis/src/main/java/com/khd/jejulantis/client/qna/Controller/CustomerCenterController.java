@@ -33,7 +33,8 @@ public class CustomerCenterController {
 	public ModelAndView help(@RequestParam(value="strInput",required=false) String strInput,
 			HttpSession session) {
 		int input;
-		String id = null;
+		String id = "GUEST";
+		long memberNum = -1;
 		if (strInput==null) {
 		input = 1;
 		}else input =Integer.parseInt(strInput);
@@ -51,37 +52,37 @@ public class CustomerCenterController {
 			}else {
 				totalPage =(groupNum/showList);
 			}
-			
 			List<Qna> list = service.qnaList(map);
-			/*System.out.println("A "+betweenA);
-			System.out.println("B "+betweenB);
-			System.out.println(groupNum);
-			System.out.println(list.size());*/
 			Member temp = (Member)session.getAttribute("log");
-			if(temp!=null)
-			id = temp.getMember_id();
-			String view = "rentcar/help";
+			if(temp!=null) {
+				id = temp.getMember_id();	
+				memberNum = temp.getMember_no();
+			}
+			String view = "rentcar/helps/help";
 			ModelAndView mv = new ModelAndView(view,"list",list);
-			mv.addObject("id", id);
-			mv.addObject("totalPage", totalPage);
+				mv.addObject("id", id);
+				mv.addObject("memberNum", memberNum);
+				mv.addObject("totalPage", totalPage);
+				System.out.println("memberNo " +memberNum);
 		return mv;
 	}
 	@RequestMapping(value="helpadd.do",method=RequestMethod.POST)
-	public ModelAndView helpadd(@RequestParam("id") String id) {
-		String view = "rentcar/helpadd";
+	public ModelAndView helpadd(@RequestParam("id") String id,@RequestParam("memberNum") long memberNum) {
+		String view = "rentcar/helps/helpadd";
 		ModelAndView mv = new ModelAndView(view, "id", id);
+		mv.addObject("memberNum", memberNum);
 		return mv;
 	}
 	@RequestMapping(value="helpInsert.do",method=RequestMethod.POST)
 	public ModelAndView helpInsert(@RequestParam("qna_name") String qna_name, @RequestParam("qna_email") String qna_email, @RequestParam("qna_tel") String qna_tel, @RequestParam("qna_title") String qna_title, @RequestParam("qna_content") String qna_content, @RequestParam("qna_pwd") String qna_pwd, 
-	@RequestParam("qna_secret") String Strqna_secret, @RequestParam("id") String id) {
+	@RequestParam("qna_secret") String Strqna_secret, @RequestParam("id") String id,@RequestParam("memberNum") long memberNum) {
 		//System.out.println(Strqna_secret);
 		int qna_secret = 0;
 		if(Strqna_secret.equals("on"))qna_secret = 0;
 		else qna_secret = 1;
-		Qna qna = new Qna(-1, -1, -1, qna_name, qna_email, qna_tel, qna_title, qna_content, qna_pwd, 0, qna_secret, null, id);
+		Qna qna = new Qna(-1, -1, -1, qna_name, qna_email, qna_tel, qna_title, qna_content, qna_pwd, 0, qna_secret, null, id, memberNum , -1, -1);
 		boolean flag = service.insert(qna);
-		String view = "rentcar/helpInsertCheck";
+		String view = "rentcar/helps/helpInsertCheck";
 		ModelAndView mv = new ModelAndView(view,"flag",flag);
 		return mv;
 	}
@@ -111,7 +112,7 @@ public class CustomerCenterController {
 	@RequestMapping(value="helpContent.do",method=RequestMethod.GET)
 	public ModelAndView helpContent(@RequestParam("qna_no") String Strqna_no) {
 		long qna_no = 0;
-		String view = "rentcar/helpContent";
+		String view = "rentcar/helps/helpContent";
 			if(Strqna_no!=null)Strqna_no=Strqna_no.trim();
 			if(Strqna_no.length()!=0) qna_no = Integer.parseInt(Strqna_no);
 			Qna qna = service.qnaContent(qna_no);
@@ -130,8 +131,8 @@ public class CustomerCenterController {
 		if(Strqna_no!=null)Strqna_no=Strqna_no.trim();
 		if(Strqna_no.length()!=0) qna_no = Integer.parseInt(Strqna_no);
 		Qna qna = service.qnaContent(qna_no);
-		if(inputPwd.equals(qna.getQna_pwd())) view = "rentcar/helpContent";
-		else view = "rentcar/failedPwd";
+		if(inputPwd.equals(qna.getQna_pwd())) view = "rentcar/helps/helpContent";
+		else view = "rentcar/helps/failedPwd";
 		ModelAndView mv = new ModelAndView(view,"qna",qna);
 		
 		return mv;

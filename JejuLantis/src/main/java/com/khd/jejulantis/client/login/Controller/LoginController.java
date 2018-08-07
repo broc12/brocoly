@@ -32,16 +32,17 @@ public class LoginController {
 		if ((member.getMember_id()!= null && !member.getMember_id().equals("") && member.getMember_pwd()!= null
 				&& !member.getMember_pwd().equals(""))) {
 			Member Info = null;
-			if (loginDAO.loginCheck(member)) {
+			Member mm = loginDAO.loginCheck(member);
+			if (mm != null) {
 				session.setAttribute("login", 0);	
-				Info = new Member(member.getMember_id());
-				session.setAttribute("log", Info);
+//				Info1 = new Manager(manager.getManager_id(),manager.getBranch_no());
+				session.setAttribute("log", mm);
 				Member log = (Member)session.getAttribute("log");
 				out.println("<script>location.href='../'; </script>");
 				out.flush();
 				out.close();
 			}
-			if (loginDAO.loginCheck(member) == false) {
+			if (mm == null) {
 				out.println("<script>alert('로그인 정보를 확인해주세요'); history.go(-1); </script>");
 				out.flush();
 				out.close();
@@ -63,3 +64,4 @@ public class LoginController {
 
 
 }
+

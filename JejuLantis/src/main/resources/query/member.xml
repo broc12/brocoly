@@ -78,8 +78,8 @@ UPDATE member SET member_withdraw_at  ='y' where member_id=#{member_id}
 		select member_pwd from member where member_id = #{member_id}
 	</select>
 	<!-- 로그인 체키쿼리 -->
-	<select id="loginCheck" resultType="integer" parameterType="Member"> 
-		select count(*) from MEMBER
+	<select id="loginCheck" resultType="Member" parameterType="Member"> 
+		select * from MEMBER
 		<where>
 		MEMBER_ID = #{member_id}
 			AND

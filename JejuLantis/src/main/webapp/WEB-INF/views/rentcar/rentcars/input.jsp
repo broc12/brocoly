@@ -79,11 +79,7 @@
 
 	<!-- Main -->
 	<script src="resources/rentcar/js/main.js"></script>
-	<!-- FOR IE9 below -->
-	<!--[if lt IE 9]>
-	<script src="js/respond.min.js"></script>
-	<![endif]-->
-
+	
 	</head>
 	<body>
 	<%@ include file="../top/top.jspf" %>
@@ -91,7 +87,7 @@
 	<script type="text/javascript">
 	
 	$(document).ready(function(){
-	
+		
 		jQuery("input[name='coupon']").change(function(){
 			
 			if($(this).val() == 'N'){
@@ -128,6 +124,39 @@
 	
 	});
 	
+	function myclick(){
+		var name = "";
+		var phone = "";
+		var mail = "";
+		if($("input:checkbox[name=info]").is(":checked")){
+			name = '${log.member_name}';
+			phone = '${log.member_tel}';
+			mail = '${log.member_email}';
+			jQuery("#Rname").val(name);
+			jQuery("#Rphone").val(phone);
+			jQuery("#Rmail").val(mail);
+		}else{
+			jQuery("#Rname").val(name);
+			jQuery("#Rphone").val(phone);
+			jQuery("#Rmail").val(mail);
+		}
+	}
+	
+	function Dclick(){
+		var birth = "";
+		
+		if($("input:checkbox[name=dinfo]").is(":checked")){
+			jQuery("#Dname").val($("input:text[name=Rname]").val());
+			jQuery("#Dphone").val($("input:text[name=Rphone]").val());
+			birth = '${log.cut}';
+			alert(birth);
+			jQuery("#Dday").val(birth);
+		}else{
+			jQuery("#Dname").val("");
+			jQuery("#Dphone").val("");
+			jQuery("#Dday").val("");
+		}
+	}
 	
 	function check(){
 		IMP.init('imp60101607');
@@ -137,7 +166,7 @@
 		    pay_method : 'card',
 		    merchant_uid : 'merchant_' + new Date().getTime(),
 		    name : '주문명:결제테스트',
-		    amount : 14000,
+		    amount : 20000,
 		    buyer_email : 'iamport@siot.do',
 		    buyer_name : '구매자이름',
 		    buyer_tel : '010-1234-5678',
@@ -160,6 +189,27 @@
 	}
 	
 	</script>
+	
+	<style>
+	 @keyframes check {0% {height: 0;width: 0;}
+	  25% {height: 0;width: 10px;}
+	  50% {height: 20px;width: 10px;}
+	}
+	.checkbox{background-color:#2d2f3f;display:inline-block;height:28px;margin:0 .25em;width:28px;border-radius:4px;border:1px solid #ccc;float:right}
+	.checkbox span{display:block;height:28px;position:relative;width:28px;padding:0}
+	.checkbox span:after{-moz-transform:scaleX(-1) rotate(135deg);-ms-transform:scaleX(-1) rotate(135deg);-webkit-transform:scaleX(-1) rotate(135deg);
+		transform:scaleX(-1) rotate(135deg);-moz-transform-origin:left top;-ms-transform-origin:left top;-webkit-transform-origin:left top;transform-origin:left top;
+		border-right:4px solid black;border-top:4px solid black;content:'';display:block;height:20px;left:3px;position:absolute;top:15px;width:10px}
+	.checkbox span:hover:after{border-color:#999}
+	.checkbox input{display:none}
+	.checkbox input:checked + span:after{-webkit-animation:check .8s;-moz-animation:check .8s;-o-animation:check .8s;animation:check .8s;border-color:#555}
+	.checkbox input:checked + .default:after{border-color:#444}
+	.checkbox input:checked + .primary:after{border-color:#2196F3}
+	.checkbox input:checked + .success:after{border-color:#8bc34a}
+	.checkbox input:checked + .info:after{border-color:#3de0f5}
+	.checkbox input:checked + .warning:after{border-color:#FFC107}
+	.checkbox input:checked + .danger:after{border-color:#f44336}
+	</style>
 	<div class="colorlib-loader"></div>
 
 	<div id="page">
@@ -184,7 +234,7 @@
 		</aside>
 		<div id="board">
 			<table border="0" width="100%"  cellpadding="0" cellspacing="0">	
-				<tr style="color:#8c9094;background-color:#eef2f5;font-size:10pt">			
+				<tr style="color:#8c9094;background-color:white;font-size:10pt">			
 					<th  height="60px" class="text-center" width="15%">1. 차량/대여업체 선택</th>
 					<th  class="text-center" width="10%">2. 요금선택</th>
 					<th  class="text-center" width="15%" style="color:#ffdd01">3. 고객 정보 입력 & 결제</th>
@@ -208,45 +258,51 @@
 											<div id="board">
 												<table border="0" width="100%"  cellpadding="0" cellspacing="0">	
 													<tr style="color:white">			
-														<th  height="50px" style="background-color: #2d2f3f">　예약자 정보</th>
+														<td  height="50px" style="background-color: #2d2f3f" align="left">　예약자 정보</td>
+														<td align="right" style="background-color: #2d2f3f">
+						                                <label class="checkbox">
+						                                        <input type="checkbox" id="info" name="info" onclick="myclick()"/>
+						                                        <span class="primary"></span>
+						                                </label>
+														</td>
+														<td align="center" width="37%"style="background-color: #2d2f3f;padding-right:10px">회원 정보와 동일함</td>
 													</tr>
 													<tr height="50px">
-														<td>
+														<td colspan="3">
 															<div class="col-md-12">
 																<p ><div class="row form-group">
 																<label>이름</label>
 																	<div style="width:100%;background-color:white">
-																		<input type="text" id="fname" class="form-control" placeholder="">
+																		<input type="text" id="Rname" name="Rname" class="form-control">
 																	</div>
 																	</div></p>
 															</div>
 														</td>
 													</tr>
 													<tr height="50px">
-														<td>
+														<td colspan="3">
 															<div class="col-md-12">
 																<p ><div class="row form-group">
 																<label>휴대전화</label>
 																	<div style="width:100%;background-color:white">	
-																		<input type="text" id="fname" class="form-control" placeholder="">
+																		<input type="text" id="Rphone" name="Rphone" class="form-control">
 																	</div>
 																	</div></p>
 															</div>
 														</td>
 													</tr>
 													<tr height="50px">
-														<td>
+														<td colspan="3">
 															<div class="col-md-12">
 																<p ><div class="row form-group">
 																<label>이메일</label>
 																	<div style="width:100%;background-color:white">	
-																		<input type="text" id="fname" class="form-control" placeholder="">
+																		<input type="text" id="Rmail" name="Rmail" class="form-control">
 																	</div>
 																	</div></p>
 															</div>
 														</td>
 													</tr>
-											
 												</table>
 											</div>
 										</div>
@@ -259,46 +315,53 @@
 											<div id="board">
 												<table border="0" width="100%"  cellpadding="0" cellspacing="0">	
 													<tr style="color:white">			
-														<th  height="50px" style="background-color: #2d2f3f">　운전자 정보</th>
+														<td align="left" height="50px" style="background-color: #2d2f3f">　운전자 정보</td>
+														<td align="right" style="background-color: #2d2f3f">
+						                                <label class="checkbox">
+						                                        <input type="checkbox" id="dinfo" name="dinfo" onclick="Dclick()"/>
+						                                        <span class="primary"></span>
+						                                </label>
+														</td>
+														<td align="center" width="37%"style="background-color: #2d2f3f;padding-right:10px">예약자 정보와 동일함</td>
 													</tr>
 													<tr height="50px">
-														<td>
+														<td colspan="3">
 															<div class="col-md-12">
 																<p ><div class="row form-group">
 																<label>이름</label>
 																	<div style="width:100%;background-color:white">	
-																		<input type="text" id="fname" class="form-control" placeholder="">
+																		<input type="text" id="Dname" name="Dname" class="form-control">
 																	</div>
 																	</div></p>
 															</div>
 														</td>
 													</tr>
 													<tr height="50px">
-														<td>
+														<td colspan="3">
 															<div class="col-md-12">
 																<p ><div class="row form-group">
 																<label>휴대전화</label>
 																	<div style="width:100%;background-color:white">	
-																		<input type="text" id="fname" class="form-control" placeholder="">
+																		<input type="text" id="Dphone" name="Dphone" class="form-control">
 																	</div>
 																	</div></p>
 															</div>
 														</td>
 													</tr>
 													<tr height="50px">
-														<td>
+														<td colspan="3">
 															<div class="col-md-12">
 																<p ><div class="row form-group">
 																<label>생년월일</label>
 																	<div style="width:100%;background-color:white">
-																		<input type="text" id="date" class="form-control date" placeholder="">
+																		<input type="date" id="Dday" name="Dday"class="form-control date" style="height:50px">
 																	</div>
 																	</div></p>
 															</div>
 														</td>
 													</tr>
 													<tr height="50px">
-														<td>
+														<td colspan="3">
 															<div class="col-md-12">
 																<p><div class="row form-group">
 																<label>면허 종류</label>
@@ -398,6 +461,9 @@
 										</div>
 									</td>
 								</tr>
+								<tr>			
+									<td height="10px" style="background-color: white"></td>
+								</tr>
 								<tr>
 									<th>　</th>
 								</tr>
@@ -427,21 +493,42 @@
 									</td>
 								</tr>
 								<tr>
+									<td height="10px" style="background-color: white"></td>
+								</tr>
+								<tr>
 									<th>　</th>
 								</tr>
 								<tr>			
-									<th height="50px">
-									<c:forEach items="${list}" var="list">
+									<td height="50px">
+									
 									<div id="coupon" style="display:none">
-									<input type="text" style="width:100%" placeholder="쿠폰클릭" id="de" name="de">
-									${list.coupon_no}
-									</div>
+									<table border="0" width="100%" height="50px">
+									<tr height="50px" style="background-color:#2e3040;color:white;">
+										<td width="45%" align="center">쿠폰명</td>
+										<td width="20%" align="center">할인금액(율)</td>
+										<td width="35%" align="center">사용기한</td>
+									</tr>
+									<c:forEach items="${list}" var="list">
+									<tr style="background-color:white" height="30px">
+										<td style="padding-left:10px">
+											<input type="radio" id="couponname" name="couponname" value="C">
+											<label class="form-check-label" for="couponname">
+												<span style="font-size:10pt">${list.coupon_name}</span>
+											</label>
+										</td>
+										<td align="center">${list.coupon_discount}${list.coupon_way}</td>
+										<td align="center">${list.detail_start}~${list.detail_end}</td>
+									</tr>
 									</c:forEach>
+									</table>
+									
+									</div>
+									
 									<div id="promotion" style="display:none">
 									<input type="text" style="width:80%" placeholder="　코드 입력">
 									<input type="button" value="확인" style="background-color: #2d2f3f;color:white;height:50px;width:77px" border="0">
 									</div>
-									</th>
+									</td>
 								</tr>
 								
 							</table>
@@ -454,72 +541,80 @@
 				<div class="hotel-entry">
 					<div class="desc">
 						<div id="board">
-							<table border="0" width="100%"  cellpadding="0" cellspacing="0">	
-								<tr style="color:white">			
-									<th  height="50px" style="background-color: #2d2f3f">　정기결제 신용카드 입력</th>
-								</tr>
-								<tr>
-									<td style="background-color:white">
-										<div class="col-md-12">
-											<p><div class="row form-group">
-												<div style="width:100%;height:10px;background-color:white;">
-													&nbsp;&nbsp;&nbsp;&nbsp;<label class="form-check-label" for="exampleCheck1">
-														<h4 style="font-size:10pt">카드번호</h4>
-													</label>
-													&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" size="7" style="height:40px;">
-													-&nbsp;<input type="text" size="7" style="height:40px;">
-													-&nbsp;<input type="text" size="7" style="height:40px;">
-													-&nbsp;<input type="text" size="7" style="height:40px;">
-												</div>
-												</div></p>
-											<p style="margin-top:50px"><div class="row form-group">
-												<div style="width:100%;height:10px;background-color:white;" >
-													&nbsp;&nbsp;&nbsp;&nbsp;<label class="form-check-label" for="exampleCheck1">
-														<h4 style="font-size:10pt">유효기간</h4>
-													</label>
-													&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" size="7" style="height:40px;" placeholder="MM">
-													월&nbsp;<input type="text" size="7" style="height:40px;" placeholder="YY">&nbsp;년
-												</div>
-												</div></p>
-											<p style="margin-top:50px"><div class="row form-group">
-												<div style="width:100%;height:10px;background-color:white;">
-													&nbsp;&nbsp;&nbsp;&nbsp;<label class="form-check-label" for="exampleCheck1">
-														<h4 style="font-size:10pt">비밀번호</h4>
-													</label>
-													&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" size="7" style="height:40px;">
-													<a style="font-size:18pt;color:black;">* *</a>
-												</div>
-												</div></p>
-											<p style="margin-top:50px"><div class="row form-group">
-												<div style="width:100%;height:10px;background-color:white;">
-													&nbsp;&nbsp;&nbsp;&nbsp;<label class="form-check-label" for="exampleCheck1">
-														<h4 style="font-size:10pt">카드구분</h4>
-													</label>
-													&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" id="Check1" name="Check">
-													<label class="form-check-label" for="Check1">
-														<h4 style="font-size:10pt">개인</h4>
-													</label>
-													&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" id="Check2" name="Check">
-													<label class="form-check-label" for="Check2">
-														<h4 style="font-size:10pt">법인</h4>
-													</label>
-												</div>
-												</div></p>
-											<p style="margin-top:30px"><div class="row form-group">
-												<div style="width:100%;height:10px;background-color:white;">
-													&nbsp;&nbsp;&nbsp;&nbsp;<label class="form-check-label" for="exampleCheck1">
-														<h4 style="font-size:10pt">생년월일</h4>
-													</label>
-													&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" size="18" style="height:40px;">
-													<a style="font-size:10pt;color:black;">(6자리)</a>
-												</div>
-												</div></p>
-												<a style="color:black;font-size:8pt">* 정기결제는 일시불 결제만 가능합니다. 할부 결제를 원하실 경우 결제방법을 "신용/체크카드"로 선택 후 진행해 주시기 바랍니다.</br>
-													* 결제카드 정보는 안전한 전자결제 서비스에 직접 등록되며, 제주패스렌트카에서는 카드정보를 별도 저장하지 않습니다.</a>
-										</div>
-									</td>
-								</tr>		
-							</table>
+						<table border="0" width="100%">
+							<tr style="color:white">			
+								<td colspan="2" height="50px" style="background-color: #2d2f3f">　정기결제 신용카드 입력</td>
+							</tr>
+							<tr>			
+								<td colspan="2" height="5px" style="background-color: white"></td>
+							</tr>
+							<tr style="width:100%;height:10px;background-color:white;" >
+								<td width="20%" align="center">카드번호</td>
+								<td>
+								<input type="text" maxlength="4" size="5" style="height:40px;">-
+								<input type="text" maxlength="4" size="5" style="height:40px;">-
+								<input type="text" maxlength="4" size="5" style="height:40px;">-
+								<input type="text" maxlength="4" size="5" style="height:40px;">
+								</td>
+							</tr>
+							<tr>			
+								<td colspan="2" height="10px" style="background-color: white"></td>
+							</tr>
+							<tr style="width:100%;height:10px;background-color:white;">
+								<td align="center">유효기간</td>
+								<td>
+								<input type="text" size="5" style="height:40px;" placeholder="MM">월
+								<input type="text" size="5" style="height:40px;" placeholder="YY">년
+								</td>
+							</tr>
+							<tr>			
+								<td colspan="2" height="10px" style="background-color: white"></td>
+							</tr>
+							<tr style="width:100%;height:10px;background-color:white;">
+								<td align="center">비밀번호</td>
+								<td>
+								<input type="text" maxlength="2" size="5" style="height:40px;">
+								<span style="font-size:15pt;">**</span>
+								</td>
+							</tr>
+							<tr>			
+								<td colspan="2" height="10px" style="background-color: white"></td>
+							</tr>
+							<tr style="width:100%;height:10px;background-color:white;">
+								<td align="center">카드구분</td>
+								<td style="padding-top:15px">
+									<input type="radio" id="Check1" name="Check">
+									<label class="form-check-label" for="Check1">
+										<h4 style="font-size:10pt">개인</h4>
+									</label>
+									&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" id="Check2" name="Check">
+									<label class="form-check-label" for="Check2">
+										<h4 style="font-size:10pt">법인</h4>
+									</label>
+								</td>
+							</tr>
+							<tr>			
+								<td colspan="2" height="10px" style="background-color: white"></td>
+							</tr>
+							<tr style="width:100%;height:10px;background-color:white;">
+								<td align="center">생년월일</td>
+								<td>
+								<input type="text" maxlength="6" size="14" style="height:40px;">(6자리)
+								</td>
+							</tr>
+							<tr>			
+								<td colspan="2" height="10px" style="background-color: white"></td>
+							</tr>
+							<tr>
+								<td colspan="2" height="10px" style="background-color: white;font-size:8pt;padding-left:10px;padding-right:10px">
+								<span>* 정기결제는 일시불 결제만 가능합니다. 할부 결제를 원하실 경우 결제방법을 "신용/체크카드"로 선택 후 진행해 주시기 바랍니다.</br>
+									* 결제카드 정보는 안전한 전자결제 서비스에 직접 등록되며, 제주패스렌트카에서는 카드정보를 별도 저장하지 않습니다.</span>
+								</td>
+							</tr>
+							<tr>			
+								<td colspan="2" height="10px" style="background-color: white"></td>
+							</tr>
+						</table>
 						</div>
 					</div>
 				</div>
@@ -536,84 +631,83 @@
 				<h4 style="font-size:14pt">결제진행약관에 모두 동의합니다.　　　　　　　　　　　</h4>
 			</label></br></br>
 		</div>
-		<!-- <input type="button" value="결제하기" class="btn btn-primary"> -->
-		<button type="button" class="btn btn-primary"><a style="color:white" onclick="check()">결제하기</a></button>
+		<button type="button" style="width:200px;height:50px;background-color:black;border:0;outline:0"><span style="color:white;" onclick="check()">결제하기</span></button>
 		</div>
 		</div>
 	</div>
 </div>
 					
-					<!-- SIDEBAR-->
-					<div class="col-md-3">
-						<div class="sidebar-wrap">
-							<div class="side search-wrap animate-box">
-								<h3 class="sidebar-heading">예약내역</h3>
-								<form method="post" class="colorlib-form">
-				              	<div class="row">
-				                <div class="col-md-12">
-				                  <div class="form-group">
-				                    <label for="date" style="color:#8caaca">대여일시</label>
-				                    <div class="form-field">
-				                      <a style="color:white;font-size:12pt">2017/07/04(수)</a></br>
-				                      <a style="color:white;font-size:12pt">09:00</a>
-				                    </div>        
-				                  </div>
-				                </div>
-				                <div class="col-md-12">
-				                  <div class="form-group">
-				                    <label for="date" style="color:#8caaca">반납일시</label>
-				                    <div class="form-field">
-				                      <a style="color:white;font-size:12pt">2017/07/05(목)</a></br>
-				                      <a style="color:white;font-size:12pt">12:00</a>
-				                    </div>
-				                  </div>
-				                </div>
-				                <div class="col-md-12">
-				                  <div class="form-group">
-				                    <label for="date" style="color:#8caaca">보험</label>
-				                    <div class="form-field">
-				                      <a style="color:white;font-size:12pt">완전자차</a>
-				                    </div>
-				                  </div>
-				                </div>
-				                <div class="col-md-12">
-				                  <div class="form-group">
-				                    <label for="date" style="color:#8caaca">대여업체</label>
-				                    <div class="form-field">
-				                      <a style="color:white;font-size:12pt">한성렌트카</a>
-				                    </div>
-				                  </div>
-				                </div>
-				                <div class="col-md-12">
-				                  <div class="form-group">
-				                    <label for="date" style="color:#8caaca">차량</label>
-				                    <div class="form-field">
-				                      <a style="color:white;font-size:12pt">스팅어</a>
-				                      <img src="resources/rentcar/images/car1.jpg" width=100%, height=50%>
-				                    </div>
-				                  </div>
-				                </div>
-				                <div class="col-md-12">
-				                  <div class="form-group">
-				                    <label for="date" style="color:#8caaca">결제금액</label>
-				                    <div class="form-field">
-				                      <a style="color:white;font-size:24pt">24,200원</a></br>
-				                      <hr></br>
-				                      <a style="color:#8caaca;font-size:10pt">차량대여료(24시간)</a>
-				                      <a style="color:white;font-size:10pt">6,200원</a></br>
-				                      <a style="color:#8caaca;font-size:10pt">보험료(2일)</a>
-				                      <a style="color:white;font-size:10pt">18,000</a>
-				                    </div>
-				                  </div>
-				                </div>
-				              </div>
-				            </form>
-							</div>
-						</div>
+	<!-- SIDEBAR-->
+	<div class="col-md-3">
+		<div class="sidebar-wrap">
+			<div class="side search-wrap animate-box">
+				<h3 class="sidebar-heading">예약내역</h3>
+				<form method="post" class="colorlib-form">
+              	<div class="row">
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <label for="" style="color:#8caaca">대여일시</label>
+                    <div class="form-field">
+                      <span style="color:white;font-size:12pt">2017/07/04(수)</span></br>
+                      <span style="color:white;font-size:12pt">09:00</span>
+                    </div>        
+                  </div>
+                </div>
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <label for="" style="color:#8caaca">반납일시</label>
+                    <div class="form-field">
+                      <span style="color:white;font-size:12pt">2017/07/05(목)</span></br>
+                      <span style="color:white;font-size:12pt">12:00</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <label for="" style="color:#8caaca">보험</label>
+                    <div class="form-field">
+                      <span style="color:white;font-size:12pt">완전자차</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <label for="" style="color:#8caaca">대여업체</label>
+                    <div class="form-field">
+                      <span style="color:white;font-size:12pt">한성렌트카</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <label for="" style="color:#8caaca">차량</label>
+                    <div class="form-field">
+                      <span style="color:white;font-size:12pt">스팅어</span>
+                      <img src="resources/rentcar/images/car1.jpg" width=100%, height=50%>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <label for="" style="color:#8caaca">결제금액</label>
+                    <div class="form-field">
+                      <span style="color:white;font-size:24pt">24,200원</span></br>
+                      <hr></br>
+                      <span style="color:#8caaca;font-size:10pt">차량대여료(24시간)</span>
+                      <span style="color:white;font-size:10pt">6,200원</span></br>
+                      <span style="color:#8caaca;font-size:10pt">보험료(2일)</span>
+                      <span style="color:white;font-size:10pt">18,000</span>
+		                    </div>
+		                  </div>
+		                </div>
+		              </div>
+		            </form>
 					</div>
 				</div>
 			</div>
 		</div>
+	</div>
+</div>
 
 		<footer id="colorlib-footer" role="contentinfo">
 			<div class="container">

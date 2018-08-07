@@ -55,10 +55,10 @@
     	
     	var isChecked = "";
     	if($("input:radio[id='exampleCheck1']").is(":checked")){	// 쳬크 되어있으면
-    		isChecked = "정율할인"
+    		isChecked = "%"
     	}
     	if($("input:radio[id='exampleCheck2']").is(":checked")){	// 쳬크 되어있으면
-    		isChecked = "정액할인"
+    		isChecked = "원"
     	}
     	
     	jQuery("#coupon_way").val(isChecked);

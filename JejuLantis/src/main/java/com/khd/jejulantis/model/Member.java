@@ -19,7 +19,11 @@ public class Member {
 	String member_withdraw_at;
 	java.sql.Date member_withdraw_date;
 	
-	
+	public String getCut() {
+		int i = member_birth.indexOf(" ");
+		return member_birth.substring(0,i);
+		
+	}
 	public Member() {}
 	public Member(String member_id) {
 		this.member_id = member_id;

@@ -27,11 +27,11 @@ public class RentcarDAOImpl implements RentcarDAO {
 	}
 	@Override
 	public Date currenttimeStamp() {
-		return sqlsession.selectOne(n2s+".currenttime");
+		return sqlsession.selectOne(ns+".currenttime");
 	}
 	@Override
 	public Date timeStamp() {
-		return sqlsession.selectOne(n2s+".nexttime");
+		return sqlsession.selectOne(ns+".nexttime");
 	}
 	@Override
 	public SelectRentcar confirmrentcar(SearchRequirements requirements) {

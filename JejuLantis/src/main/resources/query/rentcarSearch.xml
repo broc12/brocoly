@@ -253,4 +253,16 @@ SELECT (CAR_KIND_PRICE_WEEK * #{weekTime}+CAR_KIND_PRICE_WEEKEND * #{weekendTime
 </selectKey>
 INSERT INTO RENT_RESERV(RENT_RESERV_NO,BRANCH_NO,CAR_NO,CAR_KIND_NO,INSURANCE_NO,MEMBER_NO,RENT_RESERV_START,RENT_RESERV_END,RENT_RESERV_CANCLE_ABLE,RENT_RESERV_CANCLE_AT,RENT_RESERV_RESIST,RENT_PAYMENT_NO,RENT_RESERV_CANCEL_DATE) VALUES(#{rent_reserv_no},#{branch_no},#{car_no},#{car_kind_no},#{insurance_no},1,TO_DATE(#{rent_reserve_startDateTime},'YYYY-MM-DD HH24:MI:SS'),TO_DATE(#{rent_reserve_endDateTime},'YYYY-MM-DD HH24:MI:SS'),'N','N',SYSDATE,1,SYSDATE)
 </insert>
+
+<select id="currenttime" resultType="java.util.Date">
+SELECT SYSDATE FROM DUAL
+</select>
+
+<select id="nexttime" resultType="java.util.Date">
+SELECT (TRUNC(SYSDATE+1)+(8/24)) FROM DUAL
+</select>
+
+<select id="nextsat" resultType="java.util.Date">
+SELECT TRUNC(NEXT_DAY(TO_DATE ('2018-08-01 18:30','yyyy-mm-dd hh24:mi'),7)) FROM DUAL;
+</select>
 </mapper>

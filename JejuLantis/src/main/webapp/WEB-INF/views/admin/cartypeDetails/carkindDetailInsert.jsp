@@ -143,6 +143,7 @@
         <div class="card-body">
           <div class="table-responsive">
           	<form name="f" action="carDetailWriteOk.do" method="post">
+          	
           		<input type="hidden" name="car_kind_navi" id="car_kind_navi"/>
           		<input type="hidden" name="car_kind_sensor" id="car_kind_sensor"/>
           		<input type="hidden" name="car_kind_blackbox" id="car_kind_blackbox"/>
@@ -151,28 +152,55 @@
           		<input type="hidden" name="car_kind_camera" id="car_kind_camera"/>
           		<input type="hidden" name="car_kind_nonsmoke" id="car_kind_nonsmoke"/>
 				<input type="hidden" name="manager_id" value="${managerlog.manager_id}"/> 
+				<c:forEach items="${branchNoSelect}" var="branchNoSelect" varStatus="status">
             		<table border="0" width="100%"  cellpadding="0" cellspacing="0">
 						<h3 style="color:#007bff">차종상세등록</h3>	
-						<tr style="color:#808080;font-size:12pt">		
-						
-							<th  height="60px" width="10%" class="text-center" style="background-color: #fafafa"><a style="color:red">*</a>지점코드</th>
-							<th  width="35%" class="text-left">
-								<c:forEach items="${branchNoSelect}" var="branchNoSelect" varStatus="status">	
-									<input name="branch_no" type="text" size="30" value="${branchNoSelect.branch_no}" class="form-control" style="width:250px" readonly>
-								</c:forEach>
-							</th>
-						</tr>
-						<tr style="color:#808080;font-size:12pt">	
-							<th  height="60px" width="10%" class="text-center" style="background-color: #fafafa"><a style="color:red">*</a>차종코드</th>
-							<th  width="35%" class="text-left">
-								<select name="car_no" id="car_no" class="form-control" style="width:250px">
-									<option value="" style="color:black">제조사/차타입/차종명(연료)</option>
-									<c:forEach items="${carDetailWrite}" var="carDetailWrite" varStatus="status">
-										<option value="${carDetailWrite.car_no}" style="color:black">${carDetailWrite.car_manufacturer}/${carDetailWrite.car_type}/${carDetailWrite.car_name}(${carDetailWrite.car_fuel})</option>
-									</c:forEach>
-                       			</select>
-							</th>
-						</tr>
+							<c:set var="superPass" value="${branchNoSelect.branch_no}" />
+							<c:choose>
+	   							<c:when test="${superPass eq '1'}">	
+									<tr style="color:#808080;font-size:12pt">	
+
+										<th  height="60px" width="10%" class="text-center" style="background-color: #fafafa"><a style="color:red">*</a>지점코드</th>
+										<th  width="35%" class="text-left">
+											<select name="branch_no" id="branch_no" class="form-control" style="width:250px">
+											<option value="" style="color:black">지점코드</option>
+												<c:forEach items="${kingbranchNotSelect}" var="kingbranchNotSelect" varStatus="status">	
+													<option value="${kingbranchNotSelect.branch_no}" style="color:black">${kingbranchNotSelect.branch_name}/${kingbranchNotSelect.branch_member_name}</option>
+												</c:forEach>
+											</select>
+										</th>
+									</tr>
+									<tr style="color:#808080;font-size:12pt">	
+										<th  height="60px" width="10%" class="text-center" style="background-color: #fafafa"><a style="color:red">*</a>차종코드</th>
+										<th  width="35%" class="text-left">
+											<select name="car_no" id="car_no" class="form-control" style="width:250px">
+												<option value="" style="color:black">제조사/차타입/차종명(연료)</option>
+												<c:forEach items="${carDetailWrite}" var="carDetailWrite" varStatus="status">
+													<option value="${carDetailWrite.car_no}" style="color:black">${carDetailWrite.car_manufacturer}/${carDetailWrite.car_type}/${carDetailWrite.car_name}(${carDetailWrite.car_fuel})</option>
+												</c:forEach>
+			                       			</select>
+										</th>
+									</tr>
+								</c:when>
+									<c:otherwise>
+										<th  height="60px" width="10%" class="text-center" style="background-color: #fafafa"><a style="color:red">*</a>지점코드</th>
+										<th  width="35%" class="text-left">
+											<input name="branch_no" type="text" size="30" value="${branchNoSelect.branch_no}" class="form-control" style="width:250px" readonly>
+										</th>
+									</tr>
+									<tr style="color:#808080;font-size:12pt">	
+										<th  height="60px" width="10%" class="text-center" style="background-color: #fafafa"><a style="color:red">*</a>차종코드</th>
+										<th  width="35%" class="text-left">
+											<select name="car_no" id="car_no" class="form-control" style="width:250px">
+												<option value="" style="color:black">제조사/차타입/차종명(연료)</option>
+												<c:forEach items="${carDetailWrite}" var="carDetailWrite" varStatus="status">
+													<option value="${carDetailWrite.car_no}" style="color:black">${carDetailWrite.car_manufacturer}/${carDetailWrite.car_type}/${carDetailWrite.car_name}(${carDetailWrite.car_fuel})</option>
+												</c:forEach>
+			                       			</select>
+										</th>
+									</tr>
+								</c:otherwise>
+							</c:choose>
 						<tr style="color:#808080;font-size:12pt">
 							<th  height="60px" width="10%" class="text-center" style="background-color: #fafafa"><a style="color:red">*</a>주중가</th>
 							<th  width="35%" class="text-left">
@@ -235,6 +263,7 @@
 							</td>
 						</tr>
 					</table>
+					</c:forEach>
 				</form>
 	        </div>
 	    </div>

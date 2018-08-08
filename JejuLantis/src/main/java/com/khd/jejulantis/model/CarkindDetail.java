@@ -6,7 +6,7 @@ public class CarkindDetail {
 	
 	
 	private String branch_name;
-
+	
 	private int insurance_no;
 	private int insurance_price;
 	private String insurance_name;
@@ -30,7 +30,7 @@ public class CarkindDetail {
 	private String car_withdraw_at; 
 	private Date car_resist;
 	
-	
+	private String branch_member_name;
 	private int car_kind_no;
 	private int branch_no;
 	//car_no
@@ -175,6 +175,74 @@ public class CarkindDetail {
 		this.car_rating = car_rating;
 		this.car_withdraw_at = car_withdraw_at;
 		this.car_resist = car_resist;
+	}
+
+
+	
+
+
+	public CarkindDetail(String branch_name, int insurance_no, int insurance_price, String insurance_name,
+			String insurance_limit, int insurance_burden_price, int insurance_limit_age, int insurance_limit_carrier,
+			String insurance_withdraw_at, Date insurance_resist, int car_no, String car_name, String car_manufacturer,
+			String car_fuel, String car_type, int car_passenger, String car_trans, int car_count, String car_image,
+			int car_rating, String car_withdraw_at, Date car_resist, String branch_member_name, int car_kind_no,
+			int branch_no, int car_kind_count, int car_kind_price_week, int car_kind_price_weekend,
+			int car_kind_price_holiday, int car_kind_price_h_holiday, String car_kind_navi, String car_kind_sensor,
+			String car_kind_blackbox, String car_kind_bluetooth, String car_kind_sunroof, String car_kind_camera,
+			String car_kind_nonsmoke, int car_kind_rating, int car_kind_total, String car_kind_withdraw_at,
+			Date car_kind_resist) {
+		super();
+		this.branch_name = branch_name;
+		this.insurance_no = insurance_no;
+		this.insurance_price = insurance_price;
+		this.insurance_name = insurance_name;
+		this.insurance_limit = insurance_limit;
+		this.insurance_burden_price = insurance_burden_price;
+		this.insurance_limit_age = insurance_limit_age;
+		this.insurance_limit_carrier = insurance_limit_carrier;
+		this.insurance_withdraw_at = insurance_withdraw_at;
+		this.insurance_resist = insurance_resist;
+		this.car_no = car_no;
+		this.car_name = car_name;
+		this.car_manufacturer = car_manufacturer;
+		this.car_fuel = car_fuel;
+		this.car_type = car_type;
+		this.car_passenger = car_passenger;
+		this.car_trans = car_trans;
+		this.car_count = car_count;
+		this.car_image = car_image;
+		this.car_rating = car_rating;
+		this.car_withdraw_at = car_withdraw_at;
+		this.car_resist = car_resist;
+		this.branch_member_name = branch_member_name;
+		this.car_kind_no = car_kind_no;
+		this.branch_no = branch_no;
+		this.car_kind_count = car_kind_count;
+		this.car_kind_price_week = car_kind_price_week;
+		this.car_kind_price_weekend = car_kind_price_weekend;
+		this.car_kind_price_holiday = car_kind_price_holiday;
+		this.car_kind_price_h_holiday = car_kind_price_h_holiday;
+		this.car_kind_navi = car_kind_navi;
+		this.car_kind_sensor = car_kind_sensor;
+		this.car_kind_blackbox = car_kind_blackbox;
+		this.car_kind_bluetooth = car_kind_bluetooth;
+		this.car_kind_sunroof = car_kind_sunroof;
+		this.car_kind_camera = car_kind_camera;
+		this.car_kind_nonsmoke = car_kind_nonsmoke;
+		this.car_kind_rating = car_kind_rating;
+		this.car_kind_total = car_kind_total;
+		this.car_kind_withdraw_at = car_kind_withdraw_at;
+		this.car_kind_resist = car_kind_resist;
+	}
+
+
+	public String getBranch_member_name() {
+		return branch_member_name;
+	}
+
+
+	public void setBranch_member_name(String branch_member_name) {
+		this.branch_member_name = branch_member_name;
 	}
 
 

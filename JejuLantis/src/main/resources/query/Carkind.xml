@@ -47,6 +47,9 @@
 		<result property="car_kind_resist" column="CAR_KIND_RESIST"/>
 		<result property="car_kind_total" column="CAR_KIND_TOTAL"/>
 		<result property="manager_id" column="MANAGER_ID"/>
+		
+		<result property="branch_name" column="BRANCH_NAME"/>
+		<result property="branch_member_name" column="BRANCH_MEMBER_NAME"/>
 	</resultMap>
 	<select id="carkindListI" resultType="Carkind">
 		select * from CAR where CAR_WITHDRAW_AT='N'
@@ -73,9 +76,10 @@
 		SYSDATE)
 	</insert>
 	<select id="carkindContentList" resultType="Carkind">
-        select * from CAR_KIND, CAR
+        select * from CAR_KIND, CAR, BRANCH
 		where CAR_KIND.CAR_KIND_NO=#{car_kind_no}
 		and CAR.CAR_NO=CAR_KIND.CAR_NO
+		and BRANCH.BRANCH_NO = CAR_KIND.BRANCH_NO
 	</select>
 	<select id="branchNoSelect" resultType="Carkind" parameterType="String">
 		select BRANCH_NO from BRANCH where BRANCH_NO=(select BRANCH_NO from MANAGER where MANAGER_ID=#{manager_id})
@@ -119,4 +123,16 @@
 		CAR_KIND_RESIST=SYSDATE
 		where CAR_KIND_NO=#{car_kind_no}
 	</update>
+	<select id="kingbranchNotSelect" parameterType="String" resultType="Carkind">
+		select *
+		from BRANCH 
+		where BRANCH_WITHDRAW_AT='N' 
+		and BRANCH_NO!=(select BRANCH_NO from MANAGER where MANAGER_ID=#{manager_id})
+	</select>
+	<select id="identyBNo" parameterType="String" resultType="Carkind">
+		select BRANCH_NO from MANAGER where MANAGER_ID=#{manager_id}
+	</select>
+	<select id="listAll" resultType="Carkind">
+		select * from CAR_KIND where CAR_KIND_WITHDRAW_AT='N'
+	</select>
 </mapper>

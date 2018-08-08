@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.khd.jejulantis.model.CarkindDetail;
+import com.khd.jejulantis.model.Insurance;
 @Repository("CarkindDao")
 public class CarkindDetailDaoImpl implements CarkindDetailDao {
 	@Autowired
@@ -65,5 +66,19 @@ public class CarkindDetailDaoImpl implements CarkindDetailDao {
 		List<CarkindDetail> insuranceSelectBox = sqlSession.selectList(ns_carkind+".insuranceUpdateSelectBox", map);
 		return insuranceSelectBox;
 	}
-	
+	@Override
+	public List<CarkindDetail> kingbranchNotSelect(String manager_id) {
+		List<CarkindDetail> kingbranchNotSelect = sqlSession.selectList(ns_carkind+".kingbranchNotSelect", manager_id);
+		return kingbranchNotSelect;
+	}
+	@Override
+	public List<CarkindDetail> identyBNo(String manager_id) {
+		List<CarkindDetail> identyBNo = sqlSession.selectList(ns_carkind+".identyBNo", manager_id);
+		return identyBNo;
+	}
+	@Override
+	public List<CarkindDetail> listAll() {
+		List<CarkindDetail> listAll = sqlSession.selectList(ns_carkind+".listAll");
+		return listAll;
+	}
 }

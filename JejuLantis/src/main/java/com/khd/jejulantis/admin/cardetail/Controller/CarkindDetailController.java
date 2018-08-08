@@ -12,6 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.khd.jejulantis.admin.cardetail.Service.CarkindDetailService;
 import com.khd.jejulantis.model.CarkindDetail;
+import com.khd.jejulantis.model.Insurance;
 
 @Controller
 public class CarkindDetailController {
@@ -23,9 +24,11 @@ public class CarkindDetailController {
 	public ModelAndView carDetailListInsert(@RequestParam("manager_id")String manager_id) {
 		List<CarkindDetail> carDetailWrite = cservice.listIService();
 		List<CarkindDetail> branchNoSelect = cservice.branchNoSelect(manager_id);
+		List<CarkindDetail> kingbranchNotSelect = cservice.kingbranchNotSelectService(manager_id);
 		String view = "admin/cartypeDetails/carkindDetailInsert";
 		ModelAndView mv = new ModelAndView(view, "carDetailWrite", carDetailWrite);
 		mv.addObject("branchNoSelect", branchNoSelect);
+		mv.addObject("kingbranchNotSelect",kingbranchNotSelect);
 		return mv;
 	}
 	@RequestMapping(value="admin/carDetailUpdate.do")
@@ -35,9 +38,13 @@ public class CarkindDetailController {
 		System.out.println("car_kind_no : " + car_kind_no);
 		List<CarkindDetail> carDetailUpdate = cservice.ContentService(car_kind_no);
 		List<CarkindDetail> carDetailSelectBox = cservice.NotContentService(car_kind_no);
+		List<CarkindDetail> branchNoSelect = cservice.branchNoSelect(manager_id);
+		List<CarkindDetail> kingbranchNotSelect = cservice.kingbranchNotSelectService(manager_id);
 		String view = "admin/cartypeDetails/carkindDetailUpdate";
 		ModelAndView mv = new ModelAndView(view, "carDetailUpdate", carDetailUpdate);
 		mv.addObject("carDetailSelectBox", carDetailSelectBox);
+		mv.addObject("branchNoSelect", branchNoSelect);
+		mv.addObject("kingbranchNotSelect",kingbranchNotSelect);
 		return mv;
 	}
 	@RequestMapping(value="admin/carDetailUpdateOk.do",method=RequestMethod.POST)
@@ -102,10 +109,16 @@ public class CarkindDetailController {
 	}
 	@RequestMapping(value="admin/carDetail.do")
 	public ModelAndView carDetailList(@RequestParam("manager_id")String manager_id) {
-		List<CarkindDetail> carDetailList = cservice.listService(manager_id);
+		List<CarkindDetail> identyBNo= cservice.identyBNoService(manager_id);
+		List<CarkindDetail> selectOne;
+		if(identyBNo.get(0).getBranch_no()==1) {
+			selectOne =  cservice.listAllService();
+		}else {
+			selectOne =  cservice.listService(manager_id);
+		}
 		System.out.println("manager_id : " + manager_id);
 		String view = "admin/cartypeDetails/carkindDetailList";
-		ModelAndView mv = new ModelAndView(view, "carDetailList", carDetailList);
+		ModelAndView mv = new ModelAndView(view, "carDetailList", selectOne);
 		return mv;
 	}
 }

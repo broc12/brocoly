@@ -93,6 +93,15 @@ UPDATE member SET member_withdraw_at  ='y' where member_id=#{member_id}
 	<select id="totalAccount" resultType="integer">
 		SELECT COUNT(*) FROM MEMBER
 	</select>
+<!-- 네이버 아이디 체크 -->
+	<select id="checkMember" resultType="Member">
+		SELECT * FROM MEMBER WHERE MEMBER_ID=#{id}
+	</select>
+<!-- 네이버 아이디 가입 -->
+	<insert id="joinNaver">
+	INSERT INTO MEMBER VALUES(MEMBER_SEQ.NEXTVAL,#{member_id},'NAVER',#{member_name},#{member_birth},'M','서울','010-5454-4885',#{member_email},'N','N',SYSDATE,'N',SYSDATE)
+	</insert>
+	
 	
 <!--  <update id="deletemodify" parameterType="String" > -->
 <!--  	UPDATE member SET memeber_whithdraw_at  ='y' where id=#{id} -->

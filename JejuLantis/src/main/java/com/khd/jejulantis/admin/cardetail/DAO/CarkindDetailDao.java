@@ -15,4 +15,7 @@ public interface CarkindDetailDao {
 	void update(CarkindDetail carkind);
 	List<CarkindDetail> insuranceSelectBox(String manager_id);
 	List<CarkindDetail> branchNoSelect(String manager_id);
+	List<CarkindDetail> kingbranchNotSelect(String manager_id);
+	List<CarkindDetail> identyBNo(String manager_id);
+	List<CarkindDetail> listAll();
 }

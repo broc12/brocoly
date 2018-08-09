@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.util.Date;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONArray;
@@ -62,7 +63,7 @@ public class NaverLoginController {
 
 	//네이버 로그인 성공시 callback호출 메소드
 	@RequestMapping(value = "/callBack.do", method = { RequestMethod.GET, RequestMethod.POST })
-	public String callback(Model model, @RequestParam String code, @RequestParam String state, HttpSession session)
+	public String callback(Model model, @RequestParam String code, @RequestParam String state, HttpSession session, HttpServletResponse response)
 			throws IOException, org.json.simple.parser.ParseException, ParseException {
 		System.out.println("여기는 callback");
 		OAuth2AccessToken oauthToken;
@@ -72,7 +73,6 @@ public class NaverLoginController {
 	    apiResult = naverLoginBO.getUserProfile(oauthToken);  //여기 사용자 정보가 들어있음, 이 정보로멤버가입시켜야함
 		model.addAttribute("result", apiResult);			  //가입하고 자동 로그인, 나중에 또 왔을때 id 조회해서 있으면 바로 로그인
 		System.out.println(apiResult.toString());
-		
 
         JSONParser jsonParser = new JSONParser();
 		 
@@ -91,14 +91,25 @@ public class NaverLoginController {
 		System.out.println("name 값은 " + name);
 		System.out.println("email 값은 " + email);
 		System.out.println("birthday 값은 " + birthday);
-		id="naver"+id;
+		birthday = "1991/"+birthday;
+		java.text.SimpleDateFormat format = new java.text.SimpleDateFormat("yy/MM/dd");
 		Member member = naverService.checkMember(id);
-		if(member!=null)System.out.println("id 있음 로그인하자");
+		if(member!=null) {
+			System.out.println("id 있음 로그인하자");
+			member.setMember_id(member.getMember_name());
+			session.setAttribute("log", member);
+			return "rentcar/home";
+		}
 		else {
 			System.out.println("id 없음 회원가입하자");
 			Member memberToJoin = new Member(0, id, null, name, birthday, "M", "서울", "000000", email,"Y", "Y", null, "N", null);
 			isInserted = naverService.joinMember(memberToJoin);
-			System.out.println("결과는" + isInserted);
+			System.out.println("회원가입 " + isInserted);
+			memberToJoin.setMember_id(memberToJoin.getMember_name());
+			if(isInserted) {
+				session.setAttribute("log", memberToJoin);
+				return "rentcar/home";
+			}
 		}
         /* 네이버 로그인 성공 페이지 View 호출 */
 		return "rentcar/naverLogin/naverSuccess";

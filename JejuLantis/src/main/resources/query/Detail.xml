@@ -15,7 +15,7 @@
 </resultMap>
 <!-- 신규가입쿠폰 -->
 	<insert id="myDetail" parameterType="Detail">
-		insert into COUPON_DETAIL values(#{member_no},DETAIL_seq.NEXTVAL,14,SYSDATE,SYSDATE+30,
+		insert into COUPON_DETAIL values(#{member_no},DETAIL_seq.NEXTVAL,1,SYSDATE,SYSDATE+30,
 		SYSDATE,'N')
 	</insert>
 	

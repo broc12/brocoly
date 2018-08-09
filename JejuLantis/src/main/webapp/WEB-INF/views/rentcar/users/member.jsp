@@ -1,8 +1,4 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-
-
-
-
 <%@ page session="true"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -225,6 +221,7 @@ function inputIdChk(){
 function inputEmailChk(){
 	document.f.emailDuplication.value = "emailUncheck";
 }
+
 function sendIt() {
 	
 	var year = Number(document.f.birth1.value);
@@ -384,6 +381,7 @@ function sendIt() {
 //		return false;
 //		}
 	    alert("회원가입을 축하합니다");
+	    alert("신규 가입 축하 쿠폰이 발급되었습니다.");
 		document.f.submit();
 	}
 }
@@ -548,6 +546,7 @@ function sendIt() {
 									<input type="text" id="hp2" name="hp2" size="2" maxlength="4" style=width:29%;height:50px>
 									-
 									<input type="text" id="hp3" name="hp3" size="2" maxlength="4" style=width:29%;height:50px>
+									
 									<script type="text/javascript">
 										var target = document.getElementById("member_tel");
 										target.options[target.selectedIndex].text

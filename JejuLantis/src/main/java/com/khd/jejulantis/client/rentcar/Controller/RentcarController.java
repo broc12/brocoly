@@ -52,17 +52,6 @@ public class RentcarController {
 		return "rentcar/rentcars/car";
 	}
 	
-	@RequestMapping(value="rentcar.do",method=RequestMethod.GET)
-	public ModelAndView rentcar(HttpSession session) {
-		Member log = (Member)session.getAttribute("log");
-		List<Detail>list = detailservice.listService(log.getMember_id());
-		String view = "rentcar/rentcars/input";
-		ModelAndView mv = new ModelAndView(view,"list",list);
-		/*rentcarservice.inputrentcarService(requirements);*/
-		return mv;
-		/*return "rentcar/rentcars/input";*/
-	}
-	
 	@RequestMapping(value="rentcar.do",method=RequestMethod.POST)
 	public ModelAndView rentcar(SearchRequirements requirements) {
 		ModelAndView mv = new ModelAndView("rentcar/rentcars/rentcar");
@@ -88,12 +77,25 @@ public class RentcarController {
 		return currentDate;
 	}
 
-	/*@RequestMapping(value="input.do",method=RequestMethod.POST)
-	public ModelAndView input(SearchRequirements requirements) {
-		List<Detail>list = detailservice.listService();
+	@RequestMapping(value="input.do",method=RequestMethod.POST)
+	public ModelAndView input(SearchRequirements requirements,HttpSession session) {
+		Member log = (Member)session.getAttribute("log");
+		List<Detail>list = detailservice.listService(log.getMember_id());
 		String view = "rentcar/rentcars/input";
 		ModelAndView mv = new ModelAndView(view,"list",list);
-		rentcarservice.inputrentcarService(requirements);
+		SelectRentcar car = rentcarservice.confirmrentcarService(requirements);
+		if(car == null) {
+			requirements.setErrorMsg("사용 가능한 차량이 없습니다.");
+		}else {
+			mv.addObject("rentcar", car);
+		}
+		requirements.setSearchFlag(true);
+		mv.addObject("requirements", requirements);
 		return mv;
-	}*/
+	}
+
+	@RequestMapping(value="end.do",method=RequestMethod.POST)
+	public String end() {
+		return "rentcar/rentcars/end";
+	}
 }

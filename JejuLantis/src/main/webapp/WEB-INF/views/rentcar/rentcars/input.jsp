@@ -89,10 +89,14 @@
 	$(document).ready(function(){
 		
 		jQuery("input[name='coupon']").change(function(){
+			var total = '${rentcar.totalprice}';
 			
 			if($(this).val() == 'N'){
 				jQuery("#promotion").hide();
 				jQuery("#coupon").hide();
+				jQuery("#dis").hide();
+				$("input[name=couponname]").prop("checked",false);
+				jQuery("#sum").val(total);
 			}	
 			if($(this).val() == 'C'){
 				jQuery("#promotion").hide();
@@ -101,20 +105,26 @@
 			if($(this).val() == 'P'){
 				jQuery("#promotion").show();
 				jQuery("#coupon").hide();
+				jQuery("#dis").hide();
+				$("input[name=couponname]").prop("checked",false);
+				jQuery("#sum").val(total);
 			}
 			
 		});
 		
+		
 		jQuery("input[name='card']").change(function(){
-			if($(this).val() == 'N'){	
-				$("#Div").find("input,select,button,textarea").prop("disabled",true);
+			if($(this).val() == 'N'){
 				jQuery("#pay").hide();
 			}
-			if($(this).val() == 'Y'){	
-				$("#Div").find("input,select,button,textarea").prop("disabled",false);
+			if($(this).val() == 'P'){
+				jQuery("#pay").hide();
+			}
+			if($(this).val() == 'Y'){
 				jQuery("#pay").show();
 			}
 		});
+		
 		jQuery("input[name='dnum']").change(function(){
 			
 		});
@@ -123,6 +133,21 @@
 		});
 	
 	});
+	
+	function disclick(){
+		var total = '${rentcar.totalprice}';
+		var per = '${list.get(0).getCoupon_discount()}';
+		var sum = "";
+		
+		jQuery("#dis").show();
+		if($("input:radio[name=couponname]").val() == '%'){	
+			sum = total-((total*0.01)*per);
+			jQuery("#sum").val(sum);
+		}else{
+			sum = total-per;
+			jQuery("#sum").val(sum);
+		}
+	}
 	
 	function myclick(){
 		var name = "";
@@ -149,7 +174,6 @@
 			jQuery("#Dname").val($("input:text[name=Rname]").val());
 			jQuery("#Dphone").val($("input:text[name=Rphone]").val());
 			birth = '${log.cut}';
-			alert(birth);
 			jQuery("#Dday").val(birth);
 		}else{
 			jQuery("#Dname").val("");
@@ -159,20 +183,43 @@
 	}
 	
 	function check(){
+		var pay = "";
+		
+		if($("input:radio[id=card1]").is(":checked")){
+			pay = "card";
+		}
+		if($("input:radio[id=card2]").is(":checked")){
+			pay = "trans";
+		}
+		if($("input:radio[id=card3]").is(":checked")){
+			pay = "vbank";
+		}
+		if($("input:radio[id=card4]").is(":checked")){
+			pay = "phone";
+		}
+		if(pay == ""){
+			alert("결제방법을 선택해주세요");
+			return;
+		}
+		var amount = jQuery("#sum").val();
+		var car = '${rentcar.car.car_name }';
+		var branch = '${rentcar.branch.branch_name }';
+		var start = '${requirements.rent_reserve_startDate}';
+		var end = '${requirements.rent_reserve_endDate}';
 		IMP.init('imp60101607');
 		
 		IMP.request_pay({
 		    pg : 'inicis', // version 1.1.0부터 지원.
-		    pay_method : 'card',
+		    pay_method : pay,
 		    merchant_uid : 'merchant_' + new Date().getTime(),
-		    name : '주문명:결제테스트',
-		    amount : 20000,
-		    buyer_email : 'iamport@siot.do',
-		    buyer_name : '구매자이름',
-		    buyer_tel : '010-1234-5678',
+		    name : car+"("+branch+")"+"["+start+"~"+end+"]",
+		    amount : amount,
+		    buyer_email : '${log.member_email}',
+		    buyer_name : '${log.member_name}',
+		    buyer_tel : '${log.member_tel}',
 		    buyer_addr : '서울특별시 강남구 삼성동',
 		    buyer_postcode : '123-456',
-		    m_redirect_url : 'https://www.yourdomain.com/payments/complete'
+		    //m_redirect_url : ''
 		}, function(rsp) {
 		    if ( rsp.success ) {
 		        var msg = '결제가 완료되었습니다.';
@@ -447,26 +494,39 @@
 									<td style="background-color:white">
 										<div class="col-md-12">
 											<p><div class="row form-group">
-												<div style="width:100%;height:50px;background-color:white">
-													&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" id="card1" name="card" value="Y">
+												<div style="width:100%;height:150px;background-color:white">
+													&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" id="card1" name="card" value="card">
 													<label class="form-check-label" for="card1">
-														<h4 style="font-size:10pt">정기결제 (신용카드 등록 후 결제)</h4>
+														<h4 style="font-size:10pt">신용카드</h4>
 													</label></br>
-													&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" id="card2" name="card" value="N">
+													&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" id="card2" name="card" value="trans">
 													<label class="form-check-label" for="card2">
-														<h4 style="font-size:10pt">신용카드/체크카드</h4>
+														<h4 style="font-size:10pt">계좌이체</h4>
+													</label></br>
+													&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" id="card3" name="card" value="vbank">
+													<label class="form-check-label" for="card3">
+														<h4 style="font-size:10pt">무통장입금</h4>
+													</label></br>
+													&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" id="card4" name="card" value="phone">
+													<label class="form-check-label" for="card4">
+														<h4 style="font-size:10pt">휴대폰소액결제</h4>
 													</label>
 												</div>
 												</div></p>
 										</div>
 									</td>
 								</tr>
-								<tr>			
-									<td height="10px" style="background-color: white"></td>
-								</tr>
-								<tr>
-									<th>　</th>
-								</tr>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-md-6 col-sm-6 animate-box">
+				<div class="hotel-entry">
+					<div class="desc">
+						<div id="board">
+						<table border="0" width="100%"  cellpadding="0" cellspacing="0">
 								<tr style="color:white;">			
 									<th  height="50px" style="background-color: #2d2f3f">　할인방법(선택사항)</th>
 								</tr>
@@ -500,7 +560,6 @@
 								</tr>
 								<tr>			
 									<td height="50px">
-									
 									<div id="coupon" style="display:none">
 									<table border="0" width="100%" height="50px">
 									<tr height="50px" style="background-color:#2e3040;color:white;">
@@ -511,7 +570,7 @@
 									<c:forEach items="${list}" var="list">
 									<tr style="background-color:white" height="30px">
 										<td style="padding-left:10px">
-											<input type="radio" id="couponname" name="couponname" value="C">
+											<input type="radio" id="couponname" name="couponname" onclick="disclick()" value='${list.coupon_way}'>
 											<label class="form-check-label" for="couponname">
 												<span style="font-size:10pt">${list.coupon_name}</span>
 											</label>
@@ -536,98 +595,15 @@
 					</div>
 				</div>
 			</div>
-
-			<div class="col-md-6 col-sm-6 animate-box" id="Div" name="Div">
-				<div class="hotel-entry">
-					<div class="desc">
-						<div id="board">
-						<table border="0" width="100%">
-							<tr style="color:white">			
-								<td colspan="2" height="50px" style="background-color: #2d2f3f">　정기결제 신용카드 입력</td>
-							</tr>
-							<tr>			
-								<td colspan="2" height="5px" style="background-color: white"></td>
-							</tr>
-							<tr style="width:100%;height:10px;background-color:white;" >
-								<td width="20%" align="center">카드번호</td>
-								<td>
-								<input type="text" maxlength="4" size="5" style="height:40px;">-
-								<input type="text" maxlength="4" size="5" style="height:40px;">-
-								<input type="text" maxlength="4" size="5" style="height:40px;">-
-								<input type="text" maxlength="4" size="5" style="height:40px;">
-								</td>
-							</tr>
-							<tr>			
-								<td colspan="2" height="10px" style="background-color: white"></td>
-							</tr>
-							<tr style="width:100%;height:10px;background-color:white;">
-								<td align="center">유효기간</td>
-								<td>
-								<input type="text" size="5" style="height:40px;" placeholder="MM">월
-								<input type="text" size="5" style="height:40px;" placeholder="YY">년
-								</td>
-							</tr>
-							<tr>			
-								<td colspan="2" height="10px" style="background-color: white"></td>
-							</tr>
-							<tr style="width:100%;height:10px;background-color:white;">
-								<td align="center">비밀번호</td>
-								<td>
-								<input type="text" maxlength="2" size="5" style="height:40px;">
-								<span style="font-size:15pt;">**</span>
-								</td>
-							</tr>
-							<tr>			
-								<td colspan="2" height="10px" style="background-color: white"></td>
-							</tr>
-							<tr style="width:100%;height:10px;background-color:white;">
-								<td align="center">카드구분</td>
-								<td style="padding-top:15px">
-									<input type="radio" id="Check1" name="Check">
-									<label class="form-check-label" for="Check1">
-										<h4 style="font-size:10pt">개인</h4>
-									</label>
-									&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" id="Check2" name="Check">
-									<label class="form-check-label" for="Check2">
-										<h4 style="font-size:10pt">법인</h4>
-									</label>
-								</td>
-							</tr>
-							<tr>			
-								<td colspan="2" height="10px" style="background-color: white"></td>
-							</tr>
-							<tr style="width:100%;height:10px;background-color:white;">
-								<td align="center">생년월일</td>
-								<td>
-								<input type="text" maxlength="6" size="14" style="height:40px;">(6자리)
-								</td>
-							</tr>
-							<tr>			
-								<td colspan="2" height="10px" style="background-color: white"></td>
-							</tr>
-							<tr>
-								<td colspan="2" height="10px" style="background-color: white;font-size:8pt;padding-left:10px;padding-right:10px">
-								<span>* 정기결제는 일시불 결제만 가능합니다. 할부 결제를 원하실 경우 결제방법을 "신용/체크카드"로 선택 후 진행해 주시기 바랍니다.</br>
-									* 결제카드 정보는 안전한 전자결제 서비스에 직접 등록되며, 제주패스렌트카에서는 카드정보를 별도 저장하지 않습니다.</span>
-								</td>
-							</tr>
-							<tr>			
-								<td colspan="2" height="10px" style="background-color: white"></td>
-							</tr>
-						</table>
-						</div>
-					</div>
-				</div>
-			</div>
 		</div>
 		<div align="center">
 		<input type="checkbox">
-			<label class="form-check-label" for="exampleCheck1">
+			<label class="form-check-label" for="">
 				<h4 style="font-size:14pt">개인정보 수집·이용 및 제3자 정보 제공에 모두 동의합니다.</h4>
 			</label></br>
 		<div id="pay" name="pay">
 		<input type="checkbox">
-			<label class="form-check-label" for="exampleCheck1">
+			<label class="form-check-label" for="">
 				<h4 style="font-size:14pt">결제진행약관에 모두 동의합니다.　　　　　　　　　　　</h4>
 			</label></br></br>
 		</div>
@@ -648,8 +624,8 @@
                   <div class="form-group">
                     <label for="" style="color:#8caaca">대여일시</label>
                     <div class="form-field">
-                      <span style="color:white;font-size:12pt">2017/07/04(수)</span></br>
-                      <span style="color:white;font-size:12pt">09:00</span>
+                      <span style="color:white;font-size:12pt">${requirements.rent_reserve_startDate}</span></br>
+                      <span style="color:white;font-size:12pt">${requirements.rent_reserve_startTime}</span>
                     </div>        
                   </div>
                 </div>
@@ -657,8 +633,8 @@
                   <div class="form-group">
                     <label for="" style="color:#8caaca">반납일시</label>
                     <div class="form-field">
-                      <span style="color:white;font-size:12pt">2017/07/05(목)</span></br>
-                      <span style="color:white;font-size:12pt">12:00</span>
+                      <span style="color:white;font-size:12pt">${requirements.rent_reserve_endDate}</span></br>
+                      <span style="color:white;font-size:12pt">${requirements.rent_reserve_endTime}</span>
                     </div>
                   </div>
                 </div>
@@ -666,7 +642,7 @@
                   <div class="form-group">
                     <label for="" style="color:#8caaca">보험</label>
                     <div class="form-field">
-                      <span style="color:white;font-size:12pt">완전자차</span>
+                      <span style="color:white;font-size:12pt">${rentcar.insurance_name}</span>
                     </div>
                   </div>
                 </div>
@@ -674,7 +650,7 @@
                   <div class="form-group">
                     <label for="" style="color:#8caaca">대여업체</label>
                     <div class="form-field">
-                      <span style="color:white;font-size:12pt">한성렌트카</span>
+                      <span style="color:white;font-size:12pt">${rentcar.branch.branch_name }</span>
                     </div>
                   </div>
                 </div>
@@ -682,8 +658,8 @@
                   <div class="form-group">
                     <label for="" style="color:#8caaca">차량</label>
                     <div class="form-field">
-                      <span style="color:white;font-size:12pt">스팅어</span>
-                      <img src="resources/rentcar/images/car1.jpg" width=100%, height=50%>
+                      <span style="color:white;font-size:12pt">${rentcar.car.car_name }</span>
+                      <img src="resources/car/${rentcar.car.car_image}" width=100%, height=50%>
                     </div>
                   </div>
                 </div>
@@ -691,12 +667,18 @@
                   <div class="form-group">
                     <label for="" style="color:#8caaca">결제금액</label>
                     <div class="form-field">
-                      <span style="color:white;font-size:24pt">24,200원</span></br>
+                    <input style="width:100%;background-color:#2d2f3f;color:white;font-size:24pt;border:none" name="sum" id="sum" type="text"  value='${rentcar.totalprice}' readOnly></br>
                       <hr></br>
                       <span style="color:#8caaca;font-size:10pt">차량대여료(24시간)</span>
-                      <span style="color:white;font-size:10pt">6,200원</span></br>
+                      <span style="color:white;font-size:10pt">${rentcar.totalrent}</span></br>
                       <span style="color:#8caaca;font-size:10pt">보험료(2일)</span>
-                      <span style="color:white;font-size:10pt">18,000</span>
+                      <span style="color:white;font-size:10pt">${rentcar.totalinsurance }</span><br>
+                      
+                      
+                      <div id="dis" style="display:none">
+                      <span style="color:#8caaca;font-size:10pt">할인</span>
+                      <span style="color:white;font-size:10pt">${list.get(0).getCoupon_name()}${list.get(0).getCoupon_discount()}${list.get(0).getCoupon_way()}</span>
+		              </div>     
 		                    </div>
 		                  </div>
 		                </div>

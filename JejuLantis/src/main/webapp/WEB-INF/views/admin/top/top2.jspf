@@ -212,7 +212,7 @@
         <c:choose>
         <c:when test="${managerlog.manager_sms eq 'Y' }">
         <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Tables">
-          <a class="nav-link" href="">
+          <a class="nav-link" href="smsList.do?manager_id=${managerlog.manager_id}">
             <!-- <i class="fa fa-fw fa-table"></i> -->
             <span class="nav-link-text">SMS관리</span>
           </a>

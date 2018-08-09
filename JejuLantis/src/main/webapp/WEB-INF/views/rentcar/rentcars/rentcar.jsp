@@ -453,8 +453,36 @@
 				</div></br></br></br>
 				<table border="0" width="100%" style="background-color:white">
 					<tr>
-						<td rowspan="2" width="50%" height="500px" style="background-image: url(resources/rentcar/images/map1.jpg);">
+						<td rowspan="2" width="50%" height="500px">
+						<div id="map" style="width:600px">
+							<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+						<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f0cfd90b11f1fceed206c4f201756973&libraries=services"></script>
+							<script>
+							    var mapContainer = document.getElementById('map')//, // 지도를 표시할 div
+							        mapOption = {
+							           center: new daum.maps.LatLng("${rentcar.branch.branch_lati}", "${rentcar.branch.branch_long}"), // 지도의 중심좌표
+							           level: 5 // 지도의 확대 레벨
+							        };
+							    //지도를 미리 생성
+							    	var map = new daum.maps.Map(mapContainer, mapOption);
+							    //주소-좌표 변환 객체를 생성
+							    var geocoder = new daum.maps.services.Geocoder();
+							    //마커를 미리 생성
+							    var marker = new daum.maps.Marker({
+							       position: new daum.maps.LatLng("${rentcar.branch.branch_lati}", "${rentcar.branch.branch_long}"),
+							       map: map
+							    });
+								// 지도를 보여준다.
+		                        mapContainer.style.display = "block";
+		                        map.relayout();
+		                        // 지도 중심을 변경한다.
+		                        /* map.setCenter(coords); */
+		                        // 마커를 결과값으로 받은 위치로 옮긴다.
+		                        /* marker.setPosition(coords); */
+							</script>
+							</div>
 						</td>
+						
 					</tr>
 					<tr>
 						<td colspan="2" width="50%">

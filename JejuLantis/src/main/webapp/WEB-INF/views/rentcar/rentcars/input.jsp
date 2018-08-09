@@ -258,7 +258,14 @@
 	.checkbox input:checked + .danger:after{border-color:#f44336}
 	</style>
 	<div class="colorlib-loader"></div>
-
+	<form name="f" action="end.do" method="post">
+		<input type="hidden" name="rent_payment_total_price" id="rent_payment_total_price">
+		<input type="hidden" name="rent_payment_insurance_price" id="rent_payment_insurance_price">
+		<input type="hidden" name="rent_payment_carkind_price" id="rent_payment_carkind_price">
+		<input type="hidden" name="rent_payment_way_price" id="rent_payment_way_price">
+		<input type="hidden" name="rent_payment_discount" id="rent_payment_discount">
+		<input type="hidden" name="rent_payment_goods_type" id="rent_payment_goods_type">
+	</form>
 	<div id="page">
 		<aside id="colorlib-hero">
 			<div class="flexslider">

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace = "query.payment">
+
+<resultMap type="Payment" id="paymentResult">
+	<result column="RENT_PAYMENT_NO" property="rent_payment_no"/>
+	<result column="RENT_PAYMENT_TOTAL_PRICE" property="rent_payment_total_price"/>
+	<result column="RENT_PAYMENT_INSURANCE_PRICE" property="rent_payment_insurance_price"/>
+	<result column="RENT_PAYMENT_CARKIND_PRICE" property="rent_payment_carkind_price"/>
+	<result column="RENT_PAYMENT_DISCOUNT" property="rent_payment_discount"/>
+	<result column="RENT_PAYMENT_WAY" property="rent_payment_way"/>
+	<result column="RENT_PAYMENT_COMP_DATE" property="rent_payment_comp_date"/>
+	<result column="RENT_PAYMENT_ING" property="rent_payment_ing"/>
+	<result column="RENT_PAYMENT_CANCEL_DATE" property="rent_payment_cancel_date"/>
+	<result column="RENT_PAYMENT_RESIST" property="rent_payment_resist"/>
+	<result column="RENT_PAYMENT_GOODS_TYPE" property="rent_payment_goods_type"/>
+</resultMap>
+
+	<insert id="myInsert" parameterType="Payment">
+		insert into RENT_PAYMENT values(PAYMENT_seq.NEXTVAL,#{rent_payment_total_price},#{rent_payment_insurance_price},
+		#{rent_payment_carkind_price},#{rent_payment_discount},#{rent_payment_way},SYSDATE,'Y',null,SYSDATE,#{rent_payment_goods_type})
+	</insert>
+	
+</mapper>

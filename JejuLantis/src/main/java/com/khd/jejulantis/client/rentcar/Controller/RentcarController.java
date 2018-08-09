@@ -94,7 +94,7 @@ public class RentcarController {
 		return mv;
 	}
 
-	@RequestMapping(value="end.do",method=RequestMethod.POST)
+	@RequestMapping(value="end.do",method=RequestMethod.GET)
 	public String end() {
 		return "rentcar/rentcars/end";
 	}

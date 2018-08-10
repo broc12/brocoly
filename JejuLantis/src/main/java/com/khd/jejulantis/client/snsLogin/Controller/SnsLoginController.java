@@ -1,17 +1,23 @@
-package com.khd.jejulantis.client.naverLogin;
+package com.khd.jejulantis.client.snsLogin.Controller;
 
 import java.io.IOException;
 import java.text.ParseException;
-import java.util.Date;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.social.connect.Connection;
+import org.springframework.social.google.api.Google;
+import org.springframework.social.google.api.impl.GoogleTemplate;
+import org.springframework.social.google.api.plus.Person;
+import org.springframework.social.google.api.plus.PlusOperations;
 import org.springframework.social.google.connect.GoogleConnectionFactory;
+import org.springframework.social.oauth2.AccessGrant;
 import org.springframework.social.oauth2.GrantType;
 import org.springframework.social.oauth2.OAuth2Operations;
 import org.springframework.social.oauth2.OAuth2Parameters;
@@ -20,24 +26,33 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.github.scribejava.core.model.OAuth2AccessToken;
 import com.khd.jejulantis.client.naverLogin.NaverLoginBO;
-import com.khd.jejulantis.client.naverLogin.Service.NaverLoginService;
+import com.khd.jejulantis.client.snsLogin.Service.SnsLoginService;
 import com.khd.jejulantis.model.Member;
+
 
 /**
  * Handles requests for the application home page.
  */
-@Controller
-public class NaverLoginController {
 
+@Controller
+public class SnsLoginController {
+	private static final Logger logger = LoggerFactory.getLogger(SnsLoginController.class);
+	/* GoogleLogin */
+	@Autowired
+	private GoogleConnectionFactory googleConnectionFactory;
+	@Autowired
+	private OAuth2Parameters googleOAuth2Parameters;
+	
 	/* NaverLoginBO */
 	private NaverLoginBO naverLoginBO;
 	private String apiResult = null;
 	
 	@Autowired
-	NaverLoginService naverService;
+	SnsLoginService snsService;
 	@Autowired
 	private void setNaverLoginBO(NaverLoginBO naverLoginBO) {
 		this.naverLoginBO = naverLoginBO;
@@ -58,7 +73,7 @@ public class NaverLoginController {
 		model.addAttribute("url", naverAuthUrl);
 
 		/* 생성한 인증 URL을 View로 전달 */
-		return "rentcar/naverLogin/login";
+		return "rentcar/snsLogin/naverLogin";
 	}
 
 	//네이버 로그인 성공시 callback호출 메소드
@@ -93,7 +108,7 @@ public class NaverLoginController {
 		System.out.println("birthday 값은 " + birthday);
 		birthday = "1991/"+birthday;
 		java.text.SimpleDateFormat format = new java.text.SimpleDateFormat("yy/MM/dd");
-		Member member = naverService.checkMember(id);
+		Member member = snsService.checkMember(id);
 		if(member!=null) {
 			System.out.println("id 있음 로그인하자");
 			member.setMember_id(member.getMember_name());
@@ -103,7 +118,7 @@ public class NaverLoginController {
 		else {
 			System.out.println("id 없음 회원가입하자");
 			Member memberToJoin = new Member(0, id, null, name, birthday, "M", "서울", "000000", email,"Y", "Y", null, "N", null);
-			isInserted = naverService.joinMember(memberToJoin);
+			isInserted = snsService.joinMember(memberToJoin);
 			System.out.println("회원가입 " + isInserted);
 			memberToJoin.setMember_id(memberToJoin.getMember_name());
 			if(isInserted) {
@@ -112,7 +127,66 @@ public class NaverLoginController {
 			}
 		}
         /* 네이버 로그인 성공 페이지 View 호출 */
-		return "rentcar/naverLogin/naverSuccess";
+		return "rentcar/snsLogin/naverSuccess";
+	}
+
+	// 로그인 첫 화면 요청 메소드
+	@RequestMapping(value = "/googleLogin.do", method = { RequestMethod.GET, RequestMethod.POST })
+	public String googleLogin(Model model, HttpSession session) {
+
+		/* 구글code 발행 */
+		OAuth2Operations oauthOperations = googleConnectionFactory.getOAuthOperations();
+		String url = oauthOperations.buildAuthorizeUrl(GrantType.AUTHORIZATION_CODE, googleOAuth2Parameters);
+
+		System.out.println("구글:" + url);
+
+		model.addAttribute("google_url", url);
+
+		/* 생성한 인증 URL을 View로 전달 */
+		return "rentcar/snsLogin/googleLogin";
+	}
+
+	// 구글 Callback호출 메소드
+	@RequestMapping(value = "/googleCallBack.do", method = { RequestMethod.GET, RequestMethod.POST })
+	public String googleCallback(Model model, @RequestParam String code, HttpSession session) throws IOException {
+		System.out.println("여기는 googleCallback");
+		boolean isInserted;
+
+		OAuth2Operations oauthOperations = googleConnectionFactory.getOAuthOperations();
+		AccessGrant accessGrant = oauthOperations.exchangeForAccess(code, googleOAuth2Parameters.getRedirectUri(), null); 
+		String accessToken = accessGrant.getAccessToken(); 
+		Long expireTime = accessGrant.getExpireTime();
+		if (expireTime != null && expireTime < System.currentTimeMillis()) {
+			accessToken = accessGrant.getRefreshToken();
+			logger.info("accessToken is expired. refresh token = {}" , accessToken);
+			
+		}
+		Connection<Google>connection = googleConnectionFactory.createConnection(accessGrant); 
+		Google google = connection == null ? new GoogleTemplate(accessToken) : connection.getApi();
+		PlusOperations plusOperations = google.plusOperations();
+		Person person = plusOperations.getGoogleProfile();
+		Member member = snsService.checkMember(person.getId());
+		if(member!=null) {
+			System.out.println("id 있음 로그인하자");
+			member.setMember_id(member.getMember_name());
+			session.setAttribute("log", member);
+			return "rentcar/home";
+		}
+		else {
+			System.out.println("id 없음 회원가입하자");
+			Member memberToJoin = new Member(0, person.getId(), "google", person.getDisplayName(), "", "M", "", "", "" ,"Y", "Y", null, "N", null);
+			isInserted = snsService.joinMember(memberToJoin);
+			System.out.println("회원가입 " + isInserted);
+			memberToJoin.setMember_id(memberToJoin.getMember_name());
+			if(isInserted) {
+				session.setAttribute("log", memberToJoin);
+				return "rentcar/home";
+			}
+		}
+		
+		return "rentcar/snsLogin/googleSuccess";
+
 	}
 }
+
 

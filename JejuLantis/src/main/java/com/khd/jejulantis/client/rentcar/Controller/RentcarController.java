@@ -14,11 +14,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.khd.jejulantis.client.Reserv.Service.ReservService;
 import com.khd.jejulantis.client.coupon.Service.DetailService;
+import com.khd.jejulantis.client.payment.Service.PaymentService;
 import com.khd.jejulantis.client.rentcar.Service.RentcarService;
 import com.khd.jejulantis.model.Detail;
 import com.khd.jejulantis.model.Member;
+import com.khd.jejulantis.model.Payment;
 import com.khd.jejulantis.model.Rcar;
+import com.khd.jejulantis.model.Reserv;
 import com.khd.jejulantis.model.SearchRequirements;
 import com.khd.jejulantis.model.SelectRentcar;
 
@@ -29,6 +33,10 @@ public class RentcarController {
 	RentcarService rentcarservice;
 	@Autowired
 	DetailService detailservice;
+	@Autowired
+	PaymentService paymentService;
+	@Autowired
+	ReservService reservService;
 	
 	@RequestMapping(value="car.do",method=RequestMethod.GET)
 	public ModelAndView car(HttpServletRequest request,@RequestParam(value="sort",required=false) String sort) {
@@ -78,7 +86,7 @@ public class RentcarController {
 	}
 
 	@RequestMapping(value="input.do",method=RequestMethod.POST)
-	public ModelAndView input(SearchRequirements requirements,HttpSession session) {
+	public ModelAndView input(SearchRequirements requirements,HttpSession session,Reserv reserv) {
 		Member log = (Member)session.getAttribute("log");
 		List<Detail>list = detailservice.listService(log.getMember_id());
 		String view = "rentcar/rentcars/input";
@@ -91,11 +99,20 @@ public class RentcarController {
 		}
 		requirements.setSearchFlag(true);
 		mv.addObject("requirements", requirements);
+		mv.addObject("reserv", reserv);
 		return mv;
 	}
 
 	@RequestMapping(value="end.do",method=RequestMethod.GET)
 	public String end() {
+		return "rentcar/rentcars/end";
+	}
+	@RequestMapping(value="payment.do",method=RequestMethod.POST)
+	public String payment(Payment payment,Reserv reserv) {
+		
+		Payment pay = paymentService.insertService(payment);
+		reserv.setRent_payment_no(pay.getRent_payment_no());
+		reservService.insertService(reserv);
 		return "rentcar/rentcars/end";
 	}
 }

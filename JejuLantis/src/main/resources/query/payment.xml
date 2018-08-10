@@ -17,8 +17,14 @@
 </resultMap>
 
 	<insert id="myInsert" parameterType="Payment">
-		insert into RENT_PAYMENT values(PAYMENT_seq.NEXTVAL,#{rent_payment_total_price},#{rent_payment_insurance_price},
+	<selectKey keyProperty="rent_payment_no" resultType="long" order="BEFORE">
+	select RENT_PAYMENT_seq.nextval from DUAL
+	</selectKey>
+		insert into RENT_PAYMENT values(#{rent_payment_no},#{rent_payment_total_price},#{rent_payment_insurance_price},
 		#{rent_payment_carkind_price},#{rent_payment_discount},#{rent_payment_way},SYSDATE,'Y',null,SYSDATE,#{rent_payment_goods_type})
 	</insert>
 	
+	<select id="mySubject" resultType="Payment">
+   		select * from RENT_PAYMENT where RENT_PAYMENT_NO=#{rent_payment_no}
+   </select>
 </mapper>

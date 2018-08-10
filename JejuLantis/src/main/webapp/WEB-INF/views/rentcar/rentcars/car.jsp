@@ -285,17 +285,6 @@
 														</td>
 													</tr>
 													</c:forEach>
-													<tr style="font-size:8pt;border-bottom: hidden">
-														<td align="center" style="border-right: hidden">제주렌트카</td>
-														<td align="center" style="border-right: hidden">4.5</td>
-														<td align="center" style="border-right: hidden">13,400원</td>
-														<td align="center" style="border-right: hidden">13,000원</td>
-														<td align="center" style="border-right: hidden">1,000만원</td>
-														<td align="center" style="border-right: hidden">26,400원</td>
-														<td align="center">													
-											              <button type="button" style="background-color:#f8fafb;border:0"><a href="rentcar.do" style="color:black;text-decoration:none">실시간예약</a></button>									                
-														</td>
-													</tr>
 												</table>
 											</div>
 										</div>
@@ -314,79 +303,6 @@
 							<input type="hidden" id="carkindno" name="carkindno" />
 						</form>						
 						<!-- end -->
-						<div class="row">
-							<div class="wrap-division">
-								<div class="row">
-								<div class="col-md-6 col-sm-6 animate-box" style="width:40%;padding:0px">
-									<div class="hotel-entry" style="background-color:#f8fafb;padding:15px;height:410px"></br>
-										<span style="color:black;font-size:18pt">아반떼</span><span style="color:black">(LPG)</span>
-										<img width="100%" weight="200" src="resources/car/2017Avante.png"/>
-										<div class="desc">
-											<p align="center" style="color:#0090f0">실시간 예약 가능 차량 : 5</p>
-										</div>
-										</br>
-										<div class="desc">
-											<p align="center">
-												<span class="glyphicon glyphicon-road">중소형</span>
-												<span class="glyphicon glyphicon-user">5인승</span>
-												<span class="glyphicon glyphicon-tint">LPG</span>
-											</p>
-										</div>
-									</div>
-								</div>
-
-								<div class="col-md-6 col-sm-6 animate-box" style="padding:0px;width:60%">
-									<div class="hotel-entry" style="background-color:white">
-										<div class="desc" style="padding:15px;height:410px"></br>
-											<span style="font-size:18pt;color:black">특별한 렌트카</span>
-											<div align="right">
-											<span style="color:red;text-decoration: line-through">43,000원</span>
-											<span style="font-size:18pt;color:black">32,400원</span>
-											</div>
-											<p class="star"><span><i class="icon-star-full"></i><i class="icon-star-full"></i><i class="icon-star-full"></i><i class="icon-star-full"></i><i class="icon-star-full"></i></span> 545 Reviews</p>
-											<span class="place">금연차량 네비 후방센서  블랙박스 블루투스 후방카메라 썬루프</span>
-											<!-- <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p> -->
-											<div id="board">
-												<table border="1" style="border-bottom:none;border-left:hidden;border-right:hidden" width="100%"  cellpadding="0" cellspacing="0">	
-													<tr style="color:#717886;font-size:8pt">			
-														<th  height="30px" width="23%" class="text-center" style="background-color: #f8fafb;border-right: hidden;">대여업체</th>
-														<th  width="7%" class="text-center" style="background-color: #f8fafb;border-right: hidden;">평점</th>
-														<th  width="12%" class="text-center" style="background-color: #f8fafb;border-right: hidden;">대여료</th>
-														<th  width="12%" class="text-center" style="background-color: #f8fafb;border-right: hidden;">보험료</th>
-														<th  width="12%" class="text-center" style="background-color: #f8fafb;border-right: hidden;">보상한도</th>
-														<th  width="12%" class="text-center" style="background-color: #f8fafb;border-right: hidden;">총 금액</th>
-														<th  width="17%" class="text-center" style="background-color: #f8fafb;border-right: hidden;"></th>
-													</tr>
-													<tr style="font-size:8pt;border-bottom: hidden">
-														<td height="50px" align="center" style="border-right: hidden">특별한렌트카</td>
-														<td align="center" style="border-right: hidden">4.5</td>
-														<td align="center" style="border-right: hidden">13,400원</td>
-														<td align="center" style="border-right: hidden">13,000원</td>
-														<td align="center" style="border-right: hidden">1,000만원</td>
-														<td align="center" style="border-right: hidden">26,400원</td>
-														<td align="center">													
-											              <button type="button" style="background-color:#f8fafb;border:0"><a href="rentcar.do" style="color:black;text-decoration:none">실시간예약</a></button>								                
-														</td>
-													</tr>
-													<tr style="font-size:8pt;border-bottom: hidden">
-														<td align="center" style="border-right: hidden">제주렌트카</td>
-														<td align="center" style="border-right: hidden">4.5</td>
-														<td align="center" style="border-right: hidden">13,400원</td>
-														<td align="center" style="border-right: hidden">13,000원</td>
-														<td align="center" style="border-right: hidden">1,000만원</td>
-														<td align="center" style="border-right: hidden">26,400원</td>
-														<td align="center">													
-											              <button type="button" style="background-color:#f8fafb;border:0"><a href="rentcar.do" style="color:black;text-decoration:none">실시간예약</a></button>									                
-														</td>
-													</tr>
-												</table>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						</div>
 					</div>
 
 					<!-- SIDEBAR-->

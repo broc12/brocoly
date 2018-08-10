@@ -49,7 +49,7 @@
         <c:choose>
         <c:when test="${managerlog.manager_reservstatus eq 'Y' }">
         <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Charts">
-          <a class="nav-link" href="charts.do">
+          <a class="nav-link" href="reserv.do?branch_no=${managerlog.branch_no}">
             <!-- <i class="fa fa-fw fa-area-chart"></i> -->
             <span class="nav-link-text">예약현황</span>
           </a>

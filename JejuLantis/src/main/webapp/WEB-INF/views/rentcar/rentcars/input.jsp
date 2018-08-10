@@ -97,6 +97,7 @@
 				jQuery("#dis").hide();
 				$("input[name=couponname]").prop("checked",false);
 				jQuery("#sum").val(total);
+				jQuery("#rent_payment_discount").val(0);
 			}	
 			if($(this).val() == 'C'){
 				jQuery("#promotion").hide();
@@ -108,6 +109,7 @@
 				jQuery("#dis").hide();
 				$("input[name=couponname]").prop("checked",false);
 				jQuery("#sum").val(total);
+				jQuery("#rent_payment_discount").val(0);
 			}
 			
 		});
@@ -213,8 +215,7 @@
 		    pay_method : pay,
 		    merchant_uid : 'merchant_' + new Date().getTime(),
 		    name : car+"("+branch+")"+"["+start+"~"+end+"]",
-		    /* amount : amount, */
-		    amount : 1000,
+		    amount : amount,
 		    buyer_email : '${log.member_email}',
 		    buyer_name : '${log.member_name}',
 		    buyer_tel : '${log.member_tel}',
@@ -246,7 +247,7 @@
 		        	way = "휴대폰소액결제";
 		        }
 		        jQuery("#rent_payment_way").val(way);
-		        jQuery("#rent_payment_discount").val('${list.get(0).getCoupon_discount()}');
+		        /* jQuery("#rent_payment_discount").val('${list.get(0).getCoupon_discount()}'); */
 		        jQuery("#rent_payment_goods_type").val("Y");
 		        
 		        jQuery("#branch_no").val('${rentcar.branch_no}');

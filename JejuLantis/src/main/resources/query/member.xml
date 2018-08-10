@@ -56,6 +56,16 @@ insert into MEMBER values (#{member_no},#{member_id},#{member_pwd},#{member_name
       WHERE
           member_id = #{member_id}
 </select>
+<select id="memberList" resultType="Member">
+	SELECT
+		ROWNUM,MEMBER_ID,MEMBER_NAME,MEMBER_BIRTH,MEMBER_TEL,MEMBER_EMAIL,MEMBER_EMAIL_AT,MEMBER_SMS_AT,MEMBER_RESIST_MEMBER
+	FROM
+		MEMBER
+	WHERE
+		MEMBER_WITHDRAW_AT = 'N'
+	ORDER BY
+		MEMBER_RESIST_MEMBER
+</select>
 
 <update id="modify" parameterType="Member" >
 	 UPDATE member SET member_id = #{member_id} , member_pwd = #{member_pwd}, member_name = #{member_name}, member_tel = #{member_tel} ,member_birth = #{member_birth}, member_local = #{member_local}

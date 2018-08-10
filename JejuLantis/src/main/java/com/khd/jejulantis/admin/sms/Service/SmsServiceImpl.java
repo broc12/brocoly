@@ -11,7 +11,7 @@ import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 
 import com.khd.jejulantis.model.Member;
-@Service("SmsService")
+@Service
 public class SmsServiceImpl implements SmsService {
 	@Autowired
 	private JavaMailSender mailSender;

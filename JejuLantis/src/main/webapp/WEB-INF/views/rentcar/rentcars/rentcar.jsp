@@ -114,9 +114,8 @@
 			location.href="car.do";
 		}
 	}
-	function selectgoods(carkindno){
-		alert(carkindno);
-		document.getElementById("goodstype").value = carkindno;
+	function selectgoods(goodstype){
+		document.getElementById("goodstype").value = goodstype;
 		document.getElementById("reservform").submit();
 	}
 	</script>
@@ -368,9 +367,9 @@
 						</tr>
 						<tr>
 							<td>
-								<h2 style="margin-left:20px; margin-right:20px;color:#868c98; font-weight: bold;">24,200원</h2>
-								<span style="margin-left:20px; margin-right:20px;color:#868c98">차량 대여료 6,200원</span></br>
-								<span style="margin-left:20px; margin-right:20px;color:#868c98">보험료 18,000원</span>
+								<h2 style="margin-left:20px; margin-right:20px;color:#868c98; font-weight: bold;">${rentcar.totalrent*0.9 + rentcar.totalinsurance }원</h2>
+								<span style="margin-left:20px; margin-right:20px;color:#868c98">차량 대여료 ${rentcar.totalrent*0.9 }원</span></br>
+								<span style="margin-left:20px; margin-right:20px;color:#868c98">보험료 ${rentcar.totalinsurance }원</span>
 							</td>
 						</tr>
 						<tr>
@@ -396,8 +395,8 @@
 							<td>
 							<div class="col-md-15" style="margin-top:40px" align="center">
 				                  <button class="btn btn-default" 
-				                  <c:if test="${login!=0 }">disabled</c:if>>
-				                   <a href="rentcar.do" style="color:black;text-decoration:none">예약하기</a></button>
+				                  <c:if test="${log.member_id != '' }">disabled</c:if>>
+				                   <a href="#" onclick="selectgoods(2);return false;" style="color:black;text-decoration:none">예약하기</a></button>
 				                </div>
 							</td>
 						</tr>

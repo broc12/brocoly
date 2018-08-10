@@ -172,6 +172,10 @@ NATURAL JOIN
             )J2
         WHERE
             INSURANCE_NAME='일반자차'
+		AND
+			INSURANCE_WITHDRAW_AT='N'
+		AND
+			CAR_KIND_WITHDRAW_AT = 'N'
  		<if test="car_kind_no != 0">
 		AND
 			CAR_KIND_NO = #{car_kind_no}
@@ -179,8 +183,11 @@ NATURAL JOIN
         ORDER BY
             MTOT
         )
+	WHERE
+		BRANCH_WITHDRAW_AT='N'
     )
 <where>
+	CAR_WITHDRAW_AT='N'
 	<if test="car_name != '' and car_name != null ">
 		CAR_NAME=#{car_name}
 	</if>
@@ -245,8 +252,27 @@ AND
 	K.car_kind_no = #{car_kind_no}
 </select>
 <select id="selectCar" parameterType="SearchRequirements" resultMap="selectRentcarhResult">
-SELECT (CAR_KIND_PRICE_WEEK * #{weekTime}+CAR_KIND_PRICE_WEEKEND * #{weekendTime}) AS TOTALRENT,(INSURANCE_PRICE * #{period}) AS TOTALINSURANCE, (CAR_KIND_PRICE_WEEK * #{weekTime}+CAR_KIND_PRICE_WEEKEND * #{weekendTime} + INSURANCE_PRICE * #{period}) AS TOTALPRICE,J.* FROM (SELECT * FROM CAR_KIND NATURAL JOIN INSURANCE WHERE CAR_KIND_NO=#{car_kind_no} AND INSURANCE_NAME='일반자차')J
+SELECT
+	(CAR_KIND_PRICE_WEEK * #{weekTime}+CAR_KIND_PRICE_WEEKEND * #{weekendTime}) AS TOTALRENT,
+	(INSURANCE_PRICE * #{period}) AS TOTALINSURANCE,
+	(CAR_KIND_PRICE_WEEK * #{weekTime}+CAR_KIND_PRICE_WEEKEND * #{weekendTime} + INSURANCE_PRICE * #{period}) AS TOTALPRICE,
+	J.*
+FROM
+	(SELECT
+		*
+	FROM
+		CAR_KIND
+	NATURAL JOIN
+		INSURANCE
+	WHERE
+		CAR_KIND_NO=#{car_kind_no}
+	AND
+		INSURANCE_NAME='일반자차'
+	AND
+		INSURANCE_WITHDRAW_AT='Y'
+	)J
 </select>
+
 <insert id="inputreserv" parameterType="SearchRequirements">
 <selectKey keyProperty="rent_reserv_no" resultType="long" order="BEFORE">
         select RENT_RESERV_SEQ.nextval from DUAL

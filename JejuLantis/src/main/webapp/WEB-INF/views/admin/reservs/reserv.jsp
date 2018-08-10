@@ -45,42 +45,34 @@
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
               <thead>
                 <tr>
-                  <th>번호</th>
-                  <th>사용자ID</th>
-                  <th>사용자명</th>
-                  <th>생년월일</th>
-                  <th>휴대전화번호</th>
-                  <th>이메일</th>
-                  <th>이메일수신여부</th>
-                  <th>SMS수신여부</th>
-                  <th>가입날짜</th>
+                  <th>예약번호</th>
+                  <th>회원ID</th>
+                  <th>회원명</th>
+                  <th>대여일시</th>
+                  <th>반납일시</th>
+                  <th>차량</th>
+                  <th>보험</th>
+                  <th>결제금액</th>
+                  <th>결제방법</th>
+                  <th>할인</th>
+                  <th>상태</th>
                 </tr>
               </thead>
-              <tbody>
+              <c:forEach items="${list}" var="list">
                 <tr>
-                  <td>Tiger Nixon</td>
+                  <td>${list.rent_reserv_no}</td>
                   <td>System Architect</td>
                   <td>Edinburgh</td>
-                  <td>61</td>
-                  <td>2011/04/25</td>
-                  <td>$320,800</td>
-                  <td>$320,800</td>
-                  <td>$320,800</td>
-                  <td>$320,800</td>
+                  <td>${list.rent_reserv_start}</td>
+                  <td>${list.rent_reserv_end}</td>
+                  <td>${list.car.car_name}</td>
+                  <td>${list.insurance.insurance_name}</td>
+                  <td>${list.payment.rent_payment_total_price}</td>
+                  <td>${list.payment.rent_payment_way}</td>
+                  <td>${list.payment.rent_payment_discount}</td>
+                  <td><span style="color:red">배정대기중</span></td>
                 </tr>
-                
-                <tr>
-                  <td>Donna Snider</td>
-                  <td>Customer Support</td>
-                  <td>New York</td>
-                  <td>27</td>
-                  <td>2011/01/25</td>
-                  <td>$112,000</td>
-                  <td>$320,800</td>
-                  <td>$320,800</td>
-                  <td>$320,800</td>
-                </tr>
-              </tbody>
+              </c:forEach>
             </table>
           </div>
         </div>

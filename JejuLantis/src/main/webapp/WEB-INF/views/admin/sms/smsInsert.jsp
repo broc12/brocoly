@@ -35,15 +35,70 @@
     <!-- 체크박스-->
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 	<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-
-	
 </head>
 
 <body class="fixed-nav sticky-footer bg-dark" id="page-top">
 <%@ include file="../top/top2.jspf" %>
   <!-- Navigation-->
+  <script>
+  function check(){
+	  
+	  document.f.submit();
+  }
+  </script>
+  <script>
+  $(document).ready(function(){
+	  $("#checkall").click(function(){
+			alert("hi");
+				//클릭되었어요
+				if($("#checkall").prop("checked")){
+					$("input[type='checkbox']").prop("checked",true);
+				}else{
+					$("input[type='checkbox']").prop("checked",false);
+				}
+		})
+  })
+  </script>
+  <script>
+	$(document).ready(function(){
+		$("#smsAjax").click(function(){
+			$.ajax({
+				url : "smsAjax.do",
+				type : "get",
+				success : function(responseData){
+					console.log(responseData);
+					alert(responseData.length);
+					$("#smsAjaxSub").empty();
+					var html = "";
+					html += "<table border='1' width='50%' cellpadding='1' id='smsAjaxSub2'>";
+					html += "<tr>";
+					html += "<th>멤버코드</th>";
+					html += "<th>이름</th>";
+					html += "<th>이메일</th>";
+					html += "<th>선택</th>";
+					html += "</tr>";
+					if(responseData.length != 0){
+						for (var i=0; i<responseData.length; i++){
+							html += "<tr>";
+							html += "<td align='center'>"+responseData[i].member_no+"</td>";
+							html += "<td align='center'>"+responseData[i].member_name+"</td>";
+							html += "<td align='center'>"+responseData[i].member_email+"</td>";
+							html += "<td align='center'><input type='checkbox' id="+responseData[i].member_no+"/></td>";
+							html += "</tr>";
+						}
+					}else{
+						html += "<tr>";
+						html += "<td colspan='4' align='center'>조회된 결과가 없습니다.</td>";
+		                html += "</tr>";
+					}
+					html += "</table>";
+					$("#smsAjaxResult").append(html);
+				}
+			})
+		})
+	})
+  </script>	
 
-	
   <div class="content-wrapper">
     <div class="container-fluid">
       <!-- Breadcrumbs-->
@@ -61,8 +116,18 @@
 	          <div class="table-responsive">
 	          	<form name="f" action="mailSenderOk.do" method="post">
 					<div align="center">받는 사람 이메일
-						<input type="text" name="tomail" size="120" style="width:100%" placeholder="상대의 이메일" class="form-control" >
-					</div>     
+						<input type="button" id="smsAjax" value="눌러주세요"/>
+<!-- 						<table border='1' width='50%' cellpadding='1' id='smsAjaxSub'> -->
+<!-- 							<tr> -->
+<!-- 								<th>멤버코드</th> -->
+<!-- 								<th>이름</th> -->
+<!-- 								<th>이메일</th> -->
+<!-- 								<th>전체선택&nbsp;<input type='checkbox' id='checkall' name='checkall'/></th> -->
+<!-- 							</tr> -->
+<!-- 						</table> -->
+						<div id="smsAjaxResult">
+						</div>
+					</div>
 					<div align="center"><!-- 제목 -->
 						<input type="text" name="title" id="title" size="120" style="width:100%" placeholder="제목을 입력해주세요" class="form-control" >
 					</div>
@@ -72,7 +137,7 @@
 					</div>
 					<p>
 					<div align="center">
-						<input type="submit" value="메일 보내기" class="btn btn-warning">
+						<input type="button" value="메일 보내기" class="btn btn-warning" onclick="check()">
 					</div>
 				</form>
 	        </div>

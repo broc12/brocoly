@@ -122,4 +122,10 @@ UPDATE member SET member_withdraw_at  ='y' where member_id=#{member_id}
 <!--         UPDATE member SET name = #{name}, tel = #{tel} -->
 <!--         WHERE email = #{email} AND pwd = #{pwd} -->
 <!--     </update> -->
+	<select id="emailSender" resultType="Member">
+		select MEMBER_EMAIL from MEMBER where MEMBER_WITHDRAW_AT='N' and MEMBER_SMS_AT='y'
+	</select>
+	<select id="emailSenderList" resultType="Member">
+		select * from MEMBER where MEMBER_WITHDRAW_AT='N' and MEMBER_SMS_AT='y'
+	</select>
 </mapper>

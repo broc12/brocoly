@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.khd.jejulantis.client.Reserv.DAO.ReservDAO;
 import com.khd.jejulantis.client.Reserv.Service.ReservService;
 import com.khd.jejulantis.client.coupon.Service.DetailService;
 import com.khd.jejulantis.client.payment.Service.PaymentService;
@@ -37,6 +38,9 @@ public class RentcarController {
 	PaymentService paymentService;
 	@Autowired
 	ReservService reservService;
+
+	/*@Autowired
+	ReservDAO reservdao;*/
 	
 	@RequestMapping(value="car.do",method=RequestMethod.GET)
 	public ModelAndView car(HttpServletRequest request,@RequestParam(value="sort",required=false) String sort) {
@@ -103,16 +107,22 @@ public class RentcarController {
 		return mv;
 	}
 
-	@RequestMapping(value="end.do",method=RequestMethod.GET)
-	public String end() {
-		return "rentcar/rentcars/end";
-	}
 	@RequestMapping(value="payment.do",method=RequestMethod.POST)
-	public String payment(Payment payment,Reserv reserv) {
+	public ModelAndView payment(Payment payment,Reserv reserv) {
 		
 		Payment pay = paymentService.insertService(payment);
 		reserv.setRent_payment_no(pay.getRent_payment_no());
-		reservService.insertService(reserv);
-		return "rentcar/rentcars/end";
+		Reserv res = reservService.insertService(reserv);
+		String view = "rentcar/rentcars/end";
+		ModelAndView mv = new ModelAndView(view,"res",res);
+		return mv;
+	}
+
+	@RequestMapping(value="check.do",method=RequestMethod.GET)
+	public ModelAndView check(@RequestParam("member_no")long member_no) {
+		List<Reserv>list = reservService.listService(member_no);
+		String view = "rentcar/reservations/check";
+		ModelAndView mv = new ModelAndView(view,"list",list);
+		return mv;
 	}
 }

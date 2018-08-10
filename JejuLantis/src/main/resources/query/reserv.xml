@@ -25,16 +25,27 @@
 	<association property="branch" column="BRANCH_NO" javaType="Branch" select="query.branch.mySubject"/>
 	<association property="car" column="CAR_NO" javaType="Car" select="query.car.mySubject"/>
 	<association property="payment" column="RENT_PAYMENT_NO" javaType="Payment" select="query.payment.mySubject"/>
-	<association property="insurance" column="INSURANCE_NO" javaType="Insurance" select="query.Insurance.insuranceContent"/>
+	<association property="insurance" column="INSURANCE_NO" javaType="Insurance" select="insurance.Insurance.insuranceContent"/>
 </resultMap>
 
 	<insert id="myInsert" parameterType="Reserv">
-		insert into RENT_RESERV values(RENT_RESERV_seq.NEXTVAL,#{branch_no},#{car_no},
+	<selectKey keyProperty="rent_reserv_no" resultType="long" order="BEFORE">
+	select RENT_RESERV_seq.nextval from DUAL
+	</selectKey>
+		insert into RENT_RESERV values(#{rent_reserv_no},#{branch_no},#{car_no},
 		#{car_kind_no},#{insurance_no},null,#{member_no},#{rent_payment_no},#{rent_reserv_start},
 		#{rent_reserv_end},null,null,null,null,'Y','N',null,null,SYSDATE)
 	</insert>
 	
 	<select id="myReserv" parameterType="Reserv" resultMap="reservResult">
 		select * from RENT_RESERV where RENT_RESERV_NO=#{RENT_RESERV_NO}
+	</select>
+	
+	<select id="myCheck" parameterType="Reserv" resultMap="reservResult">
+		select * from RENT_RESERV where MEMBER_NO=#{member_no}
+	</select>
+	
+	<select id="myBranch" parameterType="Reserv" resultMap="reservResult">
+		select * from RENT_RESERV where BRANCH_NO=#{branch_no}
 	</select>
 </mapper>

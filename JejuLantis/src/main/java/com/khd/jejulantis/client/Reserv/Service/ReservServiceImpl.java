@@ -1,5 +1,7 @@
 package com.khd.jejulantis.client.Reserv.Service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,7 +14,11 @@ public class ReservServiceImpl implements ReservService{
 	private ReservDAO reservDAO;
 	
 	@Override
-	public void insertService(Reserv reserv) {
-		reservDAO.insert(reserv);
+	public Reserv insertService(Reserv reserv) {
+		return reservDAO.insert(reserv);
+	}
+	@Override
+	public List<Reserv>listService(long member_no){
+		return reservDAO.list(member_no);
 	}
 }

@@ -22,16 +22,15 @@
 
 					<c:choose>
 						<c:when test="${log.member_id ne null}">
-							<span style="color: #ffdd00"> ${log.member_id}님 반갑습니다</span>&nbsp;&nbsp;&nbsp;
+						<span style="color: #ffdd00"> ${log.member_id}님 반갑습니다</span>&nbsp;&nbsp;&nbsp;
 						<a href="login/logout" style="color:#ffdd00;text-decoration:none">로그아웃</a>&nbsp;&nbsp;&nbsp;
-						<a href="mypage.do" style="color:#ffdd00;text-decoration:none">마이페이지</a>&nbsp;&nbsp;&nbsp;
+						<a href="mypage.do" style="color:#ffdd00;text-decoration:none">마이페이지</a>
 						</c:when>
 						<c:otherwise>
-							<a href="login.do" style="color:#ffdd00;text-decoration:none">로그인</a>&nbsp;&nbsp;&nbsp;
-       				<a href="member.do" style="color:#ffdd00;text-decoration:none">회원가입</a>&nbsp;&nbsp;&nbsp;	
+						<a href="login.do" style="color:#ffdd00;text-decoration:none">로그인</a>&nbsp;&nbsp;&nbsp;
+       					<a href="member.do" style="color:#ffdd00;text-decoration:none">회원가입</a>
 						</c:otherwise>
 					</c:choose>
-					<a href="service.do" style="color:#ffdd00;text-decoration:none">고객센터</a>
 				</div>
 			</div>
 			<div class="row">
@@ -46,18 +45,11 @@
 				<div class="col-xs-13 text-right menu-1">
 					<ul>
 						<li class="active"><a href="/jejulantis" style="text-decoration:none">Home</a></li>
-						<li class="has-dropdown"><a href="" style="text-decoration:none">숙박</a>
-							<ul class="dropdown">
-								<li><a href="#">호텔</a></li>
-								<li><a href="#">콘도/리조트</a></li>
-								<li><a href="#">게스트하우스</a></li>
-								<li><a href="#">펜션</a></li>
-								<li><a href="#">풀빌라</a></li>
-							</ul></li>
-						<li><a href="car.do" style="text-decoration:none">렌트카</a></li>
-						<li><a href="" style="text-decoration:none">패키지</a></li>
+						<li><a href="car.do" style="text-decoration:none">실시간예약</a></li>
 						<li><a href="board.do" style="text-decoration:none">이용후기</a></li>
-						<li><a href="check.do" style="text-decoration:none">예약확인</a></li>
+						<li><a href="check.do?member_no=${log.member_no}" style="text-decoration:none">예약확인</a></li>
+						<li><a href="service.do" style="text-decoration:none">고객센터</a></li>
+						<li><a href="" style="text-decoration:none">제휴문의</a></li>
 					</ul>
 				</div>
 			</div>

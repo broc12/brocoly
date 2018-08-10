@@ -213,7 +213,8 @@
 		    pay_method : pay,
 		    merchant_uid : 'merchant_' + new Date().getTime(),
 		    name : car+"("+branch+")"+"["+start+"~"+end+"]",
-		    amount : amount,
+		    /* amount : amount, */
+		    amount : 1000,
 		    buyer_email : '${log.member_email}',
 		    buyer_name : '${log.member_name}',
 		    buyer_tel : '${log.member_tel}',
@@ -227,6 +228,36 @@
 		        msg += '상점 거래ID : ' + rsp.merchant_uid;
 		        msg += '결제 금액 : ' + rsp.paid_amount;
 		        msg += '카드 승인번호 : ' + rsp.apply_num;
+		        
+		        jQuery("#rent_payment_total_price").val(amount);
+		        jQuery("#rent_payment_insurance_price").val('${rentcar.totalinsurance }');
+		        jQuery("#rent_payment_carkind_price").val('${rentcar.totalprice}');
+		        var way = "";
+		        if(pay == "card"){
+		        	way = "신용카드";
+		        }
+		        if(pay == "trans"){
+		        	way = "계좌이체";
+		        }
+		        if(pay == "vbank"){
+		        	way = "무통장입금";
+		        }
+		        if(pay == "phone"){
+		        	way = "휴대폰소액결제";
+		        }
+		        jQuery("#rent_payment_way").val(way);
+		        jQuery("#rent_payment_discount").val('${list.get(0).getCoupon_discount()}');
+		        jQuery("#rent_payment_goods_type").val("Y");
+		        
+		        jQuery("#branch_no").val('${rentcar.branch_no}');
+		        jQuery("#car_no").val('${rentcar.car_no}');
+		        jQuery("#car_kind_no").val('${rentcar.car_kind_no}');
+		        jQuery("#insurance_no").val('${rentcar.insurance_no}');
+		        jQuery("#member_no").val('${log.member_no}');
+		        jQuery("#rent_payment_no").val('${reserv.rent_payment_no}');
+		        jQuery("#rent_reserv_start").val('${requirements.rent_reserve_startDate}');
+		        jQuery("#rent_reserv_end").val('${requirements.rent_reserve_endDate}');
+		        document.f.submit();
 		    } else {
 		        var msg = '결제에 실패하였습니다.';
 		        msg += '에러내용 : ' + rsp.error_msg;
@@ -258,14 +289,26 @@
 	.checkbox input:checked + .danger:after{border-color:#f44336}
 	</style>
 	<div class="colorlib-loader"></div>
-	<form name="f" action="end.do" method="post">
+	<form name="f" action="payment.do" method="post">
+		<!-- 결제테이블 -->
 		<input type="hidden" name="rent_payment_total_price" id="rent_payment_total_price">
 		<input type="hidden" name="rent_payment_insurance_price" id="rent_payment_insurance_price">
 		<input type="hidden" name="rent_payment_carkind_price" id="rent_payment_carkind_price">
-		<input type="hidden" name="rent_payment_way_price" id="rent_payment_way_price">
+		<input type="hidden" name="rent_payment_way" id="rent_payment_way">
 		<input type="hidden" name="rent_payment_discount" id="rent_payment_discount">
 		<input type="hidden" name="rent_payment_goods_type" id="rent_payment_goods_type">
+		<!-- 예약테이블 -->
+		<input type="hidden" name="branch_no" id="branch_no">
+		<input type="hidden" name="car_no" id="car_no">
+		<input type="hidden" name="car_kind_no" id="car_kind_no">
+		<input type="hidden" name="insurance_no" id="insurance_no">
+		<input type="hidden" name="member_no" id="member_no">
+		<input type="hidden" name="rent_payment_no" id="rent_payment_no">
+		<input type="hidden" name="rent_reserv_start" id="rent_reserv_start">
+		<input type="hidden" name="rent_reserv_end" id="rent_reserv_end">
 	</form>
+		
+	
 	<div id="page">
 		<aside id="colorlib-hero">
 			<div class="flexslider">

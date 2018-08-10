@@ -67,7 +67,7 @@
 		<aside id="colorlib-hero">
 			<div class="flexslider">
 				<ul class="slides">
-			   	<li style="background-image: url(resources/rentcar/images/cover-img-4.jpg);">
+			   	<li style="background-image: url(resources/rentcar/images/endimage.jpg);">
 			   		<div class="overlay"></div>
 			   		<div class="container-fluid">
 			   			<div class="row">
@@ -97,50 +97,77 @@
 	
 		<div id="colorlib-blog" style="background-color:#eef2f5">
 			<div class="container">
-				<table border="0" width="100%" rules="rows">
+				<table border="0" width="100%">
 					<tr>
 					 <td colspan="3" style="background-color:#2c2e3e" height="250px" align="center">
-					 	<img src="resources/rentcar/images/check.jpg" width=20%, height=60%></br>
-					 	<a style="color:white;font-size:25pt">결제가 정상적으로 완료되었습니다.</a></br>
-					 	<a style="color:#8caaca">제주란티스를 이용해주셔서 감사합니다.</a>
+					 	<img src="resources/rentcar/images/check.jpg" width=18%, height=60%></br>
+					 	<span style="color:white;font-size:25pt">결제가 정상적으로 완료되었습니다.</span></br>
+					 	<span style="color:#8caaca">제주란티스를 이용해주셔서 감사합니다.</span>
 					 </td>
 					</tr>
 					<tr>
-					 <td  rowspan="2" width="25%" style="background-color:white"><img src="resources/rentcar/images/car1.jpg" width=100% height=50%></td>
+					 <td  rowspan="6" width="25%" style="background-color:white"><img src="resources/rentcar/images/car1.jpg" width=100% height=50%></td>
 					 <td width="35%" style="background-color:white">
 					 	<h style="color:#8caaca">대여일시</h></br>
-					 	<a style="color:black;font-size:18pt">18/07/04</a></br><a style="color:black">09:00</a></br>
-					 	<h style="color:#8caaca">반납일시</h></br>
-					 	<a style="color:black;font-size:18pt">18/07/05</a></br><a style="color:black">09:00</a></br>	
+					 	<span style="color:black;font-size:18pt">18/07/04</span></br><span style="color:black">09:00</span>
 					 </td>
 					 <td style="background-color:white">
-					 	<h style="color:#8caaca">차량</h></br>
-					 	<a style="color:black">스팅어</a></br></br>
-					 	<h style="color:#8caaca">대여업체</h></br>
-					 	<a style="color:black">한성렌트카</a></br>
-					 	<a style="color:black">010-5655-4547</a></br></br>
-					 	<h style="color:#8caaca">보험</h></br>
-					 	<a style="color:black">일반자차</a>
+					 	<h style="color:#8caaca">반납일시</h></br>
+					 	<span style="color:black;font-size:18pt">18/07/05</span></br><span style="color:black">09:00</span>
+					 </td>
+					</tr>
+					<tr>
+					 <td style="background-color:white">
+					 <h style="color:#8caaca">차량</h></br>
+					 	<span style="color:black">스팅어</span></br>
+					 	<span style="color:black">(LPG)</span>
+					 </td>
+					 <td style="background-color:white">
+					 <h style="color:#8caaca">대여업체</h></br>
+					 	<span style="color:black">한성렌트카</span></br>
+					 	<span style="color:black">010-5655-4547</span>
 					 </td>
 					</tr>
 					<tr>
 					 <td style="background-color:white">
 					 	<h style="color:#8caaca">요금</h></br>
-					 	<a style="color:black">스탠다드</a></br></br>
+					 	<span style="color:black">스탠다드</span>
+					 </td>
+					 <td style="background-color:white">
+					 <h style="color:#8caaca">보험</h></br>
+					 	<span style="color:black">일반자차</span>
+					 </td>
+					</tr>
+					<tr>
+					 <td style="background-color:white">
 					 	<h style="color:#8caaca">결제방법</h></br>
-					 	<a style="color:black">신용카드/체크카드</a></br></br>
-					 	<h style="color:#8caaca">예약번호</h></br>
-					 	<a style="color:black">1807030623</a>
+					 	<span style="color:black">신용카드/체크카드</span>
 					 </td>
 					 <td style="background-color:white">
 					 	<h style="color:#8caaca">결제금액</h></br>
-					 	<a style="color:black">60,100원</a></br></br>
-					 	<h style="color:#8caaca">차량 대여료(24시간)</h></br>
-					 	<a style="color:black">52,100원</a></br></br>
-					 	<h style="color:#8caaca">보험료(2일)</h></br>
-					 	<a style="color:black">8,000원</a>
+					 	<span style="color:black">60,100원</span>
 					 </td>
-					</tr>	
+					</tr>
+					<tr>
+					 <td style="background-color:white">
+					 	<h style="color:#8caaca">예약번호</h></br>
+					 	<span style="color:black">1807030623</span>
+					 </td>
+					 <td style="background-color:white">
+					 	<h style="color:#8caaca">차량 대여료(24시간)</h></br>
+					 	<span style="color:black">52,100원</span>
+					 </td>
+					</tr>
+					<tr>
+					 <td style="background-color:white">
+					 	<h style="color:#8caaca">할인</h></br>
+					 	<span style="color:black">스탠다드</span>
+					 </td>
+					 <td style="background-color:white">
+					 	<h style="color:#8caaca">보험료(2일)</h></br>
+					 	<span style="color:black">8,000원</span>
+					 </td>
+					</tr>
 				</table></br>
 				<div align="center">
 					<button class="btn btn-primary"><a href="/jejulantis" style="color:black">HOME</a></button>

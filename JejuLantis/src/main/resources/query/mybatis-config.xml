@@ -27,6 +27,7 @@
 		<typeAlias alias="Coupon" type="com.khd.jejulantis.model.Coupon"/>
 		<typeAlias alias="Detail" type="com.khd.jejulantis.model.Detail"/>
 		<typeAlias alias="Payment" type="com.khd.jejulantis.model.Payment"/>
+		<typeAlias alias="Reserv" type="com.khd.jejulantis.model.Reserv"/>
 	</typeAliases>
 	<mappers>
 		<mapper resource="query/CustomerCenter.xml"/>
@@ -49,6 +50,7 @@
 		<mapper resource="query/Coupon.xml"/>
 		<mapper resource="query/Detail.xml"/>
 		<mapper resource="query/payment.xml"/>
+		<mapper resource="query/reserv.xml"/>
 	</mappers>
 	
 	

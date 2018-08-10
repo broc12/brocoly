@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace = "query.reserv">
+
+<resultMap type="Reserv" id="reservResult">
+	<result column="RENT_RESERV_NO" property="rent_reserv_no"/>
+	<result column="BRANCH_NO" property="branch_no"/>
+	<result column="CAR_NO" property="car_no"/>
+	<result column="CAR_KIND_NO" property="car_kind_no"/>
+	<result column="INSURANCE_NO" property="insurance_no"/>
+	<result column="CAR_INFO_NO" property="car_info_no"/>
+	<result column="MEMBER_NO" property="member_no"/>
+	<result column="RENT_PAYMENT_NO" property="rent_payment_no"/>
+	<result column="RENT_RESERV_START" property="rent_reserv_start"/>
+	<result column="RENT_RESERV_END" property="rent_reserv_end"/>
+	<result column="RENT_RESERV_LICENSE_NO" property="rent_reserv_license_no"/>
+	<result column="RENT_RESERV_LICENSE_KIND" property="rent_reserv_license_kind"/>
+	<result column="RENT_RESERV_DRIVER_NAME" property="rent_reserv_driver_name"/>
+	<result column="RENT_RESERV_DRIVER_BIRTH" property="rent_reserv_driver_birth"/>
+	<result column="RENT_RESERV_CANCEL_ABLE" property="rent_reserv_cancel_able"/>
+	<result column="RENT_RESERV_CANCEL_AT" property="rent_reserv_cancel_at"/>
+	<result column="RENT_RESERV_CANCEL_REASON" property="rent_reserv_cancel_reason"/>
+	<result column="RENT_RESERV_CANCEL_DATE" property="rent_reserv_cancel_date"/>
+	<result column="RENT_RESERV_RESIST" property="rent_reserv_resist"/>
+	<association property="branch" column="BRANCH_NO" javaType="Branch" select="query.branch.mySubject"/>
+	<association property="car" column="CAR_NO" javaType="Car" select="query.car.mySubject"/>
+	<association property="payment" column="RENT_PAYMENT_NO" javaType="Payment" select="query.payment.mySubject"/>
+	<association property="insurance" column="INSURANCE_NO" javaType="Insurance" select="query.Insurance.insuranceContent"/>
+</resultMap>
+
+	<insert id="myInsert" parameterType="Reserv">
+		insert into RENT_RESERV values(RENT_RESERV_seq.NEXTVAL,#{branch_no},#{car_no},
+		#{car_kind_no},#{insurance_no},null,#{member_no},#{rent_payment_no},#{rent_reserv_start},
+		#{rent_reserv_end},null,null,null,null,'Y','N',null,null,SYSDATE)
+	</insert>
+	
+	<select id="myReserv" parameterType="Reserv" resultMap="reservResult">
+		select * from RENT_RESERV where RENT_RESERV_NO=#{RENT_RESERV_NO}
+	</select>
+</mapper>

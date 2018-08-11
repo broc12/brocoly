@@ -41,11 +41,15 @@ public class SmsController {
 	}
 	@RequestMapping(value = "admin/mailSenderOk.do") 
 	public void mailSendingOk( 
+			@RequestParam("smsEmail") List<String> smsEmail,
 			@RequestParam("title")String title, 
 			@RequestParam("content")String content) {
 //		System.out.println("시작");
-		List<Member> tomails = sservice.listService();
-		sservice.mailsendAllService(tomails, title, content); //선택된 이메일
+//		List<Member> tomails = sservice.listService();
+//		sservice.mailsendAllService(tomails, title, content); //선택된 이메일
+		System.out.println("테스트 : " + smsEmail.size());
+		System.out.println("이메일 : " + smsEmail.get(0));
+		sservice.mailsendSelectService(smsEmail, title, content);
 //		sservice.mailsendService(tomail, title, content);
 //	    String tomail  = "gml7814@naver.com";
 //	    String title   = "나......의 아름다운......정원";
@@ -71,6 +75,9 @@ public class SmsController {
 		System.out.println("smsAjax 1");
 		List<Member> emailSenderList = sservice.emailSenderListService();
 		System.out.println("smsAjax 2");
+		for(int i=0;i<emailSenderList.size();i++) {
+			System.out.println("email : " + emailSenderList.get(i).getMember_email());
+		}
 		return emailSenderList;
 	}
 }

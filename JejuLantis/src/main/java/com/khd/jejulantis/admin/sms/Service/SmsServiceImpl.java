@@ -37,6 +37,30 @@ public class SmsServiceImpl implements SmsService {
 			System.out.println(e);
 		}
 	}
+	
+	@Override
+	public void mailsendSelectService(List<String> smsEmail, String title, String content) {
+		String setfrom = "gml7814@gmail.com"; //관리자 이메일 
+		System.out.println("사용자 이메일 갯수 : " + smsEmail.size());
+		try {
+			MimeMessage message = mailSender.createMimeMessage();
+			MimeMessageHelper messageHelper = new MimeMessageHelper(message, true, "UTF-8");
+			messageHelper.setFrom(setfrom);  // 보내는사람 생략하거나 하면 정상작동을 안함
+			for(int i=0;i<smsEmail.size();i++) {
+				System.out.println("smsEmail : " + smsEmail.get(i));
+//				messageHelper.addTo(smsEmail.get(i)); // 보낼 사람의 이메일 여러명
+				
+				messageHelper.addTo(smsEmail.get(i));
+//				messageHelper.addTo(emailList);
+			}
+			messageHelper.setSubject(title); // 메일제목은 생략이 가능하다
+			messageHelper.setText(content);  // 메일 내용     
+			System.out.println("error");
+			mailSender.send(message);
+		} catch(Exception e){
+			System.out.println(e);
+		}
+	}
 	@Override
 	public void mailsendService(String tomail, String title, String content) {
 		String setfrom = "gml7814@gmail.com"; //관리자 이메일

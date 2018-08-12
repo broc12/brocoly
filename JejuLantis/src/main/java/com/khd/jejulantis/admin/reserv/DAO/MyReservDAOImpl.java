@@ -19,4 +19,9 @@ public class MyReservDAOImpl implements MyReservDAO{
 		List<Reserv>list = sqlSession.selectList(ns+".myBranch",branch_no);
 		return list;
 	}
+	@Override
+	public Reserv reservfull(long rent_reserv_no) {
+		Reserv res =  sqlSession.selectOne(ns+".myFull",rent_reserv_no);
+		return res;
+	}
 }

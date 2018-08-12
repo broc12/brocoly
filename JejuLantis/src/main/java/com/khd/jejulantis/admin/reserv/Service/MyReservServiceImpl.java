@@ -17,4 +17,8 @@ public class MyReservServiceImpl implements MyReservService{
 	public List<Reserv>listService(long branch_no){
 		return myreservDAO.list(branch_no);
 	}
+	@Override
+	public Reserv reservfullService(long rent_reserv_no) {
+		return myreservDAO.reservfull(rent_reserv_no);
+	}
 }

@@ -6,4 +6,5 @@ import com.khd.jejulantis.model.Reserv;
 
 public interface MyReservService {
 	List<Reserv>listService(long branch_no);
+	Reserv reservfullService(long rent_reserv_no);
 }

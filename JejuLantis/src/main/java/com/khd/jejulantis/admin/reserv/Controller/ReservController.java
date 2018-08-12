@@ -25,4 +25,12 @@ public class ReservController {
 		ModelAndView mv = new ModelAndView(view,"list",list);
 		return mv;
 	}
+	
+	@RequestMapping(value="admin/reservfull.do",method=RequestMethod.GET)
+	public ModelAndView reservfull(@RequestParam("rent_reserv_no")long rent_reserv_no) {
+		Reserv res = service.reservfullService(rent_reserv_no);
+		String view = "admin/reservs/reservfull";
+		ModelAndView mv = new ModelAndView(view,"res",res);
+		return mv;
+	}
 }

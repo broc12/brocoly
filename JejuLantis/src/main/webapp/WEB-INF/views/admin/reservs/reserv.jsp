@@ -45,7 +45,7 @@
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
               <thead>
                 <tr>
-                  <th>예약번호</th>
+                  <th>NO</th>
                   <th>회원ID</th>
                   <th>회원명</th>
                   <th>대여일시</th>
@@ -61,8 +61,8 @@
               <c:forEach items="${list}" var="list">
                 <tr>
                   <td>${list.rent_reserv_no}</td>
-                  <td>System Architect</td>
-                  <td>Edinburgh</td>
+                  <td>${list.member.member_id}</td>
+                  <td>${list.member.member_name}</td>
                   <td>${list.rent_reserv_start}</td>
                   <td>${list.rent_reserv_end}</td>
                   <td>${list.car.car_name}</td>
@@ -70,7 +70,7 @@
                   <td>${list.payment.rent_payment_total_price}</td>
                   <td>${list.payment.rent_payment_way}</td>
                   <td>${list.payment.rent_payment_discount}</td>
-                  <td><span style="color:red">배정대기중</span></td>
+                  <td><a style="color:red" href="reservfull.do?rent_reserv_no=${list.rent_reserv_no}">배정대기중</a></td>
                 </tr>
               </c:forEach>
             </table>

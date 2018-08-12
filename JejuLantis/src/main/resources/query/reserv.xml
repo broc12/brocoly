@@ -26,6 +26,7 @@
 	<association property="car" column="CAR_NO" javaType="Car" select="query.car.mySubject"/>
 	<association property="payment" column="RENT_PAYMENT_NO" javaType="Payment" select="query.payment.mySubject"/>
 	<association property="insurance" column="INSURANCE_NO" javaType="Insurance" select="insurance.Insurance.insuranceContent"/>
+	<association property="member" column="MEMBER_NO" javaType="Member" select="query.member.mySubject"/>
 </resultMap>
 
 	<insert id="myInsert" parameterType="Reserv">
@@ -47,5 +48,9 @@
 	
 	<select id="myBranch" parameterType="Reserv" resultMap="reservResult">
 		select * from RENT_RESERV where BRANCH_NO=#{branch_no}
+	</select>
+	
+	<select id="myFull" parameterType="Reserv" resultMap="reservResult">
+		select * from RENT_RESERV where RENT_RESERV_NO=#{rent_reserv_no}
 	</select>
 </mapper>

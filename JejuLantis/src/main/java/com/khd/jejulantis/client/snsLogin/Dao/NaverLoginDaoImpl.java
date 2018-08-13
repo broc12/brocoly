@@ -1,4 +1,4 @@
-package com.khd.jejulantis.client.naverLogin.Dao;
+package com.khd.jejulantis.client.snsLogin.Dao;
 
 import java.util.HashMap;
 import java.util.List;

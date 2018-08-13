@@ -77,10 +77,10 @@ public class SnsLoginController {
 		System.out.println("네이버:" + naverAuthUrl);
 		
 		//네이버 
-		model.addAttribute("url", naverAuthUrl);
+		/*model.addAttribute("url", naverAuthUrl);*/
 
 		/* 생성한 인증 URL을 View로 전달 */
-		return "rentcar/snsLogin/naverLogin";
+		return "redirect:"+naverAuthUrl;
 	}
 
 	//네이버 로그인 성공시 callback호출 메소드
@@ -148,7 +148,7 @@ public class SnsLoginController {
 		model.addAttribute("google_url", url);
 
 		/* 생성한 인증 URL을 View로 전달 */
-		return "rentcar/snsLogin/googleLogin";
+		return "redirect:"+url;
 	}
 
 	// 구글 Callback호출 메소드
@@ -175,7 +175,7 @@ public class SnsLoginController {
 		
 		return "rentcar/home";
 	}
-	@RequestMapping(value = "/facebookSignin.do")
+	@RequestMapping(value = "/facebookLogin.do")
 	public String getfacebookSigninCode(HttpSession session) {
 		logger.debug("facebookSignin");
 
@@ -189,7 +189,6 @@ public class SnsLoginController {
 	@RequestMapping(value = "/facebookAccessToken.do")
 	public String getFacebookSignIn(String code, HttpSession session, String state) throws Exception {
 		logger.debug("facebookAccessToken / code : "+code);
-		System.out.println(code);
 		String accessToken = requesFaceBooktAccesToken(session, code);
 		JSONObject jsonObject = facebookUserDataLoadAndSave(accessToken, session);
 		System.out.println("페북로그인 성공");
@@ -242,16 +241,14 @@ public class SnsLoginController {
 		boolean isInserted;
 		if(member!=null) {
 			System.out.println("id 있음 로그인하자");
-			member.setMember_id(member.getMember_name());
 			session.setAttribute("log", member);
 			return "rentcar/home";
 		}
 		else {
 			System.out.println("id 없음 회원가입하자");
-			Member memberToJoin = new Member(0, id, pwd ,name, birth , "M", "", "", email ,"Y", "Y", null, "N", null);
+			Member memberToJoin = new Member(0, id, "" ,name, birth , "M", "", "", email ,"Y", "Y", null, "N", null);
 			isInserted = snsService.joinMember(memberToJoin);
 			System.out.println("회원가입 " + isInserted);
-			memberToJoin.setMember_id(memberToJoin.getMember_name());
 			if(isInserted) {
 				session.setAttribute("log", memberToJoin);
 				return "rentcar/home";

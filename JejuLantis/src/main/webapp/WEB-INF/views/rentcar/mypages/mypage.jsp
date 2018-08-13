@@ -113,6 +113,7 @@
 						
 							<!-- onsubmit="return sendIt();" -->
 							<div class="row form-group">
+							<c:if test="${log.member_pwd!=''}">
 								<div class="col-md-6 padding-bottom">
 									<label for="fname">아이디</label></br>
 									<input type="text" value="${log.member_id}" name="member_id" readonly id="email" class="form-control" placeholder="ID">
@@ -126,7 +127,7 @@
 									<label for="lname">비밀번호확인</label> <input type="password" value="${nn.member_pwd}" id="member_pwd1" name="member_pwd1" class="form-control">
 								</div>
 							</div>
-
+							</c:if>
 							<div class="row form-group">
 								<div class="col-md-6 padding-bottom">
 									<label for="fname">이름</label><input type="text" value="${nn.member_name}" name="member_name" id="fname" class="form-control" placeholder="NAME">

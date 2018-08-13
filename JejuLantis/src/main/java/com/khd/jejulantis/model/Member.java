@@ -145,6 +145,10 @@ public class Member {
 	}
 	public String getMember_birth1() {
 		  String str1 = member_birth;
+		  if(str1==null) {
+			  String word1 ="";
+			  return word1;
+		  }
 		  System.out.println("str1"+ str1);
 	        String word1 = str1.split("-")[0];
 	        String word2 = str1.split("-")[1];
@@ -153,6 +157,10 @@ public class Member {
 	}
 	public String getMember_birth2() {
 		  String str1 = member_birth;
+		  if(str1==null) {
+			  String word2 ="";
+			  return word2;
+		  }
 	        String word1 = str1.split("-")[0];
 	        String word2 = str1.split("-")[1];
 	        String word3 = str1.split("-")[2];	      
@@ -160,6 +168,10 @@ public class Member {
 	}
 	public String getMember_birth3() {
 		  String str1 = member_birth;
+		  if(str1==null) {
+			  String word3 ="";
+			  return word3;
+		  }
 	        String word1 = str1.split("-")[0];
 	        String word2 = str1.split("-")[1];
 	        String word3 = str1.split("-")[2];	      
@@ -167,6 +179,10 @@ public class Member {
 	}
 	public String getMember_tel1() {
 		  String str1 = member_tel;
+		  if(str1==null) {
+			  String word1 ="";
+			  return word1;
+		  }
 		  System.out.println("str1"+ str1);
 	        String word1 = str1.split("-")[0];
 	        String word2 = str1.split("-")[1];
@@ -175,6 +191,10 @@ public class Member {
 	}
 	public String getMember_tel2() {
 		  String str1 = member_tel;
+		  if(str1==null) {
+			  String word2 ="";
+			  return word2;
+		  }
 	        String word1 = str1.split("-")[0];
 	        String word2 = str1.split("-")[1];
 	        String word3 = str1.split("-")[2];	      
@@ -182,6 +202,10 @@ public class Member {
 	}
 	public String getMember_tel3() {
 		  String str1 = member_tel;
+		  if(str1==null) {
+			  String word3 ="";
+			  return word3;
+		  }
 	        String word1 = str1.split("-")[0];
 	        String word2 = str1.split("-")[1];
 	        String word3 = str1.split("-")[2];	      

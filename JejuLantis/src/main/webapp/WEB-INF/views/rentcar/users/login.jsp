@@ -116,6 +116,12 @@
 												<div style="width: 60%">
 													<input type="password" id="fname" name="member_pwd"
 														class="form-control" placeholder="비밀번호"></br>
+														<p align="left">
+														<a href="/jejulantis/naverLogin.do"><img width="90" src="resources/sns/naver.jpg"></a> &nbsp;&nbsp;&nbsp;
+														<a href="/jejulantis/googleLogin.do"><img width="45" src="resources/sns/google.jpg"></a> &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+														<a href="/jejulantis/naverLogin.do"><img width="45" src="resources/sns/kakao.jpg"></a> &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+														<a href="/jejulantis/facebookLogin.do"><img width="45" src="resources/sns/facebook.jpg"></a>
+														</p>
 													<p align="right">
 														<a href="<%=request.getContextPath()%>/find_id_form.do">아이디찾기</a> ｜ <a href="<%=request.getContextPath()%>/find_pwd_form.do">비밀번호찾기</a>
 													</p>

@@ -7,7 +7,6 @@ public class Power {
 	String manager_main;
 	String manager_chart;
 	String manager_reservstatus;
-	String manager_ars_reserv;
 	String manager_travelmanagement;
 	String manager_review;
 	String manager_notice;
@@ -22,25 +21,28 @@ public class Power {
 	String manager_banner;
 	String manager_coupon;
 	String manager_sms;
-	String manager_insurance;	
+	String manager_email_at;
+	String manager_insurance;
+	String manager_affiliate;
 	String branch_name;
 	
 	public Power() {
 	}
 
+
 	public Power(long manager_no, String manager_id, String manager_name, String manager_main, String manager_chart,
-			String manager_reservstatus, String manager_ars_reserv, String manager_travelmanagement,
-			String manager_review, String manager_notice, String manager_user, String manager_manager,
-			String manager_company, String manager_carkind, String manager_d_carkind, String manager_carinfo,
-			String manager_paystatus, String manager_salestatus, String manager_banner, String manager_coupon,
-			String manager_sms, String manager_insurance, String branch_name) {
+			String manager_reservstatus, String manager_travelmanagement, String manager_review, String manager_notice,
+			String manager_user, String manager_manager, String manager_company, String manager_carkind,
+			String manager_d_carkind, String manager_carinfo, String manager_paystatus, String manager_salestatus,
+			String manager_banner, String manager_coupon, String manager_sms, String manager_email_at,
+			String manager_insurance, String manager_affiliate, String branch_name) {
+		super();
 		this.manager_no = manager_no;
 		this.manager_id = manager_id;
 		this.manager_name = manager_name;
 		this.manager_main = manager_main;
 		this.manager_chart = manager_chart;
 		this.manager_reservstatus = manager_reservstatus;
-		this.manager_ars_reserv = manager_ars_reserv;
 		this.manager_travelmanagement = manager_travelmanagement;
 		this.manager_review = manager_review;
 		this.manager_notice = manager_notice;
@@ -55,9 +57,12 @@ public class Power {
 		this.manager_banner = manager_banner;
 		this.manager_coupon = manager_coupon;
 		this.manager_sms = manager_sms;
+		this.manager_email_at = manager_email_at;
 		this.manager_insurance = manager_insurance;
+		this.manager_affiliate = manager_affiliate;
 		this.branch_name = branch_name;
 	}
+
 
 	public long getManager_no() {
 		return manager_no;
@@ -119,18 +124,30 @@ public class Power {
 		this.manager_reservstatus = manager_reservstatus;
 	}
 
-	public String getManager_ars_reserv() {
-		if(manager_ars_reserv == null){
+	public String getManager_email_at() {
+		if(manager_email_at == null){
 			return "N";
 		}else {
-			return manager_ars_reserv;
+			return manager_email_at;
 		}
 	}
 
-	public void setManager_ars_reserv(String manager_ars_reserv) {
-		this.manager_ars_reserv = manager_ars_reserv;
+	public void setManager_email_at(String manager_email_at) {
+		this.manager_email_at = manager_email_at;
+	}
+	/*여기*/
+	public String getManager_affiliate() {
+		if(manager_affiliate == null){
+			return "N";
+		}else {
+			return manager_affiliate;
+		}
 	}
 
+	public void setManager_affiliate(String manager_affiliate) {
+		this.manager_affiliate = manager_affiliate;
+	}
+	/*끝*/
 	public String getManager_travelmanagement() {
 		if(manager_travelmanagement == null) {
 			return "N";

@@ -20,6 +20,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.khd.jejulantis.admin.sms.Service.SmsService;
 import com.khd.jejulantis.model.Member;
@@ -31,18 +33,24 @@ public class SmsController {
 	@Autowired
 	private SmsService sservice;
 	@RequestMapping(value = "admin/smsList.do") 
-	public String mailSending() {
-		return "admin/sms/smsInsert";
+	public ModelAndView mailSending() {
+		List<Member> emailSenderList = sservice.emailSenderListService();
+		String view = "admin/sms/smsInsert";
+		ModelAndView mv = new ModelAndView(view,"emailSenderList",emailSenderList);
+		return mv;
 	}
 	@RequestMapping(value = "admin/mailSenderOk.do") 
 	public void mailSendingOk( 
-			@RequestParam("tomail")String tomail,
+			@RequestParam("smsEmail") List<String> smsEmail,
 			@RequestParam("title")String title, 
 			@RequestParam("content")String content) {
-		System.out.println("시작");
-		List<Member> tomails = null;
-		sservice.mailsendAllService(tomails, title, content);
-		sservice.mailsendService(tomail, title, content);
+//		System.out.println("시작");
+//		List<Member> tomails = sservice.listService();
+//		sservice.mailsendAllService(tomails, title, content); //선택된 이메일
+		System.out.println("테스트 : " + smsEmail.size());
+		System.out.println("이메일 : " + smsEmail.get(0));
+		sservice.mailsendSelectService(smsEmail, title, content);
+//		sservice.mailsendService(tomail, title, content);
 //	    String tomail  = "gml7814@naver.com";
 //	    String title   = "나......의 아름다운......정원";
 //	    String content = "반가워 ㅎㅎ";
@@ -61,5 +69,15 @@ public class SmsController {
 //		} catch(Exception e){
 //			System.out.println(e);
 //		}
+	}
+	@RequestMapping(value = "admin/smsAjax.do")
+	public @ResponseBody List<Member> smsAjax(){
+		System.out.println("smsAjax 1");
+		List<Member> emailSenderList = sservice.emailSenderListService();
+		System.out.println("smsAjax 2");
+		for(int i=0;i<emailSenderList.size();i++) {
+			System.out.println("email : " + emailSenderList.get(i).getMember_email());
+		}
+		return emailSenderList;
 	}
 }

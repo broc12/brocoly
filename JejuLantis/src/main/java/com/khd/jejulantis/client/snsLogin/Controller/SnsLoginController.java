@@ -6,6 +6,10 @@ import java.text.ParseException;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.BasicResponseHandler;
+import org.apache.http.impl.client.HttpClientBuilder;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.slf4j.Logger;
@@ -26,7 +30,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.github.scribejava.core.model.OAuth2AccessToken;
 import com.khd.jejulantis.client.naverLogin.NaverLoginBO;
@@ -46,10 +49,14 @@ public class SnsLoginController {
 	private GoogleConnectionFactory googleConnectionFactory;
 	@Autowired
 	private OAuth2Parameters googleOAuth2Parameters;
-	
 	/* NaverLoginBO */
 	private NaverLoginBO naverLoginBO;
 	private String apiResult = null;
+	/* NaverLoginBO */
+	private String FACEBOOK_CLIENT_ID= "661769470849271";
+	private String FACEBOOK_CLIENT_SECRET_KEY = "28e620c9178f4dd6cba582567352f7aa";
+	private String REDIRECT_URL="http://localhost:8080/jejulantis/facebookAccessToken.do";
+	
 	
 	@Autowired
 	SnsLoginService snsService;
@@ -102,12 +109,9 @@ public class SnsLoginController {
 		String name = (String)responseArray.get("name");
 		String email = (String)responseArray.get("email");
 		String birthday = (String)responseArray.get("birthday");
-		System.out.println("id 값은 " + id);
-		System.out.println("name 값은 " + name);
-		System.out.println("email 값은 " + email);
-		System.out.println("birthday 값은 " + birthday);
 		birthday = "1991/"+birthday;
 		java.text.SimpleDateFormat format = new java.text.SimpleDateFormat("yy/MM/dd");
+		snsLogin(id, "naver", name, email, birthday, session);
 		Member member = snsService.checkMember(id);
 		if(member!=null) {
 			System.out.println("id 있음 로그인하자");
@@ -129,6 +133,7 @@ public class SnsLoginController {
         /* 네이버 로그인 성공 페이지 View 호출 */
 		return "rentcar/snsLogin/naverSuccess";
 	}
+	
 
 	// 로그인 첫 화면 요청 메소드
 	@RequestMapping(value = "/googleLogin.do", method = { RequestMethod.GET, RequestMethod.POST })
@@ -185,8 +190,92 @@ public class SnsLoginController {
 		}
 		
 		return "rentcar/snsLogin/googleSuccess";
-
 	}
+	@RequestMapping(value = "/facebookSignin.do")
+	public String getfacebookSigninCode(HttpSession session) {
+		logger.debug("facebookSignin");
+
+		String facebookUrl = "https://www.facebook.com/v2.8/dialog/oauth?"+
+						"client_id="+FACEBOOK_CLIENT_ID+
+						"&redirect_uri=http://localhost:8080/jejulantis/facebookAccessToken.do"+
+						"&scope=public_profile,email";
+
+		return "redirect:"+facebookUrl;
+	}	
+	@RequestMapping(value = "/facebookAccessToken.do")
+	public String getFacebookSignIn(String code, HttpSession session, String state) throws Exception {
+		logger.debug("facebookAccessToken / code : "+code);
+		System.out.println(code);
+		String accessToken = requesFaceBooktAccesToken(session, code);
+		JSONObject jsonObject = facebookUserDataLoadAndSave(accessToken, session);
+		System.out.println("페북로그인 성공");
+		
+		return "redirect:/";
+		
+	}
+	private String requesFaceBooktAccesToken(HttpSession session, String code) throws Exception {
+		String facebookUrl = "https://graph.facebook.com/v2.8/oauth/access_token?"+
+						 	"client_id="+FACEBOOK_CLIENT_ID+
+						 	"&redirect_uri="+REDIRECT_URL+
+						 	"&client_secret="+FACEBOOK_CLIENT_SECRET_KEY+
+						 	"&code="+code;
+		System.out.println(facebookUrl);
+		HttpClient client = HttpClientBuilder.create().build();
+		HttpGet getRequest = new HttpGet(facebookUrl);
+		String rawJsonString = client.execute(getRequest, new BasicResponseHandler());
+		logger.debug("facebookAccessToken / raw json : "+rawJsonString);
+		System.out.println(rawJsonString);
+		JSONParser jsonParser = new JSONParser();
+		JSONObject jsonObject = (JSONObject) jsonParser.parse(rawJsonString);
+		String faceBookAccessToken = (String) jsonObject.get("access_token");
+		logger.debug("facebookAccessToken / accessToken : "+faceBookAccessToken);
+		System.out.println(faceBookAccessToken);
+		session.setAttribute("faceBookAccessToken", faceBookAccessToken);
+		
+		return faceBookAccessToken;
+	}
+	private JSONObject facebookUserDataLoadAndSave(String accessToken, HttpSession session) throws Exception {
+	    String facebookUrl = "https://graph.facebook.com/me?"+
+	            "access_token="+accessToken+
+	            "&fields=id,name,email";
+
+	    HttpClient client = HttpClientBuilder.create().build();
+	    HttpGet getRequest = new HttpGet(facebookUrl);
+	    String rawJsonString = client.execute(getRequest, new BasicResponseHandler());
+	    logger.debug("facebookAccessToken / rawJson! : "+rawJsonString);
+
+	    JSONParser jsonParser = new JSONParser();
+	    JSONObject jsonObject = (JSONObject) jsonParser.parse(rawJsonString);
+	    logger.debug("facebookUserDataLoadAndSave / raw json : "+jsonObject);
+	    
+	    return jsonObject;
+
+		/* 가져온 데이터를 서비스에 맞춰 가공하는 로직*/
+	}
+	
+	public String snsLogin(String id,String pwd, String name, String email, String birth, HttpSession session) {
+		Member member = snsService.checkMember(id);
+		boolean isInserted;
+		if(member!=null) {
+			System.out.println("id 있음 로그인하자");
+			member.setMember_id(member.getMember_name());
+			session.setAttribute("log", member);
+			return "rentcar/home";
+		}
+		else {
+			System.out.println("id 없음 회원가입하자");
+			Member memberToJoin = new Member(0, id, pwd ,name, birth , "M", "", "", email ,"Y", "Y", null, "N", null);
+			isInserted = snsService.joinMember(memberToJoin);
+			System.out.println("회원가입 " + isInserted);
+			memberToJoin.setMember_id(memberToJoin.getMember_name());
+			if(isInserted) {
+				session.setAttribute("log", memberToJoin);
+				return "rentcar/home";
+			}
+		}return null;
+	}
+	
+	
 }
 
 

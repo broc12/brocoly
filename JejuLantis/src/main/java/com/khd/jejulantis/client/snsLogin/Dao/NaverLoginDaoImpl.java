@@ -28,7 +28,7 @@ public class NaverLoginDaoImpl implements NaverLoginDao {
 	}
 	@Override
 	public boolean joinMember(Member memberToJoin) {
-		int i = sqlSession.insert(ns+".joinNaver",memberToJoin);
+		int i = sqlSession.insert(ns+".joinSns",memberToJoin);
 		boolean isInserted;
 		if(i>0) isInserted=true;
 		else isInserted=false;

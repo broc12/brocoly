@@ -108,9 +108,9 @@ UPDATE member SET member_withdraw_at  ='y' where member_id=#{member_id}
 		SELECT * FROM MEMBER WHERE MEMBER_ID=#{id}
 	</select>
 <!-- 네이버 아이디 가입 -->
-	<insert id="joinNaver">
-	INSERT INTO MEMBER VALUES(MEMBER_SEQ.NEXTVAL,#{member_id},'NAVER',#{member_name},#{member_birth},'M','서울',
-	'010-5454-4885',#{member_email},'N',SYSDATE,'N',SYSDATE)
+	<insert id="joinSns">
+	INSERT INTO MEMBER VALUES(MEMBER_SEQ.NEXTVAL,#{member_id},#{member_pwd},#{member_name},#{member_birth},'M','',
+	'',#{member_email},'N',SYSDATE,'N',SYSDATE)
 	</insert>
 	
 	<select id="mySubject" resultType="Member">

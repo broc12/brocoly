@@ -112,7 +112,7 @@ public class SnsLoginController {
 		birthday = "1991/"+birthday;
 		java.text.SimpleDateFormat format = new java.text.SimpleDateFormat("yy/MM/dd");
 		snsLogin(id, "naver", name, email, birthday, session);
-		Member member = snsService.checkMember(id);
+		/*Member member = snsService.checkMember(id);
 		if(member!=null) {
 			System.out.println("id 있음 로그인하자");
 			member.setMember_id(member.getMember_name());
@@ -129,9 +129,9 @@ public class SnsLoginController {
 				session.setAttribute("log", memberToJoin);
 				return "rentcar/home";
 			}
-		}
+		}*/
         /* 네이버 로그인 성공 페이지 View 호출 */
-		return "rentcar/snsLogin/naverSuccess";
+		return "rentcar/home";
 	}
 	
 
@@ -170,26 +170,10 @@ public class SnsLoginController {
 		Google google = connection == null ? new GoogleTemplate(accessToken) : connection.getApi();
 		PlusOperations plusOperations = google.plusOperations();
 		Person person = plusOperations.getGoogleProfile();
+		snsLogin(person.getId(), "google", person.getDisplayName(), "", "", session);
 		Member member = snsService.checkMember(person.getId());
-		if(member!=null) {
-			System.out.println("id 있음 로그인하자");
-			member.setMember_id(member.getMember_name());
-			session.setAttribute("log", member);
-			return "rentcar/home";
-		}
-		else {
-			System.out.println("id 없음 회원가입하자");
-			Member memberToJoin = new Member(0, person.getId(), "google", person.getDisplayName(), "", "M", "", "", "" ,"Y", "Y", null, "N", null);
-			isInserted = snsService.joinMember(memberToJoin);
-			System.out.println("회원가입 " + isInserted);
-			memberToJoin.setMember_id(memberToJoin.getMember_name());
-			if(isInserted) {
-				session.setAttribute("log", memberToJoin);
-				return "rentcar/home";
-			}
-		}
 		
-		return "rentcar/snsLogin/googleSuccess";
+		return "rentcar/home";
 	}
 	@RequestMapping(value = "/facebookSignin.do")
 	public String getfacebookSigninCode(HttpSession session) {
@@ -209,8 +193,8 @@ public class SnsLoginController {
 		String accessToken = requesFaceBooktAccesToken(session, code);
 		JSONObject jsonObject = facebookUserDataLoadAndSave(accessToken, session);
 		System.out.println("페북로그인 성공");
-		
-		return "redirect:/";
+		snsLogin((String)jsonObject.get("id"), "facebook", (String)jsonObject.get("name"), (String)jsonObject.get("email"), "", session);
+		return "rentcar/home";
 		
 	}
 	private String requesFaceBooktAccesToken(HttpSession session, String code) throws Exception {
@@ -272,7 +256,7 @@ public class SnsLoginController {
 				session.setAttribute("log", memberToJoin);
 				return "rentcar/home";
 			}
-		}return null;
+		}return "rentcar/home";
 	}
 	
 	

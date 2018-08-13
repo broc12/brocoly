@@ -22,7 +22,7 @@
 
 					<c:choose>
 						<c:when test="${log.member_id ne null}">
-						<span style="color: #ffdd00"> ${log.member_id}님 반갑습니다</span>&nbsp;&nbsp;&nbsp;
+						<span style="color: #ffdd00"> ${log.member_name}님 반갑습니다</span>&nbsp;&nbsp;&nbsp;
 						<a href="login/logout" style="color:#ffdd00;text-decoration:none">로그아웃</a>&nbsp;&nbsp;&nbsp;
 						<a href="mypage.do" style="color:#ffdd00;text-decoration:none">마이페이지</a>
 						</c:when>

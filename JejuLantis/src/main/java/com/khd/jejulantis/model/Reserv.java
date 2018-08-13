@@ -26,6 +26,7 @@ public class Reserv {
 	Branch branch;
 	Payment payment;
 	Insurance insurance;
+	Member member;
 	
 	public Reserv() {
 	}
@@ -35,7 +36,7 @@ public class Reserv {
 			String rent_reserv_license_no, String rent_reserv_license_kind, String rent_reserv_driver_name,
 			Date rent_reserv_driver_birth, String rent_reserv_cancel_able, String rent_reserv_cancel_at,
 			String rent_reserv_cancel_reason, Date rent_reserv_cancel_date, Date rent_reserv_resist, Car car,
-			Branch branch, Payment payment, Insurance insurance) {
+			Branch branch, Payment payment, Insurance insurance, Member member) {
 		this.rent_reserv_no = rent_reserv_no;
 		this.branch_no = branch_no;
 		this.car_no = car_no;
@@ -59,6 +60,7 @@ public class Reserv {
 		this.branch = branch;
 		this.payment = payment;
 		this.insurance = insurance;
+		this.member = member;
 	}
 
 	public long getRent_reserv_no() {
@@ -243,6 +245,14 @@ public class Reserv {
 
 	public void setInsurance(Insurance insurance) {
 		this.insurance = insurance;
+	}
+
+	public Member getMember() {
+		return member;
+	}
+
+	public void setMember(Member member) {
+		this.member = member;
 	}
 	
 }

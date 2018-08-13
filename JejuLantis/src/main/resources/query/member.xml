@@ -56,6 +56,16 @@ insert into MEMBER values (#{member_no},#{member_id},#{member_pwd},#{member_name
       WHERE
           member_id = #{member_id}
 </select>
+<select id="memberList" resultType="Member">
+	SELECT
+		ROWNUM AS MEMBER_NO,MEMBER_ID,MEMBER_NAME,MEMBER_BIRTH,MEMBER_TEL,MEMBER_EMAIL,MEMBER_EMAIL_AT,MEMBER_SMS_AT,MEMBER_RESIST_MEMBER
+	FROM
+		MEMBER
+	WHERE
+		MEMBER_WITHDRAW_AT = 'N'
+	ORDER BY
+		MEMBER_RESIST_MEMBER
+</select>
 
 <update id="modify" parameterType="Member" >
 	 UPDATE member SET member_id = #{member_id} , member_pwd = #{member_pwd}, member_name = #{member_name}, member_tel = #{member_tel} ,member_birth = #{member_birth}, member_local = #{member_local}
@@ -103,6 +113,9 @@ UPDATE member SET member_withdraw_at  ='y' where member_id=#{member_id}
 	'010-5454-4885',#{member_email},'N',SYSDATE,'N',SYSDATE)
 	</insert>
 	
+	<select id="mySubject" resultType="Member">
+		select * from member where member_no = #{member_no}
+	</select>
 	
 <!--  <update id="deletemodify" parameterType="String" > -->
 <!--  	UPDATE member SET memeber_whithdraw_at  ='y' where id=#{id} -->
@@ -122,4 +135,10 @@ UPDATE member SET member_withdraw_at  ='y' where member_id=#{member_id}
 <!--         UPDATE member SET name = #{name}, tel = #{tel} -->
 <!--         WHERE email = #{email} AND pwd = #{pwd} -->
 <!--     </update> -->
+	<select id="emailSender" resultType="Member">
+		select MEMBER_EMAIL from MEMBER where MEMBER_WITHDRAW_AT='N' and MEMBER_SMS_AT='y'
+	</select>
+	<select id="emailSenderList" resultType="Member">
+		select * from MEMBER where MEMBER_WITHDRAW_AT='N' and MEMBER_SMS_AT='y'
+	</select>
 </mapper>

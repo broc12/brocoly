@@ -2,6 +2,7 @@ package com.khd.jejulantis.client.member.Service;
 
 
 import java.io.PrintWriter;
+import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -69,6 +70,10 @@ public class MemberServiceImpl implements MemberService {
 		@Override
 		public int emailcheck(String member_email) {
 			return memberDao.echeck(member_email);
+		}
+		@Override
+		public List<Member> memberListService() {
+			return memberDao.memberList();
 		}
 	
 //	@Override

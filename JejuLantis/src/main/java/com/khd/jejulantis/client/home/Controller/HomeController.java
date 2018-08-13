@@ -50,10 +50,6 @@ public class HomeController {
 		return "rentcar/users/login";
 	}
 
-	@RequestMapping(value="check.do",method=RequestMethod.GET)
-	public String check() {
-		return "rentcar/reservations/check";
-	}
 	@RequestMapping(value="faq.do",method=RequestMethod.GET)
 	public String faq() {
 		return "rentcar/helps/faq";

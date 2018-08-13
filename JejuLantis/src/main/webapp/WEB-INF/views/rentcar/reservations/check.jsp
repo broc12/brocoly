@@ -93,156 +93,117 @@
 							<div class="row">
 								<div class="hotel-entry">
 									<div class="desc">
-										<!-- <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p> -->
-										<div id="board">
-											<!-- <h3 style="color:#03b12f">예약완료</h3> -->
-											<div id="board">
-												<table border="0" width="100%" height="100" rules="rows">
-													<tr>
-													<td  rowspan="2" width="2%" style="background-color:#2d2f3f"></td>
-													 <td  width="25%" style="background-color:white"><img src="resources/rentcar/images/예약완료.jpg" width=100% height=50%></td>
-													 <td width="35%" style="background-color:white">
-													 	<h style="color:#8caaca">대여일시</h></br>
-													 	<a style="color:black;font-size:18pt">18/07/04</a></br><a style="color:black">09:00</a></br>
-													 	<h style="color:#8caaca">반납일시</h></br>
-													 	<a style="color:black;font-size:18pt">18/07/05</a></br><a style="color:black">09:00</a></br>	
-													 </td>
-													 <td style="background-color:white">
-													 	<h style="color:#8caaca">차량</h></br>
-													 	<a style="color:black">스팅어</a></br></br>
-													 	<h style="color:#8caaca">대여업체</h></br>
-													 	<a style="color:black">한성렌트카</a></br>
-													 	<a style="color:black">010-5655-4547</a></br></br>
-													 	<h style="color:#8caaca">보험</h></br>
-													 	<a style="color:black">일반자차</a>
-													 </td>
-													</tr>
-													<tr>
-													<td  width="25%" style="background-color:white"><img src="resources/rentcar/images/car1.jpg" width=100% height=40%></td>
-													 <td style="background-color:white">
-													 	<h style="color:#8caaca">요금</h></br>
-													 	<a style="color:black">스탠다드</a></br></br>
-													 	<h style="color:#8caaca">결제방법</h></br>
-													 	<a style="color:black">신용카드/체크카드</a></br></br>
-													 	<h style="color:#8caaca">예약번호</h></br>
-													 	<a style="color:black">1807030623</a></br></br>
-													 	<h style="color:#8caaca">예약일시</h></br>
-													 	<a style="color:black">2018.07.03 13:10:21</a>
-													 </td>
-													 <td style="background-color:white">
-													 	<h style="color:#8caaca">결제금액</h></br>
-													 	<a style="color:black">60,100원</a></br></br>
-													 	<h style="color:#8caaca">차량 대여료(24시간)</h></br>
-													 	<a style="color:black">52,100원</a></br></br>
-													 	<h style="color:#8caaca">보험료(2일)</h></br>
-													 	<a style="color:black">8,000원</a>
-													 		<div class="col-md-12 text-right">
-																<ul class="pagination">
-																	<li><a href="">결제영수증</a></li>
-																	<li class="nav-item">
-															          <a class="nav-link" data-toggle="modal" data-target="#exampleModal">예약취소</a>
-																</ul>
-													        </li>
-															</div>
-													 </td>
-													</tr>
-												</table></br>
-											</div>				
-										</div>
 										<div id="board">
 											<div id="board">
-												<table border="0" width="100%" height="100" rules="rows">
-													<tr>
-													<td  rowspan="2" width="2%" style="background-color:#2d2f3f"></td>
-													 <td  width="25%" style="background-color:white"><img src="resources/rentcar/images/취소완료.jpg" width=100% height=50%></td>
-													 <td width="35%" style="background-color:white">
-													 	<h style="color:#8caaca">대여일시</h></br>
-													 	<a style="color:black;font-size:18pt">18/07/04</a></br><a style="color:black">09:00</a></br>
-													 	<h style="color:#8caaca">반납일시</h></br>
-													 	<a style="color:black;font-size:18pt">18/07/05</a></br><a style="color:black">09:00</a></br>	
-													 </td>
-													 <td style="background-color:white">
-													 	<h style="color:#8caaca">차량</h></br>
-													 	<a style="color:black">스팅어</a></br></br>
-													 	<h style="color:#8caaca">대여업체</h></br>
-													 	<a style="color:black">한성렌트카</a></br>
-													 	<a style="color:black">010-5655-4547</a></br></br>
-													 	<h style="color:#8caaca">보험</h></br>
-													 	<a style="color:black">일반자차</a>
-													 </td>
-													</tr>
-													<tr>
-													<td  width="25%" style="background-color:white"><img src="resources/rentcar/images/car1.jpg" width=100% height=40%></td>
-													 <td style="background-color:white">
-													 	<h style="color:#8caaca">요금</h></br>
-													 	<a style="color:black">스탠다드</a></br></br>
-													 	<h style="color:#8caaca">결제방법</h></br>
-													 	<a style="color:black">신용카드/체크카드</a></br></br>
-													 	<h style="color:#8caaca">예약번호</h></br>
-													 	<a style="color:black">1807030623</a></br></br>
-													 	<h style="color:#8caaca">예약일시</h></br>
-													 	<a style="color:black">2018.07.03 13:10:21</a>
-													 </td>
-													 <td style="background-color:white">
-													 	<h style="color:#8caaca">결제금액</h></br>
-													 	<a style="color:black">60,100원</a></br></br>
-													 	<h style="color:#8caaca">차량 대여료(24시간)</h></br>
-													 	<a style="color:black">52,100원</a></br></br>
-													 	<h style="color:#8caaca">보험료(2일)</h></br>
-													 	<a style="color:black">8,000원</a>
-													 		<div class="col-md-12 text-right">
-																<ul class="pagination">
-																	<li><a href="">결제영수증</a></li>
-																</ul>
-															</div>
-													 </td>
-													</tr>
-												</table>
-											</div>				
-										</div>
-									</div>
-								</div>
-						</div>
-						
-						</div>
-					</div>
-				
-					<div class="row">
-						<div class="col-md-12 text-center">
-							<ul class="pagination">
-								<li class="disabled"><a href="#">&laquo;</a></li>
-								<li class="active"><a href="#">1</a></li>
-								<li><a href="#">2</a></li>
-								<li><a href="#">3</a></li>
-								<li><a href="#">4</a></li>
-								<li><a href="#">&raquo;</a></li>
-							</ul>
-						</div>
-					</div>
-				</div>
-				<!-- 모달시작 -->
-				<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-			      <div class="modal-dialog" role="document">
-			        <div class="modal-content">
-			          <div class="modal-header">
-			            <h5 class="modal-title" id="exampleModalLabel" align="center">예약취소</h5>
-			            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-			              <span aria-hidden="true">×</span>
-			            </button>
-			          </div>
-			          <div class="modal-body" align="center">예약취소시 스탠다드 요금규정에 따라</br>결제금액에 100%가 환불됩니다.</div>
-			          <div class="modal-body" align="center">대여 72시간 이전:수수료없음</br>대여 72시간 이내:수수료30%</div>
-			          <div class="modal-body" align="center">예약을 정말 취소하시겠습니까?</div>
-			          <div class="modal-footer">
-			            <ul class="pagination">
-							<li><a data-dismiss="modal">닫기</a></li>
-							<li><a href="">예약취소</a></li>
+				<c:forEach items="${list}" var="list">
+				<table border="0" width="100%">
+					<tr>
+					<td  rowspan="6" width="3%" style="background-color:#c1c1c1"></td>
+					 <td  rowspan="6" width="21%" style="background-color:white"><img src="resources/car/${list.car.car_image}" width=100% height=50%></td>
+					 <td width="25%" style="background-color:white">
+					 	<h style="color:#8caaca">대여일시</h></br>
+					 	<span style="color:black;font-size:18pt">${list.rent_reserv_start}</span></br>
+					 	<span style="color:black">09:00</span>
+					 </td>
+					 <td style="background-color:white">
+					 	<h style="color:#8caaca">반납일시</h></br>
+					 	<span style="color:black;font-size:18pt">${list.rent_reserv_end}</span></br>
+					 	<span style="color:black">09:00</span>
+					 </td>
+					 <td  rowspan="6" width="26%" style="background-color:white" align="center">
+					 	<img src="resources/rentcar/images/예약완료.jpg" width=100% height=50%>
+					 	<ul class="pagination">
+							<li><a href="">결제영수증</a></li>
+							<li><a class="nav-link" data-toggle="modal" data-target="#exampleModal">예약취소</a></li>
 						</ul>
-			          </div>
-			        </div>
-			      </div>
-			    </div>
-   				<!-- 모달끝 -->
+					 </td>
+					</tr>
+					<tr>
+					 <td style="background-color:white">
+					 <h style="color:#8caaca">차량</h></br>
+					 	<span style="color:black">${list.car.car_name}</span></br>
+					 	<span style="color:black">(${list.car.car_fuel})</span>
+					 </td>
+					 <td style="background-color:white">
+					 <h style="color:#8caaca">대여업체</h></br>
+					 	<span style="color:black">${list.branch.branch_name}</span></br>
+					 	<span style="color:black">(${list.branch.branch_tel})</span>
+					 </td>
+					</tr>
+					<tr>
+					 <td style="background-color:white">
+					 	<h style="color:#8caaca">요금</h></br>
+					 	<span style="color:black">${list.payment.rent_payment_goods_type}</span>
+					 </td>
+					 <td style="background-color:white">
+					 <h style="color:#8caaca">보험</h></br>
+					 	<span style="color:black">${list.insurance.insurance_name}</span>
+					 </td>
+					</tr>
+					<tr>
+					 <td style="background-color:white">
+					 	<h style="color:#8caaca">결제방법</h></br>
+					 	<span style="color:black">${list.payment.rent_payment_way}</span>
+					 </td>
+					 <td style="background-color:white">
+					 	<h style="color:#8caaca">결제금액</h></br>
+					 	<span style="color:black">${list.payment.rent_payment_total_price}</span>
+					 </td>
+					</tr>
+					<tr>
+					 <td style="background-color:white">
+					 	<h style="color:#8caaca">예약번호</h></br>
+					 	<span style="color:black">${list.rent_reserv_no}</span>
+					 </td>
+					 <td style="background-color:white">
+					 	<h style="color:#8caaca">차량 대여료(24시간)</h></br>
+					 	<span style="color:black">${list.payment.rent_payment_carkind_price}</span>
+					 </td>
+					</tr>
+					<tr>
+					 <td style="background-color:white">
+					 	<h style="color:#8caaca">할인</h></br>
+					 	<span style="color:black">${list.payment.rent_payment_discount}</span>
+					 </td>
+					 <td style="background-color:white">
+					 	<h style="color:#8caaca">보험료(2일)</h></br>
+					 	<span style="color:black">${list.payment.rent_payment_insurance_price}</span>
+					 </td>
+					</tr>
+				</table></br>
+				</c:forEach>
+				
+			</div>				
+		</div>
+			</div>
+		</div>
+	</div>
+	</div>
+	</div>
+</div>
+		<!-- 모달시작 -->
+		<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	      <div class="modal-dialog" role="document">
+	        <div class="modal-content">
+	          <div class="modal-header">
+	            <h5 class="modal-title" id="exampleModalLabel" align="center">예약취소</h5>
+	            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+	              <span aria-hidden="true">×</span>
+	            </button>
+	          </div>
+	          <div class="modal-body" align="center">예약취소시 스탠다드 요금규정에 따라</br>결제금액에 100%가 환불됩니다.</div>
+	          <div class="modal-body" align="center">대여 72시간 이전:수수료없음</br>대여 72시간 이내:수수료30%</div>
+	          <div class="modal-body" align="center">예약을 정말 취소하시겠습니까?</div>
+	          <div class="modal-footer">
+	            <ul class="pagination">
+					<li><a data-dismiss="modal">닫기</a></li>
+					<li><a href="">예약취소</a></li>
+				</ul>
+	          </div>
+	        </div>
+	      </div>
+	    </div>
+		<!-- 모달끝 -->
 				<!-- SIDEBAR-->
 				<div class="col-md-3">
 					<div class="sidebar-wrap">

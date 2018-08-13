@@ -1,8 +1,6 @@
 package com.khd.jejulantis.client.member.Service;
 
-import java.util.HashMap;
-
-import javax.servlet.http.HttpServletResponse;
+import java.util.List;
 
 import com.khd.jejulantis.model.Member;
 
@@ -19,7 +17,7 @@ public interface MemberService {
 	String find_id( String member_email) throws Exception;
 	String find_pwd( String member_id) throws Exception;
 	int emailcheck(String member_email);
-	
+	List<Member> memberListService();
 //	boolean modifyService(HashMap<String, String> hm);
 	
 //	int modify(Member member);

@@ -1,5 +1,7 @@
 package com.khd.jejulantis.client.member.Dao;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -88,6 +90,11 @@ public class MemberDaoImpl implements MemberDao {
 	public int echeck(String email) {
 		int Select = sql.selectOne(ns+".emailcheck", email);
 		return Select;
+	}
+
+	@Override
+	public List<Member> memberList() {
+		return sql.selectList(ns+".memberList");
 	}
 
 //	@Override

@@ -106,66 +106,66 @@
 					 </td>
 					</tr>
 					<tr>
-					 <td  rowspan="6" width="25%" style="background-color:white"><img src="resources/rentcar/images/car1.jpg" width=100% height=50%></td>
+					 <td  rowspan="6" width="25%" style="background-color:white"><img src="resources/car/${res.car.car_image}" width=100% height=50%></td>
 					 <td width="35%" style="background-color:white">
 					 	<h style="color:#8caaca">대여일시</h></br>
-					 	<span style="color:black;font-size:18pt">18/07/04</span></br><span style="color:black">09:00</span>
+					 	<span style="color:black;font-size:18pt">${res.rent_reserv_start}</span></br><span style="color:black">09:00</span>
 					 </td>
 					 <td style="background-color:white">
 					 	<h style="color:#8caaca">반납일시</h></br>
-					 	<span style="color:black;font-size:18pt">18/07/05</span></br><span style="color:black">09:00</span>
+					 	<span style="color:black;font-size:18pt">${res.rent_reserv_end}</span></br><span style="color:black">09:00</span>
 					 </td>
 					</tr>
 					<tr>
 					 <td style="background-color:white">
 					 <h style="color:#8caaca">차량</h></br>
-					 	<span style="color:black">스팅어</span></br>
-					 	<span style="color:black">(LPG)</span>
+					 	<span style="color:black">${res.car.car_name}</span></br>
+					 	<span style="color:black">(${res.car.car_fuel})</span>
 					 </td>
 					 <td style="background-color:white">
 					 <h style="color:#8caaca">대여업체</h></br>
-					 	<span style="color:black">한성렌트카</span></br>
-					 	<span style="color:black">010-5655-4547</span>
+					 	<span style="color:black">${res.branch.branch_name}</span></br>
+					 	<span style="color:black">${res.branch.branch_tel}</span>
 					 </td>
 					</tr>
 					<tr>
 					 <td style="background-color:white">
 					 	<h style="color:#8caaca">요금</h></br>
-					 	<span style="color:black">스탠다드</span>
+					 	<span style="color:black">${res.payment.rent_payment_goods_type}</span>
 					 </td>
 					 <td style="background-color:white">
 					 <h style="color:#8caaca">보험</h></br>
-					 	<span style="color:black">일반자차</span>
+					 	<span style="color:black">${res.insurance.insurance_name}</span>
 					 </td>
 					</tr>
 					<tr>
 					 <td style="background-color:white">
 					 	<h style="color:#8caaca">결제방법</h></br>
-					 	<span style="color:black">신용카드/체크카드</span>
+					 	<span style="color:black">${res.payment.rent_payment_way}</span>
 					 </td>
 					 <td style="background-color:white">
 					 	<h style="color:#8caaca">결제금액</h></br>
-					 	<span style="color:black">60,100원</span>
+					 	<span style="color:black">${res.payment.rent_payment_total_price}</span>
 					 </td>
 					</tr>
 					<tr>
 					 <td style="background-color:white">
 					 	<h style="color:#8caaca">예약번호</h></br>
-					 	<span style="color:black">1807030623</span>
+					 	<span style="color:black">${res.rent_reserv_no}</span>
 					 </td>
 					 <td style="background-color:white">
 					 	<h style="color:#8caaca">차량 대여료(24시간)</h></br>
-					 	<span style="color:black">52,100원</span>
+					 	<span style="color:black">${res.payment.rent_payment_carkind_price}</span>
 					 </td>
 					</tr>
 					<tr>
 					 <td style="background-color:white">
 					 	<h style="color:#8caaca">할인</h></br>
-					 	<span style="color:black">스탠다드</span>
+					 	<span style="color:black">${res.payment.rent_payment_discount}</span>
 					 </td>
 					 <td style="background-color:white">
 					 	<h style="color:#8caaca">보험료(2일)</h></br>
-					 	<span style="color:black">8,000원</span>
+					 	<span style="color:black">${res.payment.rent_payment_insurance_price}</span>
 					 </td>
 					</tr>
 				</table></br>

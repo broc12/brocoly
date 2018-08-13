@@ -51,5 +51,6 @@
 	<context:component-scan base-package="com.khd.jejulantis.client.review.Controller" />
 	<context:component-scan base-package="com.khd.jejulantis.admin.coupon.Controller" />
 	<context:component-scan base-package="com.khd.jejulantis.admin.sms.Controller" />
-	
+	<context:component-scan base-package="com.khd.jejulantis.client.affiliate.Controller" />
+	<context:component-scan base-package="com.khd.jejulantis.admin.affiliate.Controller" />
 </beans:beans>

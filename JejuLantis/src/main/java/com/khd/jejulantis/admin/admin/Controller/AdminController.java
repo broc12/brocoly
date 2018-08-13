@@ -37,10 +37,10 @@ public class AdminController {
 	public String list() {
 		return "admin/list";
 	}*/
-	@RequestMapping(value="admin/member.do",method=RequestMethod.GET)
+/*	@RequestMapping(value="admin/member.do",method=RequestMethod.GET)
 	public String member() {
 		return "admin/members/member";
-	}
+	}*/
 	@RequestMapping(value="admin/payment.do",method=RequestMethod.GET)
 	public String payment() {
 		return "admin/payments/payment";

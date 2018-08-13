@@ -57,28 +57,17 @@
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>Tiger Nixon</td>
-                  <td>System Architect</td>
-                  <td>Edinburgh</td>
-                  <td>61</td>
-                  <td>2011/04/25</td>
-                  <td>$320,800</td>
-                  <td>$320,800</td>
-                  <td>$320,800</td>
-                  <td>$320,800</td>
-                </tr>
                 <c:forEach  items="${list}" var="item">
                 <tr>
-                  <td>${item.member_no }Donna Snider</td>
+                  <td>${item.member_no }</td>
                   <td>${item.member_id }</td>
-                  <td>${item.member_name }New York</td>
-                  <td>${item.member_birth }27</td>
-                  <td>${item.member_tel }2011/01/25</td>
-                  <td>${item.member_email }$112,000</td>
-                  <td>${item.member_email_at }$320,800</td>
-                  <td>${item.member_sms_at }$320,800</td>
-                  <td>${item.member_resist_member }$320,800</td>
+                  <td>${item.member_name }</td>
+                  <td>${item.member_birth }</td>
+                  <td>${item.member_tel }</td>
+                  <td>${item.member_email }</td>
+                  <td>$item.member_email_at</td>
+                  <td>${item.member_sms_at }</td>
+                  <td>${item.member_resist_member }</td>
                 </tr>
                 </c:forEach>
               </tbody>

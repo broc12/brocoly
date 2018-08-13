@@ -113,7 +113,7 @@
 						
 							<!-- onsubmit="return sendIt();" -->
 							<div class="row form-group">
-							<c:if test="${log.member_pwd!=''}">
+							<c:if test="${log.member_pwd!=null}">
 								<div class="col-md-6 padding-bottom">
 									<label for="fname">아이디</label></br>
 									<input type="text" value="${log.member_id}" name="member_id" readonly id="email" class="form-control" placeholder="ID">

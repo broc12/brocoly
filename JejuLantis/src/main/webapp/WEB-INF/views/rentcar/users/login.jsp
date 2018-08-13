@@ -119,7 +119,7 @@
 														<p align="left">
 														<a href="/jejulantis/naverLogin.do"><img width="90" src="resources/sns/naver.jpg"></a> &nbsp;&nbsp;&nbsp;
 														<a href="/jejulantis/googleLogin.do"><img width="45" src="resources/sns/google.jpg"></a> &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
-														<a href="/jejulantis/naverLogin.do"><img width="45" src="resources/sns/kakao.jpg"></a> &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+														<a href="/jejulantis/kakaologin.do"><img width="45" src="resources/sns/kakao.jpg"></a> &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
 														<a href="/jejulantis/facebookLogin.do"><img width="45" src="resources/sns/facebook.jpg"></a>
 														</p>
 													<p align="right">

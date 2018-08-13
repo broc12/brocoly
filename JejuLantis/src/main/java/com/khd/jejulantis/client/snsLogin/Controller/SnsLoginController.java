@@ -103,10 +103,8 @@ public class SnsLoginController {
 
         JSONParser jsonParser = new JSONParser();
 		 
-		//JSON데이터를 넣어 JSON Object 로 만들어 준다.
 		JSONObject jsonObject = (JSONObject) jsonParser.parse(apiResult);
 		 
-		//books의 배열을 추출
 		JSONObject responseArray = (JSONObject) jsonObject.get("response");
  
 		System.out.println("* BOOKS *");
@@ -117,34 +115,13 @@ public class SnsLoginController {
 		birthday = "1991/"+birthday;
 		java.text.SimpleDateFormat format = new java.text.SimpleDateFormat("yy/MM/dd");
 		snsLogin(id, "naver", name, email, birthday, session);
-		/*Member member = snsService.checkMember(id);
-		if(member!=null) {
-			System.out.println("id 있음 로그인하자");
-			member.setMember_id(member.getMember_name());
-			session.setAttribute("log", member);
-			return "rentcar/home";
-		}
-		else {
-			System.out.println("id 없음 회원가입하자");
-			Member memberToJoin = new Member(0, id, null, name, birthday, "M", "서울", "000000", email,"Y", "Y", null, "N", null);
-			isInserted = snsService.joinMember(memberToJoin);
-			System.out.println("회원가입 " + isInserted);
-			memberToJoin.setMember_id(memberToJoin.getMember_name());
-			if(isInserted) {
-				session.setAttribute("log", memberToJoin);
-				return "rentcar/home";
-			}
-		}*/
-        /* 네이버 로그인 성공 페이지 View 호출 */
 		return "rentcar/home";
 	}
 	
 
-	// 로그인 첫 화면 요청 메소드
 	@RequestMapping(value = "/googleLogin.do", method = { RequestMethod.GET, RequestMethod.POST })
 	public String googleLogin(Model model, HttpSession session) {
 
-		/* 구글code 발행 */
 		OAuth2Operations oauthOperations = googleConnectionFactory.getOAuthOperations();
 		String url = oauthOperations.buildAuthorizeUrl(GrantType.AUTHORIZATION_CODE, googleOAuth2Parameters);
 
@@ -152,11 +129,9 @@ public class SnsLoginController {
 
 		model.addAttribute("google_url", url);
 
-		/* 생성한 인증 URL을 View로 전달 */
 		return "redirect:"+url;
 	}
 
-	// 구글 Callback호출 메소드
 	@RequestMapping(value = "/googleCallBack.do", method = { RequestMethod.GET, RequestMethod.POST })
 	public String googleCallback(Model model, @RequestParam String code, HttpSession session) throws IOException {
 		System.out.println("여기는 googleCallback");
@@ -175,7 +150,7 @@ public class SnsLoginController {
 		Google google = connection == null ? new GoogleTemplate(accessToken) : connection.getApi();
 		PlusOperations plusOperations = google.plusOperations();
 		Person person = plusOperations.getGoogleProfile();
-		snsLogin(person.getId(), "google", person.getDisplayName(), "", "", session);
+		snsLogin(person.getId(), "google", person.getDisplayName(), null, null, session);
 		Member member = snsService.checkMember(person.getId());
 		
 		return "rentcar/home";
@@ -197,7 +172,7 @@ public class SnsLoginController {
 		String accessToken = requesFaceBooktAccesToken(session, code);
 		JSONObject jsonObject = facebookUserDataLoadAndSave(accessToken, session);
 		System.out.println("페북로그인 성공");
-		snsLogin((String)jsonObject.get("id"), "facebook", (String)jsonObject.get("name"), (String)jsonObject.get("email"), "", session);
+		snsLogin((String)jsonObject.get("id"), "facebook", (String)jsonObject.get("name"), (String)jsonObject.get("email"), null, session);
 		return "rentcar/home";
 		
 	}
@@ -251,7 +226,7 @@ public class SnsLoginController {
 		}
 		else {
 			System.out.println("id 없음 회원가입하자");
-			Member memberToJoin = new Member(0, id, "" ,name, birth , "M", "", "", email ,"Y", "Y", null, "N", null);
+			Member memberToJoin = new Member(0, id, null ,name, birth , "M", null, null, email ,"Y", "Y", null, "N", null);
 			isInserted = snsService.joinMember(memberToJoin);
 			System.out.println("회원가입 " + isInserted);
 			if(isInserted) {

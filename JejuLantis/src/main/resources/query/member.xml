@@ -109,8 +109,8 @@ UPDATE member SET member_withdraw_at  ='y' where member_id=#{member_id}
 	</select>
 <!-- 네이버 아이디 가입 -->
 	<insert id="joinSns">
-	INSERT INTO MEMBER VALUES(MEMBER_SEQ.NEXTVAL,#{member_id},#{member_pwd},#{member_name},#{member_birth},'M','',
-	'',#{member_email},'N',SYSDATE,'N',SYSDATE)
+	INSERT INTO MEMBER VALUES(MEMBER_SEQ.NEXTVAL,#{member_id},NULL,#{member_name},#{member_birth, jdbcType=VARCHAR},NULL ,NULL,
+	NULL , #{member_email, jdbcType=VARCHAR} ,'N','N',SYSDATE,'N',SYSDATE)
 	</insert>
 	
 	<select id="mySubject" resultType="Member">

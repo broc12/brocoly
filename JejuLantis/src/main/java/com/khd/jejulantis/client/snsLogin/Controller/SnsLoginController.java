@@ -1,6 +1,10 @@
 package com.khd.jejulantis.client.snsLogin.Controller;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.text.ParseException;
 
 import javax.servlet.http.HttpServletResponse;
@@ -30,6 +34,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.github.scribejava.core.model.OAuth2AccessToken;
 import com.khd.jejulantis.client.naverLogin.NaverLoginBO;
@@ -256,7 +261,94 @@ public class SnsLoginController {
 		}return "rentcar/home";
 	}
 	
+	@RequestMapping(value = "/kakaologin.do", method = RequestMethod.GET)
+	public @ResponseBody String kakaologin(@RequestParam("token")String token,HttpSession session) {
+		System.out.println(token);
+		kakaouserme(token);
+		return token;
+	}
 	
+	public void kakaouserme(String token) {
+		HttpURLConnection con = null;
+		InputStreamReader isr = null;
+		BufferedReader br = null;
+		try {
+			String apiURL = "https://kapi.kakao.com/v2/user/me";
+			URL url = new URL(apiURL);
+			con = (HttpURLConnection) url.openConnection();
+			con.setDoInput(true);
+			con.setDoOutput(true);
+			con.setUseCaches(false);
+			con.setRequestMethod("GET");
+			con.setRequestProperty("Authorization", "Bearer " + token);
+			int responseCode = con.getResponseCode();
+			if (responseCode == 200) { // 정상 호출
+				isr = new InputStreamReader(con.getInputStream());
+			} else { // 에러 발생
+				isr = new InputStreamReader(con.getErrorStream());
+			}
+			br = new BufferedReader(isr);
+			JSONParser jsonParser = new JSONParser();
+			JSONObject jsonObj = (JSONObject) jsonParser.parse(br);
+			System.out.println(jsonObj.toJSONString());
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(br!=null)br.close();
+				if(isr!=null)isr.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			if(con!=null)con.disconnect();
+		}
+	}
+	
+	@RequestMapping(value = "/kakaologout.do", method = RequestMethod.POST)
+	public String kakaologout(@RequestParam("token")String token,HttpSession session) {
+		System.out.println(token);
+		kakaologout(token);
+		return "redirect:/";
+	}
+	public void kakaologout(String token) {
+		HttpURLConnection con = null;
+		InputStreamReader isr = null;
+		BufferedReader br = null;
+		try {
+			String apiURL = "https://kapi.kakao.com/v1/user/logout";
+			URL url = new URL(apiURL);
+			con = (HttpURLConnection) url.openConnection();
+			con.setDoInput(true);
+			con.setDoOutput(true);
+			con.setUseCaches(false);
+			con.setRequestMethod("POST");
+			con.setRequestProperty("Authorization", "Bearer " + token);
+			int responseCode = con.getResponseCode();
+			if (responseCode == 200) { // 정상 호출
+				isr = new InputStreamReader(con.getInputStream());
+				System.out.println("200");
+			} else { // 에러 발생
+				isr = new InputStreamReader(con.getErrorStream());
+				System.out.println("xxx");
+			}
+			br = new BufferedReader(isr);
+			JSONParser jsonParser = new JSONParser();
+			JSONObject jsonObj = (JSONObject) jsonParser.parse(br);
+			System.out.println(jsonObj.toJSONString());
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(br!=null)br.close();
+				if(isr!=null)isr.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			if(con!=null)con.disconnect();
+		}
+	}
 }
 
 

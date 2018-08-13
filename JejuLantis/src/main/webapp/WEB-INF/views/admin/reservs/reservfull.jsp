@@ -81,7 +81,6 @@
           <i class="fa fa-table"></i>예약관리</div>
         <div class="card-body">
           <div class="table-responsive">
-          	<input type="hidden" name="branch_today" id="branch_today"/>
             <table border="1" width="100%"  cellpadding="0" cellspacing="0">
 				<tr style="color:#808080;font-size:12pt">
 					<td colspan="2" height="30px" width="10%"  style="background-color: #23756e;color:white">임차인정보</td>
@@ -100,23 +99,23 @@
 				<tr style="color:#808080;font-size:12pt">			
 					<td  height="40px" width="10%" class="text-center" style="border-bottom:hidden;">임차인명</td>
 					<td  width="35%" class="text-left" style="border-bottom:hidden;border-left:hidden">
-						<input type="text">
+						<input type="text" name="member_name" value="${res.member.member_name}">
 					</td>
 					<td style="border-top: hidden;border-bottom: hidden;"></td>
 					<td  height="40px" width="10%" class="text-center" style="border-bottom:hidden;">운전자명</td>
 					<td  colspan ="3" width="35%" class="text-left" style="border-bottom:hidden;border-left:hidden">
-						<input type="text">
+						<input type="text" name="rent_reserv_driver_name">
 					</td>
 				</tr>
 				<tr style="color:#808080;font-size:12pt">			
 					<td  height="40px" width="10%" class="text-center" style="border-bottom:hidden">전화번호</td>
 					<td  width="35%" class="text-left" style="border-bottom:hidden;border-left:hidden">
-						<input type="text">
+						<input type="text" value="${res.member.member_tel}" name="member_tel">
 					</td>
 					<td style="border-top: hidden;border-bottom: hidden;"></td>
 					<td  height="40px" width="10%" class="text-center" style="border-bottom:hidden">전화번호</td>
 					<td  colspan ="3" width="35%" class="text-left" style="border-bottom:hidden;border-left:hidden">
-						<input type="text">
+						<input type="text" name="">
 					</td>
 				</tr>
 				<tr style="color:#808080;font-size:12pt">			
@@ -139,17 +138,6 @@
 					<td  height="40px" width="10%" class="text-center" style="border-bottom:hidden">면허번호</td>
 					<td  colspan ="3" width="35%" class="text-left" style="border-bottom:hidden;border-left:hidden">
 						<input type="text">
-					</td>
-				</tr>
-				<tr style="color:#808080;font-size:12pt">			
-					<td  height="40px" width="10%" class="text-center" style="border-bottom:hidden">면허증사진</td>
-					<td  width="35%" class="text-left" style="border-bottom:hidden;border-left:hidden">
-						<input type="file">
-					</td>
-					<td style="border-top: hidden;border-bottom: hidden;"></td>
-					<td  height="40px" width="10%" class="text-center" style="border-bottom:hidden">면허증사진</td>
-					<td  colspan ="3" width="35%" class="text-left" style="border-bottom:hidden;border-left:hidden">
-						<input type="file">
 					</td>
 				</tr>
 				<tr style="color:#808080;font-size:12pt">			

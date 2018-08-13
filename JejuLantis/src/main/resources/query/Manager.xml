@@ -16,7 +16,6 @@
 	<result column="MANAGER_MAIN " property="manager_main"/>
 	<result column="MANAGER_CHART " property="manager_chart"/>
 	<result column="MANAGER_RESERVSTATUS" property="manager_reservstatus"/>
-	<result column="MANAGER_ARS_RESERV" property="manager_ars_reserv"/>
 	<result column="MANAGER_TRAVELMANAGEMENT" property="manager_travelmanagement"/>
 	<result column="MANAGER_REVIEW" property="manager_review"/>
 	<result column="MANAGER_NOTICE" property="manager_notice"/>
@@ -31,13 +30,15 @@
 	<result column="MANAGER_BANNER" property="manager_banner"/>
 	<result column="MANAGER_COUPON" property="manager_coupon"/>
 	<result column="MANAGER_SMS" property="manager_sms"/>
+	<result column="MANAGER_EMAIL_AT" property="manager_email_at"/>
 	<result column="MANAGER_INSURANCE" property="manager_insurance"/>
+	<result column="MANAGER_AFFILIATE" property="manager_affiliate"/>
 	<result column="MANAGER_RESIST_MEMBER" property="manager_resist_member"/>	
 </resultMap>
 <insert id="managerresist" parameterType="Manager">
 	insert into Manager values (Manager_seq.nextval,#{branch_no},#{manager_id},#{manager_pwd},#{manager_name},#{manager_email},
 	#{manager_birth},#{manager_tel1},#{manager_tel2},'N',
-	'N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N',SYSDATE)
+	'N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N',SYSDATE)
 </insert>
 
 <select id="branchcheck" parameterType="String" resultType="Branch">
@@ -56,8 +57,8 @@
 
 <!-- 로그인 체키쿼리 -->
 	<select id="managerloginCheck" resultType="Manager" parameterType="Manager"> 
-			select MANAGER.manager_no,BRANCH.branch_no,BRANCH.branch_name,MANAGER.manager_id,MANAGER.manager_main,MANAGER.manager_chart,MANAGER.manager_reservstatus,MANAGER.manager_ars_reserv,MANAGER.manager_travelmanagement,MANAGER.manager_review,MANAGER.manager_notice,MANAGER.manager_user,MANAGER.manager_manager,MANAGER.manager_company,
-        			MANAGER.manager_carkind,MANAGER.manager_d_carkind ,MANAGER.manager_carinfo,MANAGER.manager_paystatus,MANAGER.manager_salestatus,MANAGER.manager_banner,MANAGER.manager_coupon,MANAGER.manager_sms,MANAGER.manager_insurance from MANAGER INNER JOIN BRANCH ON MANAGER.branch_no = BRANCH.branch_no
+			select MANAGER.manager_no,BRANCH.branch_no,BRANCH.branch_name,MANAGER.manager_id,MANAGER.manager_main,MANAGER.manager_chart,MANAGER.manager_reservstatus,MANAGER.manager_travelmanagement,MANAGER.manager_review,MANAGER.manager_notice,MANAGER.manager_user,MANAGER.manager_manager,MANAGER.manager_company,
+        			MANAGER.manager_carkind,MANAGER.manager_d_carkind ,MANAGER.manager_carinfo,MANAGER.manager_paystatus,MANAGER.manager_salestatus,MANAGER.manager_banner,MANAGER.manager_coupon,MANAGER.manager_sms,MANAGER.manager_email_at,MANAGER.manager_insurance,MANAGER.manager_affiliate from MANAGER INNER JOIN BRANCH ON MANAGER.branch_no = BRANCH.branch_no
 		<where>
 		MANAGER_ID = #{manager_id}
 			AND

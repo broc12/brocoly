@@ -12,10 +12,10 @@
 <script>
     //main페이지로 값 전달: 부모로 값전달하기 위해서는 opener사용
     function sendAdd(manager_no,manager_id, manager_name, branch_name,manager_main,manager_chart,
-    		manager_reservstatus,manager_ars_reserv,manager_travelmanagement,manager_review,
+    		manager_reservstatus,manager_travelmanagement,manager_review,
     		manager_notice,manager_user,manager_manager,manager_company,manager_carkind,
     		manager_d_carkind,manager_carinfo,manager_paystatus,manager_salestatus,
-    		manager_banner,manager_coupon,manager_sms,manager_insurance){
+    		manager_banner,manager_coupon,manager_sms,manager_email_at,manager_insurance,manager_affiliate){
         alert("부모로 값전달");
         opener.document.getElementById("manager_no").value = manager_no;
         opener.document.getElementById("manager_name").value = manager_name;
@@ -31,9 +31,6 @@
         }
         if(manager_reservstatus=='Y'){
         	opener.document.getElementById("manager_reservstatus").checked=true;
-        }
-        if(manager_ars_reserv=='Y'){
-        	opener.document.getElementById("manager_ars_reserv").checked=true;
         }
         if(manager_travelmanagement=='Y'){
         	opener.document.getElementById("manager_travelmanagement").checked=true;
@@ -77,10 +74,15 @@
         if(manager_sms=='Y'){
         	opener.document.getElementById("manager_sms").checked=true;
         }
+        if(manager_email_at=='Y'){
+        	opener.document.getElementById("manager_email_at").checked=true;
+        }
         if(manager_insurance=='Y'){
         	opener.document.getElementById("manager_insurance").checked=true;
         }
-        
+        if(manager_affiliate=='Y'){
+        	opener.document.getElementById("manager_affiliate").checked=true;
+        }
         window.close(); 
     }
     //널값체크
@@ -111,11 +113,12 @@
                 <tr>
                     <td>
                     	<a id="manager_name" href="javascript:sendAdd('${post.manager_no}','${post.manager_id}','${post.manager_name}','${post.branch_name}',
-                    	'${post.manager_main}','${post.manager_chart}','${post.manager_reservstatus}','${post.manager_ars_reserv}',
+                    	'${post.manager_main}','${post.manager_chart}','${post.manager_reservstatus}',
                     	'${post.manager_travelmanagement}','${post.manager_review}','${post.manager_notice}','${post.manager_user}',
                     	'${post.manager_manager}','${post.manager_company}','${post.manager_carkind}','${post.manager_d_carkind}',
                     	'${post.manager_carinfo}','${post.manager_paystatus}','${post.manager_salestatus}',
-                    	'${post.manager_banner}','${post.manager_coupon}','${post.manager_sms}','${post.manager_insurance}')" >
+                    	'${post.manager_banner}','${post.manager_coupon}','${post.manager_sms}','${post.manager_email_at}','${post.manager_insurance}',
+                    	'${post.manager_affiliate}')" >
                      ${post.manager_id}</a>
                     </td>
                     <td>${post.manager_name}</td>

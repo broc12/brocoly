@@ -10,7 +10,6 @@
 	<result column="MANAGER_MAIN " property="manager_main"/>
 	<result column="MANAGER_CHART " property="manager_chart"/>
 	<result column="MANAGER_RESERVSTATUS" property="manager_reservstatus"/>
-	<result column="MANAGER_ARS_RESERV" property="manager_ars_reserv"/>
 	<result column="MANAGER_TRAVELMANAGEMENT" property="manager_travelmanagement"/>
 	<result column="MANAGER_REVIEW" property="manager_review"/>
 	<result column="MANAGER_NOTICE" property="manager_notice"/>
@@ -25,7 +24,9 @@
 	<result column="MANAGER_BANNER" property="manager_banner"/>
 	<result column="MANAGER_COUPON" property="manager_coupon"/>
 	<result column="MANAGER_SMS" property="manager_sms"/>
+	<result column="MANAGER_EMAIL_AT" property="manager_email_at"/>
 	<result column="MANAGER_INSURANCE" property="manager_insurance"/>
+	<result column="MANAGER_AFFILIATE" property="manager_affiliate"/>
 </resultMap>
 
 <select id="myPower" parameterType="String" resultType="Power">
@@ -35,11 +36,11 @@
 
 <update id="myUpdate" parameterType="Power">
 	update MANAGER set manager_main=#{manager_main},manager_chart=#{manager_chart},manager_reservstatus=#{manager_reservstatus},
-	manager_ars_reserv=#{manager_ars_reserv},manager_travelmanagement=#{manager_travelmanagement},manager_review=#{manager_review},
+	manager_travelmanagement=#{manager_travelmanagement},manager_review=#{manager_review},
 	manager_notice=#{manager_notice},manager_user=#{manager_user},manager_manager=#{manager_manager},
 	manager_company=#{manager_company},manager_carkind=#{manager_carkind},manager_d_carkind=#{manager_d_carkind},
 	manager_carinfo=#{manager_carinfo},manager_paystatus=#{manager_paystatus},manager_salestatus=#{manager_salestatus},
-	manager_banner=#{manager_banner},manager_coupon=#{manager_coupon},manager_sms=#{manager_sms},
-	manager_insurance=#{manager_insurance} where manager_no=#{manager_no}
+	manager_banner=#{manager_banner},manager_coupon=#{manager_coupon},manager_sms=#{manager_sms},manager_email_at=#{manager_email_at},
+	manager_insurance=#{manager_insurance},manager_affiliate=#{manager_affiliate} where manager_no=#{manager_no}
 </update>
 </mapper>

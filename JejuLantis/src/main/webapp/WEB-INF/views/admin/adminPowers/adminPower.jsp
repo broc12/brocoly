@@ -47,7 +47,6 @@ $(document).ready(function(){
             $("input[name=manager_main]").prop("checked",true);
             $("input[name=manager_chart]").prop("checked",true);
             $("input[name=manager_reservstatus]").prop("checked",true);
-            $("input[name=manager_ars_reserv]").prop("checked",true);
             $("input[name=manager_travelmanagement]").prop("checked",true);
             $("input[name=manager_review]").prop("checked",true);
             $("input[name=manager_notice]").prop("checked",true);
@@ -62,14 +61,15 @@ $(document).ready(function(){
             $("input[name=manager_banner]").prop("checked",true);
             $("input[name=manager_coupon]").prop("checked",true);
             $("input[name=manager_sms]").prop("checked",true);
+            $("input[name=manager_email_at]").prop("checked",true);
             $("input[name=manager_insurance]").prop("checked",true);
+            $("input[name=manager_affiliate]").prop("checked",true);
             //클릭이 안되있으면
         }else{
             //input태그의 name이 chk인 태그들을 찾아서 checked옵션을 false로 정의
             $("input[name=manager_main]").prop("checked",false);
             $("input[name=manager_chart]").prop("checked",false);
             $("input[name=manager_reservstatus]").prop("checked",false);
-            $("input[name=manager_ars_reserv]").prop("checked",false);
             $("input[name=manager_travelmanagement]").prop("checked",false);
             $("input[name=manager_review]").prop("checked",false);
             $("input[name=manager_notice]").prop("checked",false);
@@ -84,7 +84,9 @@ $(document).ready(function(){
             $("input[name=manager_banner]").prop("checked",false);
             $("input[name=manager_coupon]").prop("checked",false);
             $("input[name=manager_sms]").prop("checked",false);
+            $("input[name=manager_email_at]").prop("checked",false);
             $("input[name=manager_insurance]").prop("checked",false);
+            $("input[name=manager_affiliate]").prop("checked",false);
         }
     })
 })
@@ -94,7 +96,6 @@ $(document).ready(function(){
           var manager_main = "";
           var manager_chart = "";
           var manager_reservstatus = "";
-          var manager_ars_reserv = "";
           var manager_travelmanagement = "";
           var manager_review = "";
           var manager_notice = "";
@@ -109,7 +110,9 @@ $(document).ready(function(){
           var manager_banner = "";
           var manager_coupon = "";
           var manager_sms = "";
+          var manager_email_at = "";
           var manager_insurance = "";
+          var manager_affiliate = "";
           
       	if($("input:checkbox[name=manager_main]").is(":checked")){	// 쳬크 되어있으면
       		manager_main = "Y"
@@ -125,11 +128,6 @@ $(document).ready(function(){
     		manager_reservstatus = "Y"
       	}else{
       		manager_reservstatus = "N"
-      	}
-    	if($("input:checkbox[name=manager_ars_reserv]").is(":checked")){	// 쳬크 되어있으면
-    		manager_ars_reserv = "Y"
-      	}else{
-      		manager_ars_reserv = "N"
       	}
     	if($("input:checkbox[name=manager_travelmanagement]").is(":checked")){	// 쳬크 되어있으면
     		manager_travelmanagement = "Y"
@@ -201,16 +199,26 @@ $(document).ready(function(){
       	}else{
       		manager_sms = "N"
       	}
+
+    	if($("input:checkbox[name=manager_email_at]").is(":checked")){	// 쳬크 되어있으면
+    		manager_email_at = "Y"
+      	}else{
+      		manager_email_at = "N"
+      	}
     	if($("input:checkbox[name=manager_insurance]").is(":checked")){	// 쳬크 되어있으면
     		manager_insurance = "Y"
       	}else{
       		manager_insurance = "N"
       	}
-   		
+    	if($("input:checkbox[name=manager_affiliate]").is(":checked")){	// 쳬크 되어있으면
+    		manager_affiliate = "Y"
+      	}else{
+      		manager_affiliate = "N"
+      	}
+    	
       	jQuery("#manager_main").val(manager_main);
       	jQuery("#manager_chart").val(manager_chart);
       	jQuery("#manager_reservstatus").val(manager_reservstatus);
-      	jQuery("#manager_ars_reserv").val(manager_ars_reserv);
       	jQuery("#manager_travelmanagement").val(manager_travelmanagement);
       	jQuery("#manager_review").val(manager_review);
       	jQuery("#manager_notice").val(manager_notice);
@@ -225,7 +233,9 @@ $(document).ready(function(){
       	jQuery("#manager_banner").val(manager_banner);
       	jQuery("#manager_coupon").val(manager_coupon);
       	jQuery("#manager_sms").val(manager_sms);
+      	jQuery("#manager_email_at").val(manager_email_at);
       	jQuery("#manager_insurance").val(manager_insurance);
+      	jQuery("#manager_affiliate").val(manager_affiliate);
       	
       	alert("권한이 수정되었습니다.");
         document.f.submit();
@@ -280,7 +290,6 @@ $(document).ready(function(){
 	       		<input type="checkbox" name="manager_main" id="manager_main" /><span>메인관리</span></br>
 	       		<input type="checkbox" name="manager_chart" id="manager_chart"/><span>그래프</span></br>
 	       		<input type="checkbox" name="manager_reservstatus" id="manager_reservstatus"/><span>예약현황</span></br>
-	       		<input type="checkbox" name="manager_ars_reserv" id="manager_ars_reserv"/><span>ARS예약현황</span></br>
 	       		<input type="checkbox" name="manager_travelmanagement" id="manager_travelmanagement"/><span>여행상담관리</span></br>
 	       		<input type="checkbox" name="manager_review" id="manager_review"/><span>이용후기관리</span></br>
 	       		<input type="checkbox" name="manager_notice" id="manager_notice"/><span>공지관리</span></br>
@@ -295,7 +304,9 @@ $(document).ready(function(){
 	       		<input type="checkbox" name="manager_banner" id="manager_banner"/><span>배너관리</span></br>
 	       		<input type="checkbox" name="manager_coupon" id="manager_coupon"/><span>쿠폰관리</span></br>
 	       		<input type="checkbox" name="manager_sms" id="manager_sms"/><span>SMS관리</span></br>
+	       		<input type="checkbox" name="manager_email_at" id="manager_email_at"/><span>이메일관리</span></br>
 	       		<input type="checkbox" name="manager_insurance" id="manager_insurance"/><span>보험관리</span></br>
+	       		<input type="checkbox" name="manager_affiliate" id="manager_affiliate"/><span>제휴관리</span></br>
 	       	</td>
 	       </tr>
 	       <tr>

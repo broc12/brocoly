@@ -56,16 +56,6 @@
         </li>
         </c:when>
         </c:choose>
-        <c:choose>
-        <c:when test="${managerlog.manager_ars_reserv eq 'Y' }">
-        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Charts">
-          <a class="nav-link" href="charts.do">
-            <!-- <i class="fa fa-fw fa-area-chart"></i> -->
-            <span class="nav-link-text">ARS예약현황</span>
-          </a>
-        </li>
-        </c:when>
-        </c:choose>
         <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Example Pages">
           <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseExamplePages2" data-parent="#exampleAccordion">
             <span class="nav-link-text">게시판관리</span>
@@ -220,6 +210,16 @@
         </c:when>
         </c:choose>
         <c:choose>
+        <c:when test="${managerlog.manager_email_at eq 'Y' }">
+        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Tables">
+          <a class="nav-link" href="emailList.do?manager_id=${managerlog.manager_id}">
+            <!-- <i class="fa fa-fw fa-table"></i> -->
+            <span class="nav-link-text">이메일관리</span>
+          </a>
+        </li>
+        </c:when>
+        </c:choose>
+        <c:choose>
         <c:when test="${managerlog.manager_insurance eq 'Y' }">
         <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Tables">
           <a class="nav-link" href="insuranceList.do?manager_id=${managerlog.manager_id}">
@@ -230,7 +230,7 @@
         </c:when>
         </c:choose>
         <c:choose>
-        <c:when test="${managerlog.manager_insurance eq 'Y' }">
+        <c:when test="${managerlog.manager_affiliate eq 'Y' }">
         <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Tables">
           <a class="nav-link" href="affiliateList.do?manager_id=${managerlog.manager_id}">
             <!-- <i class="fa fa-fw fa-table"></i> -->

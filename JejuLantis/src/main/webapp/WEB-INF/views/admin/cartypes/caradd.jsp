@@ -65,11 +65,11 @@
                 f.car_type.focus();
                 return;
              }
-         /*    if(f.car_image.value ==""){
+         	if(f.car_image.value ==""){
                 alert("차종이미지를 채워주세요");
                 f.car_image.focus();
                 return;
-             } */
+             }
             var isChecked = "";
       	  
         	if($("input:checkbox[id='customCheck1']").is(":checked")){	// 쳬크 되어있으면

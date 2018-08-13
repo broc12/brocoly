@@ -34,7 +34,7 @@
 select MEMBER_seq.nextval from DUAL
 </selectKey>
 insert into MEMBER values (#{member_no},#{member_id},#{member_pwd},#{member_name},#{member_birth},'M',#{member_local},#{member_tel},#{member_email},#{member_sms_at},
-	SYSDATE,#{member_withdraw_at},SYSDATE)
+#{member_email_at},SYSDATE,#{member_withdraw_at},SYSDATE)
 <!--   insert into MEMBER(member_no,id,pwd,name,birth,sex,sclc,memeber_local,tel,email,sms_at,resist_member,memeber_whithdraw_at) -->
 <!--   values (MEMBER_seq.nextval,#{id},#{pwd},#{name},SYSDATE,#{sex},#{sclc},#{memeber_local},#{tel},#{email},#{sms_at},SYSDATE,#{memeber_whithdraw_at}) -->
 </insert>

@@ -1,5 +1,5 @@
 package com.khd.jejulantis.client.affiliate.Service;
 
-public interface AffiliateService {
+public interface CAffiliateService {
 
 }

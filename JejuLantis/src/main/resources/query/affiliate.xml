@@ -13,7 +13,14 @@
 		<result column="AFFILIATE_DATE" property="affiliate_date"/>
 	</resultMap>
 	<select id="affiliateList" resultType="Affiliate">
-		select * from Affiliate 
+		select * from AFFILIATE 
 	</select>
-	
+	<delete id="affiliateDelete" parameterType="int">
+		delete from AFFILIATE where AFFILIATE_NO=#{affiliate_no}
+	</delete>
+	<insert id="affiliateInsert" parameterType="Affiliate">
+		Insert 
+		into AFFILIATE 
+		values(AFFILIATE_SEQ.NEXTVAL, #{affiliate_branch_name}, #{affiliate_member_name}, #{affiliate_homepage}, #{affiliate_member_email}, #{affiliate_member_tel}, #{affiliate_title}, #{affiliate_content}, SYSDATE)
+	</insert>
 </mapper>

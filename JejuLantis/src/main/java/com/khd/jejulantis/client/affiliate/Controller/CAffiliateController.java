@@ -4,7 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-public class AffiliateController {
+public class CAffiliateController {
 	
 	@RequestMapping(value = "affiliate.do")
 	public String affiliateForm() {

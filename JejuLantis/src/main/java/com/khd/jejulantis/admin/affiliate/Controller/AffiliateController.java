@@ -15,11 +15,10 @@ public class AffiliateController {
 	@Autowired
 	AffiliateService aservice;
 	@RequestMapping(value = "admin/affiliateList.do")
-	public String affiliateList() {
-//		String view = "admin/affiliates/affiliateList";
-//		List<Affiliate> affiliateList = aservice.
-//		ModelAndView mv = new ModelAndView(view, "affiliateList", affiliateList);
-//		return mv;
-		return "admin/affiliates/affiliateList";
+	public ModelAndView affiliateList() {
+		String view = "admin/affiliates/affiliateList";
+		List<Affiliate> affiliateList = aservice.affiliateListService();
+		ModelAndView mv = new ModelAndView(view, "affiliateList", affiliateList);
+		return mv;
 	}
 }

@@ -61,7 +61,32 @@
 <!--[if lt IE 9]>
 	<script src="js/respond.min.js"></script>
 	<![endif]-->
-
+<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
+<script type='text/javascript'>
+    Kakao.init('c4a7a25c03861c23a0732a1f443df2ef');
+    function loginWithKakao() {
+      Kakao.Auth.login({
+        success: function(authObj) {
+          alert(JSON.stringify(authObj));
+      	$.ajax({
+	    	url:"kakaoLogin.do",
+	        type:'GET',
+	        data: {"token":JSON.stringify(authObj.access_token)} ,
+	        error:function(error) {
+	            alert("카카오 로그인 샐패");
+	        },
+	        success:function(data){
+	     		alert(data);
+	            $("#token").val(data);
+	        }
+      	});
+        },
+        fail: function(err) {
+          alert(JSON.stringify(err));
+        }
+      });
+    };
+</script>
 </head>
 <body>
 	<%@ include file="../top/top.jspf"%>
@@ -119,7 +144,7 @@
 														<p align="left">
 														<a href="/jejulantis/naverLogin.do"><img width="90" src="resources/sns/naver.jpg"></a> &nbsp;&nbsp;&nbsp;
 														<a href="/jejulantis/googleLogin.do"><img width="45" src="resources/sns/google.jpg"></a> &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
-														<a href="/jejulantis/kakaologin.do"><img width="45" src="resources/sns/kakao.jpg"></a> &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+														<a id="custom-login-btn" href="javascript:loginWithKakao()" ><img width="45" src="resources/sns/kakao.jpg"></a> &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
 														<a href="/jejulantis/facebookLogin.do"><img width="45" src="resources/sns/facebook.jpg"></a>
 														</p>
 													<p align="right">

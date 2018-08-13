@@ -49,7 +49,7 @@
 						<li><a href="board.do" style="text-decoration:none">이용후기</a></li>
 						<li><a href="check.do?member_no=${log.member_no}" style="text-decoration:none">예약확인</a></li>
 						<li><a href="service.do" style="text-decoration:none">고객센터</a></li>
-						<li><a href="" style="text-decoration:none">제휴문의</a></li>
+						<li><a href="affiliate.do" style="text-decoration:none">제휴문의</a></li>
 					</ul>
 				</div>
 			</div>

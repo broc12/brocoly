@@ -149,7 +149,7 @@
 					</div>
 					<p>
 					<div align="center"><!-- 내용 --> 
-						<textarea name="content" id="content" cols="120" rows="12" style="width:100%; resize:none" placeholder="내용#" class="form-control"></textarea>
+						<textarea name="content" id="content" cols="120" rows="12" style="width:100%; resize:none" placeholder="내용을 입력해주세요" class="form-control"></textarea>
 					</div>
 					<p>
 					<div align="center">

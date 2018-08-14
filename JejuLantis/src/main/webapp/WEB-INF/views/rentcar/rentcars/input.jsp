@@ -186,6 +186,7 @@
 			jQuery("#Dphone").val($("input:text[name=Rphone]").val());
 			birth = '${log.cut}';
 			jQuery("#Dday").val(birth);
+			jQuery("#rent_reserv_driver_birth").val(birth);
 		}else{
 			jQuery("#Dname").val("");
 			jQuery("#Dphone").val("");
@@ -245,7 +246,7 @@
 		        jQuery("#rent_payment_insurance_price").val('${rentcar.totalinsurance }');
 		        jQuery("#rent_payment_carkind_price").val('${rentcar.totalprice}');
 		        jQuery("#rent_reserv_driver_name").val($("input:text[name=driver_name]").val());
-				jQuery("#rent_reserv_driver_birth").val($("input:text[name=driver_birth]").val());
+				/* jQuery("#rent_reserv_driver_birth").val($("input:text[name=driver_birth]").val()); */
 				jQuery("#rent_reserv_driver_tel").val($("input:text[name=driver_tel]").val());
 		        var way = "";
 		        if(pay == "card"){
@@ -321,7 +322,7 @@
 		<input type="hidden" name="rent_reserv_end" id="rent_reserv_end">
 		<input type="hidden" name="rent_reserv_license_kind" id="rent_reserv_license_kind">
 		<input type="hidden" name="rent_reserv_driver_name" id="rent_reserv_driver_name">
-		<!-- <input type="hidden" name="rent_reserv_driver_birth" id="rent_reserv_driver_birth"> -->
+		<input type="hidden" name="rent_reserv_driver_birth" id="rent_reserv_driver_birth">
 		<input type="hidden" name="rent_reserv_driver_tel" id="rent_reserv_driver_tel">
 	</form>
 		

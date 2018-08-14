@@ -17,7 +17,7 @@ public class Reserv {
 	private String rent_reserv_license_kind;
 	private Date rent_reserv_license_day;
 	private String rent_reserv_driver_name;
-	private Date rent_reserv_driver_birth;
+	private String rent_reserv_driver_birth;
 	private String rent_reserv_driver_tel;
 	private String rent_reserv_driver_addr;
 	private String rent_reserv_cancel_able;
@@ -37,7 +37,7 @@ public class Reserv {
 	public Reserv(long rent_reserv_no, long branch_no, long car_no, long car_kind_no, long insurance_no,
 			long car_info_no, long member_no, long rent_payment_no, Date rent_reserv_start, Date rent_reserv_end,
 			String rent_reserv_license_no, String rent_reserv_license_kind, Date rent_reserv_license_day,
-			String rent_reserv_driver_name, Date rent_reserv_driver_birth, String rent_reserv_driver_tel,
+			String rent_reserv_driver_name, String rent_reserv_driver_birth, String rent_reserv_driver_tel,
 			String rent_reserv_driver_addr, String rent_reserv_cancel_able, String rent_reserv_cancel_at,
 			String rent_reserv_cancel_reason, Date rent_reserv_cancel_date, Date rent_reserv_resist, Car car,
 			Branch branch, Payment payment, Insurance insurance, Member member) {
@@ -182,11 +182,11 @@ public class Reserv {
 		this.rent_reserv_driver_name = rent_reserv_driver_name;
 	}
 
-	public Date getRent_reserv_driver_birth() {
+	public String getRent_reserv_driver_birth() {
 		return rent_reserv_driver_birth;
 	}
 
-	public void setRent_reserv_driver_birth(Date rent_reserv_driver_birth) {
+	public void setRent_reserv_driver_birth(String rent_reserv_driver_birth) {
 		this.rent_reserv_driver_birth = rent_reserv_driver_birth;
 	}
 
@@ -285,7 +285,6 @@ public class Reserv {
 	public void setMember(Member member) {
 		this.member = member;
 	}
-	
 	
 	
 }

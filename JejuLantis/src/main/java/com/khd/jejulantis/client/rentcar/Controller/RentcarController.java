@@ -109,7 +109,6 @@ public class RentcarController {
 
 	@RequestMapping(value="payment.do",method=RequestMethod.POST)
 	public ModelAndView payment(Payment payment,Reserv reserv) {
-		System.out.println("################");
 		Payment pay = paymentService.insertService(payment);
 		reserv.setRent_payment_no(pay.getRent_payment_no());
 		Reserv res = reservService.insertService(reserv);

@@ -27,8 +27,24 @@
       <beans:property name="defaultEncoding" value="UTF-8" />
       <beans:property name="maxUploadSize" value="10485760" />
    </beans:bean>
+   <!-- NaverLoginBO Class에 대한 Bean설정 추가 -->
+<beans:bean id="naverLoginBO" class="com.khd.jejulantis.client.naverLogin.NaverLoginBO" />
+
+<!-- google Class Bean설정 추가 -->
+<!-- 클라이언트ID와 보안비밀 세팅-->
+<beans:bean id="googleConnectionFactory"
+	class="org.springframework.social.google.connect.GoogleConnectionFactory">
+	<beans:constructor-arg value="1006271833542-j005e43r8738fng8rjtc5e3mj6a1u7e8.apps.googleusercontent.com" />
+	<beans:constructor-arg value="BeLDk0ttPmXK4fIX-FWVmXmq" />
+</beans:bean>
+<!-- 승인된 자바스크립트 원본과 승인된 리디렉션 URI -->
+<beans:bean id="googleOAuth2Parameters" class="org.springframework.social.oauth2.OAuth2Parameters">
+	<beans:property name="scope" value="https://www.googleapis.com/auth/plus.login" />
+	<beans:property name="redirectUri" value="http://localhost:8080/jejulantis/googleCallBack.do" />
+</beans:bean>
+
    
-	<context:component-scan base-package="com.khd.jejulanits.admin.carInfo.Controller"/>
+	<context:component-scan base-package="com.khd.jejulantis.admin.carInfo.Controller"/>
 	<context:component-scan base-package="com.khd.jejulantis.admin.admin.Controller" />
 	<context:component-scan base-package="com.khd.jejulantis.admin.branch.Controller" />
 	<context:component-scan base-package="com.khd.jejulantis.admin.car.Controller" />
@@ -51,6 +67,6 @@
 	<context:component-scan base-package="com.khd.jejulantis.client.review.Controller" />
 	<context:component-scan base-package="com.khd.jejulantis.admin.coupon.Controller" />
 	<context:component-scan base-package="com.khd.jejulantis.admin.sms.Controller" />
-	<context:component-scan base-package="com.khd.jejulantis.client.affiliate.Controller" />
-	<context:component-scan base-package="com.khd.jejulantis.admin.affiliate.Controller" />
+	<context:component-scan base-package="com.khd.jejulantis.client.snsLogin.Controller" />
+	
 </beans:beans>

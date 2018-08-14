@@ -48,7 +48,7 @@ function(){
 							html += "<div class='hotel-entry' style='background-color:#f8fafb;padding:15px;height:410px'></br>";
 							html += "<span style='color:black;font-size:18pt'>"+ data[i].car_name +"</span>";
 							html += "<span style='color:black'>"+ data[i].car_manufacturer +"</span>";
-							html += "<img width='100%' weight='200' src='resources/car/2017Avante.png'/><div class='desc'>";
+							html += "<img width='100%' weight='200' src='resources/car/"+ data[i].car_image +"'/><div class='desc'>";
 							html += "<p align='center' style='color:#0090f0'>실시간 예약 가능 차량 : "+ data[i].actot +"</p>";
 							html += "</div></br><div class='desc'><p align='center'>";
 							html += "<span class='glyphicon glyphicon-road'>"+ data[i].car_type +"</span>";

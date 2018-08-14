@@ -15,8 +15,11 @@ public class Reserv {
 	private Date rent_reserv_end;
 	private String rent_reserv_license_no;
 	private String rent_reserv_license_kind;
+	private Date rent_reserv_license_day;
 	private String rent_reserv_driver_name;
 	private Date rent_reserv_driver_birth;
+	private String rent_reserv_driver_tel;
+	private String rent_reserv_driver_addr;
 	private String rent_reserv_cancel_able;
 	private String rent_reserv_cancel_at;
 	private String rent_reserv_cancel_reason;
@@ -33,8 +36,9 @@ public class Reserv {
 
 	public Reserv(long rent_reserv_no, long branch_no, long car_no, long car_kind_no, long insurance_no,
 			long car_info_no, long member_no, long rent_payment_no, Date rent_reserv_start, Date rent_reserv_end,
-			String rent_reserv_license_no, String rent_reserv_license_kind, String rent_reserv_driver_name,
-			Date rent_reserv_driver_birth, String rent_reserv_cancel_able, String rent_reserv_cancel_at,
+			String rent_reserv_license_no, String rent_reserv_license_kind, Date rent_reserv_license_day,
+			String rent_reserv_driver_name, Date rent_reserv_driver_birth, String rent_reserv_driver_tel,
+			String rent_reserv_driver_addr, String rent_reserv_cancel_able, String rent_reserv_cancel_at,
 			String rent_reserv_cancel_reason, Date rent_reserv_cancel_date, Date rent_reserv_resist, Car car,
 			Branch branch, Payment payment, Insurance insurance, Member member) {
 		this.rent_reserv_no = rent_reserv_no;
@@ -49,8 +53,11 @@ public class Reserv {
 		this.rent_reserv_end = rent_reserv_end;
 		this.rent_reserv_license_no = rent_reserv_license_no;
 		this.rent_reserv_license_kind = rent_reserv_license_kind;
+		this.rent_reserv_license_day = rent_reserv_license_day;
 		this.rent_reserv_driver_name = rent_reserv_driver_name;
 		this.rent_reserv_driver_birth = rent_reserv_driver_birth;
+		this.rent_reserv_driver_tel = rent_reserv_driver_tel;
+		this.rent_reserv_driver_addr = rent_reserv_driver_addr;
 		this.rent_reserv_cancel_able = rent_reserv_cancel_able;
 		this.rent_reserv_cancel_at = rent_reserv_cancel_at;
 		this.rent_reserv_cancel_reason = rent_reserv_cancel_reason;
@@ -159,6 +166,14 @@ public class Reserv {
 		this.rent_reserv_license_kind = rent_reserv_license_kind;
 	}
 
+	public Date getRent_reserv_license_day() {
+		return rent_reserv_license_day;
+	}
+
+	public void setRent_reserv_license_day(Date rent_reserv_license_day) {
+		this.rent_reserv_license_day = rent_reserv_license_day;
+	}
+
 	public String getRent_reserv_driver_name() {
 		return rent_reserv_driver_name;
 	}
@@ -173,6 +188,22 @@ public class Reserv {
 
 	public void setRent_reserv_driver_birth(Date rent_reserv_driver_birth) {
 		this.rent_reserv_driver_birth = rent_reserv_driver_birth;
+	}
+
+	public String getRent_reserv_driver_tel() {
+		return rent_reserv_driver_tel;
+	}
+
+	public void setRent_reserv_driver_tel(String rent_reserv_driver_tel) {
+		this.rent_reserv_driver_tel = rent_reserv_driver_tel;
+	}
+
+	public String getRent_reserv_driver_addr() {
+		return rent_reserv_driver_addr;
+	}
+
+	public void setRent_reserv_driver_addr(String rent_reserv_driver_addr) {
+		this.rent_reserv_driver_addr = rent_reserv_driver_addr;
 	}
 
 	public String getRent_reserv_cancel_able() {
@@ -254,5 +285,7 @@ public class Reserv {
 	public void setMember(Member member) {
 		this.member = member;
 	}
+	
+	
 	
 }

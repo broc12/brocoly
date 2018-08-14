@@ -128,8 +128,17 @@
 		});
 		
 		jQuery("input[name='dnum']").change(function(){
+			var one = "1종보통";
+			var two = "2종보통";
 			
+			if($(this).val() == 'Y'){
+				jQuery("#rent_reserv_license_kind").val(one);
+			}
+			if($(this).val() == 'N'){
+				jQuery("#rent_reserv_license_kind").val(two);
+			}
 		});
+		
 		jQuery("input[name='Check']").change(function(){
 			
 		});
@@ -185,6 +194,7 @@
 	}
 	
 	function check(){
+		
 		var pay = "";
 		
 		if($("input:radio[id=card1]").is(":checked")){
@@ -215,7 +225,8 @@
 		    pay_method : pay,
 		    merchant_uid : 'merchant_' + new Date().getTime(),
 		    name : car+"("+branch+")"+"["+start+"~"+end+"]",
-		    amount : amount,
+		    /* amount : amount, */
+		    amount : 1000,
 		    buyer_email : '${log.member_email}',
 		    buyer_name : '${log.member_name}',
 		    buyer_tel : '${log.member_tel}',
@@ -233,6 +244,9 @@
 		        jQuery("#rent_payment_total_price").val(amount);
 		        jQuery("#rent_payment_insurance_price").val('${rentcar.totalinsurance }');
 		        jQuery("#rent_payment_carkind_price").val('${rentcar.totalprice}');
+		        jQuery("#rent_reserv_driver_name").val($("input:text[name=driver_name]").val());
+				jQuery("#rent_reserv_driver_birth").val($("input:text[name=driver_birth]").val());
+				jQuery("#rent_reserv_driver_tel").val($("input:text[name=driver_tel]").val());
 		        var way = "";
 		        if(pay == "card"){
 		        	way = "신용카드";
@@ -247,9 +261,7 @@
 		        	way = "휴대폰소액결제";
 		        }
 		        jQuery("#rent_payment_way").val(way);
-		        /* jQuery("#rent_payment_discount").val('${list.get(0).getCoupon_discount()}'); */
 		        jQuery("#rent_payment_goods_type").val("Y");
-		        
 		        jQuery("#branch_no").val('${rentcar.branch_no}');
 		        jQuery("#car_no").val('${rentcar.car_no}');
 		        jQuery("#car_kind_no").val('${rentcar.car_kind_no}');
@@ -307,6 +319,10 @@
 		<input type="hidden" name="rent_payment_no" id="rent_payment_no">
 		<input type="hidden" name="rent_reserv_start" id="rent_reserv_start">
 		<input type="hidden" name="rent_reserv_end" id="rent_reserv_end">
+		<input type="hidden" name="rent_reserv_license_kind" id="rent_reserv_license_kind">
+		<input type="hidden" name="rent_reserv_driver_name" id="rent_reserv_driver_name">
+		<!-- <input type="hidden" name="rent_reserv_driver_birth" id="rent_reserv_driver_birth"> -->
+		<input type="hidden" name="rent_reserv_driver_tel" id="rent_reserv_driver_tel">
 	</form>
 		
 	
@@ -428,7 +444,7 @@
 																<p ><div class="row form-group">
 																<label>이름</label>
 																	<div style="width:100%;background-color:white">	
-																		<input type="text" id="Dname" name="Dname" class="form-control">
+																		<input type="text" id="Dname" name="driver_name" class="form-control">
 																	</div>
 																	</div></p>
 															</div>
@@ -440,7 +456,7 @@
 																<p ><div class="row form-group">
 																<label>휴대전화</label>
 																	<div style="width:100%;background-color:white">	
-																		<input type="text" id="Dphone" name="Dphone" class="form-control">
+																		<input type="text" id="Dphone" name="driver_tel" class="form-control">
 																	</div>
 																	</div></p>
 															</div>
@@ -452,7 +468,7 @@
 																<p ><div class="row form-group">
 																<label>생년월일</label>
 																	<div style="width:100%;background-color:white">
-																		<input type="date" id="Dday" name="Dday"class="form-control date" style="height:50px">
+																		<input type="date" id="Dday" name="driver_birth"class="form-control date" style="height:50px">
 																	</div>
 																	</div></p>
 															</div>
@@ -483,6 +499,7 @@
 									</div>
 								</div>
 							</div>
+							
 							<div class="row">	
 									<span><span style="color:red">*</span>차량 운전은 운전 경력 1년 이상 경과 및 만 21세 이상 성인 운전자만 가능합니다.</span></br>
 									<span><span style="color:red">*</span>운전자 정보는 렌터카 이용 시 긴급사항 발생에 대비하여 즉시 연락이 가능한 정보를 입력하셔야 합니다.</span></br>

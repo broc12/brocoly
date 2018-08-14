@@ -10,6 +10,7 @@
 	<result column="CAR_FUEL" property="car_fuel"/>	
 	<result column="MTOT" property="mtot"/>
 	<result column="ACTOT" property="actot"/>
+	<result column="CAR_IMAGE" property="car_image"/>
 	<collection property="blist" javaType="java.util.ArrayList" resultMap="query.blist.BlistResult"/>
 </resultMap>
 <resultMap type="selectRentcar" id="selectRentcarhResult">
@@ -48,6 +49,7 @@ SELECT
     CAR_FUEL,
     MTOT,
     SUM(AC) OVER(PARTITION BY CAR_NO) ACTOT,
+    CAR_IMAGE,
     AC,
     BRANCH_NAME,
     CAR_KIND_PRICE_WEEK,
@@ -269,7 +271,7 @@ FROM
 	AND
 		INSURANCE_NAME='일반자차'
 	AND
-		INSURANCE_WITHDRAW_AT='Y'
+		INSURANCE_WITHDRAW_AT='N'
 	)J
 </select>
 

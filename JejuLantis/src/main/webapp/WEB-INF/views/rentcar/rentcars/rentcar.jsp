@@ -190,7 +190,7 @@
 								<div class="col-md-6 col-sm-6 animate-box" style="width:40%;padding:0px">
 									<div class="hotel-entry" style="background-color:#f8fafb;padding:15px;height:410px"></br>
 										<span style="color:black;font-size:18pt">${rentcar.car.car_name }</span><span style="color:black">(${rentcar.car.car_fuel })</span>
-										<img width="100%" weight="200" src="resources/car/2017Avante.png"/>
+										<img width="100%" weight="200" src="resources/car/${rentcar.car.car_image}"/>
 										<div class="desc">
 											<p align="center" style="color:#0090f0"></p>
 										</div>

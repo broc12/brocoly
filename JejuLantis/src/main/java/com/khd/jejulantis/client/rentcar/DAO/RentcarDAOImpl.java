@@ -35,7 +35,7 @@ public class RentcarDAOImpl implements RentcarDAO {
 	}
 	@Override
 	public SelectRentcar confirmrentcar(SearchRequirements requirements) {
-		long i = sqlsession.selectOne(ns+".confirmremainder",requirements);		
+		long i = sqlsession.selectOne(ns+".confirmremainder",requirements);
 		SelectRentcar selectRentcar = null;
 		if(i>0) {
 			selectRentcar = sqlsession.selectOne(ns+".selectCar",requirements);

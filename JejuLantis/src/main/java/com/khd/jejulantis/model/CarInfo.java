@@ -5,9 +5,9 @@ import java.sql.*;
 
 public class CarInfo {
 	private int car_info_no;
-	private int car_no;
+	private long car_no;
 	private int car_kind_no;
-	private int branch_no;
+	private long branch_no;
 	private String car_info_rent_at;
 	private String car_info_state;
 	private String car_info_withdraw_at;
@@ -16,9 +16,8 @@ public class CarInfo {
 	
 	public CarInfo() {}
 
-	public CarInfo(int car_info_no, int car_no, int car_kind_no, int branch_no, String car_info_rent_at,
+	public CarInfo(int car_info_no, long car_no, int car_kind_no, long branch_no, String car_info_rent_at,
 			String car_info_state, String car_info_withdraw_at, String car_info_back_no, Date car_info_resist) {
-		super();
 		this.car_info_no = car_info_no;
 		this.car_no = car_no;
 		this.car_kind_no = car_kind_no;
@@ -38,11 +37,11 @@ public class CarInfo {
 		this.car_info_no = car_info_no;
 	}
 
-	public int getCar_no() {
+	public long getCar_no() {
 		return car_no;
 	}
 
-	public void setCar_no(int car_no) {
+	public void setCar_no(long car_no) {
 		this.car_no = car_no;
 	}
 
@@ -54,11 +53,11 @@ public class CarInfo {
 		this.car_kind_no = car_kind_no;
 	}
 
-	public int getBranch_no() {
+	public long getBranch_no() {
 		return branch_no;
 	}
 
-	public void setBranch_no(int branch_no) {
+	public void setBranch_no(long branch_no) {
 		this.branch_no = branch_no;
 	}
 
@@ -101,5 +100,7 @@ public class CarInfo {
 	public void setCar_info_resist(Date car_info_resist) {
 		this.car_info_resist = car_info_resist;
 	}
-
+	
+	
+	
 }

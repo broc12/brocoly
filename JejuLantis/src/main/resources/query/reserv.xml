@@ -57,4 +57,16 @@
 	<select id="myFull" parameterType="Reserv" resultMap="reservResult">
 		select * from RENT_RESERV where RENT_RESERV_NO=#{rent_reserv_no}
 	</select>
+	
+	<select id="myInfo" parameterType="long" resultType="CarInfo">
+		select car_info_back_no from CAR_INFO where BRANCH_NO=#{branch_no}
+	</select>
+	
+	<select id="myKind"  resultType="car">
+		select * from CAR
+	</select>
+	
+	<select id="myCarNo"  parameterType="long" resultType="CarInfo">
+		select car_info_back_no from car_info where car_no=#{car_no}
+	</select>
 </mapper>

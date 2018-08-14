@@ -30,6 +30,7 @@ public class Reserv {
 	Payment payment;
 	Insurance insurance;
 	Member member;
+	CarInfo carinfo;
 	
 	public Reserv() {
 	}
@@ -40,7 +41,7 @@ public class Reserv {
 			String rent_reserv_driver_name, String rent_reserv_driver_birth, String rent_reserv_driver_tel,
 			String rent_reserv_driver_addr, String rent_reserv_cancel_able, String rent_reserv_cancel_at,
 			String rent_reserv_cancel_reason, Date rent_reserv_cancel_date, Date rent_reserv_resist, Car car,
-			Branch branch, Payment payment, Insurance insurance, Member member) {
+			Branch branch, Payment payment, Insurance insurance, Member member, CarInfo carinfo) {
 		this.rent_reserv_no = rent_reserv_no;
 		this.branch_no = branch_no;
 		this.car_no = car_no;
@@ -68,6 +69,7 @@ public class Reserv {
 		this.payment = payment;
 		this.insurance = insurance;
 		this.member = member;
+		this.carinfo = carinfo;
 	}
 
 	public long getRent_reserv_no() {
@@ -285,6 +287,16 @@ public class Reserv {
 	public void setMember(Member member) {
 		this.member = member;
 	}
+
+	public CarInfo getCarinfo() {
+		return carinfo;
+	}
+
+	public void setCarinfo(CarInfo carinfo) {
+		this.carinfo = carinfo;
+	}
+	
+	
 	
 	
 }

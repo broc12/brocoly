@@ -1,15 +1,22 @@
 package com.khd.jejulantis.admin.reserv.Controller;
 
+import java.util.HashMap;
 import java.util.List;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.khd.jejulantis.admin.reserv.Service.MyReservService;
+import com.khd.jejulantis.model.CarInfo;
+import com.khd.jejulantis.model.CarkindDetail;
+import com.khd.jejulantis.model.Manager;
 import com.khd.jejulantis.model.Reserv;
 
 @Controller
@@ -27,10 +34,27 @@ public class ReservController {
 	}
 	
 	@RequestMapping(value="admin/reservfull.do",method=RequestMethod.GET)
-	public ModelAndView reservfull(@RequestParam("rent_reserv_no")long rent_reserv_no) {
+	public ModelAndView reservfull(@RequestParam("rent_reserv_no")long rent_reserv_no,HttpSession session) {
+		Manager log = (Manager)session.getAttribute("managerlog");
+		List<CarInfo>info = service.infoService(log.getBranch_no());
+		List<CarkindDetail>kind = service.kindService();
 		Reserv res = service.reservfullService(rent_reserv_no);
 		String view = "admin/reservs/reservfull";
 		ModelAndView mv = new ModelAndView(view,"res",res);
+		mv.addObject("info", info);
+		mv.addObject("kind", kind);
 		return mv;
+	}
+	
+	@RequestMapping(value="admin/myCarNo.do",method= {RequestMethod.POST,RequestMethod.GET})
+	@ResponseBody
+	public List myCarNo(@RequestParam("no")long car_no) {
+//		HashMap<String, List<CarInfo>> hm = new HashMap<String, List<CarInfo>>();
+		System.out.println("######"+car_no);
+		List<CarInfo>list = service.myCarNoService(car_no);
+//		hm.put("car", list);
+		return list;
+		
+		
 	}
 }

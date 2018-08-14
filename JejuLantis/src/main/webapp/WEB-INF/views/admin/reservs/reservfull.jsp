@@ -37,12 +37,19 @@
 <body class="fixed-nav sticky-footer bg-dark" id="page-top">
 <%@ include file="../top/top2.jspf" %>
 	<script>
-	function goDel (v){
-		if (confirm("정말 탈퇴하시겠습니까??"+v) == true){    //확인
-			location.href="branchWithdraw.do?branch_no=" +v;
-		}else{   //취소
-		    return;
-		}
+	function mychange (){
+		var myNo = jQuery("#myCarNo").val();
+		alert(myNo);
+		$.ajax({
+			url : "myCarNo.do",
+			type : "POST",
+			data : {no : myNo},
+			success : function(responseData){
+				console.log("아무거나");
+				var data = responseData;
+				console.log("fofofofof:"+data[0].car_info_back_no);
+			}
+		});
 	}
 	</script>
  <style>
@@ -104,7 +111,7 @@
 					<td style="border-top: hidden;border-bottom: hidden;"></td>
 					<td  height="40px" width="10%" class="text-center" style="border-bottom:hidden;">운전자명</td>
 					<td  colspan ="3" width="35%" class="text-left" style="border-bottom:hidden;border-left:hidden">
-						<input type="text" name="rent_reserv_driver_name">
+						<input type="text" name="rent_reserv_driver_name" value="${res.rent_reserv_driver_name}">
 					</td>
 				</tr>
 				<tr style="color:#808080;font-size:12pt">			
@@ -115,24 +122,24 @@
 					<td style="border-top: hidden;border-bottom: hidden;"></td>
 					<td  height="40px" width="10%" class="text-center" style="border-bottom:hidden">전화번호</td>
 					<td  colspan ="3" width="35%" class="text-left" style="border-bottom:hidden;border-left:hidden">
-						<input type="text" name="">
+						<input type="text" name="" value="${res.rent_reserv_driver_tel}">
 					</td>
 				</tr>
 				<tr style="color:#808080;font-size:12pt">			
 					<td  height="40px" width="10%" class="text-center" style="border-bottom:hidden">생년월일</td>
 					<td  width="35%" class="text-left" style="border-bottom:hidden;border-left:hidden">
-						<input type="text">
+						<input type="text" value="${res.member.member_birth}">
 					</td>
 					<td style="border-top: hidden;border-bottom: hidden;"></td>
 					<td  height="40px" width="10%" class="text-center" style="border-bottom:hidden">생년월일</td>
 					<td  colspan ="3" width="35%" class="text-left" style="border-bottom:hidden;border-left:hidden">
-						<input type="text">
+						<input type="text" value="${res.rent_reserv_driver_birth}">
 					</td>
 				</tr>
 				<tr style="color:#808080;font-size:12pt">			
 					<td  height="40px" width="10%" class="text-center" style="border-bottom:hidden">면허번호</td>
 					<td  width="35%" class="text-left" style="border-bottom:hidden;border-left:hidden">
-						<input type="text">
+						<input type="text" readonly>
 					</td>
 					<td style="border-top: hidden;border-bottom: hidden;"></td>
 					<td  height="40px" width="10%" class="text-center" style="border-bottom:hidden">면허번호</td>
@@ -143,13 +150,13 @@
 				<tr style="color:#808080;font-size:12pt">			
 					<td  height="40px" width="10%" class="text-center" style="border-bottom:hidden">이메일</td>
 					<td  width="35%" class="text-left" style="border-bottom:hidden;border-left:hidden">
-						<input type="text">
+						<input type="text" value="${res.member.member_email}">
 					</td>
 					<td style="border-top: hidden;border-bottom: hidden;"></td>
 					<td  height="40px" width="10%" class="text-center" style="border-bottom:hidden">면허종별</td>
 					<td  width="12%" class="text-left" style="border-bottom:hidden;border-left:hidden">
 						<select id="" name="">
-						   <option value="010"  selected>선택하세요</option>
+						   <option value="010"  selected>${res.rent_reserv_license_kind}</option>
 						   <option value="011">1종보통</option>
 						   <option value="016">2종보통</option>
 						</select>
@@ -190,16 +197,17 @@
 				<tr style="color:#808080;font-size:12pt">			
 					<td  height="40px" width="10%" class="text-center" style="border-bottom:hidden">차종</td>
 					<td  width="35%" class="text-left" style="border-bottom:hidden;border-left:hidden">
-						<select id="" name="">
-						   <option value="010"  selected>선택하세요</option>
-						   <option value="011">1종보통</option>
-						   <option value="016">2종보통</option>
+						<select id="myCarNo" name="" onchange="mychange()">
+						<option value="${res.car.car_no}"  selected>${res.car.car_name}</option>
+						<c:forEach items="${kind}" var="kind">
+						   <option value="${kind.car_no}">${kind.car_name}</option>
+						</c:forEach>
 						</select>
 					</td>
 					<td style="border-top: hidden;border-bottom: hidden;"></td>
 					<td  height="40px" width="10%" class="text-center" style="border-bottom:hidden;background-color:#c8e1d6">예약시간</td>
 					<td  colspan ="3" width="35%" class="text-left" style="border-bottom:hidden;border-left:hidden;background-color:#c8e1d6">
-						<input type="date">
+						<input type="date" value="${res.rent_reserv_start}">
 						<select id="" name="">
 						   <option value="010"  selected>선택하세요</option>
 						   <option value="011">10:00</option>
@@ -211,15 +219,16 @@
 					<td  height="40px" width="10%" class="text-center" style="border-bottom:hidden">차량번호</td>
 					<td  width="35%" class="text-left" style="border-bottom:hidden;border-left:hidden">
 						<select id="" name="">
-						   <option value="010"  selected>선택하세요</option>
-						   <option value="011">1종보통</option>
-						   <option value="016">2종보통</option>
+							<option value="010"  selected>선택하세요</option>
+						<c:forEach items="${info}" var="myinfo">
+						   <option value="011">${myinfo.car_info_back_no}</option>
+						</c:forEach>
 						</select>
 					</td>
 					<td style="border-top: hidden;border-bottom: hidden;"></td>
 					<td  height="40px" width="10%" class="text-center" style="border-bottom:hidden;background-color:#c8e1d6"></td>
 					<td  colspan ="3" width="35%" class="text-left" style="border-bottom:hidden;border-left:hidden;background-color:#c8e1d6">
-						<input type="date">
+						<input type="date" value="${res.rent_reserv_end}">
 						<select id="" name="">
 						   <option value="010"  selected>선택하세요</option>
 						   <option value="011">10:00</option>
@@ -251,18 +260,18 @@
 					<td style="border-top: hidden;border-bottom: hidden;"></td>
 					<td  height="40px" width="10%" class="text-center" style="border-bottom:hidden">차종요금</td>
 					<td  colspan ="3" width="35%" class="text-left" style="border-bottom:hidden;border-left:hidden">
-						<input type="text">
+						<input type="text" value="${res.payment.rent_payment_carkind_price}">
 					</td>
 				</tr>
 				<tr style="color:#808080;font-size:12pt">			
 					<td  height="40px" width="10%" class="text-center" style="border-bottom:hidden">결제방법</td>
 					<td  width="35%" class="text-left" style="border-bottom:hidden;border-left:hidden">
-						<input type="text">
+						<input type="text" value="${res.payment.rent_payment_way}">
 					</td>
 					<td style="border-top: hidden;border-bottom: hidden;"></td>
 					<td  height="40px" width="10%" class="text-center" style="border-bottom:hidden">할인</td>
 					<td  colspan ="3" width="35%" class="text-left" style="border-bottom:hidden;border-left:hidden">
-						<input type="text">
+						<input type="text" value="${res.payment.rent_payment_discount}">
 					</td>
 				</tr>
 				<tr style="color:#808080;font-size:12pt">			
@@ -273,11 +282,11 @@
 					<td style="border-top: hidden;border-bottom: hidden;"></td>
 					<td  height="40px" width="10%" class="text-center" style="border-bottom:hidden">보험명</td>
 					<td  width="12%" class="text-left" style="border-bottom:hidden;border-left:hidden">
-						<input type="text">
+						<input type="text" value="${res.insurance.insurance_name}">
 					</td>
 					<td  width="10%" class="text-center" style="border-bottom:hidden;border-left:hidden">보험료</td>
 					<td  class="text-left" style="border-bottom:hidden;border-left:hidden">
-						<input type="text">
+						<input type="text" value="${res.payment.rent_payment_insurance_price}">
 					</td>
 				</tr>
 				<tr style="color:#808080;font-size:12pt">			
@@ -287,7 +296,7 @@
 					</td>
 					<td style="border-top: hidden;border-bottom: hidden;"></td>
 					<td colspan="4" height="40px" width="10%" class="text-center" style="border-bottom:hidden">
-						<span>요금합계:</span>
+						<span>요금합계:</span><span>${res.payment.rent_payment_total_price}</span><span>원</span>
 					</td>
 				</tr>
 				<tr style="color:#808080;font-size:12pt">			

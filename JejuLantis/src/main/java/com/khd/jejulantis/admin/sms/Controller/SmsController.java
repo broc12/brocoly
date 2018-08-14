@@ -32,7 +32,7 @@ public class SmsController {
 //	private JavaMailSender mailSender;
 	@Autowired
 	private SmsService sservice;
-	@RequestMapping(value = "admin/smsList.do") 
+	@RequestMapping(value = "admin/emailList.do") 
 	public ModelAndView mailSending() {
 		List<Member> emailSenderList = sservice.emailSenderListService();
 		String view = "admin/sms/smsInsert";
@@ -40,7 +40,7 @@ public class SmsController {
 		return mv;
 	}
 	@RequestMapping(value = "admin/mailSenderOk.do") 
-	public void mailSendingOk( 
+	public String mailSendingOk( 
 			@RequestParam("smsEmail") List<String> smsEmail,
 			@RequestParam("title")String title, 
 			@RequestParam("content")String content) {
@@ -69,6 +69,7 @@ public class SmsController {
 //		} catch(Exception e){
 //			System.out.println(e);
 //		}
+		return "redirect:admin/emailList.do";
 	}
 	@RequestMapping(value = "admin/smsAjax.do")
 	public @ResponseBody List<Member> smsAjax(){

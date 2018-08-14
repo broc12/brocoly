@@ -17,4 +17,13 @@ public class AffiliateDaoImpl implements AffiliateDao {
 		List<Affiliate> affiliateList = sqlSession.selectList(ns_affiliate+".affiliateList");
 		return affiliateList;
 	}
+	@Override
+	public void affiliateDelete(long affiliate_no) {
+		sqlSession.delete(ns_affiliate+".affiliateDelete", affiliate_no);
+	}
+	@Override
+	public List<Affiliate> affiliateContentList(long affiliate_no) {
+		List<Affiliate> affiliateContentList = sqlSession.selectList(ns_affiliate+".affiliateList", affiliate_no);
+		return affiliateContentList;
+	}
 }

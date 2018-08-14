@@ -13,8 +13,14 @@ public class AffiliateServiceImpl implements AffiliateService {
 	AffiliateDao affDao;
 	@Override
 	public List<Affiliate> affiliateListService() {
-		List<Affiliate> affiliateListService = affDao.affiliateList();
-		return null;
+		return affDao.affiliateList();
 	}
-
+	@Override
+	public void affiliateDeleteService(long affiliate_no) {
+		affDao.affiliateDelete(affiliate_no);
+	}
+	@Override
+	public List<Affiliate> affiliateContentListService(long affiliate_no) {
+		return affDao.affiliateContentList(affiliate_no);
+	}
 }

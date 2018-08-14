@@ -257,6 +257,11 @@ function sendIt() {
 <!-- 									<input type="button" value="중복확인" style="border-radius:0px;background-color:#eea236;color:white" class="btn btn-dark" name="confirm_id" id="idck" onclick="confirmId(this.form)">		 -->
 <!-- 									<input type="hidden" id="idCheck" name="idDuplication" value="idUncheck"> -->
 								</div>
+								<div class="col-md-6 padding-bottom">
+									<label for="fname">담당자명</label></br>
+									<input type="text" id="affiliate_member_name"
+										name="affiliate_member_name" style="width:75%;height:50px" placeholder="">
+								</div>
 							</div>
 <!-- 							<div class="row form-group"> -->
 <!-- 								<div class="col-md-6 padding-bottom"> -->
@@ -268,53 +273,6 @@ function sendIt() {
 <!-- 										id="member_pwd1" name="member_pwd1" style="width:100%;height:50px" placeholder=""> -->
 <!-- 								</div> -->
 <!-- 							</div> -->
-
-							<div class="row form-group">
-								<div class="col-md-6 padding-bottom">
-									<label for="fname">담당자명</label></br>
-									<input type="text" id="affiliate_member_name"
-										name="affiliate_member_name" style="width:75%;height:50px" placeholder="">
-								</div>
-<!-- 								<div class="col-md-6"> -->
-<!-- 									<label for="lname" id="lname">생년월일</label></br> -->
-<!-- 								<script language="Javascript">							 -->
-								
-<!-- 									var today = new Date(); -->
-<!-- 									var toyear = parseInt(today.getFullYear()); -->
-<!-- 									var start = toyear - 5 -->
-<!-- 									var end = toyear - 70; -->
-									
-<!-- 									document.write("<font size=2><select name=birth1 id=birth1 style=width:29%;height:50px>"); -->
-<!-- 									document.write("<option value='' selected>"); -->
-<!-- 									for (i=start;i>=end;i--) document.write("<option>"+i); -->
-<!-- 									document.write("</select>년  ");  -->
-									
-<!-- 									document.write("<select name=birth2 id=birth2 style=width:30%;height:50px>"); -->
-<!-- 									document.write("<option value='' selected>"); -->
-<!-- 									for (i=1;i<=12;i++) document.write("<option>"+i); -->
-<!-- 									document.write("</select>월  "); -->
-									
-<!-- 									document.write("<select name=birth3 id=birth3 style=width:30%;height:50px>"); -->
-<!-- 									document.write("<option value='' selected>"); -->
-<!-- 									for (i=1;i<=31;i++) document.write("<option>"+i);  -->
-<!-- 									document.write("</select>일   </font>"); -->
-									
-<!-- 									var birth1 = $("#birth1").val(); -->
-<!-- 									var birth2 = $("#birth2").val(); -->
-<!-- 									var birth3 = $("#birth3").val(); -->
-<!-- 									var manager_birth = birth1+birth2+birth3; -->
-<!-- 									$("#member_birth").val(manager_birth); -->
-									
-<!-- 								</script>  -->
-<!-- 									<input type="hidden" id="member_birth" name="member_birth" > -->
-<!-- 								</div> -->
-								<div class="col-md-6 padding-bottom">
-									<label for="fname">홈페이지</label></br>
-									<input type="text" name="affiliate_homepage" onkeydown="inputEmailChk()" id="affiliate_homepage" style="width:75%;height:50px"/>
-<!-- 									<input type="button" value="중복확인" style="border-radius:0px;background-color:#eea236;color:white" class="btn btn-dark" name="confirm_email" id="emailck">		 -->
-<!-- 									<input type="hidden"  id="emailCheck" name="emailDuplication" value="emailUncheck" >   -->
-								</div>
-							</div>
 							<div class="row form-group">
 								<div class="col-md-6 padding-bottom">
 									<label for="fname">이메일</label></br>
@@ -324,24 +282,8 @@ function sendIt() {
 								</div>
 								<div class="col-md-6">
 									<label for="lname">연락처</label></br>
-									<select id="hp1" name="hp1" style=width:29%;height:50px>
-									   <option value="010"  selected> 010 </option>
-									   <option value="011"> 011 </option>
-									   <option value="016"> 016 </option>
-									   <option value="017"> 017 </option>
-									   <option value="018"> 018 </option>
-									   <option value="019"> 019 </option>
-									</select>
-									-
-									<input type="text" id="hp2" name="hp2" size="2" maxlength="4" style=width:29%;height:50px>
-									-
-									<input type="text" id="hp3" name="hp3" size="2" maxlength="4" style=width:29%;height:50px>
-									
-									<script type="text/javascript">
-										var target = document.getElementById("affiliate_member_tel");
-										target.options[target.selectedIndex].text
-									</script>
-									<input type="hidden" id="affiliate_member_tel" name="affiliate_member_tel" >
+									<input type="text" id="affiliate_member_tel"
+										name="affiliate_member_tel" style="width:75%;height:50px" placeholder="숫자만 입력해주세요">
 								</div>
 							</div>
 							<div class="row form-group">
@@ -358,7 +300,7 @@ function sendIt() {
 								</div>
 							</div>
 							<div class="form-group text-center">
-								<input type="button" value="제휴문의등록" style="width:200px;height:50px;border-radius:0px;background-color:#eea236;color:white" class="btn btn-dark" onclick="sendIt()">
+								<button type style="width:200px;height:50px;border-radius:0px;background-color:#eea236;color:white" class="btn btn-dark" onclick="sendIt()">제휴문의등록</button>
 							</div>
 							</form>
 						</div>

@@ -40,7 +40,6 @@
         <div class="card-header">
           <i class="fa fa-table"></i>제휴문의목록</div>
         <div class="card-body">
-        <button type="button" class="btn btn-primary btn-xs" align="right"><a href="insuranceInsert.do?manager_id=${managerlog.manager_id}" style="color:white">보험등록</a></button></br></br>
           <div class="table-responsive">
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" style="font-size:8pt">
               <thead>
@@ -48,7 +47,6 @@
                   <th width="5%">제휴일련번호</th>
                   <th width="5%">업체명</th>
                   <th width="5%">담당자명</th>
-                  <th width="5%">이메일</th>
                   <th width="5%">전화번호</th>
                   <th width="5%">제목</th>
                   <th width="5%">등록날짜</th>  
@@ -61,13 +59,12 @@
 					<td>${affiliateList.affiliate_no}</td>
 					<td>${affiliateList.affiliate_branch_name}</td>
 					<td>${affiliateList.affiliate_member_name}</td>
-					<td>${affiliateList.affiliate_member_email}</td>
 					<td>${affiliateList.affiliate_member_tel}</td>
 					<td>${affiliateList.affiliate_title}</td>
 					<td>${affiliateList.affiliate_date}</td>
                 	<td>
-                    <button type="button" class="btn btn-defalut btn-sm"><a href="affiliateContent.do?affiliate_no=${affiliateList.affiliate_no}">세부내용</a></button>
-                  	<button type="button" class="btn btn-defalut btn-sm"><a href="affiliateUpdate.do?affiliate_no=${affiliateList.affiliate_no}">수정</a></button>
+                    <button type="button" class="btn btn-defalut btn-sm"><a href="affiliateContentList.do?affiliate_no=${affiliateList.affiliate_no}">세부내용</a></button>
+<%--                   	<button type="button" class="btn btn-defalut btn-sm"><a href="affiliateUpdate.do?affiliate_no=${affiliateList.affiliate_no}">수정</a></button> --%>
                   	<button type="button" class="btn btn-defalut btn-sm"><a href="affiliateDelete.do?affiliate_no=${affiliateList.affiliate_no}">삭제</a></button>
                 	</td>                  
                 </tr>

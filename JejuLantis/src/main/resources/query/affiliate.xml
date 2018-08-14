@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace = "query.Affiliate">
+<mapper namespace = "query.affiliate">
 	<resultMap type="Affiliate" id="AffiliateResult">
 		<result column="AFFILIATE_NO" property="affiliate_no"/>
 		<result column="AFFILIATE_BRANCH_NAME" property="affiliate_branch_name"/>
 		<result column="AFFILIATE_MEMBER_NAME" property="affiliate_member_name"/>
-		<result column="AFFILIATE_HOMEPAGE" property="affiliate_homepage"/>
 		<result column="AFFILIATE_MEMBER_EMAIL" property="affiliate_member_email"/>
 		<result column="AFFILIATE_MEMBER_TEL" property="affiliate_member_tel"/>
 		<result column="AFFILIATE_TITLE" property="affiliate_title"/>
@@ -15,12 +14,15 @@
 	<select id="affiliateList" resultType="Affiliate">
 		select * from AFFILIATE 
 	</select>
-	<delete id="affiliateDelete" parameterType="int">
+	<select id="affiliateContentList" resultType="Affiliate" parameterType="long">
+		select * from AFFILIATE where AFFILIATE_NO=#{affiliate_no}
+	</select>
+	<delete id="affiliateDelete" parameterType="long">
 		delete from AFFILIATE where AFFILIATE_NO=#{affiliate_no}
 	</delete>
 	<insert id="affiliateInsert" parameterType="Affiliate">
 		Insert 
 		into AFFILIATE 
-		values(AFFILIATE_SEQ.NEXTVAL, #{affiliate_branch_name}, #{affiliate_member_name}, #{affiliate_homepage}, #{affiliate_member_email}, #{affiliate_member_tel}, #{affiliate_title}, #{affiliate_content}, SYSDATE)
+		values(AFFILIATE_SEQ.NEXTVAL, #{affiliate_branch_name}, #{affiliate_member_name}, #{affiliate_member_email}, #{affiliate_member_tel}, #{affiliate_title}, #{affiliate_content}, SYSDATE)
 	</insert>
 </mapper>

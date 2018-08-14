@@ -25,6 +25,8 @@ public class Reserv {
 	private String rent_reserv_cancel_reason;
 	private Date rent_reserv_cancel_date;
 	private Date rent_reserv_resist;
+	private long rent_payment_km;
+	private long rent_payment_fuel;
 	Car car;
 	Branch branch;
 	Payment payment;
@@ -40,8 +42,9 @@ public class Reserv {
 			String rent_reserv_license_no, String rent_reserv_license_kind, Date rent_reserv_license_day,
 			String rent_reserv_driver_name, String rent_reserv_driver_birth, String rent_reserv_driver_tel,
 			String rent_reserv_driver_addr, String rent_reserv_cancel_able, String rent_reserv_cancel_at,
-			String rent_reserv_cancel_reason, Date rent_reserv_cancel_date, Date rent_reserv_resist, Car car,
-			Branch branch, Payment payment, Insurance insurance, Member member, CarInfo carinfo) {
+			String rent_reserv_cancel_reason, Date rent_reserv_cancel_date, Date rent_reserv_resist,
+			long rent_payment_km, long rent_payment_fuel, Car car, Branch branch, Payment payment, Insurance insurance,
+			Member member, CarInfo carinfo) {
 		this.rent_reserv_no = rent_reserv_no;
 		this.branch_no = branch_no;
 		this.car_no = car_no;
@@ -64,6 +67,8 @@ public class Reserv {
 		this.rent_reserv_cancel_reason = rent_reserv_cancel_reason;
 		this.rent_reserv_cancel_date = rent_reserv_cancel_date;
 		this.rent_reserv_resist = rent_reserv_resist;
+		this.rent_payment_km = rent_payment_km;
+		this.rent_payment_fuel = rent_payment_fuel;
 		this.car = car;
 		this.branch = branch;
 		this.payment = payment;
@@ -248,6 +253,22 @@ public class Reserv {
 		this.rent_reserv_resist = rent_reserv_resist;
 	}
 
+	public long getRent_payment_km() {
+		return rent_payment_km;
+	}
+
+	public void setRent_payment_km(long rent_payment_km) {
+		this.rent_payment_km = rent_payment_km;
+	}
+
+	public long getRent_payment_fuel() {
+		return rent_payment_fuel;
+	}
+
+	public void setRent_payment_fuel(long rent_payment_fuel) {
+		this.rent_payment_fuel = rent_payment_fuel;
+	}
+
 	public Car getCar() {
 		return car;
 	}
@@ -295,8 +316,6 @@ public class Reserv {
 	public void setCarinfo(CarInfo carinfo) {
 		this.carinfo = carinfo;
 	}
-	
-	
 	
 	
 }

@@ -49,10 +49,7 @@ public class ReservController {
 	@RequestMapping(value="admin/myCarNo.do",method= {RequestMethod.POST,RequestMethod.GET})
 	@ResponseBody
 	public List myCarNo(@RequestParam("no")long car_no) {
-//		HashMap<String, List<CarInfo>> hm = new HashMap<String, List<CarInfo>>();
-		System.out.println("######"+car_no);
 		List<CarInfo>list = service.myCarNoService(car_no);
-//		hm.put("car", list);
 		return list;
 		
 		

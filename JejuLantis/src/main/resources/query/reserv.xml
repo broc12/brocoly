@@ -25,6 +25,8 @@
 	<result column="RENT_RESERV_CANCEL_REASON" property="rent_reserv_cancel_reason"/>
 	<result column="RENT_RESERV_CANCEL_DATE" property="rent_reserv_cancel_date"/>
 	<result column="RENT_RESERV_RESIST" property="rent_reserv_resist"/>
+	<result column="RENT_RESERV_KM" property="rent_reserv_km"/>
+	<result column="RENT_RESERV_FUEL" property="rent_reserv_fuel"/>
 	<association property="branch" column="BRANCH_NO" javaType="Branch" select="query.branch.mySubject"/>
 	<association property="car" column="CAR_NO" javaType="Car" select="query.car.mySubject"/>
 	<association property="payment" column="RENT_PAYMENT_NO" javaType="Payment" select="query.payment.mySubject"/>
@@ -39,7 +41,7 @@
 		insert into RENT_RESERV values(#{rent_reserv_no},#{branch_no},#{car_no},
 		#{car_kind_no},#{insurance_no},null,#{member_no},#{rent_payment_no},#{rent_reserv_start},
 		#{rent_reserv_end},null,#{rent_reserv_license_kind},null,#{rent_reserv_driver_name},
-		to_date(#{rent_reserv_driver_birth},'YYYY-MM-DD'),#{rent_reserv_driver_tel},null,'Y','N',null,null,SYSDATE)
+		to_date(#{rent_reserv_driver_birth},'YYYY-MM-DD'),#{rent_reserv_driver_tel},null,'Y','N',null,null,SYSDATE,null,null)
 	</insert>
 	
 	<select id="myReserv" parameterType="Reserv" resultMap="reservResult">

@@ -34,20 +34,24 @@
     <script src="../resources/ck/ckeditor/ckeditor.js"></script>
 </head>
 
-<body class="fixed-nav sticky-footer bg-dark" id="page-top">
+<body class="fixed-nav sticky-footer bg-dark" id="page-top" onload="mychange()">
 <%@ include file="../top/top2.jspf" %>
 	<script>
 	function mychange (){
 		var myNo = jQuery("#myCarNo").val();
-		alert(myNo);
+		var html = "";
 		$.ajax({
 			url : "myCarNo.do",
 			type : "POST",
 			data : {no : myNo},
 			success : function(responseData){
-				console.log("아무거나");
 				var data = responseData;
-				console.log("fofofofof:"+data[0].car_info_back_no);
+				var i = "";
+				for(i = 0 ; i<data.length ; i++){
+					console.log("AVANTE:"+data[i].car_info_back_no);
+					html +="<option>"+data[i].car_info_back_no+"</option>";
+					$("#infolist").empty().append(html);
+				}
 			}
 		});
 	}
@@ -198,9 +202,8 @@
 					<td  height="40px" width="10%" class="text-center" style="border-bottom:hidden">차종</td>
 					<td  width="35%" class="text-left" style="border-bottom:hidden;border-left:hidden">
 						<select id="myCarNo" name="" onchange="mychange()">
-						<option value="${res.car.car_no}"  selected>${res.car.car_name}</option>
 						<c:forEach items="${kind}" var="kind">
-						   <option value="${kind.car_no}">${kind.car_name}</option>
+						   <option value="${kind.car_no}" <c:if test="${res.car.car_no eq kind.car_no }">selected</c:if>>${kind.car_name}</option>
 						</c:forEach>
 						</select>
 					</td>
@@ -218,11 +221,7 @@
 				<tr style="color:#808080;font-size:12pt">			
 					<td  height="40px" width="10%" class="text-center" style="border-bottom:hidden">차량번호</td>
 					<td  width="35%" class="text-left" style="border-bottom:hidden;border-left:hidden">
-						<select id="" name="">
-							<option value="010"  selected>선택하세요</option>
-						<c:forEach items="${info}" var="myinfo">
-						   <option value="011">${myinfo.car_info_back_no}</option>
-						</c:forEach>
+						<select id="infolist" name="">
 						</select>
 					</td>
 					<td style="border-top: hidden;border-bottom: hidden;"></td>

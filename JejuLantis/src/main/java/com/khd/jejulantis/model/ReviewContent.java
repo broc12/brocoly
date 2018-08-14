@@ -20,6 +20,7 @@ public class ReviewContent {
 	private int driver_line_no;
 	private int rent_payment_no;
 	private int member_no;
+	private int car_no;
 	private int car_info_no;
 	private int car_kind_no;
 	private int branch_no;
@@ -70,6 +71,50 @@ public class ReviewContent {
 		this.rent_review_content = rent_review_content;
 		this.rent_review_rating_car = rent_review_rating_car;
 		this.rent_review_date = rent_review_date;
+	}
+	
+	public ReviewContent(String member_name, String branch_name, String name, String car_name, String car_fuel,
+			String car_type, String insurance_name, Date rent_reserv_start, Date rent_reserv_end, String car_image,
+			int rent_review_no, int rent_reserv_no, int driver_line_no, int rent_payment_no, int member_no, int car_no,
+			int car_info_no, int car_kind_no, int branch_no, int insurance_no, String rent_review_title,
+			String rent_review_content, String rent_review_rating_car, Date rent_review_date) {
+		super();
+		this.member_name = member_name;
+		this.branch_name = branch_name;
+		this.name = name;
+		this.car_name = car_name;
+		this.car_fuel = car_fuel;
+		this.car_type = car_type;
+		this.insurance_name = insurance_name;
+		this.rent_reserv_start = rent_reserv_start;
+		this.rent_reserv_end = rent_reserv_end;
+		this.car_image = car_image;
+		this.rent_review_no = rent_review_no;
+		this.rent_reserv_no = rent_reserv_no;
+		this.driver_line_no = driver_line_no;
+		this.rent_payment_no = rent_payment_no;
+		this.member_no = member_no;
+		this.car_no = car_no;
+		this.car_info_no = car_info_no;
+		this.car_kind_no = car_kind_no;
+		this.branch_no = branch_no;
+		this.insurance_no = insurance_no;
+		this.rent_review_title = rent_review_title;
+		this.rent_review_content = rent_review_content;
+		this.rent_review_rating_car = rent_review_rating_car;
+		this.rent_review_date = rent_review_date;
+	}
+	public int getDriver_line_no() {
+		return driver_line_no;
+	}
+	public void setDriver_line_no(int driver_line_no) {
+		this.driver_line_no = driver_line_no;
+	}
+	public int getCar_no() {
+		return car_no;
+	}
+	public void setCar_no(int car_no) {
+		this.car_no = car_no;
 	}
 	public String getMember_name() {
 		return member_name;

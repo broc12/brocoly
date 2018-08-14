@@ -44,5 +44,8 @@ public class ReviewDAOImpl implements ReviewDAO {
 		List<BranchName> listSelect = sqlSession.selectList(ns_branchName+".adminBranchNameContent");
 		return listSelect;
 	}
-
+	@Override
+	public void reviewInsert(ReviewContent reviewContent) {
+		sqlSession.insert(ns_reviewContent+".reviewInsert", reviewContent);
+	}
 }

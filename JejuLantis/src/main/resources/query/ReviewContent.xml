@@ -69,4 +69,7 @@
 		select * from RENT_REVIEW where RENT_REVIEW_NO=#{rent_review_no}
 	</select>
 	<!-- 관리자페이지 이용후기 상세보기 -->
+	<insert id="reviewInsert" parameterType="ReviewContent">
+		insert into RENT_REVIEW values(RENT_REVIEW_SEQ.nextval, #{rent_reserv_no}, #{member_no}, #{insurance_no}, #{branch_no}, #{car_kind_no}, #{car_no}, #{rent_review_title}, #{rent_review_content}, #{rent_review_rating_car}, SYSDATE)
+	</insert>
 </mapper>

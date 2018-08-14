@@ -21,4 +21,8 @@ public class ReservServiceImpl implements ReservService{
 	public List<Reserv>listService(long member_no){
 		return reservDAO.list(member_no);
 	}
+	@Override
+	public Reserv reservListService(long rent_reserv_no) {
+		return reservDAO.reservList(rent_reserv_no);
+	}
 }

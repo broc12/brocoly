@@ -69,7 +69,7 @@ public class SmsController {
 //		} catch(Exception e){
 //			System.out.println(e);
 //		}
-		return "redirect:admin/emailList.do";
+		return "redirect:emailList.do";
 	}
 	@RequestMapping(value = "admin/smsAjax.do")
 	public @ResponseBody List<Member> smsAjax(){

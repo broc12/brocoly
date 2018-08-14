@@ -9,22 +9,30 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.khd.jejulantis.admin.review.Service.ReviewService;
+import com.khd.jejulantis.client.Reserv.Service.ReservService;
 import com.khd.jejulantis.client.review.Service.CReviewService;
 import com.khd.jejulantis.model.BranchName;
+import com.khd.jejulantis.model.Reserv;
+import com.khd.jejulantis.model.ReviewContent;
 
 @Controller
 public class CReviewController {
 	
 	@Autowired
-	private CReviewService rservice;
+	private CReviewService crservice;
+	@Autowired
+	private ReviewService rservice;
+	@Autowired
+	ReservService reservService;
 	
 	@RequestMapping(value="board.do")
 	public ModelAndView board(@RequestParam(value ="searchValue", required= false)String searchValue){
 		List<BranchName> branch = null;
 		if(searchValue == null) {
-			branch = rservice.listService();
+			branch = crservice.listService();
 		}else if(searchValue != null){
-			branch = rservice.selectService(searchValue);
+			branch = crservice.selectService(searchValue);
 		}
 		String view = "rentcar/reviews/board";
 		ModelAndView mv = new ModelAndView(view, "branch", branch);
@@ -33,7 +41,7 @@ public class CReviewController {
 	@RequestMapping(value="boardview.do")
 	public ModelAndView reviewContent(@RequestParam(value ="branch_no")int branch_no){
 		String view = "rentcar/reviews/boardview";
-		List<BranchName> branchContent = rservice.listServiceAll(branch_no);
+		List<BranchName> branchContent = crservice.listServiceAll(branch_no);
 		ModelAndView mv = new ModelAndView(view, "branchContent", branchContent);
 		return mv;
 	}
@@ -48,5 +56,18 @@ public class CReviewController {
 		System.out.println("branch_lati : " + branch_lati);
 		System.out.println("branch_long : " + branch_long);
 		return "rentcar/reviews/test1";
+	}
+	@RequestMapping(value="reviewInsert.do")
+	public ModelAndView reviewInsert(@RequestParam("rent_reserv_no")long rent_reserv_no){
+		Reserv list = reservService.reservListService(rent_reserv_no);
+		String view = "rentcar/reviews/reviewInsert";
+		ModelAndView mv = new ModelAndView(view, "list",list);
+		return mv;
+//		return "rentcar/reviews/reviewInsert";
+	}
+	@RequestMapping(value="reviewInsertOk.do",method=RequestMethod.POST)
+	public String reviewInsertOk(ReviewContent reviewContent){
+		rservice.reviewInsertService(reviewContent);
+		return "rentcar/reservations/check";
 	}
 }

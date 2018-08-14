@@ -138,7 +138,7 @@
 <!-- 								<th>멤버코드</th> -->
 <!-- 								<th>이름</th> -->
 <!-- 								<th>이메일</th> -->
-<!-- 								<th>전체선택&nbsp;<input type='checkbox' id='checkall' name='checkall'/></th> -->
+								<th>전체선택&nbsp;<input type='checkbox' id='checkall' name='checkall'/></th>
 <!-- 							</tr> -->
 <!-- 						</table> -->
 						<div id="smsAjaxResult">

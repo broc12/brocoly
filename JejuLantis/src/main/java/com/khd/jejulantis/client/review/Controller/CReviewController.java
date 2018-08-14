@@ -68,6 +68,7 @@ public class CReviewController {
 	@RequestMapping(value="reviewInsertOk.do",method=RequestMethod.POST)
 	public String reviewInsertOk(ReviewContent reviewContent){
 		rservice.reviewInsertService(reviewContent);
-		return "rentcar/reservations/check";
+		int member_no = reviewContent.getMember_no();
+		return "redirect:check.do?member_no="+member_no;
 	}
 }

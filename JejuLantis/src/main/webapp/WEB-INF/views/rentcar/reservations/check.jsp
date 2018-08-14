@@ -115,6 +115,10 @@
 					 	<ul class="pagination">
 							<li><a href="">결제영수증</a></li>
 							<li><a class="nav-link" data-toggle="modal" data-target="#exampleModal">예약취소</a></li>
+							<c:set var="data" value="${list.rent_reserv_cancel_at}" />
+							<c:if test="${data eq 'C'}">
+								<li><a href="reviewInsert.do?rent_reserv_no=${list.rent_reserv_no}">이용후기</a></li>
+							</c:if>
 						</ul>
 					 </td>
 					</tr>

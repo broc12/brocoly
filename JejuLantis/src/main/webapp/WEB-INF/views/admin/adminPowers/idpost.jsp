@@ -113,7 +113,7 @@
                 <tr>
                     <td>
                     	<a id="manager_name" href="javascript:sendAdd('${post.manager_no}','${post.manager_id}','${post.manager_name}','${post.branch_name}',
-                    	'${post.manager_main}','${post.manager_chart}','${post.manager_reservstatus}',
+                    	'${post.branch_no}','${post.manager_main}','${post.manager_chart}','${post.manager_reservstatus}',
                     	'${post.manager_travelmanagement}','${post.manager_review}','${post.manager_notice}','${post.manager_user}',
                     	'${post.manager_manager}','${post.manager_company}','${post.manager_carkind}','${post.manager_d_carkind}',
                     	'${post.manager_carinfo}','${post.manager_paystatus}','${post.manager_salestatus}',

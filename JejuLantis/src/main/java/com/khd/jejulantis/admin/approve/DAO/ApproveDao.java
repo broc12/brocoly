@@ -13,5 +13,7 @@ public interface ApproveDao {
 	void adminApproveYes(long manager_no);
 
 	void adminApproveNo(long manager_no);
+
+	List<Admin> adminApproveList(long branch_no);
 	
 }

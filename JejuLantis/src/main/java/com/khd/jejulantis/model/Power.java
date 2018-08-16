@@ -2,6 +2,7 @@ package com.khd.jejulantis.model;
 
 public class Power {
 	long manager_no;
+	long branch_no;
 	String manager_id;
 	String manager_name;
 	String manager_main;
@@ -29,15 +30,15 @@ public class Power {
 	public Power() {
 	}
 
-
-	public Power(long manager_no, String manager_id, String manager_name, String manager_main, String manager_chart,
-			String manager_reservstatus, String manager_travelmanagement, String manager_review, String manager_notice,
-			String manager_user, String manager_manager, String manager_company, String manager_carkind,
-			String manager_d_carkind, String manager_carinfo, String manager_paystatus, String manager_salestatus,
-			String manager_banner, String manager_coupon, String manager_sms, String manager_email_at,
-			String manager_insurance, String manager_affiliate, String branch_name) {
+	public Power(long manager_no, long branch_no, String manager_id, String manager_name, String manager_main,
+			String manager_chart, String manager_reservstatus, String manager_travelmanagement, String manager_review,
+			String manager_notice, String manager_user, String manager_manager, String manager_company,
+			String manager_carkind, String manager_d_carkind, String manager_carinfo, String manager_paystatus,
+			String manager_salestatus, String manager_banner, String manager_coupon, String manager_sms,
+			String manager_email_at, String manager_insurance, String manager_affiliate, String branch_name) {
 		super();
 		this.manager_no = manager_no;
+		this.branch_no = branch_no;
 		this.manager_id = manager_id;
 		this.manager_name = manager_name;
 		this.manager_main = manager_main;
@@ -63,6 +64,13 @@ public class Power {
 		this.branch_name = branch_name;
 	}
 
+	public long getBranch_no() {
+		return branch_no;
+	}
+
+	public void setBranch_no(long branch_no) {
+		this.branch_no = branch_no;
+	}
 
 	public long getManager_no() {
 		return manager_no;

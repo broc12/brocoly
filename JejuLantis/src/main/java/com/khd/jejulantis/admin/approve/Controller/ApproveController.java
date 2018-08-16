@@ -19,9 +19,11 @@ public class ApproveController {
 	@Autowired
 	ApproveService aservice;
 	@RequestMapping(value="admin/adminApprove.do")
-	public ModelAndView adminApproveList(@RequestParam("manager_id")String manager_id) {
+	public ModelAndView adminApproveList(@RequestParam("manager_id")String manager_id, HttpSession session) {
 		String view = "";
 		ModelAndView mv = null;
+		Manager log =(Manager)session.getAttribute("managerlog");
+		long branch_no = log.getBranch_no();
 		List<Admin> adminBranchNo = aservice.adminBranchNoService(manager_id);
 		System.out.println("test : " + adminBranchNo.size());
 		List<Admin> selectOne;
@@ -30,8 +32,11 @@ public class ApproveController {
 			selectOne = aservice.adminApproveListService();
 			mv = new ModelAndView(view, "adminApproveList", selectOne);
 		}else {
-			view = "redirect:index.do";
-			mv = new ModelAndView(view);
+			view = "admin/approves/approve";
+			selectOne = aservice.adminApproveListService(branch_no);
+			mv = new ModelAndView(view, "adminApproveList", selectOne);
+//			view = "redirect:index.do";
+//			mv = new ModelAndView(view);
 		}
 		return mv;
 //		return "admin/approves/approve";

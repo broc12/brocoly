@@ -28,10 +28,14 @@
 	<result column="MANAGER_INSURANCE" property="manager_insurance"/>
 	<result column="MANAGER_AFFILIATE" property="manager_affiliate"/>
 </resultMap>
-
 <select id="myPower" parameterType="String" resultType="Power">
 	select M.*, B.branch_name from 
 	Manager M, branch B where M.branch_no=B.branch_no and M.manager_id like '%'||#{manager_id}||'%'
+</select>
+<select id="myPower2" parameterType="Map" resultType="Power">
+	select M.*, B.branch_name from 
+	Manager M, branch B where M.branch_no=B.branch_no and M.manager_id like '%'||#{manager_id}||'%'
+	and M.branch_no = #{branch_no}
 </select>
 
 <update id="myUpdate" parameterType="Power">

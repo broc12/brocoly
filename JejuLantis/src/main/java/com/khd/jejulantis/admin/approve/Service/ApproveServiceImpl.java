@@ -28,4 +28,8 @@ public class ApproveServiceImpl implements ApproveService {
 	public void adminApproveNoSelect(long manager_no) {
 		approvedao.adminApproveNo(manager_no);
 	}
+	@Override
+	public List<Admin> adminApproveListService(long branch_no) {
+		return approvedao.adminApproveList(branch_no);
+	}
 }

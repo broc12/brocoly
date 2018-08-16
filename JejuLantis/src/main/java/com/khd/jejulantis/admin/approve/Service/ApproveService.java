@@ -14,4 +14,6 @@ public interface ApproveService {
 
 	void adminApproveNoSelect(long manager_no);
 
+	List<Admin> adminApproveListService(long branch_no);
+
 }

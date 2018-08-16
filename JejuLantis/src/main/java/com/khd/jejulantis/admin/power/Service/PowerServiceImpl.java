@@ -14,10 +14,15 @@ public class PowerServiceImpl implements PowerService{
 	private PowerDAO powerDAO;
 	
 	@Override
-	public List<Power>listService(String manager_id){
-		return powerDAO.list(manager_id);
+	public List<Power>listService(String manager_id, long branch_no){
+		return powerDAO.list(manager_id, branch_no);
 	}
 	
+	@Override
+	public List<Power> listService(String manager_id) {
+		return powerDAO.list(manager_id);
+	}
+
 	@Override
 	public void updateService(Power power) {
 		powerDAO.update(power);

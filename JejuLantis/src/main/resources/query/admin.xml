@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="query.admin">
+	<resultMap id="AdminResult" type="Admin">
+		<result column="MANAGER_NO" property="manager_no"/>
+		<result column="BRANCH_NO" property="branch_no"/>
+		<result column="BRANCH_NAME" property="branch_name"/>
+		<result column="MANAGER_ID" property="manager_id"/>
+		<result column="MANAGER_NAME" property="manager_name"/>
+		<result column="MANAGER_EAMIL" property="manager_eamil"/>
+		<result column="MANAGER_BIRTH" property="manager_birth"/>
+		<result column="MANAGER_TEL1" property="manager_tel1"/>
+		<result column="MANAGER_MAIN " property="manager_main"/>
+		<result column="MANAGER_CHART " property="manager_chart"/>
+		<result column="MANAGER_RESERVSTATUS" property="manager_reservstatus"/>
+		<result column="MANAGER_TRAVELMANAGEMENT" property="manager_travelmanagement"/>
+		<result column="MANAGER_REVIEW" property="manager_review"/>
+		<result column="MANAGER_NOTICE" property="manager_notice"/>
+		<result column="MANAGER_USER" property="manager_user"/>
+		<result column="MANAGER_MANAGER" property="manager_manager"/>
+		<result column="MANAGER_COMPANY" property="manager_company"/>
+		<result column="MANAGER_CARKIND" property="manager_carkind"/>
+		<result column="MANAGER_D_CARKIND" property="manager_d_carkind"/>
+		<result column="MANAGER_CARINFO" property="manager_carinfo"/>
+		<result column="MANAGER_PAYSTATUS" property="manager_paystatus"/>
+		<result column="MANAGER_SALESTATUS" property="manager_salestatus"/>
+		<result column="MANAGER_BANNER" property="manager_banner"/>
+		<result column="MANAGER_COUPON" property="manager_coupon"/>
+		<result column="MANAGER_SMS" property="manager_sms"/>
+		<result column="MANAGER_EMAIL_AT" property="manager_email_at"/>
+		<result column="MANAGER_INSURANCE" property="manager_insurance"/>
+		<result column="MANAGER_AFFILIATE" property="manager_affiliate"/>
+	</resultMap>
+	<select id="adminBranchNo" resultType="Admin" parameterType="String">
+		select BRANCH_NO from MANAGER where MANAGER_ID=#{manager_id}
+	</select>
+	<select id="adminNotApproveList" resultType="Admin">
+		select MANAGER.*, BRANCH.BRANCH_NAME from MANAGER, BRANCH where MANAGER.MANAGER_WITHDRAW_AT='W' and MANAGER.BRANCH_NO = BRANCH.BRANCH_NO
+		
+	</select>
+	<select id="adminList" resultType="Admin" parameterType="String">
+		select MANAGER.*, BRANCH.BRANCH_NAME from MANAGER, BRANCH where MANAGER.MANAGER_WITHDRAW_AT='N' and MANAGER.BRANCH_NO = BRANCH.BRANCH_NO
+		and MANAGER.BRANCH_NO = (select BRANCH_NO from MANAGER where MANAGER_ID=#{manager_id} and MANAGER_WITHDRAW_AT='N')
+		and MANAGER.MANAGER_NO != (select MANAGER_NO from MANAGER where MANAGER_ID=#{manager_id})
+	</select>
+	<select id="adminList2" resultType="Admin">
+		select MANAGER.*, BRANCH.BRANCH_NAME from MANAGER, BRANCH where MANAGER.MANAGER_WITHDRAW_AT='N' and MANAGER.BRANCH_NO = BRANCH.BRANCH_NO
+	</select>
+	<update id="adminDelete" parameterType="long">
+		update MANAGER set MANAGER_WITHDRAW_AT='Y' where MANAGER_NO=#{manager_no} 
+	</update>
+	<update id="adminApproveYes" parameterType="long">
+		update MANAGER set MANAGER_WITHDRAW_AT='N' where MANAGER_NO=#{manager_no}
+	</update>
+</mapper>

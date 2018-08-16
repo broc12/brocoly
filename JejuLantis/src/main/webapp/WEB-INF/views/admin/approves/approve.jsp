@@ -42,9 +42,7 @@
         <div class="card-body">
           <div class="table-responsive">
           <button type="button" class="btn btn-primary btn-xs" align="right"><a href="register.do" style="color:white">관리자등록</a></button></br></br>
-            
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-           
               <thead>
                 <tr>
                   <th>번호</th>
@@ -58,27 +56,26 @@
                   <th>비고</th>
                 </tr>
               </thead>
-               <c:forEach items="${adminList}" var="adminList">
+              <c:forEach items="${adminApproveList}" var="adminApproveList">
               <tbody>
                 <tr>
-                  <td>${adminList.manager_no}</td>
-                  <td>${adminList.branch_name}</td>
-                  <td>${adminList.manager_id}</td>
-                  <td>${adminList.manager_name}</td>
+                  <td>${adminApproveList.manager_no}</td>
+                  <td>${adminApproveList.branch_name}</td>
+                  <td>${adminApproveList.manager_id}</td>
+                  <td>${adminApproveList.manager_name}</td>
 <%--                   <td>${adminList.manager_birth}</td> --%>
-                  <td>${adminList.manager_email}</td>
-                  <td>${adminList.manager_tel1}</td>
-                  <td>${adminList.manager_resist_member}</td>
+                  <td>${adminApproveList.manager_email}</td>
+                  <td>${adminApproveList.manager_tel1}</td>
+                  <td>${adminApproveList.manager_resist_member}</td>
                   <td>
-                  <button type="button" class="btn btn-defalut btn-sm"><a href="affiliateContentList.do?affiliate_no=${affiliateList.affiliate_no}">세부내용</a></button>
-                  <button type="button" class="btn btn-defalut btn-sm"><a href="affiliateUpdate.do?affiliate_no=${affiliateList.affiliate_no}">수정</a></button>
-                  <button type="button" class="btn btn-defalut btn-sm"><a href="affiliateDelete.do?affiliate_no=${affiliateList.affiliate_no}">탈퇴</a></button>
-                  </td>
+<%--                   <button type="button" class="btn btn-defalut btn-sm"><a href="affiliateContentList.do?affiliate_no=${adminApproveList.affiliate_no}">세부내용</a></button> --%>
+<%--                   	<button type="button" class="btn btn-defalut btn-sm"><a href="affiliateUpdate.do?affiliate_no=${affiliateList.affiliate_no}">수정</a></button> --%>
+				  <button type="button" class="btn btn-defalut btn-sm"><a href="adminApproveYes.do?manager_no=${adminApproveList.manager_no}">승인</a></button>
+                  <button type="button" class="btn btn-defalut btn-sm"><a href="adminApproveNo.do?manager_no=${adminApproveList.manager_no}">거부</a></button>
                 </tr>
               </tbody>
               </c:forEach>
             </table>
-            
           </div>
         </div>
         <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>

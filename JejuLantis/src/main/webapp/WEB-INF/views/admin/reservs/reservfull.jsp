@@ -48,12 +48,37 @@
 				var data = responseData;
 				var i = "";
 				for(i = 0 ; i<data.length ; i++){
-					console.log("AVANTE:"+data[i].car_info_back_no);
-					html +="<option>"+data[i].car_info_back_no+"</option>";
-					$("#infolist").empty().append(html);
+					html +="<option value="+data[i].car_info_no+">"+data[i].car_info_back_no+"</option>";
 				}
+				$("#infolist").empty().append(html);
 			}
 		});
+	}
+	
+	
+	
+	function Dclick(){
+		
+		if($("input:checkbox[name=dinfo]").is(":checked")){
+			jQuery("#rent_reserv_driver_name").val($("input:text[id=rname]").val());
+			jQuery("#rent_reserv_driver_tel").val($("input:text[id=rtel]").val());
+			jQuery("#rent_reserv_driver_birth").val($("input:text[id=rbirth]").val());
+		}
+	}
+	
+	function check(){
+		alert("배차완료");
+		jQuery("#rent_reserv_license_no").val($("input:text[id=rent_reserv_license_no]").val());
+		jQuery("#rent_reserv_license_day").val($("input:text[id=rent_reserv_license_day]").val());
+		jQuery("#rent_reserv_driver_name").val($("input:text[id=rent_reserv_driver_name]").val());
+		jQuery("#rent_reserv_driver_birth").val($("input:text[id=rent_reserv_driver_birth]").val());
+		jQuery("#rent_reserv_driver_tel").val($("input:text[id=rent_reserv_driver_tel]").val());
+		jQuery("#rent_reserv_driver_addr").val($("input:text[id=rent_reserv_driver_addr]").val());
+		jQuery("#rent_reserv_fuel").val($("input:text[id=rent_reserv_fuel]").val());
+		jQuery("#rent_reserv_km").val($("input:text[id=rent_reserv_km]").val());
+		jQuery("#rent_reserv_license_kind").val($("#license_kind").val());
+		jQuery("#car_info_no").val($("#infolist").val());
+		document.f.submit();
 	}
 	</script>
  <style>
@@ -92,6 +117,23 @@
           <i class="fa fa-table"></i>예약관리</div>
         <div class="card-body">
           <div class="table-responsive">
+          
+          <form name="f" action="reservUpdate.do" method="post">
+	          <input type="hidden" value='${res.rent_reserv_no}' name="rent_reserv_no" id="rent_reserv_no">
+	          <input type="hidden" name="branch_no" id="branch_no" value="${res.branch_no}">
+	          <!-- 보내기 -->
+	          <input type="hidden" name="rent_reserv_license_no" id="rent_reserv_license_no">
+	          <input type="hidden" name="rent_reserv_license_day" id="rent_reserv_license_day">
+	          <input type="hidden" name="rent_reserv_driver_name" id="rent_reserv_driver_name">
+	          <input type="hidden" name="rent_reserv_driver_birth" id="rent_reserv_driver_birth">
+	          <input type="hidden" name="rent_reserv_driver_tel" id="rent_reserv_driver_tel">
+	          <input type="hidden" name="rent_reserv_license_kind" id="rent_reserv_license_kind">
+	          <input type="hidden" name="rent_reserv_driver_addr" id="rent_reserv_driver_addr">
+	          <input type="hidden" name="rent_reserv_fuel" id="rent_reserv_fuel">
+	          <input type="hidden" name="rent_reserv_km" id="rent_reserv_km">
+	         <<input type="hidden" name="car_info_no" id="car_info_no">
+          </form>
+          
             <table border="1" width="100%"  cellpadding="0" cellspacing="0">
 				<tr style="color:#808080;font-size:12pt">
 					<td colspan="2" height="30px" width="10%"  style="background-color: #23756e;color:white">임차인정보</td>
@@ -110,86 +152,73 @@
 				<tr style="color:#808080;font-size:12pt">			
 					<td  height="40px" width="10%" class="text-center" style="border-bottom:hidden;">임차인명</td>
 					<td  width="35%" class="text-left" style="border-bottom:hidden;border-left:hidden">
-						<input type="text" name="member_name" value="${res.member.member_name}">
+						<input type="text" id="rname" name="member_name" value="${res.member.member_name}" disabled>
 					</td>
 					<td style="border-top: hidden;border-bottom: hidden;"></td>
 					<td  height="40px" width="10%" class="text-center" style="border-bottom:hidden;">운전자명</td>
 					<td  colspan ="3" width="35%" class="text-left" style="border-bottom:hidden;border-left:hidden">
-						<input type="text" name="rent_reserv_driver_name" value="${res.rent_reserv_driver_name}">
+						<input type="text" id="rent_reserv_driver_name" value="${res.rent_reserv_driver_name}">
 					</td>
 				</tr>
 				<tr style="color:#808080;font-size:12pt">			
 					<td  height="40px" width="10%" class="text-center" style="border-bottom:hidden">전화번호</td>
 					<td  width="35%" class="text-left" style="border-bottom:hidden;border-left:hidden">
-						<input type="text" value="${res.member.member_tel}" name="member_tel">
+						<input type="text" id="rtel" value="${res.member.member_tel}" disabled>
 					</td>
 					<td style="border-top: hidden;border-bottom: hidden;"></td>
 					<td  height="40px" width="10%" class="text-center" style="border-bottom:hidden">전화번호</td>
 					<td  colspan ="3" width="35%" class="text-left" style="border-bottom:hidden;border-left:hidden">
-						<input type="text" name="" value="${res.rent_reserv_driver_tel}">
+						<input type="text" id="rent_reserv_driver_tel" value="${res.rent_reserv_driver_tel}">
 					</td>
 				</tr>
 				<tr style="color:#808080;font-size:12pt">			
 					<td  height="40px" width="10%" class="text-center" style="border-bottom:hidden">생년월일</td>
 					<td  width="35%" class="text-left" style="border-bottom:hidden;border-left:hidden">
-						<input type="text" value="${res.member.member_birth}">
+						<input type="text" id="rbirth" value="${res.member.cut}" disabled>
 					</td>
 					<td style="border-top: hidden;border-bottom: hidden;"></td>
 					<td  height="40px" width="10%" class="text-center" style="border-bottom:hidden">생년월일</td>
 					<td  colspan ="3" width="35%" class="text-left" style="border-bottom:hidden;border-left:hidden">
-						<input type="text" value="${res.rent_reserv_driver_birth}">
+						<input type="text" id="rent_reserv_driver_birth" value="${res.cut}">
 					</td>
 				</tr>
 				<tr style="color:#808080;font-size:12pt">			
 					<td  height="40px" width="10%" class="text-center" style="border-bottom:hidden">면허번호</td>
 					<td  width="35%" class="text-left" style="border-bottom:hidden;border-left:hidden">
-						<input type="text" readonly>
+						<input type="text" disabled>
 					</td>
 					<td style="border-top: hidden;border-bottom: hidden;"></td>
 					<td  height="40px" width="10%" class="text-center" style="border-bottom:hidden">면허번호</td>
 					<td  colspan ="3" width="35%" class="text-left" style="border-bottom:hidden;border-left:hidden">
-						<input type="text">
+						<input type="text" id="rent_reserv_license_no" value="${res.rent_reserv_license_no}">
 					</td>
 				</tr>
 				<tr style="color:#808080;font-size:12pt">			
 					<td  height="40px" width="10%" class="text-center" style="border-bottom:hidden">이메일</td>
 					<td  width="35%" class="text-left" style="border-bottom:hidden;border-left:hidden">
-						<input type="text" value="${res.member.member_email}">
+						<input type="text" value="${res.member.member_email}" disabled>
 					</td>
 					<td style="border-top: hidden;border-bottom: hidden;"></td>
 					<td  height="40px" width="10%" class="text-center" style="border-bottom:hidden">면허종별</td>
 					<td  width="12%" class="text-left" style="border-bottom:hidden;border-left:hidden">
-						<select id="" name="">
-						   <option value="010"  selected>${res.rent_reserv_license_kind}</option>
-						   <option value="011">1종보통</option>
-						   <option value="016">2종보통</option>
+						<select id="license_kind">
+						   <option value="1종보통" <c:if test="${res.rent_reserv_license_kind eq '1종보통'}">selected</c:if>>1종보통</option>
+						   <option value="2종보통"<c:if test="${res.rent_reserv_license_kind eq '2종보통'}">selected</c:if>>2종보통</option>
 						</select>
 					</td>
 					<td  width="10%" class="text-center" style="border-bottom:hidden;border-left:hidden">유효일자</td>
 					<td  class="text-left" style="border-bottom:hidden;border-left:hidden">
-						<input type="text" placeholder="yyyy-mm-dd">
-					</td>
-				</tr>
-				<tr style="color:#808080;font-size:12pt">			
-					<td  height="40px" width="10%" class="text-center" style="border-bottom:hidden">주소</td>
-					<td  width="35%" class="text-left" style="border-bottom:hidden;border-left:hidden">
-						<input type="text"><input type="button" value="주소검색" style="background-color:black;color:white;border:0">
-					</td>
-					<td style="border-top: hidden;border-bottom: hidden;"></td>
-					<td height="40px" width="10%" class="text-center" style="border-bottom:hidden">주소</td>
-					<td colspan ="3" width="35%" class="text-left" style="border-bottom:hidden;border-left:hidden">
-						<input type="text"><input type="button" value="주소검색" style="background-color:black;color:white;border:0">
+						<input type="text" id="rent_reserv_license_day" placeholder="yyyy-mm-dd" value="${res.rent_reserv_license_day}">
 					</td>
 				</tr>
 				<tr style="color:#808080;font-size:12pt">			
 					<td  height="40px" width="10%" class="text-center"></td>
-					<td  width="35%" class="text-left" style="border-bottom:hidden;border-left:hidden">
-						<input type="text">
-					</td>
+					<td  width="35%" class="text-left" style="border-left:hidden"></td>
 					<td style="border-top: hidden;border-bottom: hidden;"></td>
-					<td  height="40px" width="10%" class="text-center"></td>
-					<td  colspan ="3" width="35%" class="text-left" style="border-bottom:hidden;border-left:hidden">
-						<input type="text">
+					<td height="40px" width="10%" class="text-center">주소</td>
+					<td colspan ="3" width="35%" class="text-left" style="border-left:hidden">
+						<input type="text" id="rent_reserv_driver_addr" value="${res.rent_reserv_driver_addr}">
+						<input type="button" value="주소검색" style="background-color:black;color:white;border:0">
 					</td>
 				</tr>
 				
@@ -210,88 +239,119 @@
 					<td style="border-top: hidden;border-bottom: hidden;"></td>
 					<td  height="40px" width="10%" class="text-center" style="border-bottom:hidden;background-color:#c8e1d6">예약시간</td>
 					<td  colspan ="3" width="35%" class="text-left" style="border-bottom:hidden;border-left:hidden;background-color:#c8e1d6">
-						<input type="date" value="${res.rent_reserv_start}">
-						<select id="" name="">
-						   <option value="010"  selected>선택하세요</option>
-						   <option value="011">10:00</option>
-						   <option value="016">12:00</option>
+						<input type="date" value="${res.rent_reserv_starts}">
+						<select id="">
+						   <option value="08:00" <c:if test="${res.rent_reserv_startTime eq '08:00' }">selected</c:if>>08:00</option>
+	                        <option value="09:00" <c:if test="${res.rent_reserv_startTime eq '09:00' }">selected</c:if>>09:00</option>
+	                        <option value="10:00" <c:if test="${res.rent_reserv_startTime eq '10:00' }">selected</c:if>>10:00</option>
+	                        <option value="11:00" <c:if test="${res.rent_reserv_startTime eq '11:00' }">selected</c:if>>11:00</option>
+	                        <option value="12:00" <c:if test="${res.rent_reserv_startTime eq '12:00' }">selected</c:if>>12:00</option>
+	                        <option value="13:00" <c:if test="${res.rent_reserv_startTime eq '13:00' }">selected</c:if>>13:00</option>
+	                        <option value="14:00" <c:if test="${res.rent_reserv_startTime eq '14:00' }">selected</c:if>>14:00</option>
+	                        <option value="15:00" <c:if test="${res.rent_reserv_startTime eq '15:00' }">selected</c:if>>15:00</option>
+	                        <option value="16:00" <c:if test="${res.rent_reserv_startTime eq '16:00' }">selected</c:if>>16:00</option>
+	                        <option value="17:00" <c:if test="${res.rent_reserv_startTime eq '17:00' }">selected</c:if>>17:00</option>
+	                        <option value="18:00" <c:if test="${res.rent_reserv_startTime eq '18:00' }">selected</c:if>>18:00</option>
+	                        <option value="19:00" <c:if test="${res.rent_reserv_startTime eq '19:00'}">selected</c:if>>19:00</option>
+	                        <option value="20:00" <c:if test="${res.rent_reserv_startTime eq '20:00' }">selected</c:if>>20:00</option>
 						</select>
 					</td>
 				</tr>
 				<tr style="color:#808080;font-size:12pt">			
 					<td  height="40px" width="10%" class="text-center" style="border-bottom:hidden">차량번호</td>
 					<td  width="35%" class="text-left" style="border-bottom:hidden;border-left:hidden">
-						<select id="infolist" name="">
+						<select id="infolist">
 						</select>
 					</td>
 					<td style="border-top: hidden;border-bottom: hidden;"></td>
 					<td  height="40px" width="10%" class="text-center" style="border-bottom:hidden;background-color:#c8e1d6"></td>
 					<td  colspan ="3" width="35%" class="text-left" style="border-bottom:hidden;border-left:hidden;background-color:#c8e1d6">
-						<input type="date" value="${res.rent_reserv_end}">
-						<select id="" name="">
-						   <option value="010"  selected>선택하세요</option>
-						   <option value="011">10:00</option>
-						   <option value="016">12:00</option>
+						<input type="date" value="${res.rent_reserv_ends}">
+						<select id="">
+						   <option value="08:00" <c:if test="${res.rent_reserv_endTime eq '08:00' }">selected</c:if>>08:00</option>
+	                        <option value="09:00" <c:if test="${res.rent_reserv_endTime eq '09:00' }">selected</c:if>>09:00</option>
+	                        <option value="10:00" <c:if test="${res.rent_reserv_endTime eq '10:00' }">selected</c:if>>10:00</option>
+	                        <option value="11:00" <c:if test="${res.rent_reserv_endTime eq '11:00' }">selected</c:if>>11:00</option>
+	                        <option value="12:00" <c:if test="${res.rent_reserv_endTime eq '12:00' }">selected</c:if>>12:00</option>
+	                        <option value="13:00" <c:if test="${res.rent_reserv_endTime eq '13:00' }">selected</c:if>>13:00</option>
+	                        <option value="14:00" <c:if test="${res.rent_reserv_endTime eq '14:00' }">selected</c:if>>14:00</option>
+	                        <option value="15:00" <c:if test="${res.rent_reserv_endTime eq '15:00' }">selected</c:if>>15:00</option>
+	                        <option value="16:00" <c:if test="${res.rent_reserv_endTime eq '16:00' }">selected</c:if>>16:00</option>
+	                        <option value="17:00" <c:if test="${res.rent_reserv_endTime eq '17:00' }">selected</c:if>>17:00</option>
+	                        <option value="18:00" <c:if test="${res.rent_reserv_endTime eq '18:00' }">selected</c:if>>18:00</option>
+	                        <option value="19:00" <c:if test="${res.rent_reserv_endTime eq '19:00'}">selected</c:if>>19:00</option>
+	                        <option value="20:00" <c:if test="${res.rent_reserv_endTime eq '20:00' }">selected</c:if>>20:00</option>
 						</select>
 					</td>
 				</tr>
 				<tr style="color:#808080;font-size:12pt">			
 					<td  height="40px" width="10%" class="text-center" style="border-bottom:hidden">출발연료</td>
 					<td  width="35%" class="text-left" style="border-bottom:hidden;border-left:hidden">
-						<input type="text">%
+						<input type="text" id="rent_reserv_fuel" value="${res.rent_reserv_fuel}">%
 					</td>
 					<td style="border-top: hidden;border-bottom: hidden;"></td>
 					<td  height="40px" width="10%" class="text-center" style="border-bottom:hidden">도착변경</td>
 					<td  colspan ="3" width="35%" class="text-left" style="border-bottom:hidden;border-left:hidden">
 						<input type="date">
 						<select id="" name="">
-						   <option value="010" selected>선택하세요</option>
-						   <option value="011">10:00</option>
-						   <option value="016">12:00</option>
+						   <option value="" selected>선택하세요</option>
+						   <option value="08:00">08:00</option>
+	                        <option value="09:00">09:00</option>
+	                        <option value="10:00">10:00</option>
+	                        <option value="11:00">11:00</option>
+	                        <option value="12:00">12:00</option>
+	                        <option value="13:00">13:00</option>
+	                        <option value="14:00">14:00</option>
+	                        <option value="15:00">15:00</option>
+	                        <option value="16:00">16:00</option>
+	                        <option value="17:00">17:00</option>
+	                        <option value="18:00">18:00</option>
+	                        <option value="19:00">19:00</option>
+	                        <option value="20:00">20:00</option>
 						</select>
 					</td>
 				</tr>
 				<tr style="color:#808080;font-size:12pt">			
 					<td  height="40px" width="10%" class="text-center" style="border-bottom:hidden">출발계기</td>
 					<td  width="35%" class="text-left" style="border-bottom:hidden;border-left:hidden">
-						<input type="text">km
+						<input type="text" id="rent_reserv_km" value="${res.rent_reserv_km}">km
 					</td>
 					<td style="border-top: hidden;border-bottom: hidden;"></td>
 					<td  height="40px" width="10%" class="text-center" style="border-bottom:hidden">차종요금</td>
 					<td  colspan ="3" width="35%" class="text-left" style="border-bottom:hidden;border-left:hidden">
-						<input type="text" value="${res.payment.rent_payment_carkind_price}">
+						<input type="text" value="${res.payment.rent_payment_carkind_price}" disabled>
 					</td>
 				</tr>
 				<tr style="color:#808080;font-size:12pt">			
 					<td  height="40px" width="10%" class="text-center" style="border-bottom:hidden">결제방법</td>
 					<td  width="35%" class="text-left" style="border-bottom:hidden;border-left:hidden">
-						<input type="text" value="${res.payment.rent_payment_way}">
+						<input type="text" value="${res.payment.rent_payment_way}" disabled>
 					</td>
 					<td style="border-top: hidden;border-bottom: hidden;"></td>
 					<td  height="40px" width="10%" class="text-center" style="border-bottom:hidden">할인</td>
 					<td  colspan ="3" width="35%" class="text-left" style="border-bottom:hidden;border-left:hidden">
-						<input type="text" value="${res.payment.rent_payment_discount}">
+						<input type="text" value="${res.payment.rent_payment_discount}" disabled>
 					</td>
 				</tr>
 				<tr style="color:#808080;font-size:12pt">			
 					<td  height="40px" width="10%" class="text-center" style="border-bottom:hidden;background-color:#f3d1da">취소일시</td>
 					<td  width="35%" class="text-left" style="border-bottom:hidden;border-left:hidden;background-color:#f3d1da">
-						<input type="text">
+						<input type="text" disabled>
 					</td>
 					<td style="border-top: hidden;border-bottom: hidden;"></td>
 					<td  height="40px" width="10%" class="text-center" style="border-bottom:hidden">보험명</td>
 					<td  width="12%" class="text-left" style="border-bottom:hidden;border-left:hidden">
-						<input type="text" value="${res.insurance.insurance_name}">
+						<input type="text" value="${res.insurance.insurance_name}" disabled>
 					</td>
 					<td  width="10%" class="text-center" style="border-bottom:hidden;border-left:hidden">보험료</td>
 					<td  class="text-left" style="border-bottom:hidden;border-left:hidden">
-						<input type="text" value="${res.payment.rent_payment_insurance_price}">
+						<input type="text" value="${res.payment.rent_payment_insurance_price}" disabled>
 					</td>
 				</tr>
 				<tr style="color:#808080;font-size:12pt">			
 					<td  height="40px" width="10%" class="text-center" style="border-bottom:hidden;background-color:#f3d1da">취소사유</td>
 					<td  width="35%" class="text-left" style="border-bottom:hidden;border-left:hidden;background-color:#f3d1da">
-						<input type="text">
+						<input type="text" disabled>
 					</td>
 					<td style="border-top: hidden;border-bottom: hidden;"></td>
 					<td colspan="4" height="40px" width="10%" class="text-center" style="border-bottom:hidden">
@@ -304,11 +364,11 @@
 					<td colspan="4" height="40px" width="10%" class="text-right" style="padding-right:10px">
 					<input type="button" value="다시작성" style="border:0">
 					<input type="button" value="계약취소" style="border:0;background-color:#efcf9e;color:white">
-					<input type="button" value="계약수정" style="border:0;background-color:#5298ba;color:white">
+					<input type="button" value="계약수정" style="border:0;background-color:#5298ba;color:white" onclick="check()">
 					</td>
 				</tr>
 			</table>
-			<!-- </form> -->
+			
           </div>
         </div>
         <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>

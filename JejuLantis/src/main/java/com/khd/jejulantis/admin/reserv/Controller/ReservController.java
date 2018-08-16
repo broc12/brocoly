@@ -1,6 +1,5 @@
 package com.khd.jejulantis.admin.reserv.Controller;
 
-import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -12,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.khd.jejulantis.admin.reserv.Service.MyReservService;
 import com.khd.jejulantis.model.CarInfo;
@@ -51,7 +51,13 @@ public class ReservController {
 	public List myCarNo(@RequestParam("no")long car_no) {
 		List<CarInfo>list = service.myCarNoService(car_no);
 		return list;
-		
-		
+	}
+	
+	@RequestMapping(value="admin/reservUpdate.do",method=RequestMethod.POST)
+	public String update(Reserv reserv,RedirectAttributes redirectAttributes) {
+		System.out.println("erererere");
+		service.updateService(reserv);
+		redirectAttributes.addAttribute("branch_no", reserv.getBranch_no());
+		return "redirect:reserv.do";
 	}
 }

@@ -35,4 +35,8 @@ public class MyReservServiceImpl implements MyReservService{
 	public List<CarInfo>myCarNoService(long car_no){
 		return myreservDAO.myCarNo(car_no);
 	}
+	@Override
+	public void updateService(Reserv reserv) {
+		myreservDAO.update(reserv);
+	}
 }

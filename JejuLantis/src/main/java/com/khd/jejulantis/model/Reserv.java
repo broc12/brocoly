@@ -2,6 +2,10 @@ package com.khd.jejulantis.model;
 
 import java.sql.Date;
 
+import org.joda.time.DateTime;
+import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.DateTimeFormatter;
+
 public class Reserv {
 	private long rent_reserv_no;
 	private long branch_no;
@@ -11,11 +15,11 @@ public class Reserv {
 	private long car_info_no;
 	private long member_no;
 	private long rent_payment_no;
-	private Date rent_reserv_start;
-	private Date rent_reserv_end;
+	private DateTime rent_reserv_start;
+	private DateTime rent_reserv_end;
 	private String rent_reserv_license_no;
 	private String rent_reserv_license_kind;
-	private Date rent_reserv_license_day;
+	private String rent_reserv_license_day;
 	private String rent_reserv_driver_name;
 	private String rent_reserv_driver_birth;
 	private String rent_reserv_driver_tel;
@@ -25,8 +29,8 @@ public class Reserv {
 	private String rent_reserv_cancel_reason;
 	private Date rent_reserv_cancel_date;
 	private Date rent_reserv_resist;
-	private long rent_payment_km;
-	private long rent_payment_fuel;
+	private long rent_reserv_km;
+	private long rent_reserv_fuel;
 	Car car;
 	Branch branch;
 	Payment payment;
@@ -36,15 +40,54 @@ public class Reserv {
 	
 	public Reserv() {
 	}
-
+	
+	public String getCut() {
+		int i = rent_reserv_driver_birth.indexOf(" ");
+		return rent_reserv_driver_birth.substring(0,i);
+		
+	}
+	public void setRent_reserv_startView(java.util.Date rent_reserv_start) {
+		this.rent_reserv_start = new DateTime(rent_reserv_start);
+	}
+	public void setRent_reserv_endView(java.util.Date rent_reserv_end) {
+		this.rent_reserv_end = new DateTime(rent_reserv_end);
+	}
+	public void setRent_reserv_starts(String rent_reserv_start) {
+		DateTimeFormatter fmt = DateTimeFormat.forPattern("yyyy-MM-dd HH:mm");
+		this.rent_reserv_start = DateTime.parse(rent_reserv_start,fmt);
+	}
+	
+	public void setRent_reserv_ends(String rent_reserv_end) {
+		DateTimeFormatter fmt = DateTimeFormat.forPattern("yyyy-MM-dd HH:mm");
+		this.rent_reserv_end = DateTime.parse(rent_reserv_end,fmt);
+	}
+	public String getRent_reserv_starts() {
+		return rent_reserv_start.toString("yyyy-MM-dd");
+	}
+	public String getRent_reserv_startTime() {
+		return rent_reserv_start.toString("HH:mm");
+	}
+	public String getRent_reserv_ends() {
+		return rent_reserv_end.toString("yyyy-MM-dd");
+	}
+	public String getRent_reserv_endTime() {
+		return rent_reserv_end.toString("HH:mm");
+	}
+	public String getRent_reserv_startAll() {
+		return rent_reserv_start.toString("yyyy-MM-dd HH:mm");
+	}
+	public String getRent_reserv_endAll() {
+		return rent_reserv_end.toString("yyyy-MM-dd HH:mm");
+	}
 	public Reserv(long rent_reserv_no, long branch_no, long car_no, long car_kind_no, long insurance_no,
-			long car_info_no, long member_no, long rent_payment_no, Date rent_reserv_start, Date rent_reserv_end,
-			String rent_reserv_license_no, String rent_reserv_license_kind, Date rent_reserv_license_day,
-			String rent_reserv_driver_name, String rent_reserv_driver_birth, String rent_reserv_driver_tel,
-			String rent_reserv_driver_addr, String rent_reserv_cancel_able, String rent_reserv_cancel_at,
-			String rent_reserv_cancel_reason, Date rent_reserv_cancel_date, Date rent_reserv_resist,
-			long rent_payment_km, long rent_payment_fuel, Car car, Branch branch, Payment payment, Insurance insurance,
-			Member member, CarInfo carinfo) {
+			long car_info_no, long member_no, long rent_payment_no, DateTime rent_reserv_start,
+			DateTime rent_reserv_end, String rent_reserv_license_no, String rent_reserv_license_kind,
+			String rent_reserv_license_day, String rent_reserv_driver_name, String rent_reserv_driver_birth,
+			String rent_reserv_driver_tel, String rent_reserv_driver_addr, String rent_reserv_cancel_able,
+			String rent_reserv_cancel_at, String rent_reserv_cancel_reason, Date rent_reserv_cancel_date,
+			Date rent_reserv_resist, long rent_reserv_km, long rent_reserv_fuel, Car car, Branch branch,
+			Payment payment, Insurance insurance, Member member, CarInfo carinfo) {
+		super();
 		this.rent_reserv_no = rent_reserv_no;
 		this.branch_no = branch_no;
 		this.car_no = car_no;
@@ -67,8 +110,8 @@ public class Reserv {
 		this.rent_reserv_cancel_reason = rent_reserv_cancel_reason;
 		this.rent_reserv_cancel_date = rent_reserv_cancel_date;
 		this.rent_reserv_resist = rent_reserv_resist;
-		this.rent_payment_km = rent_payment_km;
-		this.rent_payment_fuel = rent_payment_fuel;
+		this.rent_reserv_km = rent_reserv_km;
+		this.rent_reserv_fuel = rent_reserv_fuel;
 		this.car = car;
 		this.branch = branch;
 		this.payment = payment;
@@ -141,19 +184,19 @@ public class Reserv {
 		this.rent_payment_no = rent_payment_no;
 	}
 
-	public Date getRent_reserv_start() {
+	public DateTime getRent_reserv_start() {
 		return rent_reserv_start;
 	}
 
-	public void setRent_reserv_start(Date rent_reserv_start) {
+	public void setRent_reserv_start(DateTime rent_reserv_start) {
 		this.rent_reserv_start = rent_reserv_start;
 	}
 
-	public Date getRent_reserv_end() {
+	public DateTime getRent_reserv_end() {
 		return rent_reserv_end;
 	}
 
-	public void setRent_reserv_end(Date rent_reserv_end) {
+	public void setRent_reserv_end(DateTime rent_reserv_end) {
 		this.rent_reserv_end = rent_reserv_end;
 	}
 
@@ -173,11 +216,11 @@ public class Reserv {
 		this.rent_reserv_license_kind = rent_reserv_license_kind;
 	}
 
-	public Date getRent_reserv_license_day() {
+	public String getRent_reserv_license_day() {
 		return rent_reserv_license_day;
 	}
 
-	public void setRent_reserv_license_day(Date rent_reserv_license_day) {
+	public void setRent_reserv_license_day(String rent_reserv_license_day) {
 		this.rent_reserv_license_day = rent_reserv_license_day;
 	}
 
@@ -253,20 +296,20 @@ public class Reserv {
 		this.rent_reserv_resist = rent_reserv_resist;
 	}
 
-	public long getRent_payment_km() {
-		return rent_payment_km;
+	public long getRent_reserv_km() {
+		return rent_reserv_km;
 	}
 
-	public void setRent_payment_km(long rent_payment_km) {
-		this.rent_payment_km = rent_payment_km;
+	public void setRent_reserv_km(long rent_reserv_km) {
+		this.rent_reserv_km = rent_reserv_km;
 	}
 
-	public long getRent_payment_fuel() {
-		return rent_payment_fuel;
+	public long getRent_reserv_fuel() {
+		return rent_reserv_fuel;
 	}
 
-	public void setRent_payment_fuel(long rent_payment_fuel) {
-		this.rent_payment_fuel = rent_payment_fuel;
+	public void setRent_reserv_fuel(long rent_reserv_fuel) {
+		this.rent_reserv_fuel = rent_reserv_fuel;
 	}
 
 	public Car getCar() {
@@ -316,6 +359,9 @@ public class Reserv {
 	public void setCarinfo(CarInfo carinfo) {
 		this.carinfo = carinfo;
 	}
+	
+	
+	
 	
 	
 }

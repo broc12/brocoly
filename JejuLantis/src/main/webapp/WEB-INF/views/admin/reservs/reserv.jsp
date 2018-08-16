@@ -63,8 +63,8 @@
                   <td>${list.rent_reserv_no}</td>
                   <td>${list.member.member_id}</td>
                   <td>${list.member.member_name}</td>
-                  <td>${list.rent_reserv_start}</td>
-                  <td>${list.rent_reserv_end}</td>
+                  <td>${list.rent_reserv_starts}</td>
+                  <td>${list.rent_reserv_ends}</td>
                   <td>${list.car.car_name}</td>
                   <td>${list.insurance.insurance_name}</td>
                   <td>${list.payment.rent_payment_total_price}</td>

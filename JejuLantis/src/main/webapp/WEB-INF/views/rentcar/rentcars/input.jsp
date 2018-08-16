@@ -269,8 +269,8 @@
 		        jQuery("#insurance_no").val('${rentcar.insurance_no}');
 		        jQuery("#member_no").val('${log.member_no}');
 		        jQuery("#rent_payment_no").val('${reserv.rent_payment_no}');
-		        jQuery("#rent_reserv_start").val('${requirements.rent_reserve_startDate}');
-		        jQuery("#rent_reserv_end").val('${requirements.rent_reserve_endDate}');
+		        jQuery("#rent_reserv_start").val('${requirements.rent_reserve_startDateTime}');
+		        jQuery("#rent_reserv_end").val('${requirements.rent_reserve_endDateTime}');
 		        document.f.submit();
 		    } else {
 		        var msg = '결제에 실패하였습니다.';
@@ -318,8 +318,8 @@
 		<input type="hidden" name="insurance_no" id="insurance_no">
 		<input type="hidden" name="member_no" id="member_no">
 		<input type="hidden" name="rent_payment_no" id="rent_payment_no">
-		<input type="hidden" name="rent_reserv_start" id="rent_reserv_start">
-		<input type="hidden" name="rent_reserv_end" id="rent_reserv_end">
+		<input type="hidden" name="rent_reserv_starts" id="rent_reserv_start">
+		<input type="hidden" name="rent_reserv_ends" id="rent_reserv_end">
 		<input type="hidden" name="rent_reserv_license_kind" id="rent_reserv_license_kind">
 		<input type="hidden" name="rent_reserv_driver_name" id="rent_reserv_driver_name">
 		<input type="hidden" name="rent_reserv_driver_birth" id="rent_reserv_driver_birth">

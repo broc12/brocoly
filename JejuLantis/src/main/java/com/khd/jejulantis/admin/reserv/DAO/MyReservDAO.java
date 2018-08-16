@@ -12,4 +12,5 @@ public interface MyReservDAO {
 	List<CarInfo>info(long branch_no);
 	List<CarkindDetail>kind();
 	List<CarInfo>myCarNo(long car_no);
+	void update(Reserv reserv);
 }

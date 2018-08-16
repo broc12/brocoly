@@ -102,13 +102,13 @@
 					 <td  rowspan="6" width="21%" style="background-color:white"><img src="resources/car/${list.car.car_image}" width=100% height=50%></td>
 					 <td width="25%" style="background-color:white">
 					 	<h style="color:#8caaca">대여일시</h></br>
-					 	<span style="color:black;font-size:18pt">${list.rent_reserv_start}</span></br>
-					 	<span style="color:black">09:00</span>
+					 	<span style="color:black;font-size:18pt">${list.rent_reserv_starts}</span></br>
+					 	<span style="color:black">${list.rent_reserv_startTime}</span>
 					 </td>
 					 <td style="background-color:white">
 					 	<h style="color:#8caaca">반납일시</h></br>
-					 	<span style="color:black;font-size:18pt">${list.rent_reserv_end}</span></br>
-					 	<span style="color:black">09:00</span>
+					 	<span style="color:black;font-size:18pt">${list.rent_reserv_ends}</span></br>
+					 	<span style="color:black">${list.rent_reserv_endTime}</span>
 					 </td>
 					 <td  rowspan="6" width="26%" style="background-color:white" align="center">
 					 	<img src="resources/rentcar/images/예약완료.jpg" width=100% height=50%>

@@ -12,4 +12,5 @@ public interface MyReservService {
 	List<CarInfo>infoService(long branch_no);
 	List<CarkindDetail>kindService();
 	List<CarInfo>myCarNoService(long car_no);
+	void updateService(Reserv reserv);
 }

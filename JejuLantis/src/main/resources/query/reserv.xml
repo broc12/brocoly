@@ -11,8 +11,8 @@
 	<result column="CAR_INFO_NO" property="car_info_no"/>
 	<result column="MEMBER_NO" property="member_no"/>
 	<result column="RENT_PAYMENT_NO" property="rent_payment_no"/>
-	<result column="RENT_RESERV_START" property="rent_reserv_start"/>
-	<result column="RENT_RESERV_END" property="rent_reserv_end"/>
+	<result column="RENT_RESERV_START" property="rent_reserv_startView"/>
+	<result column="RENT_RESERV_END" property="rent_reserv_endView"/>
 	<result column="RENT_RESERV_LICENSE_NO" property="rent_reserv_license_no"/>
 	<result column="RENT_RESERV_LICENSE_KIND" property="rent_reserv_license_kind"/>
 	<result column="RENT_RESERV_LICENSE_DAY" property="rent_reserv_license_day"/>
@@ -39,8 +39,8 @@
 	select RENT_RESERV_seq.nextval from DUAL
 	</selectKey>
 		insert into RENT_RESERV values(#{rent_reserv_no},#{branch_no},#{car_no},
-		#{car_kind_no},#{insurance_no},null,#{member_no},#{rent_payment_no},#{rent_reserv_start},
-		#{rent_reserv_end},null,#{rent_reserv_license_kind},null,#{rent_reserv_driver_name},
+		#{car_kind_no},#{insurance_no},null,#{member_no},#{rent_payment_no},TO_DATE(#{rent_reserv_startAll},'yyyy-mm-dd hh24:mi'),
+		TO_DATE(#{rent_reserv_endAll},'yyyy-mm-dd hh24:mi'),null,#{rent_reserv_license_kind},null,#{rent_reserv_driver_name},
 		to_date(#{rent_reserv_driver_birth},'YYYY-MM-DD'),#{rent_reserv_driver_tel},null,'Y','N',null,null,SYSDATE,null,null)
 	</insert>
 	
@@ -69,6 +69,15 @@
 	</select>
 	
 	<select id="myCarNo"  parameterType="long" resultType="CarInfo">
-		select car_info_back_no from car_info where car_no=#{car_no}
+		select car_info_back_no,car_info_no from car_info where car_no=#{car_no}
 	</select>
+	
+	<update id="myReservUpdate" parameterType="Reserv">
+   	Update RENT_RESERV set rent_reserv_license_no=#{rent_reserv_license_no},rent_reserv_license_day=#{rent_reserv_license_day},
+   	rent_reserv_driver_name=#{rent_reserv_driver_name},rent_reserv_driver_birth=#{rent_reserv_driver_birth},
+   	rent_reserv_driver_tel=#{rent_reserv_driver_tel},rent_reserv_license_kind=#{rent_reserv_license_kind},
+   	rent_reserv_driver_addr=#{rent_reserv_driver_addr},rent_reserv_fuel=#{rent_reserv_fuel},
+   	rent_reserv_km=#{rent_reserv_km},car_info_no=#{car_info_no}
+   	 where rent_reserv_no=#{rent_reserv_no}
+   </update>
 </mapper>

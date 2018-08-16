@@ -41,4 +41,8 @@ public class MyReservDAOImpl implements MyReservDAO{
 		return sqlSession.selectList(ns+".myCarNo",car_no);
 		
 	}
+	@Override
+	public void update(Reserv reserv) {
+		sqlSession.update(ns+".myReservUpdate",reserv);
+	}
 }

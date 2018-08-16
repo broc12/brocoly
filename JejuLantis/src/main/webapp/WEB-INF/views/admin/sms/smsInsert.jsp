@@ -39,6 +39,8 @@
 
 <body class="fixed-nav sticky-footer bg-dark" id="page-top">
 <%@ include file="../top/top2.jspf" %>
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.2/angular.min.js">
+  </script>
   <script>
   $(document).ready(function(){
 	  $("#checkall").click(function(){
@@ -52,6 +54,10 @@
 		})
   })
   </script>
+<!--   <script type="text/javascript" charset="utf-8"> -->
+<!-- //   	function  -->
+  	
+<!--   </script> -->
   <script>
   var length=0;
   var length_select=0;

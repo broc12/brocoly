@@ -53,6 +53,7 @@
                   <th>이메일</th>
                   <th>전화번호</th>
                   <th>등록날짜</th>
+                  <th>승인여부</th>
                   <th>비고</th>
                 </tr>
               </thead>
@@ -67,6 +68,19 @@
                   <td>${adminApproveList.manager_email}</td>
                   <td>${adminApproveList.manager_tel1}</td>
                   <td>${adminApproveList.manager_resist_member}</td>
+                  
+                  <c:set var="data" value="${adminApproveList.manager_withdraw_at}"/>
+                  <c:choose>
+	                  <c:when test="${data eq 'N'}">
+	                  	<td>승인완료</td>
+	                  </c:when>
+	                  <c:when test="${data eq 'W'}">
+	                  	<td>승인대기</td>
+	                  </c:when>
+	                  <c:when test="${data eq 'T'}">
+	                  	<td>승인거부</td>
+	                  </c:when>
+	              </c:choose>
                   <td>
 <%--                   <button type="button" class="btn btn-defalut btn-sm"><a href="affiliateContentList.do?affiliate_no=${adminApproveList.affiliate_no}">세부내용</a></button> --%>
 <%--                   	<button type="button" class="btn btn-defalut btn-sm"><a href="affiliateUpdate.do?affiliate_no=${affiliateList.affiliate_no}">수정</a></button> --%>

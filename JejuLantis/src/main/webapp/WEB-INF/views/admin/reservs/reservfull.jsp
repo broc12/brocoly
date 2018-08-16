@@ -81,6 +81,52 @@
 		document.f.submit();
 	}
 	</script>
+	<script>
+    var mapContainer = document.getElementById('map')//, // 지도를 표시할 div
+    var geocoder = new daum.maps.services.Geocoder();
+    function DaumPostcode() {	
+        new daum.Postcode({
+            oncomplete: function(data) {
+                // 각 주소의 노출 규칙에 따라 주소를 조합한다.
+                // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+                var fullAddr = data.address; // 최종 주소 변수
+                var extraAddr = ''; // 조합형 주소 변수
+                // 기본 주소가 도로명 타입일때 조합한다.
+                if(data.addressType === 'R'){
+                    //법정동명이 있을 경우 추가한다.
+                    if(data.bname !== ''){
+                        extraAddr += data.bname;
+                    }
+                    // 건물명이 있을 경우 추가한다.
+                    if(data.buildingName !== ''){
+                        extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+                    }
+                    // 조합형주소의 유무에 따라 양쪽에 괄호를 추가하여 최종 주소를 만든다.
+                    fullAddr += (extraAddr !== '' ? ' ('+ extraAddr +')' : '');
+                }
+                // 주소 정보를 해당 필드에 넣는다.
+                document.getElementById("rent_reserv_driver_addr").value = fullAddr;
+                // 주소로 상세 정보를 검색
+                geocoder.addressSearch(data.address, function(results, status) {
+                    // 정상적으로 검색이 완료됐으면
+                    if (status === daum.maps.services.Status.OK) {
+                        var result = results[0]; //첫번째 결과의 값을 활용
+                        // 해당 주소에 대한 좌표를 받아서
+                        var coords = new daum.maps.LatLng(result.y, result.x);
+                        //alert(coords);
+                        result.y
+                        var lan = ""+result.y;
+                      	var lon = ""+result.x;
+                      	document.getElementById("branch_lati").value = lan;
+                      	document.getElementById("branch_long").value = lon;
+        				//alert(lan);
+                    }
+                });
+            }
+        }).open();
+        f.address_detail.focus();
+    }
+	</script>
  <style>
  @keyframes check {0% {height: 0;width: 0;}
   25% {height: 0;width: 10px;}
@@ -217,8 +263,10 @@
 					<td style="border-top: hidden;border-bottom: hidden;"></td>
 					<td height="40px" width="10%" class="text-center">주소</td>
 					<td colspan ="3" width="35%" class="text-left" style="border-left:hidden">
-						<input type="text" id="rent_reserv_driver_addr" value="${res.rent_reserv_driver_addr}">
-						<input type="button" value="주소검색" style="background-color:black;color:white;border:0">
+						<input type="text" id="rent_reserv_driver_addr" readonly>
+						<input type="button" onclick="DaumPostcode()" value="주소검색" style="background-color:black;color:white;border:0">
+						<p></p>
+						<p><input name="rent_reserv_driver_addr_detail" type="text" size="30" placeholder="" id="rent_reserv_driver_addr_detail"></p>
 					</td>
 				</tr>
 				

@@ -54,9 +54,15 @@ public class ReservController {
 	}
 	
 	@RequestMapping(value="admin/reservUpdate.do",method=RequestMethod.POST)
-	public String update(Reserv reserv,RedirectAttributes redirectAttributes) {
+	public String update(Reserv reserv,RedirectAttributes redirectAttributes, @RequestParam("rent_reserv_driver_addr_detail")String rent_reserv_driver_addr_detail) {
 		System.out.println("erererere");
-		service.updateService(reserv);
+		if(rent_reserv_driver_addr_detail != null) {
+			reserv.setRent_reserv_driver_addr(reserv.getRent_reserv_driver_addr()+" "+rent_reserv_driver_addr_detail);
+			service.updateService(reserv);
+		}else {
+			service.updateService(reserv);
+		}
+		System.out.println("확인 : " + reserv.getRent_reserv_driver_addr());
 		redirectAttributes.addAttribute("branch_no", reserv.getBranch_no());
 		return "redirect:reserv.do";
 	}

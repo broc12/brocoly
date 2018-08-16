@@ -18,8 +18,8 @@
 	<select id="myAddSelect" parameterType="String" resultType="CarInfoInsert">
 	SELECT C.CAR_NAME, C.CAR_MANUFACTURER, C.CAR_FUEL ,C.CAR_NO, K.CAR_KIND_NAVI, K.CAR_KIND_SENSOR,
 	 K.CAR_KIND_BLACKBOX, K.CAR_KIND_BLUETOOTH, K.CAR_KIND_SUNROOF, K.CAR_KIND_CAMERA, K.CAR_KIND_NONSMOKE,
-	 K.CAR_KIND_NO, K.BRANCH_NO  FROM CAR C, CAR_KIND K WHERE C.CAR_NO = K.CAR_NO AND BRANCH_NO=
-	 (SELECT BRANCH_NO FROM MANAGER WHERE MANAGER_ID=#{manager_id})
+	 K.CAR_KIND_NO, K.BRANCH_NO  FROM CAR C, CAR_KIND K WHERE K.CAR_KIND_WITHDRAW_AT ='N' AND C.CAR_WITHDRAW_AT ='N' AND 
+	 C.CAR_NO = K.CAR_NO AND BRANCH_NO= (SELECT BRANCH_NO FROM MANAGER WHERE MANAGER_ID=#{manager_id})
 	
 	</select>
 	<select id="mySelectBrancNo"  resultType="CarInfoInsert">
@@ -123,16 +123,25 @@ CAR C, CAR_INFO K, BRANCH B WHERE C.CAR_NO = K.CAR_NO AND B.BRANCH_NO = (select 
 <update id="myUpdate">
 update CAR_INFO SET CAR_INFO_STATE=#{car_info_state}, CAR_INFO_RENT_AT=#{car_info_rent_at} WHERE CAR_INFO_NO=#{car_info_no}
 </update>
-<update id="myTotalCountByInsert">
+<update id="myKindTotalCountByInsert">
 update car_kind SET car_kind_total = (car_kind_total+1) WHERE CAR_KIND_NO = #{CAR_KIND_NO}
 </update>
-<update id="myTotalCount">
+<update id="myCarTotalCountByInsert">
+update car SET car_total = (car_total+1) WHERE CAR_NO = #{CAR_NO}
+</update>
+<update id="myTotalKindCount">
 update car_kind k set car_kind_total = 
 (select count(C.CAR_INFO_NO) from car_info C where C.car_kind_no = (select CAR_KIND_NO from car_info C where car_info_no=#{car_info_no})
 	 AND car_info_rent_at='Y' AND CAR_INFO_WITHDRAW_AT = 'N')
-	 WHERE K.CAR_KIND_NO=(select CAR_KIND_NO from car_info C where car_info_no=#{car_info_no})
-
+	 WHERE K.CAR_KIND_NO=(select CAR_KIND_NO from car_info C where car_info_no=#{car_info_no}) AND CAR_KIND_WITHDRAW_AT='N'
 	 
+</update>
+<update id="myTotalCarCount">
+UPDATE CAR SET CAR_TOTAL= 
+	(SELECT COUNT(CAR_INFO_NO) from car_info f where f.car_no = (select car_no from car_info where car_info_no=#{car_info_no})
+	AND car_info_rent_at='Y' AND CAR_INFO_WITHDRAW_AT = 'N')
+	WHERE CAR_NO=(select CAR_NO from car_info  where car_info_no=#{car_info_no}) AND CAR_WITHDRAW_AT='N'
+
 </update>
 
 

@@ -39,18 +39,25 @@ public class CustomerCenterController {
 		input = 1;
 		}else input =Integer.parseInt(strInput);
 		long groupNum = service.groupNum();
+		long totalNum = service.totalNum();
 		long showList = 5;
-		long betweenA = groupNum-((input)*showList)+1;
-		long betweenB = groupNum-((input-1)*showList);
+		/*long betweenA = groupNum-((input)*showList)+1; 
+		long betweenB = groupNum-((input-1)*showList); */
+		long betweenA = ((input-1)*showList)+1;
+		long betweenB = (input*showList);
+		
 		if(betweenB<0)betweenB=0;
 		HashMap<String, Long> map = new HashMap<String, Long>();
 		map.put("A", betweenA);
 		map.put("B", betweenB);
 		long totalPage = 0;
-			if(groupNum%showList!=0){
-				totalPage = (groupNum/showList)+1;
+		System.out.println("TOTALNUM "+totalNum);
+		System.out.println("계산1"+ totalNum%showList);
+		System.out.println("totalNum/showList"+ totalNum/showList);
+		if(totalNum%showList!=0){
+			totalPage = (totalNum/showList)+1;
 			}else {
-				totalPage =(groupNum/showList);
+				totalPage =(totalNum/showList);
 			}
 			List<Qna> list = service.qnaList(map);
 			Member temp = (Member)session.getAttribute("log");
@@ -63,7 +70,7 @@ public class CustomerCenterController {
 				mv.addObject("id", id);
 				mv.addObject("memberNum", memberNum);
 				mv.addObject("totalPage", totalPage);
-				System.out.println("memberNo " +memberNum);
+				System.out.println("totalPage " +totalPage);
 		return mv;
 	}
 	@RequestMapping(value="helpadd.do",method=RequestMethod.POST)
@@ -100,7 +107,7 @@ public class CustomerCenterController {
 		Qna qna = service.qnaContent(qna_no);
 		System.out.println("qna_no = "+ qna_no);
 		System.out.println("qna.getQna_resist_id() = "+ qna.getQna_answer_checkString());
-		if(qna.getQna_resist_id() == null) flag= false;
+		if(qna.getQna_resist_id() == null ||qna.getQna_resist_id().equals("GUEST")) flag= false;
 			else if(qna.getQna_resist_id().equals(id)) flag=true;
 		else flag=false;
 		System.out.println("flag "+flag);

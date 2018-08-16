@@ -56,7 +56,106 @@
 	<!-- FOR IE9 below -->
 	<!--[if lt IE 9]>
 	<script src="js/respond.min.js"></script>
+	
+agreement
+spam
+secret
+pwd
+content
+subject
+phoneNum
+email
+name
 	<![endif]-->
+	<script>
+	/* function onlyNumber(obj) {
+	    $(obj).keyup(function(){
+	         $(this).val($(this).val().replace(/[^0-9]/g,""));
+	         onkeydown="onlyNumber(this)" 
+	    }); 
+	} */
+          function check(){
+        	  
+            if(f.name.value ==""){
+                alert("이름을 입력해주세요");
+                f.name.focus();			
+                return;
+             }
+            if(f.email.value ==""){
+                alert("이메일을 입력해주세요");
+                f.email.focus();			
+                return;
+             }
+            if(f.phoneNum.value ==""){
+                alert("핸드폰번호를 입력해주세요");
+                f.phoneNum.focus();			
+                return;
+             }
+            if(f.subject.value ==""){
+                alert("제목을 입력해주세요");
+                f.subject.focus();			
+                return;
+             }
+            if(f.content.value ==""){
+                alert("내용을 입력해주세요");
+                f.content.focus();			
+                return;
+             }
+            if(f.pwd.value ==""){
+                alert("비밀번호를 입력해주세요");
+                f.pwd.focus();			
+                return;
+             }
+            /* if(f.secret.value ==""){
+                alert("비밀글 여부를 체크주세요");
+                f.secret.focus();			
+                return;
+             } */
+            if($("#spam:checked").val() == undefined){
+                alert("로봇 방지 여부를 체크주세요");
+                f.spam.focus();			
+                return;
+             }
+            if($("#agreement:checked").val() == undefined){
+                alert("개인정보 동의을 체크해주세요");
+                f.agreement.focus();			
+                return;
+             }
+           
+            $(document).ready(function(){
+                var u_email = $('#email');
+                var u_phone = $('#phoneNum');
+                    // 정규식 - 이메일 유효성 검사
+                    var regEmail = /([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
+                    // 정규식 -전화번호 유효성 검사
+                    var regPhone = /^((01[1|6|7|8|9])[1-9]+[0-9]{6,7})|(010[1-9][0-9]{7})$/;
+
+                    if( !u_email.val() ){
+                        alert('이메일주소를 입력 해 주세요');
+                        u_email.focus();
+                        return false;
+                    } else {
+                        if(!regEmail.test(u_email.val())) {
+                            alert('이메일 주소가 유효하지 않습니다');
+                            u_email.focus();
+                            return false;
+                        }  
+                    }
+                    if( !u_phone.val() ){
+                        alert('핸드폰 번호를 입력 해 주세요');
+                        u_phone.focus();
+                        return false;
+                    } else {
+                        if(!regPhone.test(u_phone.val())) {
+                            alert('핸드폰 번호가 유효하지 않습니다');
+                            u_phone.focus();
+                            return false;
+                        }  
+                    }  document.f.submit();
+            });
+         }
+          
+     </script>
 
 	</head>
 	<body>
@@ -111,21 +210,22 @@
 												<a style="color:black">제주란티스 상품 및 서비스에 대해 궁금하신 사항을 친절하게 안내해드리겠습니다.</a></br>
 												<a style="color:black">문의 하시기 전 '자주묻는질문' 을 찾아 보시면 신속하게 궁금증을 해소하실 수 있습니다</a></br></br></br>
 												<h3 style="color:#c6c600">작성자 정보</h3>
-												<form action="helpInsert.do" method="POST" >
+												<form name="f" action="helpInsert.do" method="POST" >
 												  <input type="hidden" name="id" value="${id}">
 												  <input type="hidden" name="memberNum" value="${memberNum}">
+												  <input type="hidden" name="qna_secret" value="on">
 								                  <div class="form-group">
 								                    <label for="guests">성명</label>
 								                    <div class="form-field">
-								                      <input type="text" size="40" id="location" name="qna_name" placeholder="이름">
+								                      <input type="text" size="40" id="name"  name="qna_name" placeholder="이름">
 								                    </div>
 								                    <label for="guests">이메일</label>
 								                    <div class="form-field">
-								                      <input type="text" size="40" id="location" name="qna_email" placeholder="jejulantis@jeju.com">
+								                      <input type="text" size="40" id="email" name="qna_email" placeholder="jejulantis@jeju.com">
 								                    </div>
 								                    <label for="guests">연락처</label>
 								                    <div class="form-field">
-								                      <input type="text" size="40" id="location"  name="qna_tel" placeholder="01086308690">
+								                      <input type="text" size="40" id="phoneNum"  name="qna_tel" placeholder="01086308690">
 								                      <a style="color:#ff5b0d">숫자만 입력해주세요</a>
 								                    </div>
 								                  </div>
@@ -135,36 +235,36 @@
 													<tr style="color:#808080;font-size:12pt">			
 														<th  height="60px" width="10%" class="text-center" style="background-color: #fafafa">제목</th>
 														<th  width="35%" class="text-left">
-															<input type="text" size="80" name="qna_title" placeholder="">
+															<input type="text" size="80" id="subject" name="qna_title" placeholder="">
 														</th>
 													</tr>
 													<tr style="font-size:10pt" height="60px">
 														<td height="100px" align="center" style="background-color: #fafafa">내용</td>
 														<td align="left">
-															<textarea rows="8" cols="110" name="qna_content"></textarea>
+															<textarea rows="8" cols="110" id="content" name="qna_content"></textarea>
 														</td>
 													</tr>
 													<tr style="font-size:10pt" height="60px">
 														<td height="70px" align="center" style="background-color: #fafafa">비밀번호</td>
 														<td align="left">
-															<input type="password" size="47" name="qna_pwd" placeholder="">
-															<a style="color:#ff5b0d">4~12자 사이이 문자를 입력하세요</a>
-															<a style="color:#808080">게시물 수정/삭제시 필요합니다.</a>
+															<input type="password" id="pwd" size="47" name="qna_pwd" placeholder="">
+															<!-- <a style="color:#ff5b0d">4~12자 사이이 문자를 입력하세요</a> -->
+															<a style="color:#808080">게시물 수정시 필요합니다.</a>
 														</td>
 													</tr>
-													<tr style="font-size:10pt" height="60px">
+													<!-- <tr style="font-size:10pt" height="60px">
 														<td align="center" style="background-color: #fafafa">비밀글 여부</td>
 														<td align="left">
-															<input type="checkbox" name="qna_secret">
+															<input type="checkbox" id="secret" name="qna_secret">
 															<label class="form-check-label" for="exampleCheck1">
 																<a style="font-size:12pt;color:#808080">비밀글로 등록합니다.</a>
 															</label></br>
 														</td>
-													</tr>
+													</tr> -->
 													<tr style="font-size:10pt" height="60px">
 														<td align="center" style="background-color: #fafafa">스팸글방지</td>
 														<td align="left">
-															<input type="checkbox">
+															<input type="checkbox" id="spam">
 															<label class="form-check-label" for="exampleCheck1">
 																<a style="font-size:12pt;color:#808080">로봇이 아닙니다.</a>
 															</label></br>
@@ -172,14 +272,14 @@
 													</tr>
 												</table></br>
 												<div align="center">
-													<input type="checkbox">
+													<input type="checkbox" id="agreement">
 														<label class="form-check-label" for="esxampleCheck1">
 															<h4 style="font-size:12pt">개인정보 수집·이용 및 제3자 정보 제공에 모두 동의합니다.</h4>
 														</label></br>
 												</div>
 															
 												<div class="col-md-12 text-center">
-													<button type="submit" class="btn btn-primary" style="border-radius:0px">글등록</button>
+													<button type="button"  class="btn btn-primary" style="border-radius:0px" onclick="check()">글등록</button>
 													<button type="button" class="btn btn-primary" style="border-radius:0px">
 														<a href="help.do" style="color:white">글목록</a>
 													</button>

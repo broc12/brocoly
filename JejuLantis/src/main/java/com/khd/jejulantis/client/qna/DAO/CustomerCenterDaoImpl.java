@@ -42,7 +42,8 @@ public class CustomerCenterDaoImpl implements CustomerCenterDao {
 	
 	@Override
 	public long totalNum() {
-		long totalNum = sqlSession.selectOne(ns+".myTotalNum");
+		Long totalNum = sqlSession.selectOne(nsQna+".myTotalNum");
+		totalNum = totalNum == null ? 0 : totalNum;
 		return totalNum;
 	}
 	@Override

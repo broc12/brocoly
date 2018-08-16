@@ -48,6 +48,7 @@ public class CarInfoController {
 	public ModelAndView carInfoAdd(@RequestParam("manager_id")String manager_id) {
 		List<CarInfoInsert>carList = new ArrayList<CarInfoInsert>();
 		carList = carInfoService.selectCarJoin(manager_id);
+		System.out.println("size"+carList.size());
 		String view = "admin/cars/carInfoAdd";
 		ModelAndView mv = new ModelAndView(view,"carList",carList);
 		return mv;

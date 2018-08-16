@@ -51,12 +51,12 @@ function insertLine(){
 	var html = "<tr id=content_"+lineNo+">";
 html+="<td>"+num+"</td><td><select style='width:90%' name=carKind id=carKind"+lineNo+">";
 html+="<c:forEach items='${carList}' var='item'>";
-html+="<option value='${item.car_kind_no}'	style='color:black'>${item.car_manufacturer}/${item.car_name}/${item.car_fuel}";
+html+="<option value='${item.car_kind_no}'	style='color:black'>${item.car_manufacturer}/${item.car_name}(${item.car_fuel})";
 html+="   ${item.stringCar_kind_navi} ${item.stringCar_kind_sensor} ${item.stringCar_kind_blackbox}";
 html+="${item.stringCar_kind_bluetooth} ${item.stringCar_kind_sunroof} ${item.stringCar_kind_camera} ${item.stringCar_kind_nonsmoke}</option>";
 html+="</c:forEach>";
 html+="</select></td><td><input style='width:90%' type=text size=15 name=carNumber id=carNumber"+lineNo+"></td>";
-html+="<td><input type=button value=삭제 onclick='del("+lineNo+")' style=\"background:#abcdef;border:1x solid black\" onMouseOrver=\"this.style.background:#000000;border:1x solid black\" >";
+html+="<td><input type=button value=삭제 onclick='del("+lineNo+")' style=\"border-radius:0px\" onMouseOrver=\"this.style.background:#000000;border:1x solid black\" >";
 html+="</td></tr>";		
 $("#content_"+beforeNo).after(html);
 beforeNo++;
@@ -164,8 +164,8 @@ function del(no){
         <div class="card-body">
           <div class="table-responsive">
           <form name=form1 id=form1 method='post' action='carInfoInsert.do' >		
-<table border="0" cellpadding="4" cellspacing="1" bgcolor="777777" width="100%">
-<td><span style="cursor:hand;color:navy;text-decoration:underline" onClick="insertLine()" onMouseOver="this.style.color='red'" onMouseOut="this.style.color='navy'">입력양식 늘이기</span></td>
+<table border="0" cellpadding="4" cellspacing="1"  width="100%">
+<td><input type=button value="입력양식 +" class="btn btn-primary" style="border-radius:0px" onClick="insertLine()"></td>
 <tr bgcolor=white>
 </tr>
 
@@ -210,7 +210,7 @@ function del(no){
 					document.write("<td>");
 					document.write("<select style='width:90%' name=carKind id=carKind"+lineNo+">");	
 					document.write("<c:forEach items='${carList}' var='item'>");
-					document.write("<option value='${item.car_kind_no}'	style='color:black'>${item.car_manufacturer}/${item.car_name}/${item.car_fuel}    ");
+					document.write("<option value='${item.car_kind_no}'	style='color:black'>${item.car_manufacturer}/${item.car_name}(${item.car_fuel})    ");
 					document.write("   ${item.stringCar_kind_navi} ${item.stringCar_kind_sensor} ${item.stringCar_kind_blackbox}");
 					document.write("${item.stringCar_kind_bluetooth} ${item.stringCar_kind_sunroof} ${item.stringCar_kind_camera} ${item.stringCar_kind_nonsmoke}</option>");				
 					document.write("</c:forEach>");
@@ -220,7 +220,7 @@ function del(no){
 					document.write("<input style='width:90%' type=text size=15 name=carNumber id=carNumber>");
 					document.write("</td>");
 					document.write("<td>");
-					document.write("<input type=button value=삭제  onclick='del("+lineNo+")' style=\"background:#abcdef;border:1x solid black\" onMouseOrver=\"this.style.background:#000000;border:1x solid black\" >");
+					document.write("<input type=button value=삭제  onclick='del("+lineNo+")'style=\"border-radius:0px\" onMouseOrver=\"this.style.background:#000000;border:1x solid black\" >");
 					document.write("</td>");
 					document.write("</tr>");
 					num++;
@@ -229,9 +229,10 @@ function del(no){
 	</td>
 </tr>
 <tr bgcolor=white>
-	<td align=center><a href='javascript:document.form1.reset();'>reset</a> /
+	
+	<td align=right><a class="btn btn-primary" style="border-radius:0px" href='javascript:document.form1.reset();'>reset</a>&nbsp;
 	<!-- <button type="submit" class="btn btn-primary" style="border-radius:0px" id="save">저장</button> -->
-	<input type="button" class="btn btn-primary" style="border-radius:0px"  id="test" value="저장1" />
+	<input type="button" class="btn btn-primary" style="border-radius:0px"  id="test" value="저장" />
 	</td>
 </tr>
 <input type=hidden name=max_1 value=0>

@@ -37,9 +37,13 @@
 	 <delete id="myQnaDel" parameterType ="long">
 	 delete from qna where qna_no = #{qna_no}
 	 </delete>
-	 
+	  <select id="myTotalNum" resultType="long">
+         select MAX(ROWNUM) from Qna
+    </select>
 	 <select id="myQnaSelectAll" parameterType="HashMap" resultType="Qna">
-         select * from Qna where QNA_GROUP between #{A} and #{B} order by QNA_GROUP desc, QNA_LEV ASC
+         <!-- select * from Qna where QNA_GROUP between #{A} and #{B} order by QNA_GROUP desc, QNA_LEV ASC -->
+                   select * from QNA Q,(select J2.* from (select rownum R,J1.* from(SELECT QNA_GROUP G FROM QNA WHERE QNA_LEV =0 order by QNA_GROUP desc)J1)
+                   J2 where R between #{A} and #{B})J3 where J3.G=Q.QNA_GROUP order by Q.QNA_GROUP desc,QNA_LEV
     </select>
 	 <select id="myAdminSelectAll" resultType="Qna">
          select * from Qna order by QNA_GROUP desc, QNA_LEV ASC

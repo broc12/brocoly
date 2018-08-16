@@ -27,7 +27,8 @@ public class CarInfoDaoImpl implements CarInfoDao {
 		int i = 0;
 		for(int j=0;j<carInfoList.size();j++) {
 			i = sqlSession.insert(ns+".mycarInfoListInsert", carInfoList.get(j));
-			sqlSession.update(ns+".myTotalCountByInsert", carInfoList.get(j).getCar_kind_no());
+			sqlSession.update(ns+".myKindTotalCountByInsert", carInfoList.get(j).getCar_kind_no());
+			sqlSession.update(ns+".myCarTotalCountByInsert", carInfoList.get(j).getCar_no());
 		}
 		boolean flag;
 		if(i>0) flag = true;
@@ -40,7 +41,8 @@ public class CarInfoDaoImpl implements CarInfoDao {
 		boolean flag;
 		if(i>0) {
 			flag = true;
-			sqlSession.update(ns+".myTotalCount", car_info_no);
+			sqlSession.update(ns+".myTotalKindCount", car_info_no);
+			sqlSession.update(ns+".myTotalCarCount", car_info_no);
 		}
 		else flag = false;
 		return flag;
@@ -51,7 +53,8 @@ public class CarInfoDaoImpl implements CarInfoDao {
 		boolean flag;
 		if(i>0) {
 			flag =  true;
-			sqlSession.update(ns+".myTotalCount", carInfo.getCar_info_no());
+			sqlSession.update(ns+".myTotalKindCount", carInfo.getCar_info_no());
+			sqlSession.update(ns+".myTotalCarCount", carInfo.getCar_info_no());
 		}
 		else flag = false;
 		return flag;

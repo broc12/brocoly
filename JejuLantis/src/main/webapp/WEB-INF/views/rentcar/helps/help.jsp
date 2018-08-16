@@ -91,7 +91,7 @@
              $(".modal-footer #hiddenValue").val(my_id_value);
          })
     }); */
-    function checkId(s,h){
+    function checkId(s){
     	var ii = "${id}";
    	 $.ajax({
             url: 'checkId.do',
@@ -217,7 +217,7 @@
 															</c:if>
 															</td>
 															<td align="center">
-															<a style="color:black" href="javascript:checkId(${board.qna_no},${board.qna_pwd});">${board.qna_title}</a>
+															<a style="color:black" href="javascript:checkId(${board.qna_no});">${board.qna_title}</a>
 															<c:if test="${board.qna_secret==0}">
 															<img src="resources/rentcar/images/locker.png" width=6% height=10%>
 															</c:if>
@@ -244,13 +244,8 @@
 									<c:forEach var="i" begin="1" end="${totalPage}">
 								    <li> <a href="help.do?strInput=${i}">${i}</a> </li>
 									</c:forEach>
-									<!-- <li class="active"><a href="#">1</a></li>
-									<li><a href="#">2</a></li>
-									<li><a href="#">3</a></li>
-									<li><a href="#">4</a></li> -->
 									<li><a href="#">&raquo;</a></li>
 								</ul>
-								
 					
 							</div>
 						</div>

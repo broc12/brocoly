@@ -32,6 +32,8 @@
     <!-- Custom scripts for this page-->
     <script src="../resources/admin/js/sb-admin-datatables.min.js"></script>
     <script src="../resources/ck/ckeditor/ckeditor.js"></script>
+    <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+	<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f0cfd90b11f1fceed206c4f201756973&libraries=services"></script>
 </head>
 
 <body class="fixed-nav sticky-footer bg-dark" id="page-top" onload="mychange()">
@@ -107,24 +109,24 @@
                 // 주소 정보를 해당 필드에 넣는다.
                 document.getElementById("rent_reserv_driver_addr").value = fullAddr;
                 // 주소로 상세 정보를 검색
-                geocoder.addressSearch(data.address, function(results, status) {
+//                 geocoder.addressSearch(data.address, function(results, status) {
                     // 정상적으로 검색이 완료됐으면
-                    if (status === daum.maps.services.Status.OK) {
-                        var result = results[0]; //첫번째 결과의 값을 활용
+//                     if (status === daum.maps.services.Status.OK) {
+//                         var result = results[0]; //첫번째 결과의 값을 활용
                         // 해당 주소에 대한 좌표를 받아서
-                        var coords = new daum.maps.LatLng(result.y, result.x);
+//                         var coords = new daum.maps.LatLng(result.y, result.x);
                         //alert(coords);
-                        result.y
-                        var lan = ""+result.y;
-                      	var lon = ""+result.x;
-                      	document.getElementById("branch_lati").value = lan;
-                      	document.getElementById("branch_long").value = lon;
+//                         result.y
+//                         var lan = ""+result.y;
+//                       	var lon = ""+result.x;
+//                       	document.getElementById("branch_lati").value = lan;
+//                       	document.getElementById("branch_long").value = lon;
         				//alert(lan);
-                    }
-                });
+//                     }
+//                 });
             }
         }).open();
-        f.address_detail.focus();
+//         f.rent_reserv_driver_addr_detail.focus();
     }
 	</script>
  <style>
@@ -174,7 +176,7 @@
 	          <input type="hidden" name="rent_reserv_driver_birth" id="rent_reserv_driver_birth">
 	          <input type="hidden" name="rent_reserv_driver_tel" id="rent_reserv_driver_tel">
 	          <input type="hidden" name="rent_reserv_license_kind" id="rent_reserv_license_kind">
-	          <input type="hidden" name="rent_reserv_driver_addr" id="rent_reserv_driver_addr">
+<!-- 	          <input type="hidden" name="rent_reserv_driver_addr" id="rent_reserv_driver_addr"> -->
 	          <input type="hidden" name="rent_reserv_fuel" id="rent_reserv_fuel">
 	          <input type="hidden" name="rent_reserv_km" id="rent_reserv_km">
 	         <<input type="hidden" name="car_info_no" id="car_info_no">
@@ -263,7 +265,7 @@
 					<td style="border-top: hidden;border-bottom: hidden;"></td>
 					<td height="40px" width="10%" class="text-center">주소</td>
 					<td colspan ="3" width="35%" class="text-left" style="border-left:hidden">
-						<input type="text" id="rent_reserv_driver_addr" readonly>
+						<input type="text" name="rent_reserv_driver_addr" id="rent_reserv_driver_addr" readonly>
 						<input type="button" onclick="DaumPostcode()" value="주소검색" style="background-color:black;color:white;border:0">
 						<p></p>
 						<p><input name="rent_reserv_driver_addr_detail" type="text" size="30" placeholder="" id="rent_reserv_driver_addr_detail"></p>

@@ -67,22 +67,19 @@
     function loginWithKakao() {
       Kakao.Auth.login({
         success: function(authObj) {
-          alert(JSON.stringify(authObj));
       	$.ajax({
 	    	url:"kakaoLogin.do",
 	        type:'GET',
 	        data: {"token":JSON.stringify(authObj.access_token)} ,
 	        error:function(error) {
-	            alert("카카오 로그인 샐패");
+	            alert("카카오 로그인 실패");
 	        },
 	        success:function(data){
-	     		alert(data);
-	            $("#token").val(data);
 	        }
       	});
         },
         fail: function(err) {
-          alert(JSON.stringify(err));
+          alert("카카오 로그인 실패");
         }
       });
     };

@@ -53,7 +53,7 @@ public class SearchRequirements {
 		this.car_name = car_name;
 		this.searchFlag=true;
 	}
-	public SearchRequirements(String CheckindateTime,String checkoutdateTime,String car_name,List<String> car_manufacturer,List<String> car_fuel,List<String> car_type,List<String> car_option) {
+	public SearchRequirements(String CheckindateTime,String checkoutdateTime,String car_name,List<String> car_manufacturer,List<String> car_fuel,List<String> car_type,List<String> car_option,String sort) {
 		DateTimeFormatter fmt = DateTimeFormat.forPattern("yyyy-MM-dd HH:mm");
 		this.rent_reserve_start = DateTime.parse(CheckindateTime, fmt);
 		this.rent_reserve_end = DateTime.parse(checkoutdateTime, fmt);
@@ -61,6 +61,7 @@ public class SearchRequirements {
 		this.car_manufacturer = car_manufacturer;
 		this.car_fuel = car_fuel;
 		this.car_type = car_type;
+		this.sort = sort;
 		if(car_option != null)setOptionList(car_option);
 		this.searchFlag = true;
 	}

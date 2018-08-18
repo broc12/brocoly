@@ -65,7 +65,7 @@
                   <td>${item.member_birth }</td>
                   <td>${item.member_tel }</td>
                   <td>${item.member_email }</td>
-                  <td>$item.member_email_at</td>
+                  <td>${item.member_email_at}</td>
                   <td>${item.member_sms_at }</td>
                   <td>${item.member_resist_member }</td>
                 </tr>

@@ -8,6 +8,8 @@ public class Blist implements Serializable{
 	String branch_name;
 	long car_kind_price_week;
 	long insurance_price;
+	long totalrent;
+	long totalinsurance;
 	String insurance_limit;
 	long tot;
 	long branch_no;
@@ -21,15 +23,20 @@ public class Blist implements Serializable{
 	String car_kind_sunroof;
 	String car_kind_camera;
 	String car_kind_nonsmoke;
+	String car_kind_rating;
+	String car_kind_count;
 	
 	public Blist() {}
-	public Blist(String branch_name, long car_kind_price_week, long insurance_price, String insurance_limit, long tot,
-			long branch_no, long car_no, long insurance_no, long car_kind_no, String car_kind_navi,
-			String car_kind_sensor, String car_kind_bluetooth, String car_kind_blackbox, String car_kind_sunroof,
-			String car_kind_camera, String car_kind_nonsmoke) {
+	public Blist(String branch_name, long car_kind_price_week, long insurance_price, long totalrent,
+			long totalinsurance, String insurance_limit, long tot, long branch_no, long car_no, long insurance_no,
+			long car_kind_no, String car_kind_navi, String car_kind_sensor, String car_kind_bluetooth,
+			String car_kind_blackbox, String car_kind_sunroof, String car_kind_camera, String car_kind_nonsmoke,
+			String car_kind_rating, String car_kind_count) {
 		this.branch_name = branch_name;
 		this.car_kind_price_week = car_kind_price_week;
 		this.insurance_price = insurance_price;
+		this.totalrent = totalrent;
+		this.totalinsurance = totalinsurance;
 		this.insurance_limit = insurance_limit;
 		this.tot = tot;
 		this.branch_no = branch_no;
@@ -43,6 +50,8 @@ public class Blist implements Serializable{
 		this.car_kind_sunroof = car_kind_sunroof;
 		this.car_kind_camera = car_kind_camera;
 		this.car_kind_nonsmoke = car_kind_nonsmoke;
+		this.car_kind_rating = car_kind_rating;
+		this.car_kind_count = car_kind_count;
 	}
 	public String getBranch_name() {
 		return branch_name;
@@ -201,6 +210,30 @@ public class Blist implements Serializable{
 	}
 	public void setCar_kind_nonsmoke(String car_kind_nonsmoke) {
 		this.car_kind_nonsmoke = car_kind_nonsmoke;
+	}
+	public long getTotalrent() {
+		return totalrent;
+	}
+	public void setTotalrent(long totalrent) {
+		this.totalrent = totalrent;
+	}
+	public long getTotalinsurance() {
+		return totalinsurance;
+	}
+	public void setTotalinsurance(long totalinsurance) {
+		this.totalinsurance = totalinsurance;
+	}
+	public String getCar_kind_rating() {
+		return car_kind_rating;
+	}
+	public void setCar_kind_rating(String car_kind_rating) {
+		this.car_kind_rating = car_kind_rating;
+	}
+	public String getCar_kind_count() {
+		return car_kind_count;
+	}
+	public void setCar_kind_count(String car_kind_count) {
+		this.car_kind_count = car_kind_count;
 	}
 	
 }

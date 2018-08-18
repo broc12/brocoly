@@ -238,14 +238,12 @@ public class SnsLoginController {
 
 	@RequestMapping(value = "/kakaoLogin.do", method = RequestMethod.GET)
 	public @ResponseBody String kakaologin(@RequestParam("token")String token,HttpSession session) {
-		System.out.println(token);
 		String apiURL = "https://kapi.kakao.com/v2/user/me";
 		String method = "GET";
 		JSONObject jsonObj = kakaoRequest(token,apiURL,method);
-		//jsonObj.get("");
-		System.out.println(jsonObj.toJSONString());
-		System.out.println("a");
-		return token;
+		snsLogin(jsonObj.get("id").toString(),"SNS",((JSONObject)jsonObj.get("properties")).get("nickname").toString(),null,null,session);
+		session.setAttribute("kakao", token);
+		return null;
 	}
 	
 	@RequestMapping(value = "/kakaologout.do", method = RequestMethod.POST)
@@ -267,7 +265,7 @@ public class SnsLoginController {
 			con.setDoInput(true);
 			con.setDoOutput(true);
 			con.setUseCaches(false);
-			con.setRequestMethod("method");
+			con.setRequestMethod(method);
 			con.setRequestProperty("Authorization", "Bearer " + token);
 			int responseCode = con.getResponseCode();
 			if (responseCode == 200) { // 정상 호출

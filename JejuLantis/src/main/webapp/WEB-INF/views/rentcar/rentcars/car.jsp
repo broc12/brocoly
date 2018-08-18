@@ -216,9 +216,10 @@
 						<div class="row">
 							<div class="col-md-12 text-left">
 								<ul class="pagination">
-									<li><a href="">최저가순</a></li>
-									<li><a href="">인기순</a></li>
-									<li><a href="">평점순</a></li>
+									<li><button class="sortmenu" value="minimum" type="button" style="background-color:#f8fafb;border:0">최저가순</button></li>
+									<li><button class="sortmenu" value="count" type="button" style="background-color:#f8fafb;border:0">인기순</button></li>
+									<li><button class="sortmenu" value="rating" type="button" style="background-color:#f8fafb;border:0">평점순</button></li>
+							<input type="hidden" id="sort" name="sort" value="${requirements.sort }"/>
 								</ul>
 							</div>
 						</div>
@@ -235,7 +236,7 @@
 								<div class="col-md-6 col-sm-6 animate-box" style="width:40%;padding:0px">
 									<div class="hotel-entry" style="background-color:#f8fafb;padding:15px;height:410px"></br>
 										<span style="color:black;font-size:18pt">${dto.car_name }</span><span style="color:black">${dto.car_manufacturer }</span>
-										<img width="100%" weight="200" src="resources/car/${dto.car_image}"/>
+										<img width="100%" weight="200" src="/src/main/webapp/resources/car/${dto.car_image}"/>
 										<div class="desc">
 											<p align="center" style="color:#0090f0">실시간 예약 가능 차량 : ${dto.actot }</p>
 										</div>
@@ -275,9 +276,9 @@
 													<c:forEach items="${dto.blist }" var="bdto" varStatus="status">
 													<tr style="font-size:8pt;border-bottom: hidden">
 														<td height="50px" align="center" style="border-right: hidden">${bdto.branch_name }</td>
-														<td align="center" style="border-right: hidden">4.5</td>
-														<td align="center" style="border-right: hidden">${bdto.car_kind_price_weekView }원</td>
-														<td align="center" style="border-right: hidden">${bdto.insurance_priceView }원</td>
+														<td align="center" style="border-right: hidden">${bdto.car_kind_rating }</td>
+														<td align="center" style="border-right: hidden">${bdto.totalrent }원</td>
+														<td align="center" style="border-right: hidden">${bdto.totalinsurance }원</td>
 														<td align="center" style="border-right: hidden">${bdto.insurance_limit }원</td>
 														<td align="center" style="border-right: hidden">${bdto.totView }원</td>
 														<td align="center">													

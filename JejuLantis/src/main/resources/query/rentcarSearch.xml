@@ -8,6 +8,8 @@
 	<result column="CAR_TYPE" property="car_type"/>
 	<result column="CAR_PASSENGER" property="car_passenger"/>
 	<result column="CAR_FUEL" property="car_fuel"/>	
+	<result column="CAR_RATING" property="car_rating"/>	
+	<result column="CAR_COUNT" property="car_count"/>	
 	<result column="MTOT" property="mtot"/>
 	<result column="ACTOT" property="actot"/>
 	<result column="CAR_IMAGE" property="car_image"/>
@@ -47,6 +49,8 @@ SELECT
     CAR_TYPE,
     CAR_PASSENGER,
     CAR_FUEL,
+    CAR_RATING,
+    CAR_COUNT,
     MTOT,
     SUM(AC) OVER(PARTITION BY CAR_NO) ACTOT,
     CAR_IMAGE,
@@ -54,6 +58,8 @@ SELECT
     BRANCH_NAME,
     CAR_KIND_PRICE_WEEK,
     INSURANCE_PRICE,
+    TOTALRENT,
+    TOTALINSURANCE,
     INSURANCE_LIMIT,
     TOT,
     BRANCH_NO,
@@ -66,7 +72,9 @@ SELECT
     CAR_KIND_BLACKBOX,
     CAR_KIND_SUNROOF,
     CAR_KIND_CAMERA,
-    CAR_KIND_NONSMOKE
+    CAR_KIND_NONSMOKE,
+	CAR_KIND_RATING,
+	CAR_KIND_COUNT
 FROM
     CAR
 NATURAL JOIN
@@ -76,6 +84,8 @@ NATURAL JOIN
         CAR_KIND_PRICE_WEEK,
         INSURANCE_PRICE,
         INSURANCE_LIMIT,
+    TOTALRENT,
+    TOTALINSURANCE,
         MTOT,
         TOT,
         BRANCH_NO,
@@ -88,7 +98,9 @@ NATURAL JOIN
         CAR_KIND_BLACKBOX,
         CAR_KIND_SUNROOF,
         CAR_KIND_CAMERA,
-        CAR_KIND_NONSMOKE
+        CAR_KIND_NONSMOKE,
+		CAR_KIND_RATING,
+		CAR_KIND_COUNT
     FROM
         BRANCH
     NATURAL JOIN
@@ -99,6 +111,8 @@ NATURAL JOIN
             INSURANCE_LIMIT,
             MIN(CAR_KIND_PRICE_WEEK+INSURANCE_PRICE) OVER(PARTITION BY CAR_NO) AS MTOT,
             (CAR_KIND_PRICE_WEEK * #{weekTime}+CAR_KIND_PRICE_WEEKEND * #{weekendTime} + INSURANCE_PRICE * #{period}) AS TOT,
+			(CAR_KIND_PRICE_WEEK * #{weekTime}+CAR_KIND_PRICE_WEEKEND * #{weekendTime}) AS TOTALRENT,
+			(INSURANCE_PRICE * #{period}) AS TOTALINSURANCE,
             BRANCH_NO,
             CAR_NO,
             INSURANCE_NO,
@@ -109,7 +123,9 @@ NATURAL JOIN
             CAR_KIND_BLACKBOX,
             CAR_KIND_SUNROOF,
             CAR_KIND_CAMERA,
-            CAR_KIND_NONSMOKE
+            CAR_KIND_NONSMOKE,
+            CAR_KIND_RATING,
+            CAR_KIND_COUNT
         from
             INSURANCE
         natural join
@@ -182,8 +198,8 @@ NATURAL JOIN
 		AND
 			CAR_KIND_NO = #{car_kind_no}
 		</if>
-        ORDER BY
-            MTOT
+<!--         ORDER BY
+            MTOT -->
         )
 	WHERE
 		BRANCH_WITHDRAW_AT='N'
@@ -191,7 +207,7 @@ NATURAL JOIN
 <where>
 	CAR_WITHDRAW_AT='N'
 	<if test="car_name != '' and car_name != null ">
-		CAR_NAME=#{car_name}
+		CAR_NAME like '%'||#{car_name}||'%'
 	</if>
 	<if test="car_type != null">
 		AND CAR_TYPE IN
@@ -212,6 +228,31 @@ NATURAL JOIN
 		</foreach>
 	</if>
 </where>
+<choose>
+	<when test= "#{sort} == 'rating' ">
+		ORDER BY
+		CAR_RATING,
+		CAR_KIND_RATING,
+		ACTOT,
+		CAR_KIND_COUNT		
+	</when>
+	<when test= "#{sort} == 'count' ">
+		ORDER BY
+		CAR_COUNT,
+		CAR_KIND_COUNT,
+		ACTOT,
+		CAR_KIND_RATING		
+	</when>
+	<otherwise>
+		ORDER BY
+		MTOT,
+		ACTOT,
+		CAR_KIND_COUNT,
+		CAR_KIND_RATING
+	</otherwise>
+</choose>
+
+
 </select>
 <select id ="confirmremainder" parameterType="SearchRequirements" resultType="long">
 select

@@ -244,7 +244,6 @@ $(document).ready(function(){
      </script>
 <script type="text/javascript">
     function idOpen() {
-        alert("아이디검색");
         win_post = window.open('./idpost', "idpost",
 				"toolbar=no ,width=450 ,height=400 ,directories=yes,"
 						+ "status=yes,scrollbars=yes,menubar=yes");

@@ -1,5 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page session="false" %>
+<%@ page session="true" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@page import="com.khd.jejulantis.model.Notice"%>
@@ -117,9 +117,9 @@
 														<th  width="15%" class="text-center" style="background-color: #dcdcdc">등록일</th>
 														<th  width="155%" class="text-center" style="background-color: #dcdcdc">조회수</th>
 													</tr>
-													<c:if test="${empty toplist}">
-														<tr>
-												           <td align="center" colspan="4">데이터가 없음</td>
+													<c:if test="${empty toplist && empty list}">
+														<tr style="font-size:10pt;background-color:#fafafa" height="60px">
+												           <td align="center" colspan="4">공지사항이 없습니다.</td>
 												        </tr>
 													</c:if>
 													<c:forEach items="${toplist}" var="topnotice">
@@ -130,11 +130,6 @@
 														<td align="center">${topnotice.announce_hits}</td>
 													</tr>
 													</c:forEach>
-													<c:if test="${empty list}">
-														<tr>
-												           <td align="center" colspan="4">데이터가 없음</td>
-												        </tr>
-													</c:if>
 													<c:forEach items="${list}" var="notice">
 													<tr style="font-size:10pt" height="60px">
 														<td align="center">${notice.announce_no}</td>

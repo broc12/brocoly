@@ -141,7 +141,7 @@ public class Qna {
 		return "";
 		else return "";
 	}
-
+	
 	public Date getQna_resist() {
 		return qna_resist;
 	}

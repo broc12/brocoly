@@ -144,7 +144,7 @@
 							<tr style="font-size:10pt" height="60px">
 								<td align="center"></td>
 								<td align="right">
-									<button type="button" class="btn btn-primary"><a href="carDetail.do?manager_id=${managerlog.manager_id}" style="color:white">목록</a></button>
+									<button type="button" class="btn btn-primary"><a href="carInfo.do?manager_id=${managerlog.manager_id}" style="color:white">목록</a></button>
 									<button type="button" class="btn btn-primary" onclick="check()">수정</button>
 								</td>
 							</tr>

@@ -31,7 +31,6 @@ public class CustomerCenterDaoImpl implements CustomerCenterDao {
 	@Override
 	public List<Qna> qnaAdminList() {
 		List<Qna> qnaList = sqlSession.selectList(nsQna+".myAdminSelectAll");
-		System.out.println("qna ������"+ qnaList.size());
 		return qnaList;
 	}
 	@Override

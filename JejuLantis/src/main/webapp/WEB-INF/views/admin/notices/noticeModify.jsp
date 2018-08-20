@@ -90,14 +90,14 @@
 				<tr style="font-size:10pt" height="60px">
 					<td align="center" style="background-color: #fafafa">중요</td>
 					<td align="left">
-						&nbsp;&nbsp;&nbsp;<input type="checkbox" name="topYn" <c:if test="${update.announce_top eq 'Y' }">checked</c:if>>
+						&nbsp;&nbsp;&nbsp;<input type="checkbox" id="topYn" name="topYn" <c:if test="${update.announce_top eq 'Y' }">checked</c:if>>
 					</td>
 				</tr>
 				<tr style="font-size:10pt" height="60px">
 					<td align="center"></td>
 					<td align="right">
 						<button type="button" class="btn btn-primary"><a href="service.do" style="color:white">목록</a></button>
-						<button type="submit" class="btn btn-primary" onclick="check()">수정완료</button>
+						<button type="button" class="btn btn-primary" onclick="check()">수정완료</button>
 					</td>
 				</tr>
 			</table>

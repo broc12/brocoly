@@ -42,7 +42,7 @@
 
 	<script>
 	function goDel (v){
-		if (confirm("정말 삭제하시겠습니까??"+v) == true){    //확인
+		if (confirm("정말 삭제하시겠습니까??") == true){    //확인
 			location.href="noticedel.do?announce_no="+v;
 		}else{   //취소
 		    return;
@@ -89,13 +89,7 @@
                   <th>
                   </th>
                 </tr>
-               	<c:if test="${empty totallist}">
-					<tr>
-			           <td align="center" colspan="6">데이터가 없음</td>
-			        </tr>
-				</c:if>
               </thead>
-
               <tbody>
               <c:forEach items="${totallist}" var="notice">
                 <tr>

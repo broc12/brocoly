@@ -49,15 +49,9 @@
                   <th>작성자</th>
                   <th>등록일</th>
                   <th>답변상태</th>
-                  <th></th>
                 </tr>
               </thead>
               <tbody>
-                <c:if test="${empty list}">
-  				 <tr>
-   					<td align="center" colspan="5">데이터가 없음</td>
-   				 </tr>
-				</c:if>
               <c:forEach items="${list}" var="board">
                 <tr>
                   <td>${board.qna_group}</td>
@@ -65,10 +59,14 @@
                   <td>${board.qna_name}</td>
                   <td>${board.qna_resist}</td>
                   <td>
+                  <c:choose>
+                  <c:when test="${board.qna_answer_check == 0}">
+                  <button type="button" class="btn"><a href="answer.do?qna_no=${board.qna_no}">답변등록</a></button>
+                  </c:when>
+                  <c:otherwise>
                   	<a style="color:green">${board.qna_answer_checkString}</a>
-                  </td>
-                  <td>
-                  	<button type="button" class="btn"><a href="answer.do?qna_no=${board.qna_no}">답변등록</a></button>
+                  	</c:otherwise>
+                  	</c:choose>
                   </td>
                 </tr>
                 </c:forEach>

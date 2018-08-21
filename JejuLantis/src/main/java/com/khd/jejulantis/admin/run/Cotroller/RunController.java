@@ -41,7 +41,7 @@ public class RunController {
 	public String adminDelete(@RequestParam("manager_no")long manager_no ,HttpSession session) {
 		Manager log = (Manager)session.getAttribute("managerlog");
 		rservice.adminApproveDeleteSelect(manager_no);
-		return "redirect:admin.do?manager_id"+log.getManager_id();
+		return "redirect:admin.do?manager_id="+log.getManager_id();
 	}
 	@RequestMapping(value="admin/adminContentList.do",method=RequestMethod.GET)
 	public ModelAndView adminContent(@RequestParam("manager_no")long manager_no ,HttpSession session) {

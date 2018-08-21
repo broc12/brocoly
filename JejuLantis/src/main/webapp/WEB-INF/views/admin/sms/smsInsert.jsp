@@ -44,7 +44,7 @@
   <script>
   $(document).ready(function(){
 	  $("#checkall").click(function(){
-			alert("hi");
+// 			alert("hi");
 				//클릭되었어요
 				if($("#checkall").prop("checked")){
 					$("input[type='checkbox']").prop("checked",true);

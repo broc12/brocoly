@@ -71,7 +71,7 @@
                   <td>${adminList.manager_resist_member}</td>
                   <td>
                   <button type="button" class="btn btn-defalut btn-sm"><a href="adminContentList.do?manager_no=${adminList.manager_no}">세부내용</a></button>
-                  <button type="button" class="btn btn-defalut btn-sm"><a href="adminUpdate.do?manager_no=${adminList.manager_no}">수정</a></button>
+<%--                   <button type="button" class="btn btn-defalut btn-sm"><a href="adminUpdate.do?manager_no=${adminList.manager_no}">수정</a></button> --%>
                   <button type="button" class="btn btn-defalut btn-sm"><a href="adminDelete.do?manager_no=${adminList.manager_no}">탈퇴</a></button>
                   </td>
                 </tr>

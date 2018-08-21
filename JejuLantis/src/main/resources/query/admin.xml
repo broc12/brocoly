@@ -48,11 +48,17 @@
 		and MANAGER.BRANCH_NO = (select BRANCH_NO from MANAGER where MANAGER_ID=#{manager_id} and MANAGER_WITHDRAW_AT='N')
 		<!-- 			and MANAGER.MANAGER_NO != (select MANAGER_NO from MANAGER where MANAGER_ID=#{manager_id}) -->
 	</select>
-
+	<select id="adminApproveContent" resultType="Admin" parameterType="long">
+		select MANAGER.*, BRANCH.BRANCH_NAME from MANAGER, BRANCH where MANAGER.MANAGER_WITHDRAW_AT='N' and MANAGER.BRANCH_NO = BRANCH.BRANCH_NO
+		and MANAGER.MANAGER_NO = #{manager_no}
+	</select>
 	<select id="adminList2" resultType="Admin">
 		select MANAGER.*, BRANCH.BRANCH_NAME from MANAGER, BRANCH where MANAGER.MANAGER_WITHDRAW_AT='N' and MANAGER.BRANCH_NO = BRANCH.BRANCH_NO
 	</select>
-	<update id="adminDelete" parameterType="long">
+	<update id="adminApproveDelete" parameterType="long">
+		update MANAGER set MANAGER_WITHDRAW_AT='Y' where MANAGER_NO=#{manager_no} 
+	</update>
+	<update id="adminApproveNo" parameterType="long">
 		update MANAGER set MANAGER_WITHDRAW_AT='T' where MANAGER_NO=#{manager_no} 
 	</update>
 	<update id="adminApproveYes" parameterType="long">

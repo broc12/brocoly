@@ -33,4 +33,17 @@ public class ReviewServiceImpl implements ReviewService {
 	public void reviewInsertService(ReviewContent reviewContent) {
 		reviewDAO.reviewInsert(reviewContent);
 	}
+	@Override
+	public int getCarkindCount(int car_kind_no) {
+		return reviewDAO.reviewCarkindCount(car_kind_no);
+	}
+	@Override
+	public int getCarCount(int car_no) {
+		return reviewDAO.reviewCarCount(car_no);
+	}
+	@Override
+	public int getBranchCount(int branch_no) {
+		return reviewDAO.reviewBranchCount(branch_no);
+	}
+	
 }

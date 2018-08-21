@@ -11,4 +11,5 @@ public interface BranchDAO {
 	List<Branch>full(long branch_no);
 	void modify(Branch branch);
 	void withdraw(long branch_no);
+	void modify(int branch_no, double branch_set1);
 }

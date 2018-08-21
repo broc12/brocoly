@@ -69,4 +69,8 @@ public class CarkindDetailServiceImpl implements CarkindDetailService {
 	public List<CarkindDetail> listAllService() {
 		return carkindDAO.listAll();
 	}
+	@Override
+	public void UpdateService(int car_kind_no, double car_kind_set1) {
+		carkindDAO.update(car_kind_no, car_kind_set1);
+	}
 }

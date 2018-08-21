@@ -28,7 +28,7 @@ public class ApproveDaoImpl implements ApproveDao {
 	}
 	@Override
 	public void adminApproveNo(long manager_no) {
-		sqlSession.update(ns+".adminDelete", manager_no);
+		sqlSession.update(ns+".adminApproveNo", manager_no);
 	}
 	@Override
 	public List<Admin> adminApproveList(long branch_no) {

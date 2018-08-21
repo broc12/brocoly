@@ -48,4 +48,23 @@ public class ReviewDAOImpl implements ReviewDAO {
 	public void reviewInsert(ReviewContent reviewContent) {
 		sqlSession.insert(ns_reviewContent+".reviewInsert", reviewContent);
 	}
+	@Override
+	public int reviewCarCount(int car_no) {
+		int reviewCarCount = sqlSession.selectOne(ns_reviewContent+".car_count", car_no);
+		System.out.println("reviewCarCount : "  + reviewCarCount);
+		return reviewCarCount;
+	}
+	@Override
+	public int reviewCarkindCount(int car_kind_no) {
+		int reviewCarkindCount = sqlSession.selectOne(ns_reviewContent+".car_kind_count", car_kind_no);
+		System.out.println("reviewCarkindCount : "  + reviewCarkindCount);
+		return reviewCarkindCount;
+	}
+	@Override
+	public int reviewBranchCount(int branch_no) {
+		int reviewBranchCount = sqlSession.selectOne(ns_reviewContent+".branch_count", branch_no);
+		System.out.println("reviewBranchCount : "  + reviewBranchCount);
+		return reviewBranchCount;
+	}
+	
 }

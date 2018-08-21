@@ -54,71 +54,67 @@
 		})
   })
   </script>
-<!--   <script type="text/javascript" charset="utf-8"> -->
-<!-- //   	function  -->
-  	
-<!--   </script> -->
   <script>
-  var length=0;
-  var length_select=0;
-  var list = [];
-	function smsAjax(){
-		alert("성공");	
-		$.ajax({
-			url : "smsAjax.do",
-			type : "get",
-			success : function(responseData){
-				length=responseData.length;
-				console.log(responseData);
-// 				alert(responseData.length);
-				$("#smsAjaxSub").empty();
-				var html = "";
-				html += "<table border='1' width='50%' cellpadding='1' id='smsAjaxSub2'>";
-				html += "<tr>";
-				html += "<th>멤버코드</th>";
-				html += "<th>이름</th>";
-				html += "<th>이메일</th>";
-				html += "<th>선택</th>";
-				html += "</tr>";
-// 				alert("성공1");
-				if(responseData.length != 0){
-					for (var i=0; i<responseData.length; i++){
-						html += "<tr>";
-						html += "<td align='center'>"+responseData[i].member_no+"</td>";
-						html += "<td align='center'>"+responseData[i].member_name+"</td>";
-						html += "<td align='center'>"+responseData[i].member_email+"</td>";
-						html += "<td align='center'><input type='checkbox' 'id="+responseData[i].member_no+" name='smsEmail' value="+responseData[i].member_email+"></td>";
-						html += "</tr>";
-// 						list.push(responseData[i].member_email);
-					}
-// 					alert("성공1");
-				}else{
-					html += "<tr>";
-					html += "<td colspan='4' align='center'>조회된 결과가 없습니다.</td>";
-	                html += "</tr>";
-				}
-				html += "</table>";
-// 				alert("성공1");
-				$("#smsAjaxResult").append(html);
-			}
-		})
-	}
-	function check(){
-// 		var html = "";
-// 		var isChecked = "";
-// 		var list_select = [];
-// 		$("#smsEmailResult").empty();
-// 		for(var i=1;i<=length;i++){		  
-// 			if($("input:checkbox[id="+i+"]").is(":checked")){
-// 				list_select.push(list[i]);
+//   var length=0;
+//   var length_select=0;
+//   var list = [];
+// 	function smsAjax(){
+// 		alert("성공");	
+// 		$.ajax({
+// 			url : "smsAjax.do",
+// 			type : "get",
+// 			success : function(responseData){
+// 				length=responseData.length;
+// 				console.log(responseData);
+// // 				alert(responseData.length);
+// 				$("#smsAjaxSub").empty();
+// 				var html = "";
+// 				html += "<table border='1' width='50%' cellpadding='1' id='smsAjaxSub2'>";
+// 				html += "<tr>";
+// 				html += "<th>멤버코드</th>";
+// 				html += "<th>이름</th>";
+// 				html += "<th>이메일</th>";
+// 				html += "<th>선택</th>";
+// 				html += "</tr>";
+// // 				alert("성공1");
+// 				if(responseData.length != 0){
+// 					for (var i=0; i<responseData.length; i++){
+// 						html += "<tr>";
+// 						html += "<td align='center'>"+responseData[i].member_no+"</td>";
+// 						html += "<td align='center'>"+responseData[i].member_name+"</td>";
+// 						html += "<td align='center'>"+responseData[i].member_email+"</td>";
+// 						html += "<td align='center'><input type='checkbox' 'id="+responseData[i].member_no+" name='smsEmail' value="+responseData[i].member_email+"></td>";
+// 						html += "</tr>";
+// // 						list.push(responseData[i].member_email);
+// 					}
+// // 					alert("성공1");
+// 				}else{
+// 					html += "<tr>";
+// 					html += "<td colspan='4' align='center'>조회된 결과가 없습니다.</td>";
+// 	                html += "</tr>";
+// 				}
+// 				html += "</table>";
+// // 				alert("성공1");
+// 				$("#smsAjaxResult").append(html);
 // 			}
-// 	  	}
-// 	  	for(var i=1;i<=length_select;i++){
-// 			html += "<input type='hidden' name='smsEmail' value="+list_select[i]+"/>";
-// 	  	}
-// 	  	$("#smsEmailResult").append(html);
-	  	document.f.submit();
-	}
+// 		})
+// 	}
+ 	function check(){
+// // 		var html = "";
+// // 		var isChecked = "";
+// // 		var list_select = [];
+// // 		$("#smsEmailResult").empty();
+// // 		for(var i=1;i<=length;i++){		  
+// // 			if($("input:checkbox[id="+i+"]").is(":checked")){
+// // 				list_select.push(list[i]);
+// // 			}
+// // 	  	}
+// // 	  	for(var i=1;i<=length_select;i++){
+// // 			html += "<input type='hidden' name='smsEmail' value="+list_select[i]+"/>";
+// // 	  	}
+// // 	  	$("#smsEmailResult").append(html);
+ 	  	document.f.submit();
+ 	}
   </script>	
 
   <div class="content-wrapper">
@@ -128,28 +124,47 @@
         <li class="breadcrumb-item">
           <a href="#">JEJULANTIS</a>
         </li>
-        <li class="breadcrumb-item active">sms관리</li>
+        <li class="breadcrumb-item active">이메일관리</li>
       </ol>
       <!-- Example DataTables Card-->
       <div class="card mb-3">
         <div class="card-header">
-          <i class="fa fa-table"></i>sms관리</div>
+          <i class="fa fa-table"></i>이메일관리</div>
 	        <div class="card-body">
 	          <div class="table-responsive">
 	          	<form name="f" action="mailSenderOk.do" method="post">
-					<div align="center">받는 사람 이메일
-						<input type="button" value="눌러주세요" onclick="smsAjax()"/>
-<!-- 						<table border='1' width='50%' cellpadding='1' id='smsAjaxSub'> -->
-<!-- 							<tr> -->
-<!-- 								<th>멤버코드</th> -->
-<!-- 								<th>이름</th> -->
-<!-- 								<th>이메일</th> -->
-								<th>전체선택&nbsp;<input type='checkbox' id='checkall' name='checkall'/></th>
-<!-- 							</tr> -->
-<!-- 						</table> -->
-						<div id="smsAjaxResult">
-						</div>
-					</div>
+<!-- 					<div align="center">받는 사람 이메일 -->
+<!-- 						<input type="button" value="눌러주세요" onclick="smsAjax()"/> -->
+							<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" style="font-size:8pt">
+				              <thead>
+				                <tr>
+				                  <th width="5%">멤버일련번호</th>
+				                  <th width="5%">이름</th>
+				                  <th width="5%">이메일</th>
+				                  <th width="5%">전체선택&nbsp;<input type='checkbox' id='checkall' name='checkall'/></th>             
+				                </tr>
+				              </thead>
+				              <tbody>
+				              <c:forEach items="${emailSenderList}" var="emailSenderList" varStatus="status">
+				                <tr>
+									<td>${emailSenderList.member_no}</td>
+									<td>${emailSenderList.member_name}</td>
+									<td>${emailSenderList.member_email}</td>
+				                	<td align='center'>
+<%-- 				                    <button type="button" class="btn btn-defalut btn-sm"><a href="insuranceContent.do?insurance_no=${insuranceList.insurance_no}">세부내용</a></button> --%>
+<%-- 				                  	<button type="button" class="btn btn-defalut btn-sm"><a href="insuranceUpdate.do?insurance_no=${insuranceList.insurance_no}&manager_id=${managerlog.manager_id}">수정</a></button> --%>
+<%-- 				                  	<button type="button" class="btn btn-defalut btn-sm"><a href="insuranceDelete.do?insurance_no=${insuranceList.insurance_no}&manager_id=${managerlog.manager_id}">삭제</a></button> --%>
+				                		<input type='checkbox' 'id="member_no" name='smsEmail' value="${emailSenderList.member_email}">
+				                	</td>                  
+				                </tr>
+				                </c:forEach>
+				              </tbody>
+				            </table>
+								
+
+<!-- 						<div id="smsAjaxResult"> -->
+<!-- 						</div> -->
+<!-- 					</div> -->
 					<div align="center"><!-- 제목 -->
 						<input type="text" name="title" id="title" size="120" style="width:100%" placeholder="제목을 입력해주세요" class="form-control" >
 					</div>

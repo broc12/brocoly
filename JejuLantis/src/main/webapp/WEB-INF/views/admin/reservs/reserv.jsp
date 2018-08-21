@@ -25,7 +25,6 @@
 <body class="fixed-nav sticky-footer bg-dark" id="page-top">
 <%@ include file="../top/top2.jspf" %>
   <!-- Navigation-->
-
   <div class="content-wrapper">
     <div class="container-fluid">
       <!-- Breadcrumbs-->
@@ -70,7 +69,20 @@
                   <td>${list.payment.rent_payment_total_price}</td>
                   <td>${list.payment.rent_payment_way}</td>
                   <td>${list.payment.rent_payment_discount}</td>
-                  <td><a style="color:red" href="reservfull.do?rent_reserv_no=${list.rent_reserv_no}">배정대기중</a></td>
+                  <td>
+                  <c:choose>
+                  <c:when test = '${empty list.car_info_no}'>
+                  <div>
+                  	<a style="color:red" href="reservfull.do?rent_reserv_no=${list.rent_reserv_no}">배정대기중</a>
+                  </div>
+                  </c:when>
+                  <c:otherwise>
+                  <div>
+                  	<a style="color:green" href="reservfull.do?rent_reserv_no=${list.rent_reserv_no}">배차완료</a>
+                  </div>
+                  </c:otherwise>
+                  </c:choose>
+                  </td>
                 </tr>
               </c:forEach>
             </table>

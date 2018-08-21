@@ -52,5 +52,9 @@ public class CarServiceImpl implements CarService{
 	public void updateService(int car_no, double car_set1) {
 		carDAO.update(car_no, car_set1);
 	}
+	@Override
+	public void mdService(List<Long>md) {
+		carDAO.md(md);
+	}
 	
 }

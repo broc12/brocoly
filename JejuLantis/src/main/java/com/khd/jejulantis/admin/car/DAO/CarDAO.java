@@ -13,4 +13,5 @@ public interface CarDAO {
 	void update(Car car);
 	void best(List<Long>best);
 	void update(int car_no, double car_set1);
+	void md(List<Long>md);
 }

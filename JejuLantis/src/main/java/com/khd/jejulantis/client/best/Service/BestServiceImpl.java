@@ -17,4 +17,9 @@ public class BestServiceImpl implements BestService{
 	public List<Car>bestlistService(){
 		return carDAO.bestlist();
 	}
+	
+	@Override
+	public List<Car>mdlistService(){
+		return carDAO.mdlist();
+	}
 }

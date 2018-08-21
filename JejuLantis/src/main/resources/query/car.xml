@@ -71,5 +71,26 @@
 	<select id="myBestlist" resultType="Car">
 		SELECT * from CAR where car_withdraw_at='N' and car_best='Y'
 	</select>
+	
+	<!-- MD추천 -->
+	<update id="myMdN" parameterType="String">
+	Update CAR set car_md='N'
+	</update>
+	
+	<update id="myMdY" parameterType="HashMap">
+	Update CAR set car_md='Y'
+	<where>
+		<if test="md != '' and md != null ">
+		car_no in
+		<foreach item="item" index="index" open="(" separator="," close=")" collection="md">
+		#{item}
+		</foreach>
+		</if>
+	</where>
+	</update>
+	
+	<select id="myMdlist" resultType="Car">
+		SELECT * from CAR where car_withdraw_at='N' and car_md='Y'
+	</select>
 
 </mapper>

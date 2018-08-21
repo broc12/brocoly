@@ -58,4 +58,13 @@ public class CarDAOImpl implements CarDAO{
 		map.put("car_set1", car_set1);
 		sqlSession.update(ns+".myUpdate1", map);
 	}
+	@Override
+	public void md(List<Long>md) {
+		sqlSession.update(ns+".myMdN");
+		if(md != null) {
+			HashMap<String,List<Long>>map = new HashMap<String,List<Long>>();
+			map.put("md", md);
+			sqlSession.update(ns+".myMdY",map);
+		}
+	}
 }

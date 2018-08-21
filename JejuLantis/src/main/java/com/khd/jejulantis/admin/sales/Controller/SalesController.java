@@ -1,4 +1,4 @@
-package com.khd.jejulantis.client.paymentCancle.controller;
+package com.khd.jejulantis.admin.sales.Controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,11 +10,11 @@ import com.khd.jejulantis.client.paymentCancle.service.PaymentCancleService;
 
 
 @Controller
-public class PaymentCancleController {
+public class SalesController {
 	@Autowired
 	private PaymentCancleService service;
 	
-	@RequestMapping(value="paymentCancle.do", method=RequestMethod.GET)
+	@RequestMapping(value="payment.do", method=RequestMethod.GET)
 	public void paymentCancle(@RequestParam("rent_reserv_no") long rent_reserv_no, @RequestParam("rent_payment_no") long rent_payment_no) {
 		System.out.println("rent_reserv_no "+ rent_reserv_no );
 		System.out.println("rent_payment_no "+ rent_payment_no );

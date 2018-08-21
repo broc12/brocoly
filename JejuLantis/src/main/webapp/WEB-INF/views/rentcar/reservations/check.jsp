@@ -57,6 +57,11 @@
 <!--[if lt IE 9]>
 <script src="js/respond.min.js"></script>
 <![endif]-->
+<script>
+function()
+</script>
+
+
 
 </head>
 <body>
@@ -114,7 +119,11 @@
 					 	<img src="resources/rentcar/images/예약완료.jpg" width=100% height=50%>
 					 	<ul class="pagination">
 							<li><a href="">결제영수증</a></li>
-							<li><a class="nav-link" data-toggle="modal" data-target="#exampleModal">예약취소</a></li>
+							<li><a class="nav-link" data-toggle="modal" data-target="#exampleModal">예약취소</a>
+							<input type="hidden" id="rent_reserv_no" name="rent_reserv_no" value="${list.rent_reserv_no}">
+							<input type="hidden" id="rent_payment_no" name="rent_payment_no" value="${list.payment.rent_payment_no}">
+									
+							</li>
 							<c:set var="data" value="${list.rent_reserv_cancel_at}" />
 							<c:if test="${data eq 'C'}">
 								<li><a href="reviewInsert.do?rent_reserv_no=${list.rent_reserv_no}">이용후기</a></li>
@@ -175,17 +184,7 @@
 					 </td>
 					</tr>
 				</table></br>
-				</c:forEach>
-				
-			</div>				
-		</div>
-			</div>
-		</div>
-	</div>
-	</div>
-	</div>
-</div>
-		<!-- 모달시작 -->
+					<!-- 모달시작 -->
 		<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 	      <div class="modal-dialog" role="document">
 	        <div class="modal-content">
@@ -201,7 +200,7 @@
 	          <div class="modal-footer">
 	            <ul class="pagination">
 					<li><a data-dismiss="modal">닫기</a></li>
-					<li><a href="">예약취소</a></li>
+					<li><a href="paymentCancle.do?rent_reserv_no=${list.rent_reserv_no}&rent_payment_no=${list.payment.rent_payment_no}">예약취소</a></li>
 					<%-- paymentCancle.do?rent_reserv_no=${list.rent_reserv_no}&rent_payment_no=${list.payment.rent_payment_no} --%>
 				</ul>
 	          </div>
@@ -209,6 +208,17 @@
 	      </div>
 	    </div>
 		<!-- 모달끝 -->
+				</c:forEach>
+				
+			</div>				
+		</div>
+			</div>
+		</div>
+	</div>
+	</div>
+	</div>
+</div>
+		
 				<!-- SIDEBAR-->
 				<div class="col-md-3">
 					<div class="sidebar-wrap">
@@ -334,6 +344,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 
 <!-- Main -->
 	<script src="resources/rentcar/js/main.js"></script>
+	
 
 	</body>
 </html>

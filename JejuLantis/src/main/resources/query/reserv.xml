@@ -84,11 +84,11 @@
    <update id="cancleReserve">
    	Update RENT_RESERV set RENT_RESERV_CANCEL_AT ='Y', RENT_RESERV_CANCEL_DATE=SYSDATE WHERE RENT_RESERV_NO = #{rent_reserv_no}
    </update>
-   <select id="timeDifference">
-	SELECT ROUND((RENT_RESERV_START-SYSDATE)*24) from RENT_RESERV;
+   <select id="timeDifference" resultType="Integer">
+	SELECT ROUND((RENT_RESERV_START-SYSDATE)*24) from RENT_RESERV WHERE RENT_RESERV_NO = #{rent_reserv_no}
    </select>
-   <select id="afterPaymentTime">
-	SELECT ROUND((SYSDATE-RENT_RESERV_RESIST)*24) from RENT_RESERV;
+   <select id="afterPaymentTime" resultType="Integer">
+	SELECT ROUND((SYSDATE-RENT_RESERV_RESIST)*24) from RENT_RESERV WHERE RENT_RESERV_NO = #{rent_reserv_no}
    </select>
   
    

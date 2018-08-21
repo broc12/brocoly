@@ -52,10 +52,6 @@ public class AdminController {
 	public String member() {
 		return "admin/members/member";
 	}*/
-	@RequestMapping(value="admin/payment.do",method=RequestMethod.GET)
-	public String payment() {
-		return "admin/payments/payment";
-	}
 //	@RequestMapping(value="admin/admin.do",method=RequestMethod.GET)
 //	public String admin() {
 //		return "admin/admins/admin";

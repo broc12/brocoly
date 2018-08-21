@@ -202,6 +202,7 @@
 	            <ul class="pagination">
 					<li><a data-dismiss="modal">닫기</a></li>
 					<li><a href="">예약취소</a></li>
+					<%-- paymentCancle.do?rent_reserv_no=${list.rent_reserv_no}&rent_payment_no=${list.payment.rent_payment_no} --%>
 				</ul>
 	          </div>
 	        </div>

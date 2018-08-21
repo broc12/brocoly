@@ -122,6 +122,7 @@ public class RentcarController {
 		List<Reserv>list = reservService.listService(member_no);
 		String view = "rentcar/reservations/check";
 		ModelAndView mv = new ModelAndView(view,"list",list);
+		System.out.println(list.toString());
 		return mv;
 	}
 }

@@ -51,7 +51,7 @@
    		select * from BRANCH where branch_no=#{branch_no}
    </select>
 	<update id="myModify1" parameterType="HashMap">
-		update BRANCH set branch_rating=#{branch_rating} where branch_no=#{branch_no}
+		update BRANCH set branch_rating=#{branch_set1} where branch_no=#{branch_no}
 	</update>   
     <update id="myModify" parameterType="Branch">
    	Update BRANCH set branch_name=#{branch_name}, branch_tel=#{branch_tel},branch_fax=#{branch_fax},

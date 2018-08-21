@@ -49,7 +49,7 @@
 	</update>
 	
 	<update id="myUpdate1" parameterType="HashMap">
-	Update CAR set car_rating=#{car_rating} where car_no=#{car_no}
+	Update CAR set car_rating=#{car_set1} where car_no=#{car_no}
 	</update>
 	
 	<update id="myBestN" parameterType="String">

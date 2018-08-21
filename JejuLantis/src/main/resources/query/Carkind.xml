@@ -67,7 +67,7 @@
 		}
 	</update>
 	<update id="update1" parameterType="HashMap">
-		update CAR_KIND set CAR_KIND_RATING=#{car_kind_rating} where CAR_KIND_NO=#{car_kind_no} 
+		update CAR_KIND set CAR_KIND_RATING=#{car_kind_set1} where CAR_KIND_NO=#{car_kind_no} 
 	</update>
 	<insert id="insert" parameterType="CarKind">
 		insert into CAR_KIND values(CAR_KIND_SEQ.NEXTVAL, #{branch_no}, 

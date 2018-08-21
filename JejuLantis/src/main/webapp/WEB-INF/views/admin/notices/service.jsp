@@ -78,26 +78,25 @@
         <div class="card-body">
         <button type="button" class="btn btn-primary btn-xs" align="right"><a href="notice.do" style="color:white">공지쓰기</a></button></br></br>
           <div class="table-responsive">
-            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" data-order='[[ 0, "desc" ]]'>
               <thead>
                 <tr>
-                <th>중요도</th>
-                  <th>번호</th>
-                  <th>제목</th>
-                  <th>등록일</th>
-                  <th>조회수</th>
-                  <th>
-                  </th>
+					<th>번호</th>
+                	<th>중요도</th>
+					<th>제목</th>
+					<th>조회수</th>
+					<th>등록일</th>
+					<th></th>
                 </tr>
               </thead>
               <tbody>
               <c:forEach items="${totallist}" var="notice">
                 <tr>
-                <td>${notice.announce_top}</td>
                   <td>${notice.announce_no}</td>
+                <td>${notice.announce_top}</td>
                   <td>${notice.announce_title}</td>
-                  <td>${notice.announce_resist}</td>
                   <td>${notice.announce_hits}</td>
+                  <td>${notice.announce_resist}</td>
                   <td>
                   	<button type="button" class="btn btn-defalut btn-sm"><a href="noticeModify.do?announce_no=${notice.announce_no}">수정</a></button>
                   	<button type="button" class="btn btn-defalut btn-sm">

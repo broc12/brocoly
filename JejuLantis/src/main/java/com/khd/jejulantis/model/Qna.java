@@ -166,6 +166,22 @@ public class Qna {
 		this.member_no = member_no;
 	}
 
+	public Long getMember_noRef() {
+		if(member_no == -1) {
+			return null;
+		}else {
+			return member_no;
+		}
+	}
+
+	public void setMember_no(Long member_no) {
+		if(member_no == null) {
+			this.member_no = -1;
+		}else {
+			this.member_no = member_no;
+		}
+	}
+
 	public int getManager_no() {
 		return manager_no;
 	}

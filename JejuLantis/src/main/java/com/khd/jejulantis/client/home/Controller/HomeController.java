@@ -2,6 +2,7 @@ package com.khd.jejulantis.client.home.Controller;
 
 import java.util.List;
 
+import org.joda.time.DateTime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.khd.jejulantis.client.best.Service.BestService;
+import com.khd.jejulantis.client.rentcar.Service.RentcarService;
 import com.khd.jejulantis.model.Car;
 
 /**
@@ -23,12 +25,16 @@ public class HomeController {
 	
 	@Autowired
 	private BestService service;
+	@Autowired
+	private RentcarService rentcarservice;
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public ModelAndView home() {
 		List<Car>bestlist = service.bestlistService();
+		DateTime date = new DateTime(rentcarservice.timeStampService());
 		String view = "rentcar/home";
 		ModelAndView mv = new ModelAndView(view,"best",bestlist);
+		mv.addObject("date",date.toString("yyyy-MM-dd"));
 		return mv;
 	}
 	

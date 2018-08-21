@@ -9,6 +9,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import org.w3c.dom.Node;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+
+
 import com.khd.jejulantis.admin.branch.Service.BranchService;
 import com.khd.jejulantis.admin.car.Service.CarService;
 import com.khd.jejulantis.admin.cardetail.Service.CarkindDetailService;
@@ -59,11 +68,14 @@ public class CReviewController {
 		ModelAndView mv = new ModelAndView(view, "branchContent", branchContent);
 		return mv;
 	}
-//	@RequestMapping(value="test.do")
-//	public String test(){
+	@RequestMapping(value="test.do")
+	public void test(){
+
 //		return "rentcar/reviews/test";
-//	}
-//	@RequestMapping(value="test1.do",method=RequestMethod.POST)
+	}
+
+
+	//	@RequestMapping(value="test1.do",method=RequestMethod.POST)
 //	public String test1(
 //			@RequestParam("branch_lati")String branch_lati,
 //			@RequestParam("branch_long")String branch_long){

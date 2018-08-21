@@ -59,18 +59,18 @@ public class CReviewController {
 		ModelAndView mv = new ModelAndView(view, "branchContent", branchContent);
 		return mv;
 	}
-	@RequestMapping(value="test.do")
-	public String test(){
-		return "rentcar/reviews/test";
-	}
-	@RequestMapping(value="test1.do",method=RequestMethod.POST)
-	public String test1(
-			@RequestParam("branch_lati")String branch_lati,
-			@RequestParam("branch_long")String branch_long){
-		System.out.println("branch_lati : " + branch_lati);
-		System.out.println("branch_long : " + branch_long);
-		return "rentcar/reviews/test1";
-	}
+//	@RequestMapping(value="test.do")
+//	public String test(){
+//		return "rentcar/reviews/test";
+//	}
+//	@RequestMapping(value="test1.do",method=RequestMethod.POST)
+//	public String test1(
+//			@RequestParam("branch_lati")String branch_lati,
+//			@RequestParam("branch_long")String branch_long){
+//		System.out.println("branch_lati : " + branch_lati);
+//		System.out.println("branch_long : " + branch_long);
+//		return "rentcar/reviews/test1";
+//	}
 	@RequestMapping(value="reviewInsert.do")
 	public ModelAndView reviewInsert(@RequestParam("rent_reserv_no")long rent_reserv_no){
 		Reserv list = reservService.reservListService(rent_reserv_no);

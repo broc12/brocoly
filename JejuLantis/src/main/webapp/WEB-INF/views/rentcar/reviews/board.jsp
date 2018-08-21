@@ -88,7 +88,7 @@
 				</br></br></br><a href="board.do?searchValue=SCORE">·평점순</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				<a href="board.do?searchValue=NEW">·최신순</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				<a href="board.do?searchValue=SALE">·후기 많은순</a>&nbsp;&nbsp;&nbsp;
-				<a href="test.do">테스트</a>
+<!-- 				<a href="test.do">테스트</a> -->
 			</div>
 				
 		<div class="colorlib-wrap">
@@ -114,7 +114,7 @@
 										
 												<tr>
 													<td rowspan="4" width=33%>	
-															<img src="${review.car_image}" width=100%, height=50%>		
+															<img src="resources/car/${review.car_image}" width=100%, height=50%>		
 													</td>
 													<td>${review.member_name}</td>
 												</tr>

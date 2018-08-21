@@ -47,6 +47,9 @@ public class PowerController {
 		if(manager_id != ""){
 			if(branch_no == 1) {
 				List<Power>list = powerService.listService(manager_id);
+				System.out.println("확인 : " + list.get(0).getManager_id());
+				System.out.println("확인 : " + list.get(0).getManager_main());
+				System.out.println("확인 : " + list.get(0).getManager_chart());
 				result.addObject("result", list);
 				result.setViewName("admin/adminPowers/idpost");
 			}else {
@@ -66,6 +69,7 @@ public class PowerController {
 	@RequestMapping(value="admin/powerUp.do",method=RequestMethod.POST)
 	public String update(Power power) {
 		powerService.updateService(power);
+		/*return "redirect:adminPower.do";*/
 		return "redirect:adminPower.do";
 	}
 }

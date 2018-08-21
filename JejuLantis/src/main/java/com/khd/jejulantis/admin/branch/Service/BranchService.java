@@ -11,5 +11,6 @@ public interface BranchService {
 	List<Branch>fullService(long branch_no);
 	void modifyService(Branch branch);
 	void withdrawService(long branch_no);
+	void modifyService(int branch_no, double branch_set1);
 	
 }

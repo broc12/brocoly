@@ -80,6 +80,11 @@
 		jQuery("#rent_reserv_km").val($("input:text[id=rent_reserv_km]").val());
 		jQuery("#rent_reserv_license_kind").val($("#license_kind").val());
 		jQuery("#car_info_no").val($("#infolist").val());
+		var addr = jQuery("#driver_addr").val();
+		var detail = jQuery("#rent_reserv_driver_addr_detail").val();
+		var full = addr + detail;
+		alert("full:"+full);
+		jQuery("#rent_reserv_driver_addr").val(full);
 		document.f.submit();
 	}
 	</script>
@@ -107,7 +112,7 @@
                     fullAddr += (extraAddr !== '' ? ' ('+ extraAddr +')' : '');
                 }
                 // 주소 정보를 해당 필드에 넣는다.
-                document.getElementById("rent_reserv_driver_addr").value = fullAddr;
+                document.getElementById("driver_addr").value = fullAddr;
                 // 주소로 상세 정보를 검색
 //                 geocoder.addressSearch(data.address, function(results, status) {
                     // 정상적으로 검색이 완료됐으면
@@ -176,7 +181,7 @@
 	          <input type="hidden" name="rent_reserv_driver_birth" id="rent_reserv_driver_birth">
 	          <input type="hidden" name="rent_reserv_driver_tel" id="rent_reserv_driver_tel">
 	          <input type="hidden" name="rent_reserv_license_kind" id="rent_reserv_license_kind">
-<!-- 	          <input type="hidden" name="rent_reserv_driver_addr" id="rent_reserv_driver_addr"> -->
+	          <input type="hidden" name="rent_reserv_driver_addr" id="rent_reserv_driver_addr">
 	          <input type="hidden" name="rent_reserv_fuel" id="rent_reserv_fuel">
 	          <input type="hidden" name="rent_reserv_km" id="rent_reserv_km">
 	         <<input type="hidden" name="car_info_no" id="car_info_no">
@@ -265,10 +270,9 @@
 					<td style="border-top: hidden;border-bottom: hidden;"></td>
 					<td height="40px" width="10%" class="text-center">주소</td>
 					<td colspan ="3" width="35%" class="text-left" style="border-left:hidden">
-						<input type="text" name="rent_reserv_driver_addr" id="rent_reserv_driver_addr" readonly>
-						<input type="button" onclick="DaumPostcode()" value="주소검색" style="background-color:black;color:white;border:0">
-						<p></p>
-						<p><input name="rent_reserv_driver_addr_detail" type="text" size="30" placeholder="" id="rent_reserv_driver_addr_detail"></p>
+						<input type="text" name="rent_reserv_driver_addr" id="driver_addr" readonly>
+						<input type="button" onclick="DaumPostcode()" value="주소검색" style="background-color:black;color:white;border:0"></br>
+						<input name="rent_reserv_driver_addr_detail" type="text" id="rent_reserv_driver_addr_detail">
 					</td>
 				</tr>
 				

@@ -6,4 +6,5 @@ import com.khd.jejulantis.model.Car;
 
 public interface BestService {
 	List<Car>bestlistService();
+	List<Car>mdlistService();
 }

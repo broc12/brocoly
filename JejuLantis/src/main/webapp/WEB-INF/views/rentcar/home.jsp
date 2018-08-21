@@ -477,48 +477,22 @@
 					</div>
 				</div>
 			</div>
+			
 			<div class="tour-wrap">
+			<c:forEach items="${md}" var="md">
 				<a href="#" class="tour-entry animate-box">
-					<div class="tour-img" style="background-image: url(resources/rentcar/images/tour-1.jpg);">
+					<div class="tour-img" style="background-image: url(resources/car/${md.car_image});">
 					</div>
 					<span class="desc">
 						<p class="star"><span><i class="icon-star-full"></i><i class="icon-star-full"></i><i class="icon-star-full"></i><i class="icon-star-full"></i><i class="icon-star-full"></i></span> 545 Reviews</p>
-						<h2>Athens, Greece</h2>
+						<h2>${md.car_name}</h2>
 						<span class="city">Athens, Greece</span>
 						<span class="price">$450</span>
 					</span>
 				</a>
-				<a href="#" class="tour-entry animate-box">
-					<div class="tour-img" style="background-image: url(resources/rentcar/images/tour-2.jpg);">
-					</div>
-					<span class="desc">
-						<p class="star"><span><i class="icon-star-full"></i><i class="icon-star-full"></i><i class="icon-star-full"></i><i class="icon-star-full"></i><i class="icon-star-full"></i></span> 545 Reviews</p>
-						<h2>Family Tour in Thailand</h2>
-						<span class="city">Athens, Greece</span>
-						<span class="price">$450</span>
-					</span>
-				</a>
-				<a href="#" class="tour-entry animate-box">
-					<div class="tour-img" style="background-image: url(resources/rentcar/images/tour-3.jpg);">
-					</div>
-					<span class="desc">
-						<p class="star"><span><i class="icon-star-full"></i><i class="icon-star-full"></i><i class="icon-star-full"></i><i class="icon-star-full"></i><i class="icon-star-full"></i></span> 545 Reviews</p>
-						<h2>Family Tour in Philippines</h2>
-						<span class="city">Lipa, Philippines</span>
-						<span class="price">$450</span>
-					</span>
-				</a>
-				<a href="#" class="tour-entry animate-box">
-					<div class="tour-img" style="background-image: url(resources/rentcar/images/tour-4.jpg);">
-					</div>
-					<span class="desc">
-						<p class="star"><span><i class="icon-star-full"></i><i class="icon-star-full"></i><i class="icon-star-full"></i><i class="icon-star-full"></i><i class="icon-star-full"></i></span> 545 Reviews</p>
-						<h2>Family Tour in Greece</h2>
-						<span class="city">Athens, Greece</span>
-						<span class="price">$450</span>
-					</span>
-				</a>
+			</c:forEach>
 			</div>
+			
 		</div>
 		<footer id="colorlib-footer" role="contentinfo">
 			<div class="container">

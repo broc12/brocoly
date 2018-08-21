@@ -1,5 +1,6 @@
 package com.khd.jejulantis.admin.branch.DAO;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -42,5 +43,11 @@ public class BranchDAOImpl implements BranchDAO{
 	public void withdraw(long branch_no) {
 		sqlSession.update(ns+".myWithdraw",branch_no);
 	}
-	
+	@Override
+	public void modify(int branch_no, double branch_set1) {
+		HashMap<String,Object>map = new HashMap<String,Object>();
+		map.put("branch_no",branch_no);
+		map.put("branch_set1", branch_set1);
+		sqlSession.update(ns+".myModify1",map);
+	}
 }

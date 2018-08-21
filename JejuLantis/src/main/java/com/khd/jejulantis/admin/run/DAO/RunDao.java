@@ -11,4 +11,10 @@ public interface RunDao {
 
 	List<Admin> adminList();
 
+	void adminApproveDelete(long manager_no);
+
+	List<Admin> adminApproveContent(long manager_no);
+
+	void adminApproveUpdate(Admin admin);
+
 }

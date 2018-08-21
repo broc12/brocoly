@@ -55,6 +55,7 @@
 		<mapper resource="query/reserv.xml"/>
 		<mapper resource="query/affiliate.xml"/>
 		<mapper resource="query/admin.xml"/>
+		<mapper resource="query/chart.xml"/>
 	</mappers>
 	
 	

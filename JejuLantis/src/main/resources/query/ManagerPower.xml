@@ -32,7 +32,7 @@
 	select M.*, B.branch_name from 
 	Manager M, branch B where M.branch_no=B.branch_no and M.manager_id like '%'||#{manager_id}||'%'
 </select>
-<select id="myPower2" parameterType="Map" resultType="Power">
+<select id="myPower2" parameterType="HashMap" resultType="Power">
 	select M.*, B.branch_name from 
 	Manager M, branch B where M.branch_no=B.branch_no and M.manager_id like '%'||#{manager_id}||'%'
 	and M.branch_no = #{branch_no}

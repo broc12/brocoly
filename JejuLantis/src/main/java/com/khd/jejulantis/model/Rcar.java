@@ -11,7 +11,7 @@ public class Rcar implements Serializable{
 	String car_type;
 	long car_passenger;
 	String car_fuel;
-	long car_rating;
+	double car_rating;
 	long car_count;
 	long mtot;
 	long actot;
@@ -19,7 +19,7 @@ public class Rcar implements Serializable{
 	String car_image;
 	public Rcar() {}
 	public Rcar(String car_name, String car_manufacturer, String car_type, long car_passenger, String car_fuel,
-			long car_rating, long car_count, long mtot, long actot, List<Blist> blist, String car_image) {
+			double car_rating, long car_count, long mtot, long actot, List<Blist> blist, String car_image) {
 		this.car_name = car_name;
 		this.car_manufacturer = car_manufacturer;
 		this.car_type = car_type;
@@ -33,10 +33,10 @@ public class Rcar implements Serializable{
 		this.car_image = car_image;
 	}
 	
-	public long getCar_rating() {
+	public double getCar_rating() {
 		return car_rating;
 	}
-	public void setCar_rating(long car_rating) {
+	public void setCar_rating(double car_rating) {
 		this.car_rating = car_rating;
 	}
 	public long getCar_count() {

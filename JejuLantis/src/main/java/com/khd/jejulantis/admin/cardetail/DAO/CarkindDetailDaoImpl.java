@@ -81,4 +81,11 @@ public class CarkindDetailDaoImpl implements CarkindDetailDao {
 		List<CarkindDetail> listAll = sqlSession.selectList(ns_carkind+".listAll");
 		return listAll;
 	}
+	@Override
+	public void update(int car_kind_no, double car_kind_set1) {
+		HashMap<String,Object>map = new HashMap<String,Object>(); 
+		map.put("car_kind_no", car_kind_no);
+		map.put("car_kind_set1", car_kind_set1);
+		sqlSession.update(ns_carkind+".update1", map);
+	}
 }

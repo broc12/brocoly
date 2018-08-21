@@ -74,10 +74,10 @@
 	                  <c:when test="${data eq 'N'}">
 	                  	<td>승인완료</td>
 	                  </c:when>
-	                  <c:when test="${data eq 'W'}">
+	                  <c:when test="${data eq 'T'}">
 	                  	<td>승인대기</td>
 	                  </c:when>
-	                  <c:when test="${data eq 'T'}">
+	                  <c:when test="${data eq 'Y'}">
 	                  	<td>승인거부</td>
 	                  </c:when>
 	              </c:choose>

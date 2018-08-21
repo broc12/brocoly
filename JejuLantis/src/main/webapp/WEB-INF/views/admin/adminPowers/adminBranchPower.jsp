@@ -44,49 +44,49 @@ $(document).ready(function(){
         //클릭되었으면
         if($("#checkall").prop("checked")){
             //input태그의 name이 chk인 태그들을 찾아서 checked옵션을 true로 정의
-            $("input[name=manager_main]").prop("checked",true);
-            $("input[name=manager_chart]").prop("checked",true);
+//             $("input[name=manager_main]").prop("checked",true);
+//             $("input[name=manager_chart]").prop("checked",true);
             $("input[name=manager_reservstatus]").prop("checked",true);
-            $("input[name=manager_travelmanagement]").prop("checked",true);
-            $("input[name=manager_review]").prop("checked",true);
-            $("input[name=manager_notice]").prop("checked",true);
-            $("input[name=manager_user]").prop("checked",true);
+//             $("input[name=manager_travelmanagement]").prop("checked",true);
+//             $("input[name=manager_review]").prop("checked",true);
+//             $("input[name=manager_notice]").prop("checked",true);
+//             $("input[name=manager_user]").prop("checked",true);
             $("input[name=manager_manager]").prop("checked",true);
-            $("input[name=manager_company]").prop("checked",true);
+//             $("input[name=manager_company]").prop("checked",true);
             $("input[name=manager_carkind]").prop("checked",true);
             $("input[name=manager_d_carkind]").prop("checked",true);
             $("input[name=manager_carinfo]").prop("checked",true);
             $("input[name=manager_paystatus]").prop("checked",true);
             $("input[name=manager_salestatus]").prop("checked",true);
-            $("input[name=manager_banner]").prop("checked",true);
-            $("input[name=manager_coupon]").prop("checked",true);
-            $("input[name=manager_sms]").prop("checked",true);
-            $("input[name=manager_email_at]").prop("checked",true);
+//             $("input[name=manager_banner]").prop("checked",true);
+//             $("input[name=manager_coupon]").prop("checked",true);
+//             $("input[name=manager_sms]").prop("checked",true);
+//             $("input[name=manager_email_at]").prop("checked",true);
             $("input[name=manager_insurance]").prop("checked",true);
-            $("input[name=manager_affiliate]").prop("checked",true);
+//             $("input[name=manager_affiliate]").prop("checked",true);
             //클릭이 안되있으면
         }else{
             //input태그의 name이 chk인 태그들을 찾아서 checked옵션을 false로 정의
-            $("input[name=manager_main]").prop("checked",false);
-            $("input[name=manager_chart]").prop("checked",false);
+//             $("input[name=manager_main]").prop("checked",false);
+//             $("input[name=manager_chart]").prop("checked",false);
             $("input[name=manager_reservstatus]").prop("checked",false);
-            $("input[name=manager_travelmanagement]").prop("checked",false);
-            $("input[name=manager_review]").prop("checked",false);
-            $("input[name=manager_notice]").prop("checked",false);
-            $("input[name=manager_user]").prop("checked",false);
+//             $("input[name=manager_travelmanagement]").prop("checked",false);
+//             $("input[name=manager_review]").prop("checked",false);
+//             $("input[name=manager_notice]").prop("checked",false);
+//             $("input[name=manager_user]").prop("checked",false);
             $("input[name=manager_manager]").prop("checked",false);
-            $("input[name=manager_company]").prop("checked",false);
+//             $("input[name=manager_company]").prop("checked",false);
             $("input[name=manager_carkind]").prop("checked",false);
             $("input[name=manager_d_carkind]").prop("checked",false);
             $("input[name=manager_carinfo]").prop("checked",false);
             $("input[name=manager_paystatus]").prop("checked",false);
             $("input[name=manager_salestatus]").prop("checked",false);
-            $("input[name=manager_banner]").prop("checked",false);
-            $("input[name=manager_coupon]").prop("checked",false);
-            $("input[name=manager_sms]").prop("checked",false);
-            $("input[name=manager_email_at]").prop("checked",false);
+//             $("input[name=manager_banner]").prop("checked",false);
+//             $("input[name=manager_coupon]").prop("checked",false);
+//             $("input[name=manager_sms]").prop("checked",false);
+//             $("input[name=manager_email_at]").prop("checked",false);
             $("input[name=manager_insurance]").prop("checked",false);
-            $("input[name=manager_affiliate]").prop("checked",false);
+//             $("input[name=manager_affiliate]").prop("checked",false);
         }
     })
 })
@@ -114,51 +114,25 @@ $(document).ready(function(){
           var manager_insurance = "";
           var manager_affiliate = "";
           
-      	if($("input:checkbox[name=manager_main]").is(":checked")){	// 쳬크 되어있으면
-      		manager_main = "Y"
-      	}else{
+
       		manager_main = "N"
-      	}
-      	if($("input:checkbox[name=manager_chart]").is(":checked")){	// 쳬크 되어있으면
-      		manager_chart = "Y"
-      	}else{
       		manager_chart = "N"
-      	}
     	if($("input:checkbox[name=manager_reservstatus]").is(":checked")){	// 쳬크 되어있으면
     		manager_reservstatus = "Y"
       	}else{
       		manager_reservstatus = "N"
       	}
-    	if($("input:checkbox[name=manager_travelmanagement]").is(":checked")){	// 쳬크 되어있으면
-    		manager_travelmanagement = "Y"
-      	}else{
       		manager_travelmanagement = "N"
-      	}
-    	if($("input:checkbox[name=manager_review]").is(":checked")){	// 쳬크 되어있으면
-    		manager_review = "Y"
-      	}else{
       		manager_review = "N"
-      	}
-    	if($("input:checkbox[name=manager_notice]").is(":checked")){	// 쳬크 되어있으면
-    		manager_notice = "Y"
-      	}else{
       		manager_notice = "N"
-      	}
-    	if($("input:checkbox[name=manager_user]").is(":checked")){	// 쳬크 되어있으면
-    		manager_user = "Y"
-      	}else{
       		manager_user = "N"
-      	}
     	if($("input:checkbox[name=manager_manager]").is(":checked")){	// 쳬크 되어있으면
     		manager_manager = "Y"
       	}else{
       		manager_manager = "N"
       	}
-    	if($("input:checkbox[name=manager_company]").is(":checked")){	// 쳬크 되어있으면
-    		manager_company = "Y"
-      	}else{
+
       		manager_company = "N"
-      	}
     	if($("input:checkbox[name=manager_carkind]").is(":checked")){	// 쳬크 되어있으면
     		manager_carkind = "Y"
       	}else{
@@ -184,37 +158,17 @@ $(document).ready(function(){
       	}else{
       		manager_salestatus = "N"
       	}
-    	if($("input:checkbox[name=manager_banner]").is(":checked")){	// 쳬크 되어있으면
-    		manager_banner = "Y"
-      	}else{
-      		manager_banner = "N"
-      	}
-    	if($("input:checkbox[name=manager_coupon]").is(":checked")){	// 쳬크 되어있으면
-    		manager_coupon = "Y"
-      	}else{
-      		manager_coupon = "N"
-      	}
-    	if($("input:checkbox[name=manager_sms]").is(":checked")){	// 쳬크 되어있으면
-    		manager_sms = "Y"
-      	}else{
-      		manager_sms = "N"
-      	}
 
-    	if($("input:checkbox[name=manager_email_at]").is(":checked")){	// 쳬크 되어있으면
-    		manager_email_at = "Y"
-      	}else{
+      		manager_banner = "N"
+      		manager_coupon = "N"
+      		manager_sms = "N"
       		manager_email_at = "N"
-      	}
     	if($("input:checkbox[name=manager_insurance]").is(":checked")){	// 쳬크 되어있으면
     		manager_insurance = "Y"
       	}else{
       		manager_insurance = "N"
       	}
-    	if($("input:checkbox[name=manager_affiliate]").is(":checked")){	// 쳬크 되어있으면
-    		manager_affiliate = "Y"
-      	}else{
       		manager_affiliate = "N"
-      	}
     	
       	jQuery("#manager_main").val(manager_main);
       	jQuery("#manager_chart").val(manager_chart);
@@ -287,26 +241,26 @@ $(document).ready(function(){
 	       	<td width="40%" align="center"><b>메뉴 권한</b></td>
 	       	<td>
 	       		<input type="checkbox" id="checkall"/><span>전체선택</span></br>
-<!-- 	       		<input type="checkbox" name="manager_main" id="manager_main" readonly/><span>메인관리</span></br> -->
-<!-- 	       		<input type="checkbox" name="manager_chart" id="manager_chart" readonly/><span>그래프</span></br> -->
+<!-- 	       		<input type="checkbox" name="manager_main" id="manager_main" /><span>메인관리</span></br> -->
+<!-- 	       		<input type="checkbox" name="manager_chart" id="manager_chart"/><span>그래프</span></br> -->
 	       		<input type="checkbox" name="manager_reservstatus" id="manager_reservstatus"/><span>예약현황</span></br>
-<!-- 	       		<input type="checkbox" name="manager_travelmanagement" id="manager_travelmanagement" readonly/><span>여행상담관리</span></br> -->
-<!-- 	       		<input type="checkbox" name="manager_review" id="manager_review" readonly/><span>이용후기관리</span></br> -->
-<!-- 	       		<input type="checkbox" name="manager_notice" id="manager_notice" readonly/><span>공지관리</span></br> -->
-<!-- 	       		<input type="checkbox" name="manager_user" id="manager_user" readonly/><span>회원관리</span></br> -->
+<!-- 	       		<input type="checkbox" name="manager_travelmanagement" id="manager_travelmanagement"/><span>여행상담관리</span></br> -->
+<!-- 	       		<input type="checkbox" name="manager_review" id="manager_review"/><span>이용후기관리</span></br> -->
+<!-- 	       		<input type="checkbox" name="manager_notice" id="manager_notice"/><span>공지관리</span></br> -->
+<!-- 	       		<input type="checkbox" name="manager_user" id="manager_user"/><span>회원관리</span></br> -->
 	       		<input type="checkbox" name="manager_manager" id="manager_manager"/><span>관리자관리</span></br>
-	       		<input type="checkbox" name="manager_company" id="manager_company"/><span>업체관리</span></br>
+<!-- 	       		<input type="checkbox" name="manager_company" id="manager_company"/><span>업체관리</span></br> -->
 	       		<input type="checkbox" name="manager_carkind" id="manager_carkind"/><span>차종관리</span></br>
 	       		<input type="checkbox" name="manager_d_carkind" id="manager_d_carkind"/><span>차종상세관리</span></br>
 	       		<input type="checkbox" name="manager_carinfo" id="manager_carinfo"/><span>차량관리</span></br>
 	       		<input type="checkbox" name="manager_paystatus" id="manager_paystatus"/><span>결제현황</span></br>
 	       		<input type="checkbox" name="manager_salestatus" id="manager_salestatus"/><span>매출현황관리</span></br>
-<!-- 	       		<input type="checkbox" name="manager_banner" id="manager_banner" readonly/><span>배너관리</span></br> -->
-<!-- 	       		<input type="checkbox" name="manager_coupon" id="manager_coupon" readonly/><span>쿠폰관리</span></br> -->
-<!-- 	       		<input type="checkbox" name="manager_sms" id="manager_sms" readonly/><span>SMS관리</span></br> -->
-<!-- 	       		<input type="checkbox" name="manager_email_at" id="manager_email_at" readonly/><span>이메일관리</span></br> -->
+<!-- 	       		<input type="checkbox" name="manager_banner" id="manager_banner"/><span>배너관리</span></br> -->
+<!-- 	       		<input type="checkbox" name="manager_coupon" id="manager_coupon"/><span>쿠폰관리</span></br> -->
+<!-- 	       		<input type="checkbox" name="manager_sms" id="manager_sms"/><span>SMS관리</span></br> -->
+<!-- 	       		<input type="checkbox" name="manager_email_at" id="manager_email_at"/><span>이메일관리</span></br> -->
 	       		<input type="checkbox" name="manager_insurance" id="manager_insurance"/><span>보험관리</span></br>
-<!-- 	       		<input type="checkbox" name="manager_affiliate" id="manager_affiliate" readonly/><span>제휴관리</span></br> -->
+<!-- 	       		<input type="checkbox" name="manager_affiliate" id="manager_affiliate"/><span>제휴관리</span></br> -->
 	       	</td>
 	       </tr>
 	       <tr>

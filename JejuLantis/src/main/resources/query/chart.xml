@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace = "query.chart">
+
+<!-- 	select -->
+	<!-- 2018예약 서버용 -->
+	<select id="myAug" resultType="Long">
+		select count(*) 
+		as reserv from rent_reserv where rent_reserv_resist between '2018-01-01' and '2018-12-31'
+		and rent_reserv_cancel_date is null
+		group by substr(to_char(rent_reserv_resist),4,2)
+		order by substr(to_char(rent_reserv_resist),4,2)
+	</select>
+	<!-- 2018예약 업체용 -->
+	<select id="myCug" resultType="Long">
+		select count(*) 
+		as reserv from rent_reserv where rent_reserv_resist between '2018-01-01' and '2018-12-31'
+		and rent_reserv_cancel_date is null
+		<if test="branch_no != 2">
+		and branch_no=#{branch_no}
+		</if>
+		group by substr(to_char(rent_reserv_resist),4,2)
+		order by substr(to_char(rent_reserv_resist),4,2)
+	</select>
+	<!-- 업체의 2017예약 -->
+	<select id="myBug" resultType="Long">
+		select count(*) 
+		as reserv from rent_reserv where rent_reserv_resist between '2017-01-01' and '2017-12-31'
+		and rent_reserv_cancel_date is null 
+		<if test="branch_no != 2">
+		and branch_no=#{branch_no}
+		</if>
+		group by substr(to_char(rent_reserv_resist),4,2)
+		order by substr(to_char(rent_reserv_resist),4,2)
+	</select>
+	<!-- 2018예약취소 -->
+	<select id="myLast" resultType="Long">
+		select count(*) 
+		as reserv from rent_reserv where rent_reserv_resist between '2018-01-01' and '2018-12-31'
+		and rent_reserv_cancel_date is not null group by substr(to_char(rent_reserv_resist),4,2)
+	</select>
+	<!-- 2018신규가입 -->
+	<select id="myNewbie" resultType="Long">
+		select count(*) 
+		as newbie from member where member_resist_member between '2018-01-01' and '2018-12-31'
+ 		group by substr(to_char(member_resist_member),4,2)
+	</select>
+	<!-- 2018회원탈퇴 -->
+	<select id="myByebie" resultType="Long">
+		select count(*) 
+		as byebie from member where member_withdraw_date between '2018-01-01' and '2018-12-31'
+ 		group by substr(to_char(member_withdraw_date),4,2)
+	</select>
+	<!-- 한주배차현황 -->
+	<select id="myWeek" resultType="Long">
+	
+		SELECT 
+		    NVL(BB.CNT,0) AS COUNT 
+		FROM 
+		(
+		    select 
+		        to_char(SYSDATE - 7 + level + (select next_day(sysdate,1) - sysdate from dual),'yymmdd') AS RESVE_DT
+		    from dual
+		    connect by level<![CDATA[ <=  ]]>7 
+		) AA 
+		LEFT JOIN (
+		    SELECT 
+		        TO_CHAR(RENT_RESERV_START,'yymmdd') AS RENT_RESERV_START,
+		        COUNT(1) AS CNT
+		    FROM RENT_RESERV
+		    <if test="branch_no != 2">
+			and branch_no=#{branch_no}
+			</if>
+		    GROUP BY RENT_RESERV_START
+		    ORDER BY RENT_RESERV_START ASC
+		)BB 
+		 ON AA.RESVE_DT = BB.RENT_RESERV_START
+		ORDER BY RESVE_DT
+	</select>
+</mapper>

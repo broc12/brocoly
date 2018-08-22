@@ -10,7 +10,7 @@ public class BranchName {
 	
 	private String count_review;
 	private String review_sel;
-	private String score;
+	private Double score;
 	private String sale;
 	
 	private int branch_no;
@@ -29,7 +29,7 @@ public class BranchName {
 	private String branch_bustime;
 	private String branch_busgap;
 	public BranchName(){}
-	public BranchName(List reviewList, List reviewCount, String count_review, String review_sel, String score,
+	public BranchName(List reviewList, List reviewCount, String count_review, String review_sel, Double score,
 			String sale, int branch_no, String branch_name, String branch_tel, String branch_local, Date branch_resist,
 			String branch_business_no, String branch_bankaccount, String branch_member_name, String branch_member_tel,
 			String branch_logo, int branch_comfee, String branch_withdraw_at, String branch_busspot,
@@ -83,10 +83,10 @@ public class BranchName {
 		this.review_sel = review_sel;
 	}
 
-	public String getScore() {
+	public Double getScore() {
 		return score;
 	}
-	public void setScore(String score) {
+	public void setScore(Double score) {
 		this.score = score;
 	}
 	public String getSale() {

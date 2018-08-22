@@ -34,7 +34,7 @@ function check(){
 		alert("4개를 선택해주세요.현재갯수:"+godo);
 		return;
 	}
-	alert("베스트셀러가 수정되었습니다.");
+	alert("MD추천이 수정되었습니다.");
     document.f.submit();
 }
 </script>
@@ -54,7 +54,7 @@ function check(){
           <i class="fa fa-table"></i>MD추천관리</div>
         <div class="card-body">
           <div class="table-responsive">
-          <form name="f" action="best.do" method="post">
+          <form name="f" action="md.do" method="post">
             <table class="table table-bordered" id="" width="100%" cellspacing="0">
               <thead>
                 <tr>
@@ -75,7 +75,7 @@ function check(){
                   <td>${list.car_name} (${list.car_fuel})</td>
                   <td>${list.car_total}</td>
                   <td>${list.car_count}</td>
-                  <td><input type="Checkbox" id="mdYn" name="mdYn" value="${list.car_no}" <c:if test="${list.car_best eq 'Y' }">checked</c:if>></td>
+                  <td><input type="Checkbox" id="mdYn" name="mdYn" value="${list.car_no}" <c:if test="${list.car_md eq 'Y' }">checked</c:if>></td>
                 </tr>
             </c:forEach>
               </tbody>

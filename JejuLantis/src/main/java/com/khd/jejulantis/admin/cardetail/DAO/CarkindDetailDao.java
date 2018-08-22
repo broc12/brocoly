@@ -18,4 +18,5 @@ public interface CarkindDetailDao {
 	List<CarkindDetail> kingbranchNotSelect(String manager_id);
 	List<CarkindDetail> identyBNo(String manager_id);
 	List<CarkindDetail> listAll();
+	void update(int car_kind_no, double car_kind_set1);
 }

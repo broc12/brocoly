@@ -6,4 +6,5 @@ import com.khd.jejulantis.model.Car;
 
 public interface BestDAO {
 	List<Car>bestlist();
+	List<Car>mdlist();
 }

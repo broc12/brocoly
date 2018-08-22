@@ -27,4 +27,5 @@ public class CReviewServiceImpl implements CReviewService{
 	public List<BranchName> listServiceAll(int branch_no) {
 		return reviewDAO.reviewContentAll(branch_no);
 	}
+	
 }

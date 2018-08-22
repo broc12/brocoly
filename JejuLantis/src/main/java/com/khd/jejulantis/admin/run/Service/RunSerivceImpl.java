@@ -20,4 +20,16 @@ public class RunSerivceImpl implements RunService {
 	public List<Admin> adminListService() {
 		return rundao.adminList();
 	}
+	@Override
+	public void adminApproveDeleteSelect(long manager_no) {
+		rundao.adminApproveDelete(manager_no);
+	}
+	@Override
+	public List<Admin> adminApproveContentSelect(long manager_no) {
+		return rundao.adminApproveContent(manager_no);
+	}
+	@Override
+	public void adminApproveUpdateSelect(Admin admin) {
+		rundao.adminApproveUpdate(admin);
+	}
 }

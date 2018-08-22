@@ -23,4 +23,17 @@ public class RunDaoImpl implements RunDao {
 		List<Admin> adminList = sqlSession.selectList(ns+".adminList2");
 		return adminList;
 	}
+	@Override
+	public void adminApproveDelete(long manager_no) {
+		sqlSession.update(ns+".adminApproveDelete", manager_no);
+	}
+	@Override
+	public List<Admin> adminApproveContent(long manager_no) {
+		List<Admin> adminApproveContent = sqlSession.selectList(ns+".adminApproveContent", manager_no);
+		return adminApproveContent;
+	}
+	@Override
+	public void adminApproveUpdate(Admin admin) {
+		sqlSession.update(ns+".adminApproveUpdate", admin);
+	}
 }

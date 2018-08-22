@@ -39,4 +39,10 @@ public class MainController {
 		ModelAndView mv = new ModelAndView(view,"list",list);
 		return mv;
 	}
+	
+	@RequestMapping(value="admin/md.do",method=RequestMethod.POST)
+	public String md(@RequestParam(value="mdYn",required=false)List<Long>md) {
+		service.mdService(md);
+		return "redirect:bestseller.do";
+	}
 }

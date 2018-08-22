@@ -39,7 +39,7 @@
         <c:choose>
         <c:when test="${managerlog.manager_chart eq 'Y' }">
         <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Charts">
-          <a class="nav-link" href="charts.do">
+          <a class="nav-link" href="charts.do?branch_no=${managerlog.branch_no}">
             <!-- <i class="fa fa-fw fa-area-chart"></i> -->
             <span class="nav-link-text">그래프</span>
           </a>
@@ -168,7 +168,7 @@
         <c:choose>
         <c:when test="${managerlog.manager_salestatus eq 'Y' }">
         <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Tables">
-          <a class="nav-link" href="payment.do">
+          <a class="nav-link" href="sales.do?branch_no=${managerlog.branch_no}">
             <!-- <i class="fa fa-fw fa-table"></i> -->
             <span class="nav-link-text">매출현황관리</span>
           </a>

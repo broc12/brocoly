@@ -37,7 +37,7 @@
 </resultMap>
 <insert id="managerresist" parameterType="Manager">
 	insert into Manager values (Manager_seq.nextval,#{branch_no},#{manager_id},#{manager_pwd},#{manager_name},#{manager_email},
-	#{manager_birth},#{manager_tel1},#{manager_tel2},'N',
+	#{manager_birth},#{manager_tel1},#{manager_tel2},'T',
 	'N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N',SYSDATE)
 </insert>
 

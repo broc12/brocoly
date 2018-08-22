@@ -37,6 +37,7 @@ public class SmsController {
 		List<Member> emailSenderList = sservice.emailSenderListService();
 		String view = "admin/sms/smsInsert";
 		ModelAndView mv = new ModelAndView(view,"emailSenderList",emailSenderList);
+	
 		return mv;
 	}
 	@RequestMapping(value = "admin/mailSenderOk.do") 

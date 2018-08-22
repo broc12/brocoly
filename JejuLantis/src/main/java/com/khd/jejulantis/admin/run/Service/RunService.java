@@ -9,4 +9,8 @@ public interface RunService {
 
 	List<Admin> adminListService(String manager_id);
 	List<Admin> adminListService();
+	void adminApproveDeleteSelect(long manager_no);
+	List<Admin> adminApproveContentSelect(long manager_no);
+	void adminApproveUpdateSelect(Admin admin);
+
 }

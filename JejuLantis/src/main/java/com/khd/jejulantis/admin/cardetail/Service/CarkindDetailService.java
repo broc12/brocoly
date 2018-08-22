@@ -20,4 +20,5 @@ public interface CarkindDetailService {
 	List<CarkindDetail> kingbranchNotSelectService(String manager_id);
 	List<CarkindDetail> identyBNoService(String manager_id);
 	List<CarkindDetail> listAllService();
+	void UpdateService(int car_kind_no, double car_kind_set1);
 }

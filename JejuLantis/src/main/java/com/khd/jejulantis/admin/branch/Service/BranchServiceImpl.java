@@ -36,4 +36,8 @@ public class BranchServiceImpl implements BranchService{
 	public void withdrawService(long branch_no) {
 		branchDAO.withdraw(branch_no);
 	}
+	@Override
+	public void modifyService(int branch_no, double branch_set1) {
+		branchDAO.modify(branch_no, branch_set1);
+	}
 }

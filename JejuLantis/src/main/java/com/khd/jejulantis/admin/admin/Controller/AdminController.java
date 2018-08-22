@@ -1,15 +1,30 @@
 package com.khd.jejulantis.admin.admin.Controller;
 
+import java.io.IOException;
+import java.util.HashMap;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.khd.jejulantis.admin.chart.Service.ChartService;
 
 @Controller
 public class AdminController {
+	@Autowired
+	private ChartService chartservice;
 	
 	@RequestMapping(value="admin/index.do",method=RequestMethod.GET)
-	public String index() {
-		return "admin/index";
+	public ModelAndView index ()throws IOException {
+		ObjectMapper obj = new ObjectMapper();
+		HashMap map = chartservice.chartService();
+		String es = obj.writeValueAsString(map);
+		String view = "admin/index";
+		ModelAndView mv = new ModelAndView(view,"map",es);
+		return mv;
 	}
 	
 	@RequestMapping(value="admin/navbar.do",method=RequestMethod.GET)
@@ -20,10 +35,6 @@ public class AdminController {
 	@RequestMapping(value="admin/forgot-password.do",method=RequestMethod.GET)
 	public String forgotpassword() {
 		return "admin/adminUsers/forgot-password";
-	}
-	@RequestMapping(value="admin/charts.do",method=RequestMethod.GET)
-	public String charts() {
-		return "admin/charts/charts";
 	}
 	@RequestMapping(value="admin/cards.do",method=RequestMethod.GET)
 	public String cards() {
@@ -41,10 +52,6 @@ public class AdminController {
 	public String member() {
 		return "admin/members/member";
 	}*/
-	@RequestMapping(value="admin/payment.do",method=RequestMethod.GET)
-	public String payment() {
-		return "admin/payments/payment";
-	}
 //	@RequestMapping(value="admin/admin.do",method=RequestMethod.GET)
 //	public String admin() {
 //		return "admin/admins/admin";

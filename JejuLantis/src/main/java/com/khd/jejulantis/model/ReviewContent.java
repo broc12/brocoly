@@ -27,13 +27,13 @@ public class ReviewContent {
 	private int insurance_no;
 	private String rent_review_title;
 	private String rent_review_content;
-	private String rent_review_rating_car;
+	private double rent_review_rating_car;
 	private Date rent_review_date;
 	
 	public ReviewContent() {}
 	//관리자페이지 이용후기 상세보기 
 	public ReviewContent(String member_name, int rent_review_no, Date rent_review_date, String branch_name,
-			String name, String rent_review_rating_car, String rent_review_content, String car_name,
+			String name, Double rent_review_rating_car, String rent_review_content, String car_name,
 			String car_fuel, String car_type, Date rent_reserv_start, Date rent_reserv_end,
 			String car_image) {
 		super();
@@ -55,7 +55,7 @@ public class ReviewContent {
 	}
 	public ReviewContent(int rent_review_no, int rent_reserv_no, int driver_line_no, int rent_payment_no,
 			int member_no, int car_info_no, int car_kind_no, int branch_no, int insurance_no,
-			String rent_review_title, String rent_review_content, String rent_review_rating_car,
+			String rent_review_title, String rent_review_content, Double rent_review_rating_car,
 			Date rent_review_date) {
 		super();
 		this.rent_review_no = rent_review_no;
@@ -77,7 +77,7 @@ public class ReviewContent {
 			String car_type, String insurance_name, Date rent_reserv_start, Date rent_reserv_end, String car_image,
 			int rent_review_no, int rent_reserv_no, int driver_line_no, int rent_payment_no, int member_no, int car_no,
 			int car_info_no, int car_kind_no, int branch_no, int insurance_no, String rent_review_title,
-			String rent_review_content, String rent_review_rating_car, Date rent_review_date) {
+			String rent_review_content, Double rent_review_rating_car, Date rent_review_date) {
 		super();
 		this.member_name = member_name;
 		this.branch_name = branch_name;
@@ -242,10 +242,10 @@ public class ReviewContent {
 	public void setRent_review_content(String rent_review_content) {
 		this.rent_review_content = rent_review_content;
 	}
-	public String getRent_review_rating_car() {
+	public double getRent_review_rating_car() {
 		return rent_review_rating_car;
 	}
-	public void setRent_review_rating_car(String rent_review_rating_car) {
+	public void setRent_review_rating_car(Double rent_review_rating_car) {
 		this.rent_review_rating_car = rent_review_rating_car;
 	}
 	public Date getRent_review_date() {

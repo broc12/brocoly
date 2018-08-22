@@ -20,4 +20,10 @@ public class BestDAOImpl implements BestDAO{
 		List<Car>bestlist = sqlSession.selectList(ns+".myBestlist");
 		return bestlist;
 	}
+	
+	@Override
+	public List<Car>mdlist(){
+		List<Car>mdlist = sqlSession.selectList(ns+".myMdlist");
+		return mdlist;
+	}
 }

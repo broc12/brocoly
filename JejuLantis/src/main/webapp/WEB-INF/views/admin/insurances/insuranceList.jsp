@@ -51,7 +51,8 @@
                   <th width="5%">차일련번호</th>
                   <th width="5%">보험명</th>
                   <th width="5%">보험료</th>
-                  <th width="5%">등록날짜</th>                
+                  <th width="5%">등록날짜</th>
+                  <th width="7%"></th>               
                 </tr>
               </thead>
               <tbody>
@@ -62,6 +63,7 @@
 					<td>${insuranceList.car_kind_no}</td>
 					<td>${insuranceList.car_no}</td>
 					<td>${insuranceList.insurance_name}</td>
+					<td>${insuranceList.insurance_price}</td>
 					<td>${insuranceList.insurance_resist}</td>
                 	<td>
                     <button type="button" class="btn btn-defalut btn-sm"><a href="insuranceContent.do?insurance_no=${insuranceList.insurance_no}">세부내용</a></button>

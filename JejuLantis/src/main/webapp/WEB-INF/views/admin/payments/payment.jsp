@@ -94,7 +94,7 @@
                   <th>건수</th>
                   <th>금액</th>
                   <th>건수</th>
-                  <th>금액</th>
+                  <th>금액</th>	
                   <th>건수</th>
                   <th>금액</th>
                   <th>건수</th>
@@ -103,15 +103,53 @@
               </thead>
 
               <tbody>
-              <c:forEach items="" var="notice">
-                <tr>
+              <%-- <c:forEach items="" var="notice"> --%>
+                <tr align="center">
                 <td>1</td>
                   <td>2</td>
                   <td>3</td>
                   <td>4</td>
                   <td>6</td>
+                <td>1</td>
+                  <td>2</td>
+                  <td>3</td>
+                  <td>4</td>
+                  <td>6</td>
+                  <td>3</td>
+                  <td>4</td>
+                  <td>6</td>
                 </tr>
-                </c:forEach>
+                <tr align="center">
+                <td>1</td>
+                  <td>2</td>
+                  <td>3</td>
+                  <td>4</td>
+                  <td>6</td>
+                <td>1</td>
+                  <td>2</td>
+                  <td>3</td>
+                  <td>4</td>
+                  <td>6</td>
+                  <td>3</td>
+                  <td>4</td>
+                  <td>6</td>
+                </tr>
+                <tr align="center">
+                <td>4</td>
+                  <td>2</td>
+                  <td>3</td>
+                  <td>4</td>
+                  <td>6</td>
+                <td>1</td>
+                  <td>2</td>
+                  <td>3</td>
+                  <td>4</td>
+                  <td>6</td>
+                  <td>3</td>
+                  <td>4</td>
+                  <td>9</td>
+                </tr>
+               <%--  </c:forEach> --%>
               </tbody>
             </table>
           </div>

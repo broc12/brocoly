@@ -9,5 +9,8 @@ public interface ReviewService {
 	void deleteService(String rent_review_no);
 	List<ReviewContent> reviewContentService(String rent_review_no);
 	void reviewInsertService(ReviewContent reviewContent);
+	int getCarkindCount(int car_kind_no);
+	int getCarCount(int car_no);
+	int getBranchCount(int branch_no);
 
 }

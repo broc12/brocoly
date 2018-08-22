@@ -30,16 +30,13 @@ public class HomeController {
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public ModelAndView home() {
-		List<Car>bestlist = service.bestlistService();
 
 		DateTime date = new DateTime(rentcarservice.timeStampService());
-		String view = "rentcar/home";
-		ModelAndView mv = new ModelAndView(view,"best",bestlist);
-		mv.addObject("date",date.toString("yyyy-MM-dd"));
-
+		List<Car>bestlist = service.bestlistService();
 		List<Car>mdlist = service.mdlistService();
 		String view = "rentcar/home";
 		ModelAndView mv = new ModelAndView(view,"best",bestlist);
+		mv.addObject("date",date.toString("yyyy-MM-dd"));
 		mv.addObject("md",mdlist);
 
 		return mv;

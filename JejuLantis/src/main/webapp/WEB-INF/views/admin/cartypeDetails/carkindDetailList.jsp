@@ -42,7 +42,7 @@
         <div class="card-body">
         <button type="button" class="btn btn-primary btn-xs" align="right"><a href="carDetailWrite.do?manager_id=${managerlog.manager_id}" style="color:white">차종상세등록</a></button></br></br>
           <div class="table-responsive">
-            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" style="font-size:8pt">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" >
               <thead>
                 <tr>
                   <th width="5%">지점일련번호</th>

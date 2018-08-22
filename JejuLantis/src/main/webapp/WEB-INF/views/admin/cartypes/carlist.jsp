@@ -90,11 +90,6 @@
                   <th>대여횟수</th>
                   <th>등록날짜</th>
                 </tr>
-               <c:if test="${empty list}">
-					<tr>
-			           <td align="center" colspan="10">데이터가 없음</td>
-			        </tr>
-				</c:if>
               </thead>
 
               <tbody>

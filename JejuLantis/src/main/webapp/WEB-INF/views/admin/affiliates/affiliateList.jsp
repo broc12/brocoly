@@ -41,7 +41,7 @@
           <i class="fa fa-table"></i>제휴문의목록</div>
         <div class="card-body">
           <div class="table-responsive">
-            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" style="font-size:8pt">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" >
               <thead>
                 <tr>
                   <th width="5%">제휴일련번호</th>

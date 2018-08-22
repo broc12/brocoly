@@ -57,6 +57,13 @@
 	<script src="js/respond.min.js"></script>
 	<![endif]-->
 
+	<!-- jQuery -->
+	<script src="resources/rentcar/js/jquery.min.js"></script>
+	<!-- Main -->
+	<script src="resources/rentcar/js/main.js"></script>
+	<!-- jQuery Easing -->
+	<script src="resources/rentcar/js/jquery.easing.1.3.js"></script>
+		<script src="resources/rentcar/js/sidebarsearchcar.js"></script>
 	</head>
 	<body>
 	<%@ include file="./top/top.jspf" %>
@@ -238,7 +245,7 @@
 				            </form>
 						   </div>
 						   <div id="car" class="tab-pane fade">
-						   	<form method="post" class="colorlib-form">
+						   	<form action="car.do" method="post" class="colorlib-form" id="searchform" >
 				              	<div class="row">
 				              	 <div class="col-md-2">
 				              	 	<div class="booknow">
@@ -251,7 +258,7 @@
 				                    <label for="date">인수일</label>
 				                    <div class="form-field">
 				                      <i class="icon icon-calendar2"></i>
-				                      <input type="text" id="date" class="form-control date" placeholder="인수일">
+				                      <input type="text" id="date1" name="Checkindate" class="form-control date" placeholder="인수일" value="${date}">
 				                    </div>
 				                  </div>
 				                </div>
@@ -260,39 +267,26 @@
 				                    <label for="guests">인수시간</label>
 				                    <div class="form-field">
 				                      <i class="icon icon-arrow-down3"></i>
-				                      <select name="people" id="people" class="form-control">
-				                        <option value="#" style="color:black">08:00</option>
-				                        <option value="#" style="color:black">08:30</option>
-				                        <option value="#" style="color:black">09:00</option>
-				                        <option value="#" style="color:black">09:30</option>
-				                        <option value="#" style="color:black">10:00</option>
-				                        <option value="#" style="color:black">10:30</option>
-				                        <option value="#" style="color:black">11:00</option>
-				                        <option value="#" style="color:black">11:30</option>
-				                        <option value="#" style="color:black">12:00</option>
-				                        <option value="#" style="color:black">12:30</option>
-				                        <option value="#" style="color:black">13:00</option>
-				                        <option value="#" style="color:black">13:30</option>
-				                        <option value="#" style="color:black">14:00</option>
-				                        <option value="#" style="color:black">14:30</option>
-				                        <option value="#" style="color:black">15:00</option>
-				                        <option value="#" style="color:black">15:30</option>
-				                        <option value="#" style="color:black">16:00</option>
-				                        <option value="#" style="color:black">16:30</option>
-				                        <option value="#" style="color:black">17:00</option>
-				                        <option value="#" style="color:black">17:30</option>
-				                        <option value="#" style="color:black">18:00</option>
-				                        <option value="#" style="color:black">18:30</option>
-				                        <option value="#" style="color:black">19:00</option>
-				                        <option value="#" style="color:black">19:30</option>
-				                        <option value="#" style="color:black">20:00</option>
-				                        <option value="#" style="color:black">20:30</option>
+				                      <select name="Checkintime" id="Checkintime" class="form-control">
+				                        <option value="08:00" style="color:black">08:00</option>
+				                        <option value="09:00" style="color:black">09:00</option>
+				                        <option value="10:00" style="color:black">10:00</option>
+				                        <option value="11:00" style="color:black">11:00</option>
+				                        <option value="12:00" style="color:black">12:00</option>
+				                        <option value="13:00" style="color:black">13:00</option>
+				                        <option value="14:00" style="color:black">14:00</option>
+				                        <option value="15:00" style="color:black">15:00</option>
+				                        <option value="16:00" style="color:black">16:00</option>
+				                        <option value="17:00" style="color:black">17:00</option>
+				                        <option value="18:00" style="color:black">18:00</option>
+				                        <option value="19:00" style="color:black">19:00</option>
+				                        <option value="20:00" style="color:black">20:00</option>
 				                      </select>
 				                    </div>
 				                  </div>
 				                </div>
 				                <div class="col-md-2">
-				                  <input type="submit" name="submit" id="submit" value="차량검색" class="btn btn-primary btn-block">
+				                  <input type="button" id="searchbutton" value="차량검색" class="btn btn-primary btn-block">
 				                </div>
 				              </div>
 				              <div class="row">
@@ -307,7 +301,7 @@
 				                    <label for="date">반납일</label>
 				                    <div class="form-field">
 				                      <i class="icon icon-calendar2"></i>
-				                      <input type="text" id="date" class="form-control date" placeholder="반납일">
+				                      <input type="text" id="date2" name="Checkoutdate" class="form-control date" placeholder="반납일" value="">
 				                    </div>
 				                  </div>
 				                </div>
@@ -316,33 +310,20 @@
 				                    <label for="guests">반납시간</label>
 				                    <div class="form-field">
 				                      <i class="icon icon-arrow-down3"></i>
-				                      <select name="people" id="people" class="form-control">
-				                        <option value="#" style="color:black">08:00</option>
-				                        <option value="#" style="color:black">08:30</option>
-				                        <option value="#" style="color:black">09:00</option>
-				                        <option value="#" style="color:black">09:30</option>
-				                        <option value="#" style="color:black">10:00</option>
-				                        <option value="#" style="color:black">10:30</option>
-				                        <option value="#" style="color:black">11:00</option>
-				                        <option value="#" style="color:black">11:30</option>
-				                        <option value="#" style="color:black">12:00</option>
-				                        <option value="#" style="color:black">12:30</option>
-				                        <option value="#" style="color:black">13:00</option>
-				                        <option value="#" style="color:black">13:30</option>
-				                        <option value="#" style="color:black">14:00</option>
-				                        <option value="#" style="color:black">14:30</option>
-				                        <option value="#" style="color:black">15:00</option>
-				                        <option value="#" style="color:black">15:30</option>
-				                        <option value="#" style="color:black">16:00</option>
-				                        <option value="#" style="color:black">16:30</option>
-				                        <option value="#" style="color:black">17:00</option>
-				                        <option value="#" style="color:black">17:30</option>
-				                        <option value="#" style="color:black">18:00</option>
-				                        <option value="#" style="color:black">18:30</option>
-				                        <option value="#" style="color:black">19:00</option>
-				                        <option value="#" style="color:black">19:30</option>
-				                        <option value="#" style="color:black">20:00</option>
-				                        <option value="#" style="color:black">20:30</option>
+				                      <select name="Checkouttime" id="Checkouttime" class="form-control">
+				                        <option value="08:00" style="color:black">08:00</option>
+				                        <option value="09:00" style="color:black">09:00</option>
+				                        <option value="10:00" style="color:black">10:00</option>
+				                        <option value="11:00" style="color:black">11:00</option>
+				                        <option value="12:00" style="color:black">12:00</option>
+				                        <option value="13:00" style="color:black">13:00</option>
+				                        <option value="14:00" style="color:black">14:00</option>
+				                        <option value="15:00" style="color:black">15:00</option>
+				                        <option value="16:00" style="color:black">16:00</option>
+				                        <option value="17:00" style="color:black">17:00</option>
+				                        <option value="18:00" style="color:black">18:00</option>
+				                        <option value="19:00" style="color:black">19:00</option>
+				                        <option value="20:00" style="color:black">20:00</option>
 				                      </select>
 				                    </div>
 				                  </div>

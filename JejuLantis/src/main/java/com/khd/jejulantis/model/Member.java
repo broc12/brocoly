@@ -211,4 +211,9 @@ public class Member {
 	        String word3 = str1.split("-")[2];	      
 			return word3;	
 	}
+	public String getMember_birthFull() {
+		String str = member_birth;
+		int i = str.indexOf(" ");
+		return str.substring(0, i);
+	}
 }

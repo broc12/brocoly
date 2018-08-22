@@ -40,7 +40,7 @@
         <div class="card-header">
           <i class="fa fa-table"></i>보험목록</div>
         <div class="card-body">
-        <button type="button" class="btn btn-primary btn-xs" align="right"><a href="insuranceInsert.do?manager_id=${managerlog.manager_id}" style="color:white">보험등록</a></button></br></br>
+        <a href="insuranceInsert.do?manager_id=${managerlog.manager_id}" style="color:white"><button type="button" class="btn btn-primary btn-xs" align="right">보험등록</button></a></br></br>
           <div class="table-responsive">
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" >
               <thead>

@@ -28,7 +28,7 @@ public class MemberDaoImpl implements MemberDao {
 		System.out.println("member_email6666"+member.getMember_email());
 //		System.out.println("member resist"+member.getResist_member());
 //		
-		
+
 		int insert = sql.insert(ns+".memberjoin", member);
 		int insert2 = sql.insert("query.detail.myDetail",member);
 		return false;	

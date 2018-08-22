@@ -283,7 +283,7 @@
 						<tr style="font-size:10pt" height="60px">
 							<td align="center"></td>
 							<td align="right">
-								<button type="button" class="btn btn-primary"><a href="insuranceList.do?manager_id=${managerlog.manager_id}" style="color:white">목록</a></button>
+								<a href="insuranceList.do?manager_id=${managerlog.manager_id}" style="color:white"><button type="button" class="btn btn-primary">목록</button></a>
 								<button type="button" class="btn btn-primary" onclick="check()">완료</button>
 							</td>
 						</tr>

@@ -25,7 +25,7 @@
 	
 	 <insert id="myInsert" parameterType ="Qna"> <!-- 여기 -->
 	 insert into QNA VALUES(QNA_seq.NEXTVAL,QNA_seq.CURRVAL,0,#{qna_name},#{qna_email},#{qna_tel},
-	 #{qna_title},#{qna_content},#{qna_pwd},#{qna_secret},#{qna_answer_check},#{qna_resist_id},SYSDATE,#{member_no},null,null)
+	 #{qna_title},#{qna_content},#{qna_pwd},#{qna_secret},#{qna_answer_check},#{qna_resist_id},SYSDATE,#{member_noRef,jdbcType=VARCHAR},null,null)
 	 </insert>
 	 <insert id="myReplyInsert" parameterType ="Qna"> <!-- 여기 -->
 	 insert into QNA VALUES(QNA_seq.NEXTVAL,#{qna_group},1,'admin',

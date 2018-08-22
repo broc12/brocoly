@@ -84,13 +84,6 @@
 	<body>
 	<%@ include file="../top/top.jspf" %>
 	<script>
-	
-    /* jQuery(document).ready(function(){
-    	$(".identifyingClass").click(function () {
-             var my_id_value = $(this).data('qna_no');
-             $(".modal-footer #hiddenValue").val(my_id_value);
-         })
-    }); */
     function checkId(s){
     	var ii = "${id}";
    	 $.ajax({
@@ -105,33 +98,17 @@
 			    	 $("#strqna_no").val(s);
 			    	 $("#exampleModal2").modal('show');
 			     }
-			     else {alert('들어왔는데 실패');
+			     else {alert('게시물이 없습니다.');
 				 	return false;
 			     }
             },
             error : function (data) {
-           	    alert('실패');
+           	    alert('게시물이 없습니다.');
            	    return false;
            	   }  
         });
 	} 
-    
-	
-	/* function checkId(s){
-    	 $.ajax({
-             url: 'checkId.do',
-             data:'qna_no=s&id=&{id}',
-             success: function(data){
-            	 alert("성공");
-             },
-             error : function (data) {
-            	    alert('실패');
-            	    return false;
-            	   }  
-         });
-	} */ 
-    
-	
+
 	function hiddensubmit(){
 		document.f.submit();
 	}
@@ -165,7 +142,7 @@
 					<th  height="60px" class="text-center" width="15%" style="color:black">고객센터</th>
 					<th  class="text-center" width="10%"><a href="service.do" style="color:#8c9094">공지사항</a></th>
 					<th  class="text-center" width="15%"><a href="faq.do" style="color:#8c9094">자주찾는 질문</a></th>
-					<th  class="text-center" width="10%"><a href="faq.do" style="color:#ffdd01">여행상담</a></th>
+					<th  class="text-center" width="10%"><a href="help.do" style="color:#ffdd01">여행상담</a></th>
 					<th  class="text-center"></th>
 				</tr>
 			</table>
@@ -205,9 +182,9 @@
 														<th  width="15%" class="text-center" style="background-color: #fafafa">답변유무</th>
 													</tr>
 													<c:if test="${empty list}">
-													     <tr>
-													     	<td align="center" colspan="5">데이터가 없음</td>
-													     </tr>	
+														<tr style="font-size:10pt;background-color:#fafafa" height="60px">
+												           <td align="center" colspan="5">여행상담이 없습니다.</td>
+												        </tr>
 													  </c:if>
 													  <c:forEach items="${list}" var="board">
 														<tr style="font-size:10pt;color:black" height="60px">

@@ -23,12 +23,16 @@ function(){
 	$('#date1').on(
 			'changeDate', function() {
 				var temp = $('#date1').datepicker('getFormattedDate');
+				if(temp==""){
+					$('#date2').val("");
+				}else{
 				var c = new Date(temp);
 				c.setDate(c.getDate()+1);
 				$('#date2').val( c.getFullYear()+"-"+("0"+(c.getMonth()+1)).slice(-2) +"-"+("0"+(c.getDate())).slice(-2) );
 				$('#date2').datepicker('setStartDate',c.getFullYear()+"-"+ (c.getMonth()+1) +"-" + c.getDate());
 				c.setDate(c.getDate()+6);
 				$('#date2').datepicker('setEndDate',c);
+				}
 			}
 		);
 	jQuery('#date2').datepicker(
@@ -49,6 +53,10 @@ function(){
 		);
 	$("#searchbutton").click(
 			function(){
+				if(document.getElementById("date1").value == "" || document.getElementById("date2").value == ""){
+					alert("날짜를 선택해 주세요");
+					return false;
+				}
 				var startT = new Date(document.getElementById("date1").value+" "+document.getElementById("Checkintime").value);
 				var endT = new Date(document.getElementById("date2").value+" "+document.getElementById("Checkouttime").value);
 				console.log(startT);console.log(endT);
@@ -143,7 +151,7 @@ $.callajax = function(){
         	console.log(data);
         	var html = "<div id='inner'>";
 			if(!data){
-				html += "<p>검색결과없음</p>";
+				html += "<h4>검색결과없음</h4>";
 			}else{
 				$("#result").empty();
 				if(data.length != 0){
@@ -188,7 +196,7 @@ $.callajax = function(){
 						html += "</table></div></div></div></div></div></div></div>";
 					}
 				}else{
-					html += "<p>검색결과없음</p>";
+					html += "<h4>검색결과없음</h4>";
 				}
 				html += "</div>";
 				$("#result").append(html);
@@ -196,7 +204,7 @@ $.callajax = function(){
 			}
         },
         error:function(jqXHR, textStatus, errorThrown){
-            alert("검색 실패\n서버 오류" + textStatus + " : " + errorThrown);
+            alert("서버 오류, 다시 검색 해 주세요");
             self.close();
         }
     });

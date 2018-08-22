@@ -205,7 +205,7 @@
 					</td>
 					<td align="center"></td>
 					<td align="right">
-						<button type="button" class="btn btn-primary"><a href="car.do" style="color:white">목록</a></button>
+						<button type="button" class="btn btn-primary"><a href="carlist.do" style="color:white">목록</a></button>
 						<button type="button" class="btn btn-primary" onclick="check()">완료</button>
 					</td>
 				</tr>

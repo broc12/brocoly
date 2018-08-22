@@ -32,6 +32,10 @@ public class CNoticeController {
 	public ModelAndView serviceContent(@RequestParam("announce_no")long announce_no) {
 		List<Notice>subject = service.subjectService(announce_no);
 		String view = "rentcar/helps/serviceContent";
+		if(subject == null || subject.size() == 0) {
+			ModelAndView mv = new ModelAndView("redirect:/service.do");
+			return mv;
+		}		
 		ModelAndView mv = new ModelAndView(view,"subject",subject);
 		return mv;
 	}

@@ -53,7 +53,7 @@ public class RentcarController {
 	}
 	
 	@RequestMapping(value="car.do",method=RequestMethod.POST)
-	public String car(HttpServletRequest request,@RequestParam("Checkouttime")String checkouttime,@RequestParam("Checkoutdate")String checkoutdate,@RequestParam("Checkintime")String checkintime,@RequestParam("Checkindate")String checkindate,@RequestParam("car_name")String car_name) {
+	public String car(HttpServletRequest request,@RequestParam("Checkouttime")String checkouttime,@RequestParam("Checkoutdate")String checkoutdate,@RequestParam("Checkintime")String checkintime,@RequestParam("Checkindate")String checkindate,@RequestParam(value="car_name",required=false)String car_name) {
 		SearchRequirements requirements = new SearchRequirements(checkindate,checkintime,checkoutdate,checkouttime,car_name);
 		requirements.checkTime(rentcarservice.currenttimeStampService());
 		if(!requirements.isErrorFlag()) {

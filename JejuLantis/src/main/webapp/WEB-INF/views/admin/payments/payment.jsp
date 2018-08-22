@@ -76,7 +76,7 @@
           <i class="fa fa-table"></i>매출현황</div>
         <div class="card-body">
           <div class="table-responsive">
-            <table class="" id="dataTable" width="100%" cellspacing="0" border="1">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0"  data-order='[[ 0, "desc" ]]'>
               <thead>
                 <tr align="center">
                 <th rowspan="2">일자</th>

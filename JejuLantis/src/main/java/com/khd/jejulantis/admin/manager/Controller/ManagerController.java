@@ -92,6 +92,15 @@ public class ManagerController {
 	public void get(){
 		
 	}
+	@RequestMapping(value = "admin/adminUsers/apost", method = RequestMethod.GET)
+	 @ResponseBody public List<Branch> aget(@RequestParam(value = "user", required=false) String branch_name){
+		List<Branch> branchList = null;
+		if(branch_name != null) {
+			branchList = managerService.postService(branch_name);
+		}
+		System.out.println("xxx "+branch_name);
+		return branchList;
+	}
 	@RequestMapping(value = "admin/adminUsers/post", method = RequestMethod.POST)
 	public ModelAndView post(Locale locale,Branch branch,HttpServletRequest request, @RequestParam(value = "branch_name", required=false) String branch_name){
 

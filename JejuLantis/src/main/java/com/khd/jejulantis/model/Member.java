@@ -212,8 +212,12 @@ public class Member {
 			return word3;	
 	}
 	public String getMember_birthFull() {
-		String str = member_birth;
-		int i = str.indexOf(" ");
-		return str.substring(0, i);
+		if(member_birth!=null) {
+			String str = member_birth;
+			int i = str.indexOf(" ");
+			return str.substring(0, i);
+		}else {
+			return null;
+		}
 	}
 }

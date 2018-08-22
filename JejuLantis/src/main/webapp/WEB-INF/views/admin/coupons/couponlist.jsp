@@ -63,11 +63,6 @@
                 </tr>
               </thead>
               <tbody>
-               <c:if test="${empty list}">
-					<tr>
-			           <td align="center" colspan="7">데이터가 없음</td>
-			        </tr>
-				</c:if>
 				 <c:forEach items="${list}" var="list">
                 <tr>
                   <td>${list.coupon_no}</td>

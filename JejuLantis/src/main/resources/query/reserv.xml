@@ -90,6 +90,9 @@
    <select id="afterPaymentTime" resultType="Integer">
 	SELECT ROUND((SYSDATE-RENT_RESERV_RESIST)*24) from RENT_RESERV WHERE RENT_RESERV_NO = #{rent_reserv_no}
    </select>
-  
+   <select id="salesList">
+    SELECT 
+    
+   </select>
    
 </mapper>

@@ -37,7 +37,7 @@ public class PaymentCancleDAOImpl implements PaymentCancleDAO {
 			}
 		}
 		else {
-			if(timeDifference<24 && afterPaymentTime > 24) {
+			if(timeDifference<24 || afterPaymentTime > 24) {
 				 refundPrice = Math.round(refundPrice*0.7); 
 				 sqlSession.update(nsPayment+".chargePenalty",rent_payment_no);
 				 System.out.println("페널티 적용");

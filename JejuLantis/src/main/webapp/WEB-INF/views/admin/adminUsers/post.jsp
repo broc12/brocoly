@@ -8,7 +8,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <title>결과창</title>
-</head>
+<script type="text/javascript" charset="utf-8" src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.2/angular.min.js" ></script>
+
 <script>
     //main페이지로 값 전달: 부모로 값전달하기 위해서는 opener사용
     function sendAdd(branch_name, branch_no){
@@ -32,29 +33,37 @@
         
     }
 </script>
+</head>
 <body>
-    <form name="f" action="./post" method="post" onsubmit="check()">
-        <table border="1" width="100%">
+<div ng-app="myApp" ng-controller="myCtrl" >
+     <table border="1" width="100%">
+        <thead>
             <tr align="center">
-                <td>업체이름 검색 : <input type="text" id="a" name="branch_name" size="15">
-                    <input type="submit" value="검색">
+                <td>업체이름 검색 : <input type="text" id="a" name="branch_name" size="15" ng-model="user" onkeypress="if(event.which==13)search()">
+                    <input type="button" ng-click="search()" value="검색">
                 </td>
             </tr>
-            <tr>
-                <!-- 안내문 -->
-                <td align=center><font color=red>※ 동이름을 입력하시고 검색 후, 아래
-                        부분의<br> 우편번호를 클릭하시면 자동으로 주소가 입력됩니다.
-                </font></td>
-            </tr>
-            <c:forEach items="${result}" var="post">
-                <tr>
-                    <td><a id="branch_name" href="javascript:sendAdd('${post.branch_name}','${post.branch_no}')" >
-                     ${post.branch_tel}  ${post.branch_local} ${post.branch_name} 
+            </thead>
+            <tbody>
+                <tr ng-repeat="post in posts">
+                    <td><a id="branch_name" href='javascript:sendAdd("{{post.branch_name}}","{{post.branch_no}}")' >
+                     {{post.branch_tel}} {{post.branch_local}} {{post.branch_name}} 
                     </a></td>
                 </tr>
-            </c:forEach>
+                </tbody>
         </table>
-    </form>
+</div>
+<script>
+var app = angular.module('myApp', []);
+app.controller('myCtrl', function($scope, $http) {
+	$scope.search = function () {
+    $http.get("./apost", {params:{ user : $scope.user }})
+    .then(function(response) {
+        $scope.posts = response.data;
+    });
+	}
+});
+</script>
 </body>
 </html>
 

@@ -50,7 +50,14 @@ function check(){
 	var end_date = $("#test2").val();
 	var branch_no = ${branch_no};
 	 $.ajax({
-        url: 'checkDate.do',
+	 	url: 'checkDate.do',
+        data:{"start_date":start_date,"end_date":end_date},
+        success: function(data){
+        	console.log(data);
+	 	var flag = data;
+	 	if(flag==true){
+	 $.ajax({
+        url: 'salesList.do',
         data:{"start_date":start_date,"end_date":end_date,"branch_no":branch_no},
         success: function(data){
 			 var list = data.list;
@@ -102,6 +109,16 @@ function check(){
        	    return false;
        	   }
     });
+	 }else{
+		 alert('시작날짜와 종료날짜를 확인해주세요.');
+		 return false;
+		 }
+     },
+	 error : function(data) {
+		 alert('실패');
+		 return false;
+	 }
+});
 } 
 </script>
 

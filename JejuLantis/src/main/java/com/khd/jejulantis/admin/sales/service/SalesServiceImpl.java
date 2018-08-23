@@ -1,8 +1,12 @@
 package com.khd.jejulantis.admin.sales.service;
+import java.util.HashMap;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.khd.jejulantis.admin.sales.DAO.SalesDAO;
+import com.khd.jejulantis.model.Sales;
 
 @Service
 public class SalesServiceImpl implements SalesService {
@@ -11,8 +15,8 @@ public class SalesServiceImpl implements SalesService {
 	private SalesDAO salesDAO;
 	
 	@Override
-	public void totalSales(long branch_no) {
-		salesDAO.totalSales(branch_no);
+	public List<Sales> totalSales(HashMap<String, Object> hash) {
+		return salesDAO.totalSales(hash);
 	}
 
 }

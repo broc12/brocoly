@@ -30,6 +30,7 @@
 		<typeAlias alias="Reserv" type="com.khd.jejulantis.model.Reserv"/>
 		<typeAlias alias="Affiliate" type="com.khd.jejulantis.model.Affiliate"/>
 		<typeAlias alias="Admin" type="com.khd.jejulantis.model.Admin"/>
+		<typeAlias alias="Sales" type="com.khd.jejulantis.model.Sales"/>
 	</typeAliases>
 	<mappers>
 		<mapper resource="query/CustomerCenter.xml"/>
@@ -56,6 +57,7 @@
 		<mapper resource="query/affiliate.xml"/>
 		<mapper resource="query/admin.xml"/>
 		<mapper resource="query/chart.xml"/>
+		<mapper resource="query/sales.xml"/>
 	</mappers>
 	
 	

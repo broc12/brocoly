@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="query.sales">
+<resultMap type="Sales" id="salesResult">
+	<result column="SALESDATE" property="salesDate"/>
+	<result column="TOTALPAYMENT" property="totalPayment"/>
+	<result column="COUNTPAYMENT" property="countPayment"/>
+	<result column="TOTALNCANCLE" property="totalNCancle"/>
+	<result column="TOTALNCOUNT" property="totalNCount"/>
+	<result column="TOTALPCANCLE" property="totalPCancle"/>
+	<result column="TOTALPCOUNT" property="totalPCount"/>
+	</resultMap>
+	 
+	<select id="sales" resultType="Sales" parameterType="HashMap">
+		SELECT 
+        AA.SALESDATE,NVL(BB.totalPayment,0)totalPayment,NVL(BB.countPayment,0)countPayment,
+        NVL(CC.totalNCancle,0)totalNCancle,NVL(CC.totalNCount,0)totalNCount,NVL(DD.totalPCancle,0)totalPCancle,NVL(DD.totalPCount,0)totalPCount
+           
+		FROM 
+		(
+             select to_char(to_date(#{start_date},'yyyy/mm/dd') + level-1,'yy/mm/dd')SALESDATE from dual
+             connect by level<![CDATA[<=]]>(to_date(#{end_date},'yyyy/mm/dd') - to_date(#{start_date},'yyyy/mm/dd'))+1
+		  
+		) AA 
+		LEFT JOIN (
+	      
+               SELECT to_char(RENT_PAYMENT_RESIST,'yy/mm/dd')RENT_PAYMENT_RESIST, SUM(RENT_PAYMENT_TOTAL_PRICE) totalPayment, count(RENT_PAYMENT_TOTAL_PRICE)countPayment FROM RENT_PAYMENT
+               WHERE RENT_PAYMENT_RESIST BETWEEN to_date(#{start_date},'yyyy/mm/dd') AND to_date(#{end_date},'yyyy/mm/dd')  GROUP BY RENT_PAYMENT_RESIST
+		)BB 
+        ON AA.SALESDATE = BB.RENT_PAYMENT_RESIST
+        LEFT JOIN (
+	      
+               SELECT to_char(RENT_PAYMENT_CANCEL_DATE,'yy/mm/dd')RENT_PAYMENT_CANCEL_DATE, SUM(RENT_PAYMENT_REFUND_PRICE)totalNCancle, count(RENT_PAYMENT_REFUND_PRICE)totalNCount
+        FROM RENT_PAYMENT WHERE RENT_PAYMENT_ING=2 AND  RENT_PAYMENT_NO=ANY(SELECT RENT_PAYMENT_NO FROM RENT_RESERV WHERE BRANCH_NO = #{branch_no} AND RENT_RESERV_CANCEL_DATE  BETWEEN to_date(#{start_date},'yyyy/mm/dd') AND to_date(#{end_date},'yyyy/mm/dd'))GROUP BY RENT_PAYMENT_CANCEL_DATE
+		)CC 
+        ON AA.SALESDATE = CC.RENT_PAYMENT_CANCEL_DATE
+        LEFT JOIN (
+	      
+               SELECT to_char(RENT_PAYMENT_CANCEL_DATE,'yy/mm/dd')RENT_PAYMENT_CANCEL_DATE, SUM(RENT_PAYMENT_REFUND_PRICE)totalPCancle, count(RENT_PAYMENT_REFUND_PRICE)totalPCount
+        FROM RENT_PAYMENT WHERE RENT_PAYMENT_ING=3 AND  RENT_PAYMENT_NO=ANY(SELECT RENT_PAYMENT_NO FROM RENT_RESERV WHERE BRANCH_NO = #{branch_no} AND RENT_RESERV_CANCEL_DATE  BETWEEN to_date(#{start_date},'yyyy/mm/dd') AND to_date(#{end_date},'yyyy/mm/dd'))GROUP BY RENT_PAYMENT_CANCEL_DATE
+		)DD 
+        
+        ON AA.SALESDATE = DD.RENT_PAYMENT_CANCEL_DATE
+         LEFT JOIN (
+	      
+               SELECT to_char(RENT_PAYMENT_CANCEL_DATE,'yy/mm/dd')RENT_PAYMENT_CANCEL_DATE, SUM(RENT_PAYMENT_REFUND_PRICE)totalPCancle, count(RENT_PAYMENT_REFUND_PRICE)totalPCount
+        FROM RENT_PAYMENT WHERE  RENT_PAYMENT_NO=ANY(SELECT RENT_PAYMENT_NO FROM RENT_RESERV WHERE BRANCH_NO = #{branch_no} AND RENT_PAYMENT_CANCEL_DATE  BETWEEN to_date(#{start_date},'yyyy/mm/dd') AND to_date(#{end_date},'yyyy/mm/dd'))GROUP BY RENT_PAYMENT_CANCEL_DATE
+		)EE 
+        
+        ON AA.SALESDATE = DD.RENT_PAYMENT_CANCEL_DATE
+		ORDER BY AA.SALESDATE
+	</select>
+	
+</mapper>

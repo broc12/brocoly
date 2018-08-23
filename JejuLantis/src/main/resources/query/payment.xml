@@ -29,7 +29,7 @@
    		select * from RENT_PAYMENT where RENT_PAYMENT_NO=#{rent_payment_no}
    </select>
    <update id="canclePayment">
-     update RENT_PAYMENT SET RENT_PAYMENT_CANCEL_DATE = SYSDATE WHERE RENT_PAYMENT_NO=#{rent_payment_no}
+     update RENT_PAYMENT SET RENT_PAYMENT_CANCEL_DATE = SYSDATE, RENT_PAYMENT_ING = 2  WHERE RENT_PAYMENT_NO=#{rent_payment_no}
    </update>
    <select id="judgeGoodsType" resultType="String">
    	 select RENT_PAYMENT_GOODS_TYPE FROM RENT_PAYMENT WHERE RENT_PAYMENT_NO=#{rent_payment_no}
@@ -41,7 +41,7 @@
    	UPDATE RENT_PAYMENT SET RENT_PAYMENT_REFUND_PRICE = #{refundPrice} WHERE RENT_PAYMENT_NO = #{rent_payment_no}
    </update>
    <update id="chargePenalty">
-   	UPDATE RENT_PAYMENT SET RENT_PAYMENT_ING = 2 WHERE RENT_PAYMENT_NO = #{rent_payment_no}
+   	UPDATE RENT_PAYMENT SET RENT_PAYMENT_ING = 3 WHERE RENT_PAYMENT_NO = #{rent_payment_no}
    </update>
    
 </mapper>

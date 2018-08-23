@@ -1,5 +1,7 @@
 package com.khd.jejulantis.client.paymentCancle.controller;
 
+import java.util.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,4 +23,5 @@ public class PaymentCancleController {
 		long refundPrice = service.cancleReserve(rent_reserv_no,rent_payment_no);
 		System.out.println("후 됐군.." + refundPrice);
 	}
+	
 }

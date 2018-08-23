@@ -255,11 +255,11 @@
 									<div class="hotel-entry" style="background-color:white">
 										<div class="desc" style="padding:15px;height:410px"></br>
 											<span style="font-size:18pt;color:black">${dto.blist[0].branch_name}</span>
-											<div align="right">
+<!-- 											<div align="right">
 											<span style="color:red;text-decoration: line-through">43,000원</span>
 											<span style="font-size:18pt;color:black">32,400원</span>
-											</div>
-											<p class="star"><span><i class="icon-star-full"></i><i class="icon-star-full"></i><i class="icon-star-full"></i><i class="icon-star-full"></i><i class="icon-star-full"></i></span> 545 Reviews</p>
+											</div> -->
+											<!-- <p class="star"><span><i class="icon-star-full"></i><i class="icon-star-full"></i><i class="icon-star-full"></i><i class="icon-star-full"></i><i class="icon-star-full"></i></span> 545 Reviews</p> -->
 											<span class="place">${dto.blist[0].car_kind_naviView} ${dto.blist[0].car_kind_sensorView} ${dto.blist[0].car_kind_bluetoothView} ${dto.blist[0].car_kind_blackboxView} ${dto.blist[0].car_kind_sunroofView} ${dto.blist[0].car_kind_cameraView} ${dto.blist[0].car_kind_nonsmokeView}</span>
 											<!-- <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p> -->
 											<div id="board">

@@ -96,7 +96,11 @@ public class MemberDaoImpl implements MemberDao {
 	public List<Member> memberList() {
 		return sql.selectList(ns+".memberList");
 	}
-
+	
+	@Override
+	public List<Member>newList(){
+		return sql.selectList(ns+".myNewList");
+	}
 //	@Override
 //	public Member delete(Member member) {
 //		// TODO Auto-generated method stub

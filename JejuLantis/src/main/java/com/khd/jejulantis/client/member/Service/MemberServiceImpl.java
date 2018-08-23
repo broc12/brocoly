@@ -75,7 +75,10 @@ public class MemberServiceImpl implements MemberService {
 		public List<Member> memberListService() {
 			return memberDao.memberList();
 		}
-	
+		@Override
+		public List<Member>newListService(){
+			return memberDao.newList();
+		}
 //	@Override
 //	public int deletemodify(String id) {
 //		// TODO Auto-generated method stub

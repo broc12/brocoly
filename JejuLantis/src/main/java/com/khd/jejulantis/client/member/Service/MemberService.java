@@ -18,6 +18,7 @@ public interface MemberService {
 	String find_pwd( String member_id) throws Exception;
 	int emailcheck(String member_email);
 	List<Member> memberListService();
+	List<Member>newListService();
 //	boolean modifyService(HashMap<String, String> hm);
 	
 //	int modify(Member member);

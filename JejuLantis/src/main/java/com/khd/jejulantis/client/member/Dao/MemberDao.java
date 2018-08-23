@@ -24,4 +24,5 @@ public interface MemberDao {
 		String find_pwd(String id);
 //		int deletemodify(String id);
 		List<Member> memberList();
+		List<Member>newList();
 }	

@@ -2,6 +2,7 @@ package com.khd.jejulantis.admin.admin.Controller;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,19 +12,25 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.khd.jejulantis.admin.chart.Service.ChartService;
+import com.khd.jejulantis.client.member.Service.MemberService;
+import com.khd.jejulantis.model.Member;
 
 @Controller
 public class AdminController {
 	@Autowired
 	private ChartService chartservice;
+	@Autowired
+	private MemberService memberservice;
 	
 	@RequestMapping(value="admin/index.do",method=RequestMethod.GET)
 	public ModelAndView index ()throws IOException {
+		List<Member>list = memberservice.newListService();
 		ObjectMapper obj = new ObjectMapper();
 		HashMap map = chartservice.chartService();
 		String es = obj.writeValueAsString(map);
 		String view = "admin/index";
 		ModelAndView mv = new ModelAndView(view,"map",es);
+		mv.addObject("list",list);
 		return mv;
 	}
 	

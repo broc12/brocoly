@@ -30,16 +30,17 @@ public class ChartDAOImpl implements ChartDAO{
 	
 	@Override
 	public HashMap finish(long branch_no) {
-		System.out.println("brnah:"+branch_no);
 		HashMap branch = new HashMap();
 		branch.put("branch_no", branch_no);
 		List bug = sqlSession.selectList(ns+".myBug",branch);
 		List cha = sqlSession.selectList(ns+".myCug",branch);
 		List wek = sqlSession.selectList(ns+".myWeek",branch);
+		List pie = sqlSession.selectList(ns+".myPie",branch);
 		HashMap map = new HashMap();
 		map.put("bug", bug);
 		map.put("cha", cha);
 		map.put("wek", wek);
+		map.put("pie", pie);
 		return map;
 	}
 }

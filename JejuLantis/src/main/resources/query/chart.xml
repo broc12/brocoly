@@ -77,4 +77,19 @@
 		 ON AA.RESVE_DT = BB.RENT_RESERV_START
 		ORDER BY RESVE_DT
 	</select>
+		
+	<select id="myPie" resultType="Long">
+	select NVL(CC,0), AA.car_info_rent_at from
+        (select 'Y' as CAR_INFO_RENT_AT from dual
+        union all
+        select 'N' as CAR_INFO_RENT_AT from dual
+        union all
+        select 'C' as CAR_INFO_RENT_AT from dual) AA ,
+        (select CAR_INFO_RENT_AT,count(*) as CC from car_info 
+        <if test="branch_no != 2">
+        where branch_no=#{branch_no} 
+        </if>
+        group by CAR_INFO_RENT_AT)BB
+        where BB.CAR_INFO_RENT_AT (+)= AA.CAR_INFO_RENT_AT order by car_info_rent_at
+	</select>
 </mapper>

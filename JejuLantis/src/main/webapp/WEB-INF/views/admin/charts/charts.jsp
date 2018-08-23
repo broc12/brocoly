@@ -173,30 +173,21 @@ Highcharts.chart('container1', {
             <div class="card-body">
               <div id="container3">
               <script>
-
+              var bie = ${map};
+              
               Highcharts.chart('container3', {
 
                   title: {
-                      text: 'Pie point CSS'
+                      text: '차량현황'
                   },
-
-                  xAxis: {
-                      categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
-                  },
-
                   series: [{
                       type: 'pie',
                       allowPointSelect: true,
                       keys: ['name', 'y', 'selected', 'sliced'],
                       data: [
-                          ['Apples', 29.9, false],
-                          ['Pears', 71.5, false],
-                          ['Oranges', 106.4, false],
-                          ['Plums', 129.2, false],
-                          ['Bananas', 144.0, false],
-                          ['Peaches', 176.0, false],
-                          ['Prunes', 135.6, true, true],
-                          ['Avocados', 148.5, false]
+                          ['대기중', bie.pie[1], false],
+                          ['운행중', bie.pie[2], false],
+                          ['수리중', bie.pie[0], false]
                       ],
                       showInLegend: true
                   }]

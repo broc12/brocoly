@@ -83,7 +83,12 @@ function check(){
 						html +=  "<td>"+data[i].totalNCancle+"("+data[i].totalNCount+")</td>";
 						html +=  "<td>"+data[i].totalPCancle+"("+data[i].totalPCount+")</td>";
 						html +=  "<td>"+data[i].totalPayment+"("+data[i].countPayment+")</td>";
-						html +=  "<td>"+data[i].netSales+"</td>";
+						if(data[i].netSales>0)
+							html +=  "<td style='color:blue'>"+data[i].netSales+"</td>";
+						else if(data[i].netSales<0)
+							html +=  "<td style='color:red'>"+data[i].netSales+"</td>";
+						else 
+							html +=  "<td>"+data[i].netSales+"</td>";
 						totalPayment += data[i].totalPayment;
 						countPayment += data[i].countPayment;
 						totalNCancle += data[i].totalNCancle;
@@ -98,6 +103,11 @@ function check(){
 					total +=  "<td>"+totalNCancle+"("+totalNCount+")</td>";
 					total +=  "<td>"+totalPCancle+"("+totalPCount+")</td>";
 					total +=  "<td>"+totalPayment+"("+countPayment+")</td>";
+					if(netSales>0)
+						total +=  "<td style='color:blue'>"+netSales+"</td>";
+					else if(netSales<0)
+						total +=  "<td style='color:red'>"+netSales+"</td>";
+					else
 					total +=  "<td>"+netSales+"</td>"; 
 					$("#result").append(html);	
 					$("#result").append(total);

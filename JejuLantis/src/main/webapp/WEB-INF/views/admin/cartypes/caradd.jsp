@@ -164,7 +164,7 @@
                         </select>
 					</th>
 					<th  height="60px" width="10%" class="text-center" style="background-color: #fafafa"><a style="color:red">*</a>차종이미지</th>
-					<th  width="35%" class="text-left">
+					<th  width="35%" class="text-left" valign="bottom">
 						<!-- <input type="file"> -->
 						<input type="file" accept="image/*" onchange="loadFile(event)" id="uploadfile" name="uploadfile">
 						<!-- <script>

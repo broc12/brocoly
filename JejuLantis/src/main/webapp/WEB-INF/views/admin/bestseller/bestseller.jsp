@@ -63,11 +63,6 @@ function check(){
                   <th>판매대수</th>
                   <th>선택</th>
                 </tr>
-                <c:if test="${empty list}">
-					<tr>
-			           <td align="center" colspan="5">데이터가 없음</td>
-			        </tr>
-				</c:if>
               </thead>
               <tbody>
               <c:forEach items="${list}" var="list">
@@ -81,7 +76,7 @@ function check(){
               </tbody>
               <tr>
               <td colspan="4" align="right"><input type="button" value="저장하기" onclick="check()"></td>
-              <tr>
+              </tr>
             </table>
             </form>
           </div>

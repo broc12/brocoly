@@ -39,7 +39,7 @@
      <table border="1" width="100%">
         <thead>
             <tr align="center">
-                <td>업체이름 검색 : <input onkeypress="if (event.which==13) document.getElementById('ddd').click()"  type="text" name="branch_name" size="15" ng-model="user" value=""/>
+                <td>업체이름 검색 : <input onkeypress="if (event.which==13) document.getElementById('ddd').click()" type="text" name="branch_name" size="15" ng-model="user" value=""/>
                     <input type="button" id='ddd' ng-click="search()" value="검색">
                 </td>
             </tr>
@@ -56,12 +56,8 @@
 <script>
 	var app = angular.module('myApp', []);
 	app.controller('myCtrl', function($scope, $http) {
-		$scope.keyPressed = function(keyEvent) {
-			  if (keyEvent.which === 13)
-			    alert('I am an alert');
-			}
 		$scope.search = function() {
-			if ($scope.user != "" ) {
+			if ($scope.user != "" && $scope.user != null) {
 				$http.get("./apost", {
 					params : {
 						user : $scope.user
@@ -72,7 +68,7 @@
 			}else{
 				alert("검색명을 입력해주세요");
 			}
-		}
+			}
 	});
 </script>
 </body>

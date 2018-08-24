@@ -174,7 +174,8 @@ public class Member {
 		  }
 	        String word1 = str1.split("-")[0];
 	        String word2 = str1.split("-")[1];
-	        String word3 = str1.split("-")[2];	      
+	        String word3 = str1.split("-")[2];
+	        word3 = word3.substring(0,2);
 			return word3;	
 	}
 	public String getMember_tel1() {

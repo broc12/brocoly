@@ -7,6 +7,8 @@
 
 <head>
   <meta charset="utf-8">
+  <meta id="_csrf" name="_csrf" content="${_csrf.token}"/>
+  	<meta id="_csrf_header" name="_csrf_header" content="${_csrf.headerName}"/>
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
@@ -27,6 +29,7 @@
 <!--     </style> -->
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.14/jquery-ui.min.js"></script>
+
 <!-- Bootstrap core JavaScript-->
   <script src="../resources/admin/vendor/jquery/jquery.min.js"></script>
   <script src="../resources/admin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -38,6 +41,14 @@
  var idck = 0;
  var emailck = 0;
  var branchck = 0;
+ var token = $("meta[name='_csrf']").attr("content");
+ var header = $("meta[name='_csrf_header']").attr("content");
+  
+ $(function() {
+	    $(document).ajaxSend(function(e, xhr, options) {
+	        xhr.setRequestHeader(header, token);
+	    });
+	});
  $(document).ready(function() {
  	//emailck 버튼을 클릭했을 때 
   $("#emailck").click(function() {
@@ -64,12 +75,15 @@
  	        }
  	        
          //userid 를 param.
-         var useremail =  $("#manager_email").val(); 								        
+         var useremail =  $("#manager_email").val();
+         var csrfParameter = $("meta[name='_csrf_parameter']").attr("content");
+//  		var csrfHeader = $("meta[name='_csrf_header']").attr("content");
+  		var _token = $("meta[name='_csrf']").attr("content");
          $.ajax({
              async: true,
              type : 'POST',
              data : useremail,
-             url : "emailcheckmanager.do",
+             url : "../emailcheckmanager.do",
              dataType : "json",
              contentType: "application/json; charset=UTF-8",
              success : function(data) {
@@ -166,14 +180,48 @@
      });
  });
 
- function inputIdChk(){
- 	document.f.idDuplication.value = "idUncheck";
- }
+
  function inputEmailChk(){
  	document.f.emailDuplication.value = "emailUncheck";
+//  	alert('이메일 중복체크를 해주세요');
  }
-
+ function pwdsendIt() { 
+	 $("#exampleModal2").modal('show');
+ }
+ function change() { 
+	 if(confirm("회원정보를 수정 하시겠습니까?")){
+		 
+		 //비밀번호 입력여부 체크
+			if (document.fpwd.manager_pwd.value == "") {
+				alert("비밀번호를 입력하지 않았습니다.")
+				document.fpwd.manager_pwd.focus()
+				return false;
+			}			
+		//비밀번호 길이 체크(4~8자 까지 허용)
+			if (document.fpwd.manager_pwd.value.length<4 || document.fpwd.manager_pwd.value.length>12) {
+				alert("비밀번호를 4~12자까지 입력해주세요.")
+				document.fpwd.manager_pwd.focus()
+				document.fpwd.manager_pwd.select()
+				return false;
+			}									 
+	//비밀번호와 비밀번호 확인 일치여부 체크
+			if (document.fpwd.manager_pwd.value != document.fpwd.manager_pwd1.value) {
+				alert("비밀번호가 일치하지 않습니다")
+				document.fpwd.manager_pwd.value = ""
+				document.fpwd.manager_pwd1.focus()
+				return false;
+			}								
+		 alert("수정완료 ")
+		 document.fpwd.submit();
+	 }
+	 document.fpwd.submit();
+ }
  function sendIt() {  
+		var today = new Date();
+		var toyear =  today.getFullYear();
+		var start = toyear - 5
+		var end = toyear - 70;
+	 
 	 if(confirm("회원정보를 수정 하시겠습니까?")){
 	 var hp3 =$("#manager_tel3 option:selected").val()
 	 var hp4 =$("#manager_tel4").val()
@@ -189,8 +237,35 @@
 	 var birth2 =$("#manager_birth2 option:selected").val()
 	 var birth3 =$("#manager_birth3 option:selected").val()
 	$("#manager_birth").val(birth1+"-"+birth2+"-"+birth3)
+	if(document.f.emailDuplication.value == "emailUncheck"){
+		alert('이메일 중복체크를 해주세요');
+		document.f.manager_email.focus()
+		return false;
+	}
+	if(manager_tel4.value.length<=2 || manager_tel5.value.length!=4){
+		alert("휴대폰번호를 제대로 입력해주세요");
+		focus.manager_tel4;
+		return false;
+	}
+		/*핸드폰이 숫자만 들어가는지 체크*/
+		if(isNaN(manager_tel4.value) || isNaN(manager_tel5.value))
+	{
+		alert("휴대폰번호는 숫자만 들어갈 수 있습니다.");
+		return false;
+	}
+		if(manager_tel7.value.length<=2 || manager_tel8.value.length!=4){
+			alert("휴대폰번호를 제대로 입력해주세요");
+			focus.manager_tel4;
+			return false;
+		}
+			/*핸드폰이 숫자만 들어가는지 체크*/
+			if(isNaN(manager_tel7.value) || isNaN(manager_tel8.value))
+		{
+			alert("휴대폰번호는 숫자만 들어갈 수 있습니다.");
+			return false;
+		}
 		alert("수정완료 ")
-	document.f.submit();
+		document.f.submit();
 // 	 	alert("수정완료 ")
 	 	}	
  }
@@ -219,7 +294,8 @@
     <div class="card card-register mx-auto mt-5">
       <div class="card-header">MYPAGE</div>
       <div class="card-body">
-        <form name="f" action="./managermodify.do"  method="post">												
+        <form name="f" action="./managermodify.do"  method="post">	
+          <form name="pwdf" action="managerupdate_pwd_form.do"  method="post">															
           <div class="form-group">
             <div class="form-row">
               <div class="col-md-6">             		
@@ -234,40 +310,41 @@
                 <input style="width:70%;height:40px" onkeydown="inputEmailChk()" value="${nn.manager_email}" id="manager_email" name="manager_email" type="text" aria-describedby="nameHelp" placeholder="">
               	<input type="button" value="중복확인" name="confirm_email"
 									id="emailck"  class="btn btn-primary" style="width:80px;height:40px;margin-top:-5px;font-size:10pt"></td>    
-									<input type="hidden"  id="emailCheck" name="emailDuplication" value="emailUncheck" >          	
+									<input type="hidden"  id="emailCheck" name="emailDuplication" value="emailcheck" >          	
               </div>                
             </div>
           </div>
-          <div class="form-group">
+           <div class="form-group">
             <div class="form-row">
               <div class="col-md-6">
-                <label for="exampleInputName"><a style="color:red">*</a>비밀번호</label>
-                <input style="width:100%;height:40px" id="manager_pwd" name="manager_pwd" value="${nn.manager_pwd}" type="password" aria-describedby="nameHelp" placeholder="">
+<!--                 <label for="exampleInputName"><a style="color:red">*</a>비밀번호</label> -->
+                <input style="width:100%;height:40px" id="manager_pwd" name="manager_pwd" value="${nn.manager_pwd}" type="hidden" aria-describedby="nameHelp" placeholder="">
               </div>
               <div class="col-md-6">
-                <label for="exampleInputLastName"><a style="color:red">*</a>비밀번호 확인</label>
-                <input style="width:100%;height:40px" id="manager_pwd1" name="manager_pwd1" value="${nn.manager_pwd}" type="password" aria-describedby="nameHelp" placeholder="">
+<!--                 <label for="exampleInputLastName"><a style="color:red">*</a>비밀번호 확인</label> -->
+                <input style="width:100%;height:40px" id="manager_pwd1" name="manager_pwd1" value="${nn.manager_pwd}" type="hidden" aria-describedby="nameHelp" placeholder="">
               </div>
             </div>
-          </div>
+          </div> 
           <div class="form-group">
             <div class="form-row">
               <div class="col-md-6">
                 <label for="exampleInputPassword1"><a style="color:red">*</a>이름</label>
                 <input style="width:100%;height:40px" readonly id="manager_name" name="manager_name" value="${nn.manager_name}" type="text" placeholder="">
               </div>
+              
               <div class="col-md-6">
                 <label for="exampleConfirmPassword"><a style="color:red">*</a>생년월일</label>
-                </br>
+              </br>
                 <script language="Javascript">
                 var birth1 =${nn.manager_birth1}
 				var birth2 =${nn.manager_birth2}
 				var birth3 =${nn.manager_birth3}
-				var member_birth= birth1+birth2+birth3;
+				var manager_birth= birth1+birth2+birth3;
 				var today = new Date();
-				var toyear =  today.getFullYear();
-				var start = toyear - 5
-				var end = toyear - 70;
+				var toyear = parseInt(today.getFullYear());
+					var start = toyear - 5
+					var end = toyear - 70;
 				
 				document.write("<select name=manager_birth1 id=manager_birth1 onFocus='this.initialSelect = this.selectedIndex;' onChange='this.selectedIndex = this.initaialSelect;' style=width:23%;height:40px>");
 				document.write("<option value="+birth1+" selected>"+birth1);
@@ -283,6 +360,7 @@
 				document.write("<option value="+birth3+" selected>"+birth3);
 				for (i=1;i<=31;i++) document.write("<option>"+i); 
 				document.write("</select>&nbsp;&nbsp;일   </font>");
+			
 				</script>
 				<input type="hidden" readonly id="manager_birth" name="manager_birth" >
               </div>
@@ -409,10 +487,15 @@
             </div>
           </div>
               </br>
-          <input type="submit" class="btn btn-primary btn-block" value="수정완료" onclick="sendIt()" >
+       				<a data-toggle="modal" data-target="#exampleModal2" class="btn btn-primary btn-block" data-id="" >비밀번호 변경</a>
+<!--               <input type="button" class="btn btn-primary btn-block" value="비밀번호 변경" onclick="pwdsendIt()" > -->
+          <input type="button" class="btn btn-primary btn-block" value="수정완료" onclick="sendIt()" >
+       		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+        </form>
         </form>
         <div class="text-center">
-          <a class="d-block small mt-3" href="login.do">로그인</a>
+        </br>
+<!--           <a class="d-block small mt-3" href="login.do">로그인</a> -->
           <a href="./managerdelete.do" class="d-block small">회원탈퇴</a>
           <a class="d-block small" href="forgot-password.do">고객센터 1577-0704</a>
           
@@ -421,6 +504,40 @@
     </div>
   </div>
   
+  <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel2" aria-hidden="true"><!-- 모달 -->
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">비밀번호 변경</h5>
+            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+		  <form action="CheckPwd.do" method="POST" name="fpwd">
+          <div class="modal-body">
+          	<div class="form-group">
+            <div class="form-row">
+              <div class="col-md-10">
+                <label for="exampleInputName"><a style="color:red">*</a>비밀번호</label>
+                <input style="width:100%;height:40px" id="manager_pwd" name="manager_pwd" value="" type="password" aria-describedby="nameHelp" placeholder="">             
+              </br></br>
+                <label for="exampleInputLastName"><a style="color:red">*</a>비밀번호 확인</label>
+                <input style="width:100%;height:40px" id="manager_pwd1" name="manager_pwd1" value="" type="password" aria-describedby="nameHelp" placeholder="">
+              </div>
+            </div>
+          </div> 
+          </div>          
+          <div class="modal-footer">
+            <button class="btn btn-secondary" type="button" data-dismiss="modal">취소</button>
+<!--             <a class="btn btn-primary" href="./CheckPwd.do" method="POST" onclick="hiddensubmit()" name="hiddenValue" id="hiddenValue">수정</a> -->
+            <input type="button" class="btn btn-primary" value="수정" onclick="change()"/>
+            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+          </div>
+		  </form>
+        </div>
+      </div>
+    </div>
+
 </body>
 
 </html>

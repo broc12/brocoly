@@ -5,6 +5,8 @@
 <html>
 <head>
 <meta charset="utf-8">
+<meta id="_csrf" name="_csrf" content="${_csrf.token}"/>
+  <meta id="_csrf_header" name="_csrf_header" content="${_csrf.headerName}"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <title>Tour Template</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -67,19 +69,22 @@
     function loginWithKakao() {
       Kakao.Auth.login({
         success: function(authObj) {
+          alert(JSON.stringify(authObj));
       	$.ajax({
 	    	url:"kakaoLogin.do",
 	        type:'GET',
 	        data: {"token":JSON.stringify(authObj.access_token)} ,
 	        error:function(error) {
-	            alert("카카오 로그인 실패");
+	            alert("카카오 로그인 샐패");
 	        },
 	        success:function(data){
+	     		alert(data);
+	            $("#token").val(data);
 	        }
       	});
         },
         fail: function(err) {
-          alert("카카오 로그인 실패");
+          alert(JSON.stringify(err));
         }
       });
     };
@@ -121,7 +126,7 @@
 								<div class="col-md-6 animate-box">
 									<div class="desc">
 										<div class="row">
-											<form action="<%=request.getContextPath()%>/login/loginCheck"
+											<form action="./j_security_check"
 												method="post">
 												<div class="col-md-12">
 													<h3>로그인</h3>
@@ -149,6 +154,7 @@
 													</p>
 													<p align="center">
 														<input type="submit" class="btn btn-primary" value="로그인" />
+														<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 														<a href="member.do" class="btn btn-primary"> 회원가입 </a>
 													</p>
 												</div>

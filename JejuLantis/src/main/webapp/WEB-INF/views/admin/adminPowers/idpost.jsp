@@ -6,6 +6,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<meta id="_csrf" name="_csrf" content="${_csrf.token}"/>
+  	<meta id="_csrf_header" name="_csrf_header" content="${_csrf.headerName}"/>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <title>결과창</title>
 </head>
@@ -123,6 +125,7 @@
             <tr align="center">
                 <td colspan="3">아이디 검색 : <input type="text" id="a" name="manager_id" size="15">
                     <input type="submit" value="검색">
+                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                 </td>
             </tr>
           	<tr>

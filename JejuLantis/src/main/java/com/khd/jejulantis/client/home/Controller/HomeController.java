@@ -2,18 +2,24 @@ package com.khd.jejulantis.client.home.Controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.joda.time.DateTime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.khd.jejulantis.client.best.Service.BestService;
+import com.khd.jejulantis.client.member.Service.MemberService;
 import com.khd.jejulantis.client.rentcar.Service.RentcarService;
 import com.khd.jejulantis.model.Car;
+import com.khd.jejulantis.model.Member;
 
 /**
  * Handles requests for the application home page.
@@ -22,7 +28,8 @@ import com.khd.jejulantis.model.Car;
 public class HomeController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
-	
+	@Autowired
+	MemberService memberService;
 	@Autowired
 	private BestService service;
 	@Autowired
@@ -63,6 +70,20 @@ public class HomeController {
 	@RequestMapping(value="faq.do",method=RequestMethod.GET)
 	public String faq() {
 		return "rentcar/helps/faq";
+	}
+	@RequestMapping(value="/successlogin.do",method=RequestMethod.GET)
+	public String succes(HttpSession session) {
+			System.out.println("ad");
+			User userDetail = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+			if( userDetail== null) {
+				System.out.println("널이지롱");
+			}
+			Member member = new Member(userDetail.getUsername());
+			
+			 Member tt = memberService.securityloginCheck(member);
+			 session.setAttribute("log", tt);
+			
+		return "rentcar/home";
 	}
 
 }

@@ -11,16 +11,21 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.khd.jejulantis.admin.sms.Service.SmsService;
 import com.khd.jejulantis.client.member.Service.MemberService;
 import com.khd.jejulantis.model.LoginInfo;
+import com.khd.jejulantis.model.Manager;
 import com.khd.jejulantis.model.Member;
 
 
@@ -29,6 +34,10 @@ public class MemberController {
 
 	@Autowired
 	MemberService memberService;
+	@Autowired
+	BCryptPasswordEncoder passwordEncoder;
+	@Autowired
+	private SmsService sservice;
 	
 	@RequestMapping(value = "member/memberjoin", method = RequestMethod.POST)
 	public String join(Member member,@RequestParam(value="hp1")String hp1,@RequestParam(value="hp2")String hp2,@RequestParam(value="hp3")String hp3,@RequestParam(value="birth1")String birth1,@RequestParam(value="birth2")String birth2,@RequestParam(value="birth3")String birth3, HttpSession session) {
@@ -37,20 +46,35 @@ public class MemberController {
 		String member_tel = hp1+"-"+hp2+"-"+hp3;
         member.setMember_tel(member_tel);
 		member.setMember_birth(member_birth);
+		
+		String member_pwd = member.getMember_pwd();
+		
+		if(StringUtils.hasText(member_pwd)) {
+			String bCryptString = passwordEncoder.encode(member_pwd);
+			member.setMember_pwd(bCryptString);
+		}
+		
         boolean flag = memberService.joinService(member);		
 		return "redirect:../login.do";		
 	}
 	@RequestMapping(value="mypage.do",method=RequestMethod.GET)
-	public String mypage( HttpSession session,Model model) {
+	public String mypage( HttpSession session,Model model,Member member) {
 	
 		Member log = (Member) session.getAttribute("log");
 		String member_id = log.getMember_id();
+		String member_birth = log.getMember_birth();
+		String member_tel = log.getMember_tel();
 		Member nn = memberService.mypageService(member_id);	
 		//String member_id = nn.getMember_id();		
-		String member_birth1 = nn.getMember_birth1();	
+//		String member_birth1 = nn.getMember_birth1();	
 		System.out.println("idCkkkk :" + member_id);	
 		model.addAttribute("nn", nn);
 		System.out.println("id :" + nn.getMember_id());
+		System.out.println("getMember_birth :" + nn.getMember_birth());
+		System.out.println("getMember_tel :" + nn.getMember_tel());
+		System.out.println("getMember_local :" + nn.getMember_local());
+		System.out.println("getMember_name :" + nn.getMember_name());
+	
 		return "rentcar/mypages/mypage";
 	
 	}
@@ -77,11 +101,12 @@ public class MemberController {
 	 public String modify(Member member, HttpSession session)  {	
 		 System.out.println("tel123 :" +member.getMember_tel());
 		 System.out.println("birth123 :" +member.getMember_birth());
+		 System.out.println("pwd :" +member.getMember_pwd());
 		 Member md = memberService.modifyService(member);
-			if(md!=null) {
-				md = new Member(member.getMember_id());
+			if(md!=null) {				
 				session.setAttribute("log", md);	
 				System.out.println("id1 :" +member.getMember_id());
+				 System.out.println("pwdpwd :" +member.getMember_pwd());
 			}			
 			
 			return "redirect:/mypage.do";
@@ -141,6 +166,24 @@ public class MemberController {
 						}
 					 return "/rentcar/users/find_pwd";
 					
+				}
+				// 비밀번호 찾기
+				@RequestMapping(value = "/memberfind_pwd.do", method = RequestMethod.POST)
+				public void find_pw(@ModelAttribute Member member, HttpServletResponse response,@RequestParam("member_id") String member_id,@RequestParam("member_email") String member_email, Model md) throws Exception{	
+					System.out.println("email"+ member_email);
+					memberService.find_pw(response, member, member_id,member_email, md);
+				}
+				@RequestMapping(value = "mypages/memberCheckPwd.do",method=RequestMethod.POST)
+				public String CheckPwd(Member member, HttpSession session) {
+					 String member_pwd = member.getMember_pwd();	
+					 if(StringUtils.hasText(member_pwd)) {
+							String bCryptString = passwordEncoder.encode(member_pwd);
+							member.setMember_pwd(bCryptString);
+						}
+					 memberService.changePwd(member);
+					 session.removeAttribute("log");
+					 System.out.println("member_pwd123123"+ member_pwd);
+					return "redirect:../login.do";	
 				}
 
 }

@@ -84,7 +84,27 @@ public class MemberDaoImpl implements MemberDao {
 	public List<Member> memberList() {
 		return sql.selectList(ns+".memberList");
 	}
-	
+
+	public Member memgetUsersByID(String member_id) {
+		Member select = sql.selectOne(ns+".memgetUsersByID",member_id);
+		return select;	
+		}
+
+	public Member securityloginCheck(Member member) {
+		Member select = sql.selectOne(ns+".securityloginCheck",member);
+		return select;
+	}
+
+	public int change_pw(Member member) {
+		int update = sql.update(ns+".change_pwd_update", member);
+		return update;	
+	}
+
+	public int update_pw(Member member) {
+		System.out.println("getMember_email:"+ member.getMember_email());
+		int update = sql.update(ns+".find_pwd_update", member);
+		return update;		
+	}
 	@Override
 	public List<Member>newList(){
 		return sql.selectList(ns+".myNewList");

@@ -2,11 +2,13 @@
 <%@ page session="true" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en">
 
 <head>
   <meta charset="utf-8">
+  <meta id="_csrf" name="_csrf" content="${_csrf.token}"/>
+  	<meta id="_csrf_header" name="_csrf_header" content="${_csrf.headerName}"/>
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
@@ -85,7 +87,7 @@
           <div class="table-responsive">
           <form name="f" action="write.do" method="post">
           	<input type="hidden" name="announce_top" id="announce_top"/>
-          	<input type="hidden" name="manager_no" value="${managerlog.manager_no}" id="manager_no">
+          	<input type="hidden" name="manager_no" value="${managerlog.manager_no}" id="manager_no">         	
             <table border="0" width="100%"  cellpadding="0" cellspacing="0">
 				<h3 style="color:#007bff">공지작성</h3>	
 				<tr style="color:#808080;font-size:12pt">			
@@ -111,6 +113,7 @@
 					<td align="right">
 						<button type="button" class="btn btn-primary"><a href="service.do" style="color:white">목록</a></button>
 						<button type="button" class="btn btn-primary" onclick="check()">작성완료</button>
+						<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 					</td>
 				</tr>
 			</table>

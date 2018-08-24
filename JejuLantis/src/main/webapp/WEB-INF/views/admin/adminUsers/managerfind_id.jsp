@@ -30,7 +30,7 @@
 					${manager_id}
 				</h5>
 				<p class="w3-center">
-					<button type="button" id=loginBtn class="w3-button w3-block w3-black w3-ripple w3-margin-top w3-round">Login</button>
+					<button type="button" onclick="history.go(/admin/managerlogin.do);"id=loginBtn class="w3-button w3-block w3-black w3-ripple w3-margin-top w3-round" href="/admin/managerlogin.do">Login</button>
 					<button type="button" onclick="history.go(-1);" class="w3-button w3-block w3-black w3-ripple w3-margin-top w3-margin-bottom w3-round">Cancel</button>
 				</p>
 			</div>

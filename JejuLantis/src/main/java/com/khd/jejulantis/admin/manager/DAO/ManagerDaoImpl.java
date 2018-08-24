@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.khd.jejulantis.model.Branch;
 import com.khd.jejulantis.model.Manager;
@@ -88,4 +89,37 @@ public class ManagerDaoImpl implements ManagerDao{
 		return select;
 	}
 
+	@Override
+	public Manager managergetUsersByID(String manager_id) {
+		Manager Select = sql.selectOne(ns + ".loginChecksequrity", manager_id);
+		return Select;
+	}
+
+	@Override
+	public Manager managersecurityloginCheck(Manager manager) {
+		System.out.println("id6:"+ manager.getManager_id());
+		Manager Select = sql.selectOne(ns+".sequritymanagerloginCheck", manager);
+		return Select;
+	}
+//	@Transactional
+//	public int update_pw(Manager manager) throws Exception{
+//		int update = sql.selectOne(ns+".find_pwd_update", manager);
+//		return update;		
+//	}
+
+	@Override
+	public int update_pw(Manager manager) {	
+		System.out.println("getManager_email:"+ manager.getManager_email());
+		int update = sql.update(ns+".find_pwd_update", manager);
+		return update;		
+		
+	}
+
+	@Override
+	public int change_pw(Manager manager) {
+		int update = sql.update(ns+".change_pwd_update", manager);
+		return update;	
+	}
+
+	
 }

@@ -376,8 +376,11 @@ public class Manager {
 			  String str1 = manager_birth;
 		        String word1 = str1.split("-")[0];
 		        String word2 = str1.split("-")[1];
-		        String word3 = str1.split("-")[2];	      
+		        String word3 = str1.split("-")[2];	  
+		        word3 = word3.substring(0,2);
+		        System.out.println("www: "+word3);
 				return word3;	
+				
 		}
 		public String getManager_tel3() {
 			  String str1 = manager_tel1;
@@ -403,6 +406,10 @@ public class Manager {
 		}
 		public String getManager_tel6() {
 			  String str1 = manager_tel2;
+			  if(str1==null) {
+				  String word1 ="";
+				  return word1;
+			  }
 			  System.out.println("str1"+ str1);
 		        String word1 = str1.split("-")[0];
 		        String word2 = str1.split("-")[1];
@@ -411,6 +418,10 @@ public class Manager {
 		}
 		public String getManager_tel7() {
 			  String str1 = manager_tel2;
+			  if(str1==null) {
+				  String word2 ="";
+				  return word2;
+			  }
 		        String word1 = str1.split("-")[0];
 		        String word2 = str1.split("-")[1];
 		        String word3 = str1.split("-")[2];	      
@@ -418,6 +429,10 @@ public class Manager {
 		}
 		public String getManager_tel8() {
 			  String str1 = manager_tel2;
+			  if(str1==null) {
+				  String word3 ="";
+				  return word3;
+			  }
 		        String word1 = str1.split("-")[0];
 		        String word2 = str1.split("-")[1];
 		        String word3 = str1.split("-")[2];	      

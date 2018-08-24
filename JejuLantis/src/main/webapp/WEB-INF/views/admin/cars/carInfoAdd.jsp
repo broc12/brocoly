@@ -8,6 +8,8 @@
 
 <head>
 <meta charset="utf-8">
+	<meta id="_csrf" name="_csrf" content="${_csrf.token}"/>
+  	<meta id="_csrf_header" name="_csrf_header" content="${_csrf.headerName}"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="">
@@ -204,6 +206,7 @@
 									<input type="button" class="btn btn-primary" id="reset" onclick='resetrow()' value="reset" />&nbsp;
 									<!-- <a class="btn btn-primary" href='javascript:document.form1.reset();'>reset</a>&nbsp; -->
 									<input type="button" class="btn btn-primary" id="save" value="저장" />&nbsp;
+									<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 									<input type="button" class="btn btn-primary" id="list" onclick='location.href="carInfo.do?manager_id=${managerlog.manager_id}"' value="목록" /></td>
 								</tr>
 							</table>

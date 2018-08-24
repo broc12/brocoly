@@ -7,6 +7,8 @@
 
 <head>
   <meta charset="utf-8">
+  <meta id="_csrf" name="_csrf" content="${_csrf.token}"/>
+  	<meta id="_csrf_header" name="_csrf_header" content="${_csrf.headerName}"/>
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
@@ -42,7 +44,7 @@
 	<script>
           function check(){
         	         	  
-            if(f.branch_name.value ==""){
+            if(f.branch_name.value == ""){
                alert("업체명을 채워주세요");
                f.branch_name.focus();
                return;
@@ -216,7 +218,7 @@
 				<tr style="color:#808080;font-size:12pt">			
 					<th  height="60px" width="10%" class="text-center" style="background-color: #fafafa">업체명<a style="color:red">*</a></th>
 					<th  width="35%" class="text-left">
-						<input name="branch_name"type="text" size="30" placeholder="">
+						<input id="branch_name" name="branch_name"type="text" size="30" placeholder="">
 					</th>
 				</tr>
 				<tr style="color:#808080;font-size:12pt">			
@@ -326,6 +328,9 @@
 					<td align="right">
 						<button type="button" class="btn btn-primary"><a href="enter.do" style="color:white">목록</a></button>
 						<button type="button" class="btn btn-primary" onclick="check()">업체등록</button>
+               
+						<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+ 
 					</td>
 				</tr>
 			</table>

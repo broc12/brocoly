@@ -37,8 +37,7 @@
 </resultMap>
 <insert id="managerresist" parameterType="Manager">
 	insert into Manager values (Manager_seq.nextval,#{branch_no},#{manager_id},#{manager_pwd},#{manager_name},#{manager_email},
-	#{manager_birth},#{manager_tel1},#{manager_tel2},'T',
-	'N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N',SYSDATE)
+	TO_DATE(#{manager_birth},'YYYY-MM-DD'),#{manager_tel1},#{manager_tel2},'N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N',SYSDATE)
 </insert>
 
 <select id="branchcheck" parameterType="String" resultType="Branch">
@@ -78,11 +77,16 @@
 <!--       WHERE -->
 <!--           manager_id = #{manager_id} -->
       SELECT MANAGER.*, BRANCH.branch_name FROM MANAGER INNER JOIN BRANCH ON MANAGER.branch_no = BRANCH.branch_no  
-    
+    <where>
+		MANAGER_ID = #{manager_id}
+			AND
+		
+		MANAGER_WITHDRAW_AT ='N'
+		</where>
           
 </select>
 <update id="modify" parameterType="Manager" >
-	 UPDATE manager SET manager_id = #{manager_id} , manager_pwd = #{manager_pwd}, manager_name = #{manager_name}, manager_email = #{manager_email},manager_tel1 = #{manager_tel1} , manager_tel2 = #{manager_tel2},manager_birth = #{manager_birth}
+	 UPDATE manager SET manager_id = #{manager_id} , manager_name = #{manager_name}, manager_email = #{manager_email},manager_tel1 = #{manager_tel1} , manager_tel2 = #{manager_tel2},manager_birth = #{manager_birth}
         WHERE manager_id = #{manager_id} 
 <!--         AND pwd = #{pwd}  -->
 </update>
@@ -98,4 +102,36 @@ UPDATE MANAGER SET manager_withdraw_at  ='Y' where manager_id=#{manager_id}
 	<select id="managerfind_pwd" parameterType="String" resultType="String">
 		select manager_pwd from manager where manager_id = #{manager_id}
 	</select>
+	
+	<!-- 로그인 체키쿼리 시큐리티-->
+	<select id="loginChecksequrity" resultType="Manager" parameterType="String"> 
+			select manager_id, manager_pwd from MANAGER 
+		<where>
+		MANAGER_ID = #{manager_id}
+			AND
+<!-- 		MANAGER_PWD = #{manager_pwd}	 -->
+<!-- 			AND 	 -->
+		MANAGER_WITHDRAW_AT ='N'
+		</where>
+	</select>
+	
+	<!-- 비밀번호 변경 -->
+	<update id="find_pwd_update" parameterType="manager">
+		update MANAGER set manager_pwd = #{manager_pwd} where manager_id = #{manager_id}
+	</update>
+	<!-- 비밀번호 변경 -->
+	<update id="change_pwd_update" parameterType="manager">
+		update MANAGER set manager_pwd = #{manager_pwd} 
+	</update>
+	<!-- sequritry진본 로그인 체키쿼리 -->
+	<select id="sequritymanagerloginCheck" resultType="Manager" parameterType="Manager"> 
+			select MANAGER.manager_no,BRANCH.branch_no,BRANCH.branch_name,MANAGER.manager_id,MANAGER.manager_main,MANAGER.manager_chart,MANAGER.manager_reservstatus,MANAGER.manager_travelmanagement,MANAGER.manager_review,MANAGER.manager_notice,MANAGER.manager_user,MANAGER.manager_manager,MANAGER.manager_company,
+        			MANAGER.manager_carkind,MANAGER.manager_d_carkind ,MANAGER.manager_carinfo,MANAGER.manager_paystatus,MANAGER.manager_salestatus,MANAGER.manager_banner,MANAGER.manager_coupon,MANAGER.manager_sms,MANAGER.manager_email_at,MANAGER.manager_insurance from MANAGER INNER JOIN BRANCH ON MANAGER.branch_no = BRANCH.branch_no
+		<where>
+		MANAGER_ID = #{manager_id}
+			AND
+		MANAGER_WITHDRAW_AT ='N'
+		</where>
+	</select>
+		
 </mapper>

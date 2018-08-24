@@ -5,10 +5,19 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
 <head>
+<meta id="_csrf" name="_csrf" content="${_csrf.token}"/>
+  	<meta id="_csrf_header" name="_csrf_header" content="${_csrf.headerName}"/>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <style>
 .navbar-header .btn-logout{margin-top:7px;}
 </style>
+<script type="text/javascript">
+function submit(){
+	alert("로그아웃하시겠습니까?");
+       document.finclude.submit();
+}
+
+</script>
 </head>
 
 <div>
@@ -311,11 +320,21 @@
           </div>
         </li>
  
-        <li class="nav-item" style="margin-top:5px">
+    <li class="nav-item" style="margin-top:5px">
 		<c:choose>
 			<c:when test="${managerlog.manager_id ne null}">
-				<span style="color: white">${managerlog.manager_id}님 반갑습니다</span>&nbsp;&nbsp;&nbsp;
-					<a href="<%=request.getContextPath()%>/managerlogin/managerlogout" style="color:white;text-decoration:none">로그아웃</a>&nbsp;&nbsp;&nbsp;
+				<span style="color: white">${managerlog.manager_id}님 반갑습니다${logoutUrl}</span>&nbsp;&nbsp;&nbsp;
+<!-- 					<a href="./managerlogout.do" onclick="return delchk();">로그아웃</a> -->
+<!-- 					<a href="javascript:void(0); onclick="delchk()">로그아웃</a> -->
+					<a href="#" onclick="submit()" style="color:white;text-decoration:none">로그아웃</a>&nbsp;&nbsp;&nbsp;
+<%-- 					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"> --%>
+						<form name="finclude" action="./managerlogout.do" method="post">
+							<input type="hidden" name="${_csrf.parameterName}"
+								value="${_csrf.token}">
+							
+						</form>
+
+<%-- 						<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"> --%>
 					<a href="managermypage.do" style="color:white;text-decoration:none">마이페이지</a>&nbsp;&nbsp;&nbsp;
 			</c:when>
 			<c:otherwise>

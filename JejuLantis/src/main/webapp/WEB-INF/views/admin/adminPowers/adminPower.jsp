@@ -7,6 +7,8 @@
 
 <head>
   <meta charset="utf-8">
+  	<meta id="_csrf" name="_csrf" content="${_csrf.token}"/>
+  	<meta id="_csrf_header" name="_csrf_header" content="${_csrf.headerName}"/>
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
@@ -263,6 +265,7 @@ $(document).ready(function(){
       <form name="f" action="powerUp.do" method="post">
        <table border="1" width="100%">
        	<input type="hidden" name="manager_no" id="manager_no">
+       	
 	       <tr>
 		     <td width="40%" align="center"/>
 		     	<b>아이디</b>

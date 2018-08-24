@@ -7,6 +7,8 @@
 
 <head>
   <meta charset="utf-8">
+   <meta id="_csrf" name="_csrf" content="${_csrf.token}"/>
+  	<meta id="_csrf_header" name="_csrf_header" content="${_csrf.headerName}"/>
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
@@ -109,7 +111,7 @@
           <i class="fa fa-table"></i>차종관리</div>
         <div class="card-body">
           <div class="table-responsive">
-          <form name="f" action="carUpdate.do" method="post" enctype="multipart/form-data">
+          <form name="f" action="carUpdate.do?${_csrf.parameterName}=${_csrf.token}" method="post" enctype="multipart/form-data">
           	<input type="hidden" name="car_trans" id="car_trans"/>
           	<c:forEach items="${modify}" var="modify">
             <table border="0" width="100%"  cellpadding="0" cellspacing="0">

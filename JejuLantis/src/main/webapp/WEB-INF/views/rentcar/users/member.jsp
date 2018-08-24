@@ -6,6 +6,8 @@
 <html>
 <head>
 <meta charset="utf-8">
+<meta id="_csrf" name="_csrf" content="${_csrf.token}"/>
+  <meta id="_csrf_header" name="_csrf_header" content="${_csrf.headerName}"/>s
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <title>Tour Template</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -90,6 +92,13 @@
 //아이디 체크여부 확인 (아이디 중복일 경우 = 0 , 중복이 아닐경우 = 1 )
 var idck = 0;
 var emailck = 0;
+var token = $("meta[name='_csrf']").attr("content");
+var header = $("meta[name='_csrf_header']").attr("content");
+$(function() {
+    $(document).ajaxSend(function(e, xhr, options) {
+        xhr.setRequestHeader(header, token);
+    });
+});
 $(document).ready(function() {
 	//emailck 버튼을 클릭했을 때 
  $("#emailck").click(function() {
@@ -577,6 +586,7 @@ function sendIt() {
 			<!-- </form> -->
 			<div class="form-group text-center">
 			<input type="button" value="가입하기" style="width:200px;height:50px;border-radius:0px;background-color:#eea236;color:white" class="btn btn-dark" onclick="sendIt()">
+			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 			</div>
 <script>
 $(function () {

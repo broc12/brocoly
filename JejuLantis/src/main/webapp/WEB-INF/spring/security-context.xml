@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+	xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.2.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd">
+
+<http pattern="/resources/**" security="none" />
+<!-- <http pattern="/admin/register.do" security="none"/> -->
+<http auto-config='true' use-expressions="true" pattern="/admin/**"  authentication-manager-ref="managerAuthenticationManager">
+		<intercept-url pattern="/admin/manager.do"
+			access="permitAll" />	
+<!-- 				<intercept-url pattern="/admin/write.do" -->
+<!-- 			access="permitAll" /> -->
+			<intercept-url pattern="/admin/adminUsers/apost"
+			access="permitAll" />
+
+		<intercept-url pattern="/admin/managerfind_id_form.do"
+			access="permitAll" />	
+			<intercept-url pattern="/admin/managerfind_pwd_form.do"
+			access="permitAll" />	
+			<intercept-url pattern="/admin/managerfind_pwd.do"
+			access="permitAll" />	
+			<intercept-url pattern="/admin/managerfind_id.do"
+			access="permitAll" />
+		<intercept-url pattern="/admin/managerfind_pwd_form.do"
+			access="permitAll" />
+		<intercept-url pattern="/admin/register.do"
+			access="permitAll" />
+			<intercept-url pattern="/admin/adminUsers/post"
+			access="permitAll" />
+		<intercept-url pattern="/resources/**"
+			access="permitAll" />
+		<intercept-url pattern="/admin/managerlogin.do"
+			access="permitAll" />
+		<intercept-url pattern="/admin/**"
+			access="hasRole('ROLE_ADMIN')" />
+
+		<form-login login-page="/admin/managerlogin.do"
+			default-target-url="/admin/index.do" username-parameter="manager_id"
+			password-parameter="manager_pwd" authentication-failure-url="/admin"
+			always-use-default-target='true'
+			
+			 login-processing-url="/admin/j_spring_security_check"/>
+		<logout invalidate-session="true"
+			logout-url="/admin/managerlogout.do" logout-success-url="/admin" />
+<!-- 		<access-denied-handler error-page="/accessDenied" /> -->
+		<session-management invalid-session-url="/admin/managerlogin.do">
+			<concurrency-control max-sessions="1"
+				expired-url="/admin/managerlogin.do" />
+		</session-management>
+		<csrf />
+	</http>
+	
+<http auto-config='true' use-expressions="true"  authentication-manager-ref="memberAuthenticationManager" >
+
+		<intercept-url pattern="/" access="permitAll" />
+		<form-login login-page="/login.do"
+			default-target-url="/successlogin.do" username-parameter="member_id"
+			password-parameter="member_pwd" authentication-failure-url="/login.do"
+			always-use-default-target='true' login-processing-url="/j_security_check" />
+		<logout invalidate-session="true"
+			logout-url="/logout.do" logout-success-url="/login.do" />
+			<session-management invalid-session-url="/admin/managerlogin.do">
+			<concurrency-control max-sessions="1"
+				expired-url="/login.do" />
+		</session-management>
+		<csrf />
+	</http>
+			
+			
+			
+<!-- <authentication-manager id="qqqq" alias="tt">
+   <authentication-provider 
+			user-service-ref="managerSecurityService">
+			<password-encoder ref="bcryptPasswordEncoder" />
+		</authentication-provider>
+</authentication-manager>
+
+<authentication-manager id="wwww" alias="yy">
+   <authentication-provider 
+   			 user-service-ref="memberSecurityService">
+		</authentication-provider>
+</authentication-manager> -->
+	
+	<beans:bean id="memberAuthenticationManager" class="org.springframework.security.authentication.ProviderManager" >
+    <beans:constructor-arg>
+        <beans:list>
+            <beans:bean class="org.springframework.security.authentication.dao.DaoAuthenticationProvider" p:passwordEncoder-ref="bcryptPasswordEncoder"
+                p:userDetailsService-ref="memberSecurityService" />
+        </beans:list>
+    </beans:constructor-arg>
+</beans:bean>
+<!-- 	p:passwordEncoder-ref="bcryptPasswordEncoder" -->
+	
+<beans:bean id="managerAuthenticationManager" class="org.springframework.security.authentication.ProviderManager" >
+    <beans:constructor-arg>
+        <beans:list>
+            <beans:bean class="org.springframework.security.authentication.dao.DaoAuthenticationProvider" p:passwordEncoder-ref="bcryptPasswordEncoder"
+                p:userDetailsService-ref="managerSecurityService"/>
+        </beans:list>
+    </beans:constructor-arg>
+</beans:bean>
+
+	<beans:bean id="managerSecurityService" 
+	class="com.khd.jejulantis.auth.managerSecurityService">		
+	</beans:bean>
+	
+	<beans:bean id="memberSecurityService" 
+	class="com.khd.jejulantis.auth.memberSecurityService">		
+	</beans:bean>
+	
+	
+	
+ <beans:bean id="bcryptPasswordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" />  
+
+	
+</beans:beans>

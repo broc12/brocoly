@@ -7,6 +7,8 @@
 
 <head>
   <meta charset="utf-8">
+  <meta id="_csrf" name="_csrf" content="${_csrf.token}"/>
+  	<meta id="_csrf_header" name="_csrf_header" content="${_csrf.headerName}"/>
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
@@ -175,6 +177,7 @@
 					<p>
 					<div align="center">
 						<input type="button" value="메일 보내기" class="btn btn-warning" onclick="check()">
+						 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 					</div>
 				</form>
 	        </div>

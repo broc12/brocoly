@@ -25,5 +25,18 @@ public interface ManagerDao {
 	String managerfind_id(String manager_email);
 
 	String managerfind_pwd(String manager_id);
+
+	Manager managergetUsersByID(String manager_id);
+
+	Manager managersecurityloginCheck(Manager manager);
+
+	int update_pw(Manager manager);
+
+	int change_pw(Manager manager);
+
+	
+
+
+
 	
 }

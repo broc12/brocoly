@@ -7,6 +7,8 @@
 
 <head>
   <meta charset="utf-8">
+  <meta id="_csrf" name="_csrf" content="${_csrf.token}"/>
+  	<meta id="_csrf_header" name="_csrf_header" content="${_csrf.headerName}"/>
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
@@ -35,7 +37,6 @@
     <!-- 체크박스-->
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 	<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-
 </head>
 
 <body class="fixed-nav sticky-footer bg-dark" id="page-top">
@@ -103,7 +104,7 @@
           <i class="fa fa-table"></i>차종관리</div>
         <div class="card-body">
           <div class="table-responsive">
-          <form name="f" action="carinsert.do" method="post" enctype="multipart/form-data">
+          <form name="f" action="carinsert.do?${_csrf.parameterName}=${_csrf.token}" method="post" enctype="multipart/form-data">
           	<input type="hidden" name="car_trans" id="car_trans"/>
             <table border="0" width="100%"  cellpadding="0" cellspacing="0">
 				<h3 style="color:#007bff">차종등록</h3>	

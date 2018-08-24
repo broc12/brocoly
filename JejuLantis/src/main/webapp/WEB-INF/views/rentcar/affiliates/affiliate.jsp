@@ -6,6 +6,8 @@
 <html>
 <head>
 <meta charset="utf-8">
+	<meta id="_csrf" name="_csrf" content="${_csrf.token}"/>
+  	<meta id="_csrf_header" name="_csrf_header" content="${_csrf.headerName}"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <title>Tour Template</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -301,6 +303,7 @@ function sendIt() {
 							</div>
 							<div class="form-group text-center">
 								<button type style="width:200px;height:50px;border-radius:0px;background-color:#eea236;color:white" class="btn btn-dark" onclick="sendIt()">제휴문의등록</button>
+								<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/><input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 							</div>
 							</form>
 						</div>

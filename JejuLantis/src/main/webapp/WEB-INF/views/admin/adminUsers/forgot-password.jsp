@@ -34,7 +34,7 @@
             <input class="form-control" id="exampleInputEmail1" type="email" aria-describedby="emailHelp" placeholder="Enter email address">
           </div>
           <a class="btn btn-primary btn-block" href="login.do">Reset Password</a>
-        </form>
+        </form action="/forgot-password">
         <div class="text-center">
           <a class="d-block small mt-3" href="register.do">Register an Account</a>
           <a class="d-block small" href="login.do">Login Page</a>

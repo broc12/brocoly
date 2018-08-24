@@ -1,17 +1,19 @@
 <%@ page session="true" %>
 
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html lang="en">
-
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="">
-  <meta name="author" content="">
+<%--   <meta id="_csrf" name="_csrf" content="${_csrf.token}"/> --%>
+<%--   <meta id="_csrf_header" name="_csrf_header" content="${_csrf.headerName}"/> --%>
+<%--   <meta id="_csrf_parameter" name="_csrf_parameter" content="${_csrf.parameterName}"/> --%>
+  	<meta charset="utf-8">
+	<meta id="_csrf" name="_csrf" content="${_csrf.token}"/>
+  	<meta id="_csrf_header" name="_csrf_header" content="${_csrf.headerName}"/>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="description" content="">
+	<meta name="author" content="">
   <title>SB Admin - Start Bootstrap Template</title>
   <!-- Bootstrap core CSS-->
   <link href="../resources/admin/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -32,15 +34,27 @@
   <script src="../resources/admin/vendor/jquery/jquery.min.js"></script>
   <script src="../resources/admin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <!-- Core plugin JavaScript-->
-  <script src="../resources/admin/vendor/jquery-easing/jquery.easing.min.js"></script>							
+  <script src="../resources/admin/vendor/jquery-easing/jquery.easing.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+
 <script type="text/javascript">
 
 //아이디 체크여부 확인 (아이디 중복일 경우 = 0 , 중복이 아닐경우 = 1 )
 var idck = 0;
 var emailck = 0;
 var branchck = 0;
+var token = $("meta[name='_csrf']").attr("content");
+var header = $("meta[name='_csrf_header']").attr("content");
+ 
+$(function() {
+    $(document).ajaxSend(function(e, xhr, options) {
+        xhr.setRequestHeader(header, token);
+    });
+});
 $(document).ready(function() {
 	//emailck 버튼을 클릭했을 때 
+
  $("#emailck").click(function() {
  	var email2 = document.f.manager_email.value;
 	var regex = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/;			
@@ -70,10 +84,12 @@ $(document).ready(function() {
             async: true,
             type : 'POST',
             data : useremail,
-            url : "emailcheckmanager.do",
-            dataType : "json",
+            url : '../emailcheckmanager.do',
+            dataType: 'json',
             contentType: "application/json; charset=UTF-8",
             success : function(data) {
+            	console.log(data.cnt)
+            	
                 if (data.cnt > 0) {
                     
                     alert("email가 존재합니다. 다른 email를 입력해주세요.");
@@ -132,17 +148,26 @@ $(document).ready(function() {
 	            return false;
 	        }
         //userid 를 param.
-        var userid =  $("#manager_id").val(); 								        
-        $.ajax({
+        var userid =  $("#manager_id").val(); 
+         var csrfParameter = $("meta[name='_csrf_parameter']").attr("content");
+// 		var csrfHeader = $("meta[name='_csrf_header']").attr("content");
+ 		var _token = $("meta[name='_csrf']").attr("content");
+//         var manager_email = {};
+//         var csrfToken = manager_email[csrfParameter];
+//         manager_email["name"] = "John";
+// 		var headers = {};
+// 		headers[csrfHeader] = _token; // 아까 alert으로 띄웠던 키값이 뭐에요? 그게 이거요
+// 		_token = 
+		$.ajax({
             async: true,
             type : 'POST',
-            data : userid,
-            url : "idcheckmanager.do",
-            dataType : "json",
-            contentType: "application/json; charset=UTF-8",
+            data :  userid,
+            dataType : 'json',
+            contentType: 'application/json; charset=utf-8',
+            url : '../idcheckmanager.do',
             success : function(data) {
-                if (data.cnt > 0) {
-                    
+            	console.log(data.cnt)
+            	if (data.cnt > 0) {                 
                     alert("아이디가 존재합니다. 다른 아이디를 입력해주세요.");
                     //아이디가 존제할 경우 빨깡으로 , 아니면 파랑으로 처리하는 디자인
                     $("#divInputId").addClass("has-error")
@@ -158,10 +183,10 @@ $(document).ready(function() {
                     $("#idCheck").val("idCheck");
                     //아이디가 중복하지 않으면  idck = 1 
                     idck = 1;								                    
-                }
+                } 
             },
             error : function(error) {								                
-                alert("error : " + error);
+                console.log(error);
             }
         });
     });
@@ -322,7 +347,7 @@ function sendIt() {
 </head>
 <script type="text/javascript">
     function branchOpen() {
-        alert("test post open");
+        
         win_post = window.open('./adminUsers/post', "post",
 				"toolbar=no ,width=450 ,height=400 ,directories=yes,"
 						+ "status=yes,scrollbars=yes,menubar=yes");
@@ -346,11 +371,11 @@ function sendIt() {
         <form name="f" action="manager.do"  method="post">												
           <div class="form-group">
             <div class="form-row">
-              <div class="col-md-6">             		
+              <div class="col-md-6">           
                 <label for="exampleInputName"><a style="color:red">*</a>ID</label></br>      
                 <input style="width:70%;height:40px" onkeydown="inputIdChk()"  id="manager_id" name="manager_id" type="text" aria-describedby="nameHelp" placeholder="">
               	<input type="button" value="중복확인" name="confirm_id"
-									id="idck" onclick="confirmId(this.form)" class="btn btn-primary" style="width:80px;height:40px;margin-top:-5px;font-size:10pt">
+									id="idck"  class="btn btn-primary" style="width:80px;height:40px;margin-top:-5px;font-size:10pt">
               						<input type="hidden" id="idCheck" name="idDuplication" value="idUncheck">
               </div>
               <div class="col-md-6">             		
@@ -512,10 +537,10 @@ function sendIt() {
 				<input type="text" id="hp5" name="hp5" size="2" maxlength="4" style="width:30%;height:40px">
 				-
 				<input type="text" id="hp6" name="hp6" size="2" maxlength="4" style="width:30%;height:40px">
-					<script type="text/javascript">
-					var target = document.getElementById("manager_tel2");
-						target.options[target.selectedIndex].text
-					</script>
+<!-- 					<script type="text/javascript"> -->
+<!-- // 					var target = document.getElementById("manager_tel2"); -->
+<!-- // 						target.options[target.selectedIndex].text -->
+<!-- 					</script> -->
 				<input type="hidden" id="manager_tel2" name="manager_tel2" >
               </div>                
             </div>
@@ -534,11 +559,13 @@ function sendIt() {
                 <input type="hidden" id="branch_no" name="branch_noSTR">
                 <input style="width:81%;height:40px" readonly  id="branch_name" name="branch_name" type="text" aria-describedby="nameHelp" placeholder="">
                 <input type="button" id="branchck" value="업체명검색" onclick="branchOpen()" class="btn btn-primary" style="width:100px;height:40px;font-size:10pt;margin-top:-5px;">   
+            	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
             </div>
             </div>
           </div>
               </br>
           <input type="button" class="btn btn-primary btn-block" value="등록하기" onclick="sendIt()">
+          <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
         </form>
         <div class="text-center">
           <a class="d-block small mt-3" href="login.do">로그인</a>
@@ -549,5 +576,3 @@ function sendIt() {
   </div>
   
 </body>
-
-</html>

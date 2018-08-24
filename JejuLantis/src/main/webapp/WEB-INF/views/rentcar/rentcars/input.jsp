@@ -6,6 +6,8 @@
 <html>
 	<head>
 	<meta charset="utf-8">
+	<meta id="_csrf" name="_csrf" content="${_csrf.token}"/>
+  <meta id="_csrf_header" name="_csrf_header" content="${_csrf.headerName}"/>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>Tour Template</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -354,6 +356,7 @@
 		<input type="hidden" name="rent_reserv_driver_name" id="rent_reserv_driver_name">
 		<input type="hidden" name="rent_reserv_driver_birth" id="rent_reserv_driver_birth">
 		<input type="hidden" name="rent_reserv_driver_tel" id="rent_reserv_driver_tel">
+		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 	</form>
 		
 	

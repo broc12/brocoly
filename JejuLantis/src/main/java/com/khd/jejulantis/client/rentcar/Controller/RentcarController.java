@@ -124,7 +124,10 @@ public class RentcarController {
 	}
 
 	@RequestMapping(value="check.do",method=RequestMethod.GET)
-	public ModelAndView check(@RequestParam("member_no")long member_no) {
+	public ModelAndView check(HttpSession session,@RequestParam(value="member_no",required=false)Long member_no) {
+		if(member_no==null) {
+			member_no = ((Member)session.getAttribute("log")).getMember_no();
+		}
 		List<Reserv>list = reservService.listService(member_no);
 		String view = "rentcar/reservations/check";
 		ModelAndView mv = new ModelAndView(view,"list",list);

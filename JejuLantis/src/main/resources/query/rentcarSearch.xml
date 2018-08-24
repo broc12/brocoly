@@ -194,6 +194,8 @@ NATURAL JOIN
 			INSURANCE_WITHDRAW_AT='N'
 		AND
 			CAR_KIND_WITHDRAW_AT = 'N'
+		AND
+			AC > 0
  		<if test="car_kind_no != 0">
 		AND
 			CAR_KIND_NO = #{car_kind_no}

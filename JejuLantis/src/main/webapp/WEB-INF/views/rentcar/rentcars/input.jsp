@@ -354,6 +354,7 @@
 		<input type="hidden" name="rent_reserv_driver_name" id="rent_reserv_driver_name">
 		<input type="hidden" name="rent_reserv_driver_birth" id="rent_reserv_driver_birth">
 		<input type="hidden" name="rent_reserv_driver_tel" id="rent_reserv_driver_tel">
+		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 	</form>
 		
 	
@@ -675,7 +676,7 @@
 												</c:when>
 												<c:otherwise>
 												<input type="radio" id="couponname" name="couponname" onclick="disclick()" value='${list.coupon_way}'>
-												<input type="hidden" name="discount" value='${list.get(0).getCoupon_discount()}'>
+												<%-- <input type="hidden" name="discount" value='${list[0].getCoupon_discount()}'> --%>
 												</c:otherwise>
 											</c:choose>
 											<label class="form-check-label" for="couponname">
@@ -785,7 +786,7 @@
                       <div id="dis" style="display:none">
                       <span style="color:#8caaca;font-size:10pt">할인</span>
                       <c:if test="${!empty list }">
-                      	<span style="color:white;font-size:10pt">${list.get(0).getCoupon_name()}${list.get(0).getCoupon_discount()}${list.get(0).getCoupon_way()}</span>
+                      <%-- 	<span style="color:white;font-size:10pt">${list[0].getCoupon_name()}${list[0].getCoupon_discount()}${list[0].getCoupon_way()}</span> --%>
                       </c:if>
 		              </div>     
 		                    </div>

@@ -131,17 +131,17 @@ update car_kind SET car_kind_total = (car_kind_total+1) WHERE CAR_KIND_NO = #{CA
 update car SET car_total = (car_total+1) WHERE CAR_NO = #{CAR_NO}
 </update>
 <update id="myTotalKindCount">
- update car_kind K set K.car_kind_total = 
-(select count(C.CAR_INFO_NO) from car_info C, CAR_KIND N where C.car_kind_no =ANY (select CAR_KIND_NO from car_info )
-	 AND C.car_info_rent_at='Y' AND C.CAR_INFO_WITHDRAW_AT = 'N')
-	 WHERE K.CAR_KIND_NO=ANY(select CAR_KIND_NO from car_info ) AND K.CAR_KIND_WITHDRAW_AT='N'
+update car_kind k set car_kind_total = 
+(select count(C.CAR_INFO_NO) from car_info C where C.car_kind_no = (select CAR_KIND_NO from car_info C where car_info_no=#{car_info_no})
+	 AND car_info_rent_at='Y' AND CAR_INFO_WITHDRAW_AT = 'N')
+	 WHERE K.CAR_KIND_NO=(select CAR_KIND_NO from car_info C where car_info_no=#{car_info_no}) AND CAR_KIND_WITHDRAW_AT='N'
 	 
 </update>
 <update id="myTotalCarCount">
-UPDATE CAR C SET C.CAR_TOTAL= 
-	( SELECT COUNT(F.CAR_INFO_NO) from car_info F, CAR A where F.car_no =ANY(select F.car_no from car_info)
-	AND F.car_info_rent_at='Y' AND F.CAR_INFO_WITHDRAW_AT = 'N')
-	WHERE C.CAR_WITHDRAW_AT='N'
+UPDATE CAR SET CAR_TOTAL= 
+	(SELECT COUNT(CAR_INFO_NO) from car_info f where f.car_no = (select car_no from car_info where car_info_no=#{car_info_no})
+	AND car_info_rent_at='Y' AND CAR_INFO_WITHDRAW_AT = 'N')
+	WHERE CAR_NO=(select CAR_NO from car_info  where car_info_no=#{car_info_no}) AND CAR_WITHDRAW_AT='N'
 
 </update>
 

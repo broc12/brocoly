@@ -17,8 +17,12 @@ public class MemberDaoImpl implements MemberDao {
 	@Override
 	public boolean join(Member member) {
 
+		for(int i = 1;i<70;i++) {
+			String a = "xmember";
+			member.setMember_id(a+i);
 		int insert = sql.insert(ns+".memberjoin", member);
 		int insert2 = sql.insert("query.detail.myDetail",member);
+		}
 		return false;
 	}
 

@@ -50,7 +50,14 @@ function check(){
 	var end_date = $("#test2").val();
 	var branch_no = ${branch_no};
 	 $.ajax({
-        url: 'checkDate.do',
+	 	url: 'checkDate.do',
+        data:{"start_date":start_date,"end_date":end_date},
+        success: function(data){
+        	console.log(data);
+	 	var flag = data;
+	 	if(flag==true){
+	 $.ajax({
+        url: 'salesList.do',
         data:{"start_date":start_date,"end_date":end_date,"branch_no":branch_no},
         success: function(data){
 			 var list = data.list;
@@ -76,7 +83,12 @@ function check(){
 						html +=  "<td>"+data[i].totalNCancle+"("+data[i].totalNCount+")</td>";
 						html +=  "<td>"+data[i].totalPCancle+"("+data[i].totalPCount+")</td>";
 						html +=  "<td>"+data[i].totalPayment+"("+data[i].countPayment+")</td>";
-						html +=  "<td>"+data[i].netSales+"</td>";
+						if(data[i].netSales>0)
+							html +=  "<td style='color:blue'>"+data[i].netSales+"</td>";
+						else if(data[i].netSales<0)
+							html +=  "<td style='color:red'>"+data[i].netSales+"</td>";
+						else 
+							html +=  "<td>"+data[i].netSales+"</td>";
 						totalPayment += data[i].totalPayment;
 						countPayment += data[i].countPayment;
 						totalNCancle += data[i].totalNCancle;
@@ -91,6 +103,11 @@ function check(){
 					total +=  "<td>"+totalNCancle+"("+totalNCount+")</td>";
 					total +=  "<td>"+totalPCancle+"("+totalPCount+")</td>";
 					total +=  "<td>"+totalPayment+"("+countPayment+")</td>";
+					if(netSales>0)
+						total +=  "<td style='color:blue'>"+netSales+"</td>";
+					else if(netSales<0)
+						total +=  "<td style='color:red'>"+netSales+"</td>";
+					else
 					total +=  "<td>"+netSales+"</td>"; 
 					$("#result").append(html);	
 					$("#result").append(total);
@@ -102,6 +119,16 @@ function check(){
        	    return false;
        	   }
     });
+	 }else{
+		 alert('시작날짜와 종료날짜를 확인해주세요.');
+		 return false;
+		 }
+     },
+	 error : function(data) {
+		 alert('실패');
+		 return false;
+	 }
+});
 } 
 </script>
 

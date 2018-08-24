@@ -304,6 +304,7 @@
 							<input type="hidden" id="searchenddate" name="rentenddate" value="${requirements.rent_reserve_endDateTime }">
 							<input type="hidden" id="searchcarname" name="rentcarname" value="${requirements.car_name }" />
 							<input type="hidden" id="carkindno" name="carkindno" />
+							<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 						</form>						
 						<!-- end -->
 					</div>

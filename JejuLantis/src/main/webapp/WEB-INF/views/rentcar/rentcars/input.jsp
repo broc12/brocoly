@@ -666,16 +666,16 @@
 										<td width="20%" align="center">할인금액(율)</td>
 										<td width="35%" align="center">사용기한</td>
 									</tr>
-									<c:forEach items="${list}" var="list">
+									<c:forEach items="${list}" var="clist">
 									<tr style="background-color:white" height="30px">
 										<td style="padding-left:10px">
-											<input type="radio" id="couponname" name="couponname" onclick="disclick()" value='${list.coupon_way}'>
+											<input type="radio" id="couponname" name="couponname" onclick="disclick()" value='${clist.coupon_way}'>
 											<label class="form-check-label" for="couponname">
-												<span style="font-size:10pt">${list.coupon_name}</span>
+												<span style="font-size:10pt">${clist.coupon_name}</span>
 											</label>
 										</td>
-										<td align="center">${list.coupon_discount}${list.coupon_way}</td>
-										<td align="center">${list.detail_start}~${list.detail_end}</td>
+										<td align="center">${clist.coupon_discount}${clist.coupon_way}</td>
+										<td align="center">${clist.detail_start}~${clist.detail_end}</td>
 									</tr>
 									</c:forEach>
 									</table>

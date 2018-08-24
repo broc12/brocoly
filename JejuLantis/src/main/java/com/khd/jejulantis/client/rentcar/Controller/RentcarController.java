@@ -95,7 +95,12 @@ public class RentcarController {
 		Member log = (Member)session.getAttribute("log");
 		List<Detail>list = detailservice.listService(log.getMember_id());
 		String view = "rentcar/rentcars/input";
-		ModelAndView mv = new ModelAndView(view,"list",list);
+		ModelAndView mv = new ModelAndView(view);
+		if(list != null) {
+			
+			mv.addObject("list",list);
+		}
+
 		SelectRentcar car = rentcarservice.confirmrentcarService(requirements);
 		if(car == null) {
 			requirements.setErrorMsg("사용 가능한 차량이 없습니다.");

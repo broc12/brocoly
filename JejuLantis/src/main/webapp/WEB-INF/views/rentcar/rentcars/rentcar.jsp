@@ -510,6 +510,7 @@
 				<input type="hidden" id="searchenddate" name="rentenddate" value="${requirements.rent_reserve_endDateTime }">
 				<input type="hidden" id="inputno" name="inputno" value="${rentcar.branch.branch_no },${rentcar.car.car_no },${rentcar.car_kind_no },${rentcar.insurance_no }" />
 				<input type="hidden" id="goodstype" name="goodstype" />
+				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 			</form>
 		
 		<footer id="colorlib-footer" role="contentinfo">

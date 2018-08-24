@@ -6,6 +6,8 @@
 <html>
 	<head>
 	<meta charset="utf-8">
+	<meta id="_csrf" name="_csrf" content="${_csrf.token}"/>
+  	<meta id="_csrf_header" name="_csrf_header" content="${_csrf.headerName}"/>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>Tour Template</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -169,6 +171,7 @@
 															<input type="hidden" name="id" value="${id}">
 															<input type="hidden" name="memberNum" value="${memberNum}">
 															<button type="submit" class="btn btn-primary" style="border-radius:0px">글쓰기</button>
+															<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 															<!-- <a data-toggle="modal" data-target="#exampleModal2" class="identifyingClass" data-id="">삭제</a> -->
 															</form>
 													</ul>

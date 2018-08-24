@@ -576,11 +576,11 @@ function sendIt() {
 			<div class="form-check text-center">
 				<span class="button-checkbox">
 			        <button type="button" class="btn" data-color="warning">SMS수신(이벤트)</button>
-			        <input type="checkbox" class="hidden" id="exampleCheck1" name="member_sms_at" value="y"/>
+			        <input type="checkbox" class="hidden" id="exampleCheck1" name="member_sms_at" value="Y"/>
 			    </span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			    <span class="button-checkbox">
 			        <button type="button" class="btn" data-color="warning">이메일 수신(이벤트)</button>
-			        <input type="checkbox" class="hidden" id="exampleCheck2" />
+			        <input type="checkbox" class="hidden" id="exampleCheck2" name="member_email_at" value="Y"/>
 			    </span>
 			</div></br>
 			<!-- </form> -->

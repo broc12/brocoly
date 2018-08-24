@@ -6,6 +6,8 @@
 <html>
 	<head>
 	<meta charset="utf-8">
+	<meta id="_csrf" name="_csrf" content="${_csrf.token}"/>
+  	<meta id="_csrf_header" name="_csrf_header" content="${_csrf.headerName}"/>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>Tour Template</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -280,6 +282,7 @@ name
 															
 												<div class="col-md-12 text-center">
 													<button type="button"  class="btn btn-primary" style="border-radius:0px" onclick="check()">글등록</button>
+													<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 													<button type="button" class="btn btn-primary" style="border-radius:0px">
 														<a href="help.do" style="color:white">글목록</a>
 													</button>

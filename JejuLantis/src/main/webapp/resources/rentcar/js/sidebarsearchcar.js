@@ -60,6 +60,11 @@ function(){
 				var startT = new Date(document.getElementById("date1").value+" "+document.getElementById("Checkintime").value);
 				var endT = new Date(document.getElementById("date2").value+" "+document.getElementById("Checkouttime").value);
 				console.log(startT);console.log(endT);
+				 var token = $("meta[name='_csrf']").attr("content");
+				  var header = $("meta[name='_csrf_header']").attr("content");
+				  $(document).ajaxSend(function(e, xhr, options) {
+				    xhr.setRequestHeader(header, token);
+				  });
 				$.ajax(
 						{
 							url:"currenttime.do",

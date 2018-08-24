@@ -6,6 +6,8 @@
 <html>
 	<head>
 	<meta charset="utf-8">
+	<meta id="_csrf" name="_csrf" content="${_csrf.token}"/>
+  	<meta id="_csrf_header" name="_csrf_header" content="${_csrf.headerName}"/>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>Tour Template</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -345,6 +347,7 @@
 				                </div>
 				                <div class="col-md-12">
 				                  <input type="button" id="searchbutton" value="차량검색" class="btn btn-primary btn-block" style="background-color:#ffdd00">
+				                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 				                </div>
 				              </div>
 				            </form>

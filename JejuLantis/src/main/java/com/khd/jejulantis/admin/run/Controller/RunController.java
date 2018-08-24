@@ -1,4 +1,4 @@
-package com.khd.jejulantis.admin.run.Cotroller;
+package com.khd.jejulantis.admin.run.Controller;
 
 import java.util.List;
 

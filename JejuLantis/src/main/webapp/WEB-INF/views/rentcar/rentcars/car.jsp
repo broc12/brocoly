@@ -236,7 +236,7 @@
 								<div class="col-md-6 col-sm-6 animate-box" style="width:40%;padding:0px">
 									<div class="hotel-entry" style="background-color:#f8fafb;padding:15px;height:410px"></br>
 										<span style="color:black;font-size:18pt">${dto.car_name }</span><span style="color:black">${dto.car_manufacturer }</span>
-										<img width="100%" weight="200" src="C:/jejuLantis/rentcar/img/${dto.car_image}"/>
+										<img width="100%" weight="200" src="resources/car/${dto.car_image}"/>
 										<div class="desc">
 											<p align="center" style="color:#0090f0">실시간 예약 가능 차량 : ${dto.actot }</p>
 										</div>

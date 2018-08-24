@@ -136,10 +136,10 @@ UPDATE member SET member_withdraw_at  ='y' where member_id=#{member_id}
 <!--         WHERE email = #{email} AND pwd = #{pwd} -->
 <!--     </update> -->
 	<select id="emailSender" resultType="Member">
-		select MEMBER_EMAIL from MEMBER where MEMBER_WITHDRAW_AT='N' and MEMBER_SMS_AT='y'
+		select MEMBER_EMAIL from MEMBER where MEMBER_WITHDRAW_AT='N' and MEMBER_SMS_AT='Y'
 	</select>
 	<select id="emailSenderList" resultType="Member">
-		select * from MEMBER where MEMBER_WITHDRAW_AT='N' and MEMBER_SMS_AT='y'
+		select * from MEMBER where MEMBER_WITHDRAW_AT='N' and MEMBER_SMS_AT='Y'
 	</select>
 	<select id ="myNewList" resultType="Member">
 	 select * from MEMBER where MEMBER_RESIST_MEMBER=SYSDATE

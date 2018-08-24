@@ -16,22 +16,10 @@ public class MemberDaoImpl implements MemberDao {
 	
 	@Override
 	public boolean join(Member member) {
-//		System.out.println("member no"+member.getMember_no());
-//		System.out.println("member id"+member.getId());
-//		System.out.println("member pwd"+member.getPwd());
-//		System.out.println("member name"+member.getName());
-//		System.out.println("member birth"+member.getBirth());
-//		System.out.println("member sex"+member.getSex());
-//		System.out.println("member scls"+member.getSclc());
-//		System.out.println("member memlocal"+member.getMember_local());
-		System.out.println("member tel6666"+member.getMember_tel());
-		System.out.println("member_email6666"+member.getMember_email());
-//		System.out.println("member resist"+member.getResist_member());
-//		
 
 		int insert = sql.insert(ns+".memberjoin", member);
 		int insert2 = sql.insert("query.detail.myDetail",member);
-		return false;	
+		return false;
 	}
 
 	@Override

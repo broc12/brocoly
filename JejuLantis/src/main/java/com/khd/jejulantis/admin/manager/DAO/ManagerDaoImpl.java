@@ -19,9 +19,11 @@ public class ManagerDaoImpl implements ManagerDao{
 	
 	@Override
 	public boolean join(Manager manager) {
-		
+/*		for(int i = 2;i<15;i++) {
+			manager.setBranch_no(i);
+			manager.setManager_id("manager"+i);*/
 		int insert = sql.insert(ns+".managerresist", manager);
-		System.out.println("branch_name"+ manager.getBranch_no());
+/*		}*/
 		return false;
 	}
 

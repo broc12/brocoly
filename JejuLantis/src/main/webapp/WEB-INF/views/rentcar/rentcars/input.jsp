@@ -272,7 +272,37 @@
 		        jQuery("#rent_reserv_start").val('${requirements.rent_reserve_startDateTime}');
 		        jQuery("#rent_reserv_end").val('${requirements.rent_reserve_endDateTime}');
 		        document.f.submit();
-		    } else {
+		    } else {		        
+		        jQuery("#rent_payment_total_price").val(amount);
+		        jQuery("#rent_payment_insurance_price").val('${rentcar.totalinsurance }');
+		        jQuery("#rent_payment_carkind_price").val('${rentcar.totalprice}');
+		        jQuery("#rent_reserv_driver_name").val($("input:text[name=driver_name]").val());
+				/* jQuery("#rent_reserv_driver_birth").val($("input:text[name=driver_birth]").val()); */
+				jQuery("#rent_reserv_driver_tel").val($("input:text[name=driver_tel]").val());
+		        var way = "";
+		        if(pay == "card"){
+		        	way = "신용카드";
+		        }
+		        if(pay == "trans"){
+		        	way = "계좌이체";
+		        }
+		        if(pay == "vbank"){
+		        	way = "무통장입금";
+		        }
+		        if(pay == "phone"){
+		        	way = "휴대폰소액결제";
+		        }
+		        jQuery("#rent_payment_way").val(way);
+		        jQuery("#rent_payment_goods_type").val("Y");
+		        jQuery("#branch_no").val('${rentcar.branch_no}');
+		        jQuery("#car_no").val('${rentcar.car_no}');
+		        jQuery("#car_kind_no").val('${rentcar.car_kind_no}');
+		        jQuery("#insurance_no").val('${rentcar.insurance_no}');
+		        jQuery("#member_no").val('${log.member_no}');
+		        jQuery("#rent_payment_no").val('${reserv.rent_payment_no}');
+		        jQuery("#rent_reserv_start").val('${requirements.rent_reserve_startDateTime}');
+		        jQuery("#rent_reserv_end").val('${requirements.rent_reserve_endDateTime}');
+		        document.f.submit();
 		        var msg = '결제에 실패하였습니다.';
 		        msg += '에러내용 : ' + rsp.error_msg;
 		    }

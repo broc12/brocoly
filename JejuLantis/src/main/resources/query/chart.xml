@@ -39,18 +39,48 @@
 		as reserv from rent_reserv where rent_reserv_resist between '2018-01-01' and '2018-12-31'
 		and rent_reserv_cancel_date is not null group by substr(to_char(rent_reserv_resist),4,2)
 	</select>
-	<!-- 2018신규가입 -->
-	<select id="myNewbie" resultType="Long">
+ 	<!-- 2018신규가입 -->
+<!-- 	<select id="myNewbie" resultType="Long">
 		select count(*) 
 		as newbie from member where member_resist_member between '2018-01-01' and '2018-12-31'
  		group by substr(to_char(member_resist_member),4,2)
+	</select> -->
+	
+		<!-- 2018신규가입 -->
+	<select id="myNewbie" resultType="Long">
+	<![CDATA[
+        select NVL(NEWBIE,0) from 
+        (select (to_char(SYSDATE,'yy') || '/' || LPAD((00 + LEVEL),2,0))dd from dual CONNECT BY LEVEL < 13)aa 
+        left join 
+        (select substr(to_char(member_resist_member),0,5) AB ,count(*) 
+		as newbie from member where member_resist_member between '2018-01-01' and '2018-12-31'
+ 		group by substr(to_char(member_resist_member),0,5))bb
+        on aa.dd=bb.AB
+        order by aa.dd
+        ]]>
 	</select>
+	
 	<!-- 2018회원탈퇴 -->
-	<select id="myByebie" resultType="Long">
+<!-- 	<select id="myByebie" resultType="Long">
 		select count(*) 
 		as byebie from member where member_withdraw_date between '2018-01-01' and '2018-12-31'
  		group by substr(to_char(member_withdraw_date),4,2)
-	</select>
+	</select> -->
+	
+	<select id="myByebie" resultType="Long">
+	<![CDATA[
+        select NVL(NEWBIE,0) from 
+        (select (to_char(SYSDATE,'yy') || '/' || LPAD((00 + LEVEL),2,0))dd from dual CONNECT BY LEVEL < 13)aa 
+        left join 
+        (select substr(to_char(member_withdraw_date),0,5) AB ,count(*) 
+		as newbie from member where member_withdraw_date between '2018-01-01' and '2018-12-31'
+ 		group by substr(to_char(member_withdraw_date),0,5))bb
+        on aa.dd=bb.AB
+        order by aa.dd
+        ]]>
+	</select>	
+	
+	
 	<!-- 한주배차현황 -->
 	<select id="myWeek" resultType="Long">
 	
@@ -69,7 +99,7 @@
 		        COUNT(1) AS CNT
 		    FROM RENT_RESERV
 		    <if test="branch_no != 2">
-			and branch_no=#{branch_no}
+			where branch_no=#{branch_no}
 			</if>
 		    GROUP BY RENT_RESERV_START
 		    ORDER BY RENT_RESERV_START ASC

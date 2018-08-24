@@ -22,7 +22,11 @@ public class BranchDAOImpl implements BranchDAO{
 	}
 	@Override
 	public void insert(Branch branch) {
-		sqlSession.insert(ns+".myInsert",branch);
+/*		String[] a = {"제주렌트카","조은렌트카","에이스렌트카","남해렌트카","서귀포렌트카","서문렌트카","제주원렌트카","굿렌트카","용궁렌트카","베스트렌트카","하늘렌트카","제주하이렌트카","스카이렌트카"};
+		for(int i = 0;i<a.length;i++){
+			branch.setBranch_name(a[i]);*/
+			sqlSession.insert(ns+".myInsert",branch);
+//		}
 	}
 	
 	@Override

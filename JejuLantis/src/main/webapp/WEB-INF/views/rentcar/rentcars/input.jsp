@@ -6,8 +6,6 @@
 <html>
 	<head>
 	<meta charset="utf-8">
-	<meta id="_csrf" name="_csrf" content="${_csrf.token}"/>
-  <meta id="_csrf_header" name="_csrf_header" content="${_csrf.headerName}"/>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>Tour Template</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -149,7 +147,7 @@
 	
 	function disclick(){
 		var total = '${rentcar.totalprice}';
-		var per = '${list.get(0).getCoupon_discount()}';
+		var per = jQuery("input[name='discount']").val();
 		var sum = "";
 		
 		jQuery("#dis").show();
@@ -356,7 +354,6 @@
 		<input type="hidden" name="rent_reserv_driver_name" id="rent_reserv_driver_name">
 		<input type="hidden" name="rent_reserv_driver_birth" id="rent_reserv_driver_birth">
 		<input type="hidden" name="rent_reserv_driver_tel" id="rent_reserv_driver_tel">
-		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 	</form>
 		
 	
@@ -669,16 +666,24 @@
 										<td width="20%" align="center">할인금액(율)</td>
 										<td width="35%" align="center">사용기한</td>
 									</tr>
-									<c:forEach items="${list}" var="clist">
+									<c:forEach items="${list}" var="list">
 									<tr style="background-color:white" height="30px">
 										<td style="padding-left:10px">
-											<input type="radio" id="couponname" name="couponname" onclick="disclick()" value='${clist.coupon_way}'>
+											<c:choose>
+												<c:when test="${empty list}">
+												<input type="radio" id="couponname" name="couponname" onclick="alert('쿠폰이 없습니다.')">
+												</c:when>
+												<c:otherwise>
+												<input type="radio" id="couponname" name="couponname" onclick="disclick()" value='${list.coupon_way}'>
+												<input type="hidden" name="discount" value='${list.get(0).getCoupon_discount()}'>
+												</c:otherwise>
+											</c:choose>
 											<label class="form-check-label" for="couponname">
-												<span style="font-size:10pt">${clist.coupon_name}</span>
+												<span style="font-size:10pt">${list.coupon_name}</span>
 											</label>
 										</td>
-										<td align="center">${clist.coupon_discount}${clist.coupon_way}</td>
-										<td align="center">${clist.detail_start}~${clist.detail_end}</td>
+										<td align="center">${list.coupon_discount}${list.coupon_way}</td>
+										<td align="center">${list.detail_start}~${list.detail_end}</td>
 									</tr>
 									</c:forEach>
 									</table>
@@ -779,7 +784,9 @@
                       
                       <div id="dis" style="display:none">
                       <span style="color:#8caaca;font-size:10pt">할인</span>
-                      <span style="color:white;font-size:10pt">${list.get(0).getCoupon_name()}${list.get(0).getCoupon_discount()}${list.get(0).getCoupon_way()}</span>
+                      <c:if test="${!empty list }">
+                      	<span style="color:white;font-size:10pt">${list.get(0).getCoupon_name()}${list.get(0).getCoupon_discount()}${list.get(0).getCoupon_way()}</span>
+                      </c:if>
 		              </div>     
 		                    </div>
 		                  </div>

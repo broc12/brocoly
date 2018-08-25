@@ -109,7 +109,6 @@
 		}
 	}
 	function reservcar(carkindno){
-		alert(carkindno);
 		document.getElementById("carkindno").value = carkindno;
 		document.getElementById("confirmreserv").submit();
 	}
@@ -279,8 +278,8 @@
 													<tr style="font-size:8pt;border-bottom: hidden">
 														<td height="50px" align="center" style="border-right: hidden">${bdto.branch_name }</td>
 														<td align="center" style="border-right: hidden">${bdto.car_kind_rating }</td>
-														<td align="center" style="border-right: hidden">${bdto.totalrent }원</td>
-														<td align="center" style="border-right: hidden">${bdto.totalinsurance }원</td>
+														<td align="center" style="border-right: hidden">${bdto.totalrentView }원</td>
+														<td align="center" style="border-right: hidden">${bdto.totalinsuranceView }원</td>
 														<td align="center" style="border-right: hidden">${bdto.insurance_limit }원</td>
 														<td align="center" style="border-right: hidden">${bdto.totView }원</td>
 														<td align="center">													

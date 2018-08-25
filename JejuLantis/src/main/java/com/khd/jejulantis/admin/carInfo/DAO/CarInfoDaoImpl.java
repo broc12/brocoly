@@ -61,7 +61,9 @@ public class CarInfoDaoImpl implements CarInfoDao {
 	}
 	@Override
 	public List<CarInfoInsert> selectCarJoin(String manager_id) {
-		List<CarInfoInsert> carInfoInsert = sqlSession.selectList(ns+".myAddSelect",manager_id);
+		HashMap map = new HashMap();
+		map.put("manager_id", manager_id);
+		List<CarInfoInsert> carInfoInsert = sqlSession.selectList(ns+".myAddSelect",map);
 		return carInfoInsert;
 	}
 	@Override

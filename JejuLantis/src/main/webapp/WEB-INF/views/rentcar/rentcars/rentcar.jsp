@@ -248,10 +248,10 @@
 													<th width="48%" style="border-top: hidden;border-right: hidden">고객부담금</th>
 													</tr>
 													<tr align="center">
-														<td>250만원</td>
-														<td style="color:white;background-color:black">300만원</td>
+														<td style="color:white;background-color:black">100만원</td>
+														<td>200만원</td>
+														<td>300만원</td>
 														<td>400만원</td>
-														<td>500만원</td>
 														<td >무제한</td>
 														<td style="border-bottom: hidden">&nbsp;</td>
 														<td style="background-color:#2d2f3f;color:white;font-size:10pt">보상한도까지 수리비, 면책금, 휴차보상료 면제</td>
@@ -370,9 +370,9 @@
 						</tr>
 						<tr>
 							<td>
-								<h2 style="margin-left:20px; margin-right:20px;color:#868c98; font-weight: bold;">${rentcar.totalrenteconomy + rentcar.totalinsurance }원</h2>
+								<h2 style="margin-left:20px; margin-right:20px;color:#868c98; font-weight: bold;">${rentcar.totaleconomyView }원</h2>
 								<span style="margin-left:20px; margin-right:20px;color:#868c98">차량 대여료 ${rentcar.totalrenteconomy }원</span></br>
-								<span style="margin-left:20px; margin-right:20px;color:#868c98">보험료 ${rentcar.totalinsurance }원</span>
+								<span style="margin-left:20px; margin-right:20px;color:#868c98">보험료 ${rentcar.totalinsuranceView }원</span>
 							</td>
 						</tr>
 						<tr>
@@ -412,9 +412,9 @@
 						</tr>
 						<tr>
 							<td>
-								<h2 style="margin-left:20px; margin-right:20px;color:#868c98; font-weight: bold; color:#ffdd00;">${rentcar.totalprice }원</h2>
-								<span style="margin-left:20px; margin-right:20px;color:#868c98; color:#ffeb5f;">차량 대여료 ${rentcar.totalrent }원</span></br>
-								<span style="margin-left:20px; margin-right:20px;color:#868c98; color:#ffeb5f;">보험료 ${rentcar.totalinsurance }원</span>
+								<h2 style="margin-left:20px; margin-right:20px;color:#868c98; font-weight: bold; color:#ffdd00;">${rentcar.totalpriceView }원</h2>
+								<span style="margin-left:20px; margin-right:20px;color:#868c98; color:#ffeb5f;">차량 대여료 ${rentcar.totalrentView }원</span></br>
+								<span style="margin-left:20px; margin-right:20px;color:#868c98; color:#ffeb5f;">보험료 ${rentcar.totalinsuranceView }원</span>
 							</td>
 						</tr>
 						<tr>

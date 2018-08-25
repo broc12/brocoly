@@ -109,7 +109,8 @@ NATURAL JOIN
             CAR_KIND_PRICE_WEEK,
             INSURANCE_PRICE,
             INSURANCE_LIMIT,
-            MIN(CAR_KIND_PRICE_WEEK+INSURANCE_PRICE) OVER(PARTITION BY CAR_NO) AS MTOT,
+            <!-- MIN(CAR_KIND_PRICE_WEEK+INSURANCE_PRICE) OVER(PARTITION BY CAR_NO) AS MTOT, -->
+            MIN((CAR_KIND_PRICE_WEEK * #{weekTime}+CAR_KIND_PRICE_WEEKEND * #{weekendTime} + INSURANCE_PRICE * #{period})) OVER(PARTITION BY CAR_NO) AS MTOT,
             (CAR_KIND_PRICE_WEEK * #{weekTime}+CAR_KIND_PRICE_WEEKEND * #{weekendTime} + INSURANCE_PRICE * #{period}) AS TOT,
 			(CAR_KIND_PRICE_WEEK * #{weekTime}+CAR_KIND_PRICE_WEEKEND * #{weekendTime}) AS TOTALRENT,
 			(INSURANCE_PRICE * #{period}) AS TOTALINSURANCE,
@@ -235,20 +236,20 @@ NATURAL JOIN
 		ORDER BY
 		CAR_RATING,
 		CAR_KIND_RATING,
-		ACTOT,
+		TOT,
 		CAR_KIND_COUNT		
 	</when>
 	<when test= "#{sort} == 'count' ">
 		ORDER BY
 		CAR_COUNT,
 		CAR_KIND_COUNT,
-		ACTOT,
+		TOT,
 		CAR_KIND_RATING		
 	</when>
 	<otherwise>
 		ORDER BY
 		MTOT,
-		ACTOT,
+		TOT,
 		CAR_KIND_COUNT,
 		CAR_KIND_RATING
 	</otherwise>

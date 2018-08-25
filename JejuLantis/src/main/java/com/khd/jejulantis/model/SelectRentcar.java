@@ -2,6 +2,7 @@ package com.khd.jejulantis.model;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.text.DecimalFormat;
 
 public class SelectRentcar {
 	
@@ -266,8 +267,30 @@ public class SelectRentcar {
 		this.car = car;
 	}
 
-	public long getTotalrenteconomy() {
-		return new BigDecimal(Math.round(totalrent * 0.9)).setScale(-2,RoundingMode.HALF_DOWN ).longValue();
-		
+	public String getTotalrenteconomy() {
+		long money = new BigDecimal(Math.round(totalrent * 0.9)).setScale(-2,RoundingMode.HALF_DOWN ).longValue();
+		DecimalFormat df = new DecimalFormat("#,##0");
+		return df.format(money);
+	}
+
+	public String getTotalinsuranceView() {
+		DecimalFormat df = new DecimalFormat("#,##0");
+		return df.format(totalinsurance);
+	}
+
+	public String getTotaleconomyView() {
+		long money = new BigDecimal(Math.round(totalrent * 0.9)).setScale(-2,RoundingMode.HALF_DOWN ).longValue();
+		DecimalFormat df = new DecimalFormat("#,##0");
+		return df.format(totalinsurance+money);
+	}
+
+	public String getTotalpriceView() {
+		DecimalFormat df = new DecimalFormat("#,##0");
+		return df.format(totalprice);
+	}
+
+	public String getTotalrentView() {
+		DecimalFormat df = new DecimalFormat("#,##0");
+		return df.format(totalrent);
 	}
 }

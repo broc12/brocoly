@@ -70,7 +70,7 @@ function(){
 							url:"currenttime.do",
 							type:'GET',
 							error:function(error) {
-								alert("서버와 연결에 실패하엿습니다.");
+								alert("서버와 연결에 실패하였습니다.");
 							},
 							success:function(data){
 								if(data!=null){
@@ -174,11 +174,11 @@ $.callajax = function(){
 						html += "</p></div></div></div><div class='col-md-6 col-sm-6 animate-box' style='padding:0px;width:60%'>";
 						html += "<div class='hotel-entry' style='background-color:white'><div class='desc' style='padding:15px;height:410px'></br>";
 						html += "<span style='font-size:18pt;color:black'>"+ data[i].blist[0].branch_name +"</span><div align='right'>";
-						html += "<span style='color:red;text-decoration: line-through'>43,000원</span>";
+						/*html += "<span style='color:red;text-decoration: line-through'>43,000원</span>";
 						html += "<span style='font-size:18pt;color:black'>32,400원</span>";
 						html += "</div><p class='star'><span><i class='icon-star-full'></i><i class='icon-star-full'></i>";
-						html += "<i class='icon-star-full'></i><i class='icon-star-full'></i><i class='icon-star-full'></i></span> 545 Reviews</p>";
-						html += "<span class='place'>"+ data[i].blist[0].car_kind_naviView + " " + data[i].blist[0].car_kind_sensorView +" "+ data[i].blist[0].car_kind_bluetoothView +" "+ data[i].blist[0].car_kind_blackboxView +" "+ data[i].blist[0].car_kind_sunroofView +" "+ data[i].blist[0].car_kind_cameraView +" "+ data[i].blist[0].car_kind_nonsmokeView +"</span>";
+						html += "<i class='icon-star-full'></i><i class='icon-star-full'></i><i class='icon-star-full'></i></span> 545 Reviews</p>";*/
+						html += "</div><span class='place'>"+ data[i].blist[0].car_kind_naviView + " " + data[i].blist[0].car_kind_sensorView +" "+ data[i].blist[0].car_kind_bluetoothView +" "+ data[i].blist[0].car_kind_blackboxView +" "+ data[i].blist[0].car_kind_sunroofView +" "+ data[i].blist[0].car_kind_cameraView +" "+ data[i].blist[0].car_kind_nonsmokeView +"</span>";
 						html += "<div id='board'><table border='1' style='border-bottom:none;border-left:hidden;border-right:hidden' width='100%'  cellpadding='0' cellspacing='0'>";
 						html += "<tr style='color:#717886;font-size:8pt'>";
 						html += "<th  height='30px' width='23%' class='text-center' style='background-color: #f8fafb;border-right: hidden;'>대여업체</th>";

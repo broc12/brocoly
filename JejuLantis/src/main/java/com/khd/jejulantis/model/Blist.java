@@ -110,6 +110,12 @@ public class Blist implements Serializable{
 	public String getTotView() {
 		return format(tot);
 	}
+	public String getTotalrentView() {
+		return format(totalrent);
+	}
+	public String getTotalinsuranceView() {
+		return format(totalinsurance);
+	}
 	public String format(long number) {
 		DecimalFormat df = new DecimalFormat("#,##0");
 		return df.format(number);

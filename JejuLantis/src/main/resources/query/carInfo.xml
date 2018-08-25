@@ -20,7 +20,11 @@
 	 K.CAR_KIND_BLACKBOX, K.CAR_KIND_BLUETOOTH, K.CAR_KIND_SUNROOF, K.CAR_KIND_CAMERA, K.CAR_KIND_NONSMOKE,
 	 K.CAR_KIND_NO, K.BRANCH_NO  FROM CAR C, CAR_KIND K WHERE K.CAR_KIND_WITHDRAW_AT ='N' AND C.CAR_WITHDRAW_AT ='N' AND 
 	 C.CAR_NO = K.CAR_NO
+	 <where>
+	 <if test="manager_id != 'admin'">
 	  AND BRANCH_NO= (SELECT BRANCH_NO FROM MANAGER WHERE MANAGER_ID=#{manager_id})
+	  </if>
+	  </where>
 	</select>
 	<select id="mySelectBrancNo"  resultType="CarInfoInsert">
 	SELECT CAR_NO , BRANCH_NO  FROM CAR_KIND  WHERE CAR_KIND_NO = #{car_kind_no}

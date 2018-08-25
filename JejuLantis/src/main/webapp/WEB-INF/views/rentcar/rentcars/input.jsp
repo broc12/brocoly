@@ -635,7 +635,7 @@
 										<div class="col-md-12">
 											<p><div class="row form-group">
 												<div style="width:100%;height:10px;background-color:white;">
-													&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" id="exampleCheck1" name="coupon" value="N">
+													&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" id="exampleCheck1" name="coupon" value="N" checked='checked'>
 													<label class="form-check-label" for="exampleCheck1">
 														<h4 style="font-size:10pt">미선택</h4>
 													</label>
@@ -775,12 +775,12 @@
                   <div class="form-group">
                     <label for="" style="color:#8caaca">결제금액</label>
                     <div class="form-field">
-                    <input style="width:100%;background-color:#2d2f3f;color:white;font-size:24pt;border:none" name="sum" id="sum" type="text"  value='${rentcar.totalprice}' readOnly></br>
+                    <input style="width:100%;background-color:#2d2f3f;color:white;font-size:24pt;border:none" name="sum" id="sum" type="text"  value='${rentcar.totalpriceView}' readOnly></br>
                       <hr></br>
                       <span style="color:#8caaca;font-size:10pt">차량대여료(24시간)</span>
-                      <span style="color:white;font-size:10pt">${rentcar.totalrent}</span></br>
+                      <span style="color:white;font-size:10pt">${rentcar.totalrentView}</span></br>
                       <span style="color:#8caaca;font-size:10pt">보험료(2일)</span>
-                      <span style="color:white;font-size:10pt">${rentcar.totalinsurance }</span><br>
+                      <span style="color:white;font-size:10pt">${rentcar.totalinsuranceView }</span><br>
                       
                       
                       <div id="dis" style="display:none">

@@ -175,9 +175,11 @@ function check(){
           <i class="fa fa-table"></i>매출현황</div>
         <div class="card-body">
        				 기간 &nbsp;&nbsp;
+       				 
             	  <input type='text' id='test' name='test' value="">&nbsp;&nbsp; ~ &nbsp;&nbsp;
             	  <input type='text' id='test2' name='test2' value="">&nbsp;&nbsp;
             	  <input type='button' id='search' onclick="check()" name='search' class="btn btn-primary" style="border-radius:0px" value="검색">
+            	  	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
           <div class="table-responsive">
          		
             <table align="center" class="table table-bordered" id="dataTable" width="100%" cellspacing="0">

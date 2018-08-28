@@ -58,8 +58,8 @@ public class SnsLoginController {
 	private NaverLoginBO naverLoginBO;
 	private String apiResult = null;
 	/* NaverLoginBO */
-	private String FACEBOOK_CLIENT_ID= "661769470849271";
-	private String FACEBOOK_CLIENT_SECRET_KEY = "28e620c9178f4dd6cba582567352f7aa";
+	private String FACEBOOK_CLIENT_ID= "";
+	private String FACEBOOK_CLIENT_SECRET_KEY = "";
 	private String REDIRECT_URL="http://localhost:8080/jejulantis/facebookAccessToken.do";
 	
 	

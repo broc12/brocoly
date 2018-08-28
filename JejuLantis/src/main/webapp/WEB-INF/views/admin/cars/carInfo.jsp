@@ -41,7 +41,7 @@
         <div class="card-header">
           <i class="fa fa-table"></i>차량목록</div>
         <div class="card-body">
-        <a class="btn btn-primary" href="carInfoAdd.do?manager_id=${manager_id}" >차량등록</a></br></br>
+        <a class="btn btn-primary" style="border-radius:0px" href="carInfoAdd.do?manager_id=${manager_id}" >차량등록</a></br></br>
           <div class="table-responsive">
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
               <thead>

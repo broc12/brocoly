@@ -33,6 +33,8 @@ public class SalesController {
 	public List<Sales> paymentCancle(@RequestParam("start_date") String start_date, 
 			@RequestParam("end_date") String end_date,@RequestParam("branch_no") long branch_no) {
 		System.out.println("start_date"+ start_date);
+		System.out.println("end_date"+ end_date);
+		System.out.println("branch_no"+ branch_no);
 		
 	HashMap<String, Object> hash = new HashMap<String, Object>();
 		hash.put("start_date", start_date); 

@@ -143,6 +143,7 @@ function sendIt() {
 
           <form name="f" action="reviewInsertOk.do" method="post">
 <!--           	<input type="hidden" name="rent_review_no" id="rent_review_no"/> -->
+          	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
           	<input type="hidden" name="rent_reserv_no" value="${list.rent_reserv_no}" id="rent_reserv_no"/>
           	<input type="hidden" name="member_no" value="${list.member_no}" id="member_no"/>
           	<input type="hidden" name="insurance_no" value="${list.insurance_no}" id="insurance_no"/>

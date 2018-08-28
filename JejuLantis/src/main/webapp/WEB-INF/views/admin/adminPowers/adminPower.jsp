@@ -313,7 +313,11 @@ $(document).ready(function(){
 	       </tr>
 	       <tr>
 	       	<td colspan="2" align="right"><input type="button" value="완료" onclick="check()" class="btn btn-primary" style="width:150px"/></td>
+<<<<<<< HEAD
 	       	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+=======
+	      	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+>>>>>>> branch 'master' of https://github.com/ggim00922/JejuLantis.git
 	       </tr>
        </table>
        </form>

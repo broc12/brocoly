@@ -72,7 +72,7 @@ function check(){
 			 alert('성공');
 			 var html = "";
 			 if(!data){
-				html += "<p>검색결과없음</p>";
+				html += "<p>검색결과없음</p>";q
 			}else{
 				$("#result").empty();
 				if(data.length != 0){

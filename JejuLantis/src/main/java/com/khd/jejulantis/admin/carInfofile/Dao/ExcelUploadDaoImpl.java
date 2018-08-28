@@ -21,7 +21,7 @@ public class ExcelUploadDaoImpl implements ExcelUploadDao {
 		System.out.println(excelContent.get(0).toString());
 		HashMap<String,List> h = new HashMap<String,List>();
 		h.put("excelContent", excelContent);
-		int i = sqlSession.insert(ns+".myExcelInsert", h);
+		long i = sqlSession.insert(ns+".myExcelInsert", h);
 		boolean flag;
 		if(i>0) flag = true;
 		else flag = false;

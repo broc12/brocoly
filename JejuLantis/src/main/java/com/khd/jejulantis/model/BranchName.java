@@ -13,7 +13,7 @@ public class BranchName {
 	private Double score;
 	private String sale;
 	
-	private int branch_no;
+	private long branch_no;
 	private String branch_name;
 	private String branch_tel;
 	private String branch_local;
@@ -23,16 +23,16 @@ public class BranchName {
 	private String branch_member_name;
 	private String branch_member_tel;
 	private String branch_logo;
-	private int branch_comfee;
+	private long branch_comfee;
 	private String branch_withdraw_at;
 	private String branch_busspot;
 	private String branch_bustime;
 	private String branch_busgap;
 	public BranchName(){}
 	public BranchName(List reviewList, List reviewCount, String count_review, String review_sel, Double score,
-			String sale, int branch_no, String branch_name, String branch_tel, String branch_local, Date branch_resist,
+			String sale, long branch_no, String branch_name, String branch_tel, String branch_local, Date branch_resist,
 			String branch_business_no, String branch_bankaccount, String branch_member_name, String branch_member_tel,
-			String branch_logo, int branch_comfee, String branch_withdraw_at, String branch_busspot,
+			String branch_logo, long branch_comfee, String branch_withdraw_at, String branch_busspot,
 			String branch_bustime, String branch_busgap) {
 		super();
 		this.reviewList = reviewList;
@@ -95,10 +95,10 @@ public class BranchName {
 	public void setSale(String sale) {
 		this.sale = sale;
 	}
-	public int getBranch_no() {
+	public long getBranch_no() {
 		return branch_no;
 	}
-	public void setBranch_no(int branch_no) {
+	public void setBranch_no(long branch_no) {
 
 		this.branch_no = branch_no;
 	}
@@ -157,10 +157,10 @@ public class BranchName {
 	public void setBranch_logo(String branch_logo) {
 		this.branch_logo = branch_logo;
 	}
-	public int getBranch_comfee() {
+	public long getBranch_comfee() {
 		return branch_comfee;
 	}
-	public void setBranch_comfee(int branch_comfee) {
+	public void setBranch_comfee(long branch_comfee) {
 		this.branch_comfee = branch_comfee;
 	}
 	public String getBranch_withdraw_at() {

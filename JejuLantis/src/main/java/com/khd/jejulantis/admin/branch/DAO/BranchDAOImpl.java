@@ -48,7 +48,7 @@ public class BranchDAOImpl implements BranchDAO{
 		sqlSession.update(ns+".myWithdraw",branch_no);
 	}
 	@Override
-	public void modify(int branch_no, double branch_set1) {
+	public void modify(long branch_no, double branch_set1) {
 		HashMap<String,Object>map = new HashMap<String,Object>();
 		map.put("branch_no",branch_no);
 		map.put("branch_set1", branch_set1);

@@ -60,7 +60,7 @@ public class CReviewController {
 	}	
 	
 	@RequestMapping(value="boardview.do")
-	public ModelAndView reviewContent(@RequestParam(value ="branch_no")int branch_no){
+	public ModelAndView reviewContent(@RequestParam(value ="branch_no")long branch_no){
 		String view = "rentcar/reviews/boardview";
 		List<BranchName> branchContent = crservice.listServiceAll(branch_no);
 		double number = Double.parseDouble(String.format("%.1f",branchContent.get(0).getScore()));
@@ -96,7 +96,8 @@ public class CReviewController {
 		double rent_review_rating_car = reviewContent.getRent_review_rating_car();
 		System.out.println("carkind");
 		
-		int car_kind_count = rservice.getCarkindCount(reviewContent.getCar_kind_no());
+		long car_kind_count = rservice.getCarkindCount(reviewContent.getCar_kind_no());
+		System.out.println(reviewContent.getCar_kind_no());
 		List<CarkindDetail> car_kind_rating = carkinddetailService.contentListService(reviewContent.getCar_kind_no());
 		System.out.println("car_kind_rating : " + car_kind_rating.get(0).getCar_kind_rating());
 		double car_kind_set = (car_kind_rating.get(0).getCar_kind_rating()+rent_review_rating_car)/car_kind_count;
@@ -105,7 +106,7 @@ public class CReviewController {
 		System.out.println("car_kind_set1 : " + car_kind_set1);
 		carkinddetailService.UpdateService(reviewContent.getCar_kind_no(), car_kind_set1);
 		
-		int car_count = rservice.getCarCount(reviewContent.getCar_no());
+		long car_count = rservice.getCarCount(reviewContent.getCar_no());
 		List<Car> car_rating = carService.subjectService(reviewContent.getCar_no());
 		double car_set = (car_rating.get(0).getCar_rating()+rent_review_rating_car)/car_count;
 		System.out.println("car_set : " + car_set);
@@ -113,7 +114,7 @@ public class CReviewController {
 		System.out.println("car_set1 : " + car_set1);
 		carService.updateService(reviewContent.getCar_no(), car_set1);
 		
-		int branch_count = rservice.getBranchCount(reviewContent.getBranch_no());
+		long branch_count = rservice.getBranchCount(reviewContent.getBranch_no());
 		List<Branch> branch_rating = branchService.subjectService(reviewContent.getBranch_no());
 		double branch_set = (branch_rating.get(0).getBranch_rating()+rent_review_rating_car)/branch_count;
 		System.out.println("branch_set : " + branch_set);
@@ -122,7 +123,7 @@ public class CReviewController {
 		branchService.modifyService(reviewContent.getBranch_no(), branch_set1);
 		
 		rservice.reviewInsertService(reviewContent);
-		int member_no = reviewContent.getMember_no();
+		long member_no = reviewContent.getMember_no();
 		return "redirect:check.do?member_no="+member_no;
 	}
 }

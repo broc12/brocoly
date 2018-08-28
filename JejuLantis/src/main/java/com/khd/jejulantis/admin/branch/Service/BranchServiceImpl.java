@@ -37,7 +37,7 @@ public class BranchServiceImpl implements BranchService{
 		branchDAO.withdraw(branch_no);
 	}
 	@Override
-	public void modifyService(int branch_no, double branch_set1) {
+	public void modifyService(long branch_no, double branch_set1) {
 		branchDAO.modify(branch_no, branch_set1);
 	}
 }

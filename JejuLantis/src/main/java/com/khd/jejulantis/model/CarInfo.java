@@ -4,9 +4,9 @@ import java.sql.*;
 
 
 public class CarInfo {
-	private int car_info_no;
+	private long car_info_no;
 	private long car_no;
-	private int car_kind_no;
+	private long car_kind_no;
 	private long branch_no;
 	private String car_info_rent_at;
 	private String car_info_state;
@@ -16,7 +16,7 @@ public class CarInfo {
 	
 	public CarInfo() {}
 
-	public CarInfo(int car_info_no, long car_no, int car_kind_no, long branch_no, String car_info_rent_at,
+	public CarInfo(long car_info_no, long car_no, long car_kind_no, long branch_no, String car_info_rent_at,
 			String car_info_state, String car_info_withdraw_at, String car_info_back_no, Date car_info_resist) {
 		this.car_info_no = car_info_no;
 		this.car_no = car_no;
@@ -29,11 +29,11 @@ public class CarInfo {
 		this.car_info_resist = car_info_resist;
 	}
 
-	public int getCar_info_no() {
+	public long getCar_info_no() {
 		return car_info_no;
 	}
 
-	public void setCar_info_no(int car_info_no) {
+	public void setCar_info_no(long car_info_no) {
 		this.car_info_no = car_info_no;
 	}
 
@@ -45,11 +45,11 @@ public class CarInfo {
 		this.car_no = car_no;
 	}
 
-	public int getCar_kind_no() {
+	public long getCar_kind_no() {
 		return car_kind_no;
 	}
 
-	public void setCar_kind_no(int car_kind_no) {
+	public void setCar_kind_no(long car_kind_no) {
 		this.car_kind_no = car_kind_no;
 	}
 

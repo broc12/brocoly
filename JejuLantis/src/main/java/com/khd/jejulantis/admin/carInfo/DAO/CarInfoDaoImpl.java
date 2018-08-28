@@ -37,7 +37,7 @@ public class CarInfoDaoImpl implements CarInfoDao {
 	}
 	@Override
 	public boolean del(String car_info_no) {
-		int i = sqlSession.delete(ns+".myDel", car_info_no);
+		long i = sqlSession.delete(ns+".myDel", car_info_no);
 		boolean flag;
 		if(i>0) {
 			flag = true;
@@ -49,7 +49,7 @@ public class CarInfoDaoImpl implements CarInfoDao {
 	}
 	@Override
 	public boolean carInfoUpdate(CarInfo carInfo) {
-		int i = sqlSession.update(ns+".myUpdate", carInfo);
+		long i = sqlSession.update(ns+".myUpdate", carInfo);
 		boolean flag;
 		if(i>0) {
 			flag =  true;

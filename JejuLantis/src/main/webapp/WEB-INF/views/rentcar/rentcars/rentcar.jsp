@@ -458,7 +458,7 @@
 						<td rowspan="2" width="50%" height="500px">
 						<div id="map" style="width:600px">
 							<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
-						<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f0cfd90b11f1fceed206c4f201756973&libraries=services"></script>
+						<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=&libraries=services"></script>
 							<script>
 							    var mapContainer = document.getElementById('map')//, // 지도를 표시할 div
 							        mapOption = {

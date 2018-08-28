@@ -72,7 +72,7 @@ public class CarInfoController {
 	}
 	@RequestMapping(value="admin/carInfoUpdate.do",method=RequestMethod.POST)
 	public ModelAndView carInfoUpdate(@RequestParam("car_info_state")String car_info_state, 
-			@RequestParam("car_info_rent_at")String car_info_rent_at, @RequestParam("car_info_no")int car_info_no) {
+			@RequestParam("car_info_rent_at")String car_info_rent_at, @RequestParam("car_info_no")long car_info_no) {
 		CarInfo carInfo = new CarInfo(car_info_no, 0, 0, 0, car_info_rent_at, car_info_state, "", "", null);
 		boolean flag = carInfoService.carInfoUpdate(carInfo);
 		String view = "admin/cars/carInfoUpdateCheck";

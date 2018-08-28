@@ -46,7 +46,7 @@
 		and RENT_REVIEW.BRANCH_NO = BRANCH.BRANCH_NO and BRANCH.BRANCH_NO = #{a} and ROWNUM <![CDATA[<=]]>3	
 	</select>	
 	<!-- 관리자페이지 이용후기 리스트 -->
-	<select id="reviewContentAll" resultType="ReviewContent">
+	<select id="reviewContentAll" parameterType="String" resultType="ReviewContent">
 		select Rent_Review.Rent_Review_No, Rent_Review.Rent_Review_Date, 
         RENT_RESERV.RENT_RESERV_START, RENT_RESERV.RENT_RESERV_END, 
         MEMBER.MEMBER_NAME, BRANCH.BRANCH_NAME,   
@@ -72,13 +72,13 @@
 	<insert id="reviewInsert" parameterType="ReviewContent">
 		insert into RENT_REVIEW values(RENT_REVIEW_SEQ.nextval, #{rent_reserv_no}, #{member_no}, #{insurance_no}, #{branch_no}, #{car_kind_no}, #{car_no}, #{rent_review_title}, #{rent_review_content}, #{rent_review_rating_car}, SYSDATE)
 	</insert>
-	<select id="car_kind_count" parameterType="int" resultType="int">
+	<select id="car_kind_count" parameterType="long" resultType="long">
 		select count(*) from RENT_REVIEW where CAR_KIND_NO=#{car_kind_no}
 	</select>
-	<select id="car_count" parameterType="int" resultType="int">
+	<select id="car_count" parameterType="long" resultType="long">
 		select count(*) from RENT_REVIEW where CAR_NO=#{car_no}
 	</select>
-	<select id="branch_count" parameterType="int" resultType="int">
+	<select id="branch_count" parameterType="long" resultType="long">
 		select count(*) from RENT_REVIEW where BRANCH_NO=#{branch_no}
 	</select>
 </mapper>

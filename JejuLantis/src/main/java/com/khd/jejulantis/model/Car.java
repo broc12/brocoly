@@ -12,7 +12,7 @@ public class Car {
 	private String car_trans;
 	private long car_count;
 	private String car_image;
-	private long car_rating;
+	private double car_rating;
 	private String car_best;
 	private String car_md;
 	private long car_total;
@@ -93,10 +93,10 @@ public class Car {
 	public void setCar_image(String car_image) {
 		this.car_image = car_image;
 	}
-	public long getCar_rating() {
+	public double getCar_rating() {
 		return car_rating;
 	}
-	public void setCar_rating(long car_rating) {
+	public void setCar_rating(double car_rating) {
 		this.car_rating = car_rating;
 	}
 	public String getCar_best() {

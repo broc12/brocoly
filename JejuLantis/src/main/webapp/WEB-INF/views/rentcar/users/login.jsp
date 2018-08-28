@@ -65,7 +65,7 @@
 	<![endif]-->
 <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 <script type='text/javascript'>
-    Kakao.init('c4a7a25c03861c23a0732a1f443df2ef');
+    Kakao.init('kakaoKey');
     function loginWithKakao() {
       Kakao.Auth.login({
         success: function(authObj) {

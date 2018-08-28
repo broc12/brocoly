@@ -18,11 +18,11 @@ public class CarkindDetailServiceImpl implements CarkindDetailService {
 		return carkindDAO.carkind(manager_id);
 	}
 	@Override
-	public void deleteService(int car_kind_no) {
+	public void deleteService(long car_kind_no) {
 		carkindDAO.delete(car_kind_no);
 	}
 	@Override
-	public List<CarkindDetail> contentListService(int car_kind_no) {
+	public List<CarkindDetail> contentListService(long car_kind_no) {
 		return carkindDAO.carkind(car_kind_no);
 	}
 	@Override
@@ -34,11 +34,11 @@ public class CarkindDetailServiceImpl implements CarkindDetailService {
 		carkindDAO.insert(carkind);
 	}
 	@Override
-	public List<CarkindDetail> ContentService(int car_kind_no) {
+	public List<CarkindDetail> ContentService(long car_kind_no) {
 		return carkindDAO.carkind(car_kind_no);
 	}
 	@Override
-	public List<CarkindDetail> NotContentService(int car_kind_no) {
+	public List<CarkindDetail> NotContentService(long car_kind_no) {
 		return carkindDAO.carkindSelectBox(car_kind_no);
 	}
 	@Override
@@ -54,7 +54,7 @@ public class CarkindDetailServiceImpl implements CarkindDetailService {
 		return carkindDAO.branchNoSelect(manager_id);
 	}
 	@Override
-	public List<CarkindDetail> insuranceUpdateSelectService(String manager_id, int car_kind_no) {
+	public List<CarkindDetail> insuranceUpdateSelectService(String manager_id, long car_kind_no) {
 		return carkindDAO.insuranceUpdateSelectBox(manager_id, car_kind_no);
 	}
 	@Override
@@ -70,7 +70,7 @@ public class CarkindDetailServiceImpl implements CarkindDetailService {
 		return carkindDAO.listAll();
 	}
 	@Override
-	public void UpdateService(int car_kind_no, double car_kind_set1) {
+	public void UpdateService(long car_kind_no, double car_kind_set1) {
 		carkindDAO.update(car_kind_no, car_kind_set1);
 	}
 }

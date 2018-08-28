@@ -34,7 +34,7 @@ public class CarkindDetailController {
 	@RequestMapping(value="admin/carDetailUpdate.do")
 	public ModelAndView carDetailListUpdate(
 			@RequestParam("manager_id")String manager_id,
-			@RequestParam("car_kind_no")int car_kind_no) {
+			@RequestParam("car_kind_no")long car_kind_no) {
 		System.out.println("car_kind_no : " + car_kind_no);
 		List<CarkindDetail> carDetailUpdate = cservice.ContentService(car_kind_no);
 		List<CarkindDetail> carDetailSelectBox = cservice.NotContentService(car_kind_no);
@@ -55,7 +55,7 @@ public class CarkindDetailController {
 		return "redirect:carDetail.do?manager_id="+manager_id;
 	}
 	@RequestMapping(value="admin/carDetailContent.do")
-	public ModelAndView carDetailListContent(@RequestParam("car_kind_no")int car_kind_no) {
+	public ModelAndView carDetailListContent(@RequestParam("car_kind_no")long car_kind_no) {
 		System.out.println("car_kind_no : " + car_kind_no);
 		List<CarkindDetail> carDetailContent = cservice.ContentService(car_kind_no);
 		String view = "admin/cartypeDetails/carkindDetailContent";
@@ -64,7 +64,7 @@ public class CarkindDetailController {
 	}
 	@RequestMapping(value="admin/carDetailDel.do")
 	public String carDetailListdelete(@RequestParam("manager_id")String manager_id,
-			@RequestParam("car_kind_no")int car_kind_no) {
+			@RequestParam("car_kind_no")long car_kind_no) {
 		System.out.println("car_kind_no : " + car_kind_no);
 		cservice.deleteService(car_kind_no);
 		return "redirect:carDetail.do?manager_id="+manager_id;
@@ -72,12 +72,12 @@ public class CarkindDetailController {
 	@RequestMapping(value="admin/carDetailWriteOk.do",method=RequestMethod.POST)
 	public String carDetailListInsertOk(
 		@RequestParam("manager_id")String manager_id,
-		@RequestParam("branch_no")int branch_no,
-		@RequestParam("car_no")int car_no,
-		@RequestParam("car_kind_price_week")int car_kind_price_week,
-		@RequestParam("car_kind_price_weekend")int car_kind_price_weekend,
-		@RequestParam("car_kind_price_holiday")int car_kind_price_holiday,
-		@RequestParam("car_kind_price_h_holiday")int car_kind_price_h_holiday,
+		@RequestParam("branch_no")long branch_no,
+		@RequestParam("car_no")long car_no,
+		@RequestParam("car_kind_price_week")long car_kind_price_week,
+		@RequestParam("car_kind_price_weekend")long car_kind_price_weekend,
+		@RequestParam("car_kind_price_holiday")long car_kind_price_holiday,
+		@RequestParam("car_kind_price_h_holiday")long car_kind_price_h_holiday,
 		@RequestParam(value="car_kind_navi",required=false)String car_kind_navi,
 		@RequestParam(value="car_kind_sensor",required=false)String car_kind_sensor,
 		@RequestParam(value="car_kind_blackbox",required=false)String car_kind_blackbox,

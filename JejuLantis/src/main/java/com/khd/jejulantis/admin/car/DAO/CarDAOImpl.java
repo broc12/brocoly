@@ -52,7 +52,7 @@ public class CarDAOImpl implements CarDAO{
 		}
 	}
 	@Override
-	public void update(int car_no, double car_set1) {
+	public void update(long car_no, double car_set1) {
 		HashMap<String,Object> map = new HashMap<String,Object>();
 		map.put("car_no", car_no);
 		map.put("car_set1", car_set1);

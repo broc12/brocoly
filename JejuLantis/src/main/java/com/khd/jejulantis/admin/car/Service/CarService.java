@@ -11,6 +11,6 @@ public interface CarService {
 	List<Car>modifyService(long car_no);
 	void updateService(Car car);
 	void bestService(List<Long>best);
-	void updateService(int car_no, double car_set1);
+	void updateService(long l, double car_set1);
 	void mdService(List<Long>md);
 }

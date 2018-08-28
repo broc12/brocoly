@@ -20,11 +20,11 @@ public class CarkindDetailDaoImpl implements CarkindDetailDao {
 		return carkind;
 	}
 	@Override
-	public void delete(int car_kind_no) {
+	public void delete(long car_kind_no) {
 		sqlSession.update(ns_carkind+".update", car_kind_no);
 	}
 	@Override
-	public List<CarkindDetail> carkind(int car_kind_no) {
+	public List<CarkindDetail> carkind(long car_kind_no) {
 		List<CarkindDetail> carkind = sqlSession.selectList(ns_carkind+".carkindContentList", car_kind_no);
 		return carkind;
 	}
@@ -38,7 +38,7 @@ public class CarkindDetailDaoImpl implements CarkindDetailDao {
 		sqlSession.insert(ns_carkind+".insert", carkind);
 	}
 	@Override
-	public List<CarkindDetail> carkindSelectBox(int car_kind_no) {
+	public List<CarkindDetail> carkindSelectBox(long car_kind_no) {
 		List<CarkindDetail> carkind = sqlSession.selectList(ns_carkind+".carSelectBox", car_kind_no);
 		return carkind;
 	}
@@ -58,7 +58,7 @@ public class CarkindDetailDaoImpl implements CarkindDetailDao {
 		return branchNoSelect;
 	}
 	@Override
-	public List<CarkindDetail> insuranceUpdateSelectBox(String manager_id, int car_kind_no) {
+	public List<CarkindDetail> insuranceUpdateSelectBox(String manager_id, long car_kind_no) {
 		HashMap<String,Object> map = new HashMap<String,Object>();
 		map.put("manager_id", manager_id);
 		map.put("car_kind_no", car_kind_no);
@@ -82,7 +82,7 @@ public class CarkindDetailDaoImpl implements CarkindDetailDao {
 		return listAll;
 	}
 	@Override
-	public void update(int car_kind_no, double car_kind_set1) {
+	public void update(long car_kind_no, double car_kind_set1) {
 		HashMap<String,Object>map = new HashMap<String,Object>(); 
 		map.put("car_kind_no", car_kind_no);
 		map.put("car_kind_set1", car_kind_set1);

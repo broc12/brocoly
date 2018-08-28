@@ -43,7 +43,7 @@
 		,#{branch_busgap},#{branch_boss},#{branch_today},#{branch_todaytime},#{branch_rule},0,SYSDATE,#{branch_lati},#{branch_long})
 	</insert>
 	
-	<select id="mySubject" resultType="Branch">
+	<select id="mySubject" parameterType="long" resultType="Branch">
    		select * from BRANCH where branch_no=#{branch_no}
    </select>
    

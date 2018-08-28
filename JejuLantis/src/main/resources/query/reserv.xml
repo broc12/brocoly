@@ -48,7 +48,7 @@
 		select * from RENT_RESERV where RENT_RESERV_NO=#{RENT_RESERV_NO}
 	</select>
 	
-	<select id="myCheck" parameterType="Reserv" resultMap="reservResult">
+	<select id="myCheck" parameterType="long" resultMap="reservResult">
 		select * from RENT_RESERV where MEMBER_NO=#{member_no}
 	</select>
 	

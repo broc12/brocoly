@@ -49,7 +49,7 @@ public class CarServiceImpl implements CarService{
 	}
 
 	@Override
-	public void updateService(int car_no, double car_set1) {
+	public void updateService(long car_no, double car_set1) {
 		carDAO.update(car_no, car_set1);
 	}
 	@Override

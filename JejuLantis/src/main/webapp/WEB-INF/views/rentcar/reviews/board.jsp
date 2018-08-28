@@ -110,7 +110,7 @@
 													<td colspan="2" height="50px" style="background-color:#eef2f5">${branch.branch_name}  (${branch.sale})&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="boardview.do?branch_no=${branch.branch_no}">더보기</a> </td>
 												</tr>
 												
-												<c:forEach items="${branch.reviewList}" var="review" varStatus="status">
+												<c:forEach items="${branch.reviewList}" var="review" varStatus="status" begin="0" end="0">
 										
 												<tr>
 													<td rowspan="4" width=33%>	

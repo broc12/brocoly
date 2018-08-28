@@ -34,15 +34,15 @@ public class ReviewServiceImpl implements ReviewService {
 		reviewDAO.reviewInsert(reviewContent);
 	}
 	@Override
-	public int getCarkindCount(int car_kind_no) {
+	public long getCarkindCount(long car_kind_no) {
 		return reviewDAO.reviewCarkindCount(car_kind_no);
 	}
 	@Override
-	public int getCarCount(int car_no) {
+	public long getCarCount(long car_no) {
 		return reviewDAO.reviewCarCount(car_no);
 	}
 	@Override
-	public int getBranchCount(int branch_no) {
+	public long getBranchCount(long branch_no) {
 		return reviewDAO.reviewBranchCount(branch_no);
 	}
 	

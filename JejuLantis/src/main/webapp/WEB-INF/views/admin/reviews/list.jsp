@@ -58,7 +58,7 @@
               </thead>
    
               <tbody>
-              <c:forEach items="${reviewList}" var="review" varStatus="status">
+              <c:forEach items="${reviewList}" var="review" varStatus="status" begin="0" end="0">
                 <tr>
                   <td>${review.rent_review_no}</td>
                   <td>${review.rent_review_date}</td>

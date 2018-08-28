@@ -78,7 +78,7 @@
 		0, 0, 'N',
 		SYSDATE)
 	</insert>
-	<select id="carkindContentList" resultType="Carkind">
+	<select id="carkindContentList" parameterType="long" resultType="Carkind">
         select * from CAR_KIND, CAR, BRANCH
 		where CAR_KIND.CAR_KIND_NO=#{car_kind_no}
 		and CAR.CAR_NO=CAR_KIND.CAR_NO

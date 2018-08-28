@@ -24,7 +24,7 @@ public class Branch {
 	private String branch_today;
 	private String branch_todaytime;
 	private String branch_rule;
-	private long branch_rating;
+	private double branch_rating;
 	private Date branch_resist;
 	private String branch_lati;
 	private String branch_long;
@@ -201,10 +201,10 @@ public class Branch {
 	public void setBranch_rule(String branch_rule) {
 		this.branch_rule = branch_rule;
 	}
-	public long getBranch_rating() {
+	public double getBranch_rating() {
 		return branch_rating;
 	}
-	public void setBranch_rating(long branch_rating) {
+	public void setBranch_rating(double branch_rating) {
 		this.branch_rating = branch_rating;
 	}
 	public Date getBranch_resist() {

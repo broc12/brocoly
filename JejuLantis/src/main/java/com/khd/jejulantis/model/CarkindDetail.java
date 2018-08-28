@@ -7,39 +7,39 @@ public class CarkindDetail {
 	
 	private String branch_name;
 	
-	private int insurance_no;
-	private int insurance_price;
+	private long insurance_no;
+	private long insurance_price;
 	private String insurance_name;
 	private String insurance_limit;
-	private int insurance_burden_price;
-	private int insurance_limit_age;
-	private int insurance_limit_carrier;
+	private long insurance_burden_price;
+	private long insurance_limit_age;
+	private long insurance_limit_carrier;
 	private String insurance_withdraw_at;
 	private Date insurance_resist;
 	
-	private int car_no;
+	private long car_no;
 	private String car_name;
 	private String car_manufacturer;
 	private String car_fuel;
 	private String car_type;
-	private int car_passenger;
+	private long car_passenger;
 	private String car_trans;
-	private int car_count;
+	private long car_count;
 	private String car_image;
-	private int car_rating;
+	private double car_rating;
 	private String car_withdraw_at; 
 	private Date car_resist;
 	
 	private String branch_member_name;
-	private int car_kind_no;
-	private int branch_no;
+	private long car_kind_no;
+	private long branch_no;
 	//car_no
 	//insurance_no
-	private int car_kind_count;
-	private int car_kind_price_week;
-	private int car_kind_price_weekend;
-	private int car_kind_price_holiday;
-	private int car_kind_price_h_holiday;
+	private long car_kind_count;
+	private long car_kind_price_week;
+	private long car_kind_price_weekend;
+	private long car_kind_price_holiday;
+	private long car_kind_price_h_holiday;
 	private String car_kind_navi;
 	private String car_kind_sensor;
 	private String car_kind_blackbox;
@@ -47,26 +47,26 @@ public class CarkindDetail {
 	private String car_kind_sunroof;
 	private String car_kind_camera;
 	private String car_kind_nonsmoke;
-	private int car_kind_rating;
-	private int car_kind_total;
+	private double car_kind_rating;
+	private long car_kind_total;
 	private String car_kind_withdraw_at;
 	private Date car_kind_resist;
 	public CarkindDetail() {}
 	
 
-	public CarkindDetail(int insurance_no, String insurance_name) {
+	public CarkindDetail(long insurance_no, String insurance_name) {
 		super();
 		this.insurance_no = insurance_no;
 		this.insurance_name = insurance_name;
 	}
 	//CAR_KIND INSERT
 	
-	public CarkindDetail(int car_kind_no, int branch_no, int car_no,
-			int car_kind_price_week, int car_kind_price_weekend, int car_kind_price_holiday,
-			int car_kind_price_h_holiday,  int car_kind_count, 
+	public CarkindDetail(long car_kind_no, long branch_no, long car_no,
+			long car_kind_price_week, long car_kind_price_weekend, long car_kind_price_holiday,
+			long car_kind_price_h_holiday,  long car_kind_count, 
 			String car_kind_navi, String car_kind_sensor, String car_kind_blackbox,
 			String car_kind_bluetooth, String car_kind_sunroof, String car_kind_camera, String car_kind_nonsmoke,
-			int car_kind_rating, int car_kind_total, String car_kind_withdraw_at, Date car_kind_resist) {
+			double car_kind_rating, long car_kind_total, String car_kind_withdraw_at, Date car_kind_resist) {
 		super();
 		this.car_kind_no = car_kind_no;
 		this.branch_no = branch_no;
@@ -91,15 +91,15 @@ public class CarkindDetail {
 	}
 
 
-	public CarkindDetail(int insurance_no, int insurance_price, String insurance_name, String insurance_limit,
-			int insurance_burden_price, int insurance_limit_age, int insurance_limit_carrier,
-			String insurance_withdraw_at, Date insurance_resist, int car_no, String car_name, String car_manufacturer,
-			String car_fuel, String car_type, int car_passenger, String car_trans, int car_count, String car_image,
-			int car_rating, String car_withdraw_at, Date car_resist, int car_kind_no, int branch_no, int car_kind_count,
-			int car_kind_price_week, int car_kind_price_weekend, int car_kind_price_holiday,
-			int car_kind_price_h_holiday, String car_kind_navi, String car_kind_sensor, String car_kind_blackbox,
+	public CarkindDetail(long insurance_no, long insurance_price, String insurance_name, String insurance_limit,
+			long insurance_burden_price, long insurance_limit_age, long insurance_limit_carrier,
+			String insurance_withdraw_at, Date insurance_resist, long car_no, String car_name, String car_manufacturer,
+			String car_fuel, String car_type, long car_passenger, String car_trans, long car_count, String car_image,
+			double car_rating, String car_withdraw_at, Date car_resist, long car_kind_no, long branch_no, long car_kind_count,
+			long car_kind_price_week, long car_kind_price_weekend, long car_kind_price_holiday,
+			long car_kind_price_h_holiday, String car_kind_navi, String car_kind_sensor, String car_kind_blackbox,
 			String car_kind_bluetooth, String car_kind_sunroof, String car_kind_camera, String car_kind_nonsmoke,
-			int car_kind_rating, String car_kind_withdraw_at, Date car_kind_resist) {
+			double car_kind_rating, String car_kind_withdraw_at, Date car_kind_resist) {
 		super();
 		this.insurance_no = insurance_no;
 		this.insurance_price = insurance_price;
@@ -142,8 +142,8 @@ public class CarkindDetail {
 	}
 
 
-	public CarkindDetail(int insurance_no, int branch_no, int insurance_price, String insurance_name,
-			String insurance_limit, int insurance_burden_price, int insurance_limit_age, int insurance_limit_carrier,
+	public CarkindDetail(long insurance_no, long branch_no, long insurance_price, String insurance_name,
+			String insurance_limit, long insurance_burden_price, long insurance_limit_age, long insurance_limit_carrier,
 			String insurance_withdraw_at, Date insurance_resist) {
 		super();
 		this.insurance_no = insurance_no;
@@ -159,8 +159,8 @@ public class CarkindDetail {
 	}
 
 
-	public CarkindDetail(int car_no, String car_name, String car_manufacturer, String car_fuel, String car_type,
-			int car_passenger, String car_trans, int car_count, String car_image, int car_rating,
+	public CarkindDetail(long car_no, String car_name, String car_manufacturer, String car_fuel, String car_type,
+			long car_passenger, String car_trans, long car_count, String car_image, double car_rating,
 			String car_withdraw_at, Date car_resist) {
 		super();
 		this.car_no = car_no;
@@ -181,15 +181,15 @@ public class CarkindDetail {
 	
 
 
-	public CarkindDetail(String branch_name, int insurance_no, int insurance_price, String insurance_name,
-			String insurance_limit, int insurance_burden_price, int insurance_limit_age, int insurance_limit_carrier,
-			String insurance_withdraw_at, Date insurance_resist, int car_no, String car_name, String car_manufacturer,
-			String car_fuel, String car_type, int car_passenger, String car_trans, int car_count, String car_image,
-			int car_rating, String car_withdraw_at, Date car_resist, String branch_member_name, int car_kind_no,
-			int branch_no, int car_kind_count, int car_kind_price_week, int car_kind_price_weekend,
-			int car_kind_price_holiday, int car_kind_price_h_holiday, String car_kind_navi, String car_kind_sensor,
+	public CarkindDetail(String branch_name, long insurance_no, long insurance_price, String insurance_name,
+			String insurance_limit, long insurance_burden_price, long insurance_limit_age, long insurance_limit_carrier,
+			String insurance_withdraw_at, Date insurance_resist, long car_no, String car_name, String car_manufacturer,
+			String car_fuel, String car_type, long car_passenger, String car_trans, long car_count, String car_image,
+			double car_rating, String car_withdraw_at, Date car_resist, String branch_member_name, long car_kind_no,
+			long branch_no, long car_kind_count, long car_kind_price_week, long car_kind_price_weekend,
+			long car_kind_price_holiday, long car_kind_price_h_holiday, String car_kind_navi, String car_kind_sensor,
 			String car_kind_blackbox, String car_kind_bluetooth, String car_kind_sunroof, String car_kind_camera,
-			String car_kind_nonsmoke, int car_kind_rating, int car_kind_total, String car_kind_withdraw_at,
+			String car_kind_nonsmoke, double car_kind_rating, long car_kind_total, String car_kind_withdraw_at,
 			Date car_kind_resist) {
 		super();
 		this.branch_name = branch_name;
@@ -246,12 +246,12 @@ public class CarkindDetail {
 	}
 
 
-	public int getCar_kind_total() {
+	public long getCar_kind_total() {
 		return car_kind_total;
 	}
 
 
-	public void setCar_kind_total(int car_kind_total) {
+	public void setCar_kind_total(long car_kind_total) {
 		this.car_kind_total = car_kind_total;
 	}
 
@@ -266,12 +266,12 @@ public class CarkindDetail {
 	}
 
 
-	public int getInsurance_price() {
+	public long getInsurance_price() {
 		return insurance_price;
 	}
 
 
-	public void setInsurance_price(int insurance_price) {
+	public void setInsurance_price(long insurance_price) {
 		this.insurance_price = insurance_price;
 	}
 
@@ -286,32 +286,32 @@ public class CarkindDetail {
 	}
 
 
-	public int getInsurance_burden_price() {
+	public long getInsurance_burden_price() {
 		return insurance_burden_price;
 	}
 
 
-	public void setInsurance_burden_price(int insurance_burden_price) {
+	public void setInsurance_burden_price(long insurance_burden_price) {
 		this.insurance_burden_price = insurance_burden_price;
 	}
 
 
-	public int getInsurance_limit_age() {
+	public long getInsurance_limit_age() {
 		return insurance_limit_age;
 	}
 
 
-	public void setInsurance_limit_age(int insurance_limit_age) {
+	public void setInsurance_limit_age(long insurance_limit_age) {
 		this.insurance_limit_age = insurance_limit_age;
 	}
 
 
-	public int getInsurance_limit_carrier() {
+	public long getInsurance_limit_carrier() {
 		return insurance_limit_carrier;
 	}
 
 
-	public void setInsurance_limit_carrier(int insurance_limit_carrier) {
+	public void setInsurance_limit_carrier(long insurance_limit_carrier) {
 		this.insurance_limit_carrier = insurance_limit_carrier;
 	}
 
@@ -336,12 +336,12 @@ public class CarkindDetail {
 	}
 
 
-	public int getCar_passenger() {
+	public long getCar_passenger() {
 		return car_passenger;
 	}
 
 
-	public void setCar_passenger(int car_passenger) {
+	public void setCar_passenger(long car_passenger) {
 		this.car_passenger = car_passenger;
 	}
 
@@ -356,17 +356,17 @@ public class CarkindDetail {
 	}
 
 
-	public int getCar_count() {
+	public long getCar_count() {
 		return car_count;
 	}
 
 
-	public void setCar_count(int car_count) {
+	public void setCar_count(long car_count) {
 		this.car_count = car_count;
 	}
 
 
-	public int getCar_kind_no() {
+	public long getCar_kind_no() {
 		return car_kind_no;
 	}
 
@@ -381,12 +381,12 @@ public class CarkindDetail {
 	}
 
 
-	public int getCar_rating() {
+	public double getCar_rating() {
 		return car_rating;
 	}
 
 
-	public void setCar_rating(int car_rating) {
+	public void setCar_rating(double car_rating) {
 		this.car_rating = car_rating;
 	}
 
@@ -451,87 +451,87 @@ public class CarkindDetail {
 	}
 
 
-	public void setCar_kind_no(int car_kind_no) {
+	public void setCar_kind_no(long car_kind_no) {
 		this.car_kind_no = car_kind_no;
 	}
 
 
-	public int getBranch_no() {
+	public long getBranch_no() {
 		return branch_no;
 	}
 
 
-	public void setBranch_no(int branch_no) {
+	public void setBranch_no(long branch_no) {
 		this.branch_no = branch_no;
 	}
 
 
-	public int getInsurance_no() {
+	public long getInsurance_no() {
 		return insurance_no;
 	}
 
 
-	public void setInsurance_no(int insurance_no) {
+	public void setInsurance_no(long insurance_no) {
 		this.insurance_no = insurance_no;
 	}
 
 
-	public int getCar_no() {
+	public long getCar_no() {
 		return car_no;
 	}
 
 
-	public void setCar_no(int car_no) {
+	public void setCar_no(long car_no) {
 		this.car_no = car_no;
 	}
 
 
-	public int getCar_kind_count() {
+	public long getCar_kind_count() {
 		return car_kind_count;
 	}
 
 
-	public void setCar_kind_count(int car_kind_count) {
+	public void setCar_kind_count(long car_kind_count) {
 		this.car_kind_count = car_kind_count;
 	}
 
 
-	public int getCar_kind_price_week() {
+	public long getCar_kind_price_week() {
 		return car_kind_price_week;
 	}
 
 
-	public void setCar_kind_price_week(int car_kind_price_week) {
+	public void setCar_kind_price_week(long car_kind_price_week) {
 		this.car_kind_price_week = car_kind_price_week;
 	}
 
 
-	public int getCar_kind_price_weekend() {
+	public long getCar_kind_price_weekend() {
 		return car_kind_price_weekend;
 	}
 
 
-	public void setCar_kind_price_weekend(int car_kind_price_weekend) {
+	public void setCar_kind_price_weekend(long car_kind_price_weekend) {
 		this.car_kind_price_weekend = car_kind_price_weekend;
 	}
 
 
-	public int getCar_kind_price_holiday() {
+	public long getCar_kind_price_holiday() {
 		return car_kind_price_holiday;
 	}
 
 
-	public void setCar_kind_price_holiday(int car_kind_price_holiday) {
+	public void setCar_kind_price_holiday(long car_kind_price_holiday) {
 		this.car_kind_price_holiday = car_kind_price_holiday;
 	}
 
 
-	public int getCar_kind_price_h_holiday() {
+	public long getCar_kind_price_h_holiday() {
 		return car_kind_price_h_holiday;
 	}
 
 
-	public void setCar_kind_price_h_holiday(int car_kind_price_h_holiday) {
+	public void setCar_kind_price_h_holiday(long car_kind_price_h_holiday) {
 		this.car_kind_price_h_holiday = car_kind_price_h_holiday;
 	}
 
@@ -606,12 +606,12 @@ public class CarkindDetail {
 	}
 
 
-	public int getCar_kind_rating() {
+	public double getCar_kind_rating() {
 		return car_kind_rating;
 	}
 
 
-	public void setCar_kind_rating(int car_kind_rating) {
+	public void setCar_kind_rating(double car_kind_rating) {
 		this.car_kind_rating = car_kind_rating;
 	}
 

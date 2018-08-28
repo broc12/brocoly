@@ -31,7 +31,7 @@ public class NaverLoginDaoImpl implements NaverLoginDao {
 		System.out.println("birth " + memberToJoin.getMember_birth());
 		System.out.println("email" + memberToJoin.getMember_email());
 		System.out.println("이름" + memberToJoin.getMember_name());
-		int i = sqlSession.insert(ns+".joinSns",memberToJoin);
+		long i = sqlSession.insert(ns+".joinSns",memberToJoin);
 		boolean isInserted;
 		if(i>0) isInserted=true;
 		else isInserted=false;

@@ -8,5 +8,5 @@ import com.khd.jejulantis.model.ReviewContent;
 public interface CReviewService {
 	List<BranchName> listService();
 	List<BranchName> selectService(String review_sel);
-	List<BranchName> listServiceAll(int branch_no);
+	List<BranchName> listServiceAll(long branch_no);
 }

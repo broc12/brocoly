@@ -57,7 +57,7 @@
           <i class="fa fa-table"></i>이용후기관리</div>
         <div class="card-body">
         <div class="table-responsive">
-        	<c:forEach items="${reviewContentList}" var="reviewContentList" varStatus="status">
+        	<c:forEach items="${reviewContentList}" var="reviewContentList" varStatus="status" begin="0" end="0">
 		    	<table border="0" width="100%"  cellpadding="0" cellspacing="0">
 					<h3 style="color:#007bff">이용후기관리</h3>	
 					<tr style="color:#808080;font-size:12pt">			

@@ -31,7 +31,7 @@ public class CReviewDAOImpl implements CReviewDAO{
 	}
 	
 	@Override
-	public List<BranchName> reviewContentAll(int branch_no) {
+	public List<BranchName> reviewContentAll(long branch_no) {
 		List<BranchName> reviewContent = sqlSession.selectList(ns_branchName+".branchNameContent", branch_no);
 		return reviewContent;
 	}

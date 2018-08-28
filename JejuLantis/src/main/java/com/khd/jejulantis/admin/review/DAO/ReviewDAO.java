@@ -13,8 +13,8 @@ public interface ReviewDAO {
 	List<BranchName> branchNameContent(String branch_no);
 	List<BranchName> listSelect();
 	void reviewInsert(ReviewContent reviewContent);
-	int reviewCarkindCount(int car_kind_no);
-	int reviewBranchCount(int branch_no);
-	int reviewCarCount(int car_no);
+	long reviewCarkindCount(long car_kind_no);
+	long reviewBranchCount(long branch_no);
+	long reviewCarCount(long car_no);
 
 }

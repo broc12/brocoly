@@ -24,7 +24,7 @@ public class CReviewServiceImpl implements CReviewService{
 		return reviewDAO.select(review_sel);
 	}
 	@Override
-	public List<BranchName> listServiceAll(int branch_no) {
+	public List<BranchName> listServiceAll(long branch_no) {
 		return reviewDAO.reviewContentAll(branch_no);
 	}
 	
